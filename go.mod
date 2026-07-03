@@ -1,3 +1,3 @@
-module github.com/shenzhencenter/facebook-go-sdk
+module github.com/shenzhencenter/meta-go
 
 go 1.20
