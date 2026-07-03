@@ -1,0 +1,13 @@
+package enums
+
+type AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParam string
+
+const (
+	AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParamActive  AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParam = "ACTIVE"
+	AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParamDeleted AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParam = "DELETED"
+	AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParamDraft   AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParam = "DRAFT"
+)
+
+func (value AdsvalueadjustmentrulecollectiondeleteRuleSetStatusEnumParam) String() string {
+	return string(value)
+}

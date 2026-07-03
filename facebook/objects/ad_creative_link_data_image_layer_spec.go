@@ -1,0 +1,22 @@
+package objects
+
+import (
+	"github.com/shenzhencenter/facebook-go-sdk/facebook/enums"
+)
+
+type AdCreativeLinkDataImageLayerSpec struct {
+	BlendingMode              *enums.AdcreativelinkdataimagelayerspecBlendingMode    `json:"blending_mode,omitempty"`
+	Content                   *map[string]interface{}                                `json:"content,omitempty"`
+	FrameAutoShowEnrollStatus *string                                                `json:"frame_auto_show_enroll_status,omitempty"`
+	FrameImageHash            *string                                                `json:"frame_image_hash,omitempty"`
+	FrameSource               *enums.AdcreativelinkdataimagelayerspecFrameSource     `json:"frame_source,omitempty"`
+	ImageSource               *enums.AdcreativelinkdataimagelayerspecImageSource     `json:"image_source,omitempty"`
+	LayerType                 *enums.AdcreativelinkdataimagelayerspecLayerType       `json:"layer_type,omitempty"`
+	Opacity                   *int                                                   `json:"opacity,omitempty"`
+	OverlayPosition           *enums.AdcreativelinkdataimagelayerspecOverlayPosition `json:"overlay_position,omitempty"`
+	OverlayShape              *enums.AdcreativelinkdataimagelayerspecOverlayShape    `json:"overlay_shape,omitempty"`
+	Scale                     *int                                                   `json:"scale,omitempty"`
+	ShapeColor                *string                                                `json:"shape_color,omitempty"`
+	TextColor                 *string                                                `json:"text_color,omitempty"`
+	TextFont                  *enums.AdcreativelinkdataimagelayerspecTextFont        `json:"text_font,omitempty"`
+}

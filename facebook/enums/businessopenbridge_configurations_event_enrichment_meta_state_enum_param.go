@@ -1,0 +1,13 @@
+package enums
+
+type BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParam string
+
+const (
+	BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParamAllowed        BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParam = "ALLOWED"
+	BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParamBlocked        BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParam = "BLOCKED"
+	BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParamNotInitialized BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParam = "NOT_INITIALIZED"
+)
+
+func (value BusinessopenbridgeConfigurationsEventEnrichmentMetaStateEnumParam) String() string {
+	return string(value)
+}

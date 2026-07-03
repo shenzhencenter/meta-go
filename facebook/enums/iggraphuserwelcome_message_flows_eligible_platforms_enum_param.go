@@ -1,0 +1,13 @@
+package enums
+
+type IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParam string
+
+const (
+	IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParamInstagram IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParam = "INSTAGRAM"
+	IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParamMessenger IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParam = "MESSENGER"
+	IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParamWhatsapp  IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParam = "WHATSAPP"
+)
+
+func (value IggraphuserwelcomeMessageFlowsEligiblePlatformsEnumParam) String() string {
+	return string(value)
+}

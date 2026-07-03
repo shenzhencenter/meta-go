@@ -1,0 +1,13 @@
+package enums
+
+type BusinesspreverifiedNumbersCodeVerificationStatusEnumParam string
+
+const (
+	BusinesspreverifiedNumbersCodeVerificationStatusEnumParamExpired     BusinesspreverifiedNumbersCodeVerificationStatusEnumParam = "EXPIRED"
+	BusinesspreverifiedNumbersCodeVerificationStatusEnumParamNotVerified BusinesspreverifiedNumbersCodeVerificationStatusEnumParam = "NOT_VERIFIED"
+	BusinesspreverifiedNumbersCodeVerificationStatusEnumParamVerified    BusinesspreverifiedNumbersCodeVerificationStatusEnumParam = "VERIFIED"
+)
+
+func (value BusinesspreverifiedNumbersCodeVerificationStatusEnumParam) String() string {
+	return string(value)
+}

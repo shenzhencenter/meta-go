@@ -1,0 +1,15 @@
+package objects
+
+import (
+	core "github.com/shenzhencenter/facebook-go-sdk/facebook"
+)
+
+type InsightsResult struct {
+	Description           *string          `json:"description,omitempty"`
+	DescriptionFromAPIDoc *string          `json:"description_from_api_doc,omitempty"`
+	ID                    *core.ID         `json:"id,omitempty"`
+	Name                  *string          `json:"name,omitempty"`
+	Period                *string          `json:"period,omitempty"`
+	Title                 *string          `json:"title,omitempty"`
+	Values                *[]InsightsValue `json:"values,omitempty"`
+}

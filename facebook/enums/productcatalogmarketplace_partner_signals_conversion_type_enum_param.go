@@ -1,0 +1,12 @@
+package enums
+
+type ProductcatalogmarketplacePartnerSignalsConversionTypeEnumParam string
+
+const (
+	ProductcatalogmarketplacePartnerSignalsConversionTypeEnumParamAttributed ProductcatalogmarketplacePartnerSignalsConversionTypeEnumParam = "ATTRIBUTED"
+	ProductcatalogmarketplacePartnerSignalsConversionTypeEnumParamInSession  ProductcatalogmarketplacePartnerSignalsConversionTypeEnumParam = "IN_SESSION"
+)
+
+func (value ProductcatalogmarketplacePartnerSignalsConversionTypeEnumParam) String() string {
+	return string(value)
+}

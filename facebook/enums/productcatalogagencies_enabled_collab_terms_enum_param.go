@@ -1,0 +1,12 @@
+package enums
+
+type ProductcatalogagenciesEnabledCollabTermsEnumParam string
+
+const (
+	ProductcatalogagenciesEnabledCollabTermsEnumParamEnforceCreateNewAdAccount       ProductcatalogagenciesEnabledCollabTermsEnumParam = "ENFORCE_CREATE_NEW_AD_ACCOUNT"
+	ProductcatalogagenciesEnabledCollabTermsEnumParamEnforceShareAdPerformanceAccess ProductcatalogagenciesEnabledCollabTermsEnumParam = "ENFORCE_SHARE_AD_PERFORMANCE_ACCESS"
+)
+
+func (value ProductcatalogagenciesEnabledCollabTermsEnumParam) String() string {
+	return string(value)
+}

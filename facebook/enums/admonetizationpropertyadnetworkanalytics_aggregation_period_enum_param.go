@@ -1,0 +1,12 @@
+package enums
+
+type AdmonetizationpropertyadnetworkanalyticsAggregationPeriodEnumParam string
+
+const (
+	AdmonetizationpropertyadnetworkanalyticsAggregationPeriodEnumParamDay   AdmonetizationpropertyadnetworkanalyticsAggregationPeriodEnumParam = "DAY"
+	AdmonetizationpropertyadnetworkanalyticsAggregationPeriodEnumParamTotal AdmonetizationpropertyadnetworkanalyticsAggregationPeriodEnumParam = "TOTAL"
+)
+
+func (value AdmonetizationpropertyadnetworkanalyticsAggregationPeriodEnumParam) String() string {
+	return string(value)
+}

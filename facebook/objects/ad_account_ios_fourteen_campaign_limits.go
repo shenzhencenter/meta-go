@@ -1,0 +1,7 @@
+package objects
+
+type AdAccountIosFourteenCampaignLimits struct {
+	CampaignGroupLimit         *int                      `json:"campaign_group_limit,omitempty"`
+	CampaignGroupLimitsDetails *[]map[string]interface{} `json:"campaign_group_limits_details,omitempty"`
+	CampaignLimit              *int                      `json:"campaign_limit,omitempty"`
+}

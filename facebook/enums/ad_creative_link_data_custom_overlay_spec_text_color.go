@@ -1,0 +1,19 @@
+package enums
+
+type AdcreativelinkdatacustomoverlayspecTextColor string
+
+const (
+	AdcreativelinkdatacustomoverlayspecTextColorTextX000000 AdcreativelinkdatacustomoverlayspecTextColor = "text_000000"
+	AdcreativelinkdatacustomoverlayspecTextColorTextX007ad0 AdcreativelinkdatacustomoverlayspecTextColor = "text_007ad0"
+	AdcreativelinkdatacustomoverlayspecTextColorTextX009c2a AdcreativelinkdatacustomoverlayspecTextColor = "text_009c2a"
+	AdcreativelinkdatacustomoverlayspecTextColorTextX646464 AdcreativelinkdatacustomoverlayspecTextColor = "text_646464"
+	AdcreativelinkdatacustomoverlayspecTextColorTextX755dde AdcreativelinkdatacustomoverlayspecTextColor = "text_755dde"
+	AdcreativelinkdatacustomoverlayspecTextColorTextC91b00  AdcreativelinkdatacustomoverlayspecTextColor = "text_c91b00"
+	AdcreativelinkdatacustomoverlayspecTextColorTextF23474  AdcreativelinkdatacustomoverlayspecTextColor = "text_f23474"
+	AdcreativelinkdatacustomoverlayspecTextColorTextF78400  AdcreativelinkdatacustomoverlayspecTextColor = "text_f78400"
+	AdcreativelinkdatacustomoverlayspecTextColorTextFfffff  AdcreativelinkdatacustomoverlayspecTextColor = "text_ffffff"
+)
+
+func (value AdcreativelinkdatacustomoverlayspecTextColor) String() string {
+	return string(value)
+}

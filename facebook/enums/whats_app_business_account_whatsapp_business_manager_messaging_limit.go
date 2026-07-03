@@ -1,0 +1,17 @@
+package enums
+
+type WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit string
+
+const (
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitTierX100K     WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "TIER_100K"
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitTierX10K      WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "TIER_10K"
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitTierX250      WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "TIER_250"
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitTierX2K       WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "TIER_2K"
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitTierX50       WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "TIER_50"
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitTierUnlimited WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "TIER_UNLIMITED"
+	WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimitUntiered      WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit = "UNTIERED"
+)
+
+func (value WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit) String() string {
+	return string(value)
+}

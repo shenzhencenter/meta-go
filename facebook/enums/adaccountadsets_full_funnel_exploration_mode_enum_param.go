@@ -1,0 +1,13 @@
+package enums
+
+type AdaccountadsetsFullFunnelExplorationModeEnumParam string
+
+const (
+	AdaccountadsetsFullFunnelExplorationModeEnumParamExtendedExploration AdaccountadsetsFullFunnelExplorationModeEnumParam = "EXTENDED_EXPLORATION"
+	AdaccountadsetsFullFunnelExplorationModeEnumParamLimitedExploration  AdaccountadsetsFullFunnelExplorationModeEnumParam = "LIMITED_EXPLORATION"
+	AdaccountadsetsFullFunnelExplorationModeEnumParamNoneExploration     AdaccountadsetsFullFunnelExplorationModeEnumParam = "NONE_EXPLORATION"
+)
+
+func (value AdaccountadsetsFullFunnelExplorationModeEnumParam) String() string {
+	return string(value)
+}

@@ -1,0 +1,14 @@
+package enums
+
+type CommercemerchantsettingscommerceOrdersStateEnumParam string
+
+const (
+	CommercemerchantsettingscommerceOrdersStateEnumParamCompleted    CommercemerchantsettingscommerceOrdersStateEnumParam = "COMPLETED"
+	CommercemerchantsettingscommerceOrdersStateEnumParamCreated      CommercemerchantsettingscommerceOrdersStateEnumParam = "CREATED"
+	CommercemerchantsettingscommerceOrdersStateEnumParamFbProcessing CommercemerchantsettingscommerceOrdersStateEnumParam = "FB_PROCESSING"
+	CommercemerchantsettingscommerceOrdersStateEnumParamInProgress   CommercemerchantsettingscommerceOrdersStateEnumParam = "IN_PROGRESS"
+)
+
+func (value CommercemerchantsettingscommerceOrdersStateEnumParam) String() string {
+	return string(value)
+}

@@ -1,0 +1,14 @@
+package enums
+
+type AdcampaignplacementgetEffectiveAudienceNetworkPositions string
+
+const (
+	AdcampaignplacementgetEffectiveAudienceNetworkPositionsClassic          AdcampaignplacementgetEffectiveAudienceNetworkPositions = "CLASSIC"
+	AdcampaignplacementgetEffectiveAudienceNetworkPositionsCtvInstreamVideo AdcampaignplacementgetEffectiveAudienceNetworkPositions = "CTV_INSTREAM_VIDEO"
+	AdcampaignplacementgetEffectiveAudienceNetworkPositionsInstreamVideo    AdcampaignplacementgetEffectiveAudienceNetworkPositions = "INSTREAM_VIDEO"
+	AdcampaignplacementgetEffectiveAudienceNetworkPositionsRewardedVideo    AdcampaignplacementgetEffectiveAudienceNetworkPositions = "REWARDED_VIDEO"
+)
+
+func (value AdcampaignplacementgetEffectiveAudienceNetworkPositions) String() string {
+	return string(value)
+}

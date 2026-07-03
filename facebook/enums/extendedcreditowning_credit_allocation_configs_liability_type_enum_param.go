@@ -1,0 +1,14 @@
+package enums
+
+type ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParam string
+
+const (
+	ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParamValue      ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParam = ""
+	ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParamMsa        ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParam = "MSA"
+	ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParamNormal     ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParam = "Normal"
+	ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParamSequential ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParam = "Sequential"
+)
+
+func (value ExtendedcreditowningCreditAllocationConfigsLiabilityTypeEnumParam) String() string {
+	return string(value)
+}

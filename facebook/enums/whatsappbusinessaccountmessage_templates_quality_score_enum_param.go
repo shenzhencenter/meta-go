@@ -1,0 +1,14 @@
+package enums
+
+type WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParam string
+
+const (
+	WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParamGreen   WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParam = "GREEN"
+	WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParamRed     WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParam = "RED"
+	WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParamUnknown WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParam = "UNKNOWN"
+	WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParamYellow  WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParam = "YELLOW"
+)
+
+func (value WhatsappbusinessaccountmessageTemplatesQualityScoreEnumParam) String() string {
+	return string(value)
+}

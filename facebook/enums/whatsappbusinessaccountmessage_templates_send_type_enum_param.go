@@ -1,0 +1,13 @@
+package enums
+
+type WhatsappbusinessaccountmessageTemplatesSendTypeEnumParam string
+
+const (
+	WhatsappbusinessaccountmessageTemplatesSendTypeEnumParamCampaign WhatsappbusinessaccountmessageTemplatesSendTypeEnumParam = "CAMPAIGN"
+	WhatsappbusinessaccountmessageTemplatesSendTypeEnumParamDirect   WhatsappbusinessaccountmessageTemplatesSendTypeEnumParam = "DIRECT"
+	WhatsappbusinessaccountmessageTemplatesSendTypeEnumParamTrigger  WhatsappbusinessaccountmessageTemplatesSendTypeEnumParam = "TRIGGER"
+)
+
+func (value WhatsappbusinessaccountmessageTemplatesSendTypeEnumParam) String() string {
+	return string(value)
+}

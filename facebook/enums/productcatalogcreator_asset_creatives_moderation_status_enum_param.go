@@ -1,0 +1,17 @@
+package enums
+
+type ProductcatalogcreatorAssetCreativesModerationStatusEnumParam string
+
+const (
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamArchived   ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "ARCHIVED"
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamEligible   ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "ELIGIBLE"
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamExpired    ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "EXPIRED"
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamIneligible ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "INELIGIBLE"
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamInReview   ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "IN_REVIEW"
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamPaused     ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "PAUSED"
+	ProductcatalogcreatorAssetCreativesModerationStatusEnumParamUnknown    ProductcatalogcreatorAssetCreativesModerationStatusEnumParam = "UNKNOWN"
+)
+
+func (value ProductcatalogcreatorAssetCreativesModerationStatusEnumParam) String() string {
+	return string(value)
+}

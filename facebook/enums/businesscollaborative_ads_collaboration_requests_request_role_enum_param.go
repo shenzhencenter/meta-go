@@ -1,0 +1,12 @@
+package enums
+
+type BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParam string
+
+const (
+	BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParamReceiver BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParam = "RECEIVER"
+	BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParamSender   BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParam = "SENDER"
+)
+
+func (value BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParam) String() string {
+	return string(value)
+}

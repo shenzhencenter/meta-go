@@ -1,0 +1,13 @@
+package enums
+
+type ShadowigusermoderateConversationsActionsEnumParam string
+
+const (
+	ShadowigusermoderateConversationsActionsEnumParamBlockUser   ShadowigusermoderateConversationsActionsEnumParam = "BLOCK_USER"
+	ShadowigusermoderateConversationsActionsEnumParamMoveToSpam  ShadowigusermoderateConversationsActionsEnumParam = "MOVE_TO_SPAM"
+	ShadowigusermoderateConversationsActionsEnumParamUnblockUser ShadowigusermoderateConversationsActionsEnumParam = "UNBLOCK_USER"
+)
+
+func (value ShadowigusermoderateConversationsActionsEnumParam) String() string {
+	return string(value)
+}

@@ -1,0 +1,13 @@
+package enums
+
+type WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParam string
+
+const (
+	WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParamBusinessInitiated WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParam = "BUSINESS_INITIATED"
+	WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParamUnknown           WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParam = "UNKNOWN"
+	WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParamUserInitiated     WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParam = "USER_INITIATED"
+)
+
+func (value WhatsappbusinessaccountconversationAnalyticsConversationDirectionsEnumParam) String() string {
+	return string(value)
+}

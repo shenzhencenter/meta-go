@@ -1,0 +1,454 @@
+package methods
+
+import (
+	"context"
+	core "github.com/shenzhencenter/facebook-go-sdk/facebook"
+	"github.com/shenzhencenter/facebook-go-sdk/facebook/enums"
+	"github.com/shenzhencenter/facebook-go-sdk/facebook/objects"
+	"net/http"
+	"time"
+)
+
+type GetAlbumCommentsParams struct {
+	Filter     *enums.AlbumcommentsFilterEnumParam     `facebook:"filter"`
+	LiveFilter *enums.AlbumcommentsLiveFilterEnumParam `facebook:"live_filter"`
+	Order      *enums.AlbumcommentsOrderEnumParam      `facebook:"order"`
+	Since      *time.Time                              `facebook:"since"`
+	Extra      core.Params                             `facebook:"-"`
+}
+
+func (params GetAlbumCommentsParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	if params.Filter != nil {
+		out["filter"] = *params.Filter
+	}
+	if params.LiveFilter != nil {
+		out["live_filter"] = *params.LiveFilter
+	}
+	if params.Order != nil {
+		out["order"] = *params.Order
+	}
+	if params.Since != nil {
+		out["since"] = *params.Since
+	}
+	return out
+}
+
+func GetAlbumComments(ctx context.Context, client *core.Client, id string, params GetAlbumCommentsParams) (*core.Cursor[objects.Comment], error) {
+	var out core.Cursor[objects.Comment]
+	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	return &out, err
+}
+
+type CreateAlbumCommentsParams struct {
+	AttachmentID         *core.ID                                         `facebook:"attachment_id"`
+	AttachmentShareURL   *string                                          `facebook:"attachment_share_url"`
+	AttachmentURL        *string                                          `facebook:"attachment_url"`
+	CommentPrivacyValue  *enums.AlbumcommentsCommentPrivacyValueEnumParam `facebook:"comment_privacy_value"`
+	FacepileMentionedIds *[]core.ID                                       `facebook:"facepile_mentioned_ids"`
+	FeedbackSource       *string                                          `facebook:"feedback_source"`
+	IsOffline            *bool                                            `facebook:"is_offline"`
+	Message              *string                                          `facebook:"message"`
+	NectarModule         *string                                          `facebook:"nectar_module"`
+	ObjectID             *core.ID                                         `facebook:"object_id"`
+	ParentCommentID      *map[string]interface{}                          `facebook:"parent_comment_id"`
+	Text                 *string                                          `facebook:"text"`
+	Tracking             *string                                          `facebook:"tracking"`
+	Extra                core.Params                                      `facebook:"-"`
+}
+
+func (params CreateAlbumCommentsParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	if params.AttachmentID != nil {
+		out["attachment_id"] = *params.AttachmentID
+	}
+	if params.AttachmentShareURL != nil {
+		out["attachment_share_url"] = *params.AttachmentShareURL
+	}
+	if params.AttachmentURL != nil {
+		out["attachment_url"] = *params.AttachmentURL
+	}
+	if params.CommentPrivacyValue != nil {
+		out["comment_privacy_value"] = *params.CommentPrivacyValue
+	}
+	if params.FacepileMentionedIds != nil {
+		out["facepile_mentioned_ids"] = *params.FacepileMentionedIds
+	}
+	if params.FeedbackSource != nil {
+		out["feedback_source"] = *params.FeedbackSource
+	}
+	if params.IsOffline != nil {
+		out["is_offline"] = *params.IsOffline
+	}
+	if params.Message != nil {
+		out["message"] = *params.Message
+	}
+	if params.NectarModule != nil {
+		out["nectar_module"] = *params.NectarModule
+	}
+	if params.ObjectID != nil {
+		out["object_id"] = *params.ObjectID
+	}
+	if params.ParentCommentID != nil {
+		out["parent_comment_id"] = *params.ParentCommentID
+	}
+	if params.Text != nil {
+		out["text"] = *params.Text
+	}
+	if params.Tracking != nil {
+		out["tracking"] = *params.Tracking
+	}
+	return out
+}
+
+func CreateAlbumComments(ctx context.Context, client *core.Client, id string, params CreateAlbumCommentsParams) (*objects.Comment, error) {
+	var out objects.Comment
+	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	return &out, err
+}
+
+type GetAlbumLikesParams struct {
+	Extra core.Params `facebook:"-"`
+}
+
+func (params GetAlbumLikesParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	return out
+}
+
+func GetAlbumLikes(ctx context.Context, client *core.Client, id string, params GetAlbumLikesParams) (*core.Cursor[objects.Profile], error) {
+	var out core.Cursor[objects.Profile]
+	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	return &out, err
+}
+
+type CreateAlbumLikesParams struct {
+	AttributionIDV2 *string     `facebook:"attribution_id_v2"`
+	FeedbackSource  *string     `facebook:"feedback_source"`
+	NectarModule    *string     `facebook:"nectar_module"`
+	Notify          *bool       `facebook:"notify"`
+	Tracking        *string     `facebook:"tracking"`
+	Extra           core.Params `facebook:"-"`
+}
+
+func (params CreateAlbumLikesParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	if params.AttributionIDV2 != nil {
+		out["attribution_id_v2"] = *params.AttributionIDV2
+	}
+	if params.FeedbackSource != nil {
+		out["feedback_source"] = *params.FeedbackSource
+	}
+	if params.NectarModule != nil {
+		out["nectar_module"] = *params.NectarModule
+	}
+	if params.Notify != nil {
+		out["notify"] = *params.Notify
+	}
+	if params.Tracking != nil {
+		out["tracking"] = *params.Tracking
+	}
+	return out
+}
+
+func CreateAlbumLikes(ctx context.Context, client *core.Client, id string, params CreateAlbumLikesParams) (*objects.Album, error) {
+	var out objects.Album
+	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	return &out, err
+}
+
+type GetAlbumPhotosParams struct {
+	Extra core.Params `facebook:"-"`
+}
+
+func (params GetAlbumPhotosParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	return out
+}
+
+func GetAlbumPhotos(ctx context.Context, client *core.Client, id string, params GetAlbumPhotosParams) (*core.Cursor[objects.Photo], error) {
+	var out core.Cursor[objects.Photo]
+	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	return &out, err
+}
+
+type CreateAlbumPhotosParams struct {
+	Aid                                   *string                                             `facebook:"aid"`
+	AllowSphericalPhoto                   *bool                                               `facebook:"allow_spherical_photo"`
+	AltTextCustom                         *string                                             `facebook:"alt_text_custom"`
+	AndroidKeyHash                        *string                                             `facebook:"android_key_hash"`
+	ApplicationID                         *core.ID                                            `facebook:"application_id"`
+	Attempt                               *uint64                                             `facebook:"attempt"`
+	AudienceExp                           *bool                                               `facebook:"audience_exp"`
+	BackdatedTime                         *time.Time                                          `facebook:"backdated_time"`
+	BackdatedTimeGranularity              *enums.AlbumphotosBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
+	Caption                               *string                                             `facebook:"caption"`
+	ComposerSessionID                     *core.ID                                            `facebook:"composer_session_id"`
+	DirectShareStatus                     *uint64                                             `facebook:"direct_share_status"`
+	FeedTargeting                         *map[string]interface{}                             `facebook:"feed_targeting"`
+	FilterType                            *uint64                                             `facebook:"filter_type"`
+	FullResIsComingLater                  *bool                                               `facebook:"full_res_is_coming_later"`
+	InitialViewHeadingOverrideDegrees     *uint64                                             `facebook:"initial_view_heading_override_degrees"`
+	InitialViewPitchOverrideDegrees       *uint64                                             `facebook:"initial_view_pitch_override_degrees"`
+	InitialViewVerticalFovOverrideDegrees *uint64                                             `facebook:"initial_view_vertical_fov_override_degrees"`
+	IosBundleID                           *core.ID                                            `facebook:"ios_bundle_id"`
+	IsExplicitLocation                    *bool                                               `facebook:"is_explicit_location"`
+	IsExplicitPlace                       *bool                                               `facebook:"is_explicit_place"`
+	ManualPrivacy                         *bool                                               `facebook:"manual_privacy"`
+	Message                               *string                                             `facebook:"message"`
+	Name                                  *string                                             `facebook:"name"`
+	NoStory                               *bool                                               `facebook:"no_story"`
+	OfflineID                             *core.ID                                            `facebook:"offline_id"`
+	OgActionTypeID                        *core.ID                                            `facebook:"og_action_type_id"`
+	OgIconID                              *core.ID                                            `facebook:"og_icon_id"`
+	OgObjectID                            *core.ID                                            `facebook:"og_object_id"`
+	OgPhrase                              *string                                             `facebook:"og_phrase"`
+	OgSetProfileBadge                     *bool                                               `facebook:"og_set_profile_badge"`
+	OgSuggestionMechanism                 *string                                             `facebook:"og_suggestion_mechanism"`
+	Place                                 *map[string]interface{}                             `facebook:"place"`
+	Privacy                               *string                                             `facebook:"privacy"`
+	ProfileID                             *core.ID                                            `facebook:"profile_id"`
+	ProvenanceInfo                        *map[string]interface{}                             `facebook:"provenance_info"`
+	ProxiedAppID                          *core.ID                                            `facebook:"proxied_app_id"`
+	Published                             *bool                                               `facebook:"published"`
+	Qn                                    *string                                             `facebook:"qn"`
+	SphericalMetadata                     *map[string]interface{}                             `facebook:"spherical_metadata"`
+	SponsorID                             *core.ID                                            `facebook:"sponsor_id"`
+	SponsorRelationship                   *uint64                                             `facebook:"sponsor_relationship"`
+	Tags                                  *[]map[string]interface{}                           `facebook:"tags"`
+	TargetID                              *core.ID                                            `facebook:"target_id"`
+	Targeting                             *map[string]interface{}                             `facebook:"targeting"`
+	TimeSinceOriginalPost                 *uint64                                             `facebook:"time_since_original_post"`
+	UID                                   *core.ID                                            `facebook:"uid"`
+	UnpublishedContentType                *enums.AlbumphotosUnpublishedContentTypeEnumParam   `facebook:"unpublished_content_type"`
+	URL                                   *string                                             `facebook:"url"`
+	UserSelectedTags                      *bool                                               `facebook:"user_selected_tags"`
+	VaultImageID                          *core.ID                                            `facebook:"vault_image_id"`
+	Extra                                 core.Params                                         `facebook:"-"`
+}
+
+func (params CreateAlbumPhotosParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	if params.Aid != nil {
+		out["aid"] = *params.Aid
+	}
+	if params.AllowSphericalPhoto != nil {
+		out["allow_spherical_photo"] = *params.AllowSphericalPhoto
+	}
+	if params.AltTextCustom != nil {
+		out["alt_text_custom"] = *params.AltTextCustom
+	}
+	if params.AndroidKeyHash != nil {
+		out["android_key_hash"] = *params.AndroidKeyHash
+	}
+	if params.ApplicationID != nil {
+		out["application_id"] = *params.ApplicationID
+	}
+	if params.Attempt != nil {
+		out["attempt"] = *params.Attempt
+	}
+	if params.AudienceExp != nil {
+		out["audience_exp"] = *params.AudienceExp
+	}
+	if params.BackdatedTime != nil {
+		out["backdated_time"] = *params.BackdatedTime
+	}
+	if params.BackdatedTimeGranularity != nil {
+		out["backdated_time_granularity"] = *params.BackdatedTimeGranularity
+	}
+	if params.Caption != nil {
+		out["caption"] = *params.Caption
+	}
+	if params.ComposerSessionID != nil {
+		out["composer_session_id"] = *params.ComposerSessionID
+	}
+	if params.DirectShareStatus != nil {
+		out["direct_share_status"] = *params.DirectShareStatus
+	}
+	if params.FeedTargeting != nil {
+		out["feed_targeting"] = *params.FeedTargeting
+	}
+	if params.FilterType != nil {
+		out["filter_type"] = *params.FilterType
+	}
+	if params.FullResIsComingLater != nil {
+		out["full_res_is_coming_later"] = *params.FullResIsComingLater
+	}
+	if params.InitialViewHeadingOverrideDegrees != nil {
+		out["initial_view_heading_override_degrees"] = *params.InitialViewHeadingOverrideDegrees
+	}
+	if params.InitialViewPitchOverrideDegrees != nil {
+		out["initial_view_pitch_override_degrees"] = *params.InitialViewPitchOverrideDegrees
+	}
+	if params.InitialViewVerticalFovOverrideDegrees != nil {
+		out["initial_view_vertical_fov_override_degrees"] = *params.InitialViewVerticalFovOverrideDegrees
+	}
+	if params.IosBundleID != nil {
+		out["ios_bundle_id"] = *params.IosBundleID
+	}
+	if params.IsExplicitLocation != nil {
+		out["is_explicit_location"] = *params.IsExplicitLocation
+	}
+	if params.IsExplicitPlace != nil {
+		out["is_explicit_place"] = *params.IsExplicitPlace
+	}
+	if params.ManualPrivacy != nil {
+		out["manual_privacy"] = *params.ManualPrivacy
+	}
+	if params.Message != nil {
+		out["message"] = *params.Message
+	}
+	if params.Name != nil {
+		out["name"] = *params.Name
+	}
+	if params.NoStory != nil {
+		out["no_story"] = *params.NoStory
+	}
+	if params.OfflineID != nil {
+		out["offline_id"] = *params.OfflineID
+	}
+	if params.OgActionTypeID != nil {
+		out["og_action_type_id"] = *params.OgActionTypeID
+	}
+	if params.OgIconID != nil {
+		out["og_icon_id"] = *params.OgIconID
+	}
+	if params.OgObjectID != nil {
+		out["og_object_id"] = *params.OgObjectID
+	}
+	if params.OgPhrase != nil {
+		out["og_phrase"] = *params.OgPhrase
+	}
+	if params.OgSetProfileBadge != nil {
+		out["og_set_profile_badge"] = *params.OgSetProfileBadge
+	}
+	if params.OgSuggestionMechanism != nil {
+		out["og_suggestion_mechanism"] = *params.OgSuggestionMechanism
+	}
+	if params.Place != nil {
+		out["place"] = *params.Place
+	}
+	if params.Privacy != nil {
+		out["privacy"] = *params.Privacy
+	}
+	if params.ProfileID != nil {
+		out["profile_id"] = *params.ProfileID
+	}
+	if params.ProvenanceInfo != nil {
+		out["provenance_info"] = *params.ProvenanceInfo
+	}
+	if params.ProxiedAppID != nil {
+		out["proxied_app_id"] = *params.ProxiedAppID
+	}
+	if params.Published != nil {
+		out["published"] = *params.Published
+	}
+	if params.Qn != nil {
+		out["qn"] = *params.Qn
+	}
+	if params.SphericalMetadata != nil {
+		out["spherical_metadata"] = *params.SphericalMetadata
+	}
+	if params.SponsorID != nil {
+		out["sponsor_id"] = *params.SponsorID
+	}
+	if params.SponsorRelationship != nil {
+		out["sponsor_relationship"] = *params.SponsorRelationship
+	}
+	if params.Tags != nil {
+		out["tags"] = *params.Tags
+	}
+	if params.TargetID != nil {
+		out["target_id"] = *params.TargetID
+	}
+	if params.Targeting != nil {
+		out["targeting"] = *params.Targeting
+	}
+	if params.TimeSinceOriginalPost != nil {
+		out["time_since_original_post"] = *params.TimeSinceOriginalPost
+	}
+	if params.UID != nil {
+		out["uid"] = *params.UID
+	}
+	if params.UnpublishedContentType != nil {
+		out["unpublished_content_type"] = *params.UnpublishedContentType
+	}
+	if params.URL != nil {
+		out["url"] = *params.URL
+	}
+	if params.UserSelectedTags != nil {
+		out["user_selected_tags"] = *params.UserSelectedTags
+	}
+	if params.VaultImageID != nil {
+		out["vault_image_id"] = *params.VaultImageID
+	}
+	return out
+}
+
+func CreateAlbumPhotos(ctx context.Context, client *core.Client, id string, params CreateAlbumPhotosParams) (*objects.Photo, error) {
+	var out objects.Photo
+	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	return &out, err
+}
+
+type GetAlbumPictureParams struct {
+	Redirect *bool                            `facebook:"redirect"`
+	Type     *enums.AlbumpictureTypeEnumParam `facebook:"type"`
+	Extra    core.Params                      `facebook:"-"`
+}
+
+func (params GetAlbumPictureParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	if params.Redirect != nil {
+		out["redirect"] = *params.Redirect
+	}
+	if params.Type != nil {
+		out["type"] = *params.Type
+	}
+	return out
+}
+
+func GetAlbumPicture(ctx context.Context, client *core.Client, id string, params GetAlbumPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	var out core.Cursor[objects.ProfilePictureSource]
+	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	return &out, err
+}
+
+type GetAlbumParams struct {
+	Extra core.Params `facebook:"-"`
+}
+
+func (params GetAlbumParams) ToParams() core.Params {
+	out := core.Params{}
+	for key, value := range params.Extra {
+		out[key] = value
+	}
+	return out
+}
+
+func GetAlbum(ctx context.Context, client *core.Client, id string, params GetAlbumParams) (*objects.Album, error) {
+	var out objects.Album
+	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	return &out, err
+}

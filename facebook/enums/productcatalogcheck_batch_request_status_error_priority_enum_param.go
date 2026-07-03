@@ -1,0 +1,13 @@
+package enums
+
+type ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParam string
+
+const (
+	ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParamHigh   ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParam = "HIGH"
+	ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParamLow    ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParam = "LOW"
+	ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParamMedium ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParam = "MEDIUM"
+)
+
+func (value ProductcatalogcheckBatchRequestStatusErrorPriorityEnumParam) String() string {
+	return string(value)
+}

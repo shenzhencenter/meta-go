@@ -1,0 +1,13 @@
+package enums
+
+type BusinesscollaborativeAdsCollaborationRequestsSourceEnumParam string
+
+const (
+	BusinesscollaborativeAdsCollaborationRequestsSourceEnumParamExternal  BusinesscollaborativeAdsCollaborationRequestsSourceEnumParam = "EXTERNAL"
+	BusinesscollaborativeAdsCollaborationRequestsSourceEnumParamInternal  BusinesscollaborativeAdsCollaborationRequestsSourceEnumParam = "INTERNAL"
+	BusinesscollaborativeAdsCollaborationRequestsSourceEnumParamSelfServe BusinesscollaborativeAdsCollaborationRequestsSourceEnumParam = "SELF_SERVE"
+)
+
+func (value BusinesscollaborativeAdsCollaborationRequestsSourceEnumParam) String() string {
+	return string(value)
+}

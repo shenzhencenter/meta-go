@@ -1,0 +1,15 @@
+package enums
+
+type WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam string
+
+const (
+	WhatsappbusinessaccountcallAnalyticsDimensionsEnumParamCountry   WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam = "COUNTRY"
+	WhatsappbusinessaccountcallAnalyticsDimensionsEnumParamDirection WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam = "DIRECTION"
+	WhatsappbusinessaccountcallAnalyticsDimensionsEnumParamPhone     WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam = "PHONE"
+	WhatsappbusinessaccountcallAnalyticsDimensionsEnumParamTier      WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam = "TIER"
+	WhatsappbusinessaccountcallAnalyticsDimensionsEnumParamUnknown   WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam = "UNKNOWN"
+)
+
+func (value WhatsappbusinessaccountcallAnalyticsDimensionsEnumParam) String() string {
+	return string(value)
+}

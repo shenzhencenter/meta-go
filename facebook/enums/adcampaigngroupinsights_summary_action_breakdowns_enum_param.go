@@ -1,0 +1,26 @@
+package enums
+
+type AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam string
+
+const (
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionCanvasComponentName AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_canvas_component_name"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionCarouselCardID      AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_carousel_card_id"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionCarouselCardName    AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_carousel_card_name"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionDestination         AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_destination"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionDevice              AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_device"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionReaction            AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_reaction"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionTargetID            AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_target_id"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionType                AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_type"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionVideoSound          AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_video_sound"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamActionVideoType           AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "action_video_type"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamConversionDestination     AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "conversion_destination"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamIsBusinessAiAssisted      AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "is_business_ai_assisted"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamMatchedPersonaID          AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "matched_persona_id"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamMatchedPersonaName        AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "matched_persona_name"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamSignalSourceBucket        AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "signal_source_bucket"
+	AdcampaigngroupinsightsSummaryActionBreakdownsEnumParamStandardEventContentType  AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam = "standard_event_content_type"
+)
+
+func (value AdcampaigngroupinsightsSummaryActionBreakdownsEnumParam) String() string {
+	return string(value)
+}

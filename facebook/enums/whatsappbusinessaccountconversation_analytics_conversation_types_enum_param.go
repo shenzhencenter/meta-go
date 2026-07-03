@@ -1,0 +1,14 @@
+package enums
+
+type WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParam string
+
+const (
+	WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParamFreeEntryPoint WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParam = "FREE_ENTRY_POINT"
+	WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParamFreeTier       WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParam = "FREE_TIER"
+	WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParamRegular        WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParam = "REGULAR"
+	WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParamUnknown        WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParam = "UNKNOWN"
+)
+
+func (value WhatsappbusinessaccountconversationAnalyticsConversationTypesEnumParam) String() string {
+	return string(value)
+}

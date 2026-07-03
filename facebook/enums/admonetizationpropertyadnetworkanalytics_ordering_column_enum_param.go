@@ -1,0 +1,13 @@
+package enums
+
+type AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam string
+
+const (
+	AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParamMetric AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam = "METRIC"
+	AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParamTime   AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam = "TIME"
+	AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParamValue  AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam = "VALUE"
+)
+
+func (value AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam) String() string {
+	return string(value)
+}

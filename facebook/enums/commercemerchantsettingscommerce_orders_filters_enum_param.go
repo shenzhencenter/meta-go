@@ -1,0 +1,16 @@
+package enums
+
+type CommercemerchantsettingscommerceOrdersFiltersEnumParam string
+
+const (
+	CommercemerchantsettingscommerceOrdersFiltersEnumParamHasCancellations CommercemerchantsettingscommerceOrdersFiltersEnumParam = "HAS_CANCELLATIONS"
+	CommercemerchantsettingscommerceOrdersFiltersEnumParamHasFulfillments  CommercemerchantsettingscommerceOrdersFiltersEnumParam = "HAS_FULFILLMENTS"
+	CommercemerchantsettingscommerceOrdersFiltersEnumParamHasRefunds       CommercemerchantsettingscommerceOrdersFiltersEnumParam = "HAS_REFUNDS"
+	CommercemerchantsettingscommerceOrdersFiltersEnumParamNoCancellations  CommercemerchantsettingscommerceOrdersFiltersEnumParam = "NO_CANCELLATIONS"
+	CommercemerchantsettingscommerceOrdersFiltersEnumParamNoRefunds        CommercemerchantsettingscommerceOrdersFiltersEnumParam = "NO_REFUNDS"
+	CommercemerchantsettingscommerceOrdersFiltersEnumParamNoShipments      CommercemerchantsettingscommerceOrdersFiltersEnumParam = "NO_SHIPMENTS"
+)
+
+func (value CommercemerchantsettingscommerceOrdersFiltersEnumParam) String() string {
+	return string(value)
+}

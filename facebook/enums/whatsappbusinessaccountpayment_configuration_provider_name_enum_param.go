@@ -1,0 +1,15 @@
+package enums
+
+type WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam string
+
+const (
+	WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParamBilldesk WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam = "BILLDESK"
+	WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParamPayu     WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam = "PAYU"
+	WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParamRazorpay WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam = "RAZORPAY"
+	WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParamUpiVpa   WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam = "UPI_VPA"
+	WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParamZaakpay  WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam = "ZAAKPAY"
+)
+
+func (value WhatsappbusinessaccountpaymentConfigurationProviderNameEnumParam) String() string {
+	return string(value)
+}

@@ -1,0 +1,13 @@
+package enums
+
+type BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParam string
+
+const (
+	BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParamDisabled       BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParam = "DISABLED"
+	BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParamEnabled        BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParam = "ENABLED"
+	BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParamNotInitialized BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParam = "NOT_INITIALIZED"
+)
+
+func (value BusinessopenbridgeConfigurationsEventEnrichmentAdvertiserStateEnumParam) String() string {
+	return string(value)
+}

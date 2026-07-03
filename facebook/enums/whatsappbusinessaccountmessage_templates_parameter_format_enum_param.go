@@ -1,0 +1,12 @@
+package enums
+
+type WhatsappbusinessaccountmessageTemplatesParameterFormatEnumParam string
+
+const (
+	WhatsappbusinessaccountmessageTemplatesParameterFormatEnumParamNamed      WhatsappbusinessaccountmessageTemplatesParameterFormatEnumParam = "NAMED"
+	WhatsappbusinessaccountmessageTemplatesParameterFormatEnumParamPositional WhatsappbusinessaccountmessageTemplatesParameterFormatEnumParam = "POSITIONAL"
+)
+
+func (value WhatsappbusinessaccountmessageTemplatesParameterFormatEnumParam) String() string {
+	return string(value)
+}

@@ -1,0 +1,15 @@
+package enums
+
+type BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam string
+
+const (
+	BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParamAaAnalyze BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam = "AA_ANALYZE"
+	BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParamAdvertise BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam = "ADVERTISE"
+	BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParamManage    BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam = "MANAGE"
+	BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParamUpload    BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam = "UPLOAD"
+	BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParamView      BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam = "VIEW"
+)
+
+func (value BusinessassetgroupassignedUsersOfflineConversionDataSetTasksEnumParam) String() string {
+	return string(value)
+}

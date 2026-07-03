@@ -1,0 +1,14 @@
+package enums
+
+type ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParam string
+
+const (
+	ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParamCustom  ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParam = "custom"
+	ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParamFemale  ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParam = "female"
+	ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParamMale    ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParam = "male"
+	ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParamUnknown ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParam = "unknown"
+)
+
+func (value ShadowigusercreatorMarketplaceCreatorsMajorAudienceGenderEnumParam) String() string {
+	return string(value)
+}

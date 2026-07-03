@@ -1,0 +1,15 @@
+package enums
+
+type BusinessassetgroupassignedUsersAdaccountTasksEnumParam string
+
+const (
+	BusinessassetgroupassignedUsersAdaccountTasksEnumParamAaAnalyze BusinessassetgroupassignedUsersAdaccountTasksEnumParam = "AA_ANALYZE"
+	BusinessassetgroupassignedUsersAdaccountTasksEnumParamAdvertise BusinessassetgroupassignedUsersAdaccountTasksEnumParam = "ADVERTISE"
+	BusinessassetgroupassignedUsersAdaccountTasksEnumParamAnalyze   BusinessassetgroupassignedUsersAdaccountTasksEnumParam = "ANALYZE"
+	BusinessassetgroupassignedUsersAdaccountTasksEnumParamDraft     BusinessassetgroupassignedUsersAdaccountTasksEnumParam = "DRAFT"
+	BusinessassetgroupassignedUsersAdaccountTasksEnumParamManage    BusinessassetgroupassignedUsersAdaccountTasksEnumParam = "MANAGE"
+)
+
+func (value BusinessassetgroupassignedUsersAdaccountTasksEnumParam) String() string {
+	return string(value)
+}

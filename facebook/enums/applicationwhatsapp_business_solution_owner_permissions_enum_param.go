@@ -1,0 +1,20 @@
+package enums
+
+type ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam string
+
+const (
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamDevelop           ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "DEVELOP"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamManage            ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "MANAGE"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamManageExtensions  ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "MANAGE_EXTENSIONS"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamManagePhone       ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "MANAGE_PHONE"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamManagePhoneAssets ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "MANAGE_PHONE_ASSETS"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamManageTemplates   ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "MANAGE_TEMPLATES"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamMessaging         ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "MESSAGING"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamViewCost          ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "VIEW_COST"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamViewPhoneAssets   ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "VIEW_PHONE_ASSETS"
+	ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParamViewTemplates     ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam = "VIEW_TEMPLATES"
+)
+
+func (value ApplicationwhatsappBusinessSolutionOwnerPermissionsEnumParam) String() string {
+	return string(value)
+}

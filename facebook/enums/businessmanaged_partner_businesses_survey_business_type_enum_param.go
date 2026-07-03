@@ -1,0 +1,14 @@
+package enums
+
+type BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParam string
+
+const (
+	BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParamAdvertiser   BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParam = "ADVERTISER"
+	BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParamAgency       BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParam = "AGENCY"
+	BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParamAppDeveloper BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParam = "APP_DEVELOPER"
+	BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParamPublisher    BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParam = "PUBLISHER"
+)
+
+func (value BusinessmanagedPartnerBusinessesSurveyBusinessTypeEnumParam) String() string {
+	return string(value)
+}

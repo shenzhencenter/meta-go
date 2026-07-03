@@ -1,0 +1,12 @@
+package enums
+
+type BusinessownedProductCatalogsAdditionalVerticalOptionEnumParam string
+
+const (
+	BusinessownedProductCatalogsAdditionalVerticalOptionEnumParamLocalDaCatalog BusinessownedProductCatalogsAdditionalVerticalOptionEnumParam = "LOCAL_DA_CATALOG"
+	BusinessownedProductCatalogsAdditionalVerticalOptionEnumParamLocalProducts  BusinessownedProductCatalogsAdditionalVerticalOptionEnumParam = "LOCAL_PRODUCTS"
+)
+
+func (value BusinessownedProductCatalogsAdditionalVerticalOptionEnumParam) String() string {
+	return string(value)
+}

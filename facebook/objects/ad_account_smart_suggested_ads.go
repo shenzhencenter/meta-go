@@ -1,0 +1,8 @@
+package objects
+
+type AdAccountSmartSuggestedAds struct {
+	AdCreativeSpec *string   `json:"ad_creative_spec,omitempty"`
+	Description    *string   `json:"description,omitempty"`
+	GuidanceSpec   *[]string `json:"guidance_spec,omitempty"`
+	ThumbnailURL   *string   `json:"thumbnail_url,omitempty"`
+}

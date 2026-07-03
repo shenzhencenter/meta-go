@@ -1,0 +1,12 @@
+package enums
+
+type ShadowiguserbrandedContentAdvertisableMediasMediaRelationshipEnumParam string
+
+const (
+	ShadowiguserbrandedContentAdvertisableMediasMediaRelationshipEnumParamIsTagged ShadowiguserbrandedContentAdvertisableMediasMediaRelationshipEnumParam = "IS_TAGGED"
+	ShadowiguserbrandedContentAdvertisableMediasMediaRelationshipEnumParamOwned    ShadowiguserbrandedContentAdvertisableMediasMediaRelationshipEnumParam = "OWNED"
+)
+
+func (value ShadowiguserbrandedContentAdvertisableMediasMediaRelationshipEnumParam) String() string {
+	return string(value)
+}

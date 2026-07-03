@@ -1,0 +1,13 @@
+package enums
+
+type WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParam string
+
+const (
+	WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParamIvr   WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParam = "IVR"
+	WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParamSms   WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParam = "SMS"
+	WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParamVoice WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParam = "VOICE"
+)
+
+func (value WhatsappbusinesspreverifiedphonenumberrequestCodeCodeMethodEnumParam) String() string {
+	return string(value)
+}

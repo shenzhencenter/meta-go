@@ -1,0 +1,13 @@
+package enums
+
+type WhatsappbusinessaccountconversationAnalyticsGranularityEnumParam string
+
+const (
+	WhatsappbusinessaccountconversationAnalyticsGranularityEnumParamDaily    WhatsappbusinessaccountconversationAnalyticsGranularityEnumParam = "DAILY"
+	WhatsappbusinessaccountconversationAnalyticsGranularityEnumParamHalfHour WhatsappbusinessaccountconversationAnalyticsGranularityEnumParam = "HALF_HOUR"
+	WhatsappbusinessaccountconversationAnalyticsGranularityEnumParamMonthly  WhatsappbusinessaccountconversationAnalyticsGranularityEnumParam = "MONTHLY"
+)
+
+func (value WhatsappbusinessaccountconversationAnalyticsGranularityEnumParam) String() string {
+	return string(value)
+}

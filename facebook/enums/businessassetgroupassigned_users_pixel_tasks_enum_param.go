@@ -1,0 +1,15 @@
+package enums
+
+type BusinessassetgroupassignedUsersPixelTasksEnumParam string
+
+const (
+	BusinessassetgroupassignedUsersPixelTasksEnumParamAaAnalyze BusinessassetgroupassignedUsersPixelTasksEnumParam = "AA_ANALYZE"
+	BusinessassetgroupassignedUsersPixelTasksEnumParamAdvertise BusinessassetgroupassignedUsersPixelTasksEnumParam = "ADVERTISE"
+	BusinessassetgroupassignedUsersPixelTasksEnumParamAnalyze   BusinessassetgroupassignedUsersPixelTasksEnumParam = "ANALYZE"
+	BusinessassetgroupassignedUsersPixelTasksEnumParamEdit      BusinessassetgroupassignedUsersPixelTasksEnumParam = "EDIT"
+	BusinessassetgroupassignedUsersPixelTasksEnumParamUpload    BusinessassetgroupassignedUsersPixelTasksEnumParam = "UPLOAD"
+)
+
+func (value BusinessassetgroupassignedUsersPixelTasksEnumParam) String() string {
+	return string(value)
+}

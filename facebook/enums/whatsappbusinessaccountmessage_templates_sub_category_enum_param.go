@@ -1,0 +1,13 @@
+package enums
+
+type WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParam string
+
+const (
+	WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParamOrderDetails    WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParam = "ORDER_DETAILS"
+	WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParamOrderStatus     WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParam = "ORDER_STATUS"
+	WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParamRichOrderStatus WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParam = "RICH_ORDER_STATUS"
+)
+
+func (value WhatsappbusinessaccountmessageTemplatesSubCategoryEnumParam) String() string {
+	return string(value)
+}

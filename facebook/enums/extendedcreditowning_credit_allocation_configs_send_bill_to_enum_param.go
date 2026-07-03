@@ -1,0 +1,13 @@
+package enums
+
+type ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParam string
+
+const (
+	ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParamValue      ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParam = ""
+	ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParamAdvertiser ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParam = "Advertiser"
+	ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParamAgency     ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParam = "Agency"
+)
+
+func (value ExtendedcreditowningCreditAllocationConfigsSendBillToEnumParam) String() string {
+	return string(value)
+}

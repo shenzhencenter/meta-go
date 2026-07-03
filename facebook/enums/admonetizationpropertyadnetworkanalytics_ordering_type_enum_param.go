@@ -1,0 +1,12 @@
+package enums
+
+type AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParam string
+
+const (
+	AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParamAscending  AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParam = "ASCENDING"
+	AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParamDescending AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParam = "DESCENDING"
+)
+
+func (value AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParam) String() string {
+	return string(value)
+}

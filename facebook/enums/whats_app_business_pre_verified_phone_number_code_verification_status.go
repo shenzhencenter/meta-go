@@ -1,0 +1,13 @@
+package enums
+
+type WhatsappbusinesspreverifiedphonenumberCodeVerificationStatus string
+
+const (
+	WhatsappbusinesspreverifiedphonenumberCodeVerificationStatusExpired     WhatsappbusinesspreverifiedphonenumberCodeVerificationStatus = "EXPIRED"
+	WhatsappbusinesspreverifiedphonenumberCodeVerificationStatusNotVerified WhatsappbusinesspreverifiedphonenumberCodeVerificationStatus = "NOT_VERIFIED"
+	WhatsappbusinesspreverifiedphonenumberCodeVerificationStatusVerified    WhatsappbusinesspreverifiedphonenumberCodeVerificationStatus = "VERIFIED"
+)
+
+func (value WhatsappbusinesspreverifiedphonenumberCodeVerificationStatus) String() string {
+	return string(value)
+}

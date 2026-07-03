@@ -1,0 +1,14 @@
+package enums
+
+type ProductcatalogdiagnosticsAffectedEntitiesEnumParam string
+
+const (
+	ProductcatalogdiagnosticsAffectedEntitiesEnumParamProductCatalog ProductcatalogdiagnosticsAffectedEntitiesEnumParam = "product_catalog"
+	ProductcatalogdiagnosticsAffectedEntitiesEnumParamProductEvent   ProductcatalogdiagnosticsAffectedEntitiesEnumParam = "product_event"
+	ProductcatalogdiagnosticsAffectedEntitiesEnumParamProductItem    ProductcatalogdiagnosticsAffectedEntitiesEnumParam = "product_item"
+	ProductcatalogdiagnosticsAffectedEntitiesEnumParamProductSet     ProductcatalogdiagnosticsAffectedEntitiesEnumParam = "product_set"
+)
+
+func (value ProductcatalogdiagnosticsAffectedEntitiesEnumParam) String() string {
+	return string(value)
+}

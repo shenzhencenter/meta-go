@@ -1,0 +1,13 @@
+package enums
+
+type PagewelcomeMessageFlowsEligiblePlatformsEnumParam string
+
+const (
+	PagewelcomeMessageFlowsEligiblePlatformsEnumParamInstagram PagewelcomeMessageFlowsEligiblePlatformsEnumParam = "INSTAGRAM"
+	PagewelcomeMessageFlowsEligiblePlatformsEnumParamMessenger PagewelcomeMessageFlowsEligiblePlatformsEnumParam = "MESSENGER"
+	PagewelcomeMessageFlowsEligiblePlatformsEnumParamWhatsapp  PagewelcomeMessageFlowsEligiblePlatformsEnumParam = "WHATSAPP"
+)
+
+func (value PagewelcomeMessageFlowsEligiblePlatformsEnumParam) String() string {
+	return string(value)
+}
