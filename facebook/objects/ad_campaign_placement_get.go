@@ -1,7 +1,7 @@
 package objects
 
 import (
-	"github.com/shenzhencenter/facebook-go-sdk/facebook/enums"
+	"github.com/shenzhencenter/meta-go/facebook/enums"
 )
 
 type AdCampaignPlacementGet struct {

@@ -2,9 +2,9 @@ package methods
 
 import (
 	"context"
-	core "github.com/shenzhencenter/facebook-go-sdk/facebook"
-	"github.com/shenzhencenter/facebook-go-sdk/facebook/enums"
-	"github.com/shenzhencenter/facebook-go-sdk/facebook/objects"
+	core "github.com/shenzhencenter/meta-go/facebook"
+	"github.com/shenzhencenter/meta-go/facebook/enums"
+	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
 )
 

@@ -1,8 +1,8 @@
 package objects
 
 import (
-	core "github.com/shenzhencenter/facebook-go-sdk/facebook"
-	"github.com/shenzhencenter/facebook-go-sdk/facebook/enums"
+	core "github.com/shenzhencenter/meta-go/facebook"
+	"github.com/shenzhencenter/meta-go/facebook/enums"
 )
 
 type AdPromotedObject struct {

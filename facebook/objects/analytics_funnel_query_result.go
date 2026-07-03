@@ -1,7 +1,7 @@
 package objects
 
 import (
-	core "github.com/shenzhencenter/facebook-go-sdk/facebook"
+	core "github.com/shenzhencenter/meta-go/facebook"
 )
 
 type AnalyticsFunnelQueryResult struct {
