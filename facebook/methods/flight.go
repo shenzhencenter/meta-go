@@ -42,11 +42,16 @@ func DecodeGetFlightChannelsToIntegrityStatusBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetFlightChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetFlightChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetFlightChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetFlightChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetFlightChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFlightChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetFlightChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetFlightChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetFlightOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetFlightOverrideDetailsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetFlightOverrideDetails(ctx context.Context, client *core.Client, id string, params GetFlightOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetFlightOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetFlightOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetFlightOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFlightOverrideDetails(ctx context.Context, client *core.Client, id string, params GetFlightOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetFlightOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetFlightVideosMetadataParams struct {
@@ -132,11 +142,16 @@ func DecodeGetFlightVideosMetadataBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetFlightVideosMetadata(ctx context.Context, client *core.Client, id string, params GetFlightVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetFlightVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetFlightVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetFlightVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFlightVideosMetadata(ctx context.Context, client *core.Client, id string, params GetFlightVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetFlightVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetFlightParams struct {
@@ -173,11 +188,16 @@ func DecodeGetFlightBatchResponse(response *core.BatchResponse) (*objects.Flight
 	return &out, nil
 }
 
-func GetFlight(ctx context.Context, client *core.Client, id string, params GetFlightParams) (*objects.Flight, error) {
+func GetFlightWithResponse(ctx context.Context, client *core.Client, id string, params GetFlightParams) (*objects.Flight, *core.Response, error) {
 	var out objects.Flight
 	call := GetFlightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFlight(ctx context.Context, client *core.Client, id string, params GetFlightParams) (*objects.Flight, error) {
+	out, _, err := GetFlightWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateFlightParams struct {
@@ -250,9 +270,14 @@ func DecodeUpdateFlightBatchResponse(response *core.BatchResponse) (*objects.Fli
 	return &out, nil
 }
 
-func UpdateFlight(ctx context.Context, client *core.Client, id string, params UpdateFlightParams) (*objects.Flight, error) {
+func UpdateFlightWithResponse(ctx context.Context, client *core.Client, id string, params UpdateFlightParams) (*objects.Flight, *core.Response, error) {
 	var out objects.Flight
 	call := UpdateFlightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateFlight(ctx context.Context, client *core.Client, id string, params UpdateFlightParams) (*objects.Flight, error) {
+	out, _, err := UpdateFlightWithResponse(ctx, client, id, params)
+	return out, err
 }

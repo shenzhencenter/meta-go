@@ -11,3 +11,25 @@ type MessageDeliveryEstimate struct {
 	EstimateDeliveryUpperBound *int     `json:"estimate_delivery_upper_bound,omitempty"`
 	EstimateStatus             *string  `json:"estimate_status,omitempty"`
 }
+
+var MessageDeliveryEstimateFields = struct {
+	EstimateCost               string
+	EstimateCostLowerBound     string
+	EstimateCostUpperBound     string
+	EstimateCoverageLowerBound string
+	EstimateCoverageUpperBound string
+	EstimateDelivery           string
+	EstimateDeliveryLowerBound string
+	EstimateDeliveryUpperBound string
+	EstimateStatus             string
+}{
+	EstimateCost:               "estimate_cost",
+	EstimateCostLowerBound:     "estimate_cost_lower_bound",
+	EstimateCostUpperBound:     "estimate_cost_upper_bound",
+	EstimateCoverageLowerBound: "estimate_coverage_lower_bound",
+	EstimateCoverageUpperBound: "estimate_coverage_upper_bound",
+	EstimateDelivery:           "estimate_delivery",
+	EstimateDeliveryLowerBound: "estimate_delivery_lower_bound",
+	EstimateDeliveryUpperBound: "estimate_delivery_upper_bound",
+	EstimateStatus:             "estimate_status",
+}

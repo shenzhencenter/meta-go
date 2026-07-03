@@ -41,9 +41,14 @@ func DecodeGetAdsPivotRulesBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetAdsPivotRules(ctx context.Context, client *core.Client, id string, params GetAdsPivotRulesParams) (*objects.AdsPivotRules, error) {
+func GetAdsPivotRulesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPivotRulesParams) (*objects.AdsPivotRules, *core.Response, error) {
 	var out objects.AdsPivotRules
 	call := GetAdsPivotRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPivotRules(ctx context.Context, client *core.Client, id string, params GetAdsPivotRulesParams) (*objects.AdsPivotRules, error) {
+	out, _, err := GetAdsPivotRulesWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetDynamicPriceConfigByDateBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetDynamicPriceConfigByDate(ctx context.Context, client *core.Client, id string, params GetDynamicPriceConfigByDateParams) (*objects.DynamicPriceConfigByDate, error) {
+func GetDynamicPriceConfigByDateWithResponse(ctx context.Context, client *core.Client, id string, params GetDynamicPriceConfigByDateParams) (*objects.DynamicPriceConfigByDate, *core.Response, error) {
 	var out objects.DynamicPriceConfigByDate
 	call := GetDynamicPriceConfigByDateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDynamicPriceConfigByDate(ctx context.Context, client *core.Client, id string, params GetDynamicPriceConfigByDateParams) (*objects.DynamicPriceConfigByDate, error) {
+	out, _, err := GetDynamicPriceConfigByDateWithResponse(ctx, client, id, params)
+	return out, err
 }

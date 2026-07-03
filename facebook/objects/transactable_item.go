@@ -26,3 +26,45 @@ type TransactableItem struct {
 	URL                 *string                                 `json:"url,omitempty"`
 	Visibility          *enums.TransactableitemVisibility       `json:"visibility,omitempty"`
 }
+
+var TransactableItemFields = struct {
+	ActionTitle         string
+	Applinks            string
+	Currency            string
+	Description         string
+	DurationTime        string
+	DurationType        string
+	ID                  string
+	ImageFetchStatus    string
+	Images              string
+	OrderIndex          string
+	Price               string
+	PriceType           string
+	SanitizedImages     string
+	SessionType         string
+	TimePaddingAfterEnd string
+	Title               string
+	TransactableItemID  string
+	URL                 string
+	Visibility          string
+}{
+	ActionTitle:         "action_title",
+	Applinks:            "applinks",
+	Currency:            "currency",
+	Description:         "description",
+	DurationTime:        "duration_time",
+	DurationType:        "duration_type",
+	ID:                  "id",
+	ImageFetchStatus:    "image_fetch_status",
+	Images:              "images",
+	OrderIndex:          "order_index",
+	Price:               "price",
+	PriceType:           "price_type",
+	SanitizedImages:     "sanitized_images",
+	SessionType:         "session_type",
+	TimePaddingAfterEnd: "time_padding_after_end",
+	Title:               "title",
+	TransactableItemID:  "transactable_item_id",
+	URL:                 "url",
+	Visibility:          "visibility",
+}

@@ -94,11 +94,16 @@ func DecodeCreateLinkCommentsBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreateLinkComments(ctx context.Context, client *core.Client, id string, params CreateLinkCommentsParams) (*objects.Comment, error) {
+func CreateLinkCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateLinkCommentsParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreateLinkCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateLinkComments(ctx context.Context, client *core.Client, id string, params CreateLinkCommentsParams) (*objects.Comment, error) {
+	out, _, err := CreateLinkCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLinkLikesParams struct {
@@ -135,11 +140,16 @@ func DecodeGetLinkLikesBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetLinkLikes(ctx context.Context, client *core.Client, id string, params GetLinkLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetLinkLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetLinkLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetLinkLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLinkLikes(ctx context.Context, client *core.Client, id string, params GetLinkLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetLinkLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLinkParams struct {
@@ -176,9 +186,14 @@ func DecodeGetLinkBatchResponse(response *core.BatchResponse) (*objects.Link, er
 	return &out, nil
 }
 
-func GetLink(ctx context.Context, client *core.Client, id string, params GetLinkParams) (*objects.Link, error) {
+func GetLinkWithResponse(ctx context.Context, client *core.Client, id string, params GetLinkParams) (*objects.Link, *core.Response, error) {
 	var out objects.Link
 	call := GetLinkBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLink(ctx context.Context, client *core.Client, id string, params GetLinkParams) (*objects.Link, error) {
+	out, _, err := GetLinkWithResponse(ctx, client, id, params)
+	return out, err
 }

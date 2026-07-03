@@ -41,9 +41,14 @@ func DecodeGetPlayableContentBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetPlayableContent(ctx context.Context, client *core.Client, id string, params GetPlayableContentParams) (*objects.PlayableContent, error) {
+func GetPlayableContentWithResponse(ctx context.Context, client *core.Client, id string, params GetPlayableContentParams) (*objects.PlayableContent, *core.Response, error) {
 	var out objects.PlayableContent
 	call := GetPlayableContentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPlayableContent(ctx context.Context, client *core.Client, id string, params GetPlayableContentParams) (*objects.PlayableContent, error) {
+	out, _, err := GetPlayableContentWithResponse(ctx, client, id, params)
+	return out, err
 }

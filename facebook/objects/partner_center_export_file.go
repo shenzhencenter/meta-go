@@ -9,3 +9,13 @@ type PartnerCenterExportFile struct {
 	ReportDs *string  `json:"report_ds,omitempty"`
 	URL      *string  `json:"url,omitempty"`
 }
+
+var PartnerCenterExportFileFields = struct {
+	ID       string
+	ReportDs string
+	URL      string
+}{
+	ID:       "id",
+	ReportDs: "report_ds",
+	URL:      "url",
+}

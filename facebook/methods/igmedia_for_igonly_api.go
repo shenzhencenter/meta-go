@@ -42,11 +42,16 @@ func DecodeGetIGMediaForIGOnlyAPIChildrenBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetIGMediaForIGOnlyAPIChildren(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIChildrenParams) (*core.Cursor[objects.Media], error) {
+func GetIGMediaForIGOnlyAPIChildrenWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIChildrenParams) (*core.Cursor[objects.Media], *core.Response, error) {
 	var out core.Cursor[objects.Media]
 	call := GetIGMediaForIGOnlyAPIChildrenBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaForIGOnlyAPIChildren(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIChildrenParams) (*core.Cursor[objects.Media], error) {
+	out, _, err := GetIGMediaForIGOnlyAPIChildrenWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaForIGOnlyAPICommentsParams struct {
@@ -83,11 +88,16 @@ func DecodeGetIGMediaForIGOnlyAPICommentsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetIGMediaForIGOnlyAPIComments(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPICommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetIGMediaForIGOnlyAPICommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPICommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetIGMediaForIGOnlyAPICommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaForIGOnlyAPIComments(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPICommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetIGMediaForIGOnlyAPICommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGMediaForIGOnlyAPICommentsParams struct {
@@ -128,11 +138,16 @@ func DecodeCreateIGMediaForIGOnlyAPICommentsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateIGMediaForIGOnlyAPIComments(ctx context.Context, client *core.Client, id string, params CreateIGMediaForIGOnlyAPICommentsParams) (*objects.IGGraphComment, error) {
+func CreateIGMediaForIGOnlyAPICommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGMediaForIGOnlyAPICommentsParams) (*objects.IGGraphComment, *core.Response, error) {
 	var out objects.IGGraphComment
 	call := CreateIGMediaForIGOnlyAPICommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGMediaForIGOnlyAPIComments(ctx context.Context, client *core.Client, id string, params CreateIGMediaForIGOnlyAPICommentsParams) (*objects.IGGraphComment, error) {
+	out, _, err := CreateIGMediaForIGOnlyAPICommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaForIGOnlyAPIInsightsParams struct {
@@ -179,11 +194,16 @@ func DecodeGetIGMediaForIGOnlyAPIInsightsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetIGMediaForIGOnlyAPIInsights(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetIGMediaForIGOnlyAPIInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetIGMediaForIGOnlyAPIInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaForIGOnlyAPIInsights(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetIGMediaForIGOnlyAPIInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaForIGOnlyAPIParams struct {
@@ -220,11 +240,16 @@ func DecodeGetIGMediaForIGOnlyAPIBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetIGMediaForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIParams) (*objects.Media, error) {
+func GetIGMediaForIGOnlyAPIWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIParams) (*objects.Media, *core.Response, error) {
 	var out objects.Media
 	call := GetIGMediaForIGOnlyAPIBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGMediaForIGOnlyAPIParams) (*objects.Media, error) {
+	out, _, err := GetIGMediaForIGOnlyAPIWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateIGMediaForIGOnlyAPIParams struct {
@@ -263,9 +288,14 @@ func DecodeUpdateIGMediaForIGOnlyAPIBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func UpdateIGMediaForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params UpdateIGMediaForIGOnlyAPIParams) (*objects.IGGraphMedia, error) {
+func UpdateIGMediaForIGOnlyAPIWithResponse(ctx context.Context, client *core.Client, id string, params UpdateIGMediaForIGOnlyAPIParams) (*objects.IGGraphMedia, *core.Response, error) {
 	var out objects.IGGraphMedia
 	call := UpdateIGMediaForIGOnlyAPIBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateIGMediaForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params UpdateIGMediaForIGOnlyAPIParams) (*objects.IGGraphMedia, error) {
+	out, _, err := UpdateIGMediaForIGOnlyAPIWithResponse(ctx, client, id, params)
+	return out, err
 }

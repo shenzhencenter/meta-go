@@ -58,11 +58,16 @@ func DecodeGetProfilePictureBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetProfilePicture(ctx context.Context, client *core.Client, id string, params GetProfilePictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+func GetProfilePictureWithResponse(ctx context.Context, client *core.Client, id string, params GetProfilePictureParams) (*core.Cursor[objects.ProfilePictureSource], *core.Response, error) {
 	var out core.Cursor[objects.ProfilePictureSource]
 	call := GetProfilePictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProfilePicture(ctx context.Context, client *core.Client, id string, params GetProfilePictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	out, _, err := GetProfilePictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProfileParams struct {
@@ -99,9 +104,14 @@ func DecodeGetProfileBatchResponse(response *core.BatchResponse) (*objects.Profi
 	return &out, nil
 }
 
-func GetProfile(ctx context.Context, client *core.Client, id string, params GetProfileParams) (*objects.Profile, error) {
+func GetProfileWithResponse(ctx context.Context, client *core.Client, id string, params GetProfileParams) (*objects.Profile, *core.Response, error) {
 	var out objects.Profile
 	call := GetProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProfile(ctx context.Context, client *core.Client, id string, params GetProfileParams) (*objects.Profile, error) {
+	out, _, err := GetProfileWithResponse(ctx, client, id, params)
+	return out, err
 }

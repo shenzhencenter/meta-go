@@ -41,11 +41,16 @@ func DecodeGetCPASBusinessSetupConfigAdAccountsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetCPASBusinessSetupConfigAdAccounts(ctx context.Context, client *core.Client, id string, params GetCPASBusinessSetupConfigAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetCPASBusinessSetupConfigAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASBusinessSetupConfigAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetCPASBusinessSetupConfigAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASBusinessSetupConfigAdAccounts(ctx context.Context, client *core.Client, id string, params GetCPASBusinessSetupConfigAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetCPASBusinessSetupConfigAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCPASBusinessSetupConfigParams struct {
@@ -82,9 +87,14 @@ func DecodeGetCPASBusinessSetupConfigBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetCPASBusinessSetupConfig(ctx context.Context, client *core.Client, id string, params GetCPASBusinessSetupConfigParams) (*objects.CPASBusinessSetupConfig, error) {
+func GetCPASBusinessSetupConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASBusinessSetupConfigParams) (*objects.CPASBusinessSetupConfig, *core.Response, error) {
 	var out objects.CPASBusinessSetupConfig
 	call := GetCPASBusinessSetupConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASBusinessSetupConfig(ctx context.Context, client *core.Client, id string, params GetCPASBusinessSetupConfigParams) (*objects.CPASBusinessSetupConfig, error) {
+	out, _, err := GetCPASBusinessSetupConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

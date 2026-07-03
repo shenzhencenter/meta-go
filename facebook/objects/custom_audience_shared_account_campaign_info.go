@@ -14,3 +14,23 @@ type CustomAudienceSharedAccountCampaignInfo struct {
 	CampaignPages          *[]map[string]interface{} `json:"campaign_pages,omitempty"`
 	CampaignSchedule       *string                   `json:"campaign_schedule,omitempty"`
 }
+
+var CustomAudienceSharedAccountCampaignInfoFields = struct {
+	AccountID              string
+	AccountName            string
+	AdsetExcludingCount    string
+	AdsetIncludingCount    string
+	CampaignDeliveryStatus string
+	CampaignObjective      string
+	CampaignPages          string
+	CampaignSchedule       string
+}{
+	AccountID:              "account_id",
+	AccountName:            "account_name",
+	AdsetExcludingCount:    "adset_excluding_count",
+	AdsetIncludingCount:    "adset_including_count",
+	CampaignDeliveryStatus: "campaign_delivery_status",
+	CampaignObjective:      "campaign_objective",
+	CampaignPages:          "campaign_pages",
+	CampaignSchedule:       "campaign_schedule",
+}

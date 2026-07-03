@@ -42,11 +42,16 @@ func DecodeGetLocalServiceBusinessChannelsToIntegrityStatusBatchResponse(respons
 	return &out, nil
 }
 
-func GetLocalServiceBusinessChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetLocalServiceBusinessChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetLocalServiceBusinessChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLocalServiceBusinessChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetLocalServiceBusinessChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLocalServiceBusinessOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetLocalServiceBusinessOverrideDetailsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetLocalServiceBusinessOverrideDetails(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetLocalServiceBusinessOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetLocalServiceBusinessOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLocalServiceBusinessOverrideDetails(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetLocalServiceBusinessOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLocalServiceBusinessParams struct {
@@ -132,9 +142,14 @@ func DecodeGetLocalServiceBusinessBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetLocalServiceBusiness(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessParams) (*objects.LocalServiceBusiness, error) {
+func GetLocalServiceBusinessWithResponse(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessParams) (*objects.LocalServiceBusiness, *core.Response, error) {
 	var out objects.LocalServiceBusiness
 	call := GetLocalServiceBusinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLocalServiceBusiness(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessParams) (*objects.LocalServiceBusiness, error) {
+	out, _, err := GetLocalServiceBusinessWithResponse(ctx, client, id, params)
+	return out, err
 }

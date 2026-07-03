@@ -7,3 +7,17 @@ type TimezoneOffset struct {
 	Time   *string `json:"time,omitempty"`
 	Ts     *uint64 `json:"ts,omitempty"`
 }
+
+var TimezoneOffsetFields = struct {
+	Abbr   string
+	Isdst  string
+	Offset string
+	Time   string
+	Ts     string
+}{
+	Abbr:   "abbr",
+	Isdst:  "isdst",
+	Offset: "offset",
+	Time:   "time",
+	Ts:     "ts",
+}

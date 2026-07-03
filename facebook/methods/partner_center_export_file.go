@@ -41,9 +41,14 @@ func DecodeGetPartnerCenterExportFileBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetPartnerCenterExportFile(ctx context.Context, client *core.Client, id string, params GetPartnerCenterExportFileParams) (*objects.PartnerCenterExportFile, error) {
+func GetPartnerCenterExportFileWithResponse(ctx context.Context, client *core.Client, id string, params GetPartnerCenterExportFileParams) (*objects.PartnerCenterExportFile, *core.Response, error) {
 	var out objects.PartnerCenterExportFile
 	call := GetPartnerCenterExportFileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPartnerCenterExportFile(ctx context.Context, client *core.Client, id string, params GetPartnerCenterExportFileParams) (*objects.PartnerCenterExportFile, error) {
+	out, _, err := GetPartnerCenterExportFileWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetShadowIGMediaBuilderBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetShadowIGMediaBuilder(ctx context.Context, client *core.Client, id string, params GetShadowIGMediaBuilderParams) (*objects.ShadowIGMediaBuilder, error) {
+func GetShadowIGMediaBuilderWithResponse(ctx context.Context, client *core.Client, id string, params GetShadowIGMediaBuilderParams) (*objects.ShadowIGMediaBuilder, *core.Response, error) {
 	var out objects.ShadowIGMediaBuilder
 	call := GetShadowIGMediaBuilderBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetShadowIGMediaBuilder(ctx context.Context, client *core.Client, id string, params GetShadowIGMediaBuilderParams) (*objects.ShadowIGMediaBuilder, error) {
+	out, _, err := GetShadowIGMediaBuilderWithResponse(ctx, client, id, params)
+	return out, err
 }

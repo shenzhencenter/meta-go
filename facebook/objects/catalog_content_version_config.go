@@ -9,3 +9,13 @@ type CatalogContentVersionConfig struct {
 	Name    *string  `json:"name,omitempty"`
 	Version *string  `json:"version,omitempty"`
 }
+
+var CatalogContentVersionConfigFields = struct {
+	ID      string
+	Name    string
+	Version string
+}{
+	ID:      "id",
+	Name:    "name",
+	Version: "version",
+}

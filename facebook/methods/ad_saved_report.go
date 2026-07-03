@@ -41,9 +41,14 @@ func DecodeGetAdSavedReportBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetAdSavedReport(ctx context.Context, client *core.Client, id string, params GetAdSavedReportParams) (*objects.AdSavedReport, error) {
+func GetAdSavedReportWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSavedReportParams) (*objects.AdSavedReport, *core.Response, error) {
 	var out objects.AdSavedReport
 	call := GetAdSavedReportBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSavedReport(ctx context.Context, client *core.Client, id string, params GetAdSavedReportParams) (*objects.AdSavedReport, error) {
+	out, _, err := GetAdSavedReportWithResponse(ctx, client, id, params)
+	return out, err
 }

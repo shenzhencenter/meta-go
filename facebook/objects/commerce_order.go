@@ -20,3 +20,35 @@ type CommerceOrder struct {
 	ShipByDate              *string                 `json:"ship_by_date,omitempty"`
 	ShippingAddress         *map[string]interface{} `json:"shipping_address,omitempty"`
 }
+
+var CommerceOrderFields = struct {
+	BuyerDetails            string
+	Channel                 string
+	ContainsBopisItems      string
+	Created                 string
+	EstimatedPaymentDetails string
+	ID                      string
+	IsGroupBuy              string
+	IsTestOrder             string
+	LastUpdated             string
+	MerchantOrderID         string
+	OrderStatus             string
+	SelectedShippingOption  string
+	ShipByDate              string
+	ShippingAddress         string
+}{
+	BuyerDetails:            "buyer_details",
+	Channel:                 "channel",
+	ContainsBopisItems:      "contains_bopis_items",
+	Created:                 "created",
+	EstimatedPaymentDetails: "estimated_payment_details",
+	ID:                      "id",
+	IsGroupBuy:              "is_group_buy",
+	IsTestOrder:             "is_test_order",
+	LastUpdated:             "last_updated",
+	MerchantOrderID:         "merchant_order_id",
+	OrderStatus:             "order_status",
+	SelectedShippingOption:  "selected_shipping_option",
+	ShipByDate:              "ship_by_date",
+	ShippingAddress:         "shipping_address",
+}

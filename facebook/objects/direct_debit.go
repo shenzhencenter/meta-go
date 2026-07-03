@@ -16,3 +16,27 @@ type DirectDebit struct {
 	OwnerName                      *string   `json:"owner_name,omitempty"`
 	Status                         *int      `json:"status,omitempty"`
 }
+
+var DirectDebitFields = struct {
+	BankAccountLastX4              string
+	BankCodeLastX4                 string
+	BankName                       string
+	DefaultReceivingMethodProducts string
+	DisplayString                  string
+	ID                             string
+	LastFourDigits                 string
+	OnboardingURL                  string
+	OwnerName                      string
+	Status                         string
+}{
+	BankAccountLastX4:              "bank_account_last_4",
+	BankCodeLastX4:                 "bank_code_last_4",
+	BankName:                       "bank_name",
+	DefaultReceivingMethodProducts: "default_receiving_method_products",
+	DisplayString:                  "display_string",
+	ID:                             "id",
+	LastFourDigits:                 "last_four_digits",
+	OnboardingURL:                  "onboarding_url",
+	OwnerName:                      "owner_name",
+	Status:                         "status",
+}

@@ -11,3 +11,17 @@ type AdsReportBuilderMMMReportScheduler struct {
 	ReportName        *string                   `json:"report_name,omitempty"`
 	ScheduleFrequency *string                   `json:"schedule_frequency,omitempty"`
 }
+
+var AdsReportBuilderMMMReportSchedulerFields = struct {
+	AdAccountIds      string
+	Filtering         string
+	ID                string
+	ReportName        string
+	ScheduleFrequency string
+}{
+	AdAccountIds:      "ad_account_ids",
+	Filtering:         "filtering",
+	ID:                "id",
+	ReportName:        "report_name",
+	ScheduleFrequency: "schedule_frequency",
+}

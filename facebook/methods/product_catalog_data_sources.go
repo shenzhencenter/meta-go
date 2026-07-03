@@ -62,9 +62,14 @@ func DecodeGetProductCatalogDataSourcesDataSourcesBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetProductCatalogDataSourcesDataSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSourcesGet], error) {
+func GetProductCatalogDataSourcesDataSourcesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSourcesGet], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogDataSourcesGet]
 	call := GetProductCatalogDataSourcesDataSourcesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogDataSourcesDataSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSourcesGet], error) {
+	out, _, err := GetProductCatalogDataSourcesDataSourcesWithResponse(ctx, client, id, params)
+	return out, err
 }

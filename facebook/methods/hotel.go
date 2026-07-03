@@ -42,11 +42,16 @@ func DecodeGetHotelChannelsToIntegrityStatusBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetHotelChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetHotelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetHotelChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetHotelChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotelChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetHotelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetHotelChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHotelHotelRoomsParams struct {
@@ -83,11 +88,16 @@ func DecodeGetHotelHotelRoomsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetHotelHotelRooms(ctx context.Context, client *core.Client, id string, params GetHotelHotelRoomsParams) (*core.Cursor[objects.HotelRoom], error) {
+func GetHotelHotelRoomsWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelHotelRoomsParams) (*core.Cursor[objects.HotelRoom], *core.Response, error) {
 	var out core.Cursor[objects.HotelRoom]
 	call := GetHotelHotelRoomsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotelHotelRooms(ctx context.Context, client *core.Client, id string, params GetHotelHotelRoomsParams) (*core.Cursor[objects.HotelRoom], error) {
+	out, _, err := GetHotelHotelRoomsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHotelOverrideDetailsParams struct {
@@ -132,11 +142,16 @@ func DecodeGetHotelOverrideDetailsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetHotelOverrideDetails(ctx context.Context, client *core.Client, id string, params GetHotelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetHotelOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetHotelOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotelOverrideDetails(ctx context.Context, client *core.Client, id string, params GetHotelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetHotelOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHotelVideosMetadataParams struct {
@@ -173,11 +188,16 @@ func DecodeGetHotelVideosMetadataBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetHotelVideosMetadata(ctx context.Context, client *core.Client, id string, params GetHotelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetHotelVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetHotelVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotelVideosMetadata(ctx context.Context, client *core.Client, id string, params GetHotelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetHotelVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteHotelParams struct {
@@ -214,11 +234,16 @@ func DecodeDeleteHotelBatchResponse(response *core.BatchResponse) (*map[string]i
 	return &out, nil
 }
 
-func DeleteHotel(ctx context.Context, client *core.Client, id string, params DeleteHotelParams) (*map[string]interface{}, error) {
+func DeleteHotelWithResponse(ctx context.Context, client *core.Client, id string, params DeleteHotelParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteHotelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteHotel(ctx context.Context, client *core.Client, id string, params DeleteHotelParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteHotelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHotelParams struct {
@@ -255,11 +280,16 @@ func DecodeGetHotelBatchResponse(response *core.BatchResponse) (*objects.Hotel, 
 	return &out, nil
 }
 
-func GetHotel(ctx context.Context, client *core.Client, id string, params GetHotelParams) (*objects.Hotel, error) {
+func GetHotelWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelParams) (*objects.Hotel, *core.Response, error) {
 	var out objects.Hotel
 	call := GetHotelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotel(ctx context.Context, client *core.Client, id string, params GetHotelParams) (*objects.Hotel, error) {
+	out, _, err := GetHotelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateHotelParams struct {
@@ -344,9 +374,14 @@ func DecodeUpdateHotelBatchResponse(response *core.BatchResponse) (*objects.Hote
 	return &out, nil
 }
 
-func UpdateHotel(ctx context.Context, client *core.Client, id string, params UpdateHotelParams) (*objects.Hotel, error) {
+func UpdateHotelWithResponse(ctx context.Context, client *core.Client, id string, params UpdateHotelParams) (*objects.Hotel, *core.Response, error) {
 	var out objects.Hotel
 	call := UpdateHotelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateHotel(ctx context.Context, client *core.Client, id string, params UpdateHotelParams) (*objects.Hotel, error) {
+	out, _, err := UpdateHotelWithResponse(ctx, client, id, params)
+	return out, err
 }

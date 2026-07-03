@@ -41,9 +41,14 @@ func DecodeGetAdsQuickViewsBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetAdsQuickViews(ctx context.Context, client *core.Client, id string, params GetAdsQuickViewsParams) (*objects.AdsQuickViews, error) {
+func GetAdsQuickViewsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsQuickViewsParams) (*objects.AdsQuickViews, *core.Response, error) {
 	var out objects.AdsQuickViews
 	call := GetAdsQuickViewsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsQuickViews(ctx context.Context, client *core.Client, id string, params GetAdsQuickViewsParams) (*objects.AdsQuickViews, error) {
+	out, _, err := GetAdsQuickViewsWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -33,3 +33,61 @@ type ConversionActionQuery struct {
 	Response        *[]string                 `json:"response,omitempty"`
 	Subtype         *[]string                 `json:"subtype,omitempty"`
 }
+
+var ConversionActionQueryFields = struct {
+	ActionType      string
+	Application     string
+	ConversionID    string
+	Creative        string
+	Dataset         string
+	DatasetSplit    string
+	Event           string
+	EventCreator    string
+	EventType       string
+	FbPixel         string
+	FbPixelEvent    string
+	Leadgen         string
+	Object          string
+	ObjectDomain    string
+	Offer           string
+	OfferCreator    string
+	OffsitePixel    string
+	Page            string
+	PageParent      string
+	Post            string
+	PostObject      string
+	PostObjectWall  string
+	PostWall        string
+	Question        string
+	QuestionCreator string
+	Response        string
+	Subtype         string
+}{
+	ActionType:      "action.type",
+	Application:     "application",
+	ConversionID:    "conversion_id",
+	Creative:        "creative",
+	Dataset:         "dataset",
+	DatasetSplit:    "dataset_split",
+	Event:           "event",
+	EventCreator:    "event.creator",
+	EventType:       "event_type",
+	FbPixel:         "fb_pixel",
+	FbPixelEvent:    "fb_pixel_event",
+	Leadgen:         "leadgen",
+	Object:          "object",
+	ObjectDomain:    "object.domain",
+	Offer:           "offer",
+	OfferCreator:    "offer.creator",
+	OffsitePixel:    "offsite_pixel",
+	Page:            "page",
+	PageParent:      "page.parent",
+	Post:            "post",
+	PostObject:      "post.object",
+	PostObjectWall:  "post.object.wall",
+	PostWall:        "post.wall",
+	Question:        "question",
+	QuestionCreator: "question.creator",
+	Response:        "response",
+	Subtype:         "subtype",
+}

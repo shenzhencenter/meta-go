@@ -23,3 +23,41 @@ type IGUserExportForCAM struct {
 	ProfilePictureURL                *string   `json:"profile_picture_url,omitempty"`
 	Username                         *string   `json:"username,omitempty"`
 }
+
+var IGUserExportForCAMFields = struct {
+	AgeBucket                        string
+	Badges                           string
+	Biography                        string
+	Country                          string
+	Email                            string
+	Gender                           string
+	HasBrandPartnershipExperience    string
+	ID                               string
+	IsAccountVerified                string
+	IsCreatorFollowingBrand          string
+	IsPaidPartnershipMessagesEnabled string
+	MessagingID                      string
+	OnboardedStatus                  string
+	PastBrandPartnershipPartners     string
+	PortfolioURL                     string
+	ProfilePictureURL                string
+	Username                         string
+}{
+	AgeBucket:                        "age_bucket",
+	Badges:                           "badges",
+	Biography:                        "biography",
+	Country:                          "country",
+	Email:                            "email",
+	Gender:                           "gender",
+	HasBrandPartnershipExperience:    "has_brand_partnership_experience",
+	ID:                               "id",
+	IsAccountVerified:                "is_account_verified",
+	IsCreatorFollowingBrand:          "is_creator_following_brand",
+	IsPaidPartnershipMessagesEnabled: "is_paid_partnership_messages_enabled",
+	MessagingID:                      "messaging_id",
+	OnboardedStatus:                  "onboarded_status",
+	PastBrandPartnershipPartners:     "past_brand_partnership_partners",
+	PortfolioURL:                     "portfolio_url",
+	ProfilePictureURL:                "profile_picture_url",
+	Username:                         "username",
+}

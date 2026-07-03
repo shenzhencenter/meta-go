@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type CreateBusinessAccessTokenParams struct {
@@ -55,11 +54,16 @@ func DecodeCreateBusinessAccessTokenBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateBusinessAccessToken(ctx context.Context, client *core.Client, id string, params CreateBusinessAccessTokenParams) (*objects.Business, error) {
+func CreateBusinessAccessTokenWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAccessTokenParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessAccessTokenBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAccessToken(ctx context.Context, client *core.Client, id string, params CreateBusinessAccessTokenParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessAccessTokenWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdAccountInfosParams struct {
@@ -108,11 +112,16 @@ func DecodeGetBusinessAdAccountInfosBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetBusinessAdAccountInfos(ctx context.Context, client *core.Client, id string, params GetBusinessAdAccountInfosParams) (*core.Cursor[objects.ALMAdAccountInfo], error) {
+func GetBusinessAdAccountInfosWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdAccountInfosParams) (*core.Cursor[objects.ALMAdAccountInfo], *core.Response, error) {
 	var out core.Cursor[objects.ALMAdAccountInfo]
 	call := GetBusinessAdAccountInfosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdAccountInfos(ctx context.Context, client *core.Client, id string, params GetBusinessAdAccountInfosParams) (*core.Cursor[objects.ALMAdAccountInfo], error) {
+	out, _, err := GetBusinessAdAccountInfosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessAdAccountsParams struct {
@@ -151,11 +160,16 @@ func DecodeDeleteBusinessAdAccountsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func DeleteBusinessAdAccounts(ctx context.Context, client *core.Client, id string, params DeleteBusinessAdAccountsParams) (*map[string]interface{}, error) {
+func DeleteBusinessAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessAdAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessAdAccounts(ctx context.Context, client *core.Client, id string, params DeleteBusinessAdAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdCustomDerivedMetricsParams struct {
@@ -200,11 +214,16 @@ func DecodeGetBusinessAdCustomDerivedMetricsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetBusinessAdCustomDerivedMetrics(ctx context.Context, client *core.Client, id string, params GetBusinessAdCustomDerivedMetricsParams) (*core.Cursor[objects.AdCustomDerivedMetrics], error) {
+func GetBusinessAdCustomDerivedMetricsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdCustomDerivedMetricsParams) (*core.Cursor[objects.AdCustomDerivedMetrics], *core.Response, error) {
 	var out core.Cursor[objects.AdCustomDerivedMetrics]
 	call := GetBusinessAdCustomDerivedMetricsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdCustomDerivedMetrics(ctx context.Context, client *core.Client, id string, params GetBusinessAdCustomDerivedMetricsParams) (*core.Cursor[objects.AdCustomDerivedMetrics], error) {
+	out, _, err := GetBusinessAdCustomDerivedMetricsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdReviewRequestsParams struct {
@@ -245,11 +264,16 @@ func DecodeCreateBusinessAdReviewRequestsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateBusinessAdReviewRequests(ctx context.Context, client *core.Client, id string, params CreateBusinessAdReviewRequestsParams) (*map[string]interface{}, error) {
+func CreateBusinessAdReviewRequestsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdReviewRequestsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateBusinessAdReviewRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdReviewRequests(ctx context.Context, client *core.Client, id string, params CreateBusinessAdReviewRequestsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateBusinessAdReviewRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdStudiesParams struct {
@@ -286,11 +310,16 @@ func DecodeGetBusinessAdStudiesBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetBusinessAdStudies(ctx context.Context, client *core.Client, id string, params GetBusinessAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+func GetBusinessAdStudiesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdStudiesParams) (*core.Cursor[objects.AdStudy], *core.Response, error) {
 	var out core.Cursor[objects.AdStudy]
 	call := GetBusinessAdStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdStudies(ctx context.Context, client *core.Client, id string, params GetBusinessAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+	out, _, err := GetBusinessAdStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdStudiesParams struct {
@@ -371,11 +400,16 @@ func DecodeCreateBusinessAdStudiesBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateBusinessAdStudies(ctx context.Context, client *core.Client, id string, params CreateBusinessAdStudiesParams) (*objects.AdStudy, error) {
+func CreateBusinessAdStudiesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdStudiesParams) (*objects.AdStudy, *core.Response, error) {
 	var out objects.AdStudy
 	call := CreateBusinessAdStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdStudies(ctx context.Context, client *core.Client, id string, params CreateBusinessAdStudiesParams) (*objects.AdStudy, error) {
+	out, _, err := CreateBusinessAdStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdaccountParams struct {
@@ -452,11 +486,16 @@ func DecodeCreateBusinessAdaccountBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateBusinessAdaccount(ctx context.Context, client *core.Client, id string, params CreateBusinessAdaccountParams) (*objects.AdAccount, error) {
+func CreateBusinessAdaccountWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdaccountParams) (*objects.AdAccount, *core.Response, error) {
 	var out objects.AdAccount
 	call := CreateBusinessAdaccountBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdaccount(ctx context.Context, client *core.Client, id string, params CreateBusinessAdaccountParams) (*objects.AdAccount, error) {
+	out, _, err := CreateBusinessAdaccountWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAddPhoneNumbersParams struct {
@@ -495,11 +534,16 @@ func DecodeCreateBusinessAddPhoneNumbersBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateBusinessAddPhoneNumbers(ctx context.Context, client *core.Client, id string, params CreateBusinessAddPhoneNumbersParams) (*objects.Business, error) {
+func CreateBusinessAddPhoneNumbersWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAddPhoneNumbersParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessAddPhoneNumbersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAddPhoneNumbers(ctx context.Context, client *core.Client, id string, params CreateBusinessAddPhoneNumbersParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessAddPhoneNumbersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdnetworkApplicationsParams struct {
@@ -538,11 +582,16 @@ func DecodeCreateBusinessAdnetworkApplicationsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreateBusinessAdnetworkApplications(ctx context.Context, client *core.Client, id string, params CreateBusinessAdnetworkApplicationsParams) (*objects.Application, error) {
+func CreateBusinessAdnetworkApplicationsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdnetworkApplicationsParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateBusinessAdnetworkApplicationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdnetworkApplications(ctx context.Context, client *core.Client, id string, params CreateBusinessAdnetworkApplicationsParams) (*objects.Application, error) {
+	out, _, err := CreateBusinessAdnetworkApplicationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdnetworkanalyticsParams struct {
@@ -554,8 +603,8 @@ type GetBusinessAdnetworkanalyticsParams struct {
 	OrderingColumn     *enums.BusinessadnetworkanalyticsOrderingColumnEnumParam    `facebook:"ordering_column"`
 	OrderingType       *enums.BusinessadnetworkanalyticsOrderingTypeEnumParam      `facebook:"ordering_type"`
 	ShouldIncludeUntil *bool                                                       `facebook:"should_include_until"`
-	Since              *time.Time                                                  `facebook:"since"`
-	Until              *time.Time                                                  `facebook:"until"`
+	Since              *core.Time                                                  `facebook:"since"`
+	Until              *core.Time                                                  `facebook:"until"`
 	Extra              core.Params                                                 `facebook:"-"`
 }
 
@@ -617,11 +666,16 @@ func DecodeGetBusinessAdnetworkanalyticsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetBusinessAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetBusinessAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+func GetBusinessAdnetworkanalyticsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]
 	call := GetBusinessAdnetworkanalyticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetBusinessAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+	out, _, err := GetBusinessAdnetworkanalyticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdnetworkanalyticsParams struct {
@@ -632,8 +686,8 @@ type CreateBusinessAdnetworkanalyticsParams struct {
 	Metrics           []enums.BusinessadnetworkanalyticsMetricsEnumParam          `facebook:"metrics"`
 	OrderingColumn    *enums.BusinessadnetworkanalyticsOrderingColumnEnumParam    `facebook:"ordering_column"`
 	OrderingType      *enums.BusinessadnetworkanalyticsOrderingTypeEnumParam      `facebook:"ordering_type"`
-	Since             *time.Time                                                  `facebook:"since"`
-	Until             *time.Time                                                  `facebook:"until"`
+	Since             *core.Time                                                  `facebook:"since"`
+	Until             *core.Time                                                  `facebook:"until"`
 	Extra             core.Params                                                 `facebook:"-"`
 }
 
@@ -692,11 +746,16 @@ func DecodeCreateBusinessAdnetworkanalyticsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateBusinessAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateBusinessAdnetworkanalyticsParams) (*objects.Business, error) {
+func CreateBusinessAdnetworkanalyticsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdnetworkanalyticsParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessAdnetworkanalyticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateBusinessAdnetworkanalyticsParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessAdnetworkanalyticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdnetworkanalyticsResultsParams struct {
@@ -737,11 +796,16 @@ func DecodeGetBusinessAdnetworkanalyticsResultsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetBusinessAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetBusinessAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+func GetBusinessAdnetworkanalyticsResultsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]
 	call := GetBusinessAdnetworkanalyticsResultsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetBusinessAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+	out, _, err := GetBusinessAdnetworkanalyticsResultsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdsDatasetParams struct {
@@ -790,11 +854,16 @@ func DecodeGetBusinessAdsDatasetBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetBusinessAdsDataset(ctx context.Context, client *core.Client, id string, params GetBusinessAdsDatasetParams) (*core.Cursor[objects.AdsDataset], error) {
+func GetBusinessAdsDatasetWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdsDatasetParams) (*core.Cursor[objects.AdsDataset], *core.Response, error) {
 	var out core.Cursor[objects.AdsDataset]
 	call := GetBusinessAdsDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdsDataset(ctx context.Context, client *core.Client, id string, params GetBusinessAdsDatasetParams) (*core.Cursor[objects.AdsDataset], error) {
+	out, _, err := GetBusinessAdsDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdsDatasetParams struct {
@@ -845,11 +914,16 @@ func DecodeCreateBusinessAdsDatasetBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateBusinessAdsDataset(ctx context.Context, client *core.Client, id string, params CreateBusinessAdsDatasetParams) (*objects.Business, error) {
+func CreateBusinessAdsDatasetWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdsDatasetParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessAdsDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdsDataset(ctx context.Context, client *core.Client, id string, params CreateBusinessAdsDatasetParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessAdsDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdsReportingMmmReportsParams struct {
@@ -890,11 +964,16 @@ func DecodeGetBusinessAdsReportingMmmReportsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetBusinessAdsReportingMmmReports(ctx context.Context, client *core.Client, id string, params GetBusinessAdsReportingMmmReportsParams) (*core.Cursor[objects.AdsReportBuilderMMMReport], error) {
+func GetBusinessAdsReportingMmmReportsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdsReportingMmmReportsParams) (*core.Cursor[objects.AdsReportBuilderMMMReport], *core.Response, error) {
 	var out core.Cursor[objects.AdsReportBuilderMMMReport]
 	call := GetBusinessAdsReportingMmmReportsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdsReportingMmmReports(ctx context.Context, client *core.Client, id string, params GetBusinessAdsReportingMmmReportsParams) (*core.Cursor[objects.AdsReportBuilderMMMReport], error) {
+	out, _, err := GetBusinessAdsReportingMmmReportsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdsReportingMmmSchedulersParams struct {
@@ -931,11 +1010,16 @@ func DecodeGetBusinessAdsReportingMmmSchedulersBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetBusinessAdsReportingMmmSchedulers(ctx context.Context, client *core.Client, id string, params GetBusinessAdsReportingMmmSchedulersParams) (*core.Cursor[objects.AdsReportBuilderMMMReportScheduler], error) {
+func GetBusinessAdsReportingMmmSchedulersWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdsReportingMmmSchedulersParams) (*core.Cursor[objects.AdsReportBuilderMMMReportScheduler], *core.Response, error) {
 	var out core.Cursor[objects.AdsReportBuilderMMMReportScheduler]
 	call := GetBusinessAdsReportingMmmSchedulersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdsReportingMmmSchedulers(ctx context.Context, client *core.Client, id string, params GetBusinessAdsReportingMmmSchedulersParams) (*core.Cursor[objects.AdsReportBuilderMMMReportScheduler], error) {
+	out, _, err := GetBusinessAdsReportingMmmSchedulersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAdspixelsParams struct {
@@ -984,11 +1068,16 @@ func DecodeGetBusinessAdspixelsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetBusinessAdspixels(ctx context.Context, client *core.Client, id string, params GetBusinessAdspixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+func GetBusinessAdspixelsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAdspixelsParams) (*core.Cursor[objects.AdsPixel], *core.Response, error) {
 	var out core.Cursor[objects.AdsPixel]
 	call := GetBusinessAdspixelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAdspixels(ctx context.Context, client *core.Client, id string, params GetBusinessAdspixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+	out, _, err := GetBusinessAdspixelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessAdspixelsParams struct {
@@ -1031,11 +1120,16 @@ func DecodeCreateBusinessAdspixelsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateBusinessAdspixels(ctx context.Context, client *core.Client, id string, params CreateBusinessAdspixelsParams) (*objects.AdsPixel, error) {
+func CreateBusinessAdspixelsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessAdspixelsParams) (*objects.AdsPixel, *core.Response, error) {
 	var out objects.AdsPixel
 	call := CreateBusinessAdspixelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessAdspixels(ctx context.Context, client *core.Client, id string, params CreateBusinessAdspixelsParams) (*objects.AdsPixel, error) {
+	out, _, err := CreateBusinessAdspixelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessAgenciesParams struct {
@@ -1074,11 +1168,16 @@ func DecodeDeleteBusinessAgenciesBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func DeleteBusinessAgencies(ctx context.Context, client *core.Client, id string, params DeleteBusinessAgenciesParams) (*map[string]interface{}, error) {
+func DeleteBusinessAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessAgenciesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessAgencies(ctx context.Context, client *core.Client, id string, params DeleteBusinessAgenciesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAgenciesParams struct {
@@ -1115,11 +1214,16 @@ func DecodeGetBusinessAgenciesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetBusinessAgencies(ctx context.Context, client *core.Client, id string, params GetBusinessAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetBusinessAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetBusinessAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAgencies(ctx context.Context, client *core.Client, id string, params GetBusinessAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetBusinessAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessAnPlacementsParams struct {
@@ -1156,11 +1260,16 @@ func DecodeGetBusinessAnPlacementsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetBusinessAnPlacements(ctx context.Context, client *core.Client, id string, params GetBusinessAnPlacementsParams) (*core.Cursor[objects.AdPlacement], error) {
+func GetBusinessAnPlacementsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAnPlacementsParams) (*core.Cursor[objects.AdPlacement], *core.Response, error) {
 	var out core.Cursor[objects.AdPlacement]
 	call := GetBusinessAnPlacementsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAnPlacements(ctx context.Context, client *core.Client, id string, params GetBusinessAnPlacementsParams) (*core.Cursor[objects.AdPlacement], error) {
+	out, _, err := GetBusinessAnPlacementsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessBlockListDraftsParams struct {
@@ -1199,11 +1308,16 @@ func DecodeCreateBusinessBlockListDraftsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateBusinessBlockListDrafts(ctx context.Context, client *core.Client, id string, params CreateBusinessBlockListDraftsParams) (*objects.Business, error) {
+func CreateBusinessBlockListDraftsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessBlockListDraftsParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessBlockListDraftsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessBlockListDrafts(ctx context.Context, client *core.Client, id string, params CreateBusinessBlockListDraftsParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessBlockListDraftsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessBmReviewRequestsParams struct {
@@ -1242,11 +1356,16 @@ func DecodeCreateBusinessBmReviewRequestsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateBusinessBmReviewRequests(ctx context.Context, client *core.Client, id string, params CreateBusinessBmReviewRequestsParams) (*map[string]interface{}, error) {
+func CreateBusinessBmReviewRequestsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessBmReviewRequestsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateBusinessBmReviewRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessBmReviewRequests(ctx context.Context, client *core.Client, id string, params CreateBusinessBmReviewRequestsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateBusinessBmReviewRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessBusinessAssetGroupsParams struct {
@@ -1283,11 +1402,16 @@ func DecodeGetBusinessBusinessAssetGroupsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetBusinessBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+func GetBusinessBusinessAssetGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAssetGroup]
 	call := GetBusinessBusinessAssetGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+	out, _, err := GetBusinessBusinessAssetGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessBusinessInvoicesParams struct {
@@ -1352,11 +1476,16 @@ func DecodeGetBusinessBusinessInvoicesBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetBusinessBusinessInvoices(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessInvoicesParams) (*core.Cursor[objects.OmegaCustomerTrx], error) {
+func GetBusinessBusinessInvoicesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessInvoicesParams) (*core.Cursor[objects.OmegaCustomerTrx], *core.Response, error) {
 	var out core.Cursor[objects.OmegaCustomerTrx]
 	call := GetBusinessBusinessInvoicesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessBusinessInvoices(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessInvoicesParams) (*core.Cursor[objects.OmegaCustomerTrx], error) {
+	out, _, err := GetBusinessBusinessInvoicesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessBusinessUsersParams struct {
@@ -1393,11 +1522,16 @@ func DecodeGetBusinessBusinessUsersBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetBusinessBusinessUsers(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessUsersParams) (*core.Cursor[objects.BusinessUser], error) {
+func GetBusinessBusinessUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessUsersParams) (*core.Cursor[objects.BusinessUser], *core.Response, error) {
 	var out core.Cursor[objects.BusinessUser]
 	call := GetBusinessBusinessUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessBusinessUsers(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessUsersParams) (*core.Cursor[objects.BusinessUser], error) {
+	out, _, err := GetBusinessBusinessUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessBusinessUsersParams struct {
@@ -1448,11 +1582,16 @@ func DecodeCreateBusinessBusinessUsersBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreateBusinessBusinessUsers(ctx context.Context, client *core.Client, id string, params CreateBusinessBusinessUsersParams) (*objects.BusinessUser, error) {
+func CreateBusinessBusinessUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessBusinessUsersParams) (*objects.BusinessUser, *core.Response, error) {
 	var out objects.BusinessUser
 	call := CreateBusinessBusinessUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessBusinessUsers(ctx context.Context, client *core.Client, id string, params CreateBusinessBusinessUsersParams) (*objects.BusinessUser, error) {
+	out, _, err := CreateBusinessBusinessUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessBusinessprojectsParams struct {
@@ -1489,11 +1628,16 @@ func DecodeGetBusinessBusinessprojectsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetBusinessBusinessprojects(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], error) {
+func GetBusinessBusinessprojectsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], *core.Response, error) {
 	var out core.Cursor[objects.BusinessProject]
 	call := GetBusinessBusinessprojectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessBusinessprojects(ctx context.Context, client *core.Client, id string, params GetBusinessBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], error) {
+	out, _, err := GetBusinessBusinessprojectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessClaimCustomConversionsParams struct {
@@ -1532,11 +1676,16 @@ func DecodeCreateBusinessClaimCustomConversionsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func CreateBusinessClaimCustomConversions(ctx context.Context, client *core.Client, id string, params CreateBusinessClaimCustomConversionsParams) (*objects.CustomConversion, error) {
+func CreateBusinessClaimCustomConversionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessClaimCustomConversionsParams) (*objects.CustomConversion, *core.Response, error) {
 	var out objects.CustomConversion
 	call := CreateBusinessClaimCustomConversionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessClaimCustomConversions(ctx context.Context, client *core.Client, id string, params CreateBusinessClaimCustomConversionsParams) (*objects.CustomConversion, error) {
+	out, _, err := CreateBusinessClaimCustomConversionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientAdAccountsParams struct {
@@ -1577,11 +1726,16 @@ func DecodeGetBusinessClientAdAccountsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetBusinessClientAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessClientAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetBusinessClientAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetBusinessClientAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessClientAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetBusinessClientAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientAppsParams struct {
@@ -1618,11 +1772,16 @@ func DecodeGetBusinessClientAppsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetBusinessClientApps(ctx context.Context, client *core.Client, id string, params GetBusinessClientAppsParams) (*core.Cursor[objects.Application], error) {
+func GetBusinessClientAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientAppsParams) (*core.Cursor[objects.Application], *core.Response, error) {
 	var out core.Cursor[objects.Application]
 	call := GetBusinessClientAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientApps(ctx context.Context, client *core.Client, id string, params GetBusinessClientAppsParams) (*core.Cursor[objects.Application], error) {
+	out, _, err := GetBusinessClientAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessClientAppsParams struct {
@@ -1661,11 +1820,16 @@ func DecodeCreateBusinessClientAppsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateBusinessClientApps(ctx context.Context, client *core.Client, id string, params CreateBusinessClientAppsParams) (*objects.Business, error) {
+func CreateBusinessClientAppsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessClientAppsParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessClientAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessClientApps(ctx context.Context, client *core.Client, id string, params CreateBusinessClientAppsParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessClientAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientInstagramAssetsParams struct {
@@ -1702,11 +1866,16 @@ func DecodeGetBusinessClientInstagramAssetsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetBusinessClientInstagramAssets(ctx context.Context, client *core.Client, id string, params GetBusinessClientInstagramAssetsParams) (*core.Cursor[objects.InstagramBusinessAsset], error) {
+func GetBusinessClientInstagramAssetsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientInstagramAssetsParams) (*core.Cursor[objects.InstagramBusinessAsset], *core.Response, error) {
 	var out core.Cursor[objects.InstagramBusinessAsset]
 	call := GetBusinessClientInstagramAssetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientInstagramAssets(ctx context.Context, client *core.Client, id string, params GetBusinessClientInstagramAssetsParams) (*core.Cursor[objects.InstagramBusinessAsset], error) {
+	out, _, err := GetBusinessClientInstagramAssetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientOffsiteSignalContainerBusinessObjectsParams struct {
@@ -1743,11 +1912,16 @@ func DecodeGetBusinessClientOffsiteSignalContainerBusinessObjectsBatchResponse(r
 	return &out, nil
 }
 
-func GetBusinessClientOffsiteSignalContainerBusinessObjects(ctx context.Context, client *core.Client, id string, params GetBusinessClientOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], error) {
+func GetBusinessClientOffsiteSignalContainerBusinessObjectsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], *core.Response, error) {
 	var out core.Cursor[objects.OffsiteSignalContainerBusinessObject]
 	call := GetBusinessClientOffsiteSignalContainerBusinessObjectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientOffsiteSignalContainerBusinessObjects(ctx context.Context, client *core.Client, id string, params GetBusinessClientOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], error) {
+	out, _, err := GetBusinessClientOffsiteSignalContainerBusinessObjectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientPagesParams struct {
@@ -1784,11 +1958,16 @@ func DecodeGetBusinessClientPagesBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetBusinessClientPages(ctx context.Context, client *core.Client, id string, params GetBusinessClientPagesParams) (*core.Cursor[objects.Page], error) {
+func GetBusinessClientPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetBusinessClientPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientPages(ctx context.Context, client *core.Client, id string, params GetBusinessClientPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetBusinessClientPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessClientPagesParams struct {
@@ -1831,11 +2010,16 @@ func DecodeCreateBusinessClientPagesBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateBusinessClientPages(ctx context.Context, client *core.Client, id string, params CreateBusinessClientPagesParams) (*objects.Business, error) {
+func CreateBusinessClientPagesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessClientPagesParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessClientPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessClientPages(ctx context.Context, client *core.Client, id string, params CreateBusinessClientPagesParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessClientPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientPixelsParams struct {
@@ -1872,11 +2056,16 @@ func DecodeGetBusinessClientPixelsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetBusinessClientPixels(ctx context.Context, client *core.Client, id string, params GetBusinessClientPixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+func GetBusinessClientPixelsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientPixelsParams) (*core.Cursor[objects.AdsPixel], *core.Response, error) {
 	var out core.Cursor[objects.AdsPixel]
 	call := GetBusinessClientPixelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientPixels(ctx context.Context, client *core.Client, id string, params GetBusinessClientPixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+	out, _, err := GetBusinessClientPixelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientProductCatalogsParams struct {
@@ -1913,11 +2102,16 @@ func DecodeGetBusinessClientProductCatalogsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetBusinessClientProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessClientProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetBusinessClientProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetBusinessClientProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessClientProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetBusinessClientProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientWhatsappBusinessAccountsParams struct {
@@ -1954,11 +2148,16 @@ func DecodeGetBusinessClientWhatsappBusinessAccountsBatchResponse(response *core
 	return &out, nil
 }
 
-func GetBusinessClientWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessClientWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+func GetBusinessClientWhatsappBusinessAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccount]
 	call := GetBusinessClientWhatsappBusinessAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClientWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessClientWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+	out, _, err := GetBusinessClientWhatsappBusinessAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessClientsParams struct {
@@ -1997,11 +2196,16 @@ func DecodeDeleteBusinessClientsBatchResponse(response *core.BatchResponse) (*ma
 	return &out, nil
 }
 
-func DeleteBusinessClients(ctx context.Context, client *core.Client, id string, params DeleteBusinessClientsParams) (*map[string]interface{}, error) {
+func DeleteBusinessClientsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessClientsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessClientsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessClients(ctx context.Context, client *core.Client, id string, params DeleteBusinessClientsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessClientsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessClientsParams struct {
@@ -2038,19 +2242,24 @@ func DecodeGetBusinessClientsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetBusinessClients(ctx context.Context, client *core.Client, id string, params GetBusinessClientsParams) (*core.Cursor[objects.Business], error) {
+func GetBusinessClientsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessClientsParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetBusinessClientsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessClients(ctx context.Context, client *core.Client, id string, params GetBusinessClientsParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetBusinessClientsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessCollaborativeAdsCollaborationRequestsParams struct {
 	RequestRole *enums.BusinesscollaborativeAdsCollaborationRequestsRequestRoleEnumParam `facebook:"request_role"`
-	Since       *time.Time                                                               `facebook:"since"`
+	Since       *core.Time                                                               `facebook:"since"`
 	Source      *enums.BusinesscollaborativeAdsCollaborationRequestsSourceEnumParam      `facebook:"source"`
 	Status      *string                                                                  `facebook:"status"`
-	Until       *time.Time                                                               `facebook:"until"`
+	Until       *core.Time                                                               `facebook:"until"`
 	Extra       core.Params                                                              `facebook:"-"`
 }
 
@@ -2099,11 +2308,16 @@ func DecodeGetBusinessCollaborativeAdsCollaborationRequestsBatchResponse(respons
 	return &out, nil
 }
 
-func GetBusinessCollaborativeAdsCollaborationRequests(ctx context.Context, client *core.Client, id string, params GetBusinessCollaborativeAdsCollaborationRequestsParams) (*core.Cursor[objects.CPASCollaborationRequest], error) {
+func GetBusinessCollaborativeAdsCollaborationRequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCollaborativeAdsCollaborationRequestsParams) (*core.Cursor[objects.CPASCollaborationRequest], *core.Response, error) {
 	var out core.Cursor[objects.CPASCollaborationRequest]
 	call := GetBusinessCollaborativeAdsCollaborationRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCollaborativeAdsCollaborationRequests(ctx context.Context, client *core.Client, id string, params GetBusinessCollaborativeAdsCollaborationRequestsParams) (*core.Cursor[objects.CPASCollaborationRequest], error) {
+	out, _, err := GetBusinessCollaborativeAdsCollaborationRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessCollaborativeAdsSuggestedPartnersParams struct {
@@ -2140,11 +2354,16 @@ func DecodeGetBusinessCollaborativeAdsSuggestedPartnersBatchResponse(response *c
 	return &out, nil
 }
 
-func GetBusinessCollaborativeAdsSuggestedPartners(ctx context.Context, client *core.Client, id string, params GetBusinessCollaborativeAdsSuggestedPartnersParams) (*core.Cursor[objects.CPASAdvertiserPartnershipRecommendation], error) {
+func GetBusinessCollaborativeAdsSuggestedPartnersWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCollaborativeAdsSuggestedPartnersParams) (*core.Cursor[objects.CPASAdvertiserPartnershipRecommendation], *core.Response, error) {
 	var out core.Cursor[objects.CPASAdvertiserPartnershipRecommendation]
 	call := GetBusinessCollaborativeAdsSuggestedPartnersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCollaborativeAdsSuggestedPartners(ctx context.Context, client *core.Client, id string, params GetBusinessCollaborativeAdsSuggestedPartnersParams) (*core.Cursor[objects.CPASAdvertiserPartnershipRecommendation], error) {
+	out, _, err := GetBusinessCollaborativeAdsSuggestedPartnersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessCommerceMerchantSettingsParams struct {
@@ -2181,11 +2400,16 @@ func DecodeGetBusinessCommerceMerchantSettingsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetBusinessCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetBusinessCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], error) {
+func GetBusinessCommerceMerchantSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], *core.Response, error) {
 	var out core.Cursor[objects.CommerceMerchantSettings]
 	call := GetBusinessCommerceMerchantSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetBusinessCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], error) {
+	out, _, err := GetBusinessCommerceMerchantSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessCpasBusinessSetupConfigParams struct {
@@ -2222,11 +2446,16 @@ func DecodeGetBusinessCpasBusinessSetupConfigBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetBusinessCpasBusinessSetupConfig(ctx context.Context, client *core.Client, id string, params GetBusinessCpasBusinessSetupConfigParams) (*core.Cursor[objects.CPASBusinessSetupConfig], error) {
+func GetBusinessCpasBusinessSetupConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCpasBusinessSetupConfigParams) (*core.Cursor[objects.CPASBusinessSetupConfig], *core.Response, error) {
 	var out core.Cursor[objects.CPASBusinessSetupConfig]
 	call := GetBusinessCpasBusinessSetupConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCpasBusinessSetupConfig(ctx context.Context, client *core.Client, id string, params GetBusinessCpasBusinessSetupConfigParams) (*core.Cursor[objects.CPASBusinessSetupConfig], error) {
+	out, _, err := GetBusinessCpasBusinessSetupConfigWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessCpasBusinessSetupConfigParams struct {
@@ -2279,11 +2508,16 @@ func DecodeCreateBusinessCpasBusinessSetupConfigBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreateBusinessCpasBusinessSetupConfig(ctx context.Context, client *core.Client, id string, params CreateBusinessCpasBusinessSetupConfigParams) (*objects.CPASBusinessSetupConfig, error) {
+func CreateBusinessCpasBusinessSetupConfigWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessCpasBusinessSetupConfigParams) (*objects.CPASBusinessSetupConfig, *core.Response, error) {
 	var out objects.CPASBusinessSetupConfig
 	call := CreateBusinessCpasBusinessSetupConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessCpasBusinessSetupConfig(ctx context.Context, client *core.Client, id string, params CreateBusinessCpasBusinessSetupConfigParams) (*objects.CPASBusinessSetupConfig, error) {
+	out, _, err := CreateBusinessCpasBusinessSetupConfigWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessCpasMerchantConfigParams struct {
@@ -2320,11 +2554,16 @@ func DecodeGetBusinessCpasMerchantConfigBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetBusinessCpasMerchantConfig(ctx context.Context, client *core.Client, id string, params GetBusinessCpasMerchantConfigParams) (*core.Cursor[objects.CPASMerchantConfig], error) {
+func GetBusinessCpasMerchantConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCpasMerchantConfigParams) (*core.Cursor[objects.CPASMerchantConfig], *core.Response, error) {
 	var out core.Cursor[objects.CPASMerchantConfig]
 	call := GetBusinessCpasMerchantConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCpasMerchantConfig(ctx context.Context, client *core.Client, id string, params GetBusinessCpasMerchantConfigParams) (*core.Cursor[objects.CPASMerchantConfig], error) {
+	out, _, err := GetBusinessCpasMerchantConfigWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessCreativeFoldersParams struct {
@@ -2371,11 +2610,16 @@ func DecodeCreateBusinessCreativeFoldersBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateBusinessCreativeFolders(ctx context.Context, client *core.Client, id string, params CreateBusinessCreativeFoldersParams) (*objects.BusinessCreativeFolder, error) {
+func CreateBusinessCreativeFoldersWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessCreativeFoldersParams) (*objects.BusinessCreativeFolder, *core.Response, error) {
 	var out objects.BusinessCreativeFolder
 	call := CreateBusinessCreativeFoldersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessCreativeFolders(ctx context.Context, client *core.Client, id string, params CreateBusinessCreativeFoldersParams) (*objects.BusinessCreativeFolder, error) {
+	out, _, err := CreateBusinessCreativeFoldersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessCreditcardsParams struct {
@@ -2412,11 +2656,16 @@ func DecodeGetBusinessCreditcardsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetBusinessCreditcards(ctx context.Context, client *core.Client, id string, params GetBusinessCreditcardsParams) (*core.Cursor[objects.CreditCard], error) {
+func GetBusinessCreditcardsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCreditcardsParams) (*core.Cursor[objects.CreditCard], *core.Response, error) {
 	var out core.Cursor[objects.CreditCard]
 	call := GetBusinessCreditcardsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCreditcards(ctx context.Context, client *core.Client, id string, params GetBusinessCreditcardsParams) (*core.Cursor[objects.CreditCard], error) {
+	out, _, err := GetBusinessCreditcardsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessCustomconversionsParams struct {
@@ -2481,11 +2730,16 @@ func DecodeCreateBusinessCustomconversionsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateBusinessCustomconversions(ctx context.Context, client *core.Client, id string, params CreateBusinessCustomconversionsParams) (*objects.CustomConversion, error) {
+func CreateBusinessCustomconversionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessCustomconversionsParams) (*objects.CustomConversion, *core.Response, error) {
 	var out objects.CustomConversion
 	call := CreateBusinessCustomconversionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessCustomconversions(ctx context.Context, client *core.Client, id string, params CreateBusinessCustomconversionsParams) (*objects.CustomConversion, error) {
+	out, _, err := CreateBusinessCustomconversionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessEventSourceGroupsParams struct {
@@ -2522,11 +2776,16 @@ func DecodeGetBusinessEventSourceGroupsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetBusinessEventSourceGroups(ctx context.Context, client *core.Client, id string, params GetBusinessEventSourceGroupsParams) (*core.Cursor[objects.EventSourceGroup], error) {
+func GetBusinessEventSourceGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessEventSourceGroupsParams) (*core.Cursor[objects.EventSourceGroup], *core.Response, error) {
 	var out core.Cursor[objects.EventSourceGroup]
 	call := GetBusinessEventSourceGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessEventSourceGroups(ctx context.Context, client *core.Client, id string, params GetBusinessEventSourceGroupsParams) (*core.Cursor[objects.EventSourceGroup], error) {
+	out, _, err := GetBusinessEventSourceGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessEventSourceGroupsParams struct {
@@ -2567,11 +2826,16 @@ func DecodeCreateBusinessEventSourceGroupsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateBusinessEventSourceGroups(ctx context.Context, client *core.Client, id string, params CreateBusinessEventSourceGroupsParams) (*objects.EventSourceGroup, error) {
+func CreateBusinessEventSourceGroupsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessEventSourceGroupsParams) (*objects.EventSourceGroup, *core.Response, error) {
 	var out objects.EventSourceGroup
 	call := CreateBusinessEventSourceGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessEventSourceGroups(ctx context.Context, client *core.Client, id string, params CreateBusinessEventSourceGroupsParams) (*objects.EventSourceGroup, error) {
+	out, _, err := CreateBusinessEventSourceGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessExtendedcreditapplicationsParams struct {
@@ -2612,11 +2876,16 @@ func DecodeGetBusinessExtendedcreditapplicationsBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetBusinessExtendedcreditapplications(ctx context.Context, client *core.Client, id string, params GetBusinessExtendedcreditapplicationsParams) (*core.Cursor[objects.ExtendedCreditApplication], error) {
+func GetBusinessExtendedcreditapplicationsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessExtendedcreditapplicationsParams) (*core.Cursor[objects.ExtendedCreditApplication], *core.Response, error) {
 	var out core.Cursor[objects.ExtendedCreditApplication]
 	call := GetBusinessExtendedcreditapplicationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessExtendedcreditapplications(ctx context.Context, client *core.Client, id string, params GetBusinessExtendedcreditapplicationsParams) (*core.Cursor[objects.ExtendedCreditApplication], error) {
+	out, _, err := GetBusinessExtendedcreditapplicationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessExtendedcreditsParams struct {
@@ -2657,11 +2926,16 @@ func DecodeGetBusinessExtendedcreditsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetBusinessExtendedcredits(ctx context.Context, client *core.Client, id string, params GetBusinessExtendedcreditsParams) (*core.Cursor[objects.ExtendedCredit], error) {
+func GetBusinessExtendedcreditsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessExtendedcreditsParams) (*core.Cursor[objects.ExtendedCredit], *core.Response, error) {
 	var out core.Cursor[objects.ExtendedCredit]
 	call := GetBusinessExtendedcreditsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessExtendedcredits(ctx context.Context, client *core.Client, id string, params GetBusinessExtendedcreditsParams) (*core.Cursor[objects.ExtendedCredit], error) {
+	out, _, err := GetBusinessExtendedcreditsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessImagesParams struct {
@@ -2716,11 +2990,16 @@ func DecodeCreateBusinessImagesBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreateBusinessImages(ctx context.Context, client *core.Client, id string, params CreateBusinessImagesParams) (*objects.BusinessImage, error) {
+func CreateBusinessImagesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessImagesParams) (*objects.BusinessImage, *core.Response, error) {
 	var out objects.BusinessImage
 	call := CreateBusinessImagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessImages(ctx context.Context, client *core.Client, id string, params CreateBusinessImagesParams) (*objects.BusinessImage, error) {
+	out, _, err := CreateBusinessImagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessInitiatedAudienceSharingRequestsParams struct {
@@ -2765,11 +3044,16 @@ func DecodeGetBusinessInitiatedAudienceSharingRequestsBatchResponse(response *co
 	return &out, nil
 }
 
-func GetBusinessInitiatedAudienceSharingRequests(ctx context.Context, client *core.Client, id string, params GetBusinessInitiatedAudienceSharingRequestsParams) (*core.Cursor[objects.BusinessAssetSharingAgreement], error) {
+func GetBusinessInitiatedAudienceSharingRequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessInitiatedAudienceSharingRequestsParams) (*core.Cursor[objects.BusinessAssetSharingAgreement], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAssetSharingAgreement]
 	call := GetBusinessInitiatedAudienceSharingRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessInitiatedAudienceSharingRequests(ctx context.Context, client *core.Client, id string, params GetBusinessInitiatedAudienceSharingRequestsParams) (*core.Cursor[objects.BusinessAssetSharingAgreement], error) {
+	out, _, err := GetBusinessInitiatedAudienceSharingRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessInstagramAccountsParams struct {
@@ -2808,11 +3092,16 @@ func DecodeDeleteBusinessInstagramAccountsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func DeleteBusinessInstagramAccounts(ctx context.Context, client *core.Client, id string, params DeleteBusinessInstagramAccountsParams) (*map[string]interface{}, error) {
+func DeleteBusinessInstagramAccountsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessInstagramAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessInstagramAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessInstagramAccounts(ctx context.Context, client *core.Client, id string, params DeleteBusinessInstagramAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessInstagramAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessInstagramAccountsParams struct {
@@ -2849,11 +3138,16 @@ func DecodeGetBusinessInstagramAccountsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetBusinessInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+func GetBusinessInstagramAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessInstagramAccountsParams) (*core.Cursor[objects.IGUser], *core.Response, error) {
 	var out core.Cursor[objects.IGUser]
 	call := GetBusinessInstagramAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+	out, _, err := GetBusinessInstagramAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessInstagramBusinessAccountsParams struct {
@@ -2890,11 +3184,16 @@ func DecodeGetBusinessInstagramBusinessAccountsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetBusinessInstagramBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessInstagramBusinessAccountsParams) (*core.Cursor[objects.IGUser], error) {
+func GetBusinessInstagramBusinessAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessInstagramBusinessAccountsParams) (*core.Cursor[objects.IGUser], *core.Response, error) {
 	var out core.Cursor[objects.IGUser]
 	call := GetBusinessInstagramBusinessAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessInstagramBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessInstagramBusinessAccountsParams) (*core.Cursor[objects.IGUser], error) {
+	out, _, err := GetBusinessInstagramBusinessAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessManagedBusinessesParams struct {
@@ -2933,11 +3232,16 @@ func DecodeDeleteBusinessManagedBusinessesBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func DeleteBusinessManagedBusinesses(ctx context.Context, client *core.Client, id string, params DeleteBusinessManagedBusinessesParams) (*map[string]interface{}, error) {
+func DeleteBusinessManagedBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessManagedBusinessesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessManagedBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessManagedBusinesses(ctx context.Context, client *core.Client, id string, params DeleteBusinessManagedBusinessesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessManagedBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessManagedBusinessesParams struct {
@@ -3010,11 +3314,16 @@ func DecodeCreateBusinessManagedBusinessesBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateBusinessManagedBusinesses(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedBusinessesParams) (*objects.Business, error) {
+func CreateBusinessManagedBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedBusinessesParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessManagedBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessManagedBusinesses(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedBusinessesParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessManagedBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessManagedPartnerAdsFundingSourceDetailsParams struct {
@@ -3055,11 +3364,16 @@ func DecodeGetBusinessManagedPartnerAdsFundingSourceDetailsBatchResponse(respons
 	return &out, nil
 }
 
-func GetBusinessManagedPartnerAdsFundingSourceDetails(ctx context.Context, client *core.Client, id string, params GetBusinessManagedPartnerAdsFundingSourceDetailsParams) (*core.Cursor[objects.FundingSourceDetailsCoupon], error) {
+func GetBusinessManagedPartnerAdsFundingSourceDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessManagedPartnerAdsFundingSourceDetailsParams) (*core.Cursor[objects.FundingSourceDetailsCoupon], *core.Response, error) {
 	var out core.Cursor[objects.FundingSourceDetailsCoupon]
 	call := GetBusinessManagedPartnerAdsFundingSourceDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessManagedPartnerAdsFundingSourceDetails(ctx context.Context, client *core.Client, id string, params GetBusinessManagedPartnerAdsFundingSourceDetailsParams) (*core.Cursor[objects.FundingSourceDetailsCoupon], error) {
+	out, _, err := GetBusinessManagedPartnerAdsFundingSourceDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessManagedPartnerBusinessSetupParams struct {
@@ -3124,11 +3438,16 @@ func DecodeCreateBusinessManagedPartnerBusinessSetupBatchResponse(response *core
 	return &out, nil
 }
 
-func CreateBusinessManagedPartnerBusinessSetup(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedPartnerBusinessSetupParams) (*objects.Business, error) {
+func CreateBusinessManagedPartnerBusinessSetupWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedPartnerBusinessSetupParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessManagedPartnerBusinessSetupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessManagedPartnerBusinessSetup(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedPartnerBusinessSetupParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessManagedPartnerBusinessSetupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessManagedPartnerBusinessesParams struct {
@@ -3173,11 +3492,16 @@ func DecodeDeleteBusinessManagedPartnerBusinessesBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func DeleteBusinessManagedPartnerBusinesses(ctx context.Context, client *core.Client, id string, params DeleteBusinessManagedPartnerBusinessesParams) (*map[string]interface{}, error) {
+func DeleteBusinessManagedPartnerBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessManagedPartnerBusinessesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessManagedPartnerBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessManagedPartnerBusinesses(ctx context.Context, client *core.Client, id string, params DeleteBusinessManagedPartnerBusinessesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessManagedPartnerBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessManagedPartnerBusinessesParams struct {
@@ -3288,11 +3612,16 @@ func DecodeCreateBusinessManagedPartnerBusinessesBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func CreateBusinessManagedPartnerBusinesses(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedPartnerBusinessesParams) (*objects.ManagedPartnerBusiness, error) {
+func CreateBusinessManagedPartnerBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedPartnerBusinessesParams) (*objects.ManagedPartnerBusiness, *core.Response, error) {
 	var out objects.ManagedPartnerBusiness
 	call := CreateBusinessManagedPartnerBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessManagedPartnerBusinesses(ctx context.Context, client *core.Client, id string, params CreateBusinessManagedPartnerBusinessesParams) (*objects.ManagedPartnerBusiness, error) {
+	out, _, err := CreateBusinessManagedPartnerBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOnboardPartnersToMmLiteParams struct {
@@ -3333,11 +3662,16 @@ func DecodeCreateBusinessOnboardPartnersToMmLiteBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreateBusinessOnboardPartnersToMmLite(ctx context.Context, client *core.Client, id string, params CreateBusinessOnboardPartnersToMmLiteParams) (*map[string]interface{}, error) {
+func CreateBusinessOnboardPartnersToMmLiteWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOnboardPartnersToMmLiteParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateBusinessOnboardPartnersToMmLiteBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOnboardPartnersToMmLite(ctx context.Context, client *core.Client, id string, params CreateBusinessOnboardPartnersToMmLiteParams) (*map[string]interface{}, error) {
+	out, _, err := CreateBusinessOnboardPartnersToMmLiteWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOpenbridgeConfigurationsParams struct {
@@ -3374,11 +3708,16 @@ func DecodeGetBusinessOpenbridgeConfigurationsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetBusinessOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params GetBusinessOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], error) {
+func GetBusinessOpenbridgeConfigurationsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], *core.Response, error) {
 	var out core.Cursor[objects.OpenBridgeConfiguration]
 	call := GetBusinessOpenbridgeConfigurationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params GetBusinessOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], error) {
+	out, _, err := GetBusinessOpenbridgeConfigurationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOpenbridgeConfigurationsParams struct {
@@ -3501,11 +3840,16 @@ func DecodeCreateBusinessOpenbridgeConfigurationsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func CreateBusinessOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params CreateBusinessOpenbridgeConfigurationsParams) (*objects.OpenBridgeConfiguration, error) {
+func CreateBusinessOpenbridgeConfigurationsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOpenbridgeConfigurationsParams) (*objects.OpenBridgeConfiguration, *core.Response, error) {
 	var out objects.OpenBridgeConfiguration
 	call := CreateBusinessOpenbridgeConfigurationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params CreateBusinessOpenbridgeConfigurationsParams) (*objects.OpenBridgeConfiguration, error) {
+	out, _, err := CreateBusinessOpenbridgeConfigurationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedAdAccountsParams struct {
@@ -3550,11 +3894,16 @@ func DecodeGetBusinessOwnedAdAccountsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetBusinessOwnedAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetBusinessOwnedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetBusinessOwnedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetBusinessOwnedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOwnedAdAccountsParams struct {
@@ -3593,11 +3942,16 @@ func DecodeCreateBusinessOwnedAdAccountsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateBusinessOwnedAdAccounts(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedAdAccountsParams) (*objects.Business, error) {
+func CreateBusinessOwnedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedAdAccountsParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessOwnedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOwnedAdAccounts(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedAdAccountsParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessOwnedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedAppsParams struct {
@@ -3634,11 +3988,16 @@ func DecodeGetBusinessOwnedAppsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetBusinessOwnedApps(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedAppsParams) (*core.Cursor[objects.Application], error) {
+func GetBusinessOwnedAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedAppsParams) (*core.Cursor[objects.Application], *core.Response, error) {
 	var out core.Cursor[objects.Application]
 	call := GetBusinessOwnedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedApps(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedAppsParams) (*core.Cursor[objects.Application], error) {
+	out, _, err := GetBusinessOwnedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOwnedAppsParams struct {
@@ -3677,11 +4036,16 @@ func DecodeCreateBusinessOwnedAppsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateBusinessOwnedApps(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedAppsParams) (*objects.Business, error) {
+func CreateBusinessOwnedAppsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedAppsParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessOwnedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOwnedApps(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedAppsParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessOwnedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessOwnedBusinessesParams struct {
@@ -3720,11 +4084,16 @@ func DecodeDeleteBusinessOwnedBusinessesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func DeleteBusinessOwnedBusinesses(ctx context.Context, client *core.Client, id string, params DeleteBusinessOwnedBusinessesParams) (*map[string]interface{}, error) {
+func DeleteBusinessOwnedBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessOwnedBusinessesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessOwnedBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessOwnedBusinesses(ctx context.Context, client *core.Client, id string, params DeleteBusinessOwnedBusinessesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessOwnedBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedBusinessesParams struct {
@@ -3769,11 +4138,16 @@ func DecodeGetBusinessOwnedBusinessesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetBusinessOwnedBusinesses(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedBusinessesParams) (*core.Cursor[objects.Business], error) {
+func GetBusinessOwnedBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedBusinessesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetBusinessOwnedBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedBusinesses(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedBusinessesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetBusinessOwnedBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOwnedBusinessesParams struct {
@@ -3850,11 +4224,16 @@ func DecodeCreateBusinessOwnedBusinessesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateBusinessOwnedBusinesses(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedBusinessesParams) (*objects.Business, error) {
+func CreateBusinessOwnedBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedBusinessesParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessOwnedBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOwnedBusinesses(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedBusinessesParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessOwnedBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedInstagramAccountsParams struct {
@@ -3891,11 +4270,16 @@ func DecodeGetBusinessOwnedInstagramAccountsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetBusinessOwnedInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+func GetBusinessOwnedInstagramAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedInstagramAccountsParams) (*core.Cursor[objects.IGUser], *core.Response, error) {
 	var out core.Cursor[objects.IGUser]
 	call := GetBusinessOwnedInstagramAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+	out, _, err := GetBusinessOwnedInstagramAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedInstagramAssetsParams struct {
@@ -3932,11 +4316,16 @@ func DecodeGetBusinessOwnedInstagramAssetsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetBusinessOwnedInstagramAssets(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedInstagramAssetsParams) (*core.Cursor[objects.InstagramBusinessAsset], error) {
+func GetBusinessOwnedInstagramAssetsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedInstagramAssetsParams) (*core.Cursor[objects.InstagramBusinessAsset], *core.Response, error) {
 	var out core.Cursor[objects.InstagramBusinessAsset]
 	call := GetBusinessOwnedInstagramAssetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedInstagramAssets(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedInstagramAssetsParams) (*core.Cursor[objects.InstagramBusinessAsset], error) {
+	out, _, err := GetBusinessOwnedInstagramAssetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedOffsiteSignalContainerBusinessObjectsParams struct {
@@ -3973,11 +4362,16 @@ func DecodeGetBusinessOwnedOffsiteSignalContainerBusinessObjectsBatchResponse(re
 	return &out, nil
 }
 
-func GetBusinessOwnedOffsiteSignalContainerBusinessObjects(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], error) {
+func GetBusinessOwnedOffsiteSignalContainerBusinessObjectsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], *core.Response, error) {
 	var out core.Cursor[objects.OffsiteSignalContainerBusinessObject]
 	call := GetBusinessOwnedOffsiteSignalContainerBusinessObjectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedOffsiteSignalContainerBusinessObjects(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], error) {
+	out, _, err := GetBusinessOwnedOffsiteSignalContainerBusinessObjectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedPagesParams struct {
@@ -4014,11 +4408,16 @@ func DecodeGetBusinessOwnedPagesBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetBusinessOwnedPages(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetBusinessOwnedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetBusinessOwnedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedPages(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetBusinessOwnedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOwnedPagesParams struct {
@@ -4065,11 +4464,16 @@ func DecodeCreateBusinessOwnedPagesBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateBusinessOwnedPages(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedPagesParams) (*objects.Business, error) {
+func CreateBusinessOwnedPagesWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedPagesParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessOwnedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOwnedPages(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedPagesParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessOwnedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedPixelsParams struct {
@@ -4106,11 +4510,16 @@ func DecodeGetBusinessOwnedPixelsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetBusinessOwnedPixels(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedPixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+func GetBusinessOwnedPixelsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedPixelsParams) (*core.Cursor[objects.AdsPixel], *core.Response, error) {
 	var out core.Cursor[objects.AdsPixel]
 	call := GetBusinessOwnedPixelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedPixels(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedPixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+	out, _, err := GetBusinessOwnedPixelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedProductCatalogsParams struct {
@@ -4147,11 +4556,16 @@ func DecodeGetBusinessOwnedProductCatalogsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetBusinessOwnedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetBusinessOwnedProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetBusinessOwnedProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetBusinessOwnedProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessOwnedProductCatalogsParams struct {
@@ -4234,11 +4648,16 @@ func DecodeCreateBusinessOwnedProductCatalogsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func CreateBusinessOwnedProductCatalogs(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedProductCatalogsParams) (*objects.ProductCatalog, error) {
+func CreateBusinessOwnedProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedProductCatalogsParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateBusinessOwnedProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessOwnedProductCatalogs(ctx context.Context, client *core.Client, id string, params CreateBusinessOwnedProductCatalogsParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateBusinessOwnedProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessOwnedWhatsappBusinessAccountsParams struct {
@@ -4275,11 +4694,16 @@ func DecodeGetBusinessOwnedWhatsappBusinessAccountsBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetBusinessOwnedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+func GetBusinessOwnedWhatsappBusinessAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccount]
 	call := GetBusinessOwnedWhatsappBusinessAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+	out, _, err := GetBusinessOwnedWhatsappBusinessAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessPagesParams struct {
@@ -4318,11 +4742,16 @@ func DecodeDeleteBusinessPagesBatchResponse(response *core.BatchResponse) (*map[
 	return &out, nil
 }
 
-func DeleteBusinessPages(ctx context.Context, client *core.Client, id string, params DeleteBusinessPagesParams) (*map[string]interface{}, error) {
+func DeleteBusinessPagesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessPagesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessPages(ctx context.Context, client *core.Client, id string, params DeleteBusinessPagesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPartnerAccountLinkingParams struct {
@@ -4359,11 +4788,16 @@ func DecodeGetBusinessPartnerAccountLinkingBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetBusinessPartnerAccountLinking(ctx context.Context, client *core.Client, id string, params GetBusinessPartnerAccountLinkingParams) (*core.Cursor[objects.PartnerAccountLinking], error) {
+func GetBusinessPartnerAccountLinkingWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPartnerAccountLinkingParams) (*core.Cursor[objects.PartnerAccountLinking], *core.Response, error) {
 	var out core.Cursor[objects.PartnerAccountLinking]
 	call := GetBusinessPartnerAccountLinkingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPartnerAccountLinking(ctx context.Context, client *core.Client, id string, params GetBusinessPartnerAccountLinkingParams) (*core.Cursor[objects.PartnerAccountLinking], error) {
+	out, _, err := GetBusinessPartnerAccountLinkingWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessPartnerPremiumOptionsParams struct {
@@ -4416,11 +4850,16 @@ func DecodeCreateBusinessPartnerPremiumOptionsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreateBusinessPartnerPremiumOptions(ctx context.Context, client *core.Client, id string, params CreateBusinessPartnerPremiumOptionsParams) (*map[string]interface{}, error) {
+func CreateBusinessPartnerPremiumOptionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessPartnerPremiumOptionsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateBusinessPartnerPremiumOptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessPartnerPremiumOptions(ctx context.Context, client *core.Client, id string, params CreateBusinessPartnerPremiumOptionsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateBusinessPartnerPremiumOptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPassbackAttributionMetadataConfigsParams struct {
@@ -4457,11 +4896,16 @@ func DecodeGetBusinessPassbackAttributionMetadataConfigsBatchResponse(response *
 	return &out, nil
 }
 
-func GetBusinessPassbackAttributionMetadataConfigs(ctx context.Context, client *core.Client, id string, params GetBusinessPassbackAttributionMetadataConfigsParams) (*core.Cursor[objects.SignalsAttributionMetadataConfig], error) {
+func GetBusinessPassbackAttributionMetadataConfigsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPassbackAttributionMetadataConfigsParams) (*core.Cursor[objects.SignalsAttributionMetadataConfig], *core.Response, error) {
 	var out core.Cursor[objects.SignalsAttributionMetadataConfig]
 	call := GetBusinessPassbackAttributionMetadataConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPassbackAttributionMetadataConfigs(ctx context.Context, client *core.Client, id string, params GetBusinessPassbackAttributionMetadataConfigsParams) (*core.Cursor[objects.SignalsAttributionMetadataConfig], error) {
+	out, _, err := GetBusinessPassbackAttributionMetadataConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingClientAdAccountsParams struct {
@@ -4498,11 +4942,16 @@ func DecodeGetBusinessPendingClientAdAccountsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetBusinessPendingClientAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientAdAccountsParams) (*core.Cursor[objects.BusinessAdAccountRequest], error) {
+func GetBusinessPendingClientAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientAdAccountsParams) (*core.Cursor[objects.BusinessAdAccountRequest], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAdAccountRequest]
 	call := GetBusinessPendingClientAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingClientAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientAdAccountsParams) (*core.Cursor[objects.BusinessAdAccountRequest], error) {
+	out, _, err := GetBusinessPendingClientAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingClientAppsParams struct {
@@ -4539,11 +4988,16 @@ func DecodeGetBusinessPendingClientAppsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetBusinessPendingClientApps(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientAppsParams) (*core.Cursor[objects.BusinessApplicationRequest], error) {
+func GetBusinessPendingClientAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientAppsParams) (*core.Cursor[objects.BusinessApplicationRequest], *core.Response, error) {
 	var out core.Cursor[objects.BusinessApplicationRequest]
 	call := GetBusinessPendingClientAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingClientApps(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientAppsParams) (*core.Cursor[objects.BusinessApplicationRequest], error) {
+	out, _, err := GetBusinessPendingClientAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingClientPagesParams struct {
@@ -4580,11 +5034,16 @@ func DecodeGetBusinessPendingClientPagesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetBusinessPendingClientPages(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientPagesParams) (*core.Cursor[objects.BusinessPageRequest], error) {
+func GetBusinessPendingClientPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientPagesParams) (*core.Cursor[objects.BusinessPageRequest], *core.Response, error) {
 	var out core.Cursor[objects.BusinessPageRequest]
 	call := GetBusinessPendingClientPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingClientPages(ctx context.Context, client *core.Client, id string, params GetBusinessPendingClientPagesParams) (*core.Cursor[objects.BusinessPageRequest], error) {
+	out, _, err := GetBusinessPendingClientPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingOwnedAdAccountsParams struct {
@@ -4621,11 +5080,16 @@ func DecodeGetBusinessPendingOwnedAdAccountsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetBusinessPendingOwnedAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessPendingOwnedAdAccountsParams) (*core.Cursor[objects.BusinessAdAccountRequest], error) {
+func GetBusinessPendingOwnedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingOwnedAdAccountsParams) (*core.Cursor[objects.BusinessAdAccountRequest], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAdAccountRequest]
 	call := GetBusinessPendingOwnedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingOwnedAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessPendingOwnedAdAccountsParams) (*core.Cursor[objects.BusinessAdAccountRequest], error) {
+	out, _, err := GetBusinessPendingOwnedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingOwnedPagesParams struct {
@@ -4662,11 +5126,16 @@ func DecodeGetBusinessPendingOwnedPagesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetBusinessPendingOwnedPages(ctx context.Context, client *core.Client, id string, params GetBusinessPendingOwnedPagesParams) (*core.Cursor[objects.BusinessPageRequest], error) {
+func GetBusinessPendingOwnedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingOwnedPagesParams) (*core.Cursor[objects.BusinessPageRequest], *core.Response, error) {
 	var out core.Cursor[objects.BusinessPageRequest]
 	call := GetBusinessPendingOwnedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingOwnedPages(ctx context.Context, client *core.Client, id string, params GetBusinessPendingOwnedPagesParams) (*core.Cursor[objects.BusinessPageRequest], error) {
+	out, _, err := GetBusinessPendingOwnedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsParams struct {
@@ -4703,11 +5172,16 @@ func DecodeGetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsBatchRes
 	return &out, nil
 }
 
-func GetBusinessPendingSharedOffsiteSignalContainerBusinessObjects(ctx context.Context, client *core.Client, id string, params GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], error) {
+func GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], *core.Response, error) {
 	var out core.Cursor[objects.OffsiteSignalContainerBusinessObject]
 	call := GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingSharedOffsiteSignalContainerBusinessObjects(ctx context.Context, client *core.Client, id string, params GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsParams) (*core.Cursor[objects.OffsiteSignalContainerBusinessObject], error) {
+	out, _, err := GetBusinessPendingSharedOffsiteSignalContainerBusinessObjectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPendingUsersParams struct {
@@ -4748,11 +5222,16 @@ func DecodeGetBusinessPendingUsersBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetBusinessPendingUsers(ctx context.Context, client *core.Client, id string, params GetBusinessPendingUsersParams) (*core.Cursor[objects.BusinessRoleRequest], error) {
+func GetBusinessPendingUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPendingUsersParams) (*core.Cursor[objects.BusinessRoleRequest], *core.Response, error) {
 	var out core.Cursor[objects.BusinessRoleRequest]
 	call := GetBusinessPendingUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPendingUsers(ctx context.Context, client *core.Client, id string, params GetBusinessPendingUsersParams) (*core.Cursor[objects.BusinessRoleRequest], error) {
+	out, _, err := GetBusinessPendingUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPictureParams struct {
@@ -4805,11 +5284,16 @@ func DecodeGetBusinessPictureBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetBusinessPicture(ctx context.Context, client *core.Client, id string, params GetBusinessPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+func GetBusinessPictureWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPictureParams) (*core.Cursor[objects.ProfilePictureSource], *core.Response, error) {
 	var out core.Cursor[objects.ProfilePictureSource]
 	call := GetBusinessPictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPicture(ctx context.Context, client *core.Client, id string, params GetBusinessPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	out, _, err := GetBusinessPictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessPixelTosParams struct {
@@ -4846,11 +5330,16 @@ func DecodeCreateBusinessPixelTosBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func CreateBusinessPixelTos(ctx context.Context, client *core.Client, id string, params CreateBusinessPixelTosParams) (*map[string]interface{}, error) {
+func CreateBusinessPixelTosWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessPixelTosParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateBusinessPixelTosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessPixelTos(ctx context.Context, client *core.Client, id string, params CreateBusinessPixelTosParams) (*map[string]interface{}, error) {
+	out, _, err := CreateBusinessPixelTosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessPreverifiedNumbersParams struct {
@@ -4895,11 +5384,16 @@ func DecodeGetBusinessPreverifiedNumbersBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetBusinessPreverifiedNumbers(ctx context.Context, client *core.Client, id string, params GetBusinessPreverifiedNumbersParams) (*core.Cursor[objects.WhatsAppBusinessPreVerifiedPhoneNumber], error) {
+func GetBusinessPreverifiedNumbersWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessPreverifiedNumbersParams) (*core.Cursor[objects.WhatsAppBusinessPreVerifiedPhoneNumber], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessPreVerifiedPhoneNumber]
 	call := GetBusinessPreverifiedNumbersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessPreverifiedNumbers(ctx context.Context, client *core.Client, id string, params GetBusinessPreverifiedNumbersParams) (*core.Cursor[objects.WhatsAppBusinessPreVerifiedPhoneNumber], error) {
+	out, _, err := GetBusinessPreverifiedNumbersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessReceivedAudienceSharingRequestsParams struct {
@@ -4944,11 +5438,16 @@ func DecodeGetBusinessReceivedAudienceSharingRequestsBatchResponse(response *cor
 	return &out, nil
 }
 
-func GetBusinessReceivedAudienceSharingRequests(ctx context.Context, client *core.Client, id string, params GetBusinessReceivedAudienceSharingRequestsParams) (*core.Cursor[objects.BusinessAssetSharingAgreement], error) {
+func GetBusinessReceivedAudienceSharingRequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessReceivedAudienceSharingRequestsParams) (*core.Cursor[objects.BusinessAssetSharingAgreement], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAssetSharingAgreement]
 	call := GetBusinessReceivedAudienceSharingRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessReceivedAudienceSharingRequests(ctx context.Context, client *core.Client, id string, params GetBusinessReceivedAudienceSharingRequestsParams) (*core.Cursor[objects.BusinessAssetSharingAgreement], error) {
+	out, _, err := GetBusinessReceivedAudienceSharingRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessResellerGuidancesParams struct {
@@ -4985,11 +5484,16 @@ func DecodeGetBusinessResellerGuidancesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetBusinessResellerGuidances(ctx context.Context, client *core.Client, id string, params GetBusinessResellerGuidancesParams) (*core.Cursor[objects.ResellerGuidance], error) {
+func GetBusinessResellerGuidancesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessResellerGuidancesParams) (*core.Cursor[objects.ResellerGuidance], *core.Response, error) {
 	var out core.Cursor[objects.ResellerGuidance]
 	call := GetBusinessResellerGuidancesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessResellerGuidances(ctx context.Context, client *core.Client, id string, params GetBusinessResellerGuidancesParams) (*core.Cursor[objects.ResellerGuidance], error) {
+	out, _, err := GetBusinessResellerGuidancesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessSelfCertifiedWhatsappBusinessSubmissionsParams struct {
@@ -5030,11 +5534,16 @@ func DecodeGetBusinessSelfCertifiedWhatsappBusinessSubmissionsBatchResponse(resp
 	return &out, nil
 }
 
-func GetBusinessSelfCertifiedWhatsappBusinessSubmissions(ctx context.Context, client *core.Client, id string, params GetBusinessSelfCertifiedWhatsappBusinessSubmissionsParams) (*core.Cursor[objects.WhatsAppBusinessPartnerClientVerificationSubmission], error) {
+func GetBusinessSelfCertifiedWhatsappBusinessSubmissionsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessSelfCertifiedWhatsappBusinessSubmissionsParams) (*core.Cursor[objects.WhatsAppBusinessPartnerClientVerificationSubmission], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessPartnerClientVerificationSubmission]
 	call := GetBusinessSelfCertifiedWhatsappBusinessSubmissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessSelfCertifiedWhatsappBusinessSubmissions(ctx context.Context, client *core.Client, id string, params GetBusinessSelfCertifiedWhatsappBusinessSubmissionsParams) (*core.Cursor[objects.WhatsAppBusinessPartnerClientVerificationSubmission], error) {
+	out, _, err := GetBusinessSelfCertifiedWhatsappBusinessSubmissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessSelfCertifyWhatsappBusinessParams struct {
@@ -5103,11 +5612,16 @@ func DecodeCreateBusinessSelfCertifyWhatsappBusinessBatchResponse(response *core
 	return &out, nil
 }
 
-func CreateBusinessSelfCertifyWhatsappBusiness(ctx context.Context, client *core.Client, id string, params CreateBusinessSelfCertifyWhatsappBusinessParams) (*objects.Business, error) {
+func CreateBusinessSelfCertifyWhatsappBusinessWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessSelfCertifyWhatsappBusinessParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessSelfCertifyWhatsappBusinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessSelfCertifyWhatsappBusiness(ctx context.Context, client *core.Client, id string, params CreateBusinessSelfCertifyWhatsappBusinessParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessSelfCertifyWhatsappBusinessWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessSharePreverifiedNumbersParams struct {
@@ -5148,11 +5662,16 @@ func DecodeDeleteBusinessSharePreverifiedNumbersBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func DeleteBusinessSharePreverifiedNumbers(ctx context.Context, client *core.Client, id string, params DeleteBusinessSharePreverifiedNumbersParams) (*map[string]interface{}, error) {
+func DeleteBusinessSharePreverifiedNumbersWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessSharePreverifiedNumbersParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessSharePreverifiedNumbersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessSharePreverifiedNumbers(ctx context.Context, client *core.Client, id string, params DeleteBusinessSharePreverifiedNumbersParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessSharePreverifiedNumbersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessSharePreverifiedNumbersParams struct {
@@ -5193,11 +5712,16 @@ func DecodeCreateBusinessSharePreverifiedNumbersBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreateBusinessSharePreverifiedNumbers(ctx context.Context, client *core.Client, id string, params CreateBusinessSharePreverifiedNumbersParams) (*objects.Business, error) {
+func CreateBusinessSharePreverifiedNumbersWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessSharePreverifiedNumbersParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessSharePreverifiedNumbersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessSharePreverifiedNumbers(ctx context.Context, client *core.Client, id string, params CreateBusinessSharePreverifiedNumbersParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessSharePreverifiedNumbersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessSystemUserAccessTokensParams struct {
@@ -5254,11 +5778,16 @@ func DecodeCreateBusinessSystemUserAccessTokensBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func CreateBusinessSystemUserAccessTokens(ctx context.Context, client *core.Client, id string, params CreateBusinessSystemUserAccessTokensParams) (*objects.Business, error) {
+func CreateBusinessSystemUserAccessTokensWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessSystemUserAccessTokensParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateBusinessSystemUserAccessTokensBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessSystemUserAccessTokens(ctx context.Context, client *core.Client, id string, params CreateBusinessSystemUserAccessTokensParams) (*objects.Business, error) {
+	out, _, err := CreateBusinessSystemUserAccessTokensWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessSystemUsersParams struct {
@@ -5295,11 +5824,16 @@ func DecodeGetBusinessSystemUsersBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetBusinessSystemUsers(ctx context.Context, client *core.Client, id string, params GetBusinessSystemUsersParams) (*core.Cursor[objects.SystemUser], error) {
+func GetBusinessSystemUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessSystemUsersParams) (*core.Cursor[objects.SystemUser], *core.Response, error) {
 	var out core.Cursor[objects.SystemUser]
 	call := GetBusinessSystemUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessSystemUsers(ctx context.Context, client *core.Client, id string, params GetBusinessSystemUsersParams) (*core.Cursor[objects.SystemUser], error) {
+	out, _, err := GetBusinessSystemUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessSystemUsersParams struct {
@@ -5346,11 +5880,16 @@ func DecodeCreateBusinessSystemUsersBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateBusinessSystemUsers(ctx context.Context, client *core.Client, id string, params CreateBusinessSystemUsersParams) (*objects.SystemUser, error) {
+func CreateBusinessSystemUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessSystemUsersParams) (*objects.SystemUser, *core.Response, error) {
 	var out objects.SystemUser
 	call := CreateBusinessSystemUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessSystemUsers(ctx context.Context, client *core.Client, id string, params CreateBusinessSystemUsersParams) (*objects.SystemUser, error) {
+	out, _, err := CreateBusinessSystemUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessThirdPartyMeasurementReportDatasetParams struct {
@@ -5387,11 +5926,16 @@ func DecodeGetBusinessThirdPartyMeasurementReportDatasetBatchResponse(response *
 	return &out, nil
 }
 
-func GetBusinessThirdPartyMeasurementReportDataset(ctx context.Context, client *core.Client, id string, params GetBusinessThirdPartyMeasurementReportDatasetParams) (*core.Cursor[objects.ThirdPartyMeasurementReportDataset], error) {
+func GetBusinessThirdPartyMeasurementReportDatasetWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessThirdPartyMeasurementReportDatasetParams) (*core.Cursor[objects.ThirdPartyMeasurementReportDataset], *core.Response, error) {
 	var out core.Cursor[objects.ThirdPartyMeasurementReportDataset]
 	call := GetBusinessThirdPartyMeasurementReportDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessThirdPartyMeasurementReportDataset(ctx context.Context, client *core.Client, id string, params GetBusinessThirdPartyMeasurementReportDatasetParams) (*core.Cursor[objects.ThirdPartyMeasurementReportDataset], error) {
+	out, _, err := GetBusinessThirdPartyMeasurementReportDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateBusinessVideosParams struct {
@@ -5710,11 +6254,16 @@ func DecodeCreateBusinessVideosBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreateBusinessVideos(ctx context.Context, client *core.Client, id string, params CreateBusinessVideosParams) (*objects.AdVideo, error) {
+func CreateBusinessVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreateBusinessVideosParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateBusinessVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateBusinessVideos(ctx context.Context, client *core.Client, id string, params CreateBusinessVideosParams) (*objects.AdVideo, error) {
+	out, _, err := CreateBusinessVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessParams struct {
@@ -5751,11 +6300,16 @@ func DecodeGetBusinessBatchResponse(response *core.BatchResponse) (*objects.Busi
 	return &out, nil
 }
 
-func GetBusiness(ctx context.Context, client *core.Client, id string, params GetBusinessParams) (*objects.Business, error) {
+func GetBusinessWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := GetBusinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusiness(ctx context.Context, client *core.Client, id string, params GetBusinessParams) (*objects.Business, error) {
+	out, _, err := GetBusinessWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateBusinessParams struct {
@@ -5816,9 +6370,14 @@ func DecodeUpdateBusinessBatchResponse(response *core.BatchResponse) (*objects.B
 	return &out, nil
 }
 
-func UpdateBusiness(ctx context.Context, client *core.Client, id string, params UpdateBusinessParams) (*objects.Business, error) {
+func UpdateBusinessWithResponse(ctx context.Context, client *core.Client, id string, params UpdateBusinessParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := UpdateBusinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateBusiness(ctx context.Context, client *core.Client, id string, params UpdateBusinessParams) (*objects.Business, error) {
+	out, _, err := UpdateBusinessWithResponse(ctx, client, id, params)
+	return out, err
 }

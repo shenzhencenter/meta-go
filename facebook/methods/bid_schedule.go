@@ -41,9 +41,14 @@ func DecodeGetBidScheduleBatchResponse(response *core.BatchResponse) (*objects.B
 	return &out, nil
 }
 
-func GetBidSchedule(ctx context.Context, client *core.Client, id string, params GetBidScheduleParams) (*objects.BidSchedule, error) {
+func GetBidScheduleWithResponse(ctx context.Context, client *core.Client, id string, params GetBidScheduleParams) (*objects.BidSchedule, *core.Response, error) {
 	var out objects.BidSchedule
 	call := GetBidScheduleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBidSchedule(ctx context.Context, client *core.Client, id string, params GetBidScheduleParams) (*objects.BidSchedule, error) {
+	out, _, err := GetBidScheduleWithResponse(ctx, client, id, params)
+	return out, err
 }

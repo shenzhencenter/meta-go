@@ -42,11 +42,16 @@ func DecodeGetEventCommentsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetEventComments(ctx context.Context, client *core.Client, id string, params GetEventCommentsParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetEventCommentsParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventComments(ctx context.Context, client *core.Client, id string, params GetEventCommentsParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventFeedParams struct {
@@ -83,11 +88,16 @@ func DecodeGetEventFeedBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetEventFeed(ctx context.Context, client *core.Client, id string, params GetEventFeedParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventFeedWithResponse(ctx context.Context, client *core.Client, id string, params GetEventFeedParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventFeed(ctx context.Context, client *core.Client, id string, params GetEventFeedParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventLiveVideosParams struct {
@@ -124,11 +134,16 @@ func DecodeGetEventLiveVideosBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetEventLiveVideos(ctx context.Context, client *core.Client, id string, params GetEventLiveVideosParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetEventLiveVideosParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventLiveVideos(ctx context.Context, client *core.Client, id string, params GetEventLiveVideosParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateEventLiveVideosParams struct {
@@ -245,11 +260,16 @@ func DecodeCreateEventLiveVideosBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateEventLiveVideos(ctx context.Context, client *core.Client, id string, params CreateEventLiveVideosParams) (*objects.LiveVideo, error) {
+func CreateEventLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreateEventLiveVideosParams) (*objects.LiveVideo, *core.Response, error) {
 	var out objects.LiveVideo
 	call := CreateEventLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateEventLiveVideos(ctx context.Context, client *core.Client, id string, params CreateEventLiveVideosParams) (*objects.LiveVideo, error) {
+	out, _, err := CreateEventLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventPhotosParams struct {
@@ -286,11 +306,16 @@ func DecodeGetEventPhotosBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetEventPhotos(ctx context.Context, client *core.Client, id string, params GetEventPhotosParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventPhotosWithResponse(ctx context.Context, client *core.Client, id string, params GetEventPhotosParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventPhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventPhotos(ctx context.Context, client *core.Client, id string, params GetEventPhotosParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventPhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventPictureParams struct {
@@ -327,11 +352,16 @@ func DecodeGetEventPictureBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetEventPicture(ctx context.Context, client *core.Client, id string, params GetEventPictureParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventPictureWithResponse(ctx context.Context, client *core.Client, id string, params GetEventPictureParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventPictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventPicture(ctx context.Context, client *core.Client, id string, params GetEventPictureParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventPictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventPostsParams struct {
@@ -368,11 +398,16 @@ func DecodeGetEventPostsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetEventPosts(ctx context.Context, client *core.Client, id string, params GetEventPostsParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetEventPostsParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventPosts(ctx context.Context, client *core.Client, id string, params GetEventPostsParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventRolesParams struct {
@@ -409,11 +444,16 @@ func DecodeGetEventRolesBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetEventRoles(ctx context.Context, client *core.Client, id string, params GetEventRolesParams) (*core.Cursor[objects.Profile], error) {
+func GetEventRolesWithResponse(ctx context.Context, client *core.Client, id string, params GetEventRolesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetEventRolesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventRoles(ctx context.Context, client *core.Client, id string, params GetEventRolesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetEventRolesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventTicketTiersParams struct {
@@ -450,11 +490,16 @@ func DecodeGetEventTicketTiersBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetEventTicketTiers(ctx context.Context, client *core.Client, id string, params GetEventTicketTiersParams) (*core.Cursor[objects.EventTicketTier], error) {
+func GetEventTicketTiersWithResponse(ctx context.Context, client *core.Client, id string, params GetEventTicketTiersParams) (*core.Cursor[objects.EventTicketTier], *core.Response, error) {
 	var out core.Cursor[objects.EventTicketTier]
 	call := GetEventTicketTiersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventTicketTiers(ctx context.Context, client *core.Client, id string, params GetEventTicketTiersParams) (*core.Cursor[objects.EventTicketTier], error) {
+	out, _, err := GetEventTicketTiersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventVideosParams struct {
@@ -491,11 +536,16 @@ func DecodeGetEventVideosBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetEventVideos(ctx context.Context, client *core.Client, id string, params GetEventVideosParams) (*core.Cursor[objects.NullNode], error) {
+func GetEventVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetEventVideosParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetEventVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventVideos(ctx context.Context, client *core.Client, id string, params GetEventVideosParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetEventVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventParams struct {
@@ -532,9 +582,14 @@ func DecodeGetEventBatchResponse(response *core.BatchResponse) (*objects.Event, 
 	return &out, nil
 }
 
-func GetEvent(ctx context.Context, client *core.Client, id string, params GetEventParams) (*objects.Event, error) {
+func GetEventWithResponse(ctx context.Context, client *core.Client, id string, params GetEventParams) (*objects.Event, *core.Response, error) {
 	var out objects.Event
 	call := GetEventBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEvent(ctx context.Context, client *core.Client, id string, params GetEventParams) (*objects.Event, error) {
+	out, _, err := GetEventWithResponse(ctx, client, id, params)
+	return out, err
 }

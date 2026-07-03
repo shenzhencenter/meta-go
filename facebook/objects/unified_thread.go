@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type UnifiedThread struct {
@@ -21,6 +20,44 @@ type UnifiedThread struct {
 	Senders            *map[string]interface{} `json:"senders,omitempty"`
 	Snippet            *string                 `json:"snippet,omitempty"`
 	UnreadCount        *int                    `json:"unread_count,omitempty"`
-	UpdatedTime        *time.Time              `json:"updated_time,omitempty"`
+	UpdatedTime        *core.Time              `json:"updated_time,omitempty"`
 	Wallpaper          *string                 `json:"wallpaper,omitempty"`
+}
+
+var UnifiedThreadFields = struct {
+	CanReply           string
+	Folder             string
+	FormerParticipants string
+	ID                 string
+	IsOwner            string
+	IsSubscribed       string
+	Link               string
+	LinkedGroup        string
+	MessageCount       string
+	Name               string
+	Participants       string
+	ScopedThreadKey    string
+	Senders            string
+	Snippet            string
+	UnreadCount        string
+	UpdatedTime        string
+	Wallpaper          string
+}{
+	CanReply:           "can_reply",
+	Folder:             "folder",
+	FormerParticipants: "former_participants",
+	ID:                 "id",
+	IsOwner:            "is_owner",
+	IsSubscribed:       "is_subscribed",
+	Link:               "link",
+	LinkedGroup:        "linked_group",
+	MessageCount:       "message_count",
+	Name:               "name",
+	Participants:       "participants",
+	ScopedThreadKey:    "scoped_thread_key",
+	Senders:            "senders",
+	Snippet:            "snippet",
+	UnreadCount:        "unread_count",
+	UpdatedTime:        "updated_time",
+	Wallpaper:          "wallpaper",
 }

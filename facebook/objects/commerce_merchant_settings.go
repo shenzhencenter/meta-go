@@ -20,3 +20,35 @@ type CommerceMerchantSettings struct {
 	ShopsAdsSetup                      *map[string]interface{} `json:"shops_ads_setup,omitempty"`
 	Terms                              *string                 `json:"terms,omitempty"`
 }
+
+var CommerceMerchantSettingsFields = struct {
+	CheckoutConfig                     string
+	ContactEmail                       string
+	DisplayName                        string
+	FacebookChannel                    string
+	ID                                 string
+	InstagramChannel                   string
+	KoreaFtcListing                    string
+	MerchantPage                       string
+	MerchantStatus                     string
+	OffsiteIabCheckoutEnabledCountries string
+	PaymentProvider                    string
+	PrivacyPolicyLocalized             string
+	ShopsAdsSetup                      string
+	Terms                              string
+}{
+	CheckoutConfig:                     "checkout_config",
+	ContactEmail:                       "contact_email",
+	DisplayName:                        "display_name",
+	FacebookChannel:                    "facebook_channel",
+	ID:                                 "id",
+	InstagramChannel:                   "instagram_channel",
+	KoreaFtcListing:                    "korea_ftc_listing",
+	MerchantPage:                       "merchant_page",
+	MerchantStatus:                     "merchant_status",
+	OffsiteIabCheckoutEnabledCountries: "offsite_iab_checkout_enabled_countries",
+	PaymentProvider:                    "payment_provider",
+	PrivacyPolicyLocalized:             "privacy_policy_localized",
+	ShopsAdsSetup:                      "shops_ads_setup",
+	Terms:                              "terms",
+}

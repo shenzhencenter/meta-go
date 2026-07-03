@@ -7,3 +7,9 @@ import (
 type AdCreativeInstagramBrandedContent struct {
 	SponsorID *core.ID `json:"sponsor_id,omitempty"`
 }
+
+var AdCreativeInstagramBrandedContentFields = struct {
+	SponsorID string
+}{
+	SponsorID: "sponsor_id",
+}

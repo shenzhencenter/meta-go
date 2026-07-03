@@ -6,3 +6,15 @@ type PageUserWithLeadsAccess struct {
 	CanAccessLeads   *bool   `json:"can_access_leads,omitempty"`
 	PageRole         *string `json:"page_role,omitempty"`
 }
+
+var PageUserWithLeadsAccessFields = struct {
+	ActiveOnBusiness string
+	BusinessRole     string
+	CanAccessLeads   string
+	PageRole         string
+}{
+	ActiveOnBusiness: "active_on_business",
+	BusinessRole:     "business_role",
+	CanAccessLeads:   "can_access_leads",
+	PageRole:         "page_role",
+}

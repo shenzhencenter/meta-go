@@ -41,11 +41,16 @@ func DecodeGetHotelRoomPricingVariablesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetHotelRoomPricingVariables(ctx context.Context, client *core.Client, id string, params GetHotelRoomPricingVariablesParams) (*core.Cursor[objects.DynamicPriceConfigByDate], error) {
+func GetHotelRoomPricingVariablesWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelRoomPricingVariablesParams) (*core.Cursor[objects.DynamicPriceConfigByDate], *core.Response, error) {
 	var out core.Cursor[objects.DynamicPriceConfigByDate]
 	call := GetHotelRoomPricingVariablesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotelRoomPricingVariables(ctx context.Context, client *core.Client, id string, params GetHotelRoomPricingVariablesParams) (*core.Cursor[objects.DynamicPriceConfigByDate], error) {
+	out, _, err := GetHotelRoomPricingVariablesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHotelRoomParams struct {
@@ -82,9 +87,14 @@ func DecodeGetHotelRoomBatchResponse(response *core.BatchResponse) (*objects.Hot
 	return &out, nil
 }
 
-func GetHotelRoom(ctx context.Context, client *core.Client, id string, params GetHotelRoomParams) (*objects.HotelRoom, error) {
+func GetHotelRoomWithResponse(ctx context.Context, client *core.Client, id string, params GetHotelRoomParams) (*objects.HotelRoom, *core.Response, error) {
 	var out objects.HotelRoom
 	call := GetHotelRoomBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHotelRoom(ctx context.Context, client *core.Client, id string, params GetHotelRoomParams) (*objects.HotelRoom, error) {
+	out, _, err := GetHotelRoomWithResponse(ctx, client, id, params)
+	return out, err
 }

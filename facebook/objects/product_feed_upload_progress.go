@@ -1,7 +1,7 @@
 package objects
 
 import (
-	"time"
+	core "github.com/shenzhencenter/meta-go/facebook"
 )
 
 type ProductFeedUploadProgress struct {
@@ -9,5 +9,19 @@ type ProductFeedUploadProgress struct {
 	Size        *int       `json:"size,omitempty"`
 	Step        *string    `json:"step,omitempty"`
 	Unit        *string    `json:"unit,omitempty"`
-	UpdatedTime *time.Time `json:"updated_time,omitempty"`
+	UpdatedTime *core.Time `json:"updated_time,omitempty"`
+}
+
+var ProductFeedUploadProgressFields = struct {
+	Pos         string
+	Size        string
+	Step        string
+	Unit        string
+	UpdatedTime string
+}{
+	Pos:         "pos",
+	Size:        "size",
+	Step:        "step",
+	Unit:        "unit",
+	UpdatedTime: "updated_time",
 }

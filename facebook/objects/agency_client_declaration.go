@@ -14,3 +14,31 @@ type AgencyClientDeclaration struct {
 	HasWrittenMandateFromAdvertiser *uint64 `json:"has_written_mandate_from_advertiser,omitempty"`
 	IsClientPayingInvoices          *uint64 `json:"is_client_paying_invoices,omitempty"`
 }
+
+var AgencyClientDeclarationFields = struct {
+	AgencyRepresentingClient        string
+	ClientBasedInFrance             string
+	ClientCity                      string
+	ClientCountryCode               string
+	ClientEmailAddress              string
+	ClientName                      string
+	ClientPostalCode                string
+	ClientProvince                  string
+	ClientStreet                    string
+	ClientStreet2                   string
+	HasWrittenMandateFromAdvertiser string
+	IsClientPayingInvoices          string
+}{
+	AgencyRepresentingClient:        "agency_representing_client",
+	ClientBasedInFrance:             "client_based_in_france",
+	ClientCity:                      "client_city",
+	ClientCountryCode:               "client_country_code",
+	ClientEmailAddress:              "client_email_address",
+	ClientName:                      "client_name",
+	ClientPostalCode:                "client_postal_code",
+	ClientProvince:                  "client_province",
+	ClientStreet:                    "client_street",
+	ClientStreet2:                   "client_street2",
+	HasWrittenMandateFromAdvertiser: "has_written_mandate_from_advertiser",
+	IsClientPayingInvoices:          "is_client_paying_invoices",
+}

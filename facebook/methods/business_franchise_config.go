@@ -41,9 +41,14 @@ func DecodeGetBusinessFranchiseConfigBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetBusinessFranchiseConfig(ctx context.Context, client *core.Client, id string, params GetBusinessFranchiseConfigParams) (*objects.BusinessFranchiseConfig, error) {
+func GetBusinessFranchiseConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessFranchiseConfigParams) (*objects.BusinessFranchiseConfig, *core.Response, error) {
 	var out objects.BusinessFranchiseConfig
 	call := GetBusinessFranchiseConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessFranchiseConfig(ctx context.Context, client *core.Client, id string, params GetBusinessFranchiseConfigParams) (*objects.BusinessFranchiseConfig, error) {
+	out, _, err := GetBusinessFranchiseConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

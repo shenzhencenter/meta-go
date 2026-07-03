@@ -17,3 +17,27 @@ type ProductFeedSchedule struct {
 	URL           *string                            `json:"url,omitempty"`
 	Username      *string                            `json:"username,omitempty"`
 }
+
+var ProductFeedScheduleFields = struct {
+	DayOfMonth    string
+	DayOfWeek     string
+	Hour          string
+	ID            string
+	Interval      string
+	IntervalCount string
+	Minute        string
+	Timezone      string
+	URL           string
+	Username      string
+}{
+	DayOfMonth:    "day_of_month",
+	DayOfWeek:     "day_of_week",
+	Hour:          "hour",
+	ID:            "id",
+	Interval:      "interval",
+	IntervalCount: "interval_count",
+	Minute:        "minute",
+	Timezone:      "timezone",
+	URL:           "url",
+	Username:      "username",
+}

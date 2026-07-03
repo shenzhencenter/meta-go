@@ -41,9 +41,14 @@ func DecodeGetOrganizationBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetOrganization(ctx context.Context, client *core.Client, id string, params GetOrganizationParams) (*objects.Organization, error) {
+func GetOrganizationWithResponse(ctx context.Context, client *core.Client, id string, params GetOrganizationParams) (*objects.Organization, *core.Response, error) {
 	var out objects.Organization
 	call := GetOrganizationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOrganization(ctx context.Context, client *core.Client, id string, params GetOrganizationParams) (*objects.Organization, error) {
+	out, _, err := GetOrganizationWithResponse(ctx, client, id, params)
+	return out, err
 }

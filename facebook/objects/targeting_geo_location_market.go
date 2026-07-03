@@ -6,3 +6,15 @@ type TargetingGeoLocationMarket struct {
 	MarketType *string `json:"market_type,omitempty"`
 	Name       *string `json:"name,omitempty"`
 }
+
+var TargetingGeoLocationMarketFields = struct {
+	Country    string
+	Key        string
+	MarketType string
+	Name       string
+}{
+	Country:    "country",
+	Key:        "key",
+	MarketType: "market_type",
+	Name:       "name",
+}

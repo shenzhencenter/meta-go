@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AudioAsset struct {
@@ -19,11 +18,55 @@ type AudioAsset struct {
 	Grid                     *string    `json:"grid,omitempty"`
 	ID                       *core.ID   `json:"id,omitempty"`
 	IsTest                   *bool      `json:"is_test,omitempty"`
-	OriginalReleaseDate      *time.Time `json:"original_release_date,omitempty"`
+	OriginalReleaseDate      *core.Time `json:"original_release_date,omitempty"`
 	Owner                    *Page      `json:"owner,omitempty"`
 	ParentalWarningType      *string    `json:"parental_warning_type,omitempty"`
 	Subtitle                 *string    `json:"subtitle,omitempty"`
 	Title                    *string    `json:"title,omitempty"`
 	TitleWithFeaturedArtists *string    `json:"title_with_featured_artists,omitempty"`
 	Upc                      *string    `json:"upc,omitempty"`
+}
+
+var AudioAssetFields = struct {
+	AllDdexFeaturedArtists   string
+	AllDdexMainArtists       string
+	AudioClusterID           string
+	CoverImageSource         string
+	Description              string
+	DisplayArtist            string
+	DownloadHdURL            string
+	DownloadSdURL            string
+	DurationInMs             string
+	FreeformGenre            string
+	Grid                     string
+	ID                       string
+	IsTest                   string
+	OriginalReleaseDate      string
+	Owner                    string
+	ParentalWarningType      string
+	Subtitle                 string
+	Title                    string
+	TitleWithFeaturedArtists string
+	Upc                      string
+}{
+	AllDdexFeaturedArtists:   "all_ddex_featured_artists",
+	AllDdexMainArtists:       "all_ddex_main_artists",
+	AudioClusterID:           "audio_cluster_id",
+	CoverImageSource:         "cover_image_source",
+	Description:              "description",
+	DisplayArtist:            "display_artist",
+	DownloadHdURL:            "download_hd_url",
+	DownloadSdURL:            "download_sd_url",
+	DurationInMs:             "duration_in_ms",
+	FreeformGenre:            "freeform_genre",
+	Grid:                     "grid",
+	ID:                       "id",
+	IsTest:                   "is_test",
+	OriginalReleaseDate:      "original_release_date",
+	Owner:                    "owner",
+	ParentalWarningType:      "parental_warning_type",
+	Subtitle:                 "subtitle",
+	Title:                    "title",
+	TitleWithFeaturedArtists: "title_with_featured_artists",
+	Upc:                      "upc",
 }

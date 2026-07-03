@@ -8,3 +8,19 @@ type AdCreativeStaticFallbackSpec struct {
 	Message      *string                         `json:"message,omitempty"`
 	Name         *string                         `json:"name,omitempty"`
 }
+
+var AdCreativeStaticFallbackSpecFields = struct {
+	CallToAction string
+	Description  string
+	ImageHash    string
+	Link         string
+	Message      string
+	Name         string
+}{
+	CallToAction: "call_to_action",
+	Description:  "description",
+	ImageHash:    "image_hash",
+	Link:         "link",
+	Message:      "message",
+	Name:         "name",
+}

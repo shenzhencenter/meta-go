@@ -41,11 +41,16 @@ func DecodeGetWhatsAppBusinessProfileBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetWhatsAppBusinessProfile(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessProfileParams) (*objects.WhatsAppBusinessProfile, error) {
+func GetWhatsAppBusinessProfileWithResponse(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessProfileParams) (*objects.WhatsAppBusinessProfile, *core.Response, error) {
 	var out objects.WhatsAppBusinessProfile
 	call := GetWhatsAppBusinessProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWhatsAppBusinessProfile(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessProfileParams) (*objects.WhatsAppBusinessProfile, error) {
+	out, _, err := GetWhatsAppBusinessProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateWhatsAppBusinessProfileParams struct {
@@ -82,9 +87,14 @@ func DecodeUpdateWhatsAppBusinessProfileBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func UpdateWhatsAppBusinessProfile(ctx context.Context, client *core.Client, id string, params UpdateWhatsAppBusinessProfileParams) (*objects.WhatsAppBusinessProfile, error) {
+func UpdateWhatsAppBusinessProfileWithResponse(ctx context.Context, client *core.Client, id string, params UpdateWhatsAppBusinessProfileParams) (*objects.WhatsAppBusinessProfile, *core.Response, error) {
 	var out objects.WhatsAppBusinessProfile
 	call := UpdateWhatsAppBusinessProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateWhatsAppBusinessProfile(ctx context.Context, client *core.Client, id string, params UpdateWhatsAppBusinessProfileParams) (*objects.WhatsAppBusinessProfile, error) {
+	out, _, err := UpdateWhatsAppBusinessProfileWithResponse(ctx, client, id, params)
+	return out, err
 }

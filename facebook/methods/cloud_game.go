@@ -41,9 +41,14 @@ func DecodeGetCloudGameBatchResponse(response *core.BatchResponse) (*objects.Clo
 	return &out, nil
 }
 
-func GetCloudGame(ctx context.Context, client *core.Client, id string, params GetCloudGameParams) (*objects.CloudGame, error) {
+func GetCloudGameWithResponse(ctx context.Context, client *core.Client, id string, params GetCloudGameParams) (*objects.CloudGame, *core.Response, error) {
 	var out objects.CloudGame
 	call := GetCloudGameBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCloudGame(ctx context.Context, client *core.Client, id string, params GetCloudGameParams) (*objects.CloudGame, error) {
+	out, _, err := GetCloudGameWithResponse(ctx, client, id, params)
+	return out, err
 }

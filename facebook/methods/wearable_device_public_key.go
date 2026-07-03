@@ -41,9 +41,14 @@ func DecodeGetWearableDevicePublicKeyBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetWearableDevicePublicKey(ctx context.Context, client *core.Client, id string, params GetWearableDevicePublicKeyParams) (*objects.WearableDevicePublicKey, error) {
+func GetWearableDevicePublicKeyWithResponse(ctx context.Context, client *core.Client, id string, params GetWearableDevicePublicKeyParams) (*objects.WearableDevicePublicKey, *core.Response, error) {
 	var out objects.WearableDevicePublicKey
 	call := GetWearableDevicePublicKeyBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWearableDevicePublicKey(ctx context.Context, client *core.Client, id string, params GetWearableDevicePublicKeyParams) (*objects.WearableDevicePublicKey, error) {
+	out, _, err := GetWearableDevicePublicKeyWithResponse(ctx, client, id, params)
+	return out, err
 }

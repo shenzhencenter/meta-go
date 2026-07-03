@@ -43,11 +43,16 @@ func DecodeDeleteAppRequestBatchResponse(response *core.BatchResponse) (*map[str
 	return &out, nil
 }
 
-func DeleteAppRequest(ctx context.Context, client *core.Client, id string, params DeleteAppRequestParams) (*map[string]interface{}, error) {
+func DeleteAppRequestWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAppRequestParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAppRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAppRequest(ctx context.Context, client *core.Client, id string, params DeleteAppRequestParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAppRequestWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAppRequestParams struct {
@@ -84,9 +89,14 @@ func DecodeGetAppRequestBatchResponse(response *core.BatchResponse) (*objects.Ap
 	return &out, nil
 }
 
-func GetAppRequest(ctx context.Context, client *core.Client, id string, params GetAppRequestParams) (*objects.AppRequest, error) {
+func GetAppRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetAppRequestParams) (*objects.AppRequest, *core.Response, error) {
 	var out objects.AppRequest
 	call := GetAppRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAppRequest(ctx context.Context, client *core.Client, id string, params GetAppRequestParams) (*objects.AppRequest, error) {
+	out, _, err := GetAppRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

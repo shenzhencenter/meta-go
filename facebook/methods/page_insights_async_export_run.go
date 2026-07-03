@@ -41,9 +41,14 @@ func DecodeGetPageInsightsAsyncExportRunBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetPageInsightsAsyncExportRun(ctx context.Context, client *core.Client, id string, params GetPageInsightsAsyncExportRunParams) (*objects.PageInsightsAsyncExportRun, error) {
+func GetPageInsightsAsyncExportRunWithResponse(ctx context.Context, client *core.Client, id string, params GetPageInsightsAsyncExportRunParams) (*objects.PageInsightsAsyncExportRun, *core.Response, error) {
 	var out objects.PageInsightsAsyncExportRun
 	call := GetPageInsightsAsyncExportRunBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageInsightsAsyncExportRun(ctx context.Context, client *core.Client, id string, params GetPageInsightsAsyncExportRunParams) (*objects.PageInsightsAsyncExportRun, error) {
+	out, _, err := GetPageInsightsAsyncExportRunWithResponse(ctx, client, id, params)
+	return out, err
 }

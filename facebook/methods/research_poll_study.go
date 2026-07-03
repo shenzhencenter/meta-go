@@ -41,9 +41,14 @@ func DecodeGetResearchPollStudyBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetResearchPollStudy(ctx context.Context, client *core.Client, id string, params GetResearchPollStudyParams) (*objects.ResearchPollStudy, error) {
+func GetResearchPollStudyWithResponse(ctx context.Context, client *core.Client, id string, params GetResearchPollStudyParams) (*objects.ResearchPollStudy, *core.Response, error) {
 	var out objects.ResearchPollStudy
 	call := GetResearchPollStudyBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetResearchPollStudy(ctx context.Context, client *core.Client, id string, params GetResearchPollStudyParams) (*objects.ResearchPollStudy, error) {
+	out, _, err := GetResearchPollStudyWithResponse(ctx, client, id, params)
+	return out, err
 }

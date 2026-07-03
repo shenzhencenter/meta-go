@@ -15,3 +15,25 @@ type ALMAdAccountInfo struct {
 	UserIds            *[]core.ID `json:"user_ids,omitempty"`
 	Vertical           *string    `json:"vertical,omitempty"`
 }
+
+var ALMAdAccountInfoFields = struct {
+	AdAccountID        string
+	ID                 string
+	ManagedBy          string
+	OwnedBy            string
+	ParentAdvertiserID string
+	SubVertical        string
+	Tag                string
+	UserIds            string
+	Vertical           string
+}{
+	AdAccountID:        "ad_account_id",
+	ID:                 "id",
+	ManagedBy:          "managed_by",
+	OwnedBy:            "owned_by",
+	ParentAdvertiserID: "parent_advertiser_id",
+	SubVertical:        "sub_vertical",
+	Tag:                "tag",
+	UserIds:            "user_ids",
+	Vertical:           "vertical",
+}

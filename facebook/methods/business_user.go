@@ -42,11 +42,16 @@ func DecodeGetBusinessUserAssignedAdAccountsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetBusinessUserAssignedAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetBusinessUserAssignedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetBusinessUserAssignedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessUserAssignedAdAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetBusinessUserAssignedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessUserAssignedBusinessAssetGroupsParams struct {
@@ -87,11 +92,16 @@ func DecodeGetBusinessUserAssignedBusinessAssetGroupsBatchResponse(response *cor
 	return &out, nil
 }
 
-func GetBusinessUserAssignedBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+func GetBusinessUserAssignedBusinessAssetGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAssetGroup]
 	call := GetBusinessUserAssignedBusinessAssetGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessUserAssignedBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+	out, _, err := GetBusinessUserAssignedBusinessAssetGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessUserAssignedPagesParams struct {
@@ -132,11 +142,16 @@ func DecodeGetBusinessUserAssignedPagesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetBusinessUserAssignedPages(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetBusinessUserAssignedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetBusinessUserAssignedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessUserAssignedPages(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetBusinessUserAssignedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessUserAssignedProductCatalogsParams struct {
@@ -173,11 +188,16 @@ func DecodeGetBusinessUserAssignedProductCatalogsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetBusinessUserAssignedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetBusinessUserAssignedProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetBusinessUserAssignedProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessUserAssignedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetBusinessUserAssignedProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessUserAssignedWhatsappBusinessAccountsParams struct {
@@ -214,11 +234,16 @@ func DecodeGetBusinessUserAssignedWhatsappBusinessAccountsBatchResponse(response
 	return &out, nil
 }
 
-func GetBusinessUserAssignedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+func GetBusinessUserAssignedWhatsappBusinessAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccount]
 	call := GetBusinessUserAssignedWhatsappBusinessAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessUserAssignedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+	out, _, err := GetBusinessUserAssignedWhatsappBusinessAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteBusinessUserParams struct {
@@ -255,11 +280,16 @@ func DecodeDeleteBusinessUserBatchResponse(response *core.BatchResponse) (*map[s
 	return &out, nil
 }
 
-func DeleteBusinessUser(ctx context.Context, client *core.Client, id string, params DeleteBusinessUserParams) (*map[string]interface{}, error) {
+func DeleteBusinessUserWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessUserParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessUser(ctx context.Context, client *core.Client, id string, params DeleteBusinessUserParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessUserParams struct {
@@ -296,11 +326,16 @@ func DecodeGetBusinessUserBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetBusinessUser(ctx context.Context, client *core.Client, id string, params GetBusinessUserParams) (*objects.BusinessUser, error) {
+func GetBusinessUserWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessUserParams) (*objects.BusinessUser, *core.Response, error) {
 	var out objects.BusinessUser
 	call := GetBusinessUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessUser(ctx context.Context, client *core.Client, id string, params GetBusinessUserParams) (*objects.BusinessUser, error) {
+	out, _, err := GetBusinessUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateBusinessUserParams struct {
@@ -373,9 +408,14 @@ func DecodeUpdateBusinessUserBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func UpdateBusinessUser(ctx context.Context, client *core.Client, id string, params UpdateBusinessUserParams) (*objects.BusinessUser, error) {
+func UpdateBusinessUserWithResponse(ctx context.Context, client *core.Client, id string, params UpdateBusinessUserParams) (*objects.BusinessUser, *core.Response, error) {
 	var out objects.BusinessUser
 	call := UpdateBusinessUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateBusinessUser(ctx context.Context, client *core.Client, id string, params UpdateBusinessUserParams) (*objects.BusinessUser, error) {
+	out, _, err := UpdateBusinessUserWithResponse(ctx, client, id, params)
+	return out, err
 }

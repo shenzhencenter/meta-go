@@ -41,9 +41,14 @@ func DecodeGetMeasurementReportBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetMeasurementReport(ctx context.Context, client *core.Client, id string, params GetMeasurementReportParams) (*objects.MeasurementReport, error) {
+func GetMeasurementReportWithResponse(ctx context.Context, client *core.Client, id string, params GetMeasurementReportParams) (*objects.MeasurementReport, *core.Response, error) {
 	var out objects.MeasurementReport
 	call := GetMeasurementReportBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMeasurementReport(ctx context.Context, client *core.Client, id string, params GetMeasurementReportParams) (*objects.MeasurementReport, error) {
+	out, _, err := GetMeasurementReportWithResponse(ctx, client, id, params)
+	return out, err
 }

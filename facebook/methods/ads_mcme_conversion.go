@@ -41,9 +41,14 @@ func DecodeGetAdsMcmeConversionBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetAdsMcmeConversion(ctx context.Context, client *core.Client, id string, params GetAdsMcmeConversionParams) (*objects.AdsMcmeConversion, error) {
+func GetAdsMcmeConversionWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsMcmeConversionParams) (*objects.AdsMcmeConversion, *core.Response, error) {
 	var out objects.AdsMcmeConversion
 	call := GetAdsMcmeConversionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsMcmeConversion(ctx context.Context, client *core.Client, id string, params GetAdsMcmeConversionParams) (*objects.AdsMcmeConversion, error) {
+	out, _, err := GetAdsMcmeConversionWithResponse(ctx, client, id, params)
+	return out, err
 }

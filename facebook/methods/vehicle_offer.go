@@ -42,11 +42,16 @@ func DecodeGetVehicleOfferChannelsToIntegrityStatusBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetVehicleOfferChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetVehicleOfferChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetVehicleOfferChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetVehicleOfferChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetVehicleOfferChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVehicleOfferChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetVehicleOfferChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetVehicleOfferChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetVehicleOfferOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetVehicleOfferOverrideDetailsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetVehicleOfferOverrideDetails(ctx context.Context, client *core.Client, id string, params GetVehicleOfferOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetVehicleOfferOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetVehicleOfferOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetVehicleOfferOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVehicleOfferOverrideDetails(ctx context.Context, client *core.Client, id string, params GetVehicleOfferOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetVehicleOfferOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetVehicleOfferVideosMetadataParams struct {
@@ -132,11 +142,16 @@ func DecodeGetVehicleOfferVideosMetadataBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetVehicleOfferVideosMetadata(ctx context.Context, client *core.Client, id string, params GetVehicleOfferVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetVehicleOfferVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetVehicleOfferVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetVehicleOfferVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVehicleOfferVideosMetadata(ctx context.Context, client *core.Client, id string, params GetVehicleOfferVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetVehicleOfferVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetVehicleOfferParams struct {
@@ -173,9 +188,14 @@ func DecodeGetVehicleOfferBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetVehicleOffer(ctx context.Context, client *core.Client, id string, params GetVehicleOfferParams) (*objects.VehicleOffer, error) {
+func GetVehicleOfferWithResponse(ctx context.Context, client *core.Client, id string, params GetVehicleOfferParams) (*objects.VehicleOffer, *core.Response, error) {
 	var out objects.VehicleOffer
 	call := GetVehicleOfferBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVehicleOffer(ctx context.Context, client *core.Client, id string, params GetVehicleOfferParams) (*objects.VehicleOffer, error) {
+	out, _, err := GetVehicleOfferWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -11,3 +11,17 @@ type PreapprovalReview struct {
 	IsReviewed      *bool                                `json:"is_reviewed,omitempty"`
 	PolicyInfo      *[]map[string]map[string]interface{} `json:"policy_info,omitempty"`
 }
+
+var PreapprovalReviewFields = struct {
+	CompType        string
+	CrowComponentID string
+	IsHumanReviewed string
+	IsReviewed      string
+	PolicyInfo      string
+}{
+	CompType:        "comp_type",
+	CrowComponentID: "crow_component_id",
+	IsHumanReviewed: "is_human_reviewed",
+	IsReviewed:      "is_reviewed",
+	PolicyInfo:      "policy_info",
+}

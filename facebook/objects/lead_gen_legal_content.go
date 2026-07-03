@@ -9,3 +9,13 @@ type LeadGenLegalContent struct {
 	ID               *core.ID                 `json:"id,omitempty"`
 	PrivacyPolicy    *LeadGenPrivacyPolicy    `json:"privacy_policy,omitempty"`
 }
+
+var LeadGenLegalContentFields = struct {
+	CustomDisclaimer string
+	ID               string
+	PrivacyPolicy    string
+}{
+	CustomDisclaimer: "custom_disclaimer",
+	ID:               "id",
+	PrivacyPolicy:    "privacy_policy",
+}

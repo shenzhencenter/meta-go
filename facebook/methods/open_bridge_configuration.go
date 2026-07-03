@@ -42,11 +42,16 @@ func DecodeDeleteOpenBridgeConfigurationBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func DeleteOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params DeleteOpenBridgeConfigurationParams) (*map[string]interface{}, error) {
+func DeleteOpenBridgeConfigurationWithResponse(ctx context.Context, client *core.Client, id string, params DeleteOpenBridgeConfigurationParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteOpenBridgeConfigurationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params DeleteOpenBridgeConfigurationParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteOpenBridgeConfigurationWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOpenBridgeConfigurationParams struct {
@@ -83,11 +88,16 @@ func DecodeGetOpenBridgeConfigurationBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params GetOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, error) {
+func GetOpenBridgeConfigurationWithResponse(ctx context.Context, client *core.Client, id string, params GetOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, *core.Response, error) {
 	var out objects.OpenBridgeConfiguration
 	call := GetOpenBridgeConfigurationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params GetOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, error) {
+	out, _, err := GetOpenBridgeConfigurationWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateOpenBridgeConfigurationParams struct {
@@ -208,9 +218,14 @@ func DecodeUpdateOpenBridgeConfigurationBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func UpdateOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params UpdateOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, error) {
+func UpdateOpenBridgeConfigurationWithResponse(ctx context.Context, client *core.Client, id string, params UpdateOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, *core.Response, error) {
 	var out objects.OpenBridgeConfiguration
 	call := UpdateOpenBridgeConfigurationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params UpdateOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, error) {
+	out, _, err := UpdateOpenBridgeConfigurationWithResponse(ctx, client, id, params)
+	return out, err
 }

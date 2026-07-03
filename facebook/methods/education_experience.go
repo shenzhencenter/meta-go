@@ -41,9 +41,14 @@ func DecodeGetEducationExperienceBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetEducationExperience(ctx context.Context, client *core.Client, id string, params GetEducationExperienceParams) (*objects.EducationExperience, error) {
+func GetEducationExperienceWithResponse(ctx context.Context, client *core.Client, id string, params GetEducationExperienceParams) (*objects.EducationExperience, *core.Response, error) {
 	var out objects.EducationExperience
 	call := GetEducationExperienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEducationExperience(ctx context.Context, client *core.Client, id string, params GetEducationExperienceParams) (*objects.EducationExperience, error) {
+	out, _, err := GetEducationExperienceWithResponse(ctx, client, id, params)
+	return out, err
 }

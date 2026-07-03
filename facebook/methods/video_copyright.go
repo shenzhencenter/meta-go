@@ -42,11 +42,16 @@ func DecodeGetVideoCopyrightUpdateRecordsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetVideoCopyrightUpdateRecords(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], error) {
+func GetVideoCopyrightUpdateRecordsWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], *core.Response, error) {
 	var out core.Cursor[objects.MediaCopyrightUpdateRecord]
 	call := GetVideoCopyrightUpdateRecordsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoCopyrightUpdateRecords(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], error) {
+	out, _, err := GetVideoCopyrightUpdateRecordsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetVideoCopyrightParams struct {
@@ -83,11 +88,16 @@ func DecodeGetVideoCopyrightBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetVideoCopyright(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightParams) (*objects.VideoCopyright, error) {
+func GetVideoCopyrightWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightParams) (*objects.VideoCopyright, *core.Response, error) {
 	var out objects.VideoCopyright
 	call := GetVideoCopyrightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoCopyright(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightParams) (*objects.VideoCopyright, error) {
+	out, _, err := GetVideoCopyrightWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateVideoCopyrightParams struct {
@@ -168,9 +178,14 @@ func DecodeUpdateVideoCopyrightBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func UpdateVideoCopyright(ctx context.Context, client *core.Client, id string, params UpdateVideoCopyrightParams) (*objects.VideoCopyright, error) {
+func UpdateVideoCopyrightWithResponse(ctx context.Context, client *core.Client, id string, params UpdateVideoCopyrightParams) (*objects.VideoCopyright, *core.Response, error) {
 	var out objects.VideoCopyright
 	call := UpdateVideoCopyrightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateVideoCopyright(ctx context.Context, client *core.Client, id string, params UpdateVideoCopyrightParams) (*objects.VideoCopyright, error) {
+	out, _, err := UpdateVideoCopyrightWithResponse(ctx, client, id, params)
+	return out, err
 }

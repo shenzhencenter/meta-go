@@ -20,3 +20,35 @@ type AdCreativeLinkDataImageLayerSpec struct {
 	TextColor                 *string                                                `json:"text_color,omitempty"`
 	TextFont                  *enums.AdcreativelinkdataimagelayerspecTextFont        `json:"text_font,omitempty"`
 }
+
+var AdCreativeLinkDataImageLayerSpecFields = struct {
+	BlendingMode              string
+	Content                   string
+	FrameAutoShowEnrollStatus string
+	FrameImageHash            string
+	FrameSource               string
+	ImageSource               string
+	LayerType                 string
+	Opacity                   string
+	OverlayPosition           string
+	OverlayShape              string
+	Scale                     string
+	ShapeColor                string
+	TextColor                 string
+	TextFont                  string
+}{
+	BlendingMode:              "blending_mode",
+	Content:                   "content",
+	FrameAutoShowEnrollStatus: "frame_auto_show_enroll_status",
+	FrameImageHash:            "frame_image_hash",
+	FrameSource:               "frame_source",
+	ImageSource:               "image_source",
+	LayerType:                 "layer_type",
+	Opacity:                   "opacity",
+	OverlayPosition:           "overlay_position",
+	OverlayShape:              "overlay_shape",
+	Scale:                     "scale",
+	ShapeColor:                "shape_color",
+	TextColor:                 "text_color",
+	TextFont:                  "text_font",
+}

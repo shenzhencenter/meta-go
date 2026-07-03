@@ -5,3 +5,13 @@ type AdCreativeBizAI struct {
 	Pills           *[]map[string]interface{} `json:"pills,omitempty"`
 	PillsMbsVersion *int                      `json:"pills_mbs_version,omitempty"`
 }
+
+var AdCreativeBizAIFields = struct {
+	Capabilities    string
+	Pills           string
+	PillsMbsVersion string
+}{
+	Capabilities:    "capabilities",
+	Pills:           "pills",
+	PillsMbsVersion: "pills_mbs_version",
+}

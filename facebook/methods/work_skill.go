@@ -41,11 +41,16 @@ func DecodeGetWorkSkillUsersBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetWorkSkillUsers(ctx context.Context, client *core.Client, id string, params GetWorkSkillUsersParams) (*core.Cursor[objects.User], error) {
+func GetWorkSkillUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetWorkSkillUsersParams) (*core.Cursor[objects.User], *core.Response, error) {
 	var out core.Cursor[objects.User]
 	call := GetWorkSkillUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWorkSkillUsers(ctx context.Context, client *core.Client, id string, params GetWorkSkillUsersParams) (*core.Cursor[objects.User], error) {
+	out, _, err := GetWorkSkillUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetWorkSkillParams struct {
@@ -82,9 +87,14 @@ func DecodeGetWorkSkillBatchResponse(response *core.BatchResponse) (*objects.Wor
 	return &out, nil
 }
 
-func GetWorkSkill(ctx context.Context, client *core.Client, id string, params GetWorkSkillParams) (*objects.WorkSkill, error) {
+func GetWorkSkillWithResponse(ctx context.Context, client *core.Client, id string, params GetWorkSkillParams) (*objects.WorkSkill, *core.Response, error) {
 	var out objects.WorkSkill
 	call := GetWorkSkillBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWorkSkill(ctx context.Context, client *core.Client, id string, params GetWorkSkillParams) (*objects.WorkSkill, error) {
+	out, _, err := GetWorkSkillWithResponse(ctx, client, id, params)
+	return out, err
 }

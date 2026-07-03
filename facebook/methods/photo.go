@@ -6,14 +6,13 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetPhotoCommentsParams struct {
 	Filter     *enums.PhotocommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.PhotocommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.PhotocommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                              `facebook:"since"`
+	Since      *core.Time                              `facebook:"since"`
 	Extra      core.Params                             `facebook:"-"`
 }
 
@@ -59,11 +58,16 @@ func DecodeGetPhotoCommentsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetPhotoComments(ctx context.Context, client *core.Client, id string, params GetPhotoCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetPhotoCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetPhotoCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetPhotoCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPhotoComments(ctx context.Context, client *core.Client, id string, params GetPhotoCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetPhotoCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePhotoCommentsParams struct {
@@ -152,19 +156,24 @@ func DecodeCreatePhotoCommentsBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreatePhotoComments(ctx context.Context, client *core.Client, id string, params CreatePhotoCommentsParams) (*objects.Comment, error) {
+func CreatePhotoCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePhotoCommentsParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreatePhotoCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePhotoComments(ctx context.Context, client *core.Client, id string, params CreatePhotoCommentsParams) (*objects.Comment, error) {
+	out, _, err := CreatePhotoCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPhotoInsightsParams struct {
 	DatePreset *enums.PhotoinsightsDatePresetEnumParam `facebook:"date_preset"`
 	Metric     *[]map[string]interface{}               `facebook:"metric"`
 	Period     *enums.PhotoinsightsPeriodEnumParam     `facebook:"period"`
-	Since      *time.Time                              `facebook:"since"`
-	Until      *time.Time                              `facebook:"until"`
+	Since      *core.Time                              `facebook:"since"`
+	Until      *core.Time                              `facebook:"until"`
 	Extra      core.Params                             `facebook:"-"`
 }
 
@@ -213,11 +222,16 @@ func DecodeGetPhotoInsightsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetPhotoInsights(ctx context.Context, client *core.Client, id string, params GetPhotoInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetPhotoInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetPhotoInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetPhotoInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPhotoInsights(ctx context.Context, client *core.Client, id string, params GetPhotoInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetPhotoInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPhotoLikesParams struct {
@@ -254,11 +268,16 @@ func DecodeGetPhotoLikesBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetPhotoLikes(ctx context.Context, client *core.Client, id string, params GetPhotoLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetPhotoLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetPhotoLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetPhotoLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPhotoLikes(ctx context.Context, client *core.Client, id string, params GetPhotoLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetPhotoLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePhotoLikesParams struct {
@@ -315,11 +334,16 @@ func DecodeCreatePhotoLikesBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func CreatePhotoLikes(ctx context.Context, client *core.Client, id string, params CreatePhotoLikesParams) (*objects.Photo, error) {
+func CreatePhotoLikesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePhotoLikesParams) (*objects.Photo, *core.Response, error) {
 	var out objects.Photo
 	call := CreatePhotoLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePhotoLikes(ctx context.Context, client *core.Client, id string, params CreatePhotoLikesParams) (*objects.Photo, error) {
+	out, _, err := CreatePhotoLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPhotoSponsorTagsParams struct {
@@ -356,11 +380,16 @@ func DecodeGetPhotoSponsorTagsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPhotoSponsorTags(ctx context.Context, client *core.Client, id string, params GetPhotoSponsorTagsParams) (*core.Cursor[objects.Page], error) {
+func GetPhotoSponsorTagsWithResponse(ctx context.Context, client *core.Client, id string, params GetPhotoSponsorTagsParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPhotoSponsorTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPhotoSponsorTags(ctx context.Context, client *core.Client, id string, params GetPhotoSponsorTagsParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPhotoSponsorTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePhotoParams struct {
@@ -397,11 +426,16 @@ func DecodeDeletePhotoBatchResponse(response *core.BatchResponse) (*map[string]i
 	return &out, nil
 }
 
-func DeletePhoto(ctx context.Context, client *core.Client, id string, params DeletePhotoParams) (*map[string]interface{}, error) {
+func DeletePhotoWithResponse(ctx context.Context, client *core.Client, id string, params DeletePhotoParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePhotoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePhoto(ctx context.Context, client *core.Client, id string, params DeletePhotoParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePhotoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPhotoParams struct {
@@ -438,9 +472,14 @@ func DecodeGetPhotoBatchResponse(response *core.BatchResponse) (*objects.Photo, 
 	return &out, nil
 }
 
-func GetPhoto(ctx context.Context, client *core.Client, id string, params GetPhotoParams) (*objects.Photo, error) {
+func GetPhotoWithResponse(ctx context.Context, client *core.Client, id string, params GetPhotoParams) (*objects.Photo, *core.Response, error) {
 	var out objects.Photo
 	call := GetPhotoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPhoto(ctx context.Context, client *core.Client, id string, params GetPhotoParams) (*objects.Photo, error) {
+	out, _, err := GetPhotoWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -11,3 +11,17 @@ type AdNetworkAnalyticsAsyncQueryResult struct {
 	Results        *[]map[string]interface{} `json:"results,omitempty"`
 	Status         *string                   `json:"status,omitempty"`
 }
+
+var AdNetworkAnalyticsAsyncQueryResultFields = struct {
+	Data           string
+	OmittedResults string
+	QueryID        string
+	Results        string
+	Status         string
+}{
+	Data:           "data",
+	OmittedResults: "omitted_results",
+	QueryID:        "query_id",
+	Results:        "results",
+	Status:         "status",
+}

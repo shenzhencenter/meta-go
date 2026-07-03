@@ -41,9 +41,14 @@ func DecodeGetAdSavedKeywordsBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetAdSavedKeywords(ctx context.Context, client *core.Client, id string, params GetAdSavedKeywordsParams) (*objects.AdSavedKeywords, error) {
+func GetAdSavedKeywordsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSavedKeywordsParams) (*objects.AdSavedKeywords, *core.Response, error) {
 	var out objects.AdSavedKeywords
 	call := GetAdSavedKeywordsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSavedKeywords(ctx context.Context, client *core.Client, id string, params GetAdSavedKeywordsParams) (*objects.AdSavedKeywords, error) {
+	out, _, err := GetAdSavedKeywordsWithResponse(ctx, client, id, params)
+	return out, err
 }

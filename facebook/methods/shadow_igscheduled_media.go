@@ -41,9 +41,14 @@ func DecodeGetShadowIGScheduledMediaBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetShadowIGScheduledMedia(ctx context.Context, client *core.Client, id string, params GetShadowIGScheduledMediaParams) (*objects.ShadowIGScheduledMedia, error) {
+func GetShadowIGScheduledMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetShadowIGScheduledMediaParams) (*objects.ShadowIGScheduledMedia, *core.Response, error) {
 	var out objects.ShadowIGScheduledMedia
 	call := GetShadowIGScheduledMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetShadowIGScheduledMedia(ctx context.Context, client *core.Client, id string, params GetShadowIGScheduledMediaParams) (*objects.ShadowIGScheduledMedia, error) {
+	out, _, err := GetShadowIGScheduledMediaWithResponse(ctx, client, id, params)
+	return out, err
 }

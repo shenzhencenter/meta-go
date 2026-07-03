@@ -41,9 +41,14 @@ func DecodeGetFBImageCopyrightMatchBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetFBImageCopyrightMatch(ctx context.Context, client *core.Client, id string, params GetFBImageCopyrightMatchParams) (*objects.FBImageCopyrightMatch, error) {
+func GetFBImageCopyrightMatchWithResponse(ctx context.Context, client *core.Client, id string, params GetFBImageCopyrightMatchParams) (*objects.FBImageCopyrightMatch, *core.Response, error) {
 	var out objects.FBImageCopyrightMatch
 	call := GetFBImageCopyrightMatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFBImageCopyrightMatch(ctx context.Context, client *core.Client, id string, params GetFBImageCopyrightMatchParams) (*objects.FBImageCopyrightMatch, error) {
+	out, _, err := GetFBImageCopyrightMatchWithResponse(ctx, client, id, params)
+	return out, err
 }

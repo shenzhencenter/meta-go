@@ -10,3 +10,15 @@ type PageChangeProposal struct {
 	ID                 *core.ID            `json:"id,omitempty"`
 	UpcomingChangeInfo *PageUpcomingChange `json:"upcoming_change_info,omitempty"`
 }
+
+var PageChangeProposalFields = struct {
+	AcceptanceStatus   string
+	Category           string
+	ID                 string
+	UpcomingChangeInfo string
+}{
+	AcceptanceStatus:   "acceptance_status",
+	Category:           "category",
+	ID:                 "id",
+	UpcomingChangeInfo: "upcoming_change_info",
+}

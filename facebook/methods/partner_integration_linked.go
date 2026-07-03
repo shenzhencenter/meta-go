@@ -41,9 +41,14 @@ func DecodeGetPartnerIntegrationLinkedBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetPartnerIntegrationLinked(ctx context.Context, client *core.Client, id string, params GetPartnerIntegrationLinkedParams) (*objects.PartnerIntegrationLinked, error) {
+func GetPartnerIntegrationLinkedWithResponse(ctx context.Context, client *core.Client, id string, params GetPartnerIntegrationLinkedParams) (*objects.PartnerIntegrationLinked, *core.Response, error) {
 	var out objects.PartnerIntegrationLinked
 	call := GetPartnerIntegrationLinkedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPartnerIntegrationLinked(ctx context.Context, client *core.Client, id string, params GetPartnerIntegrationLinkedParams) (*objects.PartnerIntegrationLinked, error) {
+	out, _, err := GetPartnerIntegrationLinkedWithResponse(ctx, client, id, params)
+	return out, err
 }

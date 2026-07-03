@@ -9,3 +9,13 @@ type SplitTestWinner struct {
 	Confidences      *[]map[string]float64 `json:"confidences,omitempty"`
 	WinnerAdObjectID *core.ID              `json:"winner_ad_object_id,omitempty"`
 }
+
+var SplitTestWinnerFields = struct {
+	AdObjectLevel    string
+	Confidences      string
+	WinnerAdObjectID string
+}{
+	AdObjectLevel:    "ad_object_level",
+	Confidences:      "confidences",
+	WinnerAdObjectID: "winner_ad_object_id",
+}

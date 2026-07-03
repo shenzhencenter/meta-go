@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"sort"
 	"strings"
 )
 
@@ -282,13 +283,13 @@ func (client *Client) ExecuteAsyncBatch(ctx context.Context, calls []BatchCall, 
 		return nil, nil
 	}
 
-	payload, err := batchPayloadForCalls(calls)
+	payload, files, err := batchPayloadForCalls(calls)
 	if err != nil {
 		return nil, err
 	}
 
 	var out AsyncBatchResponse
-	err = client.Request(ctx, http.MethodPost, "", batchRequestParams("asyncbatch", payload, options...), &out)
+	err = client.Request(ctx, http.MethodPost, "", batchRequestParams("asyncbatch", payload, files, options...), &out)
 	return &out, err
 }
 
@@ -300,13 +301,13 @@ func (client *Client) executeBatch(ctx context.Context, calls []BatchCall, optio
 		return nil, nil, nil
 	}
 
-	payload, err := batchPayloadForCalls(calls)
+	payload, files, err := batchPayloadForCalls(calls)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	var out []*BatchResponse
-	err = client.Request(ctx, http.MethodPost, "", batchRequestParams("batch", payload, options...), &out)
+	err = client.Request(ctx, http.MethodPost, "", batchRequestParams("batch", payload, files, options...), &out)
 	if err != nil {
 		return out, nil, err
 	}
@@ -436,6 +437,18 @@ func (response *BatchResponse) Decode(out interface{}) error {
 	return json.Unmarshal([]byte(*response.Body), out)
 }
 
+func (response *BatchResponse) Header(name string) string {
+	if response == nil || response.Headers == nil {
+		return ""
+	}
+	for _, header := range *response.Headers {
+		if strings.EqualFold(header.Name, name) {
+			return header.Value
+		}
+	}
+	return ""
+}
+
 func (response *BatchResponse) Err() error {
 	if response == nil || response.Code == nil || *response.Code < http.StatusBadRequest {
 		return nil
@@ -484,10 +497,13 @@ func decodeBatchResponses(calls []BatchCall, responses []*BatchResponse) []*Batc
 	return errors
 }
 
-func batchRequestParams(batchKey string, payload []batchCallPayload, options ...BatchExecuteOption) Params {
+func batchRequestParams(batchKey string, payload []batchCallPayload, files map[string]FileParam, options ...BatchExecuteOption) Params {
 	config := newBatchExecuteOptions(options...)
 	out := Params{}
 	for key, value := range config.params {
+		out[key] = value
+	}
+	for key, value := range files {
 		out[key] = value
 	}
 	out[batchKey] = payload
@@ -510,29 +526,34 @@ func (options *batchExecuteOptions) ensureParams() {
 	}
 }
 
-func batchPayloadForCalls(calls []BatchCall) ([]batchCallPayload, error) {
+func batchPayloadForCalls(calls []BatchCall) ([]batchCallPayload, map[string]FileParam, error) {
 	payload := make([]batchCallPayload, 0, len(calls))
-	for _, call := range calls {
-		item, err := batchPayloadForCall(call)
+	files := map[string]FileParam{}
+	for index, call := range calls {
+		item, callFiles, err := batchPayloadForCall(index, call)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
+		}
+		for key, value := range callFiles {
+			files[key] = value
 		}
 		payload = append(payload, item)
 	}
-	return payload, nil
+	return payload, files, nil
 }
 
 type batchCallPayload struct {
 	Method                string        `json:"method"`
 	RelativeURL           string        `json:"relative_url"`
 	Body                  string        `json:"body,omitempty"`
+	AttachedFiles         string        `json:"attached_files,omitempty"`
 	Name                  string        `json:"name,omitempty"`
 	DependsOn             string        `json:"depends_on,omitempty"`
 	OmitResponseOnSuccess *bool         `json:"omit_response_on_success,omitempty"`
 	Headers               []BatchHeader `json:"headers,omitempty"`
 }
 
-func batchPayloadForCall(call BatchCall) (batchCallPayload, error) {
+func batchPayloadForCall(index int, call BatchCall) (batchCallPayload, map[string]FileParam, error) {
 	method := strings.ToUpper(strings.TrimSpace(call.Method))
 	if method == "" {
 		method = http.MethodGet
@@ -548,18 +569,58 @@ func batchPayloadForCall(call BatchCall) (batchCallPayload, error) {
 		Headers:               call.Headers,
 	}
 	if item.RelativeURL == "" {
-		return item, fmt.Errorf("facebook batch call relative url is empty")
+		return item, nil, fmt.Errorf("facebook batch call relative url is empty")
 	}
 
 	values, files, err := encodeParams(call.Params)
 	if err != nil {
-		return item, err
-	}
-	if len(files) > 0 {
-		return item, fmt.Errorf("facebook batch call file params are not supported")
+		return item, nil, err
 	}
 	applyBatchParams(&item, values)
-	return item, nil
+	attachedNames, attachedFiles := batchAttachedFiles(index, files)
+	item.AttachedFiles = strings.Join(attachedNames, ",")
+	return item, attachedFiles, nil
+}
+
+func batchAttachedFiles(index int, files map[string]FileParam) ([]string, map[string]FileParam) {
+	if len(files) == 0 {
+		return nil, nil
+	}
+	keys := sortedFileKeys(files)
+	names := make([]string, 0, len(keys))
+	out := map[string]FileParam{}
+	for _, key := range keys {
+		name := fmt.Sprintf("batch_file_%d_%s", index, cleanBatchFileName(key))
+		names = append(names, name)
+		out[name] = files[key]
+	}
+	return names, out
+}
+
+func sortedFileKeys(files map[string]FileParam) []string {
+	keys := make([]string, 0, len(files))
+	for key := range files {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+func cleanBatchFileName(value string) string {
+	value = strings.TrimSpace(value)
+	if value == "" {
+		return "file"
+	}
+	builder := strings.Builder{}
+	for _, char := range value {
+		if char >= 'a' && char <= 'z' || char >= 'A' && char <= 'Z' || char >= '0' && char <= '9' || char == '_' || char == '-' {
+			builder.WriteRune(char)
+		}
+	}
+	if builder.Len() == 0 {
+		return "file"
+	}
+	return builder.String()
 }
 
 func cleanBatchRelativeURL(value string) string {

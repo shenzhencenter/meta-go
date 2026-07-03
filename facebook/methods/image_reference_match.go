@@ -41,9 +41,14 @@ func DecodeGetImageReferenceMatchBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetImageReferenceMatch(ctx context.Context, client *core.Client, id string, params GetImageReferenceMatchParams) (*objects.ImageReferenceMatch, error) {
+func GetImageReferenceMatchWithResponse(ctx context.Context, client *core.Client, id string, params GetImageReferenceMatchParams) (*objects.ImageReferenceMatch, *core.Response, error) {
 	var out objects.ImageReferenceMatch
 	call := GetImageReferenceMatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetImageReferenceMatch(ctx context.Context, client *core.Client, id string, params GetImageReferenceMatchParams) (*objects.ImageReferenceMatch, error) {
+	out, _, err := GetImageReferenceMatchWithResponse(ctx, client, id, params)
+	return out, err
 }

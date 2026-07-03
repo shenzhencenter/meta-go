@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type DeleteCustomAudienceAdaccountsParams struct {
@@ -47,11 +46,16 @@ func DecodeDeleteCustomAudienceAdaccountsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func DeleteCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceAdaccountsParams) (*map[string]interface{}, error) {
+func DeleteCustomAudienceAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceAdaccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCustomAudienceAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceAdaccountsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCustomAudienceAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceAdaccountsParams struct {
@@ -92,11 +96,16 @@ func DecodeGetCustomAudienceAdaccountsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetCustomAudienceAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetCustomAudienceAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetCustomAudienceAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCustomAudienceAdaccountsParams struct {
@@ -149,11 +158,16 @@ func DecodeCreateCustomAudienceAdaccountsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceAdaccountsParams) (*objects.CustomAudience, error) {
+func CreateCustomAudienceAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceAdaccountsParams) (*objects.CustomAudience, *core.Response, error) {
 	var out objects.CustomAudience
 	call := CreateCustomAudienceAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceAdaccountsParams) (*objects.CustomAudience, error) {
+	out, _, err := CreateCustomAudienceAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceAdsParams struct {
@@ -198,11 +212,16 @@ func DecodeGetCustomAudienceAdsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetCustomAudienceAds(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdsParams) (*core.Cursor[objects.Ad], error) {
+func GetCustomAudienceAdsWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdsParams) (*core.Cursor[objects.Ad], *core.Response, error) {
 	var out core.Cursor[objects.Ad]
 	call := GetCustomAudienceAdsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudienceAds(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdsParams) (*core.Cursor[objects.Ad], error) {
+	out, _, err := GetCustomAudienceAdsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceHealthParams struct {
@@ -263,11 +282,16 @@ func DecodeGetCustomAudienceHealthBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetCustomAudienceHealth(ctx context.Context, client *core.Client, id string, params GetCustomAudienceHealthParams) (*core.Cursor[objects.CustomAudienceHealth], error) {
+func GetCustomAudienceHealthWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceHealthParams) (*core.Cursor[objects.CustomAudienceHealth], *core.Response, error) {
 	var out core.Cursor[objects.CustomAudienceHealth]
 	call := GetCustomAudienceHealthBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudienceHealth(ctx context.Context, client *core.Client, id string, params GetCustomAudienceHealthParams) (*core.Cursor[objects.CustomAudienceHealth], error) {
+	out, _, err := GetCustomAudienceHealthWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceSaltsParams struct {
@@ -308,17 +332,22 @@ func DecodeGetCustomAudienceSaltsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetCustomAudienceSalts(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSaltsParams) (*core.Cursor[objects.CustomAudienceSalts], error) {
+func GetCustomAudienceSaltsWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSaltsParams) (*core.Cursor[objects.CustomAudienceSalts], *core.Response, error) {
 	var out core.Cursor[objects.CustomAudienceSalts]
 	call := GetCustomAudienceSaltsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudienceSalts(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSaltsParams) (*core.Cursor[objects.CustomAudienceSalts], error) {
+	out, _, err := GetCustomAudienceSaltsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCustomAudienceSaltsParams struct {
 	Salt      string      `facebook:"salt"`
-	ValidFrom time.Time   `facebook:"valid_from"`
-	ValidTo   time.Time   `facebook:"valid_to"`
+	ValidFrom core.Time   `facebook:"valid_from"`
+	ValidTo   core.Time   `facebook:"valid_to"`
 	Extra     core.Params `facebook:"-"`
 }
 
@@ -355,11 +384,16 @@ func DecodeCreateCustomAudienceSaltsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateCustomAudienceSalts(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceSaltsParams) (*objects.CustomAudience, error) {
+func CreateCustomAudienceSaltsWithResponse(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceSaltsParams) (*objects.CustomAudience, *core.Response, error) {
 	var out objects.CustomAudience
 	call := CreateCustomAudienceSaltsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCustomAudienceSalts(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceSaltsParams) (*objects.CustomAudience, error) {
+	out, _, err := CreateCustomAudienceSaltsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceSessionsParams struct {
@@ -400,11 +434,16 @@ func DecodeGetCustomAudienceSessionsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetCustomAudienceSessions(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSessionsParams) (*core.Cursor[objects.CustomAudienceSession], error) {
+func GetCustomAudienceSessionsWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSessionsParams) (*core.Cursor[objects.CustomAudienceSession], *core.Response, error) {
 	var out core.Cursor[objects.CustomAudienceSession]
 	call := GetCustomAudienceSessionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudienceSessions(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSessionsParams) (*core.Cursor[objects.CustomAudienceSession], error) {
+	out, _, err := GetCustomAudienceSessionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceSharedAccountInfoParams struct {
@@ -441,11 +480,16 @@ func DecodeGetCustomAudienceSharedAccountInfoBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetCustomAudienceSharedAccountInfo(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSharedAccountInfoParams) (*core.Cursor[objects.CustomAudiencesharedAccountInfo], error) {
+func GetCustomAudienceSharedAccountInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSharedAccountInfoParams) (*core.Cursor[objects.CustomAudiencesharedAccountInfo], *core.Response, error) {
 	var out core.Cursor[objects.CustomAudiencesharedAccountInfo]
 	call := GetCustomAudienceSharedAccountInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudienceSharedAccountInfo(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSharedAccountInfoParams) (*core.Cursor[objects.CustomAudiencesharedAccountInfo], error) {
+	out, _, err := GetCustomAudienceSharedAccountInfoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteCustomAudienceUsersParams struct {
@@ -494,11 +538,16 @@ func DecodeDeleteCustomAudienceUsersBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func DeleteCustomAudienceUsers(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceUsersParams) (*map[string]interface{}, error) {
+func DeleteCustomAudienceUsersWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceUsersParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCustomAudienceUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteCustomAudienceUsers(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceUsersParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCustomAudienceUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCustomAudienceUsersParams struct {
@@ -547,11 +596,16 @@ func DecodeCreateCustomAudienceUsersBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateCustomAudienceUsers(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersParams) (*objects.CustomAudience, error) {
+func CreateCustomAudienceUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersParams) (*objects.CustomAudience, *core.Response, error) {
 	var out objects.CustomAudience
 	call := CreateCustomAudienceUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCustomAudienceUsers(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersParams) (*objects.CustomAudience, error) {
+	out, _, err := CreateCustomAudienceUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCustomAudienceUsersreplaceParams struct {
@@ -596,11 +650,16 @@ func DecodeCreateCustomAudienceUsersreplaceBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateCustomAudienceUsersreplace(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersreplaceParams) (*objects.CustomAudience, error) {
+func CreateCustomAudienceUsersreplaceWithResponse(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersreplaceParams) (*objects.CustomAudience, *core.Response, error) {
 	var out objects.CustomAudience
 	call := CreateCustomAudienceUsersreplaceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCustomAudienceUsersreplace(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersreplaceParams) (*objects.CustomAudience, error) {
+	out, _, err := CreateCustomAudienceUsersreplaceWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteCustomAudienceParams struct {
@@ -637,11 +696,16 @@ func DecodeDeleteCustomAudienceBatchResponse(response *core.BatchResponse) (*map
 	return &out, nil
 }
 
-func DeleteCustomAudience(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceParams) (*map[string]interface{}, error) {
+func DeleteCustomAudienceWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCustomAudienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteCustomAudience(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCustomAudienceWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomAudienceParams struct {
@@ -694,11 +758,16 @@ func DecodeGetCustomAudienceBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetCustomAudience(ctx context.Context, client *core.Client, id string, params GetCustomAudienceParams) (*objects.CustomAudience, error) {
+func GetCustomAudienceWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomAudienceParams) (*objects.CustomAudience, *core.Response, error) {
 	var out objects.CustomAudience
 	call := GetCustomAudienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomAudience(ctx context.Context, client *core.Client, id string, params GetCustomAudienceParams) (*objects.CustomAudience, error) {
+	out, _, err := GetCustomAudienceWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCustomAudienceParams struct {
@@ -835,9 +904,14 @@ func DecodeUpdateCustomAudienceBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func UpdateCustomAudience(ctx context.Context, client *core.Client, id string, params UpdateCustomAudienceParams) (*objects.CustomAudience, error) {
+func UpdateCustomAudienceWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCustomAudienceParams) (*objects.CustomAudience, *core.Response, error) {
 	var out objects.CustomAudience
 	call := UpdateCustomAudienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateCustomAudience(ctx context.Context, client *core.Client, id string, params UpdateCustomAudienceParams) (*objects.CustomAudience, error) {
+	out, _, err := UpdateCustomAudienceWithResponse(ctx, client, id, params)
+	return out, err
 }

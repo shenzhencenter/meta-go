@@ -10,3 +10,15 @@ type AdAccountAccountControlsPost struct {
 	ID           *core.ID `json:"id,omitempty"`
 	Success      *bool    `json:"success,omitempty"`
 }
+
+var AdAccountAccountControlsPostFields = struct {
+	ErrorCode    string
+	ErrorMessage string
+	ID           string
+	Success      string
+}{
+	ErrorCode:    "error_code",
+	ErrorMessage: "error_message",
+	ID:           "id",
+	Success:      "success",
+}

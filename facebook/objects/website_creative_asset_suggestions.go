@@ -10,3 +10,15 @@ type WebsiteCreativeAssetSuggestions struct {
 	ID               *core.ID `json:"id,omitempty"`
 	LinkURL          *string  `json:"link_url,omitempty"`
 }
+
+var WebsiteCreativeAssetSuggestionsFields = struct {
+	AdAccountID      string
+	ExtractionStatus string
+	ID               string
+	LinkURL          string
+}{
+	AdAccountID:      "ad_account_id",
+	ExtractionStatus: "extraction_status",
+	ID:               "id",
+	LinkURL:          "link_url",
+}

@@ -45,9 +45,14 @@ func DecodeGetOffsitePixelBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetOffsitePixel(ctx context.Context, client *core.Client, id string, params GetOffsitePixelParams) (*objects.OffsitePixel, error) {
+func GetOffsitePixelWithResponse(ctx context.Context, client *core.Client, id string, params GetOffsitePixelParams) (*objects.OffsitePixel, *core.Response, error) {
 	var out objects.OffsitePixel
 	call := GetOffsitePixelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOffsitePixel(ctx context.Context, client *core.Client, id string, params GetOffsitePixelParams) (*objects.OffsitePixel, error) {
+	out, _, err := GetOffsitePixelWithResponse(ctx, client, id, params)
+	return out, err
 }

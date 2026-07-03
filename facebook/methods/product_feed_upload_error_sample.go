@@ -41,9 +41,14 @@ func DecodeGetProductFeedUploadErrorSampleBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetProductFeedUploadErrorSample(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSampleParams) (*objects.ProductFeedUploadErrorSample, error) {
+func GetProductFeedUploadErrorSampleWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSampleParams) (*objects.ProductFeedUploadErrorSample, *core.Response, error) {
 	var out objects.ProductFeedUploadErrorSample
 	call := GetProductFeedUploadErrorSampleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedUploadErrorSample(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSampleParams) (*objects.ProductFeedUploadErrorSample, error) {
+	out, _, err := GetProductFeedUploadErrorSampleWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -10,3 +10,15 @@ type CustomAudienceSalts struct {
 	Salts     *[]map[string]interface{} `json:"salts,omitempty"`
 	UserID    *core.ID                  `json:"user_id,omitempty"`
 }
+
+var CustomAudienceSaltsFields = struct {
+	AppID     string
+	PublicKey string
+	Salts     string
+	UserID    string
+}{
+	AppID:     "app_id",
+	PublicKey: "public_key",
+	Salts:     "salts",
+	UserID:    "user_id",
+}

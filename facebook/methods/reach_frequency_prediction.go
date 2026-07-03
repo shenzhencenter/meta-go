@@ -41,9 +41,14 @@ func DecodeGetReachFrequencyPredictionBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetReachFrequencyPrediction(ctx context.Context, client *core.Client, id string, params GetReachFrequencyPredictionParams) (*objects.ReachFrequencyPrediction, error) {
+func GetReachFrequencyPredictionWithResponse(ctx context.Context, client *core.Client, id string, params GetReachFrequencyPredictionParams) (*objects.ReachFrequencyPrediction, *core.Response, error) {
 	var out objects.ReachFrequencyPrediction
 	call := GetReachFrequencyPredictionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetReachFrequencyPrediction(ctx context.Context, client *core.Client, id string, params GetReachFrequencyPredictionParams) (*objects.ReachFrequencyPrediction, error) {
+	out, _, err := GetReachFrequencyPredictionWithResponse(ctx, client, id, params)
+	return out, err
 }

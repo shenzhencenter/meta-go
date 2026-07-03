@@ -16,3 +16,27 @@ type AdSavedLocation struct {
 	Regions           *[]TargetingGeoLocationRegion         `json:"regions,omitempty"`
 	Zips              *[]TargetingGeoLocationZip            `json:"zips,omitempty"`
 }
+
+var AdSavedLocationFields = struct {
+	Cities            string
+	Countries         string
+	CountryGroups     string
+	CustomLocations   string
+	GeoMarkets        string
+	ID                string
+	LocationSentences string
+	Name              string
+	Regions           string
+	Zips              string
+}{
+	Cities:            "cities",
+	Countries:         "countries",
+	CountryGroups:     "country_groups",
+	CustomLocations:   "custom_locations",
+	GeoMarkets:        "geo_markets",
+	ID:                "id",
+	LocationSentences: "location_sentences",
+	Name:              "name",
+	Regions:           "regions",
+	Zips:              "zips",
+}

@@ -7,3 +7,17 @@ type PageRestaurantSpecialties struct {
 	Drinks    *uint64 `json:"drinks,omitempty"`
 	Lunch     *uint64 `json:"lunch,omitempty"`
 }
+
+var PageRestaurantSpecialtiesFields = struct {
+	Breakfast string
+	Coffee    string
+	Dinner    string
+	Drinks    string
+	Lunch     string
+}{
+	Breakfast: "breakfast",
+	Coffee:    "coffee",
+	Dinner:    "dinner",
+	Drinks:    "drinks",
+	Lunch:     "lunch",
+}

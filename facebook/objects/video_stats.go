@@ -8,3 +8,19 @@ type VideoStats struct {
 	Totals         *[]map[string]map[string]interface{}   `json:"totals,omitempty"`
 	XAxisBreakdown *[][]map[string]map[string]interface{} `json:"x_axis_breakdown,omitempty"`
 }
+
+var VideoStatsFields = struct {
+	Aggregate      string
+	Error          string
+	Metadata       string
+	TimeSeries     string
+	Totals         string
+	XAxisBreakdown string
+}{
+	Aggregate:      "aggregate",
+	Error:          "error",
+	Metadata:       "metadata",
+	TimeSeries:     "time_series",
+	Totals:         "totals",
+	XAxisBreakdown: "x_axis_breakdown",
+}

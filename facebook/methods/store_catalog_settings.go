@@ -41,11 +41,16 @@ func DecodeDeleteStoreCatalogSettingsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func DeleteStoreCatalogSettings(ctx context.Context, client *core.Client, id string, params DeleteStoreCatalogSettingsParams) (*map[string]interface{}, error) {
+func DeleteStoreCatalogSettingsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteStoreCatalogSettingsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteStoreCatalogSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteStoreCatalogSettings(ctx context.Context, client *core.Client, id string, params DeleteStoreCatalogSettingsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteStoreCatalogSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetStoreCatalogSettingsParams struct {
@@ -82,9 +87,14 @@ func DecodeGetStoreCatalogSettingsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetStoreCatalogSettings(ctx context.Context, client *core.Client, id string, params GetStoreCatalogSettingsParams) (*objects.StoreCatalogSettings, error) {
+func GetStoreCatalogSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetStoreCatalogSettingsParams) (*objects.StoreCatalogSettings, *core.Response, error) {
 	var out objects.StoreCatalogSettings
 	call := GetStoreCatalogSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetStoreCatalogSettings(ctx context.Context, client *core.Client, id string, params GetStoreCatalogSettingsParams) (*objects.StoreCatalogSettings, error) {
+	out, _, err := GetStoreCatalogSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

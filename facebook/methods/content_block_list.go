@@ -41,11 +41,16 @@ func DecodeGetContentBlockListAppliedAdAccountsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetContentBlockListAppliedAdAccounts(ctx context.Context, client *core.Client, id string, params GetContentBlockListAppliedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetContentBlockListAppliedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetContentBlockListAppliedAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetContentBlockListAppliedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetContentBlockListAppliedAdAccounts(ctx context.Context, client *core.Client, id string, params GetContentBlockListAppliedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetContentBlockListAppliedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetContentBlockListFacebookContentParams struct {
@@ -82,11 +87,16 @@ func DecodeGetContentBlockListFacebookContentBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetContentBlockListFacebookContent(ctx context.Context, client *core.Client, id string, params GetContentBlockListFacebookContentParams) (*core.Cursor[objects.Postish], error) {
+func GetContentBlockListFacebookContentWithResponse(ctx context.Context, client *core.Client, id string, params GetContentBlockListFacebookContentParams) (*core.Cursor[objects.Postish], *core.Response, error) {
 	var out core.Cursor[objects.Postish]
 	call := GetContentBlockListFacebookContentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetContentBlockListFacebookContent(ctx context.Context, client *core.Client, id string, params GetContentBlockListFacebookContentParams) (*core.Cursor[objects.Postish], error) {
+	out, _, err := GetContentBlockListFacebookContentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetContentBlockListInstagramContentParams struct {
@@ -123,11 +133,16 @@ func DecodeGetContentBlockListInstagramContentBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetContentBlockListInstagramContent(ctx context.Context, client *core.Client, id string, params GetContentBlockListInstagramContentParams) (*core.Cursor[objects.IGMedia], error) {
+func GetContentBlockListInstagramContentWithResponse(ctx context.Context, client *core.Client, id string, params GetContentBlockListInstagramContentParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetContentBlockListInstagramContentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetContentBlockListInstagramContent(ctx context.Context, client *core.Client, id string, params GetContentBlockListInstagramContentParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetContentBlockListInstagramContentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetContentBlockListParams struct {
@@ -164,9 +179,14 @@ func DecodeGetContentBlockListBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetContentBlockList(ctx context.Context, client *core.Client, id string, params GetContentBlockListParams) (*objects.ContentBlockList, error) {
+func GetContentBlockListWithResponse(ctx context.Context, client *core.Client, id string, params GetContentBlockListParams) (*objects.ContentBlockList, *core.Response, error) {
 	var out objects.ContentBlockList
 	call := GetContentBlockListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetContentBlockList(ctx context.Context, client *core.Client, id string, params GetContentBlockListParams) (*objects.ContentBlockList, error) {
+	out, _, err := GetContentBlockListWithResponse(ctx, client, id, params)
+	return out, err
 }

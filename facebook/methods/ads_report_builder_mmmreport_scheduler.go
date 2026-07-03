@@ -41,9 +41,14 @@ func DecodeGetAdsReportBuilderMMMReportSchedulerBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetAdsReportBuilderMMMReportScheduler(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderMMMReportSchedulerParams) (*objects.AdsReportBuilderMMMReportScheduler, error) {
+func GetAdsReportBuilderMMMReportSchedulerWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderMMMReportSchedulerParams) (*objects.AdsReportBuilderMMMReportScheduler, *core.Response, error) {
 	var out objects.AdsReportBuilderMMMReportScheduler
 	call := GetAdsReportBuilderMMMReportSchedulerBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsReportBuilderMMMReportScheduler(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderMMMReportSchedulerParams) (*objects.AdsReportBuilderMMMReportScheduler, error) {
+	out, _, err := GetAdsReportBuilderMMMReportSchedulerWithResponse(ctx, client, id, params)
+	return out, err
 }

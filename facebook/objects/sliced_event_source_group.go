@@ -10,3 +10,15 @@ type SlicedEventSourceGroup struct {
 	ID               *core.ID          `json:"id,omitempty"`
 	Name             *string           `json:"name,omitempty"`
 }
+
+var SlicedEventSourceGroupFields = struct {
+	EventSourceGroup string
+	Filter           string
+	ID               string
+	Name             string
+}{
+	EventSourceGroup: "event_source_group",
+	Filter:           "filter",
+	ID:               "id",
+	Name:             "name",
+}

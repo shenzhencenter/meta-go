@@ -13,3 +13,21 @@ type AppPublisher struct {
 	StoreName *string  `json:"store_name,omitempty"`
 	StoreURL  *string  `json:"store_url,omitempty"`
 }
+
+var AppPublisherFields = struct {
+	ContentID string
+	IconURL   string
+	ID        string
+	Name      string
+	Platform  string
+	StoreName string
+	StoreURL  string
+}{
+	ContentID: "content_id",
+	IconURL:   "icon_url",
+	ID:        "id",
+	Name:      "name",
+	Platform:  "platform",
+	StoreName: "store_name",
+	StoreURL:  "store_url",
+}

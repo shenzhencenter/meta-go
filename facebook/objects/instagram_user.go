@@ -18,3 +18,31 @@ type InstagramUser struct {
 	ProfilePic         *string   `json:"profile_pic,omitempty"`
 	Username           *string   `json:"username,omitempty"`
 }
+
+var InstagramUserFields = struct {
+	FollowCount        string
+	FollowedByCount    string
+	HasProfilePicture  string
+	ID                 string
+	IgUserID           string
+	IsPrivate          string
+	IsPublished        string
+	MediaCount         string
+	MiniShopStorefront string
+	OwnerBusiness      string
+	ProfilePic         string
+	Username           string
+}{
+	FollowCount:        "follow_count",
+	FollowedByCount:    "followed_by_count",
+	HasProfilePicture:  "has_profile_picture",
+	ID:                 "id",
+	IgUserID:           "ig_user_id",
+	IsPrivate:          "is_private",
+	IsPublished:        "is_published",
+	MediaCount:         "media_count",
+	MiniShopStorefront: "mini_shop_storefront",
+	OwnerBusiness:      "owner_business",
+	ProfilePic:         "profile_pic",
+	Username:           "username",
+}

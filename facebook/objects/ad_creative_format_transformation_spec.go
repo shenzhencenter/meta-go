@@ -5,3 +5,13 @@ type AdCreativeFormatTransformationSpec struct {
 	DataSource     *[]string                 `json:"data_source,omitempty"`
 	Format         *string                   `json:"format,omitempty"`
 }
+
+var AdCreativeFormatTransformationSpecFields = struct {
+	Customizations string
+	DataSource     string
+	Format         string
+}{
+	Customizations: "customizations",
+	DataSource:     "data_source",
+	Format:         "format",
+}

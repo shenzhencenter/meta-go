@@ -10,3 +10,15 @@ type ProductDeliveryPreference struct {
 	ProductPriority         *string   `json:"product_priority,omitempty"`
 	ProductPriorityCategory *[]string `json:"product_priority_category,omitempty"`
 }
+
+var ProductDeliveryPreferenceFields = struct {
+	AdObjectID              string
+	ID                      string
+	ProductPriority         string
+	ProductPriorityCategory string
+}{
+	AdObjectID:              "ad_object_id",
+	ID:                      "id",
+	ProductPriority:         "product_priority",
+	ProductPriorityCategory: "product_priority_category",
+}

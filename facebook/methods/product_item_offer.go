@@ -41,9 +41,14 @@ func DecodeGetProductItemOfferBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetProductItemOffer(ctx context.Context, client *core.Client, id string, params GetProductItemOfferParams) (*objects.ProductItemOffer, error) {
+func GetProductItemOfferWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemOfferParams) (*objects.ProductItemOffer, *core.Response, error) {
 	var out objects.ProductItemOffer
 	call := GetProductItemOfferBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItemOffer(ctx context.Context, client *core.Client, id string, params GetProductItemOfferParams) (*objects.ProductItemOffer, error) {
+	out, _, err := GetProductItemOfferWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -42,11 +42,16 @@ func DecodeGetOfflineProductItemChannelsToIntegrityStatusBatchResponse(response 
 	return &out, nil
 }
 
-func GetOfflineProductItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetOfflineProductItemChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetOfflineProductItemChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineProductItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetOfflineProductItemChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineProductItemOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetOfflineProductItemOverrideDetailsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetOfflineProductItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetOfflineProductItemOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetOfflineProductItemOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineProductItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetOfflineProductItemOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineProductItemParams struct {
@@ -132,9 +142,14 @@ func DecodeGetOfflineProductItemBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetOfflineProductItem(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemParams) (*objects.OfflineProductItem, error) {
+func GetOfflineProductItemWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemParams) (*objects.OfflineProductItem, *core.Response, error) {
 	var out objects.OfflineProductItem
 	call := GetOfflineProductItemBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineProductItem(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemParams) (*objects.OfflineProductItem, error) {
+	out, _, err := GetOfflineProductItemWithResponse(ctx, client, id, params)
+	return out, err
 }

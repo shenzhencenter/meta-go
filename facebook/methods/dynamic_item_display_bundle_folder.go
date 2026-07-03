@@ -41,9 +41,14 @@ func DecodeGetDynamicItemDisplayBundleFolderBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetDynamicItemDisplayBundleFolder(ctx context.Context, client *core.Client, id string, params GetDynamicItemDisplayBundleFolderParams) (*objects.DynamicItemDisplayBundleFolder, error) {
+func GetDynamicItemDisplayBundleFolderWithResponse(ctx context.Context, client *core.Client, id string, params GetDynamicItemDisplayBundleFolderParams) (*objects.DynamicItemDisplayBundleFolder, *core.Response, error) {
 	var out objects.DynamicItemDisplayBundleFolder
 	call := GetDynamicItemDisplayBundleFolderBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDynamicItemDisplayBundleFolder(ctx context.Context, client *core.Client, id string, params GetDynamicItemDisplayBundleFolderParams) (*objects.DynamicItemDisplayBundleFolder, error) {
+	out, _, err := GetDynamicItemDisplayBundleFolderWithResponse(ctx, client, id, params)
+	return out, err
 }

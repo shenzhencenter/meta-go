@@ -11,3 +11,17 @@ type OwnedDomain struct {
 	Status           *string   `json:"status,omitempty"`
 	VerificationCode *string   `json:"verification_code,omitempty"`
 }
+
+var OwnedDomainFields = struct {
+	DomainName       string
+	ID               string
+	OwnerBusiness    string
+	Status           string
+	VerificationCode string
+}{
+	DomainName:       "domain_name",
+	ID:               "id",
+	OwnerBusiness:    "owner_business",
+	Status:           "status",
+	VerificationCode: "verification_code",
+}

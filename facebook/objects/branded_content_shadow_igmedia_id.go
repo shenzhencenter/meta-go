@@ -15,3 +15,25 @@ type BrandedContentShadowIGMediaID struct {
 	ProductSuggestions            *[]ProductItem `json:"product_suggestions,omitempty"`
 	RecommendedCampaignObjectives *[]string      `json:"recommended_campaign_objectives,omitempty"`
 }
+
+var BrandedContentShadowIGMediaIDFields = struct {
+	EligibilityErrors             string
+	HasPermissionForPartnershipAd string
+	ID                            string
+	IsCreatorAllowlisted          string
+	LinkedProducts                string
+	OwnerID                       string
+	Permalink                     string
+	ProductSuggestions            string
+	RecommendedCampaignObjectives string
+}{
+	EligibilityErrors:             "eligibility_errors",
+	HasPermissionForPartnershipAd: "has_permission_for_partnership_ad",
+	ID:                            "id",
+	IsCreatorAllowlisted:          "is_creator_allowlisted",
+	LinkedProducts:                "linked_products",
+	OwnerID:                       "owner_id",
+	Permalink:                     "permalink",
+	ProductSuggestions:            "product_suggestions",
+	RecommendedCampaignObjectives: "recommended_campaign_objectives",
+}

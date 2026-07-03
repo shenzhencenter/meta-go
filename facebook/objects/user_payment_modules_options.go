@@ -10,3 +10,15 @@ type UserPaymentModulesOptions struct {
 	Country                 *string                   `json:"country,omitempty"`
 	Currency                *string                   `json:"currency,omitempty"`
 }
+
+var UserPaymentModulesOptionsFields = struct {
+	AccountID               string
+	AvailablePaymentOptions string
+	Country                 string
+	Currency                string
+}{
+	AccountID:               "account_id",
+	AvailablePaymentOptions: "available_payment_options",
+	Country:                 "country",
+	Currency:                "currency",
+}

@@ -42,11 +42,16 @@ func DecodeGetLeadgenFormLeadsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetLeadgenFormLeads(ctx context.Context, client *core.Client, id string, params GetLeadgenFormLeadsParams) (*core.Cursor[objects.Lead], error) {
+func GetLeadgenFormLeadsWithResponse(ctx context.Context, client *core.Client, id string, params GetLeadgenFormLeadsParams) (*core.Cursor[objects.Lead], *core.Response, error) {
 	var out core.Cursor[objects.Lead]
 	call := GetLeadgenFormLeadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLeadgenFormLeads(ctx context.Context, client *core.Client, id string, params GetLeadgenFormLeadsParams) (*core.Cursor[objects.Lead], error) {
+	out, _, err := GetLeadgenFormLeadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLeadgenFormTestLeadsParams struct {
@@ -83,11 +88,16 @@ func DecodeGetLeadgenFormTestLeadsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetLeadgenFormTestLeads(ctx context.Context, client *core.Client, id string, params GetLeadgenFormTestLeadsParams) (*core.Cursor[objects.Lead], error) {
+func GetLeadgenFormTestLeadsWithResponse(ctx context.Context, client *core.Client, id string, params GetLeadgenFormTestLeadsParams) (*core.Cursor[objects.Lead], *core.Response, error) {
 	var out core.Cursor[objects.Lead]
 	call := GetLeadgenFormTestLeadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLeadgenFormTestLeads(ctx context.Context, client *core.Client, id string, params GetLeadgenFormTestLeadsParams) (*core.Cursor[objects.Lead], error) {
+	out, _, err := GetLeadgenFormTestLeadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateLeadgenFormTestLeadsParams struct {
@@ -132,11 +142,16 @@ func DecodeCreateLeadgenFormTestLeadsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateLeadgenFormTestLeads(ctx context.Context, client *core.Client, id string, params CreateLeadgenFormTestLeadsParams) (*objects.Lead, error) {
+func CreateLeadgenFormTestLeadsWithResponse(ctx context.Context, client *core.Client, id string, params CreateLeadgenFormTestLeadsParams) (*objects.Lead, *core.Response, error) {
 	var out objects.Lead
 	call := CreateLeadgenFormTestLeadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateLeadgenFormTestLeads(ctx context.Context, client *core.Client, id string, params CreateLeadgenFormTestLeadsParams) (*objects.Lead, error) {
+	out, _, err := CreateLeadgenFormTestLeadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLeadgenFormParams struct {
@@ -173,11 +188,16 @@ func DecodeGetLeadgenFormBatchResponse(response *core.BatchResponse) (*objects.L
 	return &out, nil
 }
 
-func GetLeadgenForm(ctx context.Context, client *core.Client, id string, params GetLeadgenFormParams) (*objects.LeadgenForm, error) {
+func GetLeadgenFormWithResponse(ctx context.Context, client *core.Client, id string, params GetLeadgenFormParams) (*objects.LeadgenForm, *core.Response, error) {
 	var out objects.LeadgenForm
 	call := GetLeadgenFormBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLeadgenForm(ctx context.Context, client *core.Client, id string, params GetLeadgenFormParams) (*objects.LeadgenForm, error) {
+	out, _, err := GetLeadgenFormWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateLeadgenFormParams struct {
@@ -218,9 +238,14 @@ func DecodeUpdateLeadgenFormBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func UpdateLeadgenForm(ctx context.Context, client *core.Client, id string, params UpdateLeadgenFormParams) (*objects.LeadgenForm, error) {
+func UpdateLeadgenFormWithResponse(ctx context.Context, client *core.Client, id string, params UpdateLeadgenFormParams) (*objects.LeadgenForm, *core.Response, error) {
 	var out objects.LeadgenForm
 	call := UpdateLeadgenFormBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateLeadgenForm(ctx context.Context, client *core.Client, id string, params UpdateLeadgenFormParams) (*objects.LeadgenForm, error) {
+	out, _, err := UpdateLeadgenFormWithResponse(ctx, client, id, params)
+	return out, err
 }

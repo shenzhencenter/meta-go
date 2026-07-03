@@ -41,9 +41,14 @@ func DecodeGetWebsiteCreativeInfoBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetWebsiteCreativeInfo(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeInfoParams) (*objects.WebsiteCreativeInfo, error) {
+func GetWebsiteCreativeInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeInfoParams) (*objects.WebsiteCreativeInfo, *core.Response, error) {
 	var out objects.WebsiteCreativeInfo
 	call := GetWebsiteCreativeInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWebsiteCreativeInfo(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeInfoParams) (*objects.WebsiteCreativeInfo, error) {
+	out, _, err := GetWebsiteCreativeInfoWithResponse(ctx, client, id, params)
+	return out, err
 }

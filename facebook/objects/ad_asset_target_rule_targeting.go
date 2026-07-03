@@ -16,3 +16,27 @@ type AdAssetTargetRuleTargeting struct {
 	ThreadsPositions         *[]string                                          `json:"threads_positions,omitempty"`
 	WhatsappPositions        *[]string                                          `json:"whatsapp_positions,omitempty"`
 }
+
+var AdAssetTargetRuleTargetingFields = struct {
+	AgeMax                   string
+	AgeMin                   string
+	AudienceNetworkPositions string
+	DevicePlatforms          string
+	FacebookPositions        string
+	GeoLocations             string
+	InstagramPositions       string
+	PublisherPlatforms       string
+	ThreadsPositions         string
+	WhatsappPositions        string
+}{
+	AgeMax:                   "age_max",
+	AgeMin:                   "age_min",
+	AudienceNetworkPositions: "audience_network_positions",
+	DevicePlatforms:          "device_platforms",
+	FacebookPositions:        "facebook_positions",
+	GeoLocations:             "geo_locations",
+	InstagramPositions:       "instagram_positions",
+	PublisherPlatforms:       "publisher_platforms",
+	ThreadsPositions:         "threads_positions",
+	WhatsappPositions:        "whatsapp_positions",
+}

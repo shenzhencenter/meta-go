@@ -6,3 +6,15 @@ type ProductSetMetadata struct {
 	ExternalURL           *string `json:"external_url,omitempty"`
 	IntegrityReviewStatus *string `json:"integrity_review_status,omitempty"`
 }
+
+var ProductSetMetadataFields = struct {
+	CoverImageURL         string
+	Description           string
+	ExternalURL           string
+	IntegrityReviewStatus string
+}{
+	CoverImageURL:         "cover_image_url",
+	Description:           "description",
+	ExternalURL:           "external_url",
+	IntegrityReviewStatus: "integrity_review_status",
+}

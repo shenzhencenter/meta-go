@@ -14,3 +14,23 @@ type AdAccountMatchedSearchApplicationsEdgeData struct {
 	UniqueID                *core.ID `json:"unique_id,omitempty"`
 	URL                     *string  `json:"url,omitempty"`
 }
+
+var AdAccountMatchedSearchApplicationsEdgeDataFields = struct {
+	AppID                   string
+	AreAppEventsUnavailable string
+	IconURL                 string
+	Name                    string
+	SearchSourceStore       string
+	Store                   string
+	UniqueID                string
+	URL                     string
+}{
+	AppID:                   "app_id",
+	AreAppEventsUnavailable: "are_app_events_unavailable",
+	IconURL:                 "icon_url",
+	Name:                    "name",
+	SearchSourceStore:       "search_source_store",
+	Store:                   "store",
+	UniqueID:                "unique_id",
+	URL:                     "url",
+}

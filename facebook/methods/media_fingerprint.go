@@ -41,11 +41,16 @@ func DecodeGetMediaFingerprintBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetMediaFingerprint(ctx context.Context, client *core.Client, id string, params GetMediaFingerprintParams) (*objects.MediaFingerprint, error) {
+func GetMediaFingerprintWithResponse(ctx context.Context, client *core.Client, id string, params GetMediaFingerprintParams) (*objects.MediaFingerprint, *core.Response, error) {
 	var out objects.MediaFingerprint
 	call := GetMediaFingerprintBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMediaFingerprint(ctx context.Context, client *core.Client, id string, params GetMediaFingerprintParams) (*objects.MediaFingerprint, error) {
+	out, _, err := GetMediaFingerprintWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateMediaFingerprintParams struct {
@@ -98,9 +103,14 @@ func DecodeUpdateMediaFingerprintBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdateMediaFingerprint(ctx context.Context, client *core.Client, id string, params UpdateMediaFingerprintParams) (*objects.MediaFingerprint, error) {
+func UpdateMediaFingerprintWithResponse(ctx context.Context, client *core.Client, id string, params UpdateMediaFingerprintParams) (*objects.MediaFingerprint, *core.Response, error) {
 	var out objects.MediaFingerprint
 	call := UpdateMediaFingerprintBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateMediaFingerprint(ctx context.Context, client *core.Client, id string, params UpdateMediaFingerprintParams) (*objects.MediaFingerprint, error) {
+	out, _, err := UpdateMediaFingerprintWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetWebsiteCreativeAssetSuggestionsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetWebsiteCreativeAssetSuggestions(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeAssetSuggestionsParams) (*objects.WebsiteCreativeAssetSuggestions, error) {
+func GetWebsiteCreativeAssetSuggestionsWithResponse(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeAssetSuggestionsParams) (*objects.WebsiteCreativeAssetSuggestions, *core.Response, error) {
 	var out objects.WebsiteCreativeAssetSuggestions
 	call := GetWebsiteCreativeAssetSuggestionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWebsiteCreativeAssetSuggestions(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeAssetSuggestionsParams) (*objects.WebsiteCreativeAssetSuggestions, error) {
+	out, _, err := GetWebsiteCreativeAssetSuggestionsWithResponse(ctx, client, id, params)
+	return out, err
 }

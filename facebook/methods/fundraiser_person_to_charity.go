@@ -5,7 +5,6 @@ import (
 	core "github.com/shenzhencenter/meta-go/facebook"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetFundraiserPersonToCharityDonationsParams struct {
@@ -42,11 +41,16 @@ func DecodeGetFundraiserPersonToCharityDonationsBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetFundraiserPersonToCharityDonations(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityDonationsParams) (*core.Cursor[objects.InternalDonationForApp], error) {
+func GetFundraiserPersonToCharityDonationsWithResponse(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityDonationsParams) (*core.Cursor[objects.InternalDonationForApp], *core.Response, error) {
 	var out core.Cursor[objects.InternalDonationForApp]
 	call := GetFundraiserPersonToCharityDonationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFundraiserPersonToCharityDonations(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityDonationsParams) (*core.Cursor[objects.InternalDonationForApp], error) {
+	out, _, err := GetFundraiserPersonToCharityDonationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateFundraiserPersonToCharityEndFundraiserParams struct {
@@ -83,11 +87,16 @@ func DecodeCreateFundraiserPersonToCharityEndFundraiserBatchResponse(response *c
 	return &out, nil
 }
 
-func CreateFundraiserPersonToCharityEndFundraiser(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityEndFundraiserParams) (*map[string]interface{}, error) {
+func CreateFundraiserPersonToCharityEndFundraiserWithResponse(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityEndFundraiserParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateFundraiserPersonToCharityEndFundraiserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateFundraiserPersonToCharityEndFundraiser(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityEndFundraiserParams) (*map[string]interface{}, error) {
+	out, _, err := CreateFundraiserPersonToCharityEndFundraiserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetFundraiserPersonToCharityExternalDonationsParams struct {
@@ -124,11 +133,16 @@ func DecodeGetFundraiserPersonToCharityExternalDonationsBatchResponse(response *
 	return &out, nil
 }
 
-func GetFundraiserPersonToCharityExternalDonations(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityExternalDonationsParams) (*core.Cursor[objects.ExternalAppDonation], error) {
+func GetFundraiserPersonToCharityExternalDonationsWithResponse(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityExternalDonationsParams) (*core.Cursor[objects.ExternalAppDonation], *core.Response, error) {
 	var out core.Cursor[objects.ExternalAppDonation]
 	call := GetFundraiserPersonToCharityExternalDonationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFundraiserPersonToCharityExternalDonations(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityExternalDonationsParams) (*core.Cursor[objects.ExternalAppDonation], error) {
+	out, _, err := GetFundraiserPersonToCharityExternalDonationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateFundraiserPersonToCharityExternalDonationsParams struct {
@@ -175,11 +189,16 @@ func DecodeCreateFundraiserPersonToCharityExternalDonationsBatchResponse(respons
 	return &out, nil
 }
 
-func CreateFundraiserPersonToCharityExternalDonations(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityExternalDonationsParams) (*objects.ExternalAppDonation, error) {
+func CreateFundraiserPersonToCharityExternalDonationsWithResponse(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityExternalDonationsParams) (*objects.ExternalAppDonation, *core.Response, error) {
 	var out objects.ExternalAppDonation
 	call := CreateFundraiserPersonToCharityExternalDonationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateFundraiserPersonToCharityExternalDonations(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityExternalDonationsParams) (*objects.ExternalAppDonation, error) {
+	out, _, err := CreateFundraiserPersonToCharityExternalDonationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetFundraiserPersonToCharityParams struct {
@@ -216,18 +235,23 @@ func DecodeGetFundraiserPersonToCharityBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetFundraiserPersonToCharity(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, error) {
+func GetFundraiserPersonToCharityWithResponse(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, *core.Response, error) {
 	var out objects.FundraiserPersonToCharity
 	call := GetFundraiserPersonToCharityBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFundraiserPersonToCharity(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, error) {
+	out, _, err := GetFundraiserPersonToCharityWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateFundraiserPersonToCharityParams struct {
 	Description            *string     `facebook:"description"`
-	EndTime                *time.Time  `facebook:"end_time"`
+	EndTime                *core.Time  `facebook:"end_time"`
 	ExternalEventName      *string     `facebook:"external_event_name"`
-	ExternalEventStartTime *time.Time  `facebook:"external_event_start_time"`
+	ExternalEventStartTime *core.Time  `facebook:"external_event_start_time"`
 	ExternalEventURI       *string     `facebook:"external_event_uri"`
 	ExternalFundraiserURI  *string     `facebook:"external_fundraiser_uri"`
 	ExternalID             *core.ID    `facebook:"external_id"`
@@ -293,9 +317,14 @@ func DecodeUpdateFundraiserPersonToCharityBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func UpdateFundraiserPersonToCharity(ctx context.Context, client *core.Client, id string, params UpdateFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, error) {
+func UpdateFundraiserPersonToCharityWithResponse(ctx context.Context, client *core.Client, id string, params UpdateFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, *core.Response, error) {
 	var out objects.FundraiserPersonToCharity
 	call := UpdateFundraiserPersonToCharityBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateFundraiserPersonToCharity(ctx context.Context, client *core.Client, id string, params UpdateFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, error) {
+	out, _, err := UpdateFundraiserPersonToCharityWithResponse(ctx, client, id, params)
+	return out, err
 }

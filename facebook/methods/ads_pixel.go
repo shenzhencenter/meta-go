@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetAdsPixelAdaccountsParams struct {
@@ -45,11 +44,16 @@ func DecodeGetAdsPixelAdaccountsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetAdsPixelAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdsPixelAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetAdsPixelAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetAdsPixelAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdsPixelAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetAdsPixelAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdsPixelAgenciesParams struct {
@@ -88,11 +92,16 @@ func DecodeDeleteAdsPixelAgenciesBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func DeleteAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelAgenciesParams) (*map[string]interface{}, error) {
+func DeleteAdsPixelAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelAgenciesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdsPixelAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelAgenciesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdsPixelAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelAgenciesParams struct {
@@ -129,11 +138,16 @@ func DecodeGetAdsPixelAgenciesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params GetAdsPixelAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetAdsPixelAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetAdsPixelAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params GetAdsPixelAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetAdsPixelAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdsPixelAgenciesParams struct {
@@ -174,11 +188,16 @@ func DecodeCreateAdsPixelAgenciesBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAgenciesParams) (*objects.AdsPixel, error) {
+func CreateAdsPixelAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAgenciesParams) (*objects.AdsPixel, *core.Response, error) {
 	var out objects.AdsPixel
 	call := CreateAdsPixelAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAgenciesParams) (*objects.AdsPixel, error) {
+	out, _, err := CreateAdsPixelAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdsPixelAhpConfigsParams struct {
@@ -217,11 +236,16 @@ func DecodeCreateAdsPixelAhpConfigsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateAdsPixelAhpConfigs(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAhpConfigsParams) (*map[string]interface{}, error) {
+func CreateAdsPixelAhpConfigsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAhpConfigsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateAdsPixelAhpConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsPixelAhpConfigs(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAhpConfigsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateAdsPixelAhpConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelAssignedUsersParams struct {
@@ -260,11 +284,16 @@ func DecodeGetAdsPixelAssignedUsersBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetAdsPixelAssignedUsers(ctx context.Context, client *core.Client, id string, params GetAdsPixelAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+func GetAdsPixelAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelAssignedUsersParams) (*core.Cursor[objects.AssignedUser], *core.Response, error) {
 	var out core.Cursor[objects.AssignedUser]
 	call := GetAdsPixelAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelAssignedUsers(ctx context.Context, client *core.Client, id string, params GetAdsPixelAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+	out, _, err := GetAdsPixelAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdsPixelAssignedUsersParams struct {
@@ -305,11 +334,16 @@ func DecodeCreateAdsPixelAssignedUsersBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreateAdsPixelAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAssignedUsersParams) (*objects.AdsPixel, error) {
+func CreateAdsPixelAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAssignedUsersParams) (*objects.AdsPixel, *core.Response, error) {
 	var out objects.AdsPixel
 	call := CreateAdsPixelAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsPixelAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAssignedUsersParams) (*objects.AdsPixel, error) {
+	out, _, err := CreateAdsPixelAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelDaChecksParams struct {
@@ -354,11 +388,16 @@ func DecodeGetAdsPixelDaChecksBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetAdsPixelDaChecks(ctx context.Context, client *core.Client, id string, params GetAdsPixelDaChecksParams) (*core.Cursor[objects.DACheck], error) {
+func GetAdsPixelDaChecksWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelDaChecksParams) (*core.Cursor[objects.DACheck], *core.Response, error) {
 	var out core.Cursor[objects.DACheck]
 	call := GetAdsPixelDaChecksBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelDaChecks(ctx context.Context, client *core.Client, id string, params GetAdsPixelDaChecksParams) (*core.Cursor[objects.DACheck], error) {
+	out, _, err := GetAdsPixelDaChecksWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdsPixelEventsParams struct {
@@ -433,18 +472,23 @@ func DecodeCreateAdsPixelEventsBatchResponse(response *core.BatchResponse) (*map
 	return &out, nil
 }
 
-func CreateAdsPixelEvents(ctx context.Context, client *core.Client, id string, params CreateAdsPixelEventsParams) (*map[string]interface{}, error) {
+func CreateAdsPixelEventsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsPixelEventsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateAdsPixelEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsPixelEvents(ctx context.Context, client *core.Client, id string, params CreateAdsPixelEventsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateAdsPixelEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelOfflineEventUploadsParams struct {
-	EndTime   *time.Time                                        `facebook:"end_time"`
+	EndTime   *core.Time                                        `facebook:"end_time"`
 	Order     *enums.AdspixelofflineEventUploadsOrderEnumParam  `facebook:"order"`
 	SortBy    *enums.AdspixelofflineEventUploadsSortByEnumParam `facebook:"sort_by"`
-	StartTime *time.Time                                        `facebook:"start_time"`
+	StartTime *core.Time                                        `facebook:"start_time"`
 	UploadTag *string                                           `facebook:"upload_tag"`
 	Extra     core.Params                                       `facebook:"-"`
 }
@@ -494,11 +538,16 @@ func DecodeGetAdsPixelOfflineEventUploadsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetAdsPixelOfflineEventUploads(ctx context.Context, client *core.Client, id string, params GetAdsPixelOfflineEventUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], error) {
+func GetAdsPixelOfflineEventUploadsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelOfflineEventUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], *core.Response, error) {
 	var out core.Cursor[objects.OfflineConversionDataSetUpload]
 	call := GetAdsPixelOfflineEventUploadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelOfflineEventUploads(ctx context.Context, client *core.Client, id string, params GetAdsPixelOfflineEventUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], error) {
+	out, _, err := GetAdsPixelOfflineEventUploadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelOpenbridgeConfigurationsParams struct {
@@ -535,11 +584,16 @@ func DecodeGetAdsPixelOpenbridgeConfigurationsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetAdsPixelOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params GetAdsPixelOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], error) {
+func GetAdsPixelOpenbridgeConfigurationsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], *core.Response, error) {
 	var out core.Cursor[objects.OpenBridgeConfiguration]
 	call := GetAdsPixelOpenbridgeConfigurationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params GetAdsPixelOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], error) {
+	out, _, err := GetAdsPixelOpenbridgeConfigurationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdsPixelShadowtraffichelperParams struct {
@@ -576,11 +630,16 @@ func DecodeCreateAdsPixelShadowtraffichelperBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateAdsPixelShadowtraffichelper(ctx context.Context, client *core.Client, id string, params CreateAdsPixelShadowtraffichelperParams) (*map[string]interface{}, error) {
+func CreateAdsPixelShadowtraffichelperWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsPixelShadowtraffichelperParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateAdsPixelShadowtraffichelperBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsPixelShadowtraffichelper(ctx context.Context, client *core.Client, id string, params CreateAdsPixelShadowtraffichelperParams) (*map[string]interface{}, error) {
+	out, _, err := CreateAdsPixelShadowtraffichelperWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdsPixelSharedAccountsParams struct {
@@ -621,11 +680,16 @@ func DecodeDeleteAdsPixelSharedAccountsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func DeleteAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelSharedAccountsParams) (*map[string]interface{}, error) {
+func DeleteAdsPixelSharedAccountsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelSharedAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdsPixelSharedAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelSharedAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdsPixelSharedAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelSharedAccountsParams struct {
@@ -664,11 +728,16 @@ func DecodeGetAdsPixelSharedAccountsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetAdsPixelSharedAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetAdsPixelSharedAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetAdsPixelSharedAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdsPixelSharedAccountsParams struct {
@@ -709,11 +778,16 @@ func DecodeCreateAdsPixelSharedAccountsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params CreateAdsPixelSharedAccountsParams) (*objects.AdsPixel, error) {
+func CreateAdsPixelSharedAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsPixelSharedAccountsParams) (*objects.AdsPixel, *core.Response, error) {
 	var out objects.AdsPixel
 	call := CreateAdsPixelSharedAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params CreateAdsPixelSharedAccountsParams) (*objects.AdsPixel, error) {
+	out, _, err := CreateAdsPixelSharedAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelSharedAgenciesParams struct {
@@ -750,20 +824,25 @@ func DecodeGetAdsPixelSharedAgenciesBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetAdsPixelSharedAgencies(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetAdsPixelSharedAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetAdsPixelSharedAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelSharedAgencies(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetAdsPixelSharedAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelStatsParams struct {
 	Agent       *string                                  `facebook:"agent"`
 	Aggregation *enums.AdspixelstatsAggregationEnumParam `facebook:"aggregation"`
-	EndTime     *time.Time                               `facebook:"end_time"`
+	EndTime     *core.Time                               `facebook:"end_time"`
 	Event       *string                                  `facebook:"event"`
 	EventSource *string                                  `facebook:"event_source"`
-	StartTime   *time.Time                               `facebook:"start_time"`
+	StartTime   *core.Time                               `facebook:"start_time"`
 	Extra       core.Params                              `facebook:"-"`
 }
 
@@ -815,11 +894,16 @@ func DecodeGetAdsPixelStatsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetAdsPixelStats(ctx context.Context, client *core.Client, id string, params GetAdsPixelStatsParams) (*core.Cursor[objects.AdsPixelStatsResult], error) {
+func GetAdsPixelStatsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelStatsParams) (*core.Cursor[objects.AdsPixelStatsResult], *core.Response, error) {
 	var out core.Cursor[objects.AdsPixelStatsResult]
 	call := GetAdsPixelStatsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelStats(ctx context.Context, client *core.Client, id string, params GetAdsPixelStatsParams) (*core.Cursor[objects.AdsPixelStatsResult], error) {
+	out, _, err := GetAdsPixelStatsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsPixelParams struct {
@@ -856,11 +940,16 @@ func DecodeGetAdsPixelBatchResponse(response *core.BatchResponse) (*objects.AdsP
 	return &out, nil
 }
 
-func GetAdsPixel(ctx context.Context, client *core.Client, id string, params GetAdsPixelParams) (*objects.AdsPixel, error) {
+func GetAdsPixelWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelParams) (*objects.AdsPixel, *core.Response, error) {
 	var out objects.AdsPixel
 	call := GetAdsPixelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixel(ctx context.Context, client *core.Client, id string, params GetAdsPixelParams) (*objects.AdsPixel, error) {
+	out, _, err := GetAdsPixelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdsPixelParams struct {
@@ -929,9 +1018,14 @@ func DecodeUpdateAdsPixelBatchResponse(response *core.BatchResponse) (*objects.A
 	return &out, nil
 }
 
-func UpdateAdsPixel(ctx context.Context, client *core.Client, id string, params UpdateAdsPixelParams) (*objects.AdsPixel, error) {
+func UpdateAdsPixelWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdsPixelParams) (*objects.AdsPixel, *core.Response, error) {
 	var out objects.AdsPixel
 	call := UpdateAdsPixelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdsPixel(ctx context.Context, client *core.Client, id string, params UpdateAdsPixelParams) (*objects.AdsPixel, error) {
+	out, _, err := UpdateAdsPixelWithResponse(ctx, client, id, params)
+	return out, err
 }

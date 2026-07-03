@@ -11,3 +11,17 @@ type BusinessVideo struct {
 	Name            *string   `json:"name,omitempty"`
 	Video           *AdVideo  `json:"video,omitempty"`
 }
+
+var BusinessVideoFields = struct {
+	Business        string
+	ID              string
+	MediaLibraryURL string
+	Name            string
+	Video           string
+}{
+	Business:        "business",
+	ID:              "id",
+	MediaLibraryURL: "media_library_url",
+	Name:            "name",
+	Video:           "video",
+}

@@ -41,9 +41,14 @@ func DecodeGetAdPlacePageSetBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetAdPlacePageSet(ctx context.Context, client *core.Client, id string, params GetAdPlacePageSetParams) (*objects.AdPlacePageSet, error) {
+func GetAdPlacePageSetWithResponse(ctx context.Context, client *core.Client, id string, params GetAdPlacePageSetParams) (*objects.AdPlacePageSet, *core.Response, error) {
 	var out objects.AdPlacePageSet
 	call := GetAdPlacePageSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdPlacePageSet(ctx context.Context, client *core.Client, id string, params GetAdPlacePageSetParams) (*objects.AdPlacePageSet, error) {
+	out, _, err := GetAdPlacePageSetWithResponse(ctx, client, id, params)
+	return out, err
 }

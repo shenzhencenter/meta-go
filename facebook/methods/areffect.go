@@ -41,9 +41,14 @@ func DecodeGetAREffectBatchResponse(response *core.BatchResponse) (*objects.AREf
 	return &out, nil
 }
 
-func GetAREffect(ctx context.Context, client *core.Client, id string, params GetAREffectParams) (*objects.AREffect, error) {
+func GetAREffectWithResponse(ctx context.Context, client *core.Client, id string, params GetAREffectParams) (*objects.AREffect, *core.Response, error) {
 	var out objects.AREffect
 	call := GetAREffectBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAREffect(ctx context.Context, client *core.Client, id string, params GetAREffectParams) (*objects.AREffect, error) {
+	out, _, err := GetAREffectWithResponse(ctx, client, id, params)
+	return out, err
 }

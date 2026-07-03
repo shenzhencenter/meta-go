@@ -7,3 +7,9 @@ import (
 type AdCampaignGroupBudgetSchedulesPost struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var AdCampaignGroupBudgetSchedulesPostFields = struct {
+	ID string
+}{
+	ID: "id",
+}

@@ -9,3 +9,13 @@ type ProductSetTaxonCategory struct {
 	CategoryName *string  `json:"category_name,omitempty"`
 	ImageURL     *string  `json:"image_url,omitempty"`
 }
+
+var ProductSetTaxonCategoryFields = struct {
+	CategoryID   string
+	CategoryName string
+	ImageURL     string
+}{
+	CategoryID:   "category_id",
+	CategoryName: "category_name",
+	ImageURL:     "image_url",
+}

@@ -50,11 +50,16 @@ func DecodeGetProductSetAutomotiveModelsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetProductSetAutomotiveModels(ctx context.Context, client *core.Client, id string, params GetProductSetAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], error) {
+func GetProductSetAutomotiveModelsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], *core.Response, error) {
 	var out core.Cursor[objects.AutomotiveModel]
 	call := GetProductSetAutomotiveModelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetAutomotiveModels(ctx context.Context, client *core.Client, id string, params GetProductSetAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], error) {
+	out, _, err := GetProductSetAutomotiveModelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetDestinationsParams struct {
@@ -99,11 +104,16 @@ func DecodeGetProductSetDestinationsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductSetDestinations(ctx context.Context, client *core.Client, id string, params GetProductSetDestinationsParams) (*core.Cursor[objects.Destination], error) {
+func GetProductSetDestinationsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetDestinationsParams) (*core.Cursor[objects.Destination], *core.Response, error) {
 	var out core.Cursor[objects.Destination]
 	call := GetProductSetDestinationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetDestinations(ctx context.Context, client *core.Client, id string, params GetProductSetDestinationsParams) (*core.Cursor[objects.Destination], error) {
+	out, _, err := GetProductSetDestinationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetFlightsParams struct {
@@ -148,11 +158,16 @@ func DecodeGetProductSetFlightsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetProductSetFlights(ctx context.Context, client *core.Client, id string, params GetProductSetFlightsParams) (*core.Cursor[objects.Flight], error) {
+func GetProductSetFlightsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetFlightsParams) (*core.Cursor[objects.Flight], *core.Response, error) {
 	var out core.Cursor[objects.Flight]
 	call := GetProductSetFlightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetFlights(ctx context.Context, client *core.Client, id string, params GetProductSetFlightsParams) (*core.Cursor[objects.Flight], error) {
+	out, _, err := GetProductSetFlightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetHomeListingsParams struct {
@@ -197,11 +212,16 @@ func DecodeGetProductSetHomeListingsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductSetHomeListings(ctx context.Context, client *core.Client, id string, params GetProductSetHomeListingsParams) (*core.Cursor[objects.HomeListing], error) {
+func GetProductSetHomeListingsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetHomeListingsParams) (*core.Cursor[objects.HomeListing], *core.Response, error) {
 	var out core.Cursor[objects.HomeListing]
 	call := GetProductSetHomeListingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetHomeListings(ctx context.Context, client *core.Client, id string, params GetProductSetHomeListingsParams) (*core.Cursor[objects.HomeListing], error) {
+	out, _, err := GetProductSetHomeListingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetHotelsParams struct {
@@ -246,11 +266,16 @@ func DecodeGetProductSetHotelsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetProductSetHotels(ctx context.Context, client *core.Client, id string, params GetProductSetHotelsParams) (*core.Cursor[objects.Hotel], error) {
+func GetProductSetHotelsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetHotelsParams) (*core.Cursor[objects.Hotel], *core.Response, error) {
 	var out core.Cursor[objects.Hotel]
 	call := GetProductSetHotelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetHotels(ctx context.Context, client *core.Client, id string, params GetProductSetHotelsParams) (*core.Cursor[objects.Hotel], error) {
+	out, _, err := GetProductSetHotelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetProductsParams struct {
@@ -303,11 +328,16 @@ func DecodeGetProductSetProductsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetProductSetProducts(ctx context.Context, client *core.Client, id string, params GetProductSetProductsParams) (*core.Cursor[objects.ProductItem], error) {
+func GetProductSetProductsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetProductsParams) (*core.Cursor[objects.ProductItem], *core.Response, error) {
 	var out core.Cursor[objects.ProductItem]
 	call := GetProductSetProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetProducts(ctx context.Context, client *core.Client, id string, params GetProductSetProductsParams) (*core.Cursor[objects.ProductItem], error) {
+	out, _, err := GetProductSetProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetVehicleOffersParams struct {
@@ -352,11 +382,16 @@ func DecodeGetProductSetVehicleOffersBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetProductSetVehicleOffers(ctx context.Context, client *core.Client, id string, params GetProductSetVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], error) {
+func GetProductSetVehicleOffersWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], *core.Response, error) {
 	var out core.Cursor[objects.VehicleOffer]
 	call := GetProductSetVehicleOffersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetVehicleOffers(ctx context.Context, client *core.Client, id string, params GetProductSetVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], error) {
+	out, _, err := GetProductSetVehicleOffersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetVehiclesParams struct {
@@ -401,11 +436,16 @@ func DecodeGetProductSetVehiclesBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetProductSetVehicles(ctx context.Context, client *core.Client, id string, params GetProductSetVehiclesParams) (*core.Cursor[objects.Vehicle], error) {
+func GetProductSetVehiclesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetVehiclesParams) (*core.Cursor[objects.Vehicle], *core.Response, error) {
 	var out core.Cursor[objects.Vehicle]
 	call := GetProductSetVehiclesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSetVehicles(ctx context.Context, client *core.Client, id string, params GetProductSetVehiclesParams) (*core.Cursor[objects.Vehicle], error) {
+	out, _, err := GetProductSetVehiclesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductSetParams struct {
@@ -446,11 +486,16 @@ func DecodeDeleteProductSetBatchResponse(response *core.BatchResponse) (*map[str
 	return &out, nil
 }
 
-func DeleteProductSet(ctx context.Context, client *core.Client, id string, params DeleteProductSetParams) (*map[string]interface{}, error) {
+func DeleteProductSetWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductSetParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductSet(ctx context.Context, client *core.Client, id string, params DeleteProductSetParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductSetParams struct {
@@ -487,11 +532,16 @@ func DecodeGetProductSetBatchResponse(response *core.BatchResponse) (*objects.Pr
 	return &out, nil
 }
 
-func GetProductSet(ctx context.Context, client *core.Client, id string, params GetProductSetParams) (*objects.ProductSet, error) {
+func GetProductSetWithResponse(ctx context.Context, client *core.Client, id string, params GetProductSetParams) (*objects.ProductSet, *core.Response, error) {
 	var out objects.ProductSet
 	call := GetProductSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductSet(ctx context.Context, client *core.Client, id string, params GetProductSetParams) (*objects.ProductSet, error) {
+	out, _, err := GetProductSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateProductSetParams struct {
@@ -552,9 +602,14 @@ func DecodeUpdateProductSetBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func UpdateProductSet(ctx context.Context, client *core.Client, id string, params UpdateProductSetParams) (*objects.ProductSet, error) {
+func UpdateProductSetWithResponse(ctx context.Context, client *core.Client, id string, params UpdateProductSetParams) (*objects.ProductSet, *core.Response, error) {
 	var out objects.ProductSet
 	call := UpdateProductSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateProductSet(ctx context.Context, client *core.Client, id string, params UpdateProductSetParams) (*objects.ProductSet, error) {
+	out, _, err := UpdateProductSetWithResponse(ctx, client, id, params)
+	return out, err
 }

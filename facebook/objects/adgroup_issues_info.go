@@ -8,3 +8,19 @@ type AdgroupIssuesInfo struct {
 	Level        *string `json:"level,omitempty"`
 	Mid          *string `json:"mid,omitempty"`
 }
+
+var AdgroupIssuesInfoFields = struct {
+	ErrorCode    string
+	ErrorMessage string
+	ErrorSummary string
+	ErrorType    string
+	Level        string
+	Mid          string
+}{
+	ErrorCode:    "error_code",
+	ErrorMessage: "error_message",
+	ErrorSummary: "error_summary",
+	ErrorType:    "error_type",
+	Level:        "level",
+	Mid:          "mid",
+}

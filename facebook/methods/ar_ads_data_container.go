@@ -41,9 +41,14 @@ func DecodeGetArAdsDataContainerBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetArAdsDataContainer(ctx context.Context, client *core.Client, id string, params GetArAdsDataContainerParams) (*objects.ArAdsDataContainer, error) {
+func GetArAdsDataContainerWithResponse(ctx context.Context, client *core.Client, id string, params GetArAdsDataContainerParams) (*objects.ArAdsDataContainer, *core.Response, error) {
 	var out objects.ArAdsDataContainer
 	call := GetArAdsDataContainerBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetArAdsDataContainer(ctx context.Context, client *core.Client, id string, params GetArAdsDataContainerParams) (*objects.ArAdsDataContainer, error) {
+	out, _, err := GetArAdsDataContainerWithResponse(ctx, client, id, params)
+	return out, err
 }

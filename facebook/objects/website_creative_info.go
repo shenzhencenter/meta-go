@@ -9,3 +9,13 @@ type WebsiteCreativeInfo struct {
 	ImageUrls *[]string `json:"image_urls,omitempty"`
 	LinkURL   *string   `json:"link_url,omitempty"`
 }
+
+var WebsiteCreativeInfoFields = struct {
+	ID        string
+	ImageUrls string
+	LinkURL   string
+}{
+	ID:        "id",
+	ImageUrls: "image_urls",
+	LinkURL:   "link_url",
+}

@@ -9,3 +9,13 @@ type ContentBlockList struct {
 	ID       *core.ID  `json:"id,omitempty"`
 	Name     *string   `json:"name,omitempty"`
 }
+
+var ContentBlockListFields = struct {
+	Business string
+	ID       string
+	Name     string
+}{
+	Business: "business",
+	ID:       "id",
+	Name:     "name",
+}

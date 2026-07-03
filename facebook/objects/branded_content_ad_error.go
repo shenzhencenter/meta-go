@@ -13,3 +13,21 @@ type BrandedContentAdError struct {
 	ErrorSeverity    *string   `json:"error_severity,omitempty"`
 	HelpCenterID     *core.ID  `json:"help_center_id,omitempty"`
 }
+
+var BrandedContentAdErrorFields = struct {
+	BlameFieldSpec   string
+	ErrorCode        string
+	ErrorDescription string
+	ErrorMessage     string
+	ErrorPlacement   string
+	ErrorSeverity    string
+	HelpCenterID     string
+}{
+	BlameFieldSpec:   "blame_field_spec",
+	ErrorCode:        "error_code",
+	ErrorDescription: "error_description",
+	ErrorMessage:     "error_message",
+	ErrorPlacement:   "error_placement",
+	ErrorSeverity:    "error_severity",
+	HelpCenterID:     "help_center_id",
+}

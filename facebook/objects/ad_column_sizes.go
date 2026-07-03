@@ -15,3 +15,25 @@ type AdColumnSizes struct {
 	Tab             *string              `json:"tab,omitempty"`
 	View            *string              `json:"view,omitempty"`
 }
+
+var AdColumnSizesFields = struct {
+	AdmarketAccount string
+	AppID           string
+	Columns         string
+	ID              string
+	Owner           string
+	Page            string
+	Report          string
+	Tab             string
+	View            string
+}{
+	AdmarketAccount: "admarket_account",
+	AppID:           "app_id",
+	Columns:         "columns",
+	ID:              "id",
+	Owner:           "owner",
+	Page:            "page",
+	Report:          "report",
+	Tab:             "tab",
+	View:            "view",
+}

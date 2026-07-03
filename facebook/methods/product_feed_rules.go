@@ -41,9 +41,14 @@ func DecodeGetProductFeedRulesRulesBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetProductFeedRulesRules(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesRulesParams) (*core.Cursor[objects.ProductFeedRulesGet], error) {
+func GetProductFeedRulesRulesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesRulesParams) (*core.Cursor[objects.ProductFeedRulesGet], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeedRulesGet]
 	call := GetProductFeedRulesRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedRulesRules(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesRulesParams) (*core.Cursor[objects.ProductFeedRulesGet], error) {
+	out, _, err := GetProductFeedRulesRulesWithResponse(ctx, client, id, params)
+	return out, err
 }

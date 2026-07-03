@@ -41,9 +41,14 @@ func DecodeGetProductFeedScheduleBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetProductFeedSchedule(ctx context.Context, client *core.Client, id string, params GetProductFeedScheduleParams) (*objects.ProductFeedSchedule, error) {
+func GetProductFeedScheduleWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedScheduleParams) (*objects.ProductFeedSchedule, *core.Response, error) {
 	var out objects.ProductFeedSchedule
 	call := GetProductFeedScheduleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedSchedule(ctx context.Context, client *core.Client, id string, params GetProductFeedScheduleParams) (*objects.ProductFeedSchedule, error) {
+	out, _, err := GetProductFeedScheduleWithResponse(ctx, client, id, params)
+	return out, err
 }

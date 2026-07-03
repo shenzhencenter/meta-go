@@ -41,9 +41,14 @@ func DecodeGetCopyrightOwnershipTransferBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetCopyrightOwnershipTransfer(ctx context.Context, client *core.Client, id string, params GetCopyrightOwnershipTransferParams) (*objects.CopyrightOwnershipTransfer, error) {
+func GetCopyrightOwnershipTransferWithResponse(ctx context.Context, client *core.Client, id string, params GetCopyrightOwnershipTransferParams) (*objects.CopyrightOwnershipTransfer, *core.Response, error) {
 	var out objects.CopyrightOwnershipTransfer
 	call := GetCopyrightOwnershipTransferBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCopyrightOwnershipTransfer(ctx context.Context, client *core.Client, id string, params GetCopyrightOwnershipTransferParams) (*objects.CopyrightOwnershipTransfer, error) {
+	out, _, err := GetCopyrightOwnershipTransferWithResponse(ctx, client, id, params)
+	return out, err
 }

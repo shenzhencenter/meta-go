@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetAdSetActivitiesParams struct {
@@ -14,9 +13,9 @@ type GetAdSetActivitiesParams struct {
 	BusinessID *core.ID                                     `facebook:"business_id"`
 	Category   *enums.AdcampaignactivitiesCategoryEnumParam `facebook:"category"`
 	Limit      *int                                         `facebook:"limit"`
-	Since      *time.Time                                   `facebook:"since"`
+	Since      *core.Time                                   `facebook:"since"`
 	UID        *core.ID                                     `facebook:"uid"`
-	Until      *time.Time                                   `facebook:"until"`
+	Until      *core.Time                                   `facebook:"until"`
 	Extra      core.Params                                  `facebook:"-"`
 }
 
@@ -71,11 +70,16 @@ func DecodeGetAdSetActivitiesBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetAdSetActivities(ctx context.Context, client *core.Client, id string, params GetAdSetActivitiesParams) (*core.Cursor[objects.AdActivity], error) {
+func GetAdSetActivitiesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetActivitiesParams) (*core.Cursor[objects.AdActivity], *core.Response, error) {
 	var out core.Cursor[objects.AdActivity]
 	call := GetAdSetActivitiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetActivities(ctx context.Context, client *core.Client, id string, params GetAdSetActivitiesParams) (*core.Cursor[objects.AdActivity], error) {
+	out, _, err := GetAdSetActivitiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetAdStudiesParams struct {
@@ -112,11 +116,16 @@ func DecodeGetAdSetAdStudiesBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetAdSetAdStudies(ctx context.Context, client *core.Client, id string, params GetAdSetAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+func GetAdSetAdStudiesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetAdStudiesParams) (*core.Cursor[objects.AdStudy], *core.Response, error) {
 	var out core.Cursor[objects.AdStudy]
 	call := GetAdSetAdStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetAdStudies(ctx context.Context, client *core.Client, id string, params GetAdSetAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+	out, _, err := GetAdSetAdStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetAdcreativesParams struct {
@@ -153,11 +162,16 @@ func DecodeGetAdSetAdcreativesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetAdSetAdcreatives(ctx context.Context, client *core.Client, id string, params GetAdSetAdcreativesParams) (*core.Cursor[objects.AdCreative], error) {
+func GetAdSetAdcreativesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetAdcreativesParams) (*core.Cursor[objects.AdCreative], *core.Response, error) {
 	var out core.Cursor[objects.AdCreative]
 	call := GetAdSetAdcreativesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetAdcreatives(ctx context.Context, client *core.Client, id string, params GetAdSetAdcreativesParams) (*core.Cursor[objects.AdCreative], error) {
+	out, _, err := GetAdSetAdcreativesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdSetAdlabelsParams struct {
@@ -200,11 +214,16 @@ func DecodeDeleteAdSetAdlabelsBatchResponse(response *core.BatchResponse) (*map[
 	return &out, nil
 }
 
-func DeleteAdSetAdlabels(ctx context.Context, client *core.Client, id string, params DeleteAdSetAdlabelsParams) (*map[string]interface{}, error) {
+func DeleteAdSetAdlabelsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdSetAdlabelsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdSetAdlabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdSetAdlabels(ctx context.Context, client *core.Client, id string, params DeleteAdSetAdlabelsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdSetAdlabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdSetAdlabelsParams struct {
@@ -247,11 +266,16 @@ func DecodeCreateAdSetAdlabelsBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreateAdSetAdlabels(ctx context.Context, client *core.Client, id string, params CreateAdSetAdlabelsParams) (*objects.AdSet, error) {
+func CreateAdSetAdlabelsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdSetAdlabelsParams) (*objects.AdSet, *core.Response, error) {
 	var out objects.AdSet
 	call := CreateAdSetAdlabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdSetAdlabels(ctx context.Context, client *core.Client, id string, params CreateAdSetAdlabelsParams) (*objects.AdSet, error) {
+	out, _, err := CreateAdSetAdlabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetAdrulesGovernedParams struct {
@@ -292,11 +316,16 @@ func DecodeGetAdSetAdrulesGovernedBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdSetAdrulesGoverned(ctx context.Context, client *core.Client, id string, params GetAdSetAdrulesGovernedParams) (*core.Cursor[objects.AdRule], error) {
+func GetAdSetAdrulesGovernedWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetAdrulesGovernedParams) (*core.Cursor[objects.AdRule], *core.Response, error) {
 	var out core.Cursor[objects.AdRule]
 	call := GetAdSetAdrulesGovernedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetAdrulesGoverned(ctx context.Context, client *core.Client, id string, params GetAdSetAdrulesGovernedParams) (*core.Cursor[objects.AdRule], error) {
+	out, _, err := GetAdSetAdrulesGovernedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetAdsParams struct {
@@ -349,11 +378,16 @@ func DecodeGetAdSetAdsBatchResponse(response *core.BatchResponse) (*core.Cursor[
 	return &out, nil
 }
 
-func GetAdSetAds(ctx context.Context, client *core.Client, id string, params GetAdSetAdsParams) (*core.Cursor[objects.Ad], error) {
+func GetAdSetAdsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetAdsParams) (*core.Cursor[objects.Ad], *core.Response, error) {
 	var out core.Cursor[objects.Ad]
 	call := GetAdSetAdsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetAds(ctx context.Context, client *core.Client, id string, params GetAdSetAdsParams) (*core.Cursor[objects.Ad], error) {
+	out, _, err := GetAdSetAdsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetAsyncadrequestsParams struct {
@@ -394,16 +428,21 @@ func DecodeGetAdSetAsyncadrequestsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdSetAsyncadrequests(ctx context.Context, client *core.Client, id string, params GetAdSetAsyncadrequestsParams) (*core.Cursor[objects.AdAsyncRequest], error) {
+func GetAdSetAsyncadrequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetAsyncadrequestsParams) (*core.Cursor[objects.AdAsyncRequest], *core.Response, error) {
 	var out core.Cursor[objects.AdAsyncRequest]
 	call := GetAdSetAsyncadrequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetAsyncadrequests(ctx context.Context, client *core.Client, id string, params GetAdSetAsyncadrequestsParams) (*core.Cursor[objects.AdAsyncRequest], error) {
+	out, _, err := GetAdSetAsyncadrequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetBudgetSchedulesParams struct {
-	TimeStart *time.Time  `facebook:"time_start"`
-	TimeStop  *time.Time  `facebook:"time_stop"`
+	TimeStart *core.Time  `facebook:"time_start"`
+	TimeStop  *core.Time  `facebook:"time_stop"`
 	Extra     core.Params `facebook:"-"`
 }
 
@@ -443,11 +482,16 @@ func DecodeGetAdSetBudgetSchedulesBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdSetBudgetSchedules(ctx context.Context, client *core.Client, id string, params GetAdSetBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], error) {
+func GetAdSetBudgetSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], *core.Response, error) {
 	var out core.Cursor[objects.HighDemandPeriod]
 	call := GetAdSetBudgetSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetBudgetSchedules(ctx context.Context, client *core.Client, id string, params GetAdSetBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], error) {
+	out, _, err := GetAdSetBudgetSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdSetBudgetSchedulesParams struct {
@@ -492,11 +536,16 @@ func DecodeCreateAdSetBudgetSchedulesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateAdSetBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateAdSetBudgetSchedulesParams) (*objects.HighDemandPeriod, error) {
+func CreateAdSetBudgetSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdSetBudgetSchedulesParams) (*objects.HighDemandPeriod, *core.Response, error) {
 	var out objects.HighDemandPeriod
 	call := CreateAdSetBudgetSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdSetBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateAdSetBudgetSchedulesParams) (*objects.HighDemandPeriod, error) {
+	out, _, err := CreateAdSetBudgetSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetCopiesParams struct {
@@ -549,20 +598,25 @@ func DecodeGetAdSetCopiesBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetAdSetCopies(ctx context.Context, client *core.Client, id string, params GetAdSetCopiesParams) (*core.Cursor[objects.AdSet], error) {
+func GetAdSetCopiesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetCopiesParams) (*core.Cursor[objects.AdSet], *core.Response, error) {
 	var out core.Cursor[objects.AdSet]
 	call := GetAdSetCopiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetCopies(ctx context.Context, client *core.Client, id string, params GetAdSetCopiesParams) (*core.Cursor[objects.AdSet], error) {
+	out, _, err := GetAdSetCopiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdSetCopiesParams struct {
 	CampaignID     *core.ID                                     `facebook:"campaign_id"`
 	CreateDcoAdset *bool                                        `facebook:"create_dco_adset"`
 	DeepCopy       *bool                                        `facebook:"deep_copy"`
-	EndTime        *time.Time                                   `facebook:"end_time"`
+	EndTime        *core.Time                                   `facebook:"end_time"`
 	RenameOptions  *map[string]interface{}                      `facebook:"rename_options"`
-	StartTime      *time.Time                                   `facebook:"start_time"`
+	StartTime      *core.Time                                   `facebook:"start_time"`
 	StatusOption   *enums.AdcampaigncopiesStatusOptionEnumParam `facebook:"status_option"`
 	Extra          core.Params                                  `facebook:"-"`
 }
@@ -618,11 +672,16 @@ func DecodeCreateAdSetCopiesBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateAdSetCopies(ctx context.Context, client *core.Client, id string, params CreateAdSetCopiesParams) (*objects.AdSet, error) {
+func CreateAdSetCopiesWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdSetCopiesParams) (*objects.AdSet, *core.Response, error) {
 	var out objects.AdSet
 	call := CreateAdSetCopiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdSetCopies(ctx context.Context, client *core.Client, id string, params CreateAdSetCopiesParams) (*objects.AdSet, error) {
+	out, _, err := CreateAdSetCopiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetDeliveryEstimateParams struct {
@@ -671,11 +730,16 @@ func DecodeGetAdSetDeliveryEstimateBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetAdSetDeliveryEstimate(ctx context.Context, client *core.Client, id string, params GetAdSetDeliveryEstimateParams) (*core.Cursor[objects.AdCampaignDeliveryEstimate], error) {
+func GetAdSetDeliveryEstimateWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetDeliveryEstimateParams) (*core.Cursor[objects.AdCampaignDeliveryEstimate], *core.Response, error) {
 	var out core.Cursor[objects.AdCampaignDeliveryEstimate]
 	call := GetAdSetDeliveryEstimateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetDeliveryEstimate(ctx context.Context, client *core.Client, id string, params GetAdSetDeliveryEstimateParams) (*core.Cursor[objects.AdCampaignDeliveryEstimate], error) {
+	out, _, err := GetAdSetDeliveryEstimateWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetInsightsParams struct {
@@ -804,11 +868,16 @@ func DecodeGetAdSetInsightsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetAdSetInsights(ctx context.Context, client *core.Client, id string, params GetAdSetInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
+func GetAdSetInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetInsightsParams) (*core.Cursor[objects.AdsInsights], *core.Response, error) {
 	var out core.Cursor[objects.AdsInsights]
 	call := GetAdSetInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetInsights(ctx context.Context, client *core.Client, id string, params GetAdSetInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
+	out, _, err := GetAdSetInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdSetInsightsParams struct {
@@ -937,11 +1006,16 @@ func DecodeCreateAdSetInsightsBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreateAdSetInsights(ctx context.Context, client *core.Client, id string, params CreateAdSetInsightsParams) (*objects.AdReportRun, error) {
+func CreateAdSetInsightsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdSetInsightsParams) (*objects.AdReportRun, *core.Response, error) {
 	var out objects.AdReportRun
 	call := CreateAdSetInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdSetInsights(ctx context.Context, client *core.Client, id string, params CreateAdSetInsightsParams) (*objects.AdReportRun, error) {
+	out, _, err := CreateAdSetInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetMessageDeliveryEstimateParams struct {
@@ -1014,11 +1088,16 @@ func DecodeGetAdSetMessageDeliveryEstimateBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetAdSetMessageDeliveryEstimate(ctx context.Context, client *core.Client, id string, params GetAdSetMessageDeliveryEstimateParams) (*core.Cursor[objects.MessageDeliveryEstimate], error) {
+func GetAdSetMessageDeliveryEstimateWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetMessageDeliveryEstimateParams) (*core.Cursor[objects.MessageDeliveryEstimate], *core.Response, error) {
 	var out core.Cursor[objects.MessageDeliveryEstimate]
 	call := GetAdSetMessageDeliveryEstimateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetMessageDeliveryEstimate(ctx context.Context, client *core.Client, id string, params GetAdSetMessageDeliveryEstimateParams) (*core.Cursor[objects.MessageDeliveryEstimate], error) {
+	out, _, err := GetAdSetMessageDeliveryEstimateWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetTargetingsentencelinesParams struct {
@@ -1055,11 +1134,16 @@ func DecodeGetAdSetTargetingsentencelinesBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetAdSetTargetingsentencelines(ctx context.Context, client *core.Client, id string, params GetAdSetTargetingsentencelinesParams) (*core.Cursor[objects.TargetingSentenceLine], error) {
+func GetAdSetTargetingsentencelinesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetTargetingsentencelinesParams) (*core.Cursor[objects.TargetingSentenceLine], *core.Response, error) {
 	var out core.Cursor[objects.TargetingSentenceLine]
 	call := GetAdSetTargetingsentencelinesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSetTargetingsentencelines(ctx context.Context, client *core.Client, id string, params GetAdSetTargetingsentencelinesParams) (*core.Cursor[objects.TargetingSentenceLine], error) {
+	out, _, err := GetAdSetTargetingsentencelinesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdSetParams struct {
@@ -1096,11 +1180,16 @@ func DecodeDeleteAdSetBatchResponse(response *core.BatchResponse) (*map[string]i
 	return &out, nil
 }
 
-func DeleteAdSet(ctx context.Context, client *core.Client, id string, params DeleteAdSetParams) (*map[string]interface{}, error) {
+func DeleteAdSetWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdSetParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdSet(ctx context.Context, client *core.Client, id string, params DeleteAdSetParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdSetParams struct {
@@ -1153,11 +1242,16 @@ func DecodeGetAdSetBatchResponse(response *core.BatchResponse) (*objects.AdSet, 
 	return &out, nil
 }
 
-func GetAdSet(ctx context.Context, client *core.Client, id string, params GetAdSetParams) (*objects.AdSet, error) {
+func GetAdSetWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSetParams) (*objects.AdSet, *core.Response, error) {
 	var out objects.AdSet
 	call := GetAdSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSet(ctx context.Context, client *core.Client, id string, params GetAdSetParams) (*objects.AdSet, error) {
+	out, _, err := GetAdSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdSetParams struct {
@@ -1185,7 +1279,7 @@ type UpdateAdSetParams struct {
 	DestinationType                              *enums.AdcampaignDestinationType                   `facebook:"destination_type"`
 	DsaBeneficiary                               *string                                            `facebook:"dsa_beneficiary"`
 	DsaPayor                                     *string                                            `facebook:"dsa_payor"`
-	EndTime                                      *time.Time                                         `facebook:"end_time"`
+	EndTime                                      *core.Time                                         `facebook:"end_time"`
 	ExecutionOptions                             *[]enums.AdcampaignExecutionOptions                `facebook:"execution_options"`
 	ExistingCustomerBudgetPercentage             *uint64                                            `facebook:"existing_customer_budget_percentage"`
 	FrequencyControlSpecs                        *[]map[string]interface{}                          `facebook:"frequency_control_specs"`
@@ -1216,13 +1310,13 @@ type UpdateAdSetParams struct {
 	RegionalRegulationIdentities                 *map[string]interface{}                            `facebook:"regional_regulation_identities"`
 	RelativeValue                                *float64                                           `facebook:"relative_value"`
 	RfPredictionID                               *core.ID                                           `facebook:"rf_prediction_id"`
-	StartTime                                    *time.Time                                         `facebook:"start_time"`
+	StartTime                                    *core.Time                                         `facebook:"start_time"`
 	Status                                       *enums.AdcampaignStatus                            `facebook:"status"`
 	Targeting                                    *objects.Targeting                                 `facebook:"targeting"`
 	TimeBasedAdRotationIDBlocks                  *[][]uint64                                        `facebook:"time_based_ad_rotation_id_blocks"`
 	TimeBasedAdRotationIntervals                 *[]uint64                                          `facebook:"time_based_ad_rotation_intervals"`
-	TimeStart                                    *time.Time                                         `facebook:"time_start"`
-	TimeStop                                     *time.Time                                         `facebook:"time_stop"`
+	TimeStart                                    *core.Time                                         `facebook:"time_start"`
+	TimeStop                                     *core.Time                                         `facebook:"time_stop"`
 	TrendingTopicsSpec                           *map[string]interface{}                            `facebook:"trending_topics_spec"`
 	TuneForCategory                              *enums.AdcampaignTuneForCategory                   `facebook:"tune_for_category"`
 	ValueRuleSetID                               *core.ID                                           `facebook:"value_rule_set_id"`
@@ -1458,9 +1552,14 @@ func DecodeUpdateAdSetBatchResponse(response *core.BatchResponse) (*objects.AdSe
 	return &out, nil
 }
 
-func UpdateAdSet(ctx context.Context, client *core.Client, id string, params UpdateAdSetParams) (*objects.AdSet, error) {
+func UpdateAdSetWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdSetParams) (*objects.AdSet, *core.Response, error) {
 	var out objects.AdSet
 	call := UpdateAdSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdSet(ctx context.Context, client *core.Client, id string, params UpdateAdSetParams) (*objects.AdSet, error) {
+	out, _, err := UpdateAdSetWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -12,3 +12,19 @@ type AdStudyCell struct {
 	Name                *string    `json:"name,omitempty"`
 	TreatmentPercentage *float64   `json:"treatment_percentage,omitempty"`
 }
+
+var AdStudyCellFields = struct {
+	AdEntitiesCount     string
+	AdIds               string
+	ControlPercentage   string
+	ID                  string
+	Name                string
+	TreatmentPercentage string
+}{
+	AdEntitiesCount:     "ad_entities_count",
+	AdIds:               "ad_ids",
+	ControlPercentage:   "control_percentage",
+	ID:                  "id",
+	Name:                "name",
+	TreatmentPercentage: "treatment_percentage",
+}

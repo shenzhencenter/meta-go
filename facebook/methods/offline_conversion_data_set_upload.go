@@ -41,11 +41,16 @@ func DecodeGetOfflineConversionDataSetUploadProgressBatchResponse(response *core
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetUploadProgress(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadProgressParams) (*core.Cursor[objects.SignalsUploadProgress], error) {
+func GetOfflineConversionDataSetUploadProgressWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadProgressParams) (*core.Cursor[objects.SignalsUploadProgress], *core.Response, error) {
 	var out core.Cursor[objects.SignalsUploadProgress]
 	call := GetOfflineConversionDataSetUploadProgressBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetUploadProgress(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadProgressParams) (*core.Cursor[objects.SignalsUploadProgress], error) {
+	out, _, err := GetOfflineConversionDataSetUploadProgressWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetUploadPullSessionsParams struct {
@@ -82,11 +87,16 @@ func DecodeGetOfflineConversionDataSetUploadPullSessionsBatchResponse(response *
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetUploadPullSessions(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadPullSessionsParams) (*core.Cursor[objects.PartnerIntegrationPullSession], error) {
+func GetOfflineConversionDataSetUploadPullSessionsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadPullSessionsParams) (*core.Cursor[objects.PartnerIntegrationPullSession], *core.Response, error) {
 	var out core.Cursor[objects.PartnerIntegrationPullSession]
 	call := GetOfflineConversionDataSetUploadPullSessionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetUploadPullSessions(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadPullSessionsParams) (*core.Cursor[objects.PartnerIntegrationPullSession], error) {
+	out, _, err := GetOfflineConversionDataSetUploadPullSessionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetUploadParams struct {
@@ -123,9 +133,14 @@ func DecodeGetOfflineConversionDataSetUploadBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetUpload(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadParams) (*objects.OfflineConversionDataSetUpload, error) {
+func GetOfflineConversionDataSetUploadWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadParams) (*objects.OfflineConversionDataSetUpload, *core.Response, error) {
 	var out objects.OfflineConversionDataSetUpload
 	call := GetOfflineConversionDataSetUploadBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetUpload(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadParams) (*objects.OfflineConversionDataSetUpload, error) {
+	out, _, err := GetOfflineConversionDataSetUploadWithResponse(ctx, client, id, params)
+	return out, err
 }

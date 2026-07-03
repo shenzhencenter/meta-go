@@ -42,11 +42,16 @@ func DecodeGetAdStudyObjectiveAdspixelsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetAdStudyObjectiveAdspixels(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveAdspixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+func GetAdStudyObjectiveAdspixelsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveAdspixelsParams) (*core.Cursor[objects.AdsPixel], *core.Response, error) {
 	var out core.Cursor[objects.AdsPixel]
 	call := GetAdStudyObjectiveAdspixelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectiveAdspixels(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveAdspixelsParams) (*core.Cursor[objects.AdsPixel], error) {
+	out, _, err := GetAdStudyObjectiveAdspixelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectiveApplicationsParams struct {
@@ -83,11 +88,16 @@ func DecodeGetAdStudyObjectiveApplicationsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetAdStudyObjectiveApplications(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveApplicationsParams) (*core.Cursor[objects.Application], error) {
+func GetAdStudyObjectiveApplicationsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveApplicationsParams) (*core.Cursor[objects.Application], *core.Response, error) {
 	var out core.Cursor[objects.Application]
 	call := GetAdStudyObjectiveApplicationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectiveApplications(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveApplicationsParams) (*core.Cursor[objects.Application], error) {
+	out, _, err := GetAdStudyObjectiveApplicationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectiveBrandRequestsParams struct {
@@ -124,11 +134,16 @@ func DecodeGetAdStudyObjectiveBrandRequestsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetAdStudyObjectiveBrandRequests(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveBrandRequestsParams) (*core.Cursor[objects.BrandRequest], error) {
+func GetAdStudyObjectiveBrandRequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveBrandRequestsParams) (*core.Cursor[objects.BrandRequest], *core.Response, error) {
 	var out core.Cursor[objects.BrandRequest]
 	call := GetAdStudyObjectiveBrandRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectiveBrandRequests(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveBrandRequestsParams) (*core.Cursor[objects.BrandRequest], error) {
+	out, _, err := GetAdStudyObjectiveBrandRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectiveCustomconversionsParams struct {
@@ -165,11 +180,16 @@ func DecodeGetAdStudyObjectiveCustomconversionsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetAdStudyObjectiveCustomconversions(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveCustomconversionsParams) (*core.Cursor[objects.CustomConversion], error) {
+func GetAdStudyObjectiveCustomconversionsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveCustomconversionsParams) (*core.Cursor[objects.CustomConversion], *core.Response, error) {
 	var out core.Cursor[objects.CustomConversion]
 	call := GetAdStudyObjectiveCustomconversionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectiveCustomconversions(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveCustomconversionsParams) (*core.Cursor[objects.CustomConversion], error) {
+	out, _, err := GetAdStudyObjectiveCustomconversionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectiveOfflineConversionDataSetsParams struct {
@@ -206,11 +226,16 @@ func DecodeGetAdStudyObjectiveOfflineConversionDataSetsBatchResponse(response *c
 	return &out, nil
 }
 
-func GetAdStudyObjectiveOfflineConversionDataSets(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveOfflineConversionDataSetsParams) (*core.Cursor[objects.OfflineConversionDataSet], error) {
+func GetAdStudyObjectiveOfflineConversionDataSetsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveOfflineConversionDataSetsParams) (*core.Cursor[objects.OfflineConversionDataSet], *core.Response, error) {
 	var out core.Cursor[objects.OfflineConversionDataSet]
 	call := GetAdStudyObjectiveOfflineConversionDataSetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectiveOfflineConversionDataSets(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveOfflineConversionDataSetsParams) (*core.Cursor[objects.OfflineConversionDataSet], error) {
+	out, _, err := GetAdStudyObjectiveOfflineConversionDataSetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectivePartnerPrivateStudiesParams struct {
@@ -247,11 +272,16 @@ func DecodeGetAdStudyObjectivePartnerPrivateStudiesBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetAdStudyObjectivePartnerPrivateStudies(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectivePartnerPrivateStudiesParams) (*core.Cursor[objects.Business], error) {
+func GetAdStudyObjectivePartnerPrivateStudiesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectivePartnerPrivateStudiesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetAdStudyObjectivePartnerPrivateStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectivePartnerPrivateStudies(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectivePartnerPrivateStudiesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetAdStudyObjectivePartnerPrivateStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectivePartnerstudiesParams struct {
@@ -288,11 +318,16 @@ func DecodeGetAdStudyObjectivePartnerstudiesBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetAdStudyObjectivePartnerstudies(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectivePartnerstudiesParams) (*core.Cursor[objects.PartnerStudy], error) {
+func GetAdStudyObjectivePartnerstudiesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectivePartnerstudiesParams) (*core.Cursor[objects.PartnerStudy], *core.Response, error) {
 	var out core.Cursor[objects.PartnerStudy]
 	call := GetAdStudyObjectivePartnerstudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjectivePartnerstudies(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectivePartnerstudiesParams) (*core.Cursor[objects.PartnerStudy], error) {
+	out, _, err := GetAdStudyObjectivePartnerstudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyObjectiveParams struct {
@@ -337,11 +372,16 @@ func DecodeGetAdStudyObjectiveBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetAdStudyObjective(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveParams) (*objects.AdStudyObjective, error) {
+func GetAdStudyObjectiveWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveParams) (*objects.AdStudyObjective, *core.Response, error) {
 	var out objects.AdStudyObjective
 	call := GetAdStudyObjectiveBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyObjective(ctx context.Context, client *core.Client, id string, params GetAdStudyObjectiveParams) (*objects.AdStudyObjective, error) {
+	out, _, err := GetAdStudyObjectiveWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdStudyObjectiveParams struct {
@@ -418,9 +458,14 @@ func DecodeUpdateAdStudyObjectiveBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdateAdStudyObjective(ctx context.Context, client *core.Client, id string, params UpdateAdStudyObjectiveParams) (*objects.AdStudyObjective, error) {
+func UpdateAdStudyObjectiveWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdStudyObjectiveParams) (*objects.AdStudyObjective, *core.Response, error) {
 	var out objects.AdStudyObjective
 	call := UpdateAdStudyObjectiveBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdStudyObjective(ctx context.Context, client *core.Client, id string, params UpdateAdStudyObjectiveParams) (*objects.AdStudyObjective, error) {
+	out, _, err := UpdateAdStudyObjectiveWithResponse(ctx, client, id, params)
+	return out, err
 }

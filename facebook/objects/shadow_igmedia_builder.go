@@ -11,3 +11,17 @@ type ShadowIGMediaBuilder struct {
 	StatusCode           *string                       `json:"status_code,omitempty"`
 	VideoStatus          *IGResumableVideoUploadStatus `json:"video_status,omitempty"`
 }
+
+var ShadowIGMediaBuilderFields = struct {
+	CopyrightCheckStatus string
+	ID                   string
+	Status               string
+	StatusCode           string
+	VideoStatus          string
+}{
+	CopyrightCheckStatus: "copyright_check_status",
+	ID:                   "id",
+	Status:               "status",
+	StatusCode:           "status_code",
+	VideoStatus:          "video_status",
+}

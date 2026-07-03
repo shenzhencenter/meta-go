@@ -5,3 +5,13 @@ type PageParking struct {
 	Street *uint64 `json:"street,omitempty"`
 	Valet  *uint64 `json:"valet,omitempty"`
 }
+
+var PageParkingFields = struct {
+	Lot    string
+	Street string
+	Valet  string
+}{
+	Lot:    "lot",
+	Street: "street",
+	Valet:  "valet",
+}

@@ -41,11 +41,16 @@ func DecodeGetBusinessAssetSharingAgreementBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetBusinessAssetSharingAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessAssetSharingAgreementParams) (*objects.BusinessAssetSharingAgreement, error) {
+func GetBusinessAssetSharingAgreementWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAssetSharingAgreementParams) (*objects.BusinessAssetSharingAgreement, *core.Response, error) {
 	var out objects.BusinessAssetSharingAgreement
 	call := GetBusinessAssetSharingAgreementBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAssetSharingAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessAssetSharingAgreementParams) (*objects.BusinessAssetSharingAgreement, error) {
+	out, _, err := GetBusinessAssetSharingAgreementWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateBusinessAssetSharingAgreementParams struct {
@@ -86,9 +91,14 @@ func DecodeUpdateBusinessAssetSharingAgreementBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func UpdateBusinessAssetSharingAgreement(ctx context.Context, client *core.Client, id string, params UpdateBusinessAssetSharingAgreementParams) (*objects.BusinessAssetSharingAgreement, error) {
+func UpdateBusinessAssetSharingAgreementWithResponse(ctx context.Context, client *core.Client, id string, params UpdateBusinessAssetSharingAgreementParams) (*objects.BusinessAssetSharingAgreement, *core.Response, error) {
 	var out objects.BusinessAssetSharingAgreement
 	call := UpdateBusinessAssetSharingAgreementBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateBusinessAssetSharingAgreement(ctx context.Context, client *core.Client, id string, params UpdateBusinessAssetSharingAgreementParams) (*objects.BusinessAssetSharingAgreement, error) {
+	out, _, err := UpdateBusinessAssetSharingAgreementWithResponse(ctx, client, id, params)
+	return out, err
 }

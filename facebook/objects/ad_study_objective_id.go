@@ -9,3 +9,13 @@ type AdStudyObjectiveID struct {
 	ID         *core.ID  `json:"id,omitempty"`
 	Type       *string   `json:"type,omitempty"`
 }
+
+var AdStudyObjectiveIDFields = struct {
+	EventNames string
+	ID         string
+	Type       string
+}{
+	EventNames: "event_names",
+	ID:         "id",
+	Type:       "type",
+}

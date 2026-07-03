@@ -41,9 +41,14 @@ func DecodeGetCallAdsPhoneDataBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetCallAdsPhoneData(ctx context.Context, client *core.Client, id string, params GetCallAdsPhoneDataParams) (*objects.CallAdsPhoneData, error) {
+func GetCallAdsPhoneDataWithResponse(ctx context.Context, client *core.Client, id string, params GetCallAdsPhoneDataParams) (*objects.CallAdsPhoneData, *core.Response, error) {
 	var out objects.CallAdsPhoneData
 	call := GetCallAdsPhoneDataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCallAdsPhoneData(ctx context.Context, client *core.Client, id string, params GetCallAdsPhoneDataParams) (*objects.CallAdsPhoneData, error) {
+	out, _, err := GetCallAdsPhoneDataWithResponse(ctx, client, id, params)
+	return out, err
 }

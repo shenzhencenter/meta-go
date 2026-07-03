@@ -41,9 +41,14 @@ func DecodeGetAdSavedLocationBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetAdSavedLocation(ctx context.Context, client *core.Client, id string, params GetAdSavedLocationParams) (*objects.AdSavedLocation, error) {
+func GetAdSavedLocationWithResponse(ctx context.Context, client *core.Client, id string, params GetAdSavedLocationParams) (*objects.AdSavedLocation, *core.Response, error) {
 	var out objects.AdSavedLocation
 	call := GetAdSavedLocationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdSavedLocation(ctx context.Context, client *core.Client, id string, params GetAdSavedLocationParams) (*objects.AdSavedLocation, error) {
+	out, _, err := GetAdSavedLocationWithResponse(ctx, client, id, params)
+	return out, err
 }

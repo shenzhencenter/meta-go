@@ -41,9 +41,14 @@ func DecodeGetFantasyGameBatchResponse(response *core.BatchResponse) (*objects.F
 	return &out, nil
 }
 
-func GetFantasyGame(ctx context.Context, client *core.Client, id string, params GetFantasyGameParams) (*objects.FantasyGame, error) {
+func GetFantasyGameWithResponse(ctx context.Context, client *core.Client, id string, params GetFantasyGameParams) (*objects.FantasyGame, *core.Response, error) {
 	var out objects.FantasyGame
 	call := GetFantasyGameBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFantasyGame(ctx context.Context, client *core.Client, id string, params GetFantasyGameParams) (*objects.FantasyGame, error) {
+	out, _, err := GetFantasyGameWithResponse(ctx, client, id, params)
+	return out, err
 }

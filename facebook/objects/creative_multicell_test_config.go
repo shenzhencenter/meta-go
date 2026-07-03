@@ -10,3 +10,23 @@ type CreativeMulticellTestConfig struct {
 	LifetimeBudget         *int    `json:"lifetime_budget,omitempty"`
 	UseExistingDailyBudget *bool   `json:"use_existing_daily_budget,omitempty"`
 }
+
+var CreativeMulticellTestConfigFields = struct {
+	BudgetPercentage       string
+	BudgetSource           string
+	ConfiguredCellCount    string
+	DailyBudget            string
+	EntrySource            string
+	LeadGenForms           string
+	LifetimeBudget         string
+	UseExistingDailyBudget string
+}{
+	BudgetPercentage:       "budget_percentage",
+	BudgetSource:           "budget_source",
+	ConfiguredCellCount:    "configured_cell_count",
+	DailyBudget:            "daily_budget",
+	EntrySource:            "entry_source",
+	LeadGenForms:           "lead_gen_forms",
+	LifetimeBudget:         "lifetime_budget",
+	UseExistingDailyBudget: "use_existing_daily_budget",
+}

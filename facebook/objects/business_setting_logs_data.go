@@ -7,3 +7,17 @@ type BusinessSettingLogsData struct {
 	EventType   *string                 `json:"event_type,omitempty"`
 	ExtraData   *map[string]interface{} `json:"extra_data,omitempty"`
 }
+
+var BusinessSettingLogsDataFields = struct {
+	Actor       string
+	EventObject string
+	EventTime   string
+	EventType   string
+	ExtraData   string
+}{
+	Actor:       "actor",
+	EventObject: "event_object",
+	EventTime:   "event_time",
+	EventType:   "event_type",
+	ExtraData:   "extra_data",
+}

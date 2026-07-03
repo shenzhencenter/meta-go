@@ -17,3 +17,29 @@ type ShadowIGMediaProductTags struct {
 	X                       *float64 `json:"x,omitempty"`
 	Y                       *float64 `json:"y,omitempty"`
 }
+
+var ShadowIGMediaProductTagsFields = struct {
+	ImageURL                string
+	IsCheckout              string
+	MerchantID              string
+	Name                    string
+	PriceString             string
+	ProductID               string
+	ReviewStatus            string
+	StrippedPriceString     string
+	StrippedSalePriceString string
+	X                       string
+	Y                       string
+}{
+	ImageURL:                "image_url",
+	IsCheckout:              "is_checkout",
+	MerchantID:              "merchant_id",
+	Name:                    "name",
+	PriceString:             "price_string",
+	ProductID:               "product_id",
+	ReviewStatus:            "review_status",
+	StrippedPriceString:     "stripped_price_string",
+	StrippedSalePriceString: "stripped_sale_price_string",
+	X:                       "x",
+	Y:                       "y",
+}

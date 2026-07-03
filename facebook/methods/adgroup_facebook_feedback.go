@@ -46,9 +46,14 @@ func DecodeGetAdgroupFacebookFeedbackCommentsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetAdgroupFacebookFeedbackComments(ctx context.Context, client *core.Client, id string, params GetAdgroupFacebookFeedbackCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetAdgroupFacebookFeedbackCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdgroupFacebookFeedbackCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetAdgroupFacebookFeedbackCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdgroupFacebookFeedbackComments(ctx context.Context, client *core.Client, id string, params GetAdgroupFacebookFeedbackCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetAdgroupFacebookFeedbackCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }

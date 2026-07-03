@@ -41,9 +41,14 @@ func DecodeGetCreatorAssetCreativeBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetCreatorAssetCreative(ctx context.Context, client *core.Client, id string, params GetCreatorAssetCreativeParams) (*objects.CreatorAssetCreative, error) {
+func GetCreatorAssetCreativeWithResponse(ctx context.Context, client *core.Client, id string, params GetCreatorAssetCreativeParams) (*objects.CreatorAssetCreative, *core.Response, error) {
 	var out objects.CreatorAssetCreative
 	call := GetCreatorAssetCreativeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCreatorAssetCreative(ctx context.Context, client *core.Client, id string, params GetCreatorAssetCreativeParams) (*objects.CreatorAssetCreative, error) {
+	out, _, err := GetCreatorAssetCreativeWithResponse(ctx, client, id, params)
+	return out, err
 }

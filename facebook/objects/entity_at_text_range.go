@@ -13,3 +13,19 @@ type EntityAtTextRange struct {
 	Offset *uint64                      `json:"offset,omitempty"`
 	Type   *enums.EntityattextrangeType `json:"type,omitempty"`
 }
+
+var EntityAtTextRangeFields = struct {
+	ID     string
+	Length string
+	Name   string
+	Object string
+	Offset string
+	Type   string
+}{
+	ID:     "id",
+	Length: "length",
+	Name:   "name",
+	Object: "object",
+	Offset: "offset",
+	Type:   "type",
+}

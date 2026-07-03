@@ -41,11 +41,16 @@ func DecodeGetAudioCopyrightUpdateRecordsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetAudioCopyrightUpdateRecords(ctx context.Context, client *core.Client, id string, params GetAudioCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], error) {
+func GetAudioCopyrightUpdateRecordsWithResponse(ctx context.Context, client *core.Client, id string, params GetAudioCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], *core.Response, error) {
 	var out core.Cursor[objects.MediaCopyrightUpdateRecord]
 	call := GetAudioCopyrightUpdateRecordsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAudioCopyrightUpdateRecords(ctx context.Context, client *core.Client, id string, params GetAudioCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], error) {
+	out, _, err := GetAudioCopyrightUpdateRecordsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAudioCopyrightParams struct {
@@ -82,9 +87,14 @@ func DecodeGetAudioCopyrightBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetAudioCopyright(ctx context.Context, client *core.Client, id string, params GetAudioCopyrightParams) (*objects.AudioCopyright, error) {
+func GetAudioCopyrightWithResponse(ctx context.Context, client *core.Client, id string, params GetAudioCopyrightParams) (*objects.AudioCopyright, *core.Response, error) {
 	var out objects.AudioCopyright
 	call := GetAudioCopyrightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAudioCopyright(ctx context.Context, client *core.Client, id string, params GetAudioCopyrightParams) (*objects.AudioCopyright, error) {
+	out, _, err := GetAudioCopyrightWithResponse(ctx, client, id, params)
+	return out, err
 }

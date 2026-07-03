@@ -11,3 +11,17 @@ type URL struct {
 	OwnershipPermissions *map[string]interface{} `json:"ownership_permissions,omitempty"`
 	Scopes               *map[string]interface{} `json:"scopes,omitempty"`
 }
+
+var URLFields = struct {
+	Engagement           string
+	ID                   string
+	OgObject             string
+	OwnershipPermissions string
+	Scopes               string
+}{
+	Engagement:           "engagement",
+	ID:                   "id",
+	OgObject:             "og_object",
+	OwnershipPermissions: "ownership_permissions",
+	Scopes:               "scopes",
+}

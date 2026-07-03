@@ -15,3 +15,25 @@ type AdsCustomPivotsPreview struct {
 	CampaignName    *string   `json:"campaign_name,omitempty"`
 	CustomBreakdown *[]string `json:"custom_breakdown,omitempty"`
 }
+
+var AdsCustomPivotsPreviewFields = struct {
+	AccountID       string
+	AccountName     string
+	AdID            string
+	AdName          string
+	AdsetID         string
+	AdsetName       string
+	CampaignID      string
+	CampaignName    string
+	CustomBreakdown string
+}{
+	AccountID:       "account_id",
+	AccountName:     "account_name",
+	AdID:            "ad_id",
+	AdName:          "ad_name",
+	AdsetID:         "adset_id",
+	AdsetName:       "adset_name",
+	CampaignID:      "campaign_id",
+	CampaignName:    "campaign_name",
+	CustomBreakdown: "custom_breakdown",
+}

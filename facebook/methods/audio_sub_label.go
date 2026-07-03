@@ -41,9 +41,14 @@ func DecodeGetAudioSubLabelBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetAudioSubLabel(ctx context.Context, client *core.Client, id string, params GetAudioSubLabelParams) (*objects.AudioSubLabel, error) {
+func GetAudioSubLabelWithResponse(ctx context.Context, client *core.Client, id string, params GetAudioSubLabelParams) (*objects.AudioSubLabel, *core.Response, error) {
 	var out objects.AudioSubLabel
 	call := GetAudioSubLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAudioSubLabel(ctx context.Context, client *core.Client, id string, params GetAudioSubLabelParams) (*objects.AudioSubLabel, error) {
+	out, _, err := GetAudioSubLabelWithResponse(ctx, client, id, params)
+	return out, err
 }

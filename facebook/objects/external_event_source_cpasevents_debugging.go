@@ -15,3 +15,25 @@ type ExternalEventSourceCPASEventsDebugging struct {
 	MissingIds      *core.ID `json:"missing_ids,omitempty"`
 	Severity        *string  `json:"severity,omitempty"`
 }
+
+var ExternalEventSourceCPASEventsDebuggingFields = struct {
+	ActualEventTime string
+	AppVersion      string
+	ContentURL      string
+	DeviceOs        string
+	Diagnostic      string
+	EventName       string
+	EventTime       string
+	MissingIds      string
+	Severity        string
+}{
+	ActualEventTime: "actual_event_time",
+	AppVersion:      "app_version",
+	ContentURL:      "content_url",
+	DeviceOs:        "device_os",
+	Diagnostic:      "diagnostic",
+	EventName:       "event_name",
+	EventTime:       "event_time",
+	MissingIds:      "missing_ids",
+	Severity:        "severity",
+}

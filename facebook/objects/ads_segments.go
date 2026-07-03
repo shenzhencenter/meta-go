@@ -15,3 +15,25 @@ type AdsSegments struct {
 	ProjectedCpm          *int      `json:"projected_cpm,omitempty"`
 	ProjectedDailyRevenue *int      `json:"projected_daily_revenue,omitempty"`
 }
+
+var AdsSegmentsFields = struct {
+	DailyAudienceSize     string
+	DailyImpressions      string
+	Description           string
+	ID                    string
+	Name                  string
+	Path                  string
+	Popularity            string
+	ProjectedCpm          string
+	ProjectedDailyRevenue string
+}{
+	DailyAudienceSize:     "daily_audience_size",
+	DailyImpressions:      "daily_impressions",
+	Description:           "description",
+	ID:                    "id",
+	Name:                  "name",
+	Path:                  "path",
+	Popularity:            "popularity",
+	ProjectedCpm:          "projected_cpm",
+	ProjectedDailyRevenue: "projected_daily_revenue",
+}

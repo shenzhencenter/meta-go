@@ -41,9 +41,14 @@ func DecodeGetBCPCampaignBatchResponse(response *core.BatchResponse) (*objects.B
 	return &out, nil
 }
 
-func GetBCPCampaign(ctx context.Context, client *core.Client, id string, params GetBCPCampaignParams) (*objects.BCPCampaign, error) {
+func GetBCPCampaignWithResponse(ctx context.Context, client *core.Client, id string, params GetBCPCampaignParams) (*objects.BCPCampaign, *core.Response, error) {
 	var out objects.BCPCampaign
 	call := GetBCPCampaignBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBCPCampaign(ctx context.Context, client *core.Client, id string, params GetBCPCampaignParams) (*objects.BCPCampaign, error) {
+	out, _, err := GetBCPCampaignWithResponse(ctx, client, id, params)
+	return out, err
 }

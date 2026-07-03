@@ -41,9 +41,14 @@ func DecodeGetBusinessObjectTransferOwnershipAgreementBatchResponse(response *co
 	return &out, nil
 }
 
-func GetBusinessObjectTransferOwnershipAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessObjectTransferOwnershipAgreementParams) (*objects.BusinessObjectTransferOwnershipAgreement, error) {
+func GetBusinessObjectTransferOwnershipAgreementWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessObjectTransferOwnershipAgreementParams) (*objects.BusinessObjectTransferOwnershipAgreement, *core.Response, error) {
 	var out objects.BusinessObjectTransferOwnershipAgreement
 	call := GetBusinessObjectTransferOwnershipAgreementBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessObjectTransferOwnershipAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessObjectTransferOwnershipAgreementParams) (*objects.BusinessObjectTransferOwnershipAgreement, error) {
+	out, _, err := GetBusinessObjectTransferOwnershipAgreementWithResponse(ctx, client, id, params)
+	return out, err
 }

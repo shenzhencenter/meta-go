@@ -42,11 +42,16 @@ func DecodeGetHomeListingChannelsToIntegrityStatusBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetHomeListingChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetHomeListingChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetHomeListingChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetHomeListingChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetHomeListingChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHomeListingChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetHomeListingChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetHomeListingChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHomeListingOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetHomeListingOverrideDetailsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetHomeListingOverrideDetails(ctx context.Context, client *core.Client, id string, params GetHomeListingOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetHomeListingOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetHomeListingOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetHomeListingOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHomeListingOverrideDetails(ctx context.Context, client *core.Client, id string, params GetHomeListingOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetHomeListingOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHomeListingVideosMetadataParams struct {
@@ -132,11 +142,16 @@ func DecodeGetHomeListingVideosMetadataBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetHomeListingVideosMetadata(ctx context.Context, client *core.Client, id string, params GetHomeListingVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetHomeListingVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetHomeListingVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetHomeListingVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHomeListingVideosMetadata(ctx context.Context, client *core.Client, id string, params GetHomeListingVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetHomeListingVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteHomeListingParams struct {
@@ -173,11 +188,16 @@ func DecodeDeleteHomeListingBatchResponse(response *core.BatchResponse) (*map[st
 	return &out, nil
 }
 
-func DeleteHomeListing(ctx context.Context, client *core.Client, id string, params DeleteHomeListingParams) (*map[string]interface{}, error) {
+func DeleteHomeListingWithResponse(ctx context.Context, client *core.Client, id string, params DeleteHomeListingParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteHomeListingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteHomeListing(ctx context.Context, client *core.Client, id string, params DeleteHomeListingParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteHomeListingWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHomeListingParams struct {
@@ -214,11 +234,16 @@ func DecodeGetHomeListingBatchResponse(response *core.BatchResponse) (*objects.H
 	return &out, nil
 }
 
-func GetHomeListing(ctx context.Context, client *core.Client, id string, params GetHomeListingParams) (*objects.HomeListing, error) {
+func GetHomeListingWithResponse(ctx context.Context, client *core.Client, id string, params GetHomeListingParams) (*objects.HomeListing, *core.Response, error) {
 	var out objects.HomeListing
 	call := GetHomeListingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHomeListing(ctx context.Context, client *core.Client, id string, params GetHomeListingParams) (*objects.HomeListing, error) {
+	out, _, err := GetHomeListingWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateHomeListingParams struct {
@@ -311,9 +336,14 @@ func DecodeUpdateHomeListingBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func UpdateHomeListing(ctx context.Context, client *core.Client, id string, params UpdateHomeListingParams) (*objects.HomeListing, error) {
+func UpdateHomeListingWithResponse(ctx context.Context, client *core.Client, id string, params UpdateHomeListingParams) (*objects.HomeListing, *core.Response, error) {
 	var out objects.HomeListing
 	call := UpdateHomeListingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateHomeListing(ctx context.Context, client *core.Client, id string, params UpdateHomeListingParams) (*objects.HomeListing, error) {
+	out, _, err := UpdateHomeListingWithResponse(ctx, client, id, params)
+	return out, err
 }

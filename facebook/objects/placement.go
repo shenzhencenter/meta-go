@@ -24,3 +24,43 @@ type Placement struct {
 	ThreadsPositions                  *[]string                                  `json:"threads_positions,omitempty"`
 	WhatsappPositions                 *[]string                                  `json:"whatsapp_positions,omitempty"`
 }
+
+var PlacementFields = struct {
+	AudienceNetworkPositions          string
+	DevicePlatforms                   string
+	EffectiveAudienceNetworkPositions string
+	EffectiveDevicePlatforms          string
+	EffectiveFacebookPositions        string
+	EffectiveInstagramPositions       string
+	EffectiveMessengerPositions       string
+	EffectiveOculusPositions          string
+	EffectivePublisherPlatforms       string
+	EffectiveThreadsPositions         string
+	EffectiveWhatsappPositions        string
+	FacebookPositions                 string
+	InstagramPositions                string
+	MessengerPositions                string
+	OculusPositions                   string
+	PublisherPlatforms                string
+	ThreadsPositions                  string
+	WhatsappPositions                 string
+}{
+	AudienceNetworkPositions:          "audience_network_positions",
+	DevicePlatforms:                   "device_platforms",
+	EffectiveAudienceNetworkPositions: "effective_audience_network_positions",
+	EffectiveDevicePlatforms:          "effective_device_platforms",
+	EffectiveFacebookPositions:        "effective_facebook_positions",
+	EffectiveInstagramPositions:       "effective_instagram_positions",
+	EffectiveMessengerPositions:       "effective_messenger_positions",
+	EffectiveOculusPositions:          "effective_oculus_positions",
+	EffectivePublisherPlatforms:       "effective_publisher_platforms",
+	EffectiveThreadsPositions:         "effective_threads_positions",
+	EffectiveWhatsappPositions:        "effective_whatsapp_positions",
+	FacebookPositions:                 "facebook_positions",
+	InstagramPositions:                "instagram_positions",
+	MessengerPositions:                "messenger_positions",
+	OculusPositions:                   "oculus_positions",
+	PublisherPlatforms:                "publisher_platforms",
+	ThreadsPositions:                  "threads_positions",
+	WhatsappPositions:                 "whatsapp_positions",
+}

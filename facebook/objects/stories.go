@@ -12,3 +12,19 @@ type Stories struct {
 	Status       *string  `json:"status,omitempty"`
 	URL          *string  `json:"url,omitempty"`
 }
+
+var StoriesFields = struct {
+	CreationTime string
+	MediaID      string
+	MediaType    string
+	PostID       string
+	Status       string
+	URL          string
+}{
+	CreationTime: "creation_time",
+	MediaID:      "media_id",
+	MediaType:    "media_type",
+	PostID:       "post_id",
+	Status:       "status",
+	URL:          "url",
+}

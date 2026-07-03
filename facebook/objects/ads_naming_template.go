@@ -16,3 +16,25 @@ type AdsNamingTemplate struct {
 	UserDefinedFields *[][]map[string][]string            `json:"user_defined_fields,omitempty"`
 	ValueSeparator    *string                             `json:"value_separator,omitempty"`
 }
+
+var AdsNamingTemplateFields = struct {
+	APIFields         string
+	APIVersion        string
+	FieldOrder        string
+	ID                string
+	Level             string
+	Separator         string
+	TemplateVersion   string
+	UserDefinedFields string
+	ValueSeparator    string
+}{
+	APIFields:         "api_fields",
+	APIVersion:        "api_version",
+	FieldOrder:        "field_order",
+	ID:                "id",
+	Level:             "level",
+	Separator:         "separator",
+	TemplateVersion:   "template_version",
+	UserDefinedFields: "user_defined_fields",
+	ValueSeparator:    "value_separator",
+}

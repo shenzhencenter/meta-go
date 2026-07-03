@@ -11,3 +11,17 @@ type PagePublisher struct {
 	Name           *string  `json:"name,omitempty"`
 	URL            *string  `json:"url,omitempty"`
 }
+
+var PagePublisherFields = struct {
+	GlobalParentID string
+	Icon           string
+	ID             string
+	Name           string
+	URL            string
+}{
+	GlobalParentID: "global_parent_id",
+	Icon:           "icon",
+	ID:             "id",
+	Name:           "name",
+	URL:            "url",
+}

@@ -9,3 +9,13 @@ type TargetingSentenceLine struct {
 	Params                 *Targeting     `json:"params,omitempty"`
 	Targetingsentencelines *[]interface{} `json:"targetingsentencelines,omitempty"`
 }
+
+var TargetingSentenceLineFields = struct {
+	ID                     string
+	Params                 string
+	Targetingsentencelines string
+}{
+	ID:                     "id",
+	Params:                 "params",
+	Targetingsentencelines: "targetingsentencelines",
+}

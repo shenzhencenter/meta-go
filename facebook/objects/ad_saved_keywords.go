@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AdSavedKeywords struct {
@@ -11,6 +10,24 @@ type AdSavedKeywords struct {
 	Keywords    *AdKeywords `json:"keywords,omitempty"`
 	Name        *string     `json:"name,omitempty"`
 	RunStatus   *string     `json:"run_status,omitempty"`
-	TimeCreated *time.Time  `json:"time_created,omitempty"`
-	TimeUpdated *time.Time  `json:"time_updated,omitempty"`
+	TimeCreated *core.Time  `json:"time_created,omitempty"`
+	TimeUpdated *core.Time  `json:"time_updated,omitempty"`
+}
+
+var AdSavedKeywordsFields = struct {
+	Account     string
+	ID          string
+	Keywords    string
+	Name        string
+	RunStatus   string
+	TimeCreated string
+	TimeUpdated string
+}{
+	Account:     "account",
+	ID:          "id",
+	Keywords:    "keywords",
+	Name:        "name",
+	RunStatus:   "run_status",
+	TimeCreated: "time_created",
+	TimeUpdated: "time_updated",
 }

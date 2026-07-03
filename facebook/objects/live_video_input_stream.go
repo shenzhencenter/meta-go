@@ -14,3 +14,23 @@ type LiveVideoInputStream struct {
 	StreamID        *core.ID                `json:"stream_id,omitempty"`
 	StreamURL       *string                 `json:"stream_url,omitempty"`
 }
+
+var LiveVideoInputStreamFields = struct {
+	DashIngestURL   string
+	DashPreviewURL  string
+	ID              string
+	IsMaster        string
+	SecureStreamURL string
+	StreamHealth    string
+	StreamID        string
+	StreamURL       string
+}{
+	DashIngestURL:   "dash_ingest_url",
+	DashPreviewURL:  "dash_preview_url",
+	ID:              "id",
+	IsMaster:        "is_master",
+	SecureStreamURL: "secure_stream_url",
+	StreamHealth:    "stream_health",
+	StreamID:        "stream_id",
+	StreamURL:       "stream_url",
+}

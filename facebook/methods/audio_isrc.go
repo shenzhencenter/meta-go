@@ -41,9 +41,14 @@ func DecodeGetAudioIsrcBatchResponse(response *core.BatchResponse) (*objects.Aud
 	return &out, nil
 }
 
-func GetAudioIsrc(ctx context.Context, client *core.Client, id string, params GetAudioIsrcParams) (*objects.AudioIsrc, error) {
+func GetAudioIsrcWithResponse(ctx context.Context, client *core.Client, id string, params GetAudioIsrcParams) (*objects.AudioIsrc, *core.Response, error) {
 	var out objects.AudioIsrc
 	call := GetAudioIsrcBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAudioIsrc(ctx context.Context, client *core.Client, id string, params GetAudioIsrcParams) (*objects.AudioIsrc, error) {
+	out, _, err := GetAudioIsrcWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetPartnerAccountLinkingBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetPartnerAccountLinking(ctx context.Context, client *core.Client, id string, params GetPartnerAccountLinkingParams) (*objects.PartnerAccountLinking, error) {
+func GetPartnerAccountLinkingWithResponse(ctx context.Context, client *core.Client, id string, params GetPartnerAccountLinkingParams) (*objects.PartnerAccountLinking, *core.Response, error) {
 	var out objects.PartnerAccountLinking
 	call := GetPartnerAccountLinkingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPartnerAccountLinking(ctx context.Context, client *core.Client, id string, params GetPartnerAccountLinkingParams) (*objects.PartnerAccountLinking, error) {
+	out, _, err := GetPartnerAccountLinkingWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetAudioAssetBatchResponse(response *core.BatchResponse) (*objects.Au
 	return &out, nil
 }
 
-func GetAudioAsset(ctx context.Context, client *core.Client, id string, params GetAudioAssetParams) (*objects.AudioAsset, error) {
+func GetAudioAssetWithResponse(ctx context.Context, client *core.Client, id string, params GetAudioAssetParams) (*objects.AudioAsset, *core.Response, error) {
 	var out objects.AudioAsset
 	call := GetAudioAssetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAudioAsset(ctx context.Context, client *core.Client, id string, params GetAudioAssetParams) (*objects.AudioAsset, error) {
+	out, _, err := GetAudioAssetWithResponse(ctx, client, id, params)
+	return out, err
 }

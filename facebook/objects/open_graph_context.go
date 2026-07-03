@@ -7,3 +7,9 @@ import (
 type OpenGraphContext struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var OpenGraphContextFields = struct {
+	ID string
+}{
+	ID: "id",
+}

@@ -42,11 +42,16 @@ func DecodeGetAutomotiveModelChannelsToIntegrityStatusBatchResponse(response *co
 	return &out, nil
 }
 
-func GetAutomotiveModelChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetAutomotiveModelChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetAutomotiveModelChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAutomotiveModelChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetAutomotiveModelChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAutomotiveModelOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetAutomotiveModelOverrideDetailsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetAutomotiveModelOverrideDetails(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetAutomotiveModelOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetAutomotiveModelOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAutomotiveModelOverrideDetails(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetAutomotiveModelOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAutomotiveModelVideosMetadataParams struct {
@@ -132,11 +142,16 @@ func DecodeGetAutomotiveModelVideosMetadataBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetAutomotiveModelVideosMetadata(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetAutomotiveModelVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetAutomotiveModelVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAutomotiveModelVideosMetadata(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetAutomotiveModelVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAutomotiveModelParams struct {
@@ -173,9 +188,14 @@ func DecodeGetAutomotiveModelBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetAutomotiveModel(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelParams) (*objects.AutomotiveModel, error) {
+func GetAutomotiveModelWithResponse(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelParams) (*objects.AutomotiveModel, *core.Response, error) {
 	var out objects.AutomotiveModel
 	call := GetAutomotiveModelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAutomotiveModel(ctx context.Context, client *core.Client, id string, params GetAutomotiveModelParams) (*objects.AutomotiveModel, error) {
+	out, _, err := GetAutomotiveModelWithResponse(ctx, client, id, params)
+	return out, err
 }

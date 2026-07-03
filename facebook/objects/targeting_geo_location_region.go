@@ -5,3 +5,13 @@ type TargetingGeoLocationRegion struct {
 	Key     *string `json:"key,omitempty"`
 	Name    *string `json:"name,omitempty"`
 }
+
+var TargetingGeoLocationRegionFields = struct {
+	Country string
+	Key     string
+	Name    string
+}{
+	Country: "country",
+	Key:     "key",
+	Name:    "name",
+}

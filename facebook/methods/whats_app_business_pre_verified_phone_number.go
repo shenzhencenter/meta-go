@@ -42,11 +42,16 @@ func DecodeGetWhatsAppBusinessPreVerifiedPhoneNumberPartnersBatchResponse(respon
 	return &out, nil
 }
 
-func GetWhatsAppBusinessPreVerifiedPhoneNumberPartners(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessPreVerifiedPhoneNumberPartnersParams) (*core.Cursor[objects.Business], error) {
+func GetWhatsAppBusinessPreVerifiedPhoneNumberPartnersWithResponse(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessPreVerifiedPhoneNumberPartnersParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetWhatsAppBusinessPreVerifiedPhoneNumberPartnersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWhatsAppBusinessPreVerifiedPhoneNumberPartners(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessPreVerifiedPhoneNumberPartnersParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetWhatsAppBusinessPreVerifiedPhoneNumberPartnersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeParams struct {
@@ -87,11 +92,16 @@ func DecodeCreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeBatchResponse(
 	return &out, nil
 }
 
-func CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCode(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeParams) (*map[string]interface{}, error) {
+func CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeWithResponse(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCode(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeParams) (*map[string]interface{}, error) {
+	out, _, err := CreateWhatsAppBusinessPreVerifiedPhoneNumberRequestCodeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeParams struct {
@@ -130,11 +140,16 @@ func DecodeCreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeBatchResponse(r
 	return &out, nil
 }
 
-func CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCode(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeParams) (*map[string]interface{}, error) {
+func CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeWithResponse(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCode(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeParams) (*map[string]interface{}, error) {
+	out, _, err := CreateWhatsAppBusinessPreVerifiedPhoneNumberVerifyCodeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteWhatsAppBusinessPreVerifiedPhoneNumberParams struct {
@@ -171,11 +186,16 @@ func DecodeDeleteWhatsAppBusinessPreVerifiedPhoneNumberBatchResponse(response *c
 	return &out, nil
 }
 
-func DeleteWhatsAppBusinessPreVerifiedPhoneNumber(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessPreVerifiedPhoneNumberParams) (*map[string]interface{}, error) {
+func DeleteWhatsAppBusinessPreVerifiedPhoneNumberWithResponse(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessPreVerifiedPhoneNumberParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteWhatsAppBusinessPreVerifiedPhoneNumberBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteWhatsAppBusinessPreVerifiedPhoneNumber(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessPreVerifiedPhoneNumberParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteWhatsAppBusinessPreVerifiedPhoneNumberWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetWhatsAppBusinessPreVerifiedPhoneNumberParams struct {
@@ -212,9 +232,14 @@ func DecodeGetWhatsAppBusinessPreVerifiedPhoneNumberBatchResponse(response *core
 	return &out, nil
 }
 
-func GetWhatsAppBusinessPreVerifiedPhoneNumber(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessPreVerifiedPhoneNumberParams) (*objects.WhatsAppBusinessPreVerifiedPhoneNumber, error) {
+func GetWhatsAppBusinessPreVerifiedPhoneNumberWithResponse(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessPreVerifiedPhoneNumberParams) (*objects.WhatsAppBusinessPreVerifiedPhoneNumber, *core.Response, error) {
 	var out objects.WhatsAppBusinessPreVerifiedPhoneNumber
 	call := GetWhatsAppBusinessPreVerifiedPhoneNumberBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWhatsAppBusinessPreVerifiedPhoneNumber(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessPreVerifiedPhoneNumberParams) (*objects.WhatsAppBusinessPreVerifiedPhoneNumber, error) {
+	out, _, err := GetWhatsAppBusinessPreVerifiedPhoneNumberWithResponse(ctx, client, id, params)
+	return out, err
 }

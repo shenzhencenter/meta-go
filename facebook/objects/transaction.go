@@ -29,3 +29,51 @@ type Transaction struct {
 	TxType                  *uint64                       `json:"tx_type,omitempty"`
 	VatInvoiceID            *core.ID                      `json:"vat_invoice_id,omitempty"`
 }
+
+var TransactionFields = struct {
+	AccountID               string
+	AppAmount               string
+	BillingEndTime          string
+	BillingReason           string
+	BillingStartTime        string
+	CardChargeMode          string
+	ChargeType              string
+	CheckoutCampaignGroupID string
+	CredentialID            string
+	FaturaID                string
+	ID                      string
+	IsBusinessEcCharge      string
+	IsFundingEvent          string
+	PaymentOption           string
+	ProductType             string
+	ProviderAmount          string
+	Status                  string
+	Time                    string
+	TrackingID              string
+	TransactionType         string
+	TxType                  string
+	VatInvoiceID            string
+}{
+	AccountID:               "account_id",
+	AppAmount:               "app_amount",
+	BillingEndTime:          "billing_end_time",
+	BillingReason:           "billing_reason",
+	BillingStartTime:        "billing_start_time",
+	CardChargeMode:          "card_charge_mode",
+	ChargeType:              "charge_type",
+	CheckoutCampaignGroupID: "checkout_campaign_group_id",
+	CredentialID:            "credential_id",
+	FaturaID:                "fatura_id",
+	ID:                      "id",
+	IsBusinessEcCharge:      "is_business_ec_charge",
+	IsFundingEvent:          "is_funding_event",
+	PaymentOption:           "payment_option",
+	ProductType:             "product_type",
+	ProviderAmount:          "provider_amount",
+	Status:                  "status",
+	Time:                    "time",
+	TrackingID:              "tracking_id",
+	TransactionType:         "transaction_type",
+	TxType:                  "tx_type",
+	VatInvoiceID:            "vat_invoice_id",
+}

@@ -10,3 +10,15 @@ type AdsPixelCapabilityOverride struct {
 	OverrideValue *string  `json:"override_value,omitempty"`
 	Reason        *string  `json:"reason,omitempty"`
 }
+
+var AdsPixelCapabilityOverrideFields = struct {
+	Capability    string
+	ID            string
+	OverrideValue string
+	Reason        string
+}{
+	Capability:    "capability",
+	ID:            "id",
+	OverrideValue: "override_value",
+	Reason:        "reason",
+}

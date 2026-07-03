@@ -11,3 +11,17 @@ type Experience struct {
 	Name        *string                 `json:"name,omitempty"`
 	With        *[]User                 `json:"with,omitempty"`
 }
+
+var ExperienceFields = struct {
+	Description string
+	From        string
+	ID          string
+	Name        string
+	With        string
+}{
+	Description: "description",
+	From:        "from",
+	ID:          "id",
+	Name:        "name",
+	With:        "with",
+}

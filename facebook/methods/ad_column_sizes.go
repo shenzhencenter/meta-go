@@ -41,9 +41,14 @@ func DecodeGetAdColumnSizesBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetAdColumnSizes(ctx context.Context, client *core.Client, id string, params GetAdColumnSizesParams) (*objects.AdColumnSizes, error) {
+func GetAdColumnSizesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdColumnSizesParams) (*objects.AdColumnSizes, *core.Response, error) {
 	var out objects.AdColumnSizes
 	call := GetAdColumnSizesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdColumnSizes(ctx context.Context, client *core.Client, id string, params GetAdColumnSizesParams) (*objects.AdColumnSizes, error) {
+	out, _, err := GetAdColumnSizesWithResponse(ctx, client, id, params)
+	return out, err
 }

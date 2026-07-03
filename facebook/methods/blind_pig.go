@@ -41,9 +41,14 @@ func DecodeGetBlindPigBatchResponse(response *core.BatchResponse) (*objects.Blin
 	return &out, nil
 }
 
-func GetBlindPig(ctx context.Context, client *core.Client, id string, params GetBlindPigParams) (*objects.BlindPig, error) {
+func GetBlindPigWithResponse(ctx context.Context, client *core.Client, id string, params GetBlindPigParams) (*objects.BlindPig, *core.Response, error) {
 	var out objects.BlindPig
 	call := GetBlindPigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBlindPig(ctx context.Context, client *core.Client, id string, params GetBlindPigParams) (*objects.BlindPig, error) {
+	out, _, err := GetBlindPigWithResponse(ctx, client, id, params)
+	return out, err
 }

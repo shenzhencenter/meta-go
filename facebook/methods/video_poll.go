@@ -42,11 +42,16 @@ func DecodeGetVideoPollPollOptionsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetVideoPollPollOptions(ctx context.Context, client *core.Client, id string, params GetVideoPollPollOptionsParams) (*core.Cursor[objects.VideoPollOption], error) {
+func GetVideoPollPollOptionsWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoPollPollOptionsParams) (*core.Cursor[objects.VideoPollOption], *core.Response, error) {
 	var out core.Cursor[objects.VideoPollOption]
 	call := GetVideoPollPollOptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoPollPollOptions(ctx context.Context, client *core.Client, id string, params GetVideoPollPollOptionsParams) (*core.Cursor[objects.VideoPollOption], error) {
+	out, _, err := GetVideoPollPollOptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetVideoPollParams struct {
@@ -83,11 +88,16 @@ func DecodeGetVideoPollBatchResponse(response *core.BatchResponse) (*objects.Vid
 	return &out, nil
 }
 
-func GetVideoPoll(ctx context.Context, client *core.Client, id string, params GetVideoPollParams) (*objects.VideoPoll, error) {
+func GetVideoPollWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoPollParams) (*objects.VideoPoll, *core.Response, error) {
 	var out objects.VideoPoll
 	call := GetVideoPollBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoPoll(ctx context.Context, client *core.Client, id string, params GetVideoPollParams) (*objects.VideoPoll, error) {
+	out, _, err := GetVideoPollWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateVideoPollParams struct {
@@ -142,9 +152,14 @@ func DecodeUpdateVideoPollBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func UpdateVideoPoll(ctx context.Context, client *core.Client, id string, params UpdateVideoPollParams) (*objects.VideoPoll, error) {
+func UpdateVideoPollWithResponse(ctx context.Context, client *core.Client, id string, params UpdateVideoPollParams) (*objects.VideoPoll, *core.Response, error) {
 	var out objects.VideoPoll
 	call := UpdateVideoPollBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateVideoPoll(ctx context.Context, client *core.Client, id string, params UpdateVideoPollParams) (*objects.VideoPoll, error) {
+	out, _, err := UpdateVideoPollWithResponse(ctx, client, id, params)
+	return out, err
 }

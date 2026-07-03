@@ -9,3 +9,13 @@ type AdNetworkAnalyticsSyncQueryResult struct {
 	QueryID        *core.ID                  `json:"query_id,omitempty"`
 	Results        *[]map[string]interface{} `json:"results,omitempty"`
 }
+
+var AdNetworkAnalyticsSyncQueryResultFields = struct {
+	OmittedResults string
+	QueryID        string
+	Results        string
+}{
+	OmittedResults: "omitted_results",
+	QueryID:        "query_id",
+	Results:        "results",
+}

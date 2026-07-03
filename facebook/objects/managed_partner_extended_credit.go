@@ -9,3 +9,13 @@ type ManagedPartnerExtendedCredit struct {
 	MaxBalance                      *CurrencyAmount                 `json:"max_balance,omitempty"`
 	ReceivingCreditAllocationConfig *ExtendedCreditAllocationConfig `json:"receiving_credit_allocation_config,omitempty"`
 }
+
+var ManagedPartnerExtendedCreditFields = struct {
+	ID                              string
+	MaxBalance                      string
+	ReceivingCreditAllocationConfig string
+}{
+	ID:                              "id",
+	MaxBalance:                      "max_balance",
+	ReceivingCreditAllocationConfig: "receiving_credit_allocation_config",
+}

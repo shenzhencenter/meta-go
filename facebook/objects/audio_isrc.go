@@ -15,3 +15,25 @@ type AudioIsrc struct {
 	TopSearchableArtistName          *string                 `json:"top_searchable_artist_name,omitempty"`
 	TopSearchableArtistProfilePicURL *string                 `json:"top_searchable_artist_profile_pic_url,omitempty"`
 }
+
+var AudioIsrcFields = struct {
+	AllKgFeaturedArtists             string
+	AllKgMainArtists                 string
+	ArtistProfilePictureURL          string
+	ID                               string
+	Isrc                             string
+	PublishingRightsData             string
+	TopSearchableArtistID            string
+	TopSearchableArtistName          string
+	TopSearchableArtistProfilePicURL string
+}{
+	AllKgFeaturedArtists:             "all_kg_featured_artists",
+	AllKgMainArtists:                 "all_kg_main_artists",
+	ArtistProfilePictureURL:          "artist_profile_picture_url",
+	ID:                               "id",
+	Isrc:                             "isrc",
+	PublishingRightsData:             "publishing_rights_data",
+	TopSearchableArtistID:            "top_searchable_artist_id",
+	TopSearchableArtistName:          "top_searchable_artist_name",
+	TopSearchableArtistProfilePicURL: "top_searchable_artist_profile_pic_url",
+}

@@ -41,9 +41,14 @@ func DecodeGetAdvAInstanceBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetAdvAInstance(ctx context.Context, client *core.Client, id string, params GetAdvAInstanceParams) (*objects.AdvAInstance, error) {
+func GetAdvAInstanceWithResponse(ctx context.Context, client *core.Client, id string, params GetAdvAInstanceParams) (*objects.AdvAInstance, *core.Response, error) {
 	var out objects.AdvAInstance
 	call := GetAdvAInstanceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdvAInstance(ctx context.Context, client *core.Client, id string, params GetAdvAInstanceParams) (*objects.AdvAInstance, error) {
+	out, _, err := GetAdvAInstanceWithResponse(ctx, client, id, params)
+	return out, err
 }

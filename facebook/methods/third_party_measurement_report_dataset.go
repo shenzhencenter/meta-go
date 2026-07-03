@@ -41,9 +41,14 @@ func DecodeGetThirdPartyMeasurementReportDatasetBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetThirdPartyMeasurementReportDataset(ctx context.Context, client *core.Client, id string, params GetThirdPartyMeasurementReportDatasetParams) (*objects.ThirdPartyMeasurementReportDataset, error) {
+func GetThirdPartyMeasurementReportDatasetWithResponse(ctx context.Context, client *core.Client, id string, params GetThirdPartyMeasurementReportDatasetParams) (*objects.ThirdPartyMeasurementReportDataset, *core.Response, error) {
 	var out objects.ThirdPartyMeasurementReportDataset
 	call := GetThirdPartyMeasurementReportDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetThirdPartyMeasurementReportDataset(ctx context.Context, client *core.Client, id string, params GetThirdPartyMeasurementReportDatasetParams) (*objects.ThirdPartyMeasurementReportDataset, error) {
+	out, _, err := GetThirdPartyMeasurementReportDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }

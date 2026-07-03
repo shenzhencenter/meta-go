@@ -36,3 +36,65 @@ type WhatsAppBusinessAccount struct {
 	TimezoneID                            *core.ID                                                            `json:"timezone_id,omitempty"`
 	WhatsappBusinessManagerMessagingLimit *enums.WhatsappbusinessaccountWhatsappBusinessManagerMessagingLimit `json:"whatsapp_business_manager_messaging_limit,omitempty"`
 }
+
+var WhatsAppBusinessAccountFields = struct {
+	AccountReviewStatus                   string
+	Analytics                             string
+	AuthInternationalRateEligibility      string
+	BusinessVerificationStatus            string
+	Country                               string
+	CreationTime                          string
+	Currency                              string
+	DisableMarketingMessagesOnCloudAPI    string
+	HealthStatus                          string
+	ID                                    string
+	IsEnabledForInsights                  string
+	IsSharedWithPartners                  string
+	LinkedCommerceAccount                 string
+	MarketingMessagesAdAccount            string
+	MarketingMessagesLiteAPIStatus        string
+	MarketingMessagesOnboardingStatus     string
+	MessageTemplateNamespace              string
+	Name                                  string
+	OnBehalfOfBusinessInfo                string
+	OwnerBusiness                         string
+	OwnerBusinessInfo                     string
+	OwnershipType                         string
+	PrimaryBusinessLocation               string
+	PrimaryFundingID                      string
+	PurchaseOrderNumber                   string
+	Status                                string
+	TemplateAutoArchivalEnabled           string
+	TimezoneID                            string
+	WhatsappBusinessManagerMessagingLimit string
+}{
+	AccountReviewStatus:                   "account_review_status",
+	Analytics:                             "analytics",
+	AuthInternationalRateEligibility:      "auth_international_rate_eligibility",
+	BusinessVerificationStatus:            "business_verification_status",
+	Country:                               "country",
+	CreationTime:                          "creation_time",
+	Currency:                              "currency",
+	DisableMarketingMessagesOnCloudAPI:    "disable_marketing_messages_on_cloud_api",
+	HealthStatus:                          "health_status",
+	ID:                                    "id",
+	IsEnabledForInsights:                  "is_enabled_for_insights",
+	IsSharedWithPartners:                  "is_shared_with_partners",
+	LinkedCommerceAccount:                 "linked_commerce_account",
+	MarketingMessagesAdAccount:            "marketing_messages_ad_account",
+	MarketingMessagesLiteAPIStatus:        "marketing_messages_lite_api_status",
+	MarketingMessagesOnboardingStatus:     "marketing_messages_onboarding_status",
+	MessageTemplateNamespace:              "message_template_namespace",
+	Name:                                  "name",
+	OnBehalfOfBusinessInfo:                "on_behalf_of_business_info",
+	OwnerBusiness:                         "owner_business",
+	OwnerBusinessInfo:                     "owner_business_info",
+	OwnershipType:                         "ownership_type",
+	PrimaryBusinessLocation:               "primary_business_location",
+	PrimaryFundingID:                      "primary_funding_id",
+	PurchaseOrderNumber:                   "purchase_order_number",
+	Status:                                "status",
+	TemplateAutoArchivalEnabled:           "template_auto_archival_enabled",
+	TimezoneID:                            "timezone_id",
+	WhatsappBusinessManagerMessagingLimit: "whatsapp_business_manager_messaging_limit",
+}

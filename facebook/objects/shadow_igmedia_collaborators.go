@@ -9,3 +9,13 @@ type ShadowIGMediaCollaborators struct {
 	InviteStatus *string  `json:"invite_status,omitempty"`
 	Username     *string  `json:"username,omitempty"`
 }
+
+var ShadowIGMediaCollaboratorsFields = struct {
+	ID           string
+	InviteStatus string
+	Username     string
+}{
+	ID:           "id",
+	InviteStatus: "invite_status",
+	Username:     "username",
+}

@@ -41,9 +41,14 @@ func DecodeGetAdPlacementBatchResponse(response *core.BatchResponse) (*objects.A
 	return &out, nil
 }
 
-func GetAdPlacement(ctx context.Context, client *core.Client, id string, params GetAdPlacementParams) (*objects.AdPlacement, error) {
+func GetAdPlacementWithResponse(ctx context.Context, client *core.Client, id string, params GetAdPlacementParams) (*objects.AdPlacement, *core.Response, error) {
 	var out objects.AdPlacement
 	call := GetAdPlacementBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdPlacement(ctx context.Context, client *core.Client, id string, params GetAdPlacementParams) (*objects.AdPlacement, error) {
+	out, _, err := GetAdPlacementWithResponse(ctx, client, id, params)
+	return out, err
 }

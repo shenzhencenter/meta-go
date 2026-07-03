@@ -47,9 +47,14 @@ func DecodeGetIGAccessTokenForIGOnlyAPIBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetIGAccessTokenForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGAccessTokenForIGOnlyAPIParams) (*objects.AccessToken, error) {
+func GetIGAccessTokenForIGOnlyAPIWithResponse(ctx context.Context, client *core.Client, id string, params GetIGAccessTokenForIGOnlyAPIParams) (*objects.AccessToken, *core.Response, error) {
 	var out objects.AccessToken
 	call := GetIGAccessTokenForIGOnlyAPIBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGAccessTokenForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGAccessTokenForIGOnlyAPIParams) (*objects.AccessToken, error) {
+	out, _, err := GetIGAccessTokenForIGOnlyAPIWithResponse(ctx, client, id, params)
+	return out, err
 }

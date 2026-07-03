@@ -11,3 +11,17 @@ type CustomAudiencesharedAccountInfo struct {
 	BusinessName  *string  `json:"business_name,omitempty"`
 	SharingStatus *string  `json:"sharing_status,omitempty"`
 }
+
+var CustomAudiencesharedAccountInfoFields = struct {
+	AccountID     string
+	AccountName   string
+	BusinessID    string
+	BusinessName  string
+	SharingStatus string
+}{
+	AccountID:     "account_id",
+	AccountName:   "account_name",
+	BusinessID:    "business_id",
+	BusinessName:  "business_name",
+	SharingStatus: "sharing_status",
+}

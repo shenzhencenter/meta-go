@@ -14,3 +14,23 @@ type AdCreativeLinkDataImageOverlaySpec struct {
 	TextType         *enums.AdcreativelinkdataimageoverlayspecTextType        `json:"text_type,omitempty"`
 	ThemeColor       *enums.AdcreativelinkdataimageoverlayspecThemeColor      `json:"theme_color,omitempty"`
 }
+
+var AdCreativeLinkDataImageOverlaySpecFields = struct {
+	CustomTextType   string
+	FloatWithMargin  string
+	OverlayTemplate  string
+	Position         string
+	TextFont         string
+	TextTemplateTags string
+	TextType         string
+	ThemeColor       string
+}{
+	CustomTextType:   "custom_text_type",
+	FloatWithMargin:  "float_with_margin",
+	OverlayTemplate:  "overlay_template",
+	Position:         "position",
+	TextFont:         "text_font",
+	TextTemplateTags: "text_template_tags",
+	TextType:         "text_type",
+	ThemeColor:       "theme_color",
+}

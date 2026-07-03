@@ -8,3 +8,11 @@ type AdStudyObjectiveOffsiteDatasets struct {
 	EventNames *[]string `json:"event_names,omitempty"`
 	ID         *core.ID  `json:"id,omitempty"`
 }
+
+var AdStudyObjectiveOffsiteDatasetsFields = struct {
+	EventNames string
+	ID         string
+}{
+	EventNames: "event_names",
+	ID:         "id",
+}

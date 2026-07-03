@@ -41,9 +41,14 @@ func DecodeGetVideoCopyrightMatchBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetVideoCopyrightMatch(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightMatchParams) (*objects.VideoCopyrightMatch, error) {
+func GetVideoCopyrightMatchWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightMatchParams) (*objects.VideoCopyrightMatch, *core.Response, error) {
 	var out objects.VideoCopyrightMatch
 	call := GetVideoCopyrightMatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoCopyrightMatch(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightMatchParams) (*objects.VideoCopyrightMatch, error) {
+	out, _, err := GetVideoCopyrightMatchWithResponse(ctx, client, id, params)
+	return out, err
 }

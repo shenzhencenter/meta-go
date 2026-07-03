@@ -41,11 +41,16 @@ func DecodeGetProductFeedUploadErrorSamplesBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetProductFeedUploadErrorSamples(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSamplesParams) (*core.Cursor[objects.ProductFeedUploadErrorSample], error) {
+func GetProductFeedUploadErrorSamplesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSamplesParams) (*core.Cursor[objects.ProductFeedUploadErrorSample], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeedUploadErrorSample]
 	call := GetProductFeedUploadErrorSamplesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedUploadErrorSamples(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSamplesParams) (*core.Cursor[objects.ProductFeedUploadErrorSample], error) {
+	out, _, err := GetProductFeedUploadErrorSamplesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedUploadErrorSuggestedRulesParams struct {
@@ -82,11 +87,16 @@ func DecodeGetProductFeedUploadErrorSuggestedRulesBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetProductFeedUploadErrorSuggestedRules(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSuggestedRulesParams) (*core.Cursor[objects.ProductFeedRuleSuggestion], error) {
+func GetProductFeedUploadErrorSuggestedRulesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSuggestedRulesParams) (*core.Cursor[objects.ProductFeedRuleSuggestion], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeedRuleSuggestion]
 	call := GetProductFeedUploadErrorSuggestedRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedUploadErrorSuggestedRules(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorSuggestedRulesParams) (*core.Cursor[objects.ProductFeedRuleSuggestion], error) {
+	out, _, err := GetProductFeedUploadErrorSuggestedRulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedUploadErrorParams struct {
@@ -123,9 +133,14 @@ func DecodeGetProductFeedUploadErrorBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductFeedUploadError(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorParams) (*objects.ProductFeedUploadError, error) {
+func GetProductFeedUploadErrorWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorParams) (*objects.ProductFeedUploadError, *core.Response, error) {
 	var out objects.ProductFeedUploadError
 	call := GetProductFeedUploadErrorBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedUploadError(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadErrorParams) (*objects.ProductFeedUploadError, error) {
+	out, _, err := GetProductFeedUploadErrorWithResponse(ctx, client, id, params)
+	return out, err
 }

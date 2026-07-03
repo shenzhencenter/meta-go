@@ -41,9 +41,14 @@ func DecodeGetOwnedDomainBatchResponse(response *core.BatchResponse) (*objects.O
 	return &out, nil
 }
 
-func GetOwnedDomain(ctx context.Context, client *core.Client, id string, params GetOwnedDomainParams) (*objects.OwnedDomain, error) {
+func GetOwnedDomainWithResponse(ctx context.Context, client *core.Client, id string, params GetOwnedDomainParams) (*objects.OwnedDomain, *core.Response, error) {
 	var out objects.OwnedDomain
 	call := GetOwnedDomainBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOwnedDomain(ctx context.Context, client *core.Client, id string, params GetOwnedDomainParams) (*objects.OwnedDomain, error) {
+	out, _, err := GetOwnedDomainWithResponse(ctx, client, id, params)
+	return out, err
 }

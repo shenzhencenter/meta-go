@@ -42,11 +42,16 @@ func DecodeGetAdStudyCellAdaccountsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetAdStudyCellAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetAdStudyCellAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetAdStudyCellAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyCellAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetAdStudyCellAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyCellAdsetsParams struct {
@@ -83,11 +88,16 @@ func DecodeGetAdStudyCellAdsetsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetAdStudyCellAdsets(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdsetsParams) (*core.Cursor[objects.AdSet], error) {
+func GetAdStudyCellAdsetsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdsetsParams) (*core.Cursor[objects.AdSet], *core.Response, error) {
 	var out core.Cursor[objects.AdSet]
 	call := GetAdStudyCellAdsetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyCellAdsets(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdsetsParams) (*core.Cursor[objects.AdSet], error) {
+	out, _, err := GetAdStudyCellAdsetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyCellCampaignsParams struct {
@@ -124,11 +134,16 @@ func DecodeGetAdStudyCellCampaignsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdStudyCellCampaigns(ctx context.Context, client *core.Client, id string, params GetAdStudyCellCampaignsParams) (*core.Cursor[objects.Campaign], error) {
+func GetAdStudyCellCampaignsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyCellCampaignsParams) (*core.Cursor[objects.Campaign], *core.Response, error) {
 	var out core.Cursor[objects.Campaign]
 	call := GetAdStudyCellCampaignsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyCellCampaigns(ctx context.Context, client *core.Client, id string, params GetAdStudyCellCampaignsParams) (*core.Cursor[objects.Campaign], error) {
+	out, _, err := GetAdStudyCellCampaignsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdStudyCellParams struct {
@@ -165,11 +180,16 @@ func DecodeGetAdStudyCellBatchResponse(response *core.BatchResponse) (*objects.A
 	return &out, nil
 }
 
-func GetAdStudyCell(ctx context.Context, client *core.Client, id string, params GetAdStudyCellParams) (*objects.AdStudyCell, error) {
+func GetAdStudyCellWithResponse(ctx context.Context, client *core.Client, id string, params GetAdStudyCellParams) (*objects.AdStudyCell, *core.Response, error) {
 	var out objects.AdStudyCell
 	call := GetAdStudyCellBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdStudyCell(ctx context.Context, client *core.Client, id string, params GetAdStudyCellParams) (*objects.AdStudyCell, error) {
+	out, _, err := GetAdStudyCellWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdStudyCellParams struct {
@@ -234,9 +254,14 @@ func DecodeUpdateAdStudyCellBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func UpdateAdStudyCell(ctx context.Context, client *core.Client, id string, params UpdateAdStudyCellParams) (*objects.AdStudyCell, error) {
+func UpdateAdStudyCellWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdStudyCellParams) (*objects.AdStudyCell, *core.Response, error) {
 	var out objects.AdStudyCell
 	call := UpdateAdStudyCellBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdStudyCell(ctx context.Context, client *core.Client, id string, params UpdateAdStudyCellParams) (*objects.AdStudyCell, error) {
+	out, _, err := UpdateAdStudyCellWithResponse(ctx, client, id, params)
+	return out, err
 }

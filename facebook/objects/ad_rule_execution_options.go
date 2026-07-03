@@ -9,3 +9,13 @@ type AdRuleExecutionOptions struct {
 	Operator *enums.AdruleexecutionoptionsOperator `json:"operator,omitempty"`
 	Value    *map[string]interface{}               `json:"value,omitempty"`
 }
+
+var AdRuleExecutionOptionsFields = struct {
+	Field    string
+	Operator string
+	Value    string
+}{
+	Field:    "field",
+	Operator: "operator",
+	Value:    "value",
+}

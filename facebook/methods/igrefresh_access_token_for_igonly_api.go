@@ -45,9 +45,14 @@ func DecodeGetIGRefreshAccessTokenForIGOnlyAPIBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetIGRefreshAccessTokenForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGRefreshAccessTokenForIGOnlyAPIParams) (*objects.RefreshAccessToken, error) {
+func GetIGRefreshAccessTokenForIGOnlyAPIWithResponse(ctx context.Context, client *core.Client, id string, params GetIGRefreshAccessTokenForIGOnlyAPIParams) (*objects.RefreshAccessToken, *core.Response, error) {
 	var out objects.RefreshAccessToken
 	call := GetIGRefreshAccessTokenForIGOnlyAPIBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGRefreshAccessTokenForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGRefreshAccessTokenForIGOnlyAPIParams) (*objects.RefreshAccessToken, error) {
+	out, _, err := GetIGRefreshAccessTokenForIGOnlyAPIWithResponse(ctx, client, id, params)
+	return out, err
 }

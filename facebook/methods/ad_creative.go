@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type CreateAdCreativeAdlabelsParams struct {
@@ -45,11 +44,16 @@ func DecodeCreateAdCreativeAdlabelsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateAdCreativeAdlabels(ctx context.Context, client *core.Client, id string, params CreateAdCreativeAdlabelsParams) (*objects.AdCreative, error) {
+func CreateAdCreativeAdlabelsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdCreativeAdlabelsParams) (*objects.AdCreative, *core.Response, error) {
 	var out objects.AdCreative
 	call := CreateAdCreativeAdlabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdCreativeAdlabels(ctx context.Context, client *core.Client, id string, params CreateAdCreativeAdlabelsParams) (*objects.AdCreative, error) {
+	out, _, err := CreateAdCreativeAdlabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdCreativeCreativeInsightsParams struct {
@@ -86,11 +90,16 @@ func DecodeGetAdCreativeCreativeInsightsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetAdCreativeCreativeInsights(ctx context.Context, client *core.Client, id string, params GetAdCreativeCreativeInsightsParams) (*core.Cursor[objects.AdCreativeInsights], error) {
+func GetAdCreativeCreativeInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdCreativeCreativeInsightsParams) (*core.Cursor[objects.AdCreativeInsights], *core.Response, error) {
 	var out core.Cursor[objects.AdCreativeInsights]
 	call := GetAdCreativeCreativeInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdCreativeCreativeInsights(ctx context.Context, client *core.Client, id string, params GetAdCreativeCreativeInsightsParams) (*core.Cursor[objects.AdCreativeInsights], error) {
+	out, _, err := GetAdCreativeCreativeInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdCreativePreviewsParams struct {
@@ -99,14 +108,14 @@ type GetAdCreativePreviewsParams struct {
 	DynamicAssetLabel    *string                                           `facebook:"dynamic_asset_label"`
 	DynamicCreativeSpec  *map[string]interface{}                           `facebook:"dynamic_creative_spec"`
 	DynamicCustomization *map[string]interface{}                           `facebook:"dynamic_customization"`
-	EndDate              *time.Time                                        `facebook:"end_date"`
+	EndDate              *core.Time                                        `facebook:"end_date"`
 	Height               *uint64                                           `facebook:"height"`
 	Locale               *string                                           `facebook:"locale"`
 	PlacePageID          *core.ID                                          `facebook:"place_page_id"`
 	Post                 *map[string]interface{}                           `facebook:"post"`
 	ProductItemIds       *[]core.ID                                        `facebook:"product_item_ids"`
 	RenderType           *enums.AdcreativepreviewsRenderTypeEnumParam      `facebook:"render_type"`
-	StartDate            *time.Time                                        `facebook:"start_date"`
+	StartDate            *core.Time                                        `facebook:"start_date"`
 	Width                *uint64                                           `facebook:"width"`
 	Extra                core.Params                                       `facebook:"-"`
 }
@@ -181,11 +190,16 @@ func DecodeGetAdCreativePreviewsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetAdCreativePreviews(ctx context.Context, client *core.Client, id string, params GetAdCreativePreviewsParams) (*core.Cursor[objects.AdPreview], error) {
+func GetAdCreativePreviewsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdCreativePreviewsParams) (*core.Cursor[objects.AdPreview], *core.Response, error) {
 	var out core.Cursor[objects.AdPreview]
 	call := GetAdCreativePreviewsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdCreativePreviews(ctx context.Context, client *core.Client, id string, params GetAdCreativePreviewsParams) (*core.Cursor[objects.AdPreview], error) {
+	out, _, err := GetAdCreativePreviewsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdCreativeParams struct {
@@ -238,11 +252,16 @@ func DecodeDeleteAdCreativeBatchResponse(response *core.BatchResponse) (*map[str
 	return &out, nil
 }
 
-func DeleteAdCreative(ctx context.Context, client *core.Client, id string, params DeleteAdCreativeParams) (*map[string]interface{}, error) {
+func DeleteAdCreativeWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdCreativeParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdCreativeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdCreative(ctx context.Context, client *core.Client, id string, params DeleteAdCreativeParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdCreativeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdCreativeParams struct {
@@ -287,11 +306,16 @@ func DecodeGetAdCreativeBatchResponse(response *core.BatchResponse) (*objects.Ad
 	return &out, nil
 }
 
-func GetAdCreative(ctx context.Context, client *core.Client, id string, params GetAdCreativeParams) (*objects.AdCreative, error) {
+func GetAdCreativeWithResponse(ctx context.Context, client *core.Client, id string, params GetAdCreativeParams) (*objects.AdCreative, *core.Response, error) {
 	var out objects.AdCreative
 	call := GetAdCreativeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdCreative(ctx context.Context, client *core.Client, id string, params GetAdCreativeParams) (*objects.AdCreative, error) {
+	out, _, err := GetAdCreativeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdCreativeParams struct {
@@ -344,9 +368,14 @@ func DecodeUpdateAdCreativeBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func UpdateAdCreative(ctx context.Context, client *core.Client, id string, params UpdateAdCreativeParams) (*objects.AdCreative, error) {
+func UpdateAdCreativeWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdCreativeParams) (*objects.AdCreative, *core.Response, error) {
 	var out objects.AdCreative
 	call := UpdateAdCreativeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdCreative(ctx context.Context, client *core.Client, id string, params UpdateAdCreativeParams) (*objects.AdCreative, error) {
+	out, _, err := UpdateAdCreativeWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetAdsStartYourDayWidgetBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetAdsStartYourDayWidget(ctx context.Context, client *core.Client, id string, params GetAdsStartYourDayWidgetParams) (*objects.AdsStartYourDayWidget, error) {
+func GetAdsStartYourDayWidgetWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsStartYourDayWidgetParams) (*objects.AdsStartYourDayWidget, *core.Response, error) {
 	var out objects.AdsStartYourDayWidget
 	call := GetAdsStartYourDayWidgetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsStartYourDayWidget(ctx context.Context, client *core.Client, id string, params GetAdsStartYourDayWidgetParams) (*objects.AdsStartYourDayWidget, error) {
+	out, _, err := GetAdsStartYourDayWidgetWithResponse(ctx, client, id, params)
+	return out, err
 }

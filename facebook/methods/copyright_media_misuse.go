@@ -41,9 +41,14 @@ func DecodeGetCopyrightMediaMisuseBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetCopyrightMediaMisuse(ctx context.Context, client *core.Client, id string, params GetCopyrightMediaMisuseParams) (*objects.CopyrightMediaMisuse, error) {
+func GetCopyrightMediaMisuseWithResponse(ctx context.Context, client *core.Client, id string, params GetCopyrightMediaMisuseParams) (*objects.CopyrightMediaMisuse, *core.Response, error) {
 	var out objects.CopyrightMediaMisuse
 	call := GetCopyrightMediaMisuseBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCopyrightMediaMisuse(ctx context.Context, client *core.Client, id string, params GetCopyrightMediaMisuseParams) (*objects.CopyrightMediaMisuse, error) {
+	out, _, err := GetCopyrightMediaMisuseWithResponse(ctx, client, id, params)
+	return out, err
 }

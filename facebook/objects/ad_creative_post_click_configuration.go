@@ -4,3 +4,11 @@ type AdCreativePostClickConfiguration struct {
 	PostClickItemDescription *string `json:"post_click_item_description,omitempty"`
 	PostClickItemHeadline    *string `json:"post_click_item_headline,omitempty"`
 }
+
+var AdCreativePostClickConfigurationFields = struct {
+	PostClickItemDescription string
+	PostClickItemHeadline    string
+}{
+	PostClickItemDescription: "post_click_item_description",
+	PostClickItemHeadline:    "post_click_item_headline",
+}

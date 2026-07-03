@@ -9,3 +9,13 @@ type IGBCAdsPermission struct {
 	PermissionType *string  `json:"permission_type,omitempty"`
 	Status         *string  `json:"status,omitempty"`
 }
+
+var IGBCAdsPermissionFields = struct {
+	ID             string
+	PermissionType string
+	Status         string
+}{
+	ID:             "id",
+	PermissionType: "permission_type",
+	Status:         "status",
+}

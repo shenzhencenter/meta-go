@@ -18,3 +18,31 @@ type LeadGenThankYouPage struct {
 	Title               *string                       `json:"title,omitempty"`
 	WebsiteURL          *string                       `json:"website_url,omitempty"`
 }
+
+var LeadGenThankYouPageFields = struct {
+	Body                string
+	BusinessPhoneNumber string
+	ButtonText          string
+	ButtonType          string
+	CountryCode         string
+	EnableMessenger     string
+	GatedFile           string
+	ID                  string
+	LeadGenUseCase      string
+	Status              string
+	Title               string
+	WebsiteURL          string
+}{
+	Body:                "body",
+	BusinessPhoneNumber: "business_phone_number",
+	ButtonText:          "button_text",
+	ButtonType:          "button_type",
+	CountryCode:         "country_code",
+	EnableMessenger:     "enable_messenger",
+	GatedFile:           "gated_file",
+	ID:                  "id",
+	LeadGenUseCase:      "lead_gen_use_case",
+	Status:              "status",
+	Title:               "title",
+	WebsiteURL:          "website_url",
+}

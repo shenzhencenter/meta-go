@@ -41,9 +41,14 @@ func DecodeGetRobotBatchResponse(response *core.BatchResponse) (*objects.Robot, 
 	return &out, nil
 }
 
-func GetRobot(ctx context.Context, client *core.Client, id string, params GetRobotParams) (*objects.Robot, error) {
+func GetRobotWithResponse(ctx context.Context, client *core.Client, id string, params GetRobotParams) (*objects.Robot, *core.Response, error) {
 	var out objects.Robot
 	call := GetRobotBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetRobot(ctx context.Context, client *core.Client, id string, params GetRobotParams) (*objects.Robot, error) {
+	out, _, err := GetRobotWithResponse(ctx, client, id, params)
+	return out, err
 }

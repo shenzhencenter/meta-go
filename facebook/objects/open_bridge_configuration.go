@@ -30,3 +30,55 @@ type OpenBridgeConfiguration struct {
 	SgwInstanceURL                 *string   `json:"sgw_instance_url,omitempty"`
 	SgwPixelID                     *core.ID  `json:"sgw_pixel_id,omitempty"`
 }
+
+var OpenBridgeConfigurationFields = struct {
+	Active                         string
+	BlockedEventTypes              string
+	BlockedWebsites                string
+	BrowserAgent                   string
+	CapiPublishingState            string
+	CloudProvider                  string
+	CloudRegion                    string
+	DestinationID                  string
+	Endpoint                       string
+	EventEnrichmentAdvertiserState string
+	EventEnrichmentMetaState       string
+	EventEnrichmentState           string
+	FallbackDomain                 string
+	HostBusinessID                 string
+	ID                             string
+	InstanceID                     string
+	InstanceVersion                string
+	IsSgwInstance                  string
+	IsSgwPixelFromMetaPixel        string
+	PartnerName                    string
+	PixelID                        string
+	SgwAccountID                   string
+	SgwInstanceURL                 string
+	SgwPixelID                     string
+}{
+	Active:                         "active",
+	BlockedEventTypes:              "blocked_event_types",
+	BlockedWebsites:                "blocked_websites",
+	BrowserAgent:                   "browser_agent",
+	CapiPublishingState:            "capi_publishing_state",
+	CloudProvider:                  "cloud_provider",
+	CloudRegion:                    "cloud_region",
+	DestinationID:                  "destination_id",
+	Endpoint:                       "endpoint",
+	EventEnrichmentAdvertiserState: "event_enrichment_advertiser_state",
+	EventEnrichmentMetaState:       "event_enrichment_meta_state",
+	EventEnrichmentState:           "event_enrichment_state",
+	FallbackDomain:                 "fallback_domain",
+	HostBusinessID:                 "host_business_id",
+	ID:                             "id",
+	InstanceID:                     "instance_id",
+	InstanceVersion:                "instance_version",
+	IsSgwInstance:                  "is_sgw_instance",
+	IsSgwPixelFromMetaPixel:        "is_sgw_pixel_from_meta_pixel",
+	PartnerName:                    "partner_name",
+	PixelID:                        "pixel_id",
+	SgwAccountID:                   "sgw_account_id",
+	SgwInstanceURL:                 "sgw_instance_url",
+	SgwPixelID:                     "sgw_pixel_id",
+}

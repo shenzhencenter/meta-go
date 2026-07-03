@@ -11,3 +11,17 @@ type CommercePayout struct {
 	Status            *string                 `json:"status,omitempty"`
 	TransferID        *core.ID                `json:"transfer_id,omitempty"`
 }
+
+var CommercePayoutFields = struct {
+	Amount            string
+	PayoutDate        string
+	PayoutReferenceID string
+	Status            string
+	TransferID        string
+}{
+	Amount:            "amount",
+	PayoutDate:        "payout_date",
+	PayoutReferenceID: "payout_reference_id",
+	Status:            "status",
+	TransferID:        "transfer_id",
+}

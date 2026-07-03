@@ -11,3 +11,17 @@ type WorkUserBadges struct {
 	ID          *core.ID `json:"id,omitempty"`
 	Name        *string  `json:"name,omitempty"`
 }
+
+var WorkUserBadgesFields = struct {
+	Category    string
+	Description string
+	Icon        string
+	ID          string
+	Name        string
+}{
+	Category:    "category",
+	Description: "description",
+	Icon:        "icon",
+	ID:          "id",
+	Name:        "name",
+}

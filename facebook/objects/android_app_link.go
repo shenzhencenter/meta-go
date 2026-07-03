@@ -6,3 +6,15 @@ type AndroidAppLink struct {
 	Package *string `json:"package,omitempty"`
 	URL     *string `json:"url,omitempty"`
 }
+
+var AndroidAppLinkFields = struct {
+	AppName string
+	Class   string
+	Package string
+	URL     string
+}{
+	AppName: "app_name",
+	Class:   "class",
+	Package: "package",
+	URL:     "url",
+}

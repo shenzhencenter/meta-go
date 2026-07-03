@@ -13,3 +13,21 @@ type InstagramInsightsResult struct {
 	TotalValue  *map[string]interface{}   `json:"total_value,omitempty"`
 	Values      *[]InstagramInsightsValue `json:"values,omitempty"`
 }
+
+var InstagramInsightsResultFields = struct {
+	Description string
+	ID          string
+	Name        string
+	Period      string
+	Title       string
+	TotalValue  string
+	Values      string
+}{
+	Description: "description",
+	ID:          "id",
+	Name:        "name",
+	Period:      "period",
+	Title:       "title",
+	TotalValue:  "total_value",
+	Values:      "values",
+}

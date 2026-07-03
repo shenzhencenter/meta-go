@@ -6,3 +6,15 @@ type ShadowIGUserPartnershipAdsMediaErrors struct {
 	Errors     *[]string `json:"errors,omitempty"`
 	Permalink  *string   `json:"permalink,omitempty"`
 }
+
+var ShadowIGUserPartnershipAdsMediaErrorsFields = struct {
+	AdCode     string
+	ErrorCodes string
+	Errors     string
+	Permalink  string
+}{
+	AdCode:     "ad_code",
+	ErrorCodes: "error_codes",
+	Errors:     "errors",
+	Permalink:  "permalink",
+}

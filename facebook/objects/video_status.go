@@ -8,3 +8,19 @@ type VideoStatus struct {
 	UploadingPhase       *VideoStatusUploadingPhase  `json:"uploading_phase,omitempty"`
 	VideoStatus          *string                     `json:"video_status,omitempty"`
 }
+
+var VideoStatusFields = struct {
+	CopyrightCheckStatus string
+	ProcessingPhase      string
+	ProcessingProgress   string
+	PublishingPhase      string
+	UploadingPhase       string
+	VideoStatus          string
+}{
+	CopyrightCheckStatus: "copyright_check_status",
+	ProcessingPhase:      "processing_phase",
+	ProcessingProgress:   "processing_progress",
+	PublishingPhase:      "publishing_phase",
+	UploadingPhase:       "uploading_phase",
+	VideoStatus:          "video_status",
+}

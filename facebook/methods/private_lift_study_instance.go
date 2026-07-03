@@ -42,11 +42,16 @@ func DecodeGetPrivateLiftStudyInstanceBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetPrivateLiftStudyInstance(ctx context.Context, client *core.Client, id string, params GetPrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, error) {
+func GetPrivateLiftStudyInstanceWithResponse(ctx context.Context, client *core.Client, id string, params GetPrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, *core.Response, error) {
 	var out objects.PrivateLiftStudyInstance
 	call := GetPrivateLiftStudyInstanceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPrivateLiftStudyInstance(ctx context.Context, client *core.Client, id string, params GetPrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, error) {
+	out, _, err := GetPrivateLiftStudyInstanceWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdatePrivateLiftStudyInstanceParams struct {
@@ -91,9 +96,14 @@ func DecodeUpdatePrivateLiftStudyInstanceBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func UpdatePrivateLiftStudyInstance(ctx context.Context, client *core.Client, id string, params UpdatePrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, error) {
+func UpdatePrivateLiftStudyInstanceWithResponse(ctx context.Context, client *core.Client, id string, params UpdatePrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, *core.Response, error) {
 	var out objects.PrivateLiftStudyInstance
 	call := UpdatePrivateLiftStudyInstanceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdatePrivateLiftStudyInstance(ctx context.Context, client *core.Client, id string, params UpdatePrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, error) {
+	out, _, err := UpdatePrivateLiftStudyInstanceWithResponse(ctx, client, id, params)
+	return out, err
 }

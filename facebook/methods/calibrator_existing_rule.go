@@ -41,9 +41,14 @@ func DecodeGetCalibratorExistingRuleBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetCalibratorExistingRule(ctx context.Context, client *core.Client, id string, params GetCalibratorExistingRuleParams) (*objects.CalibratorExistingRule, error) {
+func GetCalibratorExistingRuleWithResponse(ctx context.Context, client *core.Client, id string, params GetCalibratorExistingRuleParams) (*objects.CalibratorExistingRule, *core.Response, error) {
 	var out objects.CalibratorExistingRule
 	call := GetCalibratorExistingRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCalibratorExistingRule(ctx context.Context, client *core.Client, id string, params GetCalibratorExistingRuleParams) (*objects.CalibratorExistingRule, error) {
+	out, _, err := GetCalibratorExistingRuleWithResponse(ctx, client, id, params)
+	return out, err
 }

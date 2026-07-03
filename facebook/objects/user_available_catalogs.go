@@ -10,3 +10,15 @@ type UserAvailableCatalogs struct {
 	ProductCount *int     `json:"product_count,omitempty"`
 	ShopName     *string  `json:"shop_name,omitempty"`
 }
+
+var UserAvailableCatalogsFields = struct {
+	CatalogID    string
+	CatalogName  string
+	ProductCount string
+	ShopName     string
+}{
+	CatalogID:    "catalog_id",
+	CatalogName:  "catalog_name",
+	ProductCount: "product_count",
+	ShopName:     "shop_name",
+}

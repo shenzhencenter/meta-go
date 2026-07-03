@@ -9,3 +9,13 @@ type AdCreativeFacebookBrandedContent struct {
 	SponsorPageID         *core.ID `json:"sponsor_page_id,omitempty"`
 	SponsorRelationship   *string  `json:"sponsor_relationship,omitempty"`
 }
+
+var AdCreativeFacebookBrandedContentFields = struct {
+	SharedToSponsorStatus string
+	SponsorPageID         string
+	SponsorRelationship   string
+}{
+	SharedToSponsorStatus: "shared_to_sponsor_status",
+	SponsorPageID:         "sponsor_page_id",
+	SponsorRelationship:   "sponsor_relationship",
+}

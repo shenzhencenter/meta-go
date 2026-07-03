@@ -46,11 +46,16 @@ func DecodeGetUnifiedThreadMessagesBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetUnifiedThreadMessages(ctx context.Context, client *core.Client, id string, params GetUnifiedThreadMessagesParams) (*core.Cursor[objects.UnifiedMessage], error) {
+func GetUnifiedThreadMessagesWithResponse(ctx context.Context, client *core.Client, id string, params GetUnifiedThreadMessagesParams) (*core.Cursor[objects.UnifiedMessage], *core.Response, error) {
 	var out core.Cursor[objects.UnifiedMessage]
 	call := GetUnifiedThreadMessagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUnifiedThreadMessages(ctx context.Context, client *core.Client, id string, params GetUnifiedThreadMessagesParams) (*core.Cursor[objects.UnifiedMessage], error) {
+	out, _, err := GetUnifiedThreadMessagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUnifiedThreadParams struct {
@@ -87,9 +92,14 @@ func DecodeGetUnifiedThreadBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetUnifiedThread(ctx context.Context, client *core.Client, id string, params GetUnifiedThreadParams) (*objects.UnifiedThread, error) {
+func GetUnifiedThreadWithResponse(ctx context.Context, client *core.Client, id string, params GetUnifiedThreadParams) (*objects.UnifiedThread, *core.Response, error) {
 	var out objects.UnifiedThread
 	call := GetUnifiedThreadBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUnifiedThread(ctx context.Context, client *core.Client, id string, params GetUnifiedThreadParams) (*objects.UnifiedThread, error) {
+	out, _, err := GetUnifiedThreadWithResponse(ctx, client, id, params)
+	return out, err
 }

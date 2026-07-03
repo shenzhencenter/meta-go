@@ -6,3 +6,15 @@ type AdCreativeLinkDataAppLinkSpec struct {
 	Ipad    *[]IosAppLink     `json:"ipad,omitempty"`
 	Iphone  *[]IosAppLink     `json:"iphone,omitempty"`
 }
+
+var AdCreativeLinkDataAppLinkSpecFields = struct {
+	Android string
+	Ios     string
+	Ipad    string
+	Iphone  string
+}{
+	Android: "android",
+	Ios:     "ios",
+	Ipad:    "ipad",
+	Iphone:  "iphone",
+}

@@ -12,3 +12,19 @@ type AdStudyObjective struct {
 	Results            *[]string `json:"results,omitempty"`
 	Type               *string   `json:"type,omitempty"`
 }
+
+var AdStudyObjectiveFields = struct {
+	ID                 string
+	IsPrimary          string
+	LastUpdatedResults string
+	Name               string
+	Results            string
+	Type               string
+}{
+	ID:                 "id",
+	IsPrimary:          "is_primary",
+	LastUpdatedResults: "last_updated_results",
+	Name:               "name",
+	Results:            "results",
+	Type:               "type",
+}

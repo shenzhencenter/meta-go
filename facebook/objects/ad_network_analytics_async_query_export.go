@@ -9,3 +9,13 @@ type AdNetworkAnalyticsAsyncQueryExport struct {
 	QueryID    *core.ID `json:"query_id,omitempty"`
 	Status     *string  `json:"status,omitempty"`
 }
+
+var AdNetworkAnalyticsAsyncQueryExportFields = struct {
+	ExportLink string
+	QueryID    string
+	Status     string
+}{
+	ExportLink: "export_link",
+	QueryID:    "query_id",
+	Status:     "status",
+}

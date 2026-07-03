@@ -15,3 +15,25 @@ type TargetingGeoLocationPlace struct {
 	Radius        *float64 `json:"radius,omitempty"`
 	RegionID      *core.ID `json:"region_id,omitempty"`
 }
+
+var TargetingGeoLocationPlaceFields = struct {
+	Country       string
+	DistanceUnit  string
+	Key           string
+	Latitude      string
+	Longitude     string
+	Name          string
+	PrimaryCityID string
+	Radius        string
+	RegionID      string
+}{
+	Country:       "country",
+	DistanceUnit:  "distance_unit",
+	Key:           "key",
+	Latitude:      "latitude",
+	Longitude:     "longitude",
+	Name:          "name",
+	PrimaryCityID: "primary_city_id",
+	Radius:        "radius",
+	RegionID:      "region_id",
+}

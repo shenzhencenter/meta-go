@@ -41,9 +41,14 @@ func DecodeCreateAdCampaignBudgetSchedulesBudgetSchedulesBatchResponse(response 
 	return &out, nil
 }
 
-func CreateAdCampaignBudgetSchedulesBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateAdCampaignBudgetSchedulesBudgetSchedulesParams) (*objects.AdCampaignBudgetSchedulesPost, error) {
+func CreateAdCampaignBudgetSchedulesBudgetSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdCampaignBudgetSchedulesBudgetSchedulesParams) (*objects.AdCampaignBudgetSchedulesPost, *core.Response, error) {
 	var out objects.AdCampaignBudgetSchedulesPost
 	call := CreateAdCampaignBudgetSchedulesBudgetSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdCampaignBudgetSchedulesBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateAdCampaignBudgetSchedulesBudgetSchedulesParams) (*objects.AdCampaignBudgetSchedulesPost, error) {
+	out, _, err := CreateAdCampaignBudgetSchedulesBudgetSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }

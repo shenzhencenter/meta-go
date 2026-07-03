@@ -42,11 +42,16 @@ func DecodeGetImageCopyrightBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetImageCopyright(ctx context.Context, client *core.Client, id string, params GetImageCopyrightParams) (*objects.ImageCopyright, error) {
+func GetImageCopyrightWithResponse(ctx context.Context, client *core.Client, id string, params GetImageCopyrightParams) (*objects.ImageCopyright, *core.Response, error) {
 	var out objects.ImageCopyright
 	call := GetImageCopyrightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetImageCopyright(ctx context.Context, client *core.Client, id string, params GetImageCopyrightParams) (*objects.ImageCopyright, error) {
+	out, _, err := GetImageCopyrightWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateImageCopyrightParams struct {
@@ -111,9 +116,14 @@ func DecodeUpdateImageCopyrightBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func UpdateImageCopyright(ctx context.Context, client *core.Client, id string, params UpdateImageCopyrightParams) (*objects.ImageCopyright, error) {
+func UpdateImageCopyrightWithResponse(ctx context.Context, client *core.Client, id string, params UpdateImageCopyrightParams) (*objects.ImageCopyright, *core.Response, error) {
 	var out objects.ImageCopyright
 	call := UpdateImageCopyrightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateImageCopyright(ctx context.Context, client *core.Client, id string, params UpdateImageCopyrightParams) (*objects.ImageCopyright, error) {
+	out, _, err := UpdateImageCopyrightWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AdsReportBuilderMMMReport struct {
@@ -13,5 +12,25 @@ type AdsReportBuilderMMMReport struct {
 	HasSeen      *bool      `json:"has_seen,omitempty"`
 	ID           *core.ID   `json:"id,omitempty"`
 	MmmStatus    *string    `json:"mmm_status,omitempty"`
-	TimeStart    *time.Time `json:"time_start,omitempty"`
+	TimeStart    *core.Time `json:"time_start,omitempty"`
+}
+
+var AdsReportBuilderMMMReportFields = struct {
+	AsyncStatus  string
+	ExportFormat string
+	ExportName   string
+	ExportType   string
+	HasSeen      string
+	ID           string
+	MmmStatus    string
+	TimeStart    string
+}{
+	AsyncStatus:  "async_status",
+	ExportFormat: "export_format",
+	ExportName:   "export_name",
+	ExportType:   "export_type",
+	HasSeen:      "has_seen",
+	ID:           "id",
+	MmmStatus:    "mmm_status",
+	TimeStart:    "time_start",
 }

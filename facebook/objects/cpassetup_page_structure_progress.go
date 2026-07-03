@@ -9,3 +9,13 @@ type CPASSetupPageStructureProgress struct {
 	Issues *[]map[string]interface{} `json:"issues,omitempty"`
 	Name   *string                   `json:"name,omitempty"`
 }
+
+var CPASSetupPageStructureProgressFields = struct {
+	ID     string
+	Issues string
+	Name   string
+}{
+	ID:     "id",
+	Issues: "issues",
+	Name:   "name",
+}

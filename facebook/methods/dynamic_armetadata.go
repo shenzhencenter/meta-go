@@ -41,9 +41,14 @@ func DecodeGetDynamicARMetadataBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetDynamicARMetadata(ctx context.Context, client *core.Client, id string, params GetDynamicARMetadataParams) (*objects.DynamicARMetadata, error) {
+func GetDynamicARMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetDynamicARMetadataParams) (*objects.DynamicARMetadata, *core.Response, error) {
 	var out objects.DynamicARMetadata
 	call := GetDynamicARMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDynamicARMetadata(ctx context.Context, client *core.Client, id string, params GetDynamicARMetadataParams) (*objects.DynamicARMetadata, error) {
+	out, _, err := GetDynamicARMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }

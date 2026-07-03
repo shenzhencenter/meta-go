@@ -13,3 +13,21 @@ type CPASAdCreationTemplate struct {
 	TargetingType    *string  `json:"targeting_type,omitempty"`
 	TemplateType     *string  `json:"template_type,omitempty"`
 }
+
+var CPASAdCreationTemplateFields = struct {
+	Description      string
+	ID               string
+	IsUnusedTemplate string
+	Name             string
+	OptimizationGoal string
+	TargetingType    string
+	TemplateType     string
+}{
+	Description:      "description",
+	ID:               "id",
+	IsUnusedTemplate: "is_unused_template",
+	Name:             "name",
+	OptimizationGoal: "optimization_goal",
+	TargetingType:    "targeting_type",
+	TemplateType:     "template_type",
+}

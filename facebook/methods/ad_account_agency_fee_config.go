@@ -41,9 +41,14 @@ func DecodeGetAdAccountAgencyFeeConfigBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetAdAccountAgencyFeeConfig(ctx context.Context, client *core.Client, id string, params GetAdAccountAgencyFeeConfigParams) (*objects.AdAccountAgencyFeeConfig, error) {
+func GetAdAccountAgencyFeeConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetAdAccountAgencyFeeConfigParams) (*objects.AdAccountAgencyFeeConfig, *core.Response, error) {
 	var out objects.AdAccountAgencyFeeConfig
 	call := GetAdAccountAgencyFeeConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdAccountAgencyFeeConfig(ctx context.Context, client *core.Client, id string, params GetAdAccountAgencyFeeConfigParams) (*objects.AdAccountAgencyFeeConfig, error) {
+	out, _, err := GetAdAccountAgencyFeeConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,11 +41,16 @@ func DecodeGetOffsiteSignalContainerBusinessObjectLinkedApplicationBatchResponse
 	return &out, nil
 }
 
-func GetOffsiteSignalContainerBusinessObjectLinkedApplication(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectLinkedApplicationParams) (*core.Cursor[objects.AdsDataset], error) {
+func GetOffsiteSignalContainerBusinessObjectLinkedApplicationWithResponse(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectLinkedApplicationParams) (*core.Cursor[objects.AdsDataset], *core.Response, error) {
 	var out core.Cursor[objects.AdsDataset]
 	call := GetOffsiteSignalContainerBusinessObjectLinkedApplicationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOffsiteSignalContainerBusinessObjectLinkedApplication(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectLinkedApplicationParams) (*core.Cursor[objects.AdsDataset], error) {
+	out, _, err := GetOffsiteSignalContainerBusinessObjectLinkedApplicationWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOffsiteSignalContainerBusinessObjectLinkedPageParams struct {
@@ -82,11 +87,16 @@ func DecodeGetOffsiteSignalContainerBusinessObjectLinkedPageBatchResponse(respon
 	return &out, nil
 }
 
-func GetOffsiteSignalContainerBusinessObjectLinkedPage(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectLinkedPageParams) (*core.Cursor[objects.Page], error) {
+func GetOffsiteSignalContainerBusinessObjectLinkedPageWithResponse(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectLinkedPageParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetOffsiteSignalContainerBusinessObjectLinkedPageBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOffsiteSignalContainerBusinessObjectLinkedPage(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectLinkedPageParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetOffsiteSignalContainerBusinessObjectLinkedPageWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOffsiteSignalContainerBusinessObjectParams struct {
@@ -123,9 +133,14 @@ func DecodeGetOffsiteSignalContainerBusinessObjectBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetOffsiteSignalContainerBusinessObject(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectParams) (*objects.OffsiteSignalContainerBusinessObject, error) {
+func GetOffsiteSignalContainerBusinessObjectWithResponse(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectParams) (*objects.OffsiteSignalContainerBusinessObject, *core.Response, error) {
 	var out objects.OffsiteSignalContainerBusinessObject
 	call := GetOffsiteSignalContainerBusinessObjectBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOffsiteSignalContainerBusinessObject(ctx context.Context, client *core.Client, id string, params GetOffsiteSignalContainerBusinessObjectParams) (*objects.OffsiteSignalContainerBusinessObject, error) {
+	out, _, err := GetOffsiteSignalContainerBusinessObjectWithResponse(ctx, client, id, params)
+	return out, err
 }

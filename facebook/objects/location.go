@@ -19,3 +19,33 @@ type Location struct {
 	Street      *string  `json:"street,omitempty"`
 	Zip         *string  `json:"zip,omitempty"`
 }
+
+var LocationFields = struct {
+	City        string
+	CityID      string
+	Country     string
+	CountryCode string
+	Latitude    string
+	LocatedIn   string
+	Longitude   string
+	Name        string
+	Region      string
+	RegionID    string
+	State       string
+	Street      string
+	Zip         string
+}{
+	City:        "city",
+	CityID:      "city_id",
+	Country:     "country",
+	CountryCode: "country_code",
+	Latitude:    "latitude",
+	LocatedIn:   "located_in",
+	Longitude:   "longitude",
+	Name:        "name",
+	Region:      "region",
+	RegionID:    "region_id",
+	State:       "state",
+	Street:      "street",
+	Zip:         "zip",
+}

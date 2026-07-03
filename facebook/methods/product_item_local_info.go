@@ -41,9 +41,14 @@ func DecodeGetProductItemLocalInfoBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetProductItemLocalInfo(ctx context.Context, client *core.Client, id string, params GetProductItemLocalInfoParams) (*objects.ProductItemLocalInfo, error) {
+func GetProductItemLocalInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemLocalInfoParams) (*objects.ProductItemLocalInfo, *core.Response, error) {
 	var out objects.ProductItemLocalInfo
 	call := GetProductItemLocalInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItemLocalInfo(ctx context.Context, client *core.Client, id string, params GetProductItemLocalInfoParams) (*objects.ProductItemLocalInfo, error) {
+	out, _, err := GetProductItemLocalInfoWithResponse(ctx, client, id, params)
+	return out, err
 }

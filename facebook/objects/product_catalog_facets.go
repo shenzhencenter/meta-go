@@ -4,3 +4,11 @@ type ProductCatalogFacets struct {
 	Facets    *[]map[string][]map[string]interface{} `json:"facets,omitempty"`
 	ItemCount *int                                   `json:"item_count,omitempty"`
 }
+
+var ProductCatalogFacetsFields = struct {
+	Facets    string
+	ItemCount string
+}{
+	Facets:    "facets",
+	ItemCount: "item_count",
+}

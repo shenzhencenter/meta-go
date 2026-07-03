@@ -10,3 +10,15 @@ type ProductImage struct {
 	ImageURL *string  `json:"image_url,omitempty"`
 	Width    *int     `json:"width,omitempty"`
 }
+
+var ProductImageFields = struct {
+	Height   string
+	ID       string
+	ImageURL string
+	Width    string
+}{
+	Height:   "height",
+	ID:       "id",
+	ImageURL: "image_url",
+	Width:    "width",
+}

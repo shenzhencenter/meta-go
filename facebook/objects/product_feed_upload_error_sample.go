@@ -9,3 +9,13 @@ type ProductFeedUploadErrorSample struct {
 	RetailerID *core.ID `json:"retailer_id,omitempty"`
 	RowNumber  *int     `json:"row_number,omitempty"`
 }
+
+var ProductFeedUploadErrorSampleFields = struct {
+	ID         string
+	RetailerID string
+	RowNumber  string
+}{
+	ID:         "id",
+	RetailerID: "retailer_id",
+	RowNumber:  "row_number",
+}

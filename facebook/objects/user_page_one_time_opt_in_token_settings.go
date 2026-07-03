@@ -18,3 +18,31 @@ type UserPageOneTimeOptInTokenSettings struct {
 	TopicTitle                       *string    `json:"topic_title,omitempty"`
 	UserTokenStatus                  *string    `json:"user_token_status,omitempty"`
 }
+
+var UserPageOneTimeOptInTokenSettingsFields = struct {
+	CreationTimestamp                string
+	CustomAudienceIds                string
+	NextEligibleTime                 string
+	NextEligibleTimeForPaidMessaging string
+	NotificationMessagesFrequency    string
+	NotificationMessagesReoptin      string
+	NotificationMessagesTimezone     string
+	NotificationMessagesToken        string
+	RecipientID                      string
+	TokenExpiryTimestamp             string
+	TopicTitle                       string
+	UserTokenStatus                  string
+}{
+	CreationTimestamp:                "creation_timestamp",
+	CustomAudienceIds:                "custom_audience_ids",
+	NextEligibleTime:                 "next_eligible_time",
+	NextEligibleTimeForPaidMessaging: "next_eligible_time_for_paid_messaging",
+	NotificationMessagesFrequency:    "notification_messages_frequency",
+	NotificationMessagesReoptin:      "notification_messages_reoptin",
+	NotificationMessagesTimezone:     "notification_messages_timezone",
+	NotificationMessagesToken:        "notification_messages_token",
+	RecipientID:                      "recipient_id",
+	TokenExpiryTimestamp:             "token_expiry_timestamp",
+	TopicTitle:                       "topic_title",
+	UserTokenStatus:                  "user_token_status",
+}

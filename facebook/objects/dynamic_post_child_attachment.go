@@ -12,3 +12,19 @@ type DynamicPostChildAttachment struct {
 	ProductID   *core.ID `json:"product_id,omitempty"`
 	Title       *string  `json:"title,omitempty"`
 }
+
+var DynamicPostChildAttachmentFields = struct {
+	Description string
+	ImageURL    string
+	Link        string
+	PlaceID     string
+	ProductID   string
+	Title       string
+}{
+	Description: "description",
+	ImageURL:    "image_url",
+	Link:        "link",
+	PlaceID:     "place_id",
+	ProductID:   "product_id",
+	Title:       "title",
+}

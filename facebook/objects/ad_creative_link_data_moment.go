@@ -9,3 +9,11 @@ type AdCreativeLinkDataMoment struct {
 	ID   *core.ID                            `json:"id,omitempty"`
 	Type *enums.AdcreativelinkdatamomentType `json:"type,omitempty"`
 }
+
+var AdCreativeLinkDataMomentFields = struct {
+	ID   string
+	Type string
+}{
+	ID:   "id",
+	Type: "type",
+}

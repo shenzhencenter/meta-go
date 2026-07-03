@@ -41,9 +41,14 @@ func DecodeGetCatalogContentVersionConfigBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetCatalogContentVersionConfig(ctx context.Context, client *core.Client, id string, params GetCatalogContentVersionConfigParams) (*objects.CatalogContentVersionConfig, error) {
+func GetCatalogContentVersionConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetCatalogContentVersionConfigParams) (*objects.CatalogContentVersionConfig, *core.Response, error) {
 	var out objects.CatalogContentVersionConfig
 	call := GetCatalogContentVersionConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCatalogContentVersionConfig(ctx context.Context, client *core.Client, id string, params GetCatalogContentVersionConfigParams) (*objects.CatalogContentVersionConfig, error) {
+	out, _, err := GetCatalogContentVersionConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

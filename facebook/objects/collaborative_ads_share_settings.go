@@ -12,3 +12,19 @@ type CollaborativeAdsShareSettings struct {
 	UtmMedium             *string   `json:"utm_medium,omitempty"`
 	UtmSource             *string   `json:"utm_source,omitempty"`
 }
+
+var CollaborativeAdsShareSettingsFields = struct {
+	AgencyBusiness        string
+	ID                    string
+	ProductCatalogProxyID string
+	UtmCampaign           string
+	UtmMedium             string
+	UtmSource             string
+}{
+	AgencyBusiness:        "agency_business",
+	ID:                    "id",
+	ProductCatalogProxyID: "product_catalog_proxy_id",
+	UtmCampaign:           "utm_campaign",
+	UtmMedium:             "utm_medium",
+	UtmSource:             "utm_source",
+}

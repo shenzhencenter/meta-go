@@ -41,9 +41,14 @@ func DecodeGetOpenGraphContextBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetOpenGraphContext(ctx context.Context, client *core.Client, id string, params GetOpenGraphContextParams) (*objects.OpenGraphContext, error) {
+func GetOpenGraphContextWithResponse(ctx context.Context, client *core.Client, id string, params GetOpenGraphContextParams) (*objects.OpenGraphContext, *core.Response, error) {
 	var out objects.OpenGraphContext
 	call := GetOpenGraphContextBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOpenGraphContext(ctx context.Context, client *core.Client, id string, params GetOpenGraphContextParams) (*objects.OpenGraphContext, error) {
+	out, _, err := GetOpenGraphContextWithResponse(ctx, client, id, params)
+	return out, err
 }

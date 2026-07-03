@@ -13,3 +13,21 @@ type AdAssetImage struct {
 	URL        *string        `json:"url,omitempty"`
 	URLTags    *string        `json:"url_tags,omitempty"`
 }
+
+var AdAssetImageFields = struct {
+	Hash       string
+	ID         string
+	ImageCrops string
+	Name       string
+	Tag        string
+	URL        string
+	URLTags    string
+}{
+	Hash:       "hash",
+	ID:         "id",
+	ImageCrops: "image_crops",
+	Name:       "name",
+	Tag:        "tag",
+	URL:        "url",
+	URLTags:    "url_tags",
+}

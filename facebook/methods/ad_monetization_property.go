@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetAdMonetizationPropertyAdnetworkanalyticsParams struct {
@@ -18,8 +17,8 @@ type GetAdMonetizationPropertyAdnetworkanalyticsParams struct {
 	OrderingColumn     *enums.AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam    `facebook:"ordering_column"`
 	OrderingType       *enums.AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParam      `facebook:"ordering_type"`
 	ShouldIncludeUntil *bool                                                                     `facebook:"should_include_until"`
-	Since              *time.Time                                                                `facebook:"since"`
-	Until              *time.Time                                                                `facebook:"until"`
+	Since              *core.Time                                                                `facebook:"since"`
+	Until              *core.Time                                                                `facebook:"until"`
 	Extra              core.Params                                                               `facebook:"-"`
 }
 
@@ -81,11 +80,16 @@ func DecodeGetAdMonetizationPropertyAdnetworkanalyticsBatchResponse(response *co
 	return &out, nil
 }
 
-func GetAdMonetizationPropertyAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+func GetAdMonetizationPropertyAdnetworkanalyticsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]
 	call := GetAdMonetizationPropertyAdnetworkanalyticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdMonetizationPropertyAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+	out, _, err := GetAdMonetizationPropertyAdnetworkanalyticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdMonetizationPropertyAdnetworkanalyticsParams struct {
@@ -96,8 +100,8 @@ type CreateAdMonetizationPropertyAdnetworkanalyticsParams struct {
 	Metrics           []enums.AdmonetizationpropertyadnetworkanalyticsMetricsEnumParam          `facebook:"metrics"`
 	OrderingColumn    *enums.AdmonetizationpropertyadnetworkanalyticsOrderingColumnEnumParam    `facebook:"ordering_column"`
 	OrderingType      *enums.AdmonetizationpropertyadnetworkanalyticsOrderingTypeEnumParam      `facebook:"ordering_type"`
-	Since             *time.Time                                                                `facebook:"since"`
-	Until             *time.Time                                                                `facebook:"until"`
+	Since             *core.Time                                                                `facebook:"since"`
+	Until             *core.Time                                                                `facebook:"until"`
 	Extra             core.Params                                                               `facebook:"-"`
 }
 
@@ -156,11 +160,16 @@ func DecodeCreateAdMonetizationPropertyAdnetworkanalyticsBatchResponse(response 
 	return &out, nil
 }
 
-func CreateAdMonetizationPropertyAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateAdMonetizationPropertyAdnetworkanalyticsParams) (*objects.AdMonetizationProperty, error) {
+func CreateAdMonetizationPropertyAdnetworkanalyticsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdMonetizationPropertyAdnetworkanalyticsParams) (*objects.AdMonetizationProperty, *core.Response, error) {
 	var out objects.AdMonetizationProperty
 	call := CreateAdMonetizationPropertyAdnetworkanalyticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdMonetizationPropertyAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateAdMonetizationPropertyAdnetworkanalyticsParams) (*objects.AdMonetizationProperty, error) {
+	out, _, err := CreateAdMonetizationPropertyAdnetworkanalyticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdMonetizationPropertyAdnetworkanalyticsResultsParams struct {
@@ -201,11 +210,16 @@ func DecodeGetAdMonetizationPropertyAdnetworkanalyticsResultsBatchResponse(respo
 	return &out, nil
 }
 
-func GetAdMonetizationPropertyAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+func GetAdMonetizationPropertyAdnetworkanalyticsResultsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]
 	call := GetAdMonetizationPropertyAdnetworkanalyticsResultsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdMonetizationPropertyAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+	out, _, err := GetAdMonetizationPropertyAdnetworkanalyticsResultsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdMonetizationPropertyParams struct {
@@ -242,9 +256,14 @@ func DecodeGetAdMonetizationPropertyBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetAdMonetizationProperty(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyParams) (*objects.AdMonetizationProperty, error) {
+func GetAdMonetizationPropertyWithResponse(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyParams) (*objects.AdMonetizationProperty, *core.Response, error) {
 	var out objects.AdMonetizationProperty
 	call := GetAdMonetizationPropertyBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdMonetizationProperty(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyParams) (*objects.AdMonetizationProperty, error) {
+	out, _, err := GetAdMonetizationPropertyWithResponse(ctx, client, id, params)
+	return out, err
 }

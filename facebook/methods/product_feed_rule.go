@@ -41,11 +41,16 @@ func DecodeDeleteProductFeedRuleBatchResponse(response *core.BatchResponse) (*ma
 	return &out, nil
 }
 
-func DeleteProductFeedRule(ctx context.Context, client *core.Client, id string, params DeleteProductFeedRuleParams) (*map[string]interface{}, error) {
+func DeleteProductFeedRuleWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductFeedRuleParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductFeedRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductFeedRule(ctx context.Context, client *core.Client, id string, params DeleteProductFeedRuleParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductFeedRuleWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedRuleParams struct {
@@ -82,11 +87,16 @@ func DecodeGetProductFeedRuleBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetProductFeedRule(ctx context.Context, client *core.Client, id string, params GetProductFeedRuleParams) (*objects.ProductFeedRule, error) {
+func GetProductFeedRuleWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedRuleParams) (*objects.ProductFeedRule, *core.Response, error) {
 	var out objects.ProductFeedRule
 	call := GetProductFeedRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedRule(ctx context.Context, client *core.Client, id string, params GetProductFeedRuleParams) (*objects.ProductFeedRule, error) {
+	out, _, err := GetProductFeedRuleWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateProductFeedRuleParams struct {
@@ -125,9 +135,14 @@ func DecodeUpdateProductFeedRuleBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func UpdateProductFeedRule(ctx context.Context, client *core.Client, id string, params UpdateProductFeedRuleParams) (*objects.ProductFeedRule, error) {
+func UpdateProductFeedRuleWithResponse(ctx context.Context, client *core.Client, id string, params UpdateProductFeedRuleParams) (*objects.ProductFeedRule, *core.Response, error) {
 	var out objects.ProductFeedRule
 	call := UpdateProductFeedRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateProductFeedRule(ctx context.Context, client *core.Client, id string, params UpdateProductFeedRuleParams) (*objects.ProductFeedRule, error) {
+	out, _, err := UpdateProductFeedRuleWithResponse(ctx, client, id, params)
+	return out, err
 }

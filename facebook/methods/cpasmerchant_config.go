@@ -41,9 +41,14 @@ func DecodeGetCPASMerchantConfigBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetCPASMerchantConfig(ctx context.Context, client *core.Client, id string, params GetCPASMerchantConfigParams) (*objects.CPASMerchantConfig, error) {
+func GetCPASMerchantConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASMerchantConfigParams) (*objects.CPASMerchantConfig, *core.Response, error) {
 	var out objects.CPASMerchantConfig
 	call := GetCPASMerchantConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASMerchantConfig(ctx context.Context, client *core.Client, id string, params GetCPASMerchantConfigParams) (*objects.CPASMerchantConfig, error) {
+	out, _, err := GetCPASMerchantConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -61,11 +61,16 @@ func DecodeCreateStatusLikesBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateStatusLikes(ctx context.Context, client *core.Client, id string, params CreateStatusLikesParams) (*objects.Status, error) {
+func CreateStatusLikesWithResponse(ctx context.Context, client *core.Client, id string, params CreateStatusLikesParams) (*objects.Status, *core.Response, error) {
 	var out objects.Status
 	call := CreateStatusLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateStatusLikes(ctx context.Context, client *core.Client, id string, params CreateStatusLikesParams) (*objects.Status, error) {
+	out, _, err := CreateStatusLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetStatusParams struct {
@@ -102,9 +107,14 @@ func DecodeGetStatusBatchResponse(response *core.BatchResponse) (*objects.Status
 	return &out, nil
 }
 
-func GetStatus(ctx context.Context, client *core.Client, id string, params GetStatusParams) (*objects.Status, error) {
+func GetStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetStatusParams) (*objects.Status, *core.Response, error) {
 	var out objects.Status
 	call := GetStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetStatus(ctx context.Context, client *core.Client, id string, params GetStatusParams) (*objects.Status, error) {
+	out, _, err := GetStatusWithResponse(ctx, client, id, params)
+	return out, err
 }

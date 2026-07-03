@@ -10,3 +10,15 @@ type PageCategory struct {
 	ID               *core.ID        `json:"id,omitempty"`
 	Name             *string         `json:"name,omitempty"`
 }
+
+var PageCategoryFields = struct {
+	APIEnum          string
+	FbPageCategories string
+	ID               string
+	Name             string
+}{
+	APIEnum:          "api_enum",
+	FbPageCategories: "fb_page_categories",
+	ID:               "id",
+	Name:             "name",
+}

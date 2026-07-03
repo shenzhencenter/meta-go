@@ -41,9 +41,14 @@ func DecodeGetCatalogItemOverrideBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetCatalogItemOverride(ctx context.Context, client *core.Client, id string, params GetCatalogItemOverrideParams) (*objects.CatalogItemOverride, error) {
+func GetCatalogItemOverrideWithResponse(ctx context.Context, client *core.Client, id string, params GetCatalogItemOverrideParams) (*objects.CatalogItemOverride, *core.Response, error) {
 	var out objects.CatalogItemOverride
 	call := GetCatalogItemOverrideBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCatalogItemOverride(ctx context.Context, client *core.Client, id string, params GetCatalogItemOverrideParams) (*objects.CatalogItemOverride, error) {
+	out, _, err := GetCatalogItemOverrideWithResponse(ctx, client, id, params)
+	return out, err
 }

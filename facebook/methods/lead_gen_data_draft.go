@@ -41,9 +41,14 @@ func DecodeGetLeadGenDataDraftBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetLeadGenDataDraft(ctx context.Context, client *core.Client, id string, params GetLeadGenDataDraftParams) (*objects.LeadGenDataDraft, error) {
+func GetLeadGenDataDraftWithResponse(ctx context.Context, client *core.Client, id string, params GetLeadGenDataDraftParams) (*objects.LeadGenDataDraft, *core.Response, error) {
 	var out objects.LeadGenDataDraft
 	call := GetLeadGenDataDraftBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLeadGenDataDraft(ctx context.Context, client *core.Client, id string, params GetLeadGenDataDraftParams) (*objects.LeadGenDataDraft, error) {
+	out, _, err := GetLeadGenDataDraftWithResponse(ctx, client, id, params)
+	return out, err
 }

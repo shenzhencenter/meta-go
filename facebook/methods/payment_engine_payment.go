@@ -44,11 +44,16 @@ func DecodeCreatePaymentEnginePaymentDisputeBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreatePaymentEnginePaymentDispute(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentDisputeParams) (*objects.PaymentEnginePayment, error) {
+func CreatePaymentEnginePaymentDisputeWithResponse(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentDisputeParams) (*objects.PaymentEnginePayment, *core.Response, error) {
 	var out objects.PaymentEnginePayment
 	call := CreatePaymentEnginePaymentDisputeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePaymentEnginePaymentDispute(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentDisputeParams) (*objects.PaymentEnginePayment, error) {
+	out, _, err := CreatePaymentEnginePaymentDisputeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePaymentEnginePaymentRefundsParams struct {
@@ -93,11 +98,16 @@ func DecodeCreatePaymentEnginePaymentRefundsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreatePaymentEnginePaymentRefunds(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentRefundsParams) (*objects.PaymentEnginePayment, error) {
+func CreatePaymentEnginePaymentRefundsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentRefundsParams) (*objects.PaymentEnginePayment, *core.Response, error) {
 	var out objects.PaymentEnginePayment
 	call := CreatePaymentEnginePaymentRefundsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePaymentEnginePaymentRefunds(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentRefundsParams) (*objects.PaymentEnginePayment, error) {
+	out, _, err := CreatePaymentEnginePaymentRefundsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPaymentEnginePaymentParams struct {
@@ -134,9 +144,14 @@ func DecodeGetPaymentEnginePaymentBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetPaymentEnginePayment(ctx context.Context, client *core.Client, id string, params GetPaymentEnginePaymentParams) (*objects.PaymentEnginePayment, error) {
+func GetPaymentEnginePaymentWithResponse(ctx context.Context, client *core.Client, id string, params GetPaymentEnginePaymentParams) (*objects.PaymentEnginePayment, *core.Response, error) {
 	var out objects.PaymentEnginePayment
 	call := GetPaymentEnginePaymentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPaymentEnginePayment(ctx context.Context, client *core.Client, id string, params GetPaymentEnginePaymentParams) (*objects.PaymentEnginePayment, error) {
+	out, _, err := GetPaymentEnginePaymentWithResponse(ctx, client, id, params)
+	return out, err
 }

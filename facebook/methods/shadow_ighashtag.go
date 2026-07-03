@@ -43,11 +43,16 @@ func DecodeGetShadowIGHashtagRecentMediaBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetShadowIGHashtagRecentMedia(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagRecentMediaParams) (*core.Cursor[objects.IGMedia], error) {
+func GetShadowIGHashtagRecentMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagRecentMediaParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetShadowIGHashtagRecentMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetShadowIGHashtagRecentMedia(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagRecentMediaParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetShadowIGHashtagRecentMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetShadowIGHashtagTopMediaParams struct {
@@ -86,11 +91,16 @@ func DecodeGetShadowIGHashtagTopMediaBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetShadowIGHashtagTopMedia(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagTopMediaParams) (*core.Cursor[objects.IGMedia], error) {
+func GetShadowIGHashtagTopMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagTopMediaParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetShadowIGHashtagTopMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetShadowIGHashtagTopMedia(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagTopMediaParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetShadowIGHashtagTopMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetShadowIGHashtagParams struct {
@@ -127,9 +137,14 @@ func DecodeGetShadowIGHashtagBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetShadowIGHashtag(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagParams) (*objects.ShadowIGHashtag, error) {
+func GetShadowIGHashtagWithResponse(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagParams) (*objects.ShadowIGHashtag, *core.Response, error) {
 	var out objects.ShadowIGHashtag
 	call := GetShadowIGHashtagBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetShadowIGHashtag(ctx context.Context, client *core.Client, id string, params GetShadowIGHashtagParams) (*objects.ShadowIGHashtag, error) {
+	out, _, err := GetShadowIGHashtagWithResponse(ctx, client, id, params)
+	return out, err
 }

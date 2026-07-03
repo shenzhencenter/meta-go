@@ -41,9 +41,14 @@ func DecodeGetRightsManagerDataExportBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetRightsManagerDataExport(ctx context.Context, client *core.Client, id string, params GetRightsManagerDataExportParams) (*objects.RightsManagerDataExport, error) {
+func GetRightsManagerDataExportWithResponse(ctx context.Context, client *core.Client, id string, params GetRightsManagerDataExportParams) (*objects.RightsManagerDataExport, *core.Response, error) {
 	var out objects.RightsManagerDataExport
 	call := GetRightsManagerDataExportBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetRightsManagerDataExport(ctx context.Context, client *core.Client, id string, params GetRightsManagerDataExportParams) (*objects.RightsManagerDataExport, error) {
+	out, _, err := GetRightsManagerDataExportWithResponse(ctx, client, id, params)
+	return out, err
 }

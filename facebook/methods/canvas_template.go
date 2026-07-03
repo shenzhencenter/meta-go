@@ -41,9 +41,14 @@ func DecodeGetCanvasTemplateBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetCanvasTemplate(ctx context.Context, client *core.Client, id string, params GetCanvasTemplateParams) (*objects.CanvasTemplate, error) {
+func GetCanvasTemplateWithResponse(ctx context.Context, client *core.Client, id string, params GetCanvasTemplateParams) (*objects.CanvasTemplate, *core.Response, error) {
 	var out objects.CanvasTemplate
 	call := GetCanvasTemplateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCanvasTemplate(ctx context.Context, client *core.Client, id string, params GetCanvasTemplateParams) (*objects.CanvasTemplate, error) {
+	out, _, err := GetCanvasTemplateWithResponse(ctx, client, id, params)
+	return out, err
 }

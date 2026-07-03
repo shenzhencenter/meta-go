@@ -18,3 +18,29 @@ type Profile struct {
 	ProfileType *enums.ProfileProfileType `json:"profile_type,omitempty"`
 	Username    *string                   `json:"username,omitempty"`
 }
+
+var ProfileFields = struct {
+	CanPost     string
+	ID          string
+	Link        string
+	Name        string
+	Pic         string
+	PicCrop     string
+	PicLarge    string
+	PicSmall    string
+	PicSquare   string
+	ProfileType string
+	Username    string
+}{
+	CanPost:     "can_post",
+	ID:          "id",
+	Link:        "link",
+	Name:        "name",
+	Pic:         "pic",
+	PicCrop:     "pic_crop",
+	PicLarge:    "pic_large",
+	PicSmall:    "pic_small",
+	PicSquare:   "pic_square",
+	ProfileType: "profile_type",
+	Username:    "username",
+}

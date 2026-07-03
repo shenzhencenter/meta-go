@@ -41,9 +41,14 @@ func DecodeGetThirdPartyPartnerPanelRequestBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetThirdPartyPartnerPanelRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelRequestParams) (*objects.ThirdPartyPartnerPanelRequest, error) {
+func GetThirdPartyPartnerPanelRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelRequestParams) (*objects.ThirdPartyPartnerPanelRequest, *core.Response, error) {
 	var out objects.ThirdPartyPartnerPanelRequest
 	call := GetThirdPartyPartnerPanelRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetThirdPartyPartnerPanelRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelRequestParams) (*objects.ThirdPartyPartnerPanelRequest, error) {
+	out, _, err := GetThirdPartyPartnerPanelRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetBusinessCreativeFolderBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetBusinessCreativeFolder(ctx context.Context, client *core.Client, id string, params GetBusinessCreativeFolderParams) (*objects.BusinessCreativeFolder, error) {
+func GetBusinessCreativeFolderWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessCreativeFolderParams) (*objects.BusinessCreativeFolder, *core.Response, error) {
 	var out objects.BusinessCreativeFolder
 	call := GetBusinessCreativeFolderBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessCreativeFolder(ctx context.Context, client *core.Client, id string, params GetBusinessCreativeFolderParams) (*objects.BusinessCreativeFolder, error) {
+	out, _, err := GetBusinessCreativeFolderWithResponse(ctx, client, id, params)
+	return out, err
 }

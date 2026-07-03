@@ -9,3 +9,13 @@ type AdsPixelCustomAttributionSource struct {
 	IsEligible *bool    `json:"is_eligible,omitempty"`
 	Name       *string  `json:"name,omitempty"`
 }
+
+var AdsPixelCustomAttributionSourceFields = struct {
+	ID         string
+	IsEligible string
+	Name       string
+}{
+	ID:         "id",
+	IsEligible: "is_eligible",
+	Name:       "name",
+}

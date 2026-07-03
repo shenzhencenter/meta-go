@@ -41,9 +41,14 @@ func DecodeGetUserPageOneTimeOptInTokenSettingsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetUserPageOneTimeOptInTokenSettings(ctx context.Context, client *core.Client, id string, params GetUserPageOneTimeOptInTokenSettingsParams) (*objects.UserPageOneTimeOptInTokenSettings, error) {
+func GetUserPageOneTimeOptInTokenSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPageOneTimeOptInTokenSettingsParams) (*objects.UserPageOneTimeOptInTokenSettings, *core.Response, error) {
 	var out objects.UserPageOneTimeOptInTokenSettings
 	call := GetUserPageOneTimeOptInTokenSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPageOneTimeOptInTokenSettings(ctx context.Context, client *core.Client, id string, params GetUserPageOneTimeOptInTokenSettingsParams) (*objects.UserPageOneTimeOptInTokenSettings, error) {
+	out, _, err := GetUserPageOneTimeOptInTokenSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

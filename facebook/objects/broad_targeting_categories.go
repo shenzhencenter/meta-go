@@ -18,3 +18,31 @@ type BroadTargetingCategories struct {
 	UntranslatedName       *string   `json:"untranslated_name,omitempty"`
 	UntranslatedParentName *string   `json:"untranslated_parent_name,omitempty"`
 }
+
+var BroadTargetingCategoriesFields = struct {
+	CategoryDescription    string
+	ID                     string
+	Name                   string
+	ParentCategory         string
+	Path                   string
+	SizeLowerBound         string
+	SizeUpperBound         string
+	Source                 string
+	Type                   string
+	TypeName               string
+	UntranslatedName       string
+	UntranslatedParentName string
+}{
+	CategoryDescription:    "category_description",
+	ID:                     "id",
+	Name:                   "name",
+	ParentCategory:         "parent_category",
+	Path:                   "path",
+	SizeLowerBound:         "size_lower_bound",
+	SizeUpperBound:         "size_upper_bound",
+	Source:                 "source",
+	Type:                   "type",
+	TypeName:               "type_name",
+	UntranslatedName:       "untranslated_name",
+	UntranslatedParentName: "untranslated_parent_name",
+}

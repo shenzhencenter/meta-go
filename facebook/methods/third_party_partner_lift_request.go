@@ -41,9 +41,14 @@ func DecodeGetThirdPartyPartnerLiftRequestBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetThirdPartyPartnerLiftRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerLiftRequestParams) (*objects.ThirdPartyPartnerLiftRequest, error) {
+func GetThirdPartyPartnerLiftRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerLiftRequestParams) (*objects.ThirdPartyPartnerLiftRequest, *core.Response, error) {
 	var out objects.ThirdPartyPartnerLiftRequest
 	call := GetThirdPartyPartnerLiftRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetThirdPartyPartnerLiftRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerLiftRequestParams) (*objects.ThirdPartyPartnerLiftRequest, error) {
+	out, _, err := GetThirdPartyPartnerLiftRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

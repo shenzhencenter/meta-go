@@ -41,9 +41,14 @@ func DecodeGetCPASParentCatalogSettingsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetCPASParentCatalogSettings(ctx context.Context, client *core.Client, id string, params GetCPASParentCatalogSettingsParams) (*objects.CPASParentCatalogSettings, error) {
+func GetCPASParentCatalogSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASParentCatalogSettingsParams) (*objects.CPASParentCatalogSettings, *core.Response, error) {
 	var out objects.CPASParentCatalogSettings
 	call := GetCPASParentCatalogSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASParentCatalogSettings(ctx context.Context, client *core.Client, id string, params GetCPASParentCatalogSettingsParams) (*objects.CPASParentCatalogSettings, error) {
+	out, _, err := GetCPASParentCatalogSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

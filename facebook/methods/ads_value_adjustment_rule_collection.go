@@ -46,11 +46,16 @@ func DecodeCreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchResponse(resp
 	return &out, nil
 }
 
-func CreateAdsValueAdjustmentRuleCollectionDeleteRuleSet(ctx context.Context, client *core.Client, id string, params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
+func CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams) (*objects.AdsValueAdjustmentRuleCollection, *core.Response, error) {
 	var out objects.AdsValueAdjustmentRuleCollection
 	call := CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdsValueAdjustmentRuleCollectionDeleteRuleSet(ctx context.Context, client *core.Client, id string, params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
+	out, _, err := CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsValueAdjustmentRuleCollectionRulesParams struct {
@@ -87,11 +92,16 @@ func DecodeGetAdsValueAdjustmentRuleCollectionRulesBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetAdsValueAdjustmentRuleCollectionRules(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionRulesParams) (*core.Cursor[objects.AdsValueAdjustmentRulePersona], error) {
+func GetAdsValueAdjustmentRuleCollectionRulesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionRulesParams) (*core.Cursor[objects.AdsValueAdjustmentRulePersona], *core.Response, error) {
 	var out core.Cursor[objects.AdsValueAdjustmentRulePersona]
 	call := GetAdsValueAdjustmentRuleCollectionRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsValueAdjustmentRuleCollectionRules(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionRulesParams) (*core.Cursor[objects.AdsValueAdjustmentRulePersona], error) {
+	out, _, err := GetAdsValueAdjustmentRuleCollectionRulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsValueAdjustmentRuleCollectionParams struct {
@@ -128,11 +138,16 @@ func DecodeGetAdsValueAdjustmentRuleCollectionBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetAdsValueAdjustmentRuleCollection(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
+func GetAdsValueAdjustmentRuleCollectionWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, *core.Response, error) {
 	var out objects.AdsValueAdjustmentRuleCollection
 	call := GetAdsValueAdjustmentRuleCollectionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsValueAdjustmentRuleCollection(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
+	out, _, err := GetAdsValueAdjustmentRuleCollectionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdsValueAdjustmentRuleCollectionParams struct {
@@ -181,9 +196,14 @@ func DecodeUpdateAdsValueAdjustmentRuleCollectionBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func UpdateAdsValueAdjustmentRuleCollection(ctx context.Context, client *core.Client, id string, params UpdateAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
+func UpdateAdsValueAdjustmentRuleCollectionWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, *core.Response, error) {
 	var out objects.AdsValueAdjustmentRuleCollection
 	call := UpdateAdsValueAdjustmentRuleCollectionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdsValueAdjustmentRuleCollection(ctx context.Context, client *core.Client, id string, params UpdateAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
+	out, _, err := UpdateAdsValueAdjustmentRuleCollectionWithResponse(ctx, client, id, params)
+	return out, err
 }

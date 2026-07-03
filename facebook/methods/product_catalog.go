@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type DeleteProductCatalogAgenciesParams struct {
@@ -45,11 +44,16 @@ func DecodeDeleteProductCatalogAgenciesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func DeleteProductCatalogAgencies(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogAgenciesParams) (*map[string]interface{}, error) {
+func DeleteProductCatalogAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogAgenciesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductCatalogAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductCatalogAgencies(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogAgenciesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductCatalogAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogAgenciesParams struct {
@@ -86,11 +90,16 @@ func DecodeGetProductCatalogAgenciesBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductCatalogAgencies(ctx context.Context, client *core.Client, id string, params GetProductCatalogAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetProductCatalogAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetProductCatalogAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogAgencies(ctx context.Context, client *core.Client, id string, params GetProductCatalogAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetProductCatalogAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogAgenciesParams struct {
@@ -149,11 +158,16 @@ func DecodeCreateProductCatalogAgenciesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateProductCatalogAgencies(ctx context.Context, client *core.Client, id string, params CreateProductCatalogAgenciesParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogAgenciesParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogAgencies(ctx context.Context, client *core.Client, id string, params CreateProductCatalogAgenciesParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductCatalogAssignedUsersParams struct {
@@ -192,11 +206,16 @@ func DecodeDeleteProductCatalogAssignedUsersBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func DeleteProductCatalogAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogAssignedUsersParams) (*map[string]interface{}, error) {
+func DeleteProductCatalogAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogAssignedUsersParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductCatalogAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductCatalogAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogAssignedUsersParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductCatalogAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogAssignedUsersParams struct {
@@ -235,11 +254,16 @@ func DecodeGetProductCatalogAssignedUsersBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetProductCatalogAssignedUsers(ctx context.Context, client *core.Client, id string, params GetProductCatalogAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+func GetProductCatalogAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogAssignedUsersParams) (*core.Cursor[objects.AssignedUser], *core.Response, error) {
 	var out core.Cursor[objects.AssignedUser]
 	call := GetProductCatalogAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogAssignedUsers(ctx context.Context, client *core.Client, id string, params GetProductCatalogAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+	out, _, err := GetProductCatalogAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogAssignedUsersParams struct {
@@ -280,11 +304,16 @@ func DecodeCreateProductCatalogAssignedUsersBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateProductCatalogAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateProductCatalogAssignedUsersParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogAssignedUsersParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateProductCatalogAssignedUsersParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogAutomotiveModelsParams struct {
@@ -329,11 +358,16 @@ func DecodeGetProductCatalogAutomotiveModelsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetProductCatalogAutomotiveModels(ctx context.Context, client *core.Client, id string, params GetProductCatalogAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], error) {
+func GetProductCatalogAutomotiveModelsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], *core.Response, error) {
 	var out core.Cursor[objects.AutomotiveModel]
 	call := GetProductCatalogAutomotiveModelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogAutomotiveModels(ctx context.Context, client *core.Client, id string, params GetProductCatalogAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], error) {
+	out, _, err := GetProductCatalogAutomotiveModelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogBatchParams struct {
@@ -384,11 +418,16 @@ func DecodeCreateProductCatalogBatchBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateProductCatalogBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogCatalogStoreParams struct {
@@ -427,11 +466,16 @@ func DecodeCreateProductCatalogCatalogStoreBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateProductCatalogCatalogStore(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCatalogStoreParams) (*objects.StoreCatalogSettings, error) {
+func CreateProductCatalogCatalogStoreWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCatalogStoreParams) (*objects.StoreCatalogSettings, *core.Response, error) {
 	var out objects.StoreCatalogSettings
 	call := CreateProductCatalogCatalogStoreBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogCatalogStore(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCatalogStoreParams) (*objects.StoreCatalogSettings, error) {
+	out, _, err := CreateProductCatalogCatalogStoreWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCategoriesParams struct {
@@ -474,11 +518,16 @@ func DecodeGetProductCatalogCategoriesBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetProductCatalogCategories(ctx context.Context, client *core.Client, id string, params GetProductCatalogCategoriesParams) (*core.Cursor[objects.ProductCatalogCategory], error) {
+func GetProductCatalogCategoriesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCategoriesParams) (*core.Cursor[objects.ProductCatalogCategory], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogCategory]
 	call := GetProductCatalogCategoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCategories(ctx context.Context, client *core.Client, id string, params GetProductCatalogCategoriesParams) (*core.Cursor[objects.ProductCatalogCategory], error) {
+	out, _, err := GetProductCatalogCategoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogCategoriesParams struct {
@@ -517,11 +566,16 @@ func DecodeCreateProductCatalogCategoriesBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateProductCatalogCategories(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCategoriesParams) (*objects.ProductCatalogCategory, error) {
+func CreateProductCatalogCategoriesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCategoriesParams) (*objects.ProductCatalogCategory, *core.Response, error) {
 	var out objects.ProductCatalogCategory
 	call := CreateProductCatalogCategoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogCategories(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCategoriesParams) (*objects.ProductCatalogCategory, error) {
+	out, _, err := CreateProductCatalogCategoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCheckBatchRequestStatusParams struct {
@@ -568,11 +622,16 @@ func DecodeGetProductCatalogCheckBatchRequestStatusBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetProductCatalogCheckBatchRequestStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusParams) (*core.Cursor[objects.CheckBatchRequestStatus], error) {
+func GetProductCatalogCheckBatchRequestStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusParams) (*core.Cursor[objects.CheckBatchRequestStatus], *core.Response, error) {
 	var out core.Cursor[objects.CheckBatchRequestStatus]
 	call := GetProductCatalogCheckBatchRequestStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCheckBatchRequestStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusParams) (*core.Cursor[objects.CheckBatchRequestStatus], error) {
+	out, _, err := GetProductCatalogCheckBatchRequestStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCheckMarketplacePartnerDealsStatusParams struct {
@@ -611,11 +670,16 @@ func DecodeGetProductCatalogCheckMarketplacePartnerDealsStatusBatchResponse(resp
 	return &out, nil
 }
 
-func GetProductCatalogCheckMarketplacePartnerDealsStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckMarketplacePartnerDealsStatusParams) (*core.Cursor[objects.ProductCatalogCheckMarketplacePartnerDealsStatus], error) {
+func GetProductCatalogCheckMarketplacePartnerDealsStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckMarketplacePartnerDealsStatusParams) (*core.Cursor[objects.ProductCatalogCheckMarketplacePartnerDealsStatus], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogCheckMarketplacePartnerDealsStatus]
 	call := GetProductCatalogCheckMarketplacePartnerDealsStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCheckMarketplacePartnerDealsStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckMarketplacePartnerDealsStatusParams) (*core.Cursor[objects.ProductCatalogCheckMarketplacePartnerDealsStatus], error) {
+	out, _, err := GetProductCatalogCheckMarketplacePartnerDealsStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCheckMarketplacePartnerSellersStatusParams struct {
@@ -654,11 +718,16 @@ func DecodeGetProductCatalogCheckMarketplacePartnerSellersStatusBatchResponse(re
 	return &out, nil
 }
 
-func GetProductCatalogCheckMarketplacePartnerSellersStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckMarketplacePartnerSellersStatusParams) (*core.Cursor[objects.ProductCatalogCheckMarketplacePartnerSellersStatus], error) {
+func GetProductCatalogCheckMarketplacePartnerSellersStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckMarketplacePartnerSellersStatusParams) (*core.Cursor[objects.ProductCatalogCheckMarketplacePartnerSellersStatus], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogCheckMarketplacePartnerSellersStatus]
 	call := GetProductCatalogCheckMarketplacePartnerSellersStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCheckMarketplacePartnerSellersStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckMarketplacePartnerSellersStatusParams) (*core.Cursor[objects.ProductCatalogCheckMarketplacePartnerSellersStatus], error) {
+	out, _, err := GetProductCatalogCheckMarketplacePartnerSellersStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCollaborativeAdsLsbImageBankParams struct {
@@ -695,11 +764,16 @@ func DecodeGetProductCatalogCollaborativeAdsLsbImageBankBatchResponse(response *
 	return &out, nil
 }
 
-func GetProductCatalogCollaborativeAdsLsbImageBank(ctx context.Context, client *core.Client, id string, params GetProductCatalogCollaborativeAdsLsbImageBankParams) (*core.Cursor[objects.CPASLsbImageBank], error) {
+func GetProductCatalogCollaborativeAdsLsbImageBankWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCollaborativeAdsLsbImageBankParams) (*core.Cursor[objects.CPASLsbImageBank], *core.Response, error) {
 	var out core.Cursor[objects.CPASLsbImageBank]
 	call := GetProductCatalogCollaborativeAdsLsbImageBankBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCollaborativeAdsLsbImageBank(ctx context.Context, client *core.Client, id string, params GetProductCatalogCollaborativeAdsLsbImageBankParams) (*core.Cursor[objects.CPASLsbImageBank], error) {
+	out, _, err := GetProductCatalogCollaborativeAdsLsbImageBankWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCollaborativeAdsShareSettingsParams struct {
@@ -736,11 +810,16 @@ func DecodeGetProductCatalogCollaborativeAdsShareSettingsBatchResponse(response 
 	return &out, nil
 }
 
-func GetProductCatalogCollaborativeAdsShareSettings(ctx context.Context, client *core.Client, id string, params GetProductCatalogCollaborativeAdsShareSettingsParams) (*core.Cursor[objects.CollaborativeAdsShareSettings], error) {
+func GetProductCatalogCollaborativeAdsShareSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCollaborativeAdsShareSettingsParams) (*core.Cursor[objects.CollaborativeAdsShareSettings], *core.Response, error) {
 	var out core.Cursor[objects.CollaborativeAdsShareSettings]
 	call := GetProductCatalogCollaborativeAdsShareSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCollaborativeAdsShareSettings(ctx context.Context, client *core.Client, id string, params GetProductCatalogCollaborativeAdsShareSettingsParams) (*core.Cursor[objects.CollaborativeAdsShareSettings], error) {
+	out, _, err := GetProductCatalogCollaborativeAdsShareSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogCpasLsbImageBankParams struct {
@@ -787,11 +866,16 @@ func DecodeCreateProductCatalogCpasLsbImageBankBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func CreateProductCatalogCpasLsbImageBank(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCpasLsbImageBankParams) (*objects.CPASLsbImageBank, error) {
+func CreateProductCatalogCpasLsbImageBankWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCpasLsbImageBankParams) (*objects.CPASLsbImageBank, *core.Response, error) {
 	var out objects.CPASLsbImageBank
 	call := CreateProductCatalogCpasLsbImageBankBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogCpasLsbImageBank(ctx context.Context, client *core.Client, id string, params CreateProductCatalogCpasLsbImageBankParams) (*objects.CPASLsbImageBank, error) {
+	out, _, err := CreateProductCatalogCpasLsbImageBankWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogCreatorAssetCreativesParams struct {
@@ -832,11 +916,16 @@ func DecodeGetProductCatalogCreatorAssetCreativesBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetProductCatalogCreatorAssetCreatives(ctx context.Context, client *core.Client, id string, params GetProductCatalogCreatorAssetCreativesParams) (*core.Cursor[objects.CreatorAssetCreative], error) {
+func GetProductCatalogCreatorAssetCreativesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCreatorAssetCreativesParams) (*core.Cursor[objects.CreatorAssetCreative], *core.Response, error) {
 	var out core.Cursor[objects.CreatorAssetCreative]
 	call := GetProductCatalogCreatorAssetCreativesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCreatorAssetCreatives(ctx context.Context, client *core.Client, id string, params GetProductCatalogCreatorAssetCreativesParams) (*core.Cursor[objects.CreatorAssetCreative], error) {
+	out, _, err := GetProductCatalogCreatorAssetCreativesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogDataSourcesParams struct {
@@ -877,11 +966,16 @@ func DecodeGetProductCatalogDataSourcesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetProductCatalogDataSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSource], error) {
+func GetProductCatalogDataSourcesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSource], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogDataSource]
 	call := GetProductCatalogDataSourcesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogDataSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSource], error) {
+	out, _, err := GetProductCatalogDataSourcesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogDestinationsParams struct {
@@ -926,11 +1020,16 @@ func DecodeGetProductCatalogDestinationsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetProductCatalogDestinations(ctx context.Context, client *core.Client, id string, params GetProductCatalogDestinationsParams) (*core.Cursor[objects.Destination], error) {
+func GetProductCatalogDestinationsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogDestinationsParams) (*core.Cursor[objects.Destination], *core.Response, error) {
 	var out core.Cursor[objects.Destination]
 	call := GetProductCatalogDestinationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogDestinations(ctx context.Context, client *core.Client, id string, params GetProductCatalogDestinationsParams) (*core.Cursor[objects.Destination], error) {
+	out, _, err := GetProductCatalogDestinationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogDiagnosticsParams struct {
@@ -987,11 +1086,16 @@ func DecodeGetProductCatalogDiagnosticsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetProductCatalogDiagnostics(ctx context.Context, client *core.Client, id string, params GetProductCatalogDiagnosticsParams) (*core.Cursor[objects.ProductCatalogDiagnosticGroup], error) {
+func GetProductCatalogDiagnosticsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogDiagnosticsParams) (*core.Cursor[objects.ProductCatalogDiagnosticGroup], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogDiagnosticGroup]
 	call := GetProductCatalogDiagnosticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogDiagnostics(ctx context.Context, client *core.Client, id string, params GetProductCatalogDiagnosticsParams) (*core.Cursor[objects.ProductCatalogDiagnosticGroup], error) {
+	out, _, err := GetProductCatalogDiagnosticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogEventStatsParams struct {
@@ -1032,11 +1136,16 @@ func DecodeGetProductCatalogEventStatsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetProductCatalogEventStats(ctx context.Context, client *core.Client, id string, params GetProductCatalogEventStatsParams) (*core.Cursor[objects.ProductEventStat], error) {
+func GetProductCatalogEventStatsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogEventStatsParams) (*core.Cursor[objects.ProductEventStat], *core.Response, error) {
 	var out core.Cursor[objects.ProductEventStat]
 	call := GetProductCatalogEventStatsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogEventStats(ctx context.Context, client *core.Client, id string, params GetProductCatalogEventStatsParams) (*core.Cursor[objects.ProductEventStat], error) {
+	out, _, err := GetProductCatalogEventStatsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductCatalogExternalEventSourcesParams struct {
@@ -1077,11 +1186,16 @@ func DecodeDeleteProductCatalogExternalEventSourcesBatchResponse(response *core.
 	return &out, nil
 }
 
-func DeleteProductCatalogExternalEventSources(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogExternalEventSourcesParams) (*map[string]interface{}, error) {
+func DeleteProductCatalogExternalEventSourcesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogExternalEventSourcesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductCatalogExternalEventSourcesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductCatalogExternalEventSources(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogExternalEventSourcesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductCatalogExternalEventSourcesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogExternalEventSourcesParams struct {
@@ -1118,11 +1232,16 @@ func DecodeGetProductCatalogExternalEventSourcesBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetProductCatalogExternalEventSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogExternalEventSourcesParams) (*core.Cursor[objects.ExternalEventSource], error) {
+func GetProductCatalogExternalEventSourcesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogExternalEventSourcesParams) (*core.Cursor[objects.ExternalEventSource], *core.Response, error) {
 	var out core.Cursor[objects.ExternalEventSource]
 	call := GetProductCatalogExternalEventSourcesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogExternalEventSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogExternalEventSourcesParams) (*core.Cursor[objects.ExternalEventSource], error) {
+	out, _, err := GetProductCatalogExternalEventSourcesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogExternalEventSourcesParams struct {
@@ -1163,11 +1282,16 @@ func DecodeCreateProductCatalogExternalEventSourcesBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreateProductCatalogExternalEventSources(ctx context.Context, client *core.Client, id string, params CreateProductCatalogExternalEventSourcesParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogExternalEventSourcesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogExternalEventSourcesParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogExternalEventSourcesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogExternalEventSources(ctx context.Context, client *core.Client, id string, params CreateProductCatalogExternalEventSourcesParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogExternalEventSourcesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogFlightsParams struct {
@@ -1212,11 +1336,16 @@ func DecodeGetProductCatalogFlightsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetProductCatalogFlights(ctx context.Context, client *core.Client, id string, params GetProductCatalogFlightsParams) (*core.Cursor[objects.Flight], error) {
+func GetProductCatalogFlightsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogFlightsParams) (*core.Cursor[objects.Flight], *core.Response, error) {
 	var out core.Cursor[objects.Flight]
 	call := GetProductCatalogFlightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogFlights(ctx context.Context, client *core.Client, id string, params GetProductCatalogFlightsParams) (*core.Cursor[objects.Flight], error) {
+	out, _, err := GetProductCatalogFlightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogGeolocatedItemsBatchParams struct {
@@ -1261,11 +1390,16 @@ func DecodeCreateProductCatalogGeolocatedItemsBatchBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreateProductCatalogGeolocatedItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogGeolocatedItemsBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogGeolocatedItemsBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogGeolocatedItemsBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogGeolocatedItemsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogGeolocatedItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogGeolocatedItemsBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogGeolocatedItemsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogHomeListingsParams struct {
@@ -1310,11 +1444,16 @@ func DecodeGetProductCatalogHomeListingsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetProductCatalogHomeListings(ctx context.Context, client *core.Client, id string, params GetProductCatalogHomeListingsParams) (*core.Cursor[objects.HomeListing], error) {
+func GetProductCatalogHomeListingsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogHomeListingsParams) (*core.Cursor[objects.HomeListing], *core.Response, error) {
 	var out core.Cursor[objects.HomeListing]
 	call := GetProductCatalogHomeListingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogHomeListings(ctx context.Context, client *core.Client, id string, params GetProductCatalogHomeListingsParams) (*core.Cursor[objects.HomeListing], error) {
+	out, _, err := GetProductCatalogHomeListingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogHomeListingsParams struct {
@@ -1393,11 +1532,16 @@ func DecodeCreateProductCatalogHomeListingsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateProductCatalogHomeListings(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHomeListingsParams) (*objects.HomeListing, error) {
+func CreateProductCatalogHomeListingsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHomeListingsParams) (*objects.HomeListing, *core.Response, error) {
 	var out objects.HomeListing
 	call := CreateProductCatalogHomeListingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogHomeListings(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHomeListingsParams) (*objects.HomeListing, error) {
+	out, _, err := CreateProductCatalogHomeListingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogHotelRoomsBatchParams struct {
@@ -1436,11 +1580,16 @@ func DecodeGetProductCatalogHotelRoomsBatchBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetProductCatalogHotelRoomsBatch(ctx context.Context, client *core.Client, id string, params GetProductCatalogHotelRoomsBatchParams) (*core.Cursor[objects.ProductCatalogHotelRoomsBatch], error) {
+func GetProductCatalogHotelRoomsBatchWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogHotelRoomsBatchParams) (*core.Cursor[objects.ProductCatalogHotelRoomsBatch], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogHotelRoomsBatch]
 	call := GetProductCatalogHotelRoomsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogHotelRoomsBatch(ctx context.Context, client *core.Client, id string, params GetProductCatalogHotelRoomsBatchParams) (*core.Cursor[objects.ProductCatalogHotelRoomsBatch], error) {
+	out, _, err := GetProductCatalogHotelRoomsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogHotelRoomsBatchParams struct {
@@ -1499,11 +1648,16 @@ func DecodeCreateProductCatalogHotelRoomsBatchBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreateProductCatalogHotelRoomsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHotelRoomsBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogHotelRoomsBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHotelRoomsBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogHotelRoomsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogHotelRoomsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHotelRoomsBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogHotelRoomsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogHotelsParams struct {
@@ -1548,11 +1702,16 @@ func DecodeGetProductCatalogHotelsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetProductCatalogHotels(ctx context.Context, client *core.Client, id string, params GetProductCatalogHotelsParams) (*core.Cursor[objects.Hotel], error) {
+func GetProductCatalogHotelsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogHotelsParams) (*core.Cursor[objects.Hotel], *core.Response, error) {
 	var out core.Cursor[objects.Hotel]
 	call := GetProductCatalogHotelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogHotels(ctx context.Context, client *core.Client, id string, params GetProductCatalogHotelsParams) (*core.Cursor[objects.Hotel], error) {
+	out, _, err := GetProductCatalogHotelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogHotelsParams struct {
@@ -1631,11 +1790,16 @@ func DecodeCreateProductCatalogHotelsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateProductCatalogHotels(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHotelsParams) (*objects.Hotel, error) {
+func CreateProductCatalogHotelsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHotelsParams) (*objects.Hotel, *core.Response, error) {
 	var out objects.Hotel
 	call := CreateProductCatalogHotelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogHotels(ctx context.Context, client *core.Client, id string, params CreateProductCatalogHotelsParams) (*objects.Hotel, error) {
+	out, _, err := CreateProductCatalogHotelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogItemsBatchParams struct {
@@ -1688,11 +1852,16 @@ func DecodeCreateProductCatalogItemsBatchBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateProductCatalogItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogItemsBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogItemsBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogItemsBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogItemsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogItemsBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogItemsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogLocalizedItemsBatchParams struct {
@@ -1741,11 +1910,16 @@ func DecodeCreateProductCatalogLocalizedItemsBatchBatchResponse(response *core.B
 	return &out, nil
 }
 
-func CreateProductCatalogLocalizedItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogLocalizedItemsBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogLocalizedItemsBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogLocalizedItemsBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogLocalizedItemsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogLocalizedItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogLocalizedItemsBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogLocalizedItemsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogMarketplacePartnerDealsDetailsParams struct {
@@ -1784,11 +1958,16 @@ func DecodeCreateProductCatalogMarketplacePartnerDealsDetailsBatchResponse(respo
 	return &out, nil
 }
 
-func CreateProductCatalogMarketplacePartnerDealsDetails(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerDealsDetailsParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogMarketplacePartnerDealsDetailsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerDealsDetailsParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogMarketplacePartnerDealsDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogMarketplacePartnerDealsDetails(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerDealsDetailsParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogMarketplacePartnerDealsDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogMarketplacePartnerSellersDetailsParams struct {
@@ -1827,11 +2006,16 @@ func DecodeCreateProductCatalogMarketplacePartnerSellersDetailsBatchResponse(res
 	return &out, nil
 }
 
-func CreateProductCatalogMarketplacePartnerSellersDetails(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerSellersDetailsParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogMarketplacePartnerSellersDetailsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerSellersDetailsParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogMarketplacePartnerSellersDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogMarketplacePartnerSellersDetails(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerSellersDetailsParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogMarketplacePartnerSellersDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogMarketplacePartnerSignalsParams struct {
@@ -1839,7 +2023,7 @@ type CreateProductCatalogMarketplacePartnerSignalsParams struct {
 	EventID        *core.ID                                                              `facebook:"event_id"`
 	EventName      enums.ProductcatalogmarketplacePartnerSignalsEventNameEnumParam       `facebook:"event_name"`
 	EventSourceURL *string                                                               `facebook:"event_source_url"`
-	EventTime      time.Time                                                             `facebook:"event_time"`
+	EventTime      core.Time                                                             `facebook:"event_time"`
 	OfferData      *map[string]interface{}                                               `facebook:"offer_data"`
 	OrderData      *map[string]interface{}                                               `facebook:"order_data"`
 	UserData       map[string]interface{}                                                `facebook:"user_data"`
@@ -1894,11 +2078,16 @@ func DecodeCreateProductCatalogMarketplacePartnerSignalsBatchResponse(response *
 	return &out, nil
 }
 
-func CreateProductCatalogMarketplacePartnerSignals(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerSignalsParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogMarketplacePartnerSignalsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerSignalsParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogMarketplacePartnerSignalsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogMarketplacePartnerSignals(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMarketplacePartnerSignalsParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogMarketplacePartnerSignalsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogMediaTitlesParams struct {
@@ -2061,11 +2250,16 @@ func DecodeCreateProductCatalogMediaTitlesBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateProductCatalogMediaTitles(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMediaTitlesParams) (*map[string]interface{}, error) {
+func CreateProductCatalogMediaTitlesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMediaTitlesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateProductCatalogMediaTitlesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogMediaTitles(ctx context.Context, client *core.Client, id string, params CreateProductCatalogMediaTitlesParams) (*map[string]interface{}, error) {
+	out, _, err := CreateProductCatalogMediaTitlesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogPricingVariablesBatchParams struct {
@@ -2104,11 +2298,16 @@ func DecodeGetProductCatalogPricingVariablesBatchBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetProductCatalogPricingVariablesBatch(ctx context.Context, client *core.Client, id string, params GetProductCatalogPricingVariablesBatchParams) (*core.Cursor[objects.ProductCatalogPricingVariablesBatch], error) {
+func GetProductCatalogPricingVariablesBatchWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogPricingVariablesBatchParams) (*core.Cursor[objects.ProductCatalogPricingVariablesBatch], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogPricingVariablesBatch]
 	call := GetProductCatalogPricingVariablesBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogPricingVariablesBatch(ctx context.Context, client *core.Client, id string, params GetProductCatalogPricingVariablesBatchParams) (*core.Cursor[objects.ProductCatalogPricingVariablesBatch], error) {
+	out, _, err := GetProductCatalogPricingVariablesBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogPricingVariablesBatchParams struct {
@@ -2167,11 +2366,16 @@ func DecodeCreateProductCatalogPricingVariablesBatchBatchResponse(response *core
 	return &out, nil
 }
 
-func CreateProductCatalogPricingVariablesBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogPricingVariablesBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogPricingVariablesBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogPricingVariablesBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogPricingVariablesBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogPricingVariablesBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogPricingVariablesBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogPricingVariablesBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogProductFeedsParams struct {
@@ -2208,11 +2412,16 @@ func DecodeGetProductCatalogProductFeedsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetProductCatalogProductFeeds(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductFeedsParams) (*core.Cursor[objects.ProductFeed], error) {
+func GetProductCatalogProductFeedsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductFeedsParams) (*core.Cursor[objects.ProductFeed], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeed]
 	call := GetProductCatalogProductFeedsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogProductFeeds(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductFeedsParams) (*core.Cursor[objects.ProductFeed], error) {
+	out, _, err := GetProductCatalogProductFeedsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogProductFeedsParams struct {
@@ -2329,11 +2538,16 @@ func DecodeCreateProductCatalogProductFeedsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateProductCatalogProductFeeds(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductFeedsParams) (*objects.ProductFeed, error) {
+func CreateProductCatalogProductFeedsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductFeedsParams) (*objects.ProductFeed, *core.Response, error) {
 	var out objects.ProductFeed
 	call := CreateProductCatalogProductFeedsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogProductFeeds(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductFeedsParams) (*objects.ProductFeed, error) {
+	out, _, err := CreateProductCatalogProductFeedsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogProductGroupsParams struct {
@@ -2370,11 +2584,16 @@ func DecodeGetProductCatalogProductGroupsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetProductCatalogProductGroups(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductGroupsParams) (*core.Cursor[objects.ProductGroup], error) {
+func GetProductCatalogProductGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductGroupsParams) (*core.Cursor[objects.ProductGroup], *core.Response, error) {
 	var out core.Cursor[objects.ProductGroup]
 	call := GetProductCatalogProductGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogProductGroups(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductGroupsParams) (*core.Cursor[objects.ProductGroup], error) {
+	out, _, err := GetProductCatalogProductGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogProductGroupsParams struct {
@@ -2419,11 +2638,16 @@ func DecodeCreateProductCatalogProductGroupsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateProductCatalogProductGroups(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductGroupsParams) (*objects.ProductGroup, error) {
+func CreateProductCatalogProductGroupsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductGroupsParams) (*objects.ProductGroup, *core.Response, error) {
 	var out objects.ProductGroup
 	call := CreateProductCatalogProductGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogProductGroups(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductGroupsParams) (*objects.ProductGroup, error) {
+	out, _, err := CreateProductCatalogProductGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogProductSetsParams struct {
@@ -2476,11 +2700,16 @@ func DecodeGetProductCatalogProductSetsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetProductCatalogProductSets(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductSetsParams) (*core.Cursor[objects.ProductSet], error) {
+func GetProductCatalogProductSetsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductSetsParams) (*core.Cursor[objects.ProductSet], *core.Response, error) {
 	var out core.Cursor[objects.ProductSet]
 	call := GetProductCatalogProductSetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogProductSets(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductSetsParams) (*core.Cursor[objects.ProductSet], error) {
+	out, _, err := GetProductCatalogProductSetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogProductSetsParams struct {
@@ -2539,11 +2768,16 @@ func DecodeCreateProductCatalogProductSetsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateProductCatalogProductSets(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductSetsParams) (*objects.ProductSet, error) {
+func CreateProductCatalogProductSetsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductSetsParams) (*objects.ProductSet, *core.Response, error) {
 	var out objects.ProductSet
 	call := CreateProductCatalogProductSetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogProductSets(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductSetsParams) (*objects.ProductSet, error) {
+	out, _, err := CreateProductCatalogProductSetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogProductSetsBatchParams struct {
@@ -2582,11 +2816,16 @@ func DecodeGetProductCatalogProductSetsBatchBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetProductCatalogProductSetsBatch(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductSetsBatchParams) (*core.Cursor[objects.ProductCatalogProductSetsBatch], error) {
+func GetProductCatalogProductSetsBatchWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductSetsBatchParams) (*core.Cursor[objects.ProductCatalogProductSetsBatch], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogProductSetsBatch]
 	call := GetProductCatalogProductSetsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogProductSetsBatch(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductSetsBatchParams) (*core.Cursor[objects.ProductCatalogProductSetsBatch], error) {
+	out, _, err := GetProductCatalogProductSetsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogProductsParams struct {
@@ -2643,11 +2882,16 @@ func DecodeGetProductCatalogProductsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductCatalogProducts(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductsParams) (*core.Cursor[objects.ProductItem], error) {
+func GetProductCatalogProductsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductsParams) (*core.Cursor[objects.ProductItem], *core.Response, error) {
 	var out core.Cursor[objects.ProductItem]
 	call := GetProductCatalogProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogProducts(ctx context.Context, client *core.Client, id string, params GetProductCatalogProductsParams) (*core.Cursor[objects.ProductItem], error) {
+	out, _, err := GetProductCatalogProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogProductsParams struct {
@@ -2721,8 +2965,8 @@ type CreateProductCatalogProductsParams struct {
 	ReturnPolicyDays            *uint64                                                      `facebook:"return_policy_days"`
 	RichTextDescription         *string                                                      `facebook:"rich_text_description"`
 	SalePrice                   *uint64                                                      `facebook:"sale_price"`
-	SalePriceEndDate            *time.Time                                                   `facebook:"sale_price_end_date"`
-	SalePriceStartDate          *time.Time                                                   `facebook:"sale_price_start_date"`
+	SalePriceEndDate            *core.Time                                                   `facebook:"sale_price_end_date"`
+	SalePriceStartDate          *core.Time                                                   `facebook:"sale_price_start_date"`
 	ShortDescription            *string                                                      `facebook:"short_description"`
 	Size                        *string                                                      `facebook:"size"`
 	StartDate                   *string                                                      `facebook:"start_date"`
@@ -3002,11 +3246,16 @@ func DecodeCreateProductCatalogProductsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateProductCatalogProducts(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductsParams) (*objects.ProductItem, error) {
+func CreateProductCatalogProductsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductsParams) (*objects.ProductItem, *core.Response, error) {
 	var out objects.ProductItem
 	call := CreateProductCatalogProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogProducts(ctx context.Context, client *core.Client, id string, params CreateProductCatalogProductsParams) (*objects.ProductItem, error) {
+	out, _, err := CreateProductCatalogProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogUpdateGeneratedImageConfigParams struct {
@@ -3045,11 +3294,16 @@ func DecodeCreateProductCatalogUpdateGeneratedImageConfigBatchResponse(response 
 	return &out, nil
 }
 
-func CreateProductCatalogUpdateGeneratedImageConfig(ctx context.Context, client *core.Client, id string, params CreateProductCatalogUpdateGeneratedImageConfigParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogUpdateGeneratedImageConfigWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogUpdateGeneratedImageConfigParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogUpdateGeneratedImageConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogUpdateGeneratedImageConfig(ctx context.Context, client *core.Client, id string, params CreateProductCatalogUpdateGeneratedImageConfigParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogUpdateGeneratedImageConfigWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogVehicleOffersParams struct {
@@ -3094,11 +3348,16 @@ func DecodeGetProductCatalogVehicleOffersBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetProductCatalogVehicleOffers(ctx context.Context, client *core.Client, id string, params GetProductCatalogVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], error) {
+func GetProductCatalogVehicleOffersWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], *core.Response, error) {
 	var out core.Cursor[objects.VehicleOffer]
 	call := GetProductCatalogVehicleOffersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogVehicleOffers(ctx context.Context, client *core.Client, id string, params GetProductCatalogVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], error) {
+	out, _, err := GetProductCatalogVehicleOffersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogVehiclesParams struct {
@@ -3143,11 +3402,16 @@ func DecodeGetProductCatalogVehiclesBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductCatalogVehicles(ctx context.Context, client *core.Client, id string, params GetProductCatalogVehiclesParams) (*core.Cursor[objects.Vehicle], error) {
+func GetProductCatalogVehiclesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogVehiclesParams) (*core.Cursor[objects.Vehicle], *core.Response, error) {
 	var out core.Cursor[objects.Vehicle]
 	call := GetProductCatalogVehiclesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogVehicles(ctx context.Context, client *core.Client, id string, params GetProductCatalogVehiclesParams) (*core.Cursor[objects.Vehicle], error) {
+	out, _, err := GetProductCatalogVehiclesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogVehiclesParams struct {
@@ -3272,11 +3536,16 @@ func DecodeCreateProductCatalogVehiclesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateProductCatalogVehicles(ctx context.Context, client *core.Client, id string, params CreateProductCatalogVehiclesParams) (*objects.Vehicle, error) {
+func CreateProductCatalogVehiclesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogVehiclesParams) (*objects.Vehicle, *core.Response, error) {
 	var out objects.Vehicle
 	call := CreateProductCatalogVehiclesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogVehicles(ctx context.Context, client *core.Client, id string, params CreateProductCatalogVehiclesParams) (*objects.Vehicle, error) {
+	out, _, err := CreateProductCatalogVehiclesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogVersionConfigsParams struct {
@@ -3313,11 +3582,16 @@ func DecodeGetProductCatalogVersionConfigsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetProductCatalogVersionConfigs(ctx context.Context, client *core.Client, id string, params GetProductCatalogVersionConfigsParams) (*core.Cursor[objects.CatalogContentVersionConfig], error) {
+func GetProductCatalogVersionConfigsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogVersionConfigsParams) (*core.Cursor[objects.CatalogContentVersionConfig], *core.Response, error) {
 	var out core.Cursor[objects.CatalogContentVersionConfig]
 	call := GetProductCatalogVersionConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogVersionConfigs(ctx context.Context, client *core.Client, id string, params GetProductCatalogVersionConfigsParams) (*core.Cursor[objects.CatalogContentVersionConfig], error) {
+	out, _, err := GetProductCatalogVersionConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductCatalogVersionItemsBatchParams struct {
@@ -3368,11 +3642,16 @@ func DecodeCreateProductCatalogVersionItemsBatchBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreateProductCatalogVersionItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogVersionItemsBatchParams) (*objects.ProductCatalog, error) {
+func CreateProductCatalogVersionItemsBatchWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductCatalogVersionItemsBatchParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := CreateProductCatalogVersionItemsBatchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductCatalogVersionItemsBatch(ctx context.Context, client *core.Client, id string, params CreateProductCatalogVersionItemsBatchParams) (*objects.ProductCatalog, error) {
+	out, _, err := CreateProductCatalogVersionItemsBatchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductCatalogParams struct {
@@ -3413,11 +3692,16 @@ func DecodeDeleteProductCatalogBatchResponse(response *core.BatchResponse) (*map
 	return &out, nil
 }
 
-func DeleteProductCatalog(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogParams) (*map[string]interface{}, error) {
+func DeleteProductCatalogWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductCatalogBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductCatalog(ctx context.Context, client *core.Client, id string, params DeleteProductCatalogParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductCatalogWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductCatalogParams struct {
@@ -3458,11 +3742,16 @@ func DecodeGetProductCatalogBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetProductCatalog(ctx context.Context, client *core.Client, id string, params GetProductCatalogParams) (*objects.ProductCatalog, error) {
+func GetProductCatalogWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := GetProductCatalogBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalog(ctx context.Context, client *core.Client, id string, params GetProductCatalogParams) (*objects.ProductCatalog, error) {
+	out, _, err := GetProductCatalogWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateProductCatalogParams struct {
@@ -3535,9 +3824,14 @@ func DecodeUpdateProductCatalogBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func UpdateProductCatalog(ctx context.Context, client *core.Client, id string, params UpdateProductCatalogParams) (*objects.ProductCatalog, error) {
+func UpdateProductCatalogWithResponse(ctx context.Context, client *core.Client, id string, params UpdateProductCatalogParams) (*objects.ProductCatalog, *core.Response, error) {
 	var out objects.ProductCatalog
 	call := UpdateProductCatalogBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateProductCatalog(ctx context.Context, client *core.Client, id string, params UpdateProductCatalogParams) (*objects.ProductCatalog, error) {
+	out, _, err := UpdateProductCatalogWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -13,3 +13,21 @@ type AdCreativePromotionMetadataSpec struct {
 	RequiredCode    *string  `json:"required_code,omitempty"`
 	StartDate       *int     `json:"start_date,omitempty"`
 }
+
+var AdCreativePromotionMetadataSpecFields = struct {
+	EndDate         string
+	ID              string
+	PromotionSource string
+	PromotionType   string
+	PromotionValue  string
+	RequiredCode    string
+	StartDate       string
+}{
+	EndDate:         "end_date",
+	ID:              "id",
+	PromotionSource: "promotion_source",
+	PromotionType:   "promotion_type",
+	PromotionValue:  "promotion_value",
+	RequiredCode:    "required_code",
+	StartDate:       "start_date",
+}

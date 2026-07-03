@@ -13,3 +13,21 @@ type MessengerAdsPartialAutomatedStepList struct {
 	ReminderText        *string      `json:"reminder_text,omitempty"`
 	StopQuestionMessage *string      `json:"stop_question_message,omitempty"`
 }
+
+var MessengerAdsPartialAutomatedStepListFields = struct {
+	FbleadForm          string
+	FirstStepID         string
+	ID                  string
+	Page                string
+	PrivacyURL          string
+	ReminderText        string
+	StopQuestionMessage string
+}{
+	FbleadForm:          "fblead_form",
+	FirstStepID:         "first_step_id",
+	ID:                  "id",
+	Page:                "page",
+	PrivacyURL:          "privacy_url",
+	ReminderText:        "reminder_text",
+	StopQuestionMessage: "stop_question_message",
+}

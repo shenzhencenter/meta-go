@@ -23,3 +23,39 @@ type ProductFeedUploadGet struct {
 	URL               *string                                `json:"url,omitempty"`
 	WarningCount      *int                                   `json:"warning_count,omitempty"`
 }
+
+var ProductFeedUploadGetFields = struct {
+	EndTime           string
+	ErrorCount        string
+	ErrorReport       string
+	Errors            string
+	Filename          string
+	ID                string
+	InputMethod       string
+	NumDeletedItems   string
+	NumDetectedItems  string
+	NumInvalidItems   string
+	NumPersistedItems string
+	Progresses        string
+	StartTime         string
+	UploadComplete    string
+	URL               string
+	WarningCount      string
+}{
+	EndTime:           "end_time",
+	ErrorCount:        "error_count",
+	ErrorReport:       "error_report",
+	Errors:            "errors",
+	Filename:          "filename",
+	ID:                "id",
+	InputMethod:       "input_method",
+	NumDeletedItems:   "num_deleted_items",
+	NumDetectedItems:  "num_detected_items",
+	NumInvalidItems:   "num_invalid_items",
+	NumPersistedItems: "num_persisted_items",
+	Progresses:        "progresses",
+	StartTime:         "start_time",
+	UploadComplete:    "upload_complete",
+	URL:               "url",
+	WarningCount:      "warning_count",
+}

@@ -7,3 +7,9 @@ import (
 type SocialWifiSite struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var SocialWifiSiteFields = struct {
+	ID string
+}{
+	ID: "id",
+}

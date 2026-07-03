@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type DeleteUserAccessTokensParams struct {
@@ -43,11 +42,16 @@ func DecodeDeleteUserAccessTokensBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func DeleteUserAccessTokens(ctx context.Context, client *core.Client, id string, params DeleteUserAccessTokensParams) (*map[string]interface{}, error) {
+func DeleteUserAccessTokensWithResponse(ctx context.Context, client *core.Client, id string, params DeleteUserAccessTokensParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteUserAccessTokensBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteUserAccessTokens(ctx context.Context, client *core.Client, id string, params DeleteUserAccessTokensParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteUserAccessTokensWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserAccessTokensParams struct {
@@ -98,11 +102,16 @@ func DecodeCreateUserAccessTokensBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateUserAccessTokens(ctx context.Context, client *core.Client, id string, params CreateUserAccessTokensParams) (*objects.User, error) {
+func CreateUserAccessTokensWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserAccessTokensParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := CreateUserAccessTokensBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserAccessTokens(ctx context.Context, client *core.Client, id string, params CreateUserAccessTokensParams) (*objects.User, error) {
+	out, _, err := CreateUserAccessTokensWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAccountsParams struct {
@@ -151,11 +160,16 @@ func DecodeGetUserAccountsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetUserAccounts(ctx context.Context, client *core.Client, id string, params GetUserAccountsParams) (*core.Cursor[objects.Page], error) {
+func GetUserAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAccountsParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetUserAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAccounts(ctx context.Context, client *core.Client, id string, params GetUserAccountsParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetUserAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserAccountsParams struct {
@@ -254,11 +268,16 @@ func DecodeCreateUserAccountsBatchResponse(response *core.BatchResponse) (*map[s
 	return &out, nil
 }
 
-func CreateUserAccounts(ctx context.Context, client *core.Client, id string, params CreateUserAccountsParams) (*map[string]interface{}, error) {
+func CreateUserAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateUserAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserAccounts(ctx context.Context, client *core.Client, id string, params CreateUserAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateUserAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAdStudiesParams struct {
@@ -295,11 +314,16 @@ func DecodeGetUserAdStudiesBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetUserAdStudies(ctx context.Context, client *core.Client, id string, params GetUserAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+func GetUserAdStudiesWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAdStudiesParams) (*core.Cursor[objects.AdStudy], *core.Response, error) {
 	var out core.Cursor[objects.AdStudy]
 	call := GetUserAdStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAdStudies(ctx context.Context, client *core.Client, id string, params GetUserAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+	out, _, err := GetUserAdStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserAdStudiesParams struct {
@@ -388,11 +412,16 @@ func DecodeCreateUserAdStudiesBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreateUserAdStudies(ctx context.Context, client *core.Client, id string, params CreateUserAdStudiesParams) (*objects.AdStudy, error) {
+func CreateUserAdStudiesWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserAdStudiesParams) (*objects.AdStudy, *core.Response, error) {
 	var out objects.AdStudy
 	call := CreateUserAdStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserAdStudies(ctx context.Context, client *core.Client, id string, params CreateUserAdStudiesParams) (*objects.AdStudy, error) {
+	out, _, err := CreateUserAdStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAdaccountsParams struct {
@@ -429,11 +458,16 @@ func DecodeGetUserAdaccountsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetUserAdaccounts(ctx context.Context, client *core.Client, id string, params GetUserAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetUserAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetUserAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAdaccounts(ctx context.Context, client *core.Client, id string, params GetUserAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetUserAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAlbumsParams struct {
@@ -470,11 +504,16 @@ func DecodeGetUserAlbumsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetUserAlbums(ctx context.Context, client *core.Client, id string, params GetUserAlbumsParams) (*core.Cursor[objects.Album], error) {
+func GetUserAlbumsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAlbumsParams) (*core.Cursor[objects.Album], *core.Response, error) {
 	var out core.Cursor[objects.Album]
 	call := GetUserAlbumsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAlbums(ctx context.Context, client *core.Client, id string, params GetUserAlbumsParams) (*core.Cursor[objects.Album], error) {
+	out, _, err := GetUserAlbumsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserApplicationsParams struct {
@@ -513,11 +552,16 @@ func DecodeCreateUserApplicationsBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateUserApplications(ctx context.Context, client *core.Client, id string, params CreateUserApplicationsParams) (*objects.User, error) {
+func CreateUserApplicationsWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserApplicationsParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := CreateUserApplicationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserApplications(ctx context.Context, client *core.Client, id string, params CreateUserApplicationsParams) (*objects.User, error) {
+	out, _, err := CreateUserApplicationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserApprequestformerrecipientsParams struct {
@@ -554,11 +598,16 @@ func DecodeGetUserApprequestformerrecipientsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetUserApprequestformerrecipients(ctx context.Context, client *core.Client, id string, params GetUserApprequestformerrecipientsParams) (*core.Cursor[objects.AppRequestFormerRecipient], error) {
+func GetUserApprequestformerrecipientsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserApprequestformerrecipientsParams) (*core.Cursor[objects.AppRequestFormerRecipient], *core.Response, error) {
 	var out core.Cursor[objects.AppRequestFormerRecipient]
 	call := GetUserApprequestformerrecipientsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserApprequestformerrecipients(ctx context.Context, client *core.Client, id string, params GetUserApprequestformerrecipientsParams) (*core.Cursor[objects.AppRequestFormerRecipient], error) {
+	out, _, err := GetUserApprequestformerrecipientsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserApprequestsParams struct {
@@ -595,11 +644,16 @@ func DecodeGetUserApprequestsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetUserApprequests(ctx context.Context, client *core.Client, id string, params GetUserApprequestsParams) (*core.Cursor[objects.AppRequest], error) {
+func GetUserApprequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserApprequestsParams) (*core.Cursor[objects.AppRequest], *core.Response, error) {
 	var out core.Cursor[objects.AppRequest]
 	call := GetUserApprequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserApprequests(ctx context.Context, client *core.Client, id string, params GetUserApprequestsParams) (*core.Cursor[objects.AppRequest], error) {
+	out, _, err := GetUserApprequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAssignedAdAccountsParams struct {
@@ -636,11 +690,16 @@ func DecodeGetUserAssignedAdAccountsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetUserAssignedAdAccounts(ctx context.Context, client *core.Client, id string, params GetUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetUserAssignedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetUserAssignedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAssignedAdAccounts(ctx context.Context, client *core.Client, id string, params GetUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetUserAssignedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAssignedApplicationsParams struct {
@@ -677,11 +736,16 @@ func DecodeGetUserAssignedApplicationsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetUserAssignedApplications(ctx context.Context, client *core.Client, id string, params GetUserAssignedApplicationsParams) (*core.Cursor[objects.Application], error) {
+func GetUserAssignedApplicationsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAssignedApplicationsParams) (*core.Cursor[objects.Application], *core.Response, error) {
 	var out core.Cursor[objects.Application]
 	call := GetUserAssignedApplicationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAssignedApplications(ctx context.Context, client *core.Client, id string, params GetUserAssignedApplicationsParams) (*core.Cursor[objects.Application], error) {
+	out, _, err := GetUserAssignedApplicationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAssignedBusinessAssetGroupsParams struct {
@@ -722,11 +786,16 @@ func DecodeGetUserAssignedBusinessAssetGroupsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetUserAssignedBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+func GetUserAssignedBusinessAssetGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAssetGroup]
 	call := GetUserAssignedBusinessAssetGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAssignedBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+	out, _, err := GetUserAssignedBusinessAssetGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAssignedPagesParams struct {
@@ -767,11 +836,16 @@ func DecodeGetUserAssignedPagesBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetUserAssignedPages(ctx context.Context, client *core.Client, id string, params GetUserAssignedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetUserAssignedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAssignedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetUserAssignedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAssignedPages(ctx context.Context, client *core.Client, id string, params GetUserAssignedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetUserAssignedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAssignedProductCatalogsParams struct {
@@ -808,11 +882,16 @@ func DecodeGetUserAssignedProductCatalogsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetUserAssignedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetUserAssignedProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetUserAssignedProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAssignedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetUserAssignedProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserAssignedWhatsappBusinessAccountsParams struct {
@@ -849,11 +928,16 @@ func DecodeGetUserAssignedWhatsappBusinessAccountsBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetUserAssignedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+func GetUserAssignedWhatsappBusinessAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccount]
 	call := GetUserAssignedWhatsappBusinessAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserAssignedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+	out, _, err := GetUserAssignedWhatsappBusinessAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserBusinessUsersParams struct {
@@ -890,11 +974,16 @@ func DecodeGetUserBusinessUsersBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetUserBusinessUsers(ctx context.Context, client *core.Client, id string, params GetUserBusinessUsersParams) (*core.Cursor[objects.BusinessUser], error) {
+func GetUserBusinessUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetUserBusinessUsersParams) (*core.Cursor[objects.BusinessUser], *core.Response, error) {
 	var out core.Cursor[objects.BusinessUser]
 	call := GetUserBusinessUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserBusinessUsers(ctx context.Context, client *core.Client, id string, params GetUserBusinessUsersParams) (*core.Cursor[objects.BusinessUser], error) {
+	out, _, err := GetUserBusinessUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteUserBusinessesParams struct {
@@ -935,11 +1024,16 @@ func DecodeDeleteUserBusinessesBatchResponse(response *core.BatchResponse) (*map
 	return &out, nil
 }
 
-func DeleteUserBusinesses(ctx context.Context, client *core.Client, id string, params DeleteUserBusinessesParams) (*map[string]interface{}, error) {
+func DeleteUserBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteUserBusinessesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteUserBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteUserBusinesses(ctx context.Context, client *core.Client, id string, params DeleteUserBusinessesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteUserBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserBusinessesParams struct {
@@ -976,11 +1070,16 @@ func DecodeGetUserBusinessesBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetUserBusinesses(ctx context.Context, client *core.Client, id string, params GetUserBusinessesParams) (*core.Cursor[objects.Business], error) {
+func GetUserBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params GetUserBusinessesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetUserBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserBusinesses(ctx context.Context, client *core.Client, id string, params GetUserBusinessesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetUserBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserBusinessesParams struct {
@@ -1053,11 +1152,16 @@ func DecodeCreateUserBusinessesBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreateUserBusinesses(ctx context.Context, client *core.Client, id string, params CreateUserBusinessesParams) (*objects.Business, error) {
+func CreateUserBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserBusinessesParams) (*objects.Business, *core.Response, error) {
 	var out objects.Business
 	call := CreateUserBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserBusinesses(ctx context.Context, client *core.Client, id string, params CreateUserBusinessesParams) (*objects.Business, error) {
+	out, _, err := CreateUserBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserConversationsParams struct {
@@ -1110,11 +1214,16 @@ func DecodeGetUserConversationsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetUserConversations(ctx context.Context, client *core.Client, id string, params GetUserConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
+func GetUserConversationsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserConversationsParams) (*core.Cursor[objects.UnifiedThread], *core.Response, error) {
 	var out core.Cursor[objects.UnifiedThread]
 	call := GetUserConversationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserConversations(ctx context.Context, client *core.Client, id string, params GetUserConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
+	out, _, err := GetUserConversationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserCustomLabelsParams struct {
@@ -1151,11 +1260,16 @@ func DecodeGetUserCustomLabelsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetUserCustomLabels(ctx context.Context, client *core.Client, id string, params GetUserCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], error) {
+func GetUserCustomLabelsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], *core.Response, error) {
 	var out core.Cursor[objects.PageUserMessageThreadLabel]
 	call := GetUserCustomLabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserCustomLabels(ctx context.Context, client *core.Client, id string, params GetUserCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], error) {
+	out, _, err := GetUserCustomLabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserEventsParams struct {
@@ -1200,19 +1314,24 @@ func DecodeGetUserEventsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetUserEvents(ctx context.Context, client *core.Client, id string, params GetUserEventsParams) (*core.Cursor[objects.Event], error) {
+func GetUserEventsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserEventsParams) (*core.Cursor[objects.Event], *core.Response, error) {
 	var out core.Cursor[objects.Event]
 	call := GetUserEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserEvents(ctx context.Context, client *core.Client, id string, params GetUserEventsParams) (*core.Cursor[objects.Event], error) {
+	out, _, err := GetUserEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserFeedParams struct {
 	IncludeHidden *bool       `facebook:"include_hidden"`
 	Q             *string     `facebook:"q"`
 	ShowExpired   *bool       `facebook:"show_expired"`
-	Since         *time.Time  `facebook:"since"`
-	Until         *time.Time  `facebook:"until"`
+	Since         *core.Time  `facebook:"since"`
+	Until         *core.Time  `facebook:"until"`
 	With          *string     `facebook:"with"`
 	Extra         core.Params `facebook:"-"`
 }
@@ -1265,11 +1384,16 @@ func DecodeGetUserFeedBatchResponse(response *core.BatchResponse) (*core.Cursor[
 	return &out, nil
 }
 
-func GetUserFeed(ctx context.Context, client *core.Client, id string, params GetUserFeedParams) (*core.Cursor[objects.Post], error) {
+func GetUserFeedWithResponse(ctx context.Context, client *core.Client, id string, params GetUserFeedParams) (*core.Cursor[objects.Post], *core.Response, error) {
 	var out core.Cursor[objects.Post]
 	call := GetUserFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserFeed(ctx context.Context, client *core.Client, id string, params GetUserFeedParams) (*core.Cursor[objects.Post], error) {
+	out, _, err := GetUserFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserFeedParams struct {
@@ -1283,7 +1407,7 @@ type CreateUserFeedParams struct {
 	AttachPlaceSuggestion     *bool                                            `facebook:"attach_place_suggestion"`
 	AttachedMedia             *[]map[string]interface{}                        `facebook:"attached_media"`
 	AudienceExp               *bool                                            `facebook:"audience_exp"`
-	BackdatedTime             *time.Time                                       `facebook:"backdated_time"`
+	BackdatedTime             *core.Time                                       `facebook:"backdated_time"`
 	BackdatedTimeGranularity  *enums.UserfeedBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	BreakingNews              *bool                                            `facebook:"breaking_news"`
 	BreakingNewsExpiration    *uint64                                          `facebook:"breaking_news_expiration"`
@@ -1358,7 +1482,7 @@ type CreateUserFeedParams struct {
 	Ref                       *[]string                                        `facebook:"ref"`
 	ReferenceableImageIds     *[]core.ID                                       `facebook:"referenceable_image_ids"`
 	ReferralID                *core.ID                                         `facebook:"referral_id"`
-	ScheduledPublishTime      *time.Time                                       `facebook:"scheduled_publish_time"`
+	ScheduledPublishTime      *core.Time                                       `facebook:"scheduled_publish_time"`
 	Source                    *string                                          `facebook:"source"`
 	SponsorID                 *core.ID                                         `facebook:"sponsor_id"`
 	SponsorRelationship       *uint64                                          `facebook:"sponsor_relationship"`
@@ -1726,11 +1850,16 @@ func DecodeCreateUserFeedBatchResponse(response *core.BatchResponse) (*objects.P
 	return &out, nil
 }
 
-func CreateUserFeed(ctx context.Context, client *core.Client, id string, params CreateUserFeedParams) (*objects.Post, error) {
+func CreateUserFeedWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserFeedParams) (*objects.Post, *core.Response, error) {
 	var out objects.Post
 	call := CreateUserFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserFeed(ctx context.Context, client *core.Client, id string, params CreateUserFeedParams) (*objects.Post, error) {
+	out, _, err := CreateUserFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserFriendsParams struct {
@@ -1771,11 +1900,16 @@ func DecodeGetUserFriendsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetUserFriends(ctx context.Context, client *core.Client, id string, params GetUserFriendsParams) (*core.Cursor[objects.User], error) {
+func GetUserFriendsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserFriendsParams) (*core.Cursor[objects.User], *core.Response, error) {
 	var out core.Cursor[objects.User]
 	call := GetUserFriendsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserFriends(ctx context.Context, client *core.Client, id string, params GetUserFriendsParams) (*core.Cursor[objects.User], error) {
+	out, _, err := GetUserFriendsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserFundraisersParams struct {
@@ -1812,11 +1946,16 @@ func DecodeGetUserFundraisersBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetUserFundraisers(ctx context.Context, client *core.Client, id string, params GetUserFundraisersParams) (*core.Cursor[objects.FundraiserPersonToCharity], error) {
+func GetUserFundraisersWithResponse(ctx context.Context, client *core.Client, id string, params GetUserFundraisersParams) (*core.Cursor[objects.FundraiserPersonToCharity], *core.Response, error) {
 	var out core.Cursor[objects.FundraiserPersonToCharity]
 	call := GetUserFundraisersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserFundraisers(ctx context.Context, client *core.Client, id string, params GetUserFundraisersParams) (*core.Cursor[objects.FundraiserPersonToCharity], error) {
+	out, _, err := GetUserFundraisersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserFundraisersParams struct {
@@ -1824,9 +1963,9 @@ type CreateUserFundraisersParams struct {
 	CoverPhoto             *core.FileParam                              `facebook:"cover_photo"`
 	Currency               string                                       `facebook:"currency"`
 	Description            string                                       `facebook:"description"`
-	EndTime                time.Time                                    `facebook:"end_time"`
+	EndTime                core.Time                                    `facebook:"end_time"`
 	ExternalEventName      *string                                      `facebook:"external_event_name"`
-	ExternalEventStartTime *time.Time                                   `facebook:"external_event_start_time"`
+	ExternalEventStartTime *core.Time                                   `facebook:"external_event_start_time"`
 	ExternalEventURI       *string                                      `facebook:"external_event_uri"`
 	ExternalFundraiserURI  *string                                      `facebook:"external_fundraiser_uri"`
 	ExternalID             core.ID                                      `facebook:"external_id"`
@@ -1895,11 +2034,16 @@ func DecodeCreateUserFundraisersBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateUserFundraisers(ctx context.Context, client *core.Client, id string, params CreateUserFundraisersParams) (*objects.FundraiserPersonToCharity, error) {
+func CreateUserFundraisersWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserFundraisersParams) (*objects.FundraiserPersonToCharity, *core.Response, error) {
 	var out objects.FundraiserPersonToCharity
 	call := CreateUserFundraisersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserFundraisers(ctx context.Context, client *core.Client, id string, params CreateUserFundraisersParams) (*objects.FundraiserPersonToCharity, error) {
+	out, _, err := CreateUserFundraisersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserGroupsParams struct {
@@ -1944,11 +2088,16 @@ func DecodeGetUserGroupsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetUserGroups(ctx context.Context, client *core.Client, id string, params GetUserGroupsParams) (*core.Cursor[objects.Group], error) {
+func GetUserGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserGroupsParams) (*core.Cursor[objects.Group], *core.Response, error) {
 	var out core.Cursor[objects.Group]
 	call := GetUserGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserGroups(ctx context.Context, client *core.Client, id string, params GetUserGroupsParams) (*core.Cursor[objects.Group], error) {
+	out, _, err := GetUserGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserIdsForAppsParams struct {
@@ -1989,11 +2138,16 @@ func DecodeGetUserIdsForAppsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetUserIdsForApps(ctx context.Context, client *core.Client, id string, params GetUserIdsForAppsParams) (*core.Cursor[objects.UserIDForApp], error) {
+func GetUserIdsForAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserIdsForAppsParams) (*core.Cursor[objects.UserIDForApp], *core.Response, error) {
 	var out core.Cursor[objects.UserIDForApp]
 	call := GetUserIdsForAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserIdsForApps(ctx context.Context, client *core.Client, id string, params GetUserIdsForAppsParams) (*core.Cursor[objects.UserIDForApp], error) {
+	out, _, err := GetUserIdsForAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserIdsForBusinessParams struct {
@@ -2034,11 +2188,16 @@ func DecodeGetUserIdsForBusinessBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetUserIdsForBusiness(ctx context.Context, client *core.Client, id string, params GetUserIdsForBusinessParams) (*core.Cursor[objects.UserIDForApp], error) {
+func GetUserIdsForBusinessWithResponse(ctx context.Context, client *core.Client, id string, params GetUserIdsForBusinessParams) (*core.Cursor[objects.UserIDForApp], *core.Response, error) {
 	var out core.Cursor[objects.UserIDForApp]
 	call := GetUserIdsForBusinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserIdsForBusiness(ctx context.Context, client *core.Client, id string, params GetUserIdsForBusinessParams) (*core.Cursor[objects.UserIDForApp], error) {
+	out, _, err := GetUserIdsForBusinessWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserIdsForPagesParams struct {
@@ -2079,11 +2238,16 @@ func DecodeGetUserIdsForPagesBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetUserIdsForPages(ctx context.Context, client *core.Client, id string, params GetUserIdsForPagesParams) (*core.Cursor[objects.UserIDForPage], error) {
+func GetUserIdsForPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetUserIdsForPagesParams) (*core.Cursor[objects.UserIDForPage], *core.Response, error) {
 	var out core.Cursor[objects.UserIDForPage]
 	call := GetUserIdsForPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserIdsForPages(ctx context.Context, client *core.Client, id string, params GetUserIdsForPagesParams) (*core.Cursor[objects.UserIDForPage], error) {
+	out, _, err := GetUserIdsForPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserLikesParams struct {
@@ -2124,11 +2288,16 @@ func DecodeGetUserLikesBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetUserLikes(ctx context.Context, client *core.Client, id string, params GetUserLikesParams) (*core.Cursor[objects.Page], error) {
+func GetUserLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetUserLikesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetUserLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserLikes(ctx context.Context, client *core.Client, id string, params GetUserLikesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetUserLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserLiveVideosParams struct {
@@ -2173,11 +2342,16 @@ func DecodeGetUserLiveVideosBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetUserLiveVideos(ctx context.Context, client *core.Client, id string, params GetUserLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
+func GetUserLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetUserLiveVideosParams) (*core.Cursor[objects.LiveVideo], *core.Response, error) {
 	var out core.Cursor[objects.LiveVideo]
 	call := GetUserLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserLiveVideos(ctx context.Context, client *core.Client, id string, params GetUserLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
+	out, _, err := GetUserLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserLiveVideosParams struct {
@@ -2294,11 +2468,16 @@ func DecodeCreateUserLiveVideosBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreateUserLiveVideos(ctx context.Context, client *core.Client, id string, params CreateUserLiveVideosParams) (*objects.LiveVideo, error) {
+func CreateUserLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserLiveVideosParams) (*objects.LiveVideo, *core.Response, error) {
 	var out objects.LiveVideo
 	call := CreateUserLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserLiveVideos(ctx context.Context, client *core.Client, id string, params CreateUserLiveVideosParams) (*objects.LiveVideo, error) {
+	out, _, err := CreateUserLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserMessengerDesktopPerformanceTracesParams struct {
@@ -2335,11 +2514,16 @@ func DecodeCreateUserMessengerDesktopPerformanceTracesBatchResponse(response *co
 	return &out, nil
 }
 
-func CreateUserMessengerDesktopPerformanceTraces(ctx context.Context, client *core.Client, id string, params CreateUserMessengerDesktopPerformanceTracesParams) (*objects.User, error) {
+func CreateUserMessengerDesktopPerformanceTracesWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserMessengerDesktopPerformanceTracesParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := CreateUserMessengerDesktopPerformanceTracesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserMessengerDesktopPerformanceTraces(ctx context.Context, client *core.Client, id string, params CreateUserMessengerDesktopPerformanceTracesParams) (*objects.User, error) {
+	out, _, err := CreateUserMessengerDesktopPerformanceTracesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserMessengerKidsAccountsUnreadBadgeParams struct {
@@ -2378,11 +2562,16 @@ func DecodeCreateUserMessengerKidsAccountsUnreadBadgeBatchResponse(response *cor
 	return &out, nil
 }
 
-func CreateUserMessengerKidsAccountsUnreadBadge(ctx context.Context, client *core.Client, id string, params CreateUserMessengerKidsAccountsUnreadBadgeParams) (*objects.User, error) {
+func CreateUserMessengerKidsAccountsUnreadBadgeWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserMessengerKidsAccountsUnreadBadgeParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := CreateUserMessengerKidsAccountsUnreadBadgeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserMessengerKidsAccountsUnreadBadge(ctx context.Context, client *core.Client, id string, params CreateUserMessengerKidsAccountsUnreadBadgeParams) (*objects.User, error) {
+	out, _, err := CreateUserMessengerKidsAccountsUnreadBadgeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserMusicParams struct {
@@ -2423,11 +2612,16 @@ func DecodeGetUserMusicBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetUserMusic(ctx context.Context, client *core.Client, id string, params GetUserMusicParams) (*core.Cursor[objects.Page], error) {
+func GetUserMusicWithResponse(ctx context.Context, client *core.Client, id string, params GetUserMusicParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetUserMusicBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserMusic(ctx context.Context, client *core.Client, id string, params GetUserMusicParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetUserMusicWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserNotificationsParams struct {
@@ -2524,11 +2718,16 @@ func DecodeCreateUserNotificationsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateUserNotifications(ctx context.Context, client *core.Client, id string, params CreateUserNotificationsParams) (*objects.User, error) {
+func CreateUserNotificationsWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserNotificationsParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := CreateUserNotificationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserNotifications(ctx context.Context, client *core.Client, id string, params CreateUserNotificationsParams) (*objects.User, error) {
+	out, _, err := CreateUserNotificationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserPaymentTransactionsParams struct {
@@ -2565,11 +2764,16 @@ func DecodeGetUserPaymentTransactionsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetUserPaymentTransactions(ctx context.Context, client *core.Client, id string, params GetUserPaymentTransactionsParams) (*core.Cursor[objects.PaymentEnginePayment], error) {
+func GetUserPaymentTransactionsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPaymentTransactionsParams) (*core.Cursor[objects.PaymentEnginePayment], *core.Response, error) {
 	var out core.Cursor[objects.PaymentEnginePayment]
 	call := GetUserPaymentTransactionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPaymentTransactions(ctx context.Context, client *core.Client, id string, params GetUserPaymentTransactionsParams) (*core.Cursor[objects.PaymentEnginePayment], error) {
+	out, _, err := GetUserPaymentTransactionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteUserPermissionsParams struct {
@@ -2610,11 +2814,16 @@ func DecodeDeleteUserPermissionsBatchResponse(response *core.BatchResponse) (*ma
 	return &out, nil
 }
 
-func DeleteUserPermissions(ctx context.Context, client *core.Client, id string, params DeleteUserPermissionsParams) (*map[string]interface{}, error) {
+func DeleteUserPermissionsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteUserPermissionsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteUserPermissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteUserPermissions(ctx context.Context, client *core.Client, id string, params DeleteUserPermissionsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteUserPermissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserPermissionsParams struct {
@@ -2659,11 +2868,16 @@ func DecodeGetUserPermissionsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetUserPermissions(ctx context.Context, client *core.Client, id string, params GetUserPermissionsParams) (*core.Cursor[objects.Permission], error) {
+func GetUserPermissionsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPermissionsParams) (*core.Cursor[objects.Permission], *core.Response, error) {
 	var out core.Cursor[objects.Permission]
 	call := GetUserPermissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPermissions(ctx context.Context, client *core.Client, id string, params GetUserPermissionsParams) (*core.Cursor[objects.Permission], error) {
+	out, _, err := GetUserPermissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserPersonalAdAccountsParams struct {
@@ -2700,11 +2914,16 @@ func DecodeGetUserPersonalAdAccountsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetUserPersonalAdAccounts(ctx context.Context, client *core.Client, id string, params GetUserPersonalAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetUserPersonalAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPersonalAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetUserPersonalAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPersonalAdAccounts(ctx context.Context, client *core.Client, id string, params GetUserPersonalAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetUserPersonalAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserPhotosParams struct {
@@ -2745,11 +2964,16 @@ func DecodeGetUserPhotosBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetUserPhotos(ctx context.Context, client *core.Client, id string, params GetUserPhotosParams) (*core.Cursor[objects.Photo], error) {
+func GetUserPhotosWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPhotosParams) (*core.Cursor[objects.Photo], *core.Response, error) {
 	var out core.Cursor[objects.Photo]
 	call := GetUserPhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPhotos(ctx context.Context, client *core.Client, id string, params GetUserPhotosParams) (*core.Cursor[objects.Photo], error) {
+	out, _, err := GetUserPhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserPhotosParams struct {
@@ -2760,7 +2984,7 @@ type CreateUserPhotosParams struct {
 	ApplicationID                         *core.ID                                           `facebook:"application_id"`
 	Attempt                               *uint64                                            `facebook:"attempt"`
 	AudienceExp                           *bool                                              `facebook:"audience_exp"`
-	BackdatedTime                         *time.Time                                         `facebook:"backdated_time"`
+	BackdatedTime                         *core.Time                                         `facebook:"backdated_time"`
 	BackdatedTimeGranularity              *enums.UserphotosBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	Caption                               *string                                            `facebook:"caption"`
 	ComposerSessionID                     *core.ID                                           `facebook:"composer_session_id"`
@@ -2994,11 +3218,16 @@ func DecodeCreateUserPhotosBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func CreateUserPhotos(ctx context.Context, client *core.Client, id string, params CreateUserPhotosParams) (*objects.Photo, error) {
+func CreateUserPhotosWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserPhotosParams) (*objects.Photo, *core.Response, error) {
 	var out objects.Photo
 	call := CreateUserPhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserPhotos(ctx context.Context, client *core.Client, id string, params CreateUserPhotosParams) (*objects.Photo, error) {
+	out, _, err := CreateUserPhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserPictureParams struct {
@@ -3051,19 +3280,24 @@ func DecodeGetUserPictureBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetUserPicture(ctx context.Context, client *core.Client, id string, params GetUserPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+func GetUserPictureWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPictureParams) (*core.Cursor[objects.ProfilePictureSource], *core.Response, error) {
 	var out core.Cursor[objects.ProfilePictureSource]
 	call := GetUserPictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPicture(ctx context.Context, client *core.Client, id string, params GetUserPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	out, _, err := GetUserPictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserPostsParams struct {
 	IncludeHidden *bool       `facebook:"include_hidden"`
 	Q             *string     `facebook:"q"`
 	ShowExpired   *bool       `facebook:"show_expired"`
-	Since         *time.Time  `facebook:"since"`
-	Until         *time.Time  `facebook:"until"`
+	Since         *core.Time  `facebook:"since"`
+	Until         *core.Time  `facebook:"until"`
 	With          *string     `facebook:"with"`
 	Extra         core.Params `facebook:"-"`
 }
@@ -3116,11 +3350,16 @@ func DecodeGetUserPostsBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetUserPosts(ctx context.Context, client *core.Client, id string, params GetUserPostsParams) (*core.Cursor[objects.Post], error) {
+func GetUserPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserPostsParams) (*core.Cursor[objects.Post], *core.Response, error) {
 	var out core.Cursor[objects.Post]
 	call := GetUserPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserPosts(ctx context.Context, client *core.Client, id string, params GetUserPostsParams) (*core.Cursor[objects.Post], error) {
+	out, _, err := GetUserPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserRichMediaDocumentsParams struct {
@@ -3161,11 +3400,16 @@ func DecodeGetUserRichMediaDocumentsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetUserRichMediaDocuments(ctx context.Context, client *core.Client, id string, params GetUserRichMediaDocumentsParams) (*core.Cursor[objects.Canvas], error) {
+func GetUserRichMediaDocumentsWithResponse(ctx context.Context, client *core.Client, id string, params GetUserRichMediaDocumentsParams) (*core.Cursor[objects.Canvas], *core.Response, error) {
 	var out core.Cursor[objects.Canvas]
 	call := GetUserRichMediaDocumentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserRichMediaDocuments(ctx context.Context, client *core.Client, id string, params GetUserRichMediaDocumentsParams) (*core.Cursor[objects.Canvas], error) {
+	out, _, err := GetUserRichMediaDocumentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserStagingResourcesParams struct {
@@ -3206,11 +3450,16 @@ func DecodeCreateUserStagingResourcesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateUserStagingResources(ctx context.Context, client *core.Client, id string, params CreateUserStagingResourcesParams) (*objects.User, error) {
+func CreateUserStagingResourcesWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserStagingResourcesParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := CreateUserStagingResourcesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserStagingResources(ctx context.Context, client *core.Client, id string, params CreateUserStagingResourcesParams) (*objects.User, error) {
+	out, _, err := CreateUserStagingResourcesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserVideosParams struct {
@@ -3251,11 +3500,16 @@ func DecodeGetUserVideosBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetUserVideos(ctx context.Context, client *core.Client, id string, params GetUserVideosParams) (*core.Cursor[objects.AdVideo], error) {
+func GetUserVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetUserVideosParams) (*core.Cursor[objects.AdVideo], *core.Response, error) {
 	var out core.Cursor[objects.AdVideo]
 	call := GetUserVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserVideos(ctx context.Context, client *core.Client, id string, params GetUserVideosParams) (*core.Cursor[objects.AdVideo], error) {
+	out, _, err := GetUserVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateUserVideosParams struct {
@@ -3584,11 +3838,16 @@ func DecodeCreateUserVideosBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func CreateUserVideos(ctx context.Context, client *core.Client, id string, params CreateUserVideosParams) (*objects.AdVideo, error) {
+func CreateUserVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreateUserVideosParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateUserVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateUserVideos(ctx context.Context, client *core.Client, id string, params CreateUserVideosParams) (*objects.AdVideo, error) {
+	out, _, err := CreateUserVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteUserParams struct {
@@ -3625,11 +3884,16 @@ func DecodeDeleteUserBatchResponse(response *core.BatchResponse) (*map[string]in
 	return &out, nil
 }
 
-func DeleteUser(ctx context.Context, client *core.Client, id string, params DeleteUserParams) (*map[string]interface{}, error) {
+func DeleteUserWithResponse(ctx context.Context, client *core.Client, id string, params DeleteUserParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteUser(ctx context.Context, client *core.Client, id string, params DeleteUserParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetUserParams struct {
@@ -3666,11 +3930,16 @@ func DecodeGetUserBatchResponse(response *core.BatchResponse) (*objects.User, er
 	return &out, nil
 }
 
-func GetUser(ctx context.Context, client *core.Client, id string, params GetUserParams) (*objects.User, error) {
+func GetUserWithResponse(ctx context.Context, client *core.Client, id string, params GetUserParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := GetUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUser(ctx context.Context, client *core.Client, id string, params GetUserParams) (*objects.User, error) {
+	out, _, err := GetUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateUserParams struct {
@@ -3735,9 +4004,14 @@ func DecodeUpdateUserBatchResponse(response *core.BatchResponse) (*objects.User,
 	return &out, nil
 }
 
-func UpdateUser(ctx context.Context, client *core.Client, id string, params UpdateUserParams) (*objects.User, error) {
+func UpdateUserWithResponse(ctx context.Context, client *core.Client, id string, params UpdateUserParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := UpdateUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateUser(ctx context.Context, client *core.Client, id string, params UpdateUserParams) (*objects.User, error) {
+	out, _, err := UpdateUserWithResponse(ctx, client, id, params)
+	return out, err
 }

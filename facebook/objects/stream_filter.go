@@ -5,3 +5,13 @@ type StreamFilter struct {
 	Name      *string `json:"name,omitempty"`
 	Type      *string `json:"type,omitempty"`
 }
+
+var StreamFilterFields = struct {
+	FilterKey string
+	Name      string
+	Type      string
+}{
+	FilterKey: "filter_key",
+	Name:      "name",
+	Type:      "type",
+}

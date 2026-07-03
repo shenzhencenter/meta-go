@@ -7,3 +7,9 @@ import (
 type PartnershipAdContentListSpec struct {
 	ListID *core.ID `json:"list_id,omitempty"`
 }
+
+var PartnershipAdContentListSpecFields = struct {
+	ListID string
+}{
+	ListID: "list_id",
+}

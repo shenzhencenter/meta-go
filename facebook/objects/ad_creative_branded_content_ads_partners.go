@@ -11,3 +11,17 @@ type AdCreativeBrandedContentAdsPartners struct {
 	IgAssetID          *core.ID `json:"ig_asset_id,omitempty"`
 	IgUserID           *core.ID `json:"ig_user_id,omitempty"`
 }
+
+var AdCreativeBrandedContentAdsPartnersFields = struct {
+	FbPageID           string
+	HasCreateAdsAccess string
+	IdentityType       string
+	IgAssetID          string
+	IgUserID           string
+}{
+	FbPageID:           "fb_page_id",
+	HasCreateAdsAccess: "has_create_ads_access",
+	IdentityType:       "identity_type",
+	IgAssetID:          "ig_asset_id",
+	IgUserID:           "ig_user_id",
+}

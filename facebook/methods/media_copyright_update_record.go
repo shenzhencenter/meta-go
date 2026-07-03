@@ -41,9 +41,14 @@ func DecodeGetMediaCopyrightUpdateRecordBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetMediaCopyrightUpdateRecord(ctx context.Context, client *core.Client, id string, params GetMediaCopyrightUpdateRecordParams) (*objects.MediaCopyrightUpdateRecord, error) {
+func GetMediaCopyrightUpdateRecordWithResponse(ctx context.Context, client *core.Client, id string, params GetMediaCopyrightUpdateRecordParams) (*objects.MediaCopyrightUpdateRecord, *core.Response, error) {
 	var out objects.MediaCopyrightUpdateRecord
 	call := GetMediaCopyrightUpdateRecordBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMediaCopyrightUpdateRecord(ctx context.Context, client *core.Client, id string, params GetMediaCopyrightUpdateRecordParams) (*objects.MediaCopyrightUpdateRecord, error) {
+	out, _, err := GetMediaCopyrightUpdateRecordWithResponse(ctx, client, id, params)
+	return out, err
 }

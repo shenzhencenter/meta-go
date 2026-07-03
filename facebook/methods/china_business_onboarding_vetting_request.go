@@ -41,9 +41,14 @@ func DecodeGetChinaBusinessOnboardingVettingRequestBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetChinaBusinessOnboardingVettingRequest(ctx context.Context, client *core.Client, id string, params GetChinaBusinessOnboardingVettingRequestParams) (*objects.ChinaBusinessOnboardingVettingRequest, error) {
+func GetChinaBusinessOnboardingVettingRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetChinaBusinessOnboardingVettingRequestParams) (*objects.ChinaBusinessOnboardingVettingRequest, *core.Response, error) {
 	var out objects.ChinaBusinessOnboardingVettingRequest
 	call := GetChinaBusinessOnboardingVettingRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetChinaBusinessOnboardingVettingRequest(ctx context.Context, client *core.Client, id string, params GetChinaBusinessOnboardingVettingRequestParams) (*objects.ChinaBusinessOnboardingVettingRequest, error) {
+	out, _, err := GetChinaBusinessOnboardingVettingRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetEventExternalTicketInfoBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetEventExternalTicketInfo(ctx context.Context, client *core.Client, id string, params GetEventExternalTicketInfoParams) (*objects.EventExternalTicketInfo, error) {
+func GetEventExternalTicketInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetEventExternalTicketInfoParams) (*objects.EventExternalTicketInfo, *core.Response, error) {
 	var out objects.EventExternalTicketInfo
 	call := GetEventExternalTicketInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventExternalTicketInfo(ctx context.Context, client *core.Client, id string, params GetEventExternalTicketInfoParams) (*objects.EventExternalTicketInfo, error) {
+	out, _, err := GetEventExternalTicketInfoWithResponse(ctx, client, id, params)
+	return out, err
 }

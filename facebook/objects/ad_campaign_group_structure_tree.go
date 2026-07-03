@@ -10,3 +10,15 @@ type AdCampaignGroupStructureTree struct {
 	Name     *string                         `json:"name,omitempty"`
 	Status   *string                         `json:"status,omitempty"`
 }
+
+var AdCampaignGroupStructureTreeFields = struct {
+	Children string
+	ID       string
+	Name     string
+	Status   string
+}{
+	Children: "children",
+	ID:       "id",
+	Name:     "name",
+	Status:   "status",
+}

@@ -15,3 +15,25 @@ type HasLeadAccess struct {
 	UserHasLeadsPermission   *bool    `json:"user_has_leads_permission,omitempty"`
 	UserID                   *core.ID `json:"user_id,omitempty"`
 }
+
+var HasLeadAccessFields = struct {
+	AppHasLeadsPermission    string
+	CanAccessLead            string
+	EnabledLeadAccessManager string
+	FailureReason            string
+	FailureResolution        string
+	IsPageAdmin              string
+	PageID                   string
+	UserHasLeadsPermission   string
+	UserID                   string
+}{
+	AppHasLeadsPermission:    "app_has_leads_permission",
+	CanAccessLead:            "can_access_lead",
+	EnabledLeadAccessManager: "enabled_lead_access_manager",
+	FailureReason:            "failure_reason",
+	FailureResolution:        "failure_resolution",
+	IsPageAdmin:              "is_page_admin",
+	PageID:                   "page_id",
+	UserHasLeadsPermission:   "user_has_leads_permission",
+	UserID:                   "user_id",
+}

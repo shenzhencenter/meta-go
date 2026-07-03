@@ -41,11 +41,16 @@ func DecodeGetSystemUserAssignedAdAccountsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetSystemUserAssignedAdAccounts(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetSystemUserAssignedAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetSystemUserAssignedAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSystemUserAssignedAdAccounts(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetSystemUserAssignedAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetSystemUserAssignedBusinessAssetGroupsParams struct {
@@ -86,11 +91,16 @@ func DecodeGetSystemUserAssignedBusinessAssetGroupsBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetSystemUserAssignedBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+func GetSystemUserAssignedBusinessAssetGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], *core.Response, error) {
 	var out core.Cursor[objects.BusinessAssetGroup]
 	call := GetSystemUserAssignedBusinessAssetGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSystemUserAssignedBusinessAssetGroups(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedBusinessAssetGroupsParams) (*core.Cursor[objects.BusinessAssetGroup], error) {
+	out, _, err := GetSystemUserAssignedBusinessAssetGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetSystemUserAssignedPagesParams struct {
@@ -131,11 +141,16 @@ func DecodeGetSystemUserAssignedPagesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetSystemUserAssignedPages(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetSystemUserAssignedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetSystemUserAssignedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSystemUserAssignedPages(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetSystemUserAssignedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetSystemUserAssignedProductCatalogsParams struct {
@@ -172,11 +187,16 @@ func DecodeGetSystemUserAssignedProductCatalogsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetSystemUserAssignedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetSystemUserAssignedProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetSystemUserAssignedProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSystemUserAssignedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetSystemUserAssignedProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetSystemUserAssignedWhatsappBusinessAccountsParams struct {
@@ -213,11 +233,16 @@ func DecodeGetSystemUserAssignedWhatsappBusinessAccountsBatchResponse(response *
 	return &out, nil
 }
 
-func GetSystemUserAssignedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+func GetSystemUserAssignedWhatsappBusinessAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccount]
 	call := GetSystemUserAssignedWhatsappBusinessAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSystemUserAssignedWhatsappBusinessAccounts(ctx context.Context, client *core.Client, id string, params GetSystemUserAssignedWhatsappBusinessAccountsParams) (*core.Cursor[objects.WhatsAppBusinessAccount], error) {
+	out, _, err := GetSystemUserAssignedWhatsappBusinessAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetSystemUserParams struct {
@@ -254,9 +279,14 @@ func DecodeGetSystemUserBatchResponse(response *core.BatchResponse) (*objects.Sy
 	return &out, nil
 }
 
-func GetSystemUser(ctx context.Context, client *core.Client, id string, params GetSystemUserParams) (*objects.SystemUser, error) {
+func GetSystemUserWithResponse(ctx context.Context, client *core.Client, id string, params GetSystemUserParams) (*objects.SystemUser, *core.Response, error) {
 	var out objects.SystemUser
 	call := GetSystemUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSystemUser(ctx context.Context, client *core.Client, id string, params GetSystemUserParams) (*objects.SystemUser, error) {
+	out, _, err := GetSystemUserWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetUserContextBatchResponse(response *core.BatchResponse) (*objects.U
 	return &out, nil
 }
 
-func GetUserContext(ctx context.Context, client *core.Client, id string, params GetUserContextParams) (*objects.UserContext, error) {
+func GetUserContextWithResponse(ctx context.Context, client *core.Client, id string, params GetUserContextParams) (*objects.UserContext, *core.Response, error) {
 	var out objects.UserContext
 	call := GetUserContextBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetUserContext(ctx context.Context, client *core.Client, id string, params GetUserContextParams) (*objects.UserContext, error) {
+	out, _, err := GetUserContextWithResponse(ctx, client, id, params)
+	return out, err
 }

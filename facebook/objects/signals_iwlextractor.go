@@ -11,3 +11,17 @@ type SignalsIWLExtractor struct {
 	ExtractorType   *string                 `json:"extractor_type,omitempty"`
 	ID              *core.ID                `json:"id,omitempty"`
 }
+
+var SignalsIWLExtractorFields = struct {
+	DomainURI       string
+	EventType       string
+	ExtractorConfig string
+	ExtractorType   string
+	ID              string
+}{
+	DomainURI:       "domain_uri",
+	EventType:       "event_type",
+	ExtractorConfig: "extractor_config",
+	ExtractorType:   "extractor_type",
+	ID:              "id",
+}

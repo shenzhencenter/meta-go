@@ -26,3 +26,47 @@ type IGUser struct {
 	Username                      *string                         `json:"username,omitempty"`
 	Website                       *string                         `json:"website,omitempty"`
 }
+
+var IGUserFields = struct {
+	Biography                     string
+	BusinessDiscovery             string
+	CollaborativeMediaSearch      string
+	FollowersCount                string
+	FollowsCount                  string
+	HasProfilePic                 string
+	ID                            string
+	IgID                          string
+	IsPublished                   string
+	LegacyInstagramUserID         string
+	MediaCount                    string
+	MentionedComment              string
+	MentionedMedia                string
+	Name                          string
+	OwnerBusiness                 string
+	ProfilePictureURL             string
+	ShoppingProductTagEligibility string
+	ShoppingReviewStatus          string
+	Username                      string
+	Website                       string
+}{
+	Biography:                     "biography",
+	BusinessDiscovery:             "business_discovery",
+	CollaborativeMediaSearch:      "collaborative_media_search",
+	FollowersCount:                "followers_count",
+	FollowsCount:                  "follows_count",
+	HasProfilePic:                 "has_profile_pic",
+	ID:                            "id",
+	IgID:                          "ig_id",
+	IsPublished:                   "is_published",
+	LegacyInstagramUserID:         "legacy_instagram_user_id",
+	MediaCount:                    "media_count",
+	MentionedComment:              "mentioned_comment",
+	MentionedMedia:                "mentioned_media",
+	Name:                          "name",
+	OwnerBusiness:                 "owner_business",
+	ProfilePictureURL:             "profile_picture_url",
+	ShoppingProductTagEligibility: "shopping_product_tag_eligibility",
+	ShoppingReviewStatus:          "shopping_review_status",
+	Username:                      "username",
+	Website:                       "website",
+}

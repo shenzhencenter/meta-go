@@ -41,11 +41,16 @@ func DecodeGetAdsConversionGoalConversionEventsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetAdsConversionGoalConversionEvents(ctx context.Context, client *core.Client, id string, params GetAdsConversionGoalConversionEventsParams) (*core.Cursor[objects.AdsSingleChannelConversionEvent], error) {
+func GetAdsConversionGoalConversionEventsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsConversionGoalConversionEventsParams) (*core.Cursor[objects.AdsSingleChannelConversionEvent], *core.Response, error) {
 	var out core.Cursor[objects.AdsSingleChannelConversionEvent]
 	call := GetAdsConversionGoalConversionEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsConversionGoalConversionEvents(ctx context.Context, client *core.Client, id string, params GetAdsConversionGoalConversionEventsParams) (*core.Cursor[objects.AdsSingleChannelConversionEvent], error) {
+	out, _, err := GetAdsConversionGoalConversionEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdsConversionGoalParams struct {
@@ -82,9 +87,14 @@ func DecodeGetAdsConversionGoalBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetAdsConversionGoal(ctx context.Context, client *core.Client, id string, params GetAdsConversionGoalParams) (*objects.AdsConversionGoal, error) {
+func GetAdsConversionGoalWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsConversionGoalParams) (*objects.AdsConversionGoal, *core.Response, error) {
 	var out objects.AdsConversionGoal
 	call := GetAdsConversionGoalBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsConversionGoal(ctx context.Context, client *core.Client, id string, params GetAdsConversionGoalParams) (*objects.AdsConversionGoal, error) {
+	out, _, err := GetAdsConversionGoalWithResponse(ctx, client, id, params)
+	return out, err
 }

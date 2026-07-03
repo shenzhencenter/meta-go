@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetLiveVideoBlockedUsersParams struct {
@@ -47,18 +46,23 @@ func DecodeGetLiveVideoBlockedUsersBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetLiveVideoBlockedUsers(ctx context.Context, client *core.Client, id string, params GetLiveVideoBlockedUsersParams) (*core.Cursor[objects.User], error) {
+func GetLiveVideoBlockedUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoBlockedUsersParams) (*core.Cursor[objects.User], *core.Response, error) {
 	var out core.Cursor[objects.User]
 	call := GetLiveVideoBlockedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoBlockedUsers(ctx context.Context, client *core.Client, id string, params GetLiveVideoBlockedUsersParams) (*core.Cursor[objects.User], error) {
+	out, _, err := GetLiveVideoBlockedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoCommentsParams struct {
 	Filter     *enums.LivevideocommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.LivevideocommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.LivevideocommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                                  `facebook:"since"`
+	Since      *core.Time                                  `facebook:"since"`
 	Extra      core.Params                                 `facebook:"-"`
 }
 
@@ -104,11 +108,16 @@ func DecodeGetLiveVideoCommentsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetLiveVideoComments(ctx context.Context, client *core.Client, id string, params GetLiveVideoCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetLiveVideoCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetLiveVideoCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoComments(ctx context.Context, client *core.Client, id string, params GetLiveVideoCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetLiveVideoCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoCrosspostSharedPagesParams struct {
@@ -145,11 +154,16 @@ func DecodeGetLiveVideoCrosspostSharedPagesBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetLiveVideoCrosspostSharedPages(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetLiveVideoCrosspostSharedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetLiveVideoCrosspostSharedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoCrosspostSharedPages(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetLiveVideoCrosspostSharedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoCrosspostedBroadcastsParams struct {
@@ -186,11 +200,16 @@ func DecodeGetLiveVideoCrosspostedBroadcastsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetLiveVideoCrosspostedBroadcasts(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostedBroadcastsParams) (*core.Cursor[objects.LiveVideo], error) {
+func GetLiveVideoCrosspostedBroadcastsWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostedBroadcastsParams) (*core.Cursor[objects.LiveVideo], *core.Response, error) {
 	var out core.Cursor[objects.LiveVideo]
 	call := GetLiveVideoCrosspostedBroadcastsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoCrosspostedBroadcasts(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostedBroadcastsParams) (*core.Cursor[objects.LiveVideo], error) {
+	out, _, err := GetLiveVideoCrosspostedBroadcastsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoErrorsParams struct {
@@ -227,11 +246,16 @@ func DecodeGetLiveVideoErrorsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetLiveVideoErrors(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorsParams) (*core.Cursor[objects.LiveVideoError], error) {
+func GetLiveVideoErrorsWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorsParams) (*core.Cursor[objects.LiveVideoError], *core.Response, error) {
 	var out core.Cursor[objects.LiveVideoError]
 	call := GetLiveVideoErrorsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoErrors(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorsParams) (*core.Cursor[objects.LiveVideoError], error) {
+	out, _, err := GetLiveVideoErrorsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateLiveVideoInputStreamsParams struct {
@@ -268,11 +292,16 @@ func DecodeCreateLiveVideoInputStreamsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreateLiveVideoInputStreams(ctx context.Context, client *core.Client, id string, params CreateLiveVideoInputStreamsParams) (*objects.LiveVideoInputStream, error) {
+func CreateLiveVideoInputStreamsWithResponse(ctx context.Context, client *core.Client, id string, params CreateLiveVideoInputStreamsParams) (*objects.LiveVideoInputStream, *core.Response, error) {
 	var out objects.LiveVideoInputStream
 	call := CreateLiveVideoInputStreamsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateLiveVideoInputStreams(ctx context.Context, client *core.Client, id string, params CreateLiveVideoInputStreamsParams) (*objects.LiveVideoInputStream, error) {
+	out, _, err := CreateLiveVideoInputStreamsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoPollsParams struct {
@@ -309,11 +338,16 @@ func DecodeGetLiveVideoPollsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetLiveVideoPolls(ctx context.Context, client *core.Client, id string, params GetLiveVideoPollsParams) (*core.Cursor[objects.VideoPoll], error) {
+func GetLiveVideoPollsWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoPollsParams) (*core.Cursor[objects.VideoPoll], *core.Response, error) {
 	var out core.Cursor[objects.VideoPoll]
 	call := GetLiveVideoPollsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoPolls(ctx context.Context, client *core.Client, id string, params GetLiveVideoPollsParams) (*core.Cursor[objects.VideoPoll], error) {
+	out, _, err := GetLiveVideoPollsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateLiveVideoPollsParams struct {
@@ -374,11 +408,16 @@ func DecodeCreateLiveVideoPollsBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreateLiveVideoPolls(ctx context.Context, client *core.Client, id string, params CreateLiveVideoPollsParams) (*objects.VideoPoll, error) {
+func CreateLiveVideoPollsWithResponse(ctx context.Context, client *core.Client, id string, params CreateLiveVideoPollsParams) (*objects.VideoPoll, *core.Response, error) {
 	var out objects.VideoPoll
 	call := CreateLiveVideoPollsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateLiveVideoPolls(ctx context.Context, client *core.Client, id string, params CreateLiveVideoPollsParams) (*objects.VideoPoll, error) {
+	out, _, err := CreateLiveVideoPollsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoReactionsParams struct {
@@ -419,11 +458,16 @@ func DecodeGetLiveVideoReactionsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetLiveVideoReactions(ctx context.Context, client *core.Client, id string, params GetLiveVideoReactionsParams) (*core.Cursor[objects.Profile], error) {
+func GetLiveVideoReactionsWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoReactionsParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetLiveVideoReactionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoReactions(ctx context.Context, client *core.Client, id string, params GetLiveVideoReactionsParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetLiveVideoReactionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteLiveVideoParams struct {
@@ -460,11 +504,16 @@ func DecodeDeleteLiveVideoBatchResponse(response *core.BatchResponse) (*map[stri
 	return &out, nil
 }
 
-func DeleteLiveVideo(ctx context.Context, client *core.Client, id string, params DeleteLiveVideoParams) (*map[string]interface{}, error) {
+func DeleteLiveVideoWithResponse(ctx context.Context, client *core.Client, id string, params DeleteLiveVideoParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteLiveVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteLiveVideo(ctx context.Context, client *core.Client, id string, params DeleteLiveVideoParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteLiveVideoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLiveVideoParams struct {
@@ -505,11 +554,16 @@ func DecodeGetLiveVideoBatchResponse(response *core.BatchResponse) (*objects.Liv
 	return &out, nil
 }
 
-func GetLiveVideo(ctx context.Context, client *core.Client, id string, params GetLiveVideoParams) (*objects.LiveVideo, error) {
+func GetLiveVideoWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoParams) (*objects.LiveVideo, *core.Response, error) {
 	var out objects.LiveVideo
 	call := GetLiveVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideo(ctx context.Context, client *core.Client, id string, params GetLiveVideoParams) (*objects.LiveVideo, error) {
+	out, _, err := GetLiveVideoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateLiveVideoParams struct {
@@ -531,7 +585,7 @@ type UpdateLiveVideoParams struct {
 	OgPhrase                     *string                                        `facebook:"og_phrase"`
 	PersistentStreamKeyStatus    *enums.LivevideoPersistentStreamKeyStatus      `facebook:"persistent_stream_key_status"`
 	Place                        *map[string]interface{}                        `facebook:"place"`
-	PlannedStartTime             *time.Time                                     `facebook:"planned_start_time"`
+	PlannedStartTime             *core.Time                                     `facebook:"planned_start_time"`
 	Privacy                      *string                                        `facebook:"privacy"`
 	Published                    *bool                                          `facebook:"published"`
 	ScheduleCustomProfileImage   *core.FileParam                                `facebook:"schedule_custom_profile_image"`
@@ -666,9 +720,14 @@ func DecodeUpdateLiveVideoBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func UpdateLiveVideo(ctx context.Context, client *core.Client, id string, params UpdateLiveVideoParams) (*objects.LiveVideo, error) {
+func UpdateLiveVideoWithResponse(ctx context.Context, client *core.Client, id string, params UpdateLiveVideoParams) (*objects.LiveVideo, *core.Response, error) {
 	var out objects.LiveVideo
 	call := UpdateLiveVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateLiveVideo(ctx context.Context, client *core.Client, id string, params UpdateLiveVideoParams) (*objects.LiveVideo, error) {
+	out, _, err := UpdateLiveVideoWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetCampaignAdStudiesParams struct {
@@ -43,11 +42,16 @@ func DecodeGetCampaignAdStudiesBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetCampaignAdStudies(ctx context.Context, client *core.Client, id string, params GetCampaignAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+func GetCampaignAdStudiesWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignAdStudiesParams) (*core.Cursor[objects.AdStudy], *core.Response, error) {
 	var out core.Cursor[objects.AdStudy]
 	call := GetCampaignAdStudiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignAdStudies(ctx context.Context, client *core.Client, id string, params GetCampaignAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
+	out, _, err := GetCampaignAdStudiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCampaignAdlabelsParams struct {
@@ -90,11 +94,16 @@ func DecodeCreateCampaignAdlabelsBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateCampaignAdlabels(ctx context.Context, client *core.Client, id string, params CreateCampaignAdlabelsParams) (*objects.Campaign, error) {
+func CreateCampaignAdlabelsWithResponse(ctx context.Context, client *core.Client, id string, params CreateCampaignAdlabelsParams) (*objects.Campaign, *core.Response, error) {
 	var out objects.Campaign
 	call := CreateCampaignAdlabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCampaignAdlabels(ctx context.Context, client *core.Client, id string, params CreateCampaignAdlabelsParams) (*objects.Campaign, error) {
+	out, _, err := CreateCampaignAdlabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignAdrulesGovernedParams struct {
@@ -135,11 +144,16 @@ func DecodeGetCampaignAdrulesGovernedBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetCampaignAdrulesGoverned(ctx context.Context, client *core.Client, id string, params GetCampaignAdrulesGovernedParams) (*core.Cursor[objects.AdRule], error) {
+func GetCampaignAdrulesGovernedWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignAdrulesGovernedParams) (*core.Cursor[objects.AdRule], *core.Response, error) {
 	var out core.Cursor[objects.AdRule]
 	call := GetCampaignAdrulesGovernedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignAdrulesGoverned(ctx context.Context, client *core.Client, id string, params GetCampaignAdrulesGovernedParams) (*core.Cursor[objects.AdRule], error) {
+	out, _, err := GetCampaignAdrulesGovernedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignAdsParams struct {
@@ -192,11 +206,16 @@ func DecodeGetCampaignAdsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetCampaignAds(ctx context.Context, client *core.Client, id string, params GetCampaignAdsParams) (*core.Cursor[objects.Ad], error) {
+func GetCampaignAdsWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignAdsParams) (*core.Cursor[objects.Ad], *core.Response, error) {
 	var out core.Cursor[objects.Ad]
 	call := GetCampaignAdsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignAds(ctx context.Context, client *core.Client, id string, params GetCampaignAdsParams) (*core.Cursor[objects.Ad], error) {
+	out, _, err := GetCampaignAdsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignAdsetsParams struct {
@@ -249,16 +268,21 @@ func DecodeGetCampaignAdsetsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetCampaignAdsets(ctx context.Context, client *core.Client, id string, params GetCampaignAdsetsParams) (*core.Cursor[objects.AdSet], error) {
+func GetCampaignAdsetsWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignAdsetsParams) (*core.Cursor[objects.AdSet], *core.Response, error) {
 	var out core.Cursor[objects.AdSet]
 	call := GetCampaignAdsetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignAdsets(ctx context.Context, client *core.Client, id string, params GetCampaignAdsetsParams) (*core.Cursor[objects.AdSet], error) {
+	out, _, err := GetCampaignAdsetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignBudgetSchedulesParams struct {
-	TimeStart *time.Time  `facebook:"time_start"`
-	TimeStop  *time.Time  `facebook:"time_stop"`
+	TimeStart *core.Time  `facebook:"time_start"`
+	TimeStop  *core.Time  `facebook:"time_stop"`
 	Extra     core.Params `facebook:"-"`
 }
 
@@ -298,11 +322,16 @@ func DecodeGetCampaignBudgetSchedulesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetCampaignBudgetSchedules(ctx context.Context, client *core.Client, id string, params GetCampaignBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], error) {
+func GetCampaignBudgetSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], *core.Response, error) {
 	var out core.Cursor[objects.HighDemandPeriod]
 	call := GetCampaignBudgetSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignBudgetSchedules(ctx context.Context, client *core.Client, id string, params GetCampaignBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], error) {
+	out, _, err := GetCampaignBudgetSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCampaignBudgetSchedulesParams struct {
@@ -347,11 +376,16 @@ func DecodeCreateCampaignBudgetSchedulesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateCampaignBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateCampaignBudgetSchedulesParams) (*objects.HighDemandPeriod, error) {
+func CreateCampaignBudgetSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params CreateCampaignBudgetSchedulesParams) (*objects.HighDemandPeriod, *core.Response, error) {
 	var out objects.HighDemandPeriod
 	call := CreateCampaignBudgetSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCampaignBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateCampaignBudgetSchedulesParams) (*objects.HighDemandPeriod, error) {
+	out, _, err := CreateCampaignBudgetSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignCopiesParams struct {
@@ -404,20 +438,25 @@ func DecodeGetCampaignCopiesBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetCampaignCopies(ctx context.Context, client *core.Client, id string, params GetCampaignCopiesParams) (*core.Cursor[objects.Campaign], error) {
+func GetCampaignCopiesWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignCopiesParams) (*core.Cursor[objects.Campaign], *core.Response, error) {
 	var out core.Cursor[objects.Campaign]
 	call := GetCampaignCopiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignCopies(ctx context.Context, client *core.Client, id string, params GetCampaignCopiesParams) (*core.Cursor[objects.Campaign], error) {
+	out, _, err := GetCampaignCopiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCampaignCopiesParams struct {
 	DeepCopy               *bool                                             `facebook:"deep_copy"`
-	EndTime                *time.Time                                        `facebook:"end_time"`
+	EndTime                *core.Time                                        `facebook:"end_time"`
 	MigrateToAdvantagePlus *bool                                             `facebook:"migrate_to_advantage_plus"`
 	ParameterOverrides     *map[string]interface{}                           `facebook:"parameter_overrides"`
 	RenameOptions          *map[string]interface{}                           `facebook:"rename_options"`
-	StartTime              *time.Time                                        `facebook:"start_time"`
+	StartTime              *core.Time                                        `facebook:"start_time"`
 	StatusOption           *enums.AdcampaigngroupcopiesStatusOptionEnumParam `facebook:"status_option"`
 	Extra                  core.Params                                       `facebook:"-"`
 }
@@ -473,11 +512,16 @@ func DecodeCreateCampaignCopiesBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreateCampaignCopies(ctx context.Context, client *core.Client, id string, params CreateCampaignCopiesParams) (*objects.Campaign, error) {
+func CreateCampaignCopiesWithResponse(ctx context.Context, client *core.Client, id string, params CreateCampaignCopiesParams) (*objects.Campaign, *core.Response, error) {
 	var out objects.Campaign
 	call := CreateCampaignCopiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCampaignCopies(ctx context.Context, client *core.Client, id string, params CreateCampaignCopiesParams) (*objects.Campaign, error) {
+	out, _, err := CreateCampaignCopiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignInsightsParams struct {
@@ -606,11 +650,16 @@ func DecodeGetCampaignInsightsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetCampaignInsights(ctx context.Context, client *core.Client, id string, params GetCampaignInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
+func GetCampaignInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignInsightsParams) (*core.Cursor[objects.AdsInsights], *core.Response, error) {
 	var out core.Cursor[objects.AdsInsights]
 	call := GetCampaignInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaignInsights(ctx context.Context, client *core.Client, id string, params GetCampaignInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
+	out, _, err := GetCampaignInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCampaignInsightsParams struct {
@@ -739,11 +788,16 @@ func DecodeCreateCampaignInsightsBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateCampaignInsights(ctx context.Context, client *core.Client, id string, params CreateCampaignInsightsParams) (*objects.AdReportRun, error) {
+func CreateCampaignInsightsWithResponse(ctx context.Context, client *core.Client, id string, params CreateCampaignInsightsParams) (*objects.AdReportRun, *core.Response, error) {
 	var out objects.AdReportRun
 	call := CreateCampaignInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCampaignInsights(ctx context.Context, client *core.Client, id string, params CreateCampaignInsightsParams) (*objects.AdReportRun, error) {
+	out, _, err := CreateCampaignInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteCampaignParams struct {
@@ -780,11 +834,16 @@ func DecodeDeleteCampaignBatchResponse(response *core.BatchResponse) (*map[strin
 	return &out, nil
 }
 
-func DeleteCampaign(ctx context.Context, client *core.Client, id string, params DeleteCampaignParams) (*map[string]interface{}, error) {
+func DeleteCampaignWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCampaignParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCampaignBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteCampaign(ctx context.Context, client *core.Client, id string, params DeleteCampaignParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCampaignWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCampaignParams struct {
@@ -837,11 +896,16 @@ func DecodeGetCampaignBatchResponse(response *core.BatchResponse) (*objects.Camp
 	return &out, nil
 }
 
-func GetCampaign(ctx context.Context, client *core.Client, id string, params GetCampaignParams) (*objects.Campaign, error) {
+func GetCampaignWithResponse(ctx context.Context, client *core.Client, id string, params GetCampaignParams) (*objects.Campaign, *core.Response, error) {
 	var out objects.Campaign
 	call := GetCampaignBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCampaign(ctx context.Context, client *core.Client, id string, params GetCampaignParams) (*objects.Campaign, error) {
+	out, _, err := GetCampaignWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCampaignParams struct {
@@ -873,9 +937,9 @@ type UpdateCampaignParams struct {
 	SpecialAdCategory           *enums.AdcampaigngroupSpecialAdCategory          `facebook:"special_ad_category"`
 	SpecialAdCategoryCountry    *[]enums.AdcampaigngroupSpecialAdCategoryCountry `facebook:"special_ad_category_country"`
 	SpendCap                    *uint64                                          `facebook:"spend_cap"`
-	StartTime                   *time.Time                                       `facebook:"start_time"`
+	StartTime                   *core.Time                                       `facebook:"start_time"`
 	Status                      *enums.AdcampaigngroupStatus                     `facebook:"status"`
-	StopTime                    *time.Time                                       `facebook:"stop_time"`
+	StopTime                    *core.Time                                       `facebook:"stop_time"`
 	Extra                       core.Params                                      `facebook:"-"`
 }
 
@@ -1002,9 +1066,14 @@ func DecodeUpdateCampaignBatchResponse(response *core.BatchResponse) (*objects.C
 	return &out, nil
 }
 
-func UpdateCampaign(ctx context.Context, client *core.Client, id string, params UpdateCampaignParams) (*objects.Campaign, error) {
+func UpdateCampaignWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCampaignParams) (*objects.Campaign, *core.Response, error) {
 	var out objects.Campaign
 	call := UpdateCampaignBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateCampaign(ctx context.Context, client *core.Client, id string, params UpdateCampaignParams) (*objects.Campaign, error) {
+	out, _, err := UpdateCampaignWithResponse(ctx, client, id, params)
+	return out, err
 }

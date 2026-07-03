@@ -41,9 +41,14 @@ func DecodeGetThirdPartyPartnerViewabilityRequestBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetThirdPartyPartnerViewabilityRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerViewabilityRequestParams) (*objects.ThirdPartyPartnerViewabilityRequest, error) {
+func GetThirdPartyPartnerViewabilityRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerViewabilityRequestParams) (*objects.ThirdPartyPartnerViewabilityRequest, *core.Response, error) {
 	var out objects.ThirdPartyPartnerViewabilityRequest
 	call := GetThirdPartyPartnerViewabilityRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetThirdPartyPartnerViewabilityRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerViewabilityRequestParams) (*objects.ThirdPartyPartnerViewabilityRequest, error) {
+	out, _, err := GetThirdPartyPartnerViewabilityRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

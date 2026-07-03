@@ -44,11 +44,16 @@ func DecodeDeleteInstagramBusinessAssetAgenciesBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func DeleteInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAgenciesParams) (*map[string]interface{}, error) {
+func DeleteInstagramBusinessAssetAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAgenciesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteInstagramBusinessAssetAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAgenciesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteInstagramBusinessAssetAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetInstagramBusinessAssetAgenciesParams struct {
@@ -85,11 +90,16 @@ func DecodeGetInstagramBusinessAssetAgenciesBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetInstagramBusinessAssetAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetInstagramBusinessAssetAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetInstagramBusinessAssetAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateInstagramBusinessAssetAgenciesParams struct {
@@ -130,11 +140,16 @@ func DecodeCreateInstagramBusinessAssetAgenciesBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func CreateInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAgenciesParams) (*objects.InstagramBusinessAsset, error) {
+func CreateInstagramBusinessAssetAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAgenciesParams) (*objects.InstagramBusinessAsset, *core.Response, error) {
 	var out objects.InstagramBusinessAsset
 	call := CreateInstagramBusinessAssetAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAgenciesParams) (*objects.InstagramBusinessAsset, error) {
+	out, _, err := CreateInstagramBusinessAssetAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteInstagramBusinessAssetAssignedUsersParams struct {
@@ -173,11 +188,16 @@ func DecodeDeleteInstagramBusinessAssetAssignedUsersBatchResponse(response *core
 	return &out, nil
 }
 
-func DeleteInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAssignedUsersParams) (*map[string]interface{}, error) {
+func DeleteInstagramBusinessAssetAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAssignedUsersParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteInstagramBusinessAssetAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAssignedUsersParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteInstagramBusinessAssetAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetInstagramBusinessAssetAssignedUsersParams struct {
@@ -216,11 +236,16 @@ func DecodeGetInstagramBusinessAssetAssignedUsersBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+func GetInstagramBusinessAssetAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAssignedUsersParams) (*core.Cursor[objects.AssignedUser], *core.Response, error) {
 	var out core.Cursor[objects.AssignedUser]
 	call := GetInstagramBusinessAssetAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+	out, _, err := GetInstagramBusinessAssetAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateInstagramBusinessAssetAssignedUsersParams struct {
@@ -263,11 +288,16 @@ func DecodeCreateInstagramBusinessAssetAssignedUsersBatchResponse(response *core
 	return &out, nil
 }
 
-func CreateInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAssignedUsersParams) (*objects.InstagramBusinessAsset, error) {
+func CreateInstagramBusinessAssetAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAssignedUsersParams) (*objects.InstagramBusinessAsset, *core.Response, error) {
 	var out objects.InstagramBusinessAsset
 	call := CreateInstagramBusinessAssetAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAssignedUsersParams) (*objects.InstagramBusinessAsset, error) {
+	out, _, err := CreateInstagramBusinessAssetAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetInstagramBusinessAssetParams struct {
@@ -304,9 +334,14 @@ func DecodeGetInstagramBusinessAssetBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetInstagramBusinessAsset(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetParams) (*objects.InstagramBusinessAsset, error) {
+func GetInstagramBusinessAssetWithResponse(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetParams) (*objects.InstagramBusinessAsset, *core.Response, error) {
 	var out objects.InstagramBusinessAsset
 	call := GetInstagramBusinessAssetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetInstagramBusinessAsset(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetParams) (*objects.InstagramBusinessAsset, error) {
+	out, _, err := GetInstagramBusinessAssetWithResponse(ctx, client, id, params)
+	return out, err
 }

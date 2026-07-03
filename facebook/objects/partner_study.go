@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type PartnerStudy struct {
@@ -20,8 +19,48 @@ type PartnerStudy struct {
 	PartnerDefinedID               *core.ID   `json:"partner_defined_id,omitempty"`
 	PartnerHouseholdGraphDatasetID *core.ID   `json:"partner_household_graph_dataset_id,omitempty"`
 	Status                         *string    `json:"status,omitempty"`
-	StudyEndDate                   *time.Time `json:"study_end_date,omitempty"`
-	StudyStartDate                 *time.Time `json:"study_start_date,omitempty"`
+	StudyEndDate                   *core.Time `json:"study_end_date,omitempty"`
+	StudyStartDate                 *core.Time `json:"study_start_date,omitempty"`
 	StudyType                      *string    `json:"study_type,omitempty"`
-	SubmitDate                     *time.Time `json:"submit_date,omitempty"`
+	SubmitDate                     *core.Time `json:"submit_date,omitempty"`
+}
+
+var PartnerStudyFields = struct {
+	AdditionalInfo                 string
+	Brand                          string
+	ClientName                     string
+	Emails                         string
+	ID                             string
+	InputIds                       string
+	IsExport                       string
+	LiftStudy                      string
+	Location                       string
+	MatchFileDs                    string
+	Name                           string
+	PartnerDefinedID               string
+	PartnerHouseholdGraphDatasetID string
+	Status                         string
+	StudyEndDate                   string
+	StudyStartDate                 string
+	StudyType                      string
+	SubmitDate                     string
+}{
+	AdditionalInfo:                 "additional_info",
+	Brand:                          "brand",
+	ClientName:                     "client_name",
+	Emails:                         "emails",
+	ID:                             "id",
+	InputIds:                       "input_ids",
+	IsExport:                       "is_export",
+	LiftStudy:                      "lift_study",
+	Location:                       "location",
+	MatchFileDs:                    "match_file_ds",
+	Name:                           "name",
+	PartnerDefinedID:               "partner_defined_id",
+	PartnerHouseholdGraphDatasetID: "partner_household_graph_dataset_id",
+	Status:                         "status",
+	StudyEndDate:                   "study_end_date",
+	StudyStartDate:                 "study_start_date",
+	StudyType:                      "study_type",
+	SubmitDate:                     "submit_date",
 }

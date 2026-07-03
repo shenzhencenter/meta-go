@@ -9,3 +9,13 @@ type AppOptimizedCustomEvents struct {
 	AppName    *string   `json:"app_name,omitempty"`
 	EventNames *[]string `json:"event_names,omitempty"`
 }
+
+var AppOptimizedCustomEventsFields = struct {
+	AppID      string
+	AppName    string
+	EventNames string
+}{
+	AppID:      "app_id",
+	AppName:    "app_name",
+	EventNames: "event_names",
+}

@@ -41,9 +41,14 @@ func DecodeGetStoreLocationBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetStoreLocation(ctx context.Context, client *core.Client, id string, params GetStoreLocationParams) (*objects.StoreLocation, error) {
+func GetStoreLocationWithResponse(ctx context.Context, client *core.Client, id string, params GetStoreLocationParams) (*objects.StoreLocation, *core.Response, error) {
 	var out objects.StoreLocation
 	call := GetStoreLocationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetStoreLocation(ctx context.Context, client *core.Client, id string, params GetStoreLocationParams) (*objects.StoreLocation, error) {
+	out, _, err := GetStoreLocationWithResponse(ctx, client, id, params)
+	return out, err
 }

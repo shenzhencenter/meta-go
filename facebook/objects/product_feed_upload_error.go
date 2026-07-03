@@ -14,3 +14,21 @@ type ProductFeedUploadError struct {
 	Summary          *string                                         `json:"summary,omitempty"`
 	TotalCount       *uint64                                         `json:"total_count,omitempty"`
 }
+
+var ProductFeedUploadErrorFields = struct {
+	AffectedSurfaces string
+	Description      string
+	ErrorType        string
+	ID               string
+	Severity         string
+	Summary          string
+	TotalCount       string
+}{
+	AffectedSurfaces: "affected_surfaces",
+	Description:      "description",
+	ErrorType:        "error_type",
+	ID:               "id",
+	Severity:         "severity",
+	Summary:          "summary",
+	TotalCount:       "total_count",
+}

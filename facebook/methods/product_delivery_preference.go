@@ -41,9 +41,14 @@ func DecodeGetProductDeliveryPreferenceBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetProductDeliveryPreference(ctx context.Context, client *core.Client, id string, params GetProductDeliveryPreferenceParams) (*objects.ProductDeliveryPreference, error) {
+func GetProductDeliveryPreferenceWithResponse(ctx context.Context, client *core.Client, id string, params GetProductDeliveryPreferenceParams) (*objects.ProductDeliveryPreference, *core.Response, error) {
 	var out objects.ProductDeliveryPreference
 	call := GetProductDeliveryPreferenceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductDeliveryPreference(ctx context.Context, client *core.Client, id string, params GetProductDeliveryPreferenceParams) (*objects.ProductDeliveryPreference, error) {
+	out, _, err := GetProductDeliveryPreferenceWithResponse(ctx, client, id, params)
+	return out, err
 }

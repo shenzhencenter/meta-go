@@ -13,3 +13,21 @@ type InsightsResult struct {
 	Title                 *string          `json:"title,omitempty"`
 	Values                *[]InsightsValue `json:"values,omitempty"`
 }
+
+var InsightsResultFields = struct {
+	Description           string
+	DescriptionFromAPIDoc string
+	ID                    string
+	Name                  string
+	Period                string
+	Title                 string
+	Values                string
+}{
+	Description:           "description",
+	DescriptionFromAPIDoc: "description_from_api_doc",
+	ID:                    "id",
+	Name:                  "name",
+	Period:                "period",
+	Title:                 "title",
+	Values:                "values",
+}

@@ -41,9 +41,14 @@ func DecodeGetSavedAudienceBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetSavedAudience(ctx context.Context, client *core.Client, id string, params GetSavedAudienceParams) (*objects.SavedAudience, error) {
+func GetSavedAudienceWithResponse(ctx context.Context, client *core.Client, id string, params GetSavedAudienceParams) (*objects.SavedAudience, *core.Response, error) {
 	var out objects.SavedAudience
 	call := GetSavedAudienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSavedAudience(ctx context.Context, client *core.Client, id string, params GetSavedAudienceParams) (*objects.SavedAudience, error) {
+	out, _, err := GetSavedAudienceWithResponse(ctx, client, id, params)
+	return out, err
 }

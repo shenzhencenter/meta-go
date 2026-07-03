@@ -19,3 +19,33 @@ type BusinessFranchiseConfig struct {
 	SharedCreativeFolderCount *int                `json:"shared_creative_folder_count,omitempty"`
 	SharedCustomAudienceCount *int                `json:"shared_custom_audience_count,omitempty"`
 }
+
+var BusinessFranchiseConfigFields = struct {
+	ActivePartnerCount        string
+	AgencyBusiness            string
+	AgencyBusinessAssetGroup  string
+	BrandName                 string
+	Business                  string
+	BusinessVertical          string
+	ID                        string
+	PartnerCount              string
+	PendingAgencyBusiness     string
+	ProgramCount              string
+	SharedBusinessAssetGroup  string
+	SharedCreativeFolderCount string
+	SharedCustomAudienceCount string
+}{
+	ActivePartnerCount:        "active_partner_count",
+	AgencyBusiness:            "agency_business",
+	AgencyBusinessAssetGroup:  "agency_business_asset_group",
+	BrandName:                 "brand_name",
+	Business:                  "business",
+	BusinessVertical:          "business_vertical",
+	ID:                        "id",
+	PartnerCount:              "partner_count",
+	PendingAgencyBusiness:     "pending_agency_business",
+	ProgramCount:              "program_count",
+	SharedBusinessAssetGroup:  "shared_business_asset_group",
+	SharedCreativeFolderCount: "shared_creative_folder_count",
+	SharedCustomAudienceCount: "shared_custom_audience_count",
+}

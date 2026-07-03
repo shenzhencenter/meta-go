@@ -13,3 +13,21 @@ type MediaFingerprint struct {
 	Title                  *string                 `json:"title,omitempty"`
 	UniversalContentID     *core.ID                `json:"universal_content_id,omitempty"`
 }
+
+var MediaFingerprintFields = struct {
+	DurationInSec          string
+	FingerprintContentType string
+	FingerprintType        string
+	ID                     string
+	Metadata               string
+	Title                  string
+	UniversalContentID     string
+}{
+	DurationInSec:          "duration_in_sec",
+	FingerprintContentType: "fingerprint_content_type",
+	FingerprintType:        "fingerprint_type",
+	ID:                     "id",
+	Metadata:               "metadata",
+	Title:                  "title",
+	UniversalContentID:     "universal_content_id",
+}

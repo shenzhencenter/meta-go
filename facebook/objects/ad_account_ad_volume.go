@@ -18,3 +18,31 @@ type AdAccountAdVolume struct {
 	LimitOnAdsRunningOrInReview                      *uint64                   `json:"limit_on_ads_running_or_in_review,omitempty"`
 	Recommendations                                  *[]map[string]interface{} `json:"recommendations,omitempty"`
 }
+
+var AdAccountAdVolumeFields = struct {
+	ActorID                                          string
+	ActorName                                        string
+	AdLimitScopeBusiness                             string
+	AdLimitScopeBusinessManagerID                    string
+	AdLimitSetByPageAdmin                            string
+	AdsRunningOrInReviewCount                        string
+	AdsRunningOrInReviewCountSubjectToLimitSetByPage string
+	CurrentAccountAdsRunningOrInReviewCount          string
+	FutureLimitActivationDate                        string
+	FutureLimitOnAdsRunningOrInReview                string
+	LimitOnAdsRunningOrInReview                      string
+	Recommendations                                  string
+}{
+	ActorID:                       "actor_id",
+	ActorName:                     "actor_name",
+	AdLimitScopeBusiness:          "ad_limit_scope_business",
+	AdLimitScopeBusinessManagerID: "ad_limit_scope_business_manager_id",
+	AdLimitSetByPageAdmin:         "ad_limit_set_by_page_admin",
+	AdsRunningOrInReviewCount:     "ads_running_or_in_review_count",
+	AdsRunningOrInReviewCountSubjectToLimitSetByPage: "ads_running_or_in_review_count_subject_to_limit_set_by_page",
+	CurrentAccountAdsRunningOrInReviewCount:          "current_account_ads_running_or_in_review_count",
+	FutureLimitActivationDate:                        "future_limit_activation_date",
+	FutureLimitOnAdsRunningOrInReview:                "future_limit_on_ads_running_or_in_review",
+	LimitOnAdsRunningOrInReview:                      "limit_on_ads_running_or_in_review",
+	Recommendations:                                  "recommendations",
+}

@@ -14,3 +14,23 @@ type PremiumMusicVideo struct {
 	ScheduledPublishTime            *int                      `json:"scheduled_publish_time,omitempty"`
 	Title                           *string                   `json:"title,omitempty"`
 }
+
+var PremiumMusicVideoFields = struct {
+	CreationTime                    string
+	CrossPostVideos                 string
+	EligibleCrossPostPages          string
+	ID                              string
+	PreferredVideoThumbnailImageURI string
+	PremiumMusicVideoMetadata       string
+	ScheduledPublishTime            string
+	Title                           string
+}{
+	CreationTime:                    "creation_time",
+	CrossPostVideos:                 "cross_post_videos",
+	EligibleCrossPostPages:          "eligible_cross_post_pages",
+	ID:                              "id",
+	PreferredVideoThumbnailImageURI: "preferred_video_thumbnail_image_uri",
+	PremiumMusicVideoMetadata:       "premium_music_video_metadata",
+	ScheduledPublishTime:            "scheduled_publish_time",
+	Title:                           "title",
+}

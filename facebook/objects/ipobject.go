@@ -4,3 +4,11 @@ type IPObject struct {
 	IPPermission *string                 `json:"ip_permission,omitempty"`
 	User         *map[string]interface{} `json:"user,omitempty"`
 }
+
+var IPObjectFields = struct {
+	IPPermission string
+	User         string
+}{
+	IPPermission: "ip_permission",
+	User:         "user",
+}

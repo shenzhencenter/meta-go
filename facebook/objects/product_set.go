@@ -16,3 +16,27 @@ type ProductSet struct {
 	ProductCount    *uint64             `json:"product_count,omitempty"`
 	RetailerID      *core.ID            `json:"retailer_id,omitempty"`
 }
+
+var ProductSetFields = struct {
+	AutoCreationURL string
+	Filter          string
+	ID              string
+	LatestMetadata  string
+	LiveMetadata    string
+	Name            string
+	OrderingInfo    string
+	ProductCatalog  string
+	ProductCount    string
+	RetailerID      string
+}{
+	AutoCreationURL: "auto_creation_url",
+	Filter:          "filter",
+	ID:              "id",
+	LatestMetadata:  "latest_metadata",
+	LiveMetadata:    "live_metadata",
+	Name:            "name",
+	OrderingInfo:    "ordering_info",
+	ProductCatalog:  "product_catalog",
+	ProductCount:    "product_count",
+	RetailerID:      "retailer_id",
+}

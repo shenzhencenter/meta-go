@@ -15,3 +15,25 @@ type AdPlacement struct {
 	Platform            *string                 `json:"platform,omitempty"`
 	Status              *string                 `json:"status,omitempty"`
 }
+
+var AdPlacementFields = struct {
+	BundleID            string
+	DisplayFormat       string
+	ExternalPlacementID string
+	GoogleDisplayFormat string
+	ID                  string
+	Name                string
+	PlacementGroup      string
+	Platform            string
+	Status              string
+}{
+	BundleID:            "bundle_id",
+	DisplayFormat:       "display_format",
+	ExternalPlacementID: "external_placement_id",
+	GoogleDisplayFormat: "google_display_format",
+	ID:                  "id",
+	Name:                "name",
+	PlacementGroup:      "placement_group",
+	Platform:            "platform",
+	Status:              "status",
+}

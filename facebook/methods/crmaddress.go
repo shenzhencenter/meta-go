@@ -41,9 +41,14 @@ func DecodeGetCRMAddressBatchResponse(response *core.BatchResponse) (*objects.CR
 	return &out, nil
 }
 
-func GetCRMAddress(ctx context.Context, client *core.Client, id string, params GetCRMAddressParams) (*objects.CRMAddress, error) {
+func GetCRMAddressWithResponse(ctx context.Context, client *core.Client, id string, params GetCRMAddressParams) (*objects.CRMAddress, *core.Response, error) {
 	var out objects.CRMAddress
 	call := GetCRMAddressBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCRMAddress(ctx context.Context, client *core.Client, id string, params GetCRMAddressParams) (*objects.CRMAddress, error) {
+	out, _, err := GetCRMAddressWithResponse(ctx, client, id, params)
+	return out, err
 }

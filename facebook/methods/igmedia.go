@@ -42,11 +42,16 @@ func DecodeGetIGMediaBoostAdsListBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetIGMediaBoostAdsList(ctx context.Context, client *core.Client, id string, params GetIGMediaBoostAdsListParams) (*core.Cursor[objects.IGBoostMediaAd], error) {
+func GetIGMediaBoostAdsListWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaBoostAdsListParams) (*core.Cursor[objects.IGBoostMediaAd], *core.Response, error) {
 	var out core.Cursor[objects.IGBoostMediaAd]
 	call := GetIGMediaBoostAdsListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaBoostAdsList(ctx context.Context, client *core.Client, id string, params GetIGMediaBoostAdsListParams) (*core.Cursor[objects.IGBoostMediaAd], error) {
+	out, _, err := GetIGMediaBoostAdsListWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaBrandedContentPartnerPromoteParams struct {
@@ -83,11 +88,16 @@ func DecodeGetIGMediaBrandedContentPartnerPromoteBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetIGMediaBrandedContentPartnerPromote(ctx context.Context, client *core.Client, id string, params GetIGMediaBrandedContentPartnerPromoteParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], error) {
+func GetIGMediaBrandedContentPartnerPromoteWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaBrandedContentPartnerPromoteParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], *core.Response, error) {
 	var out core.Cursor[objects.BrandedContentShadowIGUserID]
 	call := GetIGMediaBrandedContentPartnerPromoteBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaBrandedContentPartnerPromote(ctx context.Context, client *core.Client, id string, params GetIGMediaBrandedContentPartnerPromoteParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], error) {
+	out, _, err := GetIGMediaBrandedContentPartnerPromoteWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGMediaBrandedContentPartnerPromoteParams struct {
@@ -128,11 +138,16 @@ func DecodeCreateIGMediaBrandedContentPartnerPromoteBatchResponse(response *core
 	return &out, nil
 }
 
-func CreateIGMediaBrandedContentPartnerPromote(ctx context.Context, client *core.Client, id string, params CreateIGMediaBrandedContentPartnerPromoteParams) (*objects.BrandedContentShadowIGUserID, error) {
+func CreateIGMediaBrandedContentPartnerPromoteWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGMediaBrandedContentPartnerPromoteParams) (*objects.BrandedContentShadowIGUserID, *core.Response, error) {
 	var out objects.BrandedContentShadowIGUserID
 	call := CreateIGMediaBrandedContentPartnerPromoteBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGMediaBrandedContentPartnerPromote(ctx context.Context, client *core.Client, id string, params CreateIGMediaBrandedContentPartnerPromoteParams) (*objects.BrandedContentShadowIGUserID, error) {
+	out, _, err := CreateIGMediaBrandedContentPartnerPromoteWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaChildrenParams struct {
@@ -169,11 +184,16 @@ func DecodeGetIGMediaChildrenBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetIGMediaChildren(ctx context.Context, client *core.Client, id string, params GetIGMediaChildrenParams) (*core.Cursor[objects.IGMedia], error) {
+func GetIGMediaChildrenWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaChildrenParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetIGMediaChildrenBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaChildren(ctx context.Context, client *core.Client, id string, params GetIGMediaChildrenParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetIGMediaChildrenWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaCollaboratorsParams struct {
@@ -210,11 +230,16 @@ func DecodeGetIGMediaCollaboratorsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetIGMediaCollaborators(ctx context.Context, client *core.Client, id string, params GetIGMediaCollaboratorsParams) (*core.Cursor[objects.ShadowIGMediaCollaborators], error) {
+func GetIGMediaCollaboratorsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaCollaboratorsParams) (*core.Cursor[objects.ShadowIGMediaCollaborators], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGMediaCollaborators]
 	call := GetIGMediaCollaboratorsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaCollaborators(ctx context.Context, client *core.Client, id string, params GetIGMediaCollaboratorsParams) (*core.Cursor[objects.ShadowIGMediaCollaborators], error) {
+	out, _, err := GetIGMediaCollaboratorsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaCommentsParams struct {
@@ -251,11 +276,16 @@ func DecodeGetIGMediaCommentsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetIGMediaComments(ctx context.Context, client *core.Client, id string, params GetIGMediaCommentsParams) (*core.Cursor[objects.IGComment], error) {
+func GetIGMediaCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaCommentsParams) (*core.Cursor[objects.IGComment], *core.Response, error) {
 	var out core.Cursor[objects.IGComment]
 	call := GetIGMediaCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaComments(ctx context.Context, client *core.Client, id string, params GetIGMediaCommentsParams) (*core.Cursor[objects.IGComment], error) {
+	out, _, err := GetIGMediaCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGMediaCommentsParams struct {
@@ -300,11 +330,16 @@ func DecodeCreateIGMediaCommentsBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateIGMediaComments(ctx context.Context, client *core.Client, id string, params CreateIGMediaCommentsParams) (*objects.IGComment, error) {
+func CreateIGMediaCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGMediaCommentsParams) (*objects.IGComment, *core.Response, error) {
 	var out objects.IGComment
 	call := CreateIGMediaCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGMediaComments(ctx context.Context, client *core.Client, id string, params CreateIGMediaCommentsParams) (*objects.IGComment, error) {
+	out, _, err := CreateIGMediaCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaInsightsParams struct {
@@ -351,11 +386,16 @@ func DecodeGetIGMediaInsightsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetIGMediaInsights(ctx context.Context, client *core.Client, id string, params GetIGMediaInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], error) {
+func GetIGMediaInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InstagramInsightsResult]
 	call := GetIGMediaInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaInsights(ctx context.Context, client *core.Client, id string, params GetIGMediaInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], error) {
+	out, _, err := GetIGMediaInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGMediaPartnershipAdCodeParams struct {
@@ -392,11 +432,16 @@ func DecodeDeleteIGMediaPartnershipAdCodeBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func DeleteIGMediaPartnershipAdCode(ctx context.Context, client *core.Client, id string, params DeleteIGMediaPartnershipAdCodeParams) (*map[string]interface{}, error) {
+func DeleteIGMediaPartnershipAdCodeWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGMediaPartnershipAdCodeParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGMediaPartnershipAdCodeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGMediaPartnershipAdCode(ctx context.Context, client *core.Client, id string, params DeleteIGMediaPartnershipAdCodeParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGMediaPartnershipAdCodeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGMediaPartnershipAdCodeParams struct {
@@ -433,11 +478,16 @@ func DecodeCreateIGMediaPartnershipAdCodeBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateIGMediaPartnershipAdCode(ctx context.Context, client *core.Client, id string, params CreateIGMediaPartnershipAdCodeParams) (*map[string]interface{}, error) {
+func CreateIGMediaPartnershipAdCodeWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGMediaPartnershipAdCodeParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGMediaPartnershipAdCodeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGMediaPartnershipAdCode(ctx context.Context, client *core.Client, id string, params CreateIGMediaPartnershipAdCodeParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGMediaPartnershipAdCodeWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaProductTagsParams struct {
@@ -474,11 +524,16 @@ func DecodeGetIGMediaProductTagsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetIGMediaProductTags(ctx context.Context, client *core.Client, id string, params GetIGMediaProductTagsParams) (*core.Cursor[objects.ShadowIGMediaProductTags], error) {
+func GetIGMediaProductTagsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaProductTagsParams) (*core.Cursor[objects.ShadowIGMediaProductTags], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGMediaProductTags]
 	call := GetIGMediaProductTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaProductTags(ctx context.Context, client *core.Client, id string, params GetIGMediaProductTagsParams) (*core.Cursor[objects.ShadowIGMediaProductTags], error) {
+	out, _, err := GetIGMediaProductTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGMediaProductTagsParams struct {
@@ -521,11 +576,16 @@ func DecodeCreateIGMediaProductTagsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateIGMediaProductTags(ctx context.Context, client *core.Client, id string, params CreateIGMediaProductTagsParams) (*objects.ShadowIGMediaProductTags, error) {
+func CreateIGMediaProductTagsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGMediaProductTagsParams) (*objects.ShadowIGMediaProductTags, *core.Response, error) {
 	var out objects.ShadowIGMediaProductTags
 	call := CreateIGMediaProductTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGMediaProductTags(ctx context.Context, client *core.Client, id string, params CreateIGMediaProductTagsParams) (*objects.ShadowIGMediaProductTags, error) {
+	out, _, err := CreateIGMediaProductTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGMediaParams struct {
@@ -562,11 +622,16 @@ func DecodeDeleteIGMediaBatchResponse(response *core.BatchResponse) (*map[string
 	return &out, nil
 }
 
-func DeleteIGMedia(ctx context.Context, client *core.Client, id string, params DeleteIGMediaParams) (*map[string]interface{}, error) {
+func DeleteIGMediaWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGMediaParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGMedia(ctx context.Context, client *core.Client, id string, params DeleteIGMediaParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGMediaParams struct {
@@ -631,11 +696,16 @@ func DecodeGetIGMediaBatchResponse(response *core.BatchResponse) (*objects.IGMed
 	return &out, nil
 }
 
-func GetIGMedia(ctx context.Context, client *core.Client, id string, params GetIGMediaParams) (*objects.IGMedia, error) {
+func GetIGMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaParams) (*objects.IGMedia, *core.Response, error) {
 	var out objects.IGMedia
 	call := GetIGMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMedia(ctx context.Context, client *core.Client, id string, params GetIGMediaParams) (*objects.IGMedia, error) {
+	out, _, err := GetIGMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateIGMediaParams struct {
@@ -674,9 +744,14 @@ func DecodeUpdateIGMediaBatchResponse(response *core.BatchResponse) (*objects.IG
 	return &out, nil
 }
 
-func UpdateIGMedia(ctx context.Context, client *core.Client, id string, params UpdateIGMediaParams) (*objects.IGMedia, error) {
+func UpdateIGMediaWithResponse(ctx context.Context, client *core.Client, id string, params UpdateIGMediaParams) (*objects.IGMedia, *core.Response, error) {
 	var out objects.IGMedia
 	call := UpdateIGMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateIGMedia(ctx context.Context, client *core.Client, id string, params UpdateIGMediaParams) (*objects.IGMedia, error) {
+	out, _, err := UpdateIGMediaWithResponse(ctx, client, id, params)
+	return out, err
 }

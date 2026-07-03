@@ -41,9 +41,14 @@ func DecodeGetWorkExperienceBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetWorkExperience(ctx context.Context, client *core.Client, id string, params GetWorkExperienceParams) (*objects.WorkExperience, error) {
+func GetWorkExperienceWithResponse(ctx context.Context, client *core.Client, id string, params GetWorkExperienceParams) (*objects.WorkExperience, *core.Response, error) {
 	var out objects.WorkExperience
 	call := GetWorkExperienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWorkExperience(ctx context.Context, client *core.Client, id string, params GetWorkExperienceParams) (*objects.WorkExperience, error) {
+	out, _, err := GetWorkExperienceWithResponse(ctx, client, id, params)
+	return out, err
 }

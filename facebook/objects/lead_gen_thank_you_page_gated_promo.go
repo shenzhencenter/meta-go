@@ -9,3 +9,13 @@ type LeadGenThankYouPageGatedPromo struct {
 	OnlineOfferURL  *string  `json:"online_offer_url,omitempty"`
 	OnlinePromoCode *string  `json:"online_promo_code,omitempty"`
 }
+
+var LeadGenThankYouPageGatedPromoFields = struct {
+	ID              string
+	OnlineOfferURL  string
+	OnlinePromoCode string
+}{
+	ID:              "id",
+	OnlineOfferURL:  "online_offer_url",
+	OnlinePromoCode: "online_promo_code",
+}

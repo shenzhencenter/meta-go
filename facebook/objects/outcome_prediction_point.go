@@ -6,3 +6,15 @@ type OutcomePredictionPoint struct {
 	Reach       *float64 `json:"reach,omitempty"`
 	Spend       *int     `json:"spend,omitempty"`
 }
+
+var OutcomePredictionPointFields = struct {
+	Actions     string
+	Impressions string
+	Reach       string
+	Spend       string
+}{
+	Actions:     "actions",
+	Impressions: "impressions",
+	Reach:       "reach",
+	Spend:       "spend",
+}

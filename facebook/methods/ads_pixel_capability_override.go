@@ -41,9 +41,14 @@ func DecodeGetAdsPixelCapabilityOverrideBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetAdsPixelCapabilityOverride(ctx context.Context, client *core.Client, id string, params GetAdsPixelCapabilityOverrideParams) (*objects.AdsPixelCapabilityOverride, error) {
+func GetAdsPixelCapabilityOverrideWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsPixelCapabilityOverrideParams) (*objects.AdsPixelCapabilityOverride, *core.Response, error) {
 	var out objects.AdsPixelCapabilityOverride
 	call := GetAdsPixelCapabilityOverrideBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsPixelCapabilityOverride(ctx context.Context, client *core.Client, id string, params GetAdsPixelCapabilityOverrideParams) (*objects.AdsPixelCapabilityOverride, error) {
+	out, _, err := GetAdsPixelCapabilityOverrideWithResponse(ctx, client, id, params)
+	return out, err
 }

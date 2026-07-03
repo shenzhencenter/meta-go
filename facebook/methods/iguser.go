@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetIGUserAgenciesParams struct {
@@ -43,11 +42,16 @@ func DecodeGetIGUserAgenciesBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetIGUserAgencies(ctx context.Context, client *core.Client, id string, params GetIGUserAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetIGUserAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetIGUserAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserAgencies(ctx context.Context, client *core.Client, id string, params GetIGUserAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetIGUserAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserAuthorizedAdaccountsParams struct {
@@ -86,11 +90,16 @@ func DecodeGetIGUserAuthorizedAdaccountsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetIGUserAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params GetIGUserAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetIGUserAuthorizedAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetIGUserAuthorizedAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params GetIGUserAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetIGUserAuthorizedAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserAuthorizedAdaccountsParams struct {
@@ -131,11 +140,16 @@ func DecodeCreateIGUserAuthorizedAdaccountsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateIGUserAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params CreateIGUserAuthorizedAdaccountsParams) (*objects.IGUser, error) {
+func CreateIGUserAuthorizedAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserAuthorizedAdaccountsParams) (*objects.IGUser, *core.Response, error) {
 	var out objects.IGUser
 	call := CreateIGUserAuthorizedAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params CreateIGUserAuthorizedAdaccountsParams) (*objects.IGUser, error) {
+	out, _, err := CreateIGUserAuthorizedAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserAvailableCatalogsParams struct {
@@ -172,11 +186,16 @@ func DecodeGetIGUserAvailableCatalogsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetIGUserAvailableCatalogs(ctx context.Context, client *core.Client, id string, params GetIGUserAvailableCatalogsParams) (*core.Cursor[objects.UserAvailableCatalogs], error) {
+func GetIGUserAvailableCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserAvailableCatalogsParams) (*core.Cursor[objects.UserAvailableCatalogs], *core.Response, error) {
 	var out core.Cursor[objects.UserAvailableCatalogs]
 	call := GetIGUserAvailableCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserAvailableCatalogs(ctx context.Context, client *core.Client, id string, params GetIGUserAvailableCatalogsParams) (*core.Cursor[objects.UserAvailableCatalogs], error) {
+	out, _, err := GetIGUserAvailableCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserBrandedContentAdPermissionsParams struct {
@@ -217,11 +236,16 @@ func DecodeGetIGUserBrandedContentAdPermissionsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetIGUserBrandedContentAdPermissions(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdPermissionsParams) (*core.Cursor[objects.IGBCAdsPermission], error) {
+func GetIGUserBrandedContentAdPermissionsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdPermissionsParams) (*core.Cursor[objects.IGBCAdsPermission], *core.Response, error) {
 	var out core.Cursor[objects.IGBCAdsPermission]
 	call := GetIGUserBrandedContentAdPermissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserBrandedContentAdPermissions(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdPermissionsParams) (*core.Cursor[objects.IGBCAdsPermission], error) {
+	out, _, err := GetIGUserBrandedContentAdPermissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserBrandedContentAdPermissionsParams struct {
@@ -270,11 +294,16 @@ func DecodeCreateIGUserBrandedContentAdPermissionsBatchResponse(response *core.B
 	return &out, nil
 }
 
-func CreateIGUserBrandedContentAdPermissions(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentAdPermissionsParams) (*objects.IGBCAdsPermission, error) {
+func CreateIGUserBrandedContentAdPermissionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentAdPermissionsParams) (*objects.IGBCAdsPermission, *core.Response, error) {
 	var out objects.IGBCAdsPermission
 	call := CreateIGUserBrandedContentAdPermissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserBrandedContentAdPermissions(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentAdPermissionsParams) (*objects.IGBCAdsPermission, error) {
+	out, _, err := CreateIGUserBrandedContentAdPermissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserBrandedContentAdvertisableMediasParams struct {
@@ -335,11 +364,16 @@ func DecodeGetIGUserBrandedContentAdvertisableMediasBatchResponse(response *core
 	return &out, nil
 }
 
-func GetIGUserBrandedContentAdvertisableMedias(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdvertisableMediasParams) (*core.Cursor[objects.BrandedContentShadowIGMediaID], error) {
+func GetIGUserBrandedContentAdvertisableMediasWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdvertisableMediasParams) (*core.Cursor[objects.BrandedContentShadowIGMediaID], *core.Response, error) {
 	var out core.Cursor[objects.BrandedContentShadowIGMediaID]
 	call := GetIGUserBrandedContentAdvertisableMediasBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserBrandedContentAdvertisableMedias(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdvertisableMediasParams) (*core.Cursor[objects.BrandedContentShadowIGMediaID], error) {
+	out, _, err := GetIGUserBrandedContentAdvertisableMediasWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGUserBrandedContentTagApprovalParams struct {
@@ -378,11 +412,16 @@ func DecodeDeleteIGUserBrandedContentTagApprovalBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func DeleteIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params DeleteIGUserBrandedContentTagApprovalParams) (*map[string]interface{}, error) {
+func DeleteIGUserBrandedContentTagApprovalWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGUserBrandedContentTagApprovalParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGUserBrandedContentTagApprovalBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params DeleteIGUserBrandedContentTagApprovalParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGUserBrandedContentTagApprovalWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserBrandedContentTagApprovalParams struct {
@@ -421,11 +460,16 @@ func DecodeGetIGUserBrandedContentTagApprovalBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentTagApprovalParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], error) {
+func GetIGUserBrandedContentTagApprovalWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentTagApprovalParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], *core.Response, error) {
 	var out core.Cursor[objects.BrandedContentShadowIGUserID]
 	call := GetIGUserBrandedContentTagApprovalBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentTagApprovalParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], error) {
+	out, _, err := GetIGUserBrandedContentTagApprovalWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserBrandedContentTagApprovalParams struct {
@@ -464,11 +508,16 @@ func DecodeCreateIGUserBrandedContentTagApprovalBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreateIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentTagApprovalParams) (*objects.BrandedContentShadowIGUserID, error) {
+func CreateIGUserBrandedContentTagApprovalWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentTagApprovalParams) (*objects.BrandedContentShadowIGUserID, *core.Response, error) {
 	var out objects.BrandedContentShadowIGUserID
 	call := CreateIGUserBrandedContentTagApprovalBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentTagApprovalParams) (*objects.BrandedContentShadowIGUserID, error) {
+	out, _, err := CreateIGUserBrandedContentTagApprovalWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserBusinessMessagingFeatureStatusParams struct {
@@ -507,11 +556,16 @@ func DecodeCreateIGUserBusinessMessagingFeatureStatusBatchResponse(response *cor
 	return &out, nil
 }
 
-func CreateIGUserBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreateIGUserBusinessMessagingFeatureStatusParams) (*objects.IGUser, error) {
+func CreateIGUserBusinessMessagingFeatureStatusWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserBusinessMessagingFeatureStatusParams) (*objects.IGUser, *core.Response, error) {
 	var out objects.IGUser
 	call := CreateIGUserBusinessMessagingFeatureStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreateIGUserBusinessMessagingFeatureStatusParams) (*objects.IGUser, error) {
+	out, _, err := CreateIGUserBusinessMessagingFeatureStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserCatalogProductSearchParams struct {
@@ -554,11 +608,16 @@ func DecodeGetIGUserCatalogProductSearchBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetIGUserCatalogProductSearch(ctx context.Context, client *core.Client, id string, params GetIGUserCatalogProductSearchParams) (*core.Cursor[objects.ShadowIGUserCatalogProductSearch], error) {
+func GetIGUserCatalogProductSearchWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserCatalogProductSearchParams) (*core.Cursor[objects.ShadowIGUserCatalogProductSearch], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGUserCatalogProductSearch]
 	call := GetIGUserCatalogProductSearchBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserCatalogProductSearch(ctx context.Context, client *core.Client, id string, params GetIGUserCatalogProductSearchParams) (*core.Cursor[objects.ShadowIGUserCatalogProductSearch], error) {
+	out, _, err := GetIGUserCatalogProductSearchWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserCollaborationInvitesParams struct {
@@ -595,11 +654,16 @@ func DecodeGetIGUserCollaborationInvitesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetIGUserCollaborationInvites(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborationInvitesParams) (*core.Cursor[objects.ShadowIGUserCollaborationInvites], error) {
+func GetIGUserCollaborationInvitesWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborationInvitesParams) (*core.Cursor[objects.ShadowIGUserCollaborationInvites], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGUserCollaborationInvites]
 	call := GetIGUserCollaborationInvitesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserCollaborationInvites(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborationInvitesParams) (*core.Cursor[objects.ShadowIGUserCollaborationInvites], error) {
+	out, _, err := GetIGUserCollaborationInvitesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserCollaborationInvitesParams struct {
@@ -640,11 +704,16 @@ func DecodeCreateIGUserCollaborationInvitesBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateIGUserCollaborationInvites(ctx context.Context, client *core.Client, id string, params CreateIGUserCollaborationInvitesParams) (*objects.ShadowIGUserCollaborationInvites, error) {
+func CreateIGUserCollaborationInvitesWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserCollaborationInvitesParams) (*objects.ShadowIGUserCollaborationInvites, *core.Response, error) {
 	var out objects.ShadowIGUserCollaborationInvites
 	call := CreateIGUserCollaborationInvitesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserCollaborationInvites(ctx context.Context, client *core.Client, id string, params CreateIGUserCollaborationInvitesParams) (*objects.ShadowIGUserCollaborationInvites, error) {
+	out, _, err := CreateIGUserCollaborationInvitesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserCollaborativeMediaParams struct {
@@ -681,11 +750,16 @@ func DecodeGetIGUserCollaborativeMediaBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetIGUserCollaborativeMedia(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborativeMediaParams) (*core.Cursor[objects.ShadowIGUserCollaborativeMedia], error) {
+func GetIGUserCollaborativeMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborativeMediaParams) (*core.Cursor[objects.ShadowIGUserCollaborativeMedia], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGUserCollaborativeMedia]
 	call := GetIGUserCollaborativeMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserCollaborativeMedia(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborativeMediaParams) (*core.Cursor[objects.ShadowIGUserCollaborativeMedia], error) {
+	out, _, err := GetIGUserCollaborativeMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserConnectedThreadsUserParams struct {
@@ -722,15 +796,20 @@ func DecodeGetIGUserConnectedThreadsUserBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetIGUserConnectedThreadsUser(ctx context.Context, client *core.Client, id string, params GetIGUserConnectedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], error) {
+func GetIGUserConnectedThreadsUserWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserConnectedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], *core.Response, error) {
 	var out core.Cursor[objects.ThreadsUser]
 	call := GetIGUserConnectedThreadsUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserConnectedThreadsUser(ctx context.Context, client *core.Client, id string, params GetIGUserConnectedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], error) {
+	out, _, err := GetIGUserConnectedThreadsUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserContentPublishingLimitParams struct {
-	Since *time.Time  `facebook:"since"`
+	Since *core.Time  `facebook:"since"`
 	Extra core.Params `facebook:"-"`
 }
 
@@ -767,11 +846,16 @@ func DecodeGetIGUserContentPublishingLimitBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetIGUserContentPublishingLimit(ctx context.Context, client *core.Client, id string, params GetIGUserContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], error) {
+func GetIGUserContentPublishingLimitWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], *core.Response, error) {
 	var out core.Cursor[objects.ContentPublishingLimitResponse]
 	call := GetIGUserContentPublishingLimitBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserContentPublishingLimit(ctx context.Context, client *core.Client, id string, params GetIGUserContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], error) {
+	out, _, err := GetIGUserContentPublishingLimitWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserCreatorMarketplaceCreatorsParams struct {
@@ -912,11 +996,16 @@ func DecodeGetIGUserCreatorMarketplaceCreatorsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetIGUserCreatorMarketplaceCreators(ctx context.Context, client *core.Client, id string, params GetIGUserCreatorMarketplaceCreatorsParams) (*core.Cursor[objects.IGUserExportForCAM], error) {
+func GetIGUserCreatorMarketplaceCreatorsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserCreatorMarketplaceCreatorsParams) (*core.Cursor[objects.IGUserExportForCAM], *core.Response, error) {
 	var out core.Cursor[objects.IGUserExportForCAM]
 	call := GetIGUserCreatorMarketplaceCreatorsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserCreatorMarketplaceCreators(ctx context.Context, client *core.Client, id string, params GetIGUserCreatorMarketplaceCreatorsParams) (*core.Cursor[objects.IGUserExportForCAM], error) {
+	out, _, err := GetIGUserCreatorMarketplaceCreatorsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserDatasetParams struct {
@@ -953,11 +1042,16 @@ func DecodeGetIGUserDatasetBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetIGUserDataset(ctx context.Context, client *core.Client, id string, params GetIGUserDatasetParams) (*core.Cursor[objects.Dataset], error) {
+func GetIGUserDatasetWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserDatasetParams) (*core.Cursor[objects.Dataset], *core.Response, error) {
 	var out core.Cursor[objects.Dataset]
 	call := GetIGUserDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserDataset(ctx context.Context, client *core.Client, id string, params GetIGUserDatasetParams) (*core.Cursor[objects.Dataset], error) {
+	out, _, err := GetIGUserDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserDatasetParams struct {
@@ -998,11 +1092,16 @@ func DecodeCreateIGUserDatasetBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreateIGUserDataset(ctx context.Context, client *core.Client, id string, params CreateIGUserDatasetParams) (*objects.Dataset, error) {
+func CreateIGUserDatasetWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserDatasetParams) (*objects.Dataset, *core.Response, error) {
 	var out objects.Dataset
 	call := CreateIGUserDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserDataset(ctx context.Context, client *core.Client, id string, params CreateIGUserDatasetParams) (*objects.Dataset, error) {
+	out, _, err := CreateIGUserDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserInsightsParams struct {
@@ -1010,9 +1109,9 @@ type GetIGUserInsightsParams struct {
 	Metric     []enums.ShadowiguserinsightsMetricEnumParam     `facebook:"metric"`
 	MetricType *enums.ShadowiguserinsightsMetricTypeEnumParam  `facebook:"metric_type"`
 	Period     []enums.ShadowiguserinsightsPeriodEnumParam     `facebook:"period"`
-	Since      *time.Time                                      `facebook:"since"`
+	Since      *core.Time                                      `facebook:"since"`
 	Timeframe  *enums.ShadowiguserinsightsTimeframeEnumParam   `facebook:"timeframe"`
-	Until      *time.Time                                      `facebook:"until"`
+	Until      *core.Time                                      `facebook:"until"`
 	Extra      core.Params                                     `facebook:"-"`
 }
 
@@ -1063,11 +1162,16 @@ func DecodeGetIGUserInsightsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetIGUserInsights(ctx context.Context, client *core.Client, id string, params GetIGUserInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], error) {
+func GetIGUserInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InstagramInsightsResult]
 	call := GetIGUserInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserInsights(ctx context.Context, client *core.Client, id string, params GetIGUserInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], error) {
+	out, _, err := GetIGUserInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserInstagramBackedThreadsUserParams struct {
@@ -1104,11 +1208,16 @@ func DecodeGetIGUserInstagramBackedThreadsUserBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetIGUserInstagramBackedThreadsUser(ctx context.Context, client *core.Client, id string, params GetIGUserInstagramBackedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], error) {
+func GetIGUserInstagramBackedThreadsUserWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserInstagramBackedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], *core.Response, error) {
 	var out core.Cursor[objects.ThreadsUser]
 	call := GetIGUserInstagramBackedThreadsUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserInstagramBackedThreadsUser(ctx context.Context, client *core.Client, id string, params GetIGUserInstagramBackedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], error) {
+	out, _, err := GetIGUserInstagramBackedThreadsUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserInstagramBackedThreadsUserParams struct {
@@ -1145,16 +1254,21 @@ func DecodeCreateIGUserInstagramBackedThreadsUserBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func CreateIGUserInstagramBackedThreadsUser(ctx context.Context, client *core.Client, id string, params CreateIGUserInstagramBackedThreadsUserParams) (*objects.ThreadsUser, error) {
+func CreateIGUserInstagramBackedThreadsUserWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserInstagramBackedThreadsUserParams) (*objects.ThreadsUser, *core.Response, error) {
 	var out objects.ThreadsUser
 	call := CreateIGUserInstagramBackedThreadsUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserInstagramBackedThreadsUser(ctx context.Context, client *core.Client, id string, params CreateIGUserInstagramBackedThreadsUserParams) (*objects.ThreadsUser, error) {
+	out, _, err := CreateIGUserInstagramBackedThreadsUserWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserLiveMediaParams struct {
-	Since *time.Time  `facebook:"since"`
-	Until *time.Time  `facebook:"until"`
+	Since *core.Time  `facebook:"since"`
+	Until *core.Time  `facebook:"until"`
 	Extra core.Params `facebook:"-"`
 }
 
@@ -1194,16 +1308,21 @@ func DecodeGetIGUserLiveMediaBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetIGUserLiveMedia(ctx context.Context, client *core.Client, id string, params GetIGUserLiveMediaParams) (*core.Cursor[objects.IGMedia], error) {
+func GetIGUserLiveMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserLiveMediaParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetIGUserLiveMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserLiveMedia(ctx context.Context, client *core.Client, id string, params GetIGUserLiveMediaParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetIGUserLiveMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserMediaParams struct {
-	Since *time.Time  `facebook:"since"`
-	Until *time.Time  `facebook:"until"`
+	Since *core.Time  `facebook:"since"`
+	Until *core.Time  `facebook:"until"`
 	Extra core.Params `facebook:"-"`
 }
 
@@ -1243,11 +1362,16 @@ func DecodeGetIGUserMediaBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetIGUserMedia(ctx context.Context, client *core.Client, id string, params GetIGUserMediaParams) (*core.Cursor[objects.IGMedia], error) {
+func GetIGUserMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserMediaParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetIGUserMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserMedia(ctx context.Context, client *core.Client, id string, params GetIGUserMediaParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetIGUserMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserMediaParams struct {
@@ -1364,11 +1488,16 @@ func DecodeCreateIGUserMediaBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateIGUserMedia(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaParams) (*objects.IGMedia, error) {
+func CreateIGUserMediaWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaParams) (*objects.IGMedia, *core.Response, error) {
 	var out objects.IGMedia
 	call := CreateIGUserMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserMedia(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaParams) (*objects.IGMedia, error) {
+	out, _, err := CreateIGUserMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserMediaPublishParams struct {
@@ -1407,11 +1536,16 @@ func DecodeCreateIGUserMediaPublishBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateIGUserMediaPublish(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaPublishParams) (*objects.IGMedia, error) {
+func CreateIGUserMediaPublishWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaPublishParams) (*objects.IGMedia, *core.Response, error) {
 	var out objects.IGMedia
 	call := CreateIGUserMediaPublishBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserMediaPublish(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaPublishParams) (*objects.IGMedia, error) {
+	out, _, err := CreateIGUserMediaPublishWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserMentionsParams struct {
@@ -1456,11 +1590,16 @@ func DecodeCreateIGUserMentionsBatchResponse(response *core.BatchResponse) (*map
 	return &out, nil
 }
 
-func CreateIGUserMentions(ctx context.Context, client *core.Client, id string, params CreateIGUserMentionsParams) (*map[string]interface{}, error) {
+func CreateIGUserMentionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserMentionsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserMentionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserMentions(ctx context.Context, client *core.Client, id string, params CreateIGUserMentionsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserMentionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserModerateConversationsParams struct {
@@ -1501,11 +1640,16 @@ func DecodeCreateIGUserModerateConversationsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateIGUserModerateConversations(ctx context.Context, client *core.Client, id string, params CreateIGUserModerateConversationsParams) (*map[string]interface{}, error) {
+func CreateIGUserModerateConversationsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserModerateConversationsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserModerateConversationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserModerateConversations(ctx context.Context, client *core.Client, id string, params CreateIGUserModerateConversationsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserModerateConversationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserNotificationMessageTokensParams struct {
@@ -1542,11 +1686,16 @@ func DecodeGetIGUserNotificationMessageTokensBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetIGUserNotificationMessageTokens(ctx context.Context, client *core.Client, id string, params GetIGUserNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
+func GetIGUserNotificationMessageTokensWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], *core.Response, error) {
 	var out core.Cursor[objects.UserPageOneTimeOptInTokenSettings]
 	call := GetIGUserNotificationMessageTokensBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserNotificationMessageTokens(ctx context.Context, client *core.Client, id string, params GetIGUserNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
+	out, _, err := GetIGUserNotificationMessageTokensWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserProductAppealParams struct {
@@ -1585,11 +1734,16 @@ func DecodeGetIGUserProductAppealBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetIGUserProductAppeal(ctx context.Context, client *core.Client, id string, params GetIGUserProductAppealParams) (*core.Cursor[objects.IGShoppingProductAppeal], error) {
+func GetIGUserProductAppealWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserProductAppealParams) (*core.Cursor[objects.IGShoppingProductAppeal], *core.Response, error) {
 	var out core.Cursor[objects.IGShoppingProductAppeal]
 	call := GetIGUserProductAppealBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserProductAppeal(ctx context.Context, client *core.Client, id string, params GetIGUserProductAppealParams) (*core.Cursor[objects.IGShoppingProductAppeal], error) {
+	out, _, err := GetIGUserProductAppealWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserProductAppealParams struct {
@@ -1630,11 +1784,16 @@ func DecodeCreateIGUserProductAppealBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateIGUserProductAppeal(ctx context.Context, client *core.Client, id string, params CreateIGUserProductAppealParams) (*objects.IGShoppingProductAppeal, error) {
+func CreateIGUserProductAppealWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserProductAppealParams) (*objects.IGShoppingProductAppeal, *core.Response, error) {
 	var out objects.IGShoppingProductAppeal
 	call := CreateIGUserProductAppealBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserProductAppeal(ctx context.Context, client *core.Client, id string, params CreateIGUserProductAppealParams) (*objects.IGShoppingProductAppeal, error) {
+	out, _, err := CreateIGUserProductAppealWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserRecentlySearchedHashtagsParams struct {
@@ -1671,11 +1830,16 @@ func DecodeGetIGUserRecentlySearchedHashtagsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetIGUserRecentlySearchedHashtags(ctx context.Context, client *core.Client, id string, params GetIGUserRecentlySearchedHashtagsParams) (*core.Cursor[objects.ShadowIGHashtag], error) {
+func GetIGUserRecentlySearchedHashtagsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserRecentlySearchedHashtagsParams) (*core.Cursor[objects.ShadowIGHashtag], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGHashtag]
 	call := GetIGUserRecentlySearchedHashtagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserRecentlySearchedHashtags(ctx context.Context, client *core.Client, id string, params GetIGUserRecentlySearchedHashtagsParams) (*core.Cursor[objects.ShadowIGHashtag], error) {
+	out, _, err := GetIGUserRecentlySearchedHashtagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserScheduledMediaParams struct {
@@ -1712,11 +1876,16 @@ func DecodeGetIGUserScheduledMediaBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetIGUserScheduledMedia(ctx context.Context, client *core.Client, id string, params GetIGUserScheduledMediaParams) (*core.Cursor[objects.ShadowIGScheduledMedia], error) {
+func GetIGUserScheduledMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserScheduledMediaParams) (*core.Cursor[objects.ShadowIGScheduledMedia], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGScheduledMedia]
 	call := GetIGUserScheduledMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserScheduledMedia(ctx context.Context, client *core.Client, id string, params GetIGUserScheduledMediaParams) (*core.Cursor[objects.ShadowIGScheduledMedia], error) {
+	out, _, err := GetIGUserScheduledMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserStoriesParams struct {
@@ -1753,11 +1922,16 @@ func DecodeGetIGUserStoriesBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetIGUserStories(ctx context.Context, client *core.Client, id string, params GetIGUserStoriesParams) (*core.Cursor[objects.IGMedia], error) {
+func GetIGUserStoriesWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserStoriesParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetIGUserStoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserStories(ctx context.Context, client *core.Client, id string, params GetIGUserStoriesParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetIGUserStoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserTagsParams struct {
@@ -1794,11 +1968,16 @@ func DecodeGetIGUserTagsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetIGUserTags(ctx context.Context, client *core.Client, id string, params GetIGUserTagsParams) (*core.Cursor[objects.IGMedia], error) {
+func GetIGUserTagsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserTagsParams) (*core.Cursor[objects.IGMedia], *core.Response, error) {
 	var out core.Cursor[objects.IGMedia]
 	call := GetIGUserTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserTags(ctx context.Context, client *core.Client, id string, params GetIGUserTagsParams) (*core.Cursor[objects.IGMedia], error) {
+	out, _, err := GetIGUserTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserUpcomingEventsParams struct {
@@ -1835,17 +2014,22 @@ func DecodeGetIGUserUpcomingEventsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetIGUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params GetIGUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], error) {
+func GetIGUserUpcomingEventsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], *core.Response, error) {
 	var out core.Cursor[objects.IGUpcomingEvent]
 	call := GetIGUserUpcomingEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params GetIGUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], error) {
+	out, _, err := GetIGUserUpcomingEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserUpcomingEventsParams struct {
-	EndTime              *time.Time                                                       `facebook:"end_time"`
+	EndTime              *core.Time                                                       `facebook:"end_time"`
 	NotificationSubtypes *[]enums.ShadowiguserupcomingEventsNotificationSubtypesEnumParam `facebook:"notification_subtypes"`
-	StartTime            time.Time                                                        `facebook:"start_time"`
+	StartTime            core.Time                                                        `facebook:"start_time"`
 	Title                string                                                           `facebook:"title"`
 	Extra                core.Params                                                      `facebook:"-"`
 }
@@ -1888,11 +2072,16 @@ func DecodeCreateIGUserUpcomingEventsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateIGUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params CreateIGUserUpcomingEventsParams) (*map[string]interface{}, error) {
+func CreateIGUserUpcomingEventsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserUpcomingEventsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserUpcomingEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params CreateIGUserUpcomingEventsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserUpcomingEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserWelcomeMessageFlowsParams struct {
@@ -1937,11 +2126,16 @@ func DecodeGetIGUserWelcomeMessageFlowsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetIGUserWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetIGUserWelcomeMessageFlowsParams) (*core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow], error) {
+func GetIGUserWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserWelcomeMessageFlowsParams) (*core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow], *core.Response, error) {
 	var out core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow]
 	call := GetIGUserWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetIGUserWelcomeMessageFlowsParams) (*core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow], error) {
+	out, _, err := GetIGUserWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserParams struct {
@@ -1982,9 +2176,14 @@ func DecodeGetIGUserBatchResponse(response *core.BatchResponse) (*objects.IGUser
 	return &out, nil
 }
 
-func GetIGUser(ctx context.Context, client *core.Client, id string, params GetIGUserParams) (*objects.IGUser, error) {
+func GetIGUserWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserParams) (*objects.IGUser, *core.Response, error) {
 	var out objects.IGUser
 	call := GetIGUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUser(ctx context.Context, client *core.Client, id string, params GetIGUserParams) (*objects.IGUser, error) {
+	out, _, err := GetIGUserWithResponse(ctx, client, id, params)
+	return out, err
 }

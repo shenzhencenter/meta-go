@@ -41,11 +41,16 @@ func DecodeGetAdLabelAdcreativesBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetAdLabelAdcreatives(ctx context.Context, client *core.Client, id string, params GetAdLabelAdcreativesParams) (*core.Cursor[objects.AdCreative], error) {
+func GetAdLabelAdcreativesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdLabelAdcreativesParams) (*core.Cursor[objects.AdCreative], *core.Response, error) {
 	var out core.Cursor[objects.AdCreative]
 	call := GetAdLabelAdcreativesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdLabelAdcreatives(ctx context.Context, client *core.Client, id string, params GetAdLabelAdcreativesParams) (*core.Cursor[objects.AdCreative], error) {
+	out, _, err := GetAdLabelAdcreativesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdLabelAdsParams struct {
@@ -82,11 +87,16 @@ func DecodeGetAdLabelAdsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetAdLabelAds(ctx context.Context, client *core.Client, id string, params GetAdLabelAdsParams) (*core.Cursor[objects.Ad], error) {
+func GetAdLabelAdsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdLabelAdsParams) (*core.Cursor[objects.Ad], *core.Response, error) {
 	var out core.Cursor[objects.Ad]
 	call := GetAdLabelAdsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdLabelAds(ctx context.Context, client *core.Client, id string, params GetAdLabelAdsParams) (*core.Cursor[objects.Ad], error) {
+	out, _, err := GetAdLabelAdsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdLabelAdsetsParams struct {
@@ -123,11 +133,16 @@ func DecodeGetAdLabelAdsetsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetAdLabelAdsets(ctx context.Context, client *core.Client, id string, params GetAdLabelAdsetsParams) (*core.Cursor[objects.AdSet], error) {
+func GetAdLabelAdsetsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdLabelAdsetsParams) (*core.Cursor[objects.AdSet], *core.Response, error) {
 	var out core.Cursor[objects.AdSet]
 	call := GetAdLabelAdsetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdLabelAdsets(ctx context.Context, client *core.Client, id string, params GetAdLabelAdsetsParams) (*core.Cursor[objects.AdSet], error) {
+	out, _, err := GetAdLabelAdsetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdLabelCampaignsParams struct {
@@ -164,11 +179,16 @@ func DecodeGetAdLabelCampaignsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetAdLabelCampaigns(ctx context.Context, client *core.Client, id string, params GetAdLabelCampaignsParams) (*core.Cursor[objects.Campaign], error) {
+func GetAdLabelCampaignsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdLabelCampaignsParams) (*core.Cursor[objects.Campaign], *core.Response, error) {
 	var out core.Cursor[objects.Campaign]
 	call := GetAdLabelCampaignsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdLabelCampaigns(ctx context.Context, client *core.Client, id string, params GetAdLabelCampaignsParams) (*core.Cursor[objects.Campaign], error) {
+	out, _, err := GetAdLabelCampaignsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdLabelParams struct {
@@ -205,11 +225,16 @@ func DecodeDeleteAdLabelBatchResponse(response *core.BatchResponse) (*map[string
 	return &out, nil
 }
 
-func DeleteAdLabel(ctx context.Context, client *core.Client, id string, params DeleteAdLabelParams) (*map[string]interface{}, error) {
+func DeleteAdLabelWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdLabelParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdLabel(ctx context.Context, client *core.Client, id string, params DeleteAdLabelParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdLabelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdLabelParams struct {
@@ -246,11 +271,16 @@ func DecodeGetAdLabelBatchResponse(response *core.BatchResponse) (*objects.AdLab
 	return &out, nil
 }
 
-func GetAdLabel(ctx context.Context, client *core.Client, id string, params GetAdLabelParams) (*objects.AdLabel, error) {
+func GetAdLabelWithResponse(ctx context.Context, client *core.Client, id string, params GetAdLabelParams) (*objects.AdLabel, *core.Response, error) {
 	var out objects.AdLabel
 	call := GetAdLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdLabel(ctx context.Context, client *core.Client, id string, params GetAdLabelParams) (*objects.AdLabel, error) {
+	out, _, err := GetAdLabelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdLabelParams struct {
@@ -289,9 +319,14 @@ func DecodeUpdateAdLabelBatchResponse(response *core.BatchResponse) (*objects.Ad
 	return &out, nil
 }
 
-func UpdateAdLabel(ctx context.Context, client *core.Client, id string, params UpdateAdLabelParams) (*objects.AdLabel, error) {
+func UpdateAdLabelWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdLabelParams) (*objects.AdLabel, *core.Response, error) {
 	var out objects.AdLabel
 	call := UpdateAdLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdLabel(ctx context.Context, client *core.Client, id string, params UpdateAdLabelParams) (*objects.AdLabel, error) {
+	out, _, err := UpdateAdLabelWithResponse(ctx, client, id, params)
+	return out, err
 }

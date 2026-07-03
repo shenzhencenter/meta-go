@@ -15,3 +15,25 @@ type PageInsightsAsyncExportRun struct {
 	Sorters         *[]map[string]interface{} `json:"sorters,omitempty"`
 	Status          *string                   `json:"status,omitempty"`
 }
+
+var PageInsightsAsyncExportRunFields = struct {
+	DataLevel       string
+	Filters         string
+	Format          string
+	GenReportDate   string
+	ID              string
+	ReportEndDate   string
+	ReportStartDate string
+	Sorters         string
+	Status          string
+}{
+	DataLevel:       "data_level",
+	Filters:         "filters",
+	Format:          "format",
+	GenReportDate:   "gen_report_date",
+	ID:              "id",
+	ReportEndDate:   "report_end_date",
+	ReportStartDate: "report_start_date",
+	Sorters:         "sorters",
+	Status:          "status",
+}

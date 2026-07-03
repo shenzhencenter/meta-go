@@ -12,3 +12,27 @@ type PageRestaurantServices struct {
 	Waiter   *bool `json:"waiter,omitempty"`
 	Walkins  *bool `json:"walkins,omitempty"`
 }
+
+var PageRestaurantServicesFields = struct {
+	Catering string
+	Delivery string
+	Groups   string
+	Kids     string
+	Outdoor  string
+	Pickup   string
+	Reserve  string
+	Takeout  string
+	Waiter   string
+	Walkins  string
+}{
+	Catering: "catering",
+	Delivery: "delivery",
+	Groups:   "groups",
+	Kids:     "kids",
+	Outdoor:  "outdoor",
+	Pickup:   "pickup",
+	Reserve:  "reserve",
+	Takeout:  "takeout",
+	Waiter:   "waiter",
+	Walkins:  "walkins",
+}

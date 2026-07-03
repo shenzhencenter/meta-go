@@ -41,11 +41,16 @@ func DecodeGetLifeEventLikesBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetLifeEventLikes(ctx context.Context, client *core.Client, id string, params GetLifeEventLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetLifeEventLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetLifeEventLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetLifeEventLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLifeEventLikes(ctx context.Context, client *core.Client, id string, params GetLifeEventLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetLifeEventLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLifeEventParams struct {
@@ -82,9 +87,14 @@ func DecodeGetLifeEventBatchResponse(response *core.BatchResponse) (*objects.Lif
 	return &out, nil
 }
 
-func GetLifeEvent(ctx context.Context, client *core.Client, id string, params GetLifeEventParams) (*objects.LifeEvent, error) {
+func GetLifeEventWithResponse(ctx context.Context, client *core.Client, id string, params GetLifeEventParams) (*objects.LifeEvent, *core.Response, error) {
 	var out objects.LifeEvent
 	call := GetLifeEventBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLifeEvent(ctx context.Context, client *core.Client, id string, params GetLifeEventParams) (*objects.LifeEvent, error) {
+	out, _, err := GetLifeEventWithResponse(ctx, client, id, params)
+	return out, err
 }

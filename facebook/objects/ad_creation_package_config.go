@@ -12,3 +12,19 @@ type AdCreationPackageConfig struct {
 	PackageID                 *core.ID `json:"package_id,omitempty"`
 	Status                    *string  `json:"status,omitempty"`
 }
+
+var AdCreationPackageConfigFields = struct {
+	APIVersion                string
+	ID                        string
+	IsEligibleForDefaultOptIn string
+	Objective                 string
+	PackageID                 string
+	Status                    string
+}{
+	APIVersion:                "api_version",
+	ID:                        "id",
+	IsEligibleForDefaultOptIn: "is_eligible_for_default_opt_in",
+	Objective:                 "objective",
+	PackageID:                 "package_id",
+	Status:                    "status",
+}

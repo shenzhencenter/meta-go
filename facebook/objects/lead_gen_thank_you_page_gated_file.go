@@ -10,3 +10,15 @@ type LeadGenThankYouPageGatedFile struct {
 	FileSizeBytes *int     `json:"file_size_bytes,omitempty"`
 	ID            *core.ID `json:"id,omitempty"`
 }
+
+var LeadGenThankYouPageGatedFileFields = struct {
+	FileCdnURL    string
+	FileName      string
+	FileSizeBytes string
+	ID            string
+}{
+	FileCdnURL:    "file_cdn_url",
+	FileName:      "file_name",
+	FileSizeBytes: "file_size_bytes",
+	ID:            "id",
+}

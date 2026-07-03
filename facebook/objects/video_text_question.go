@@ -10,3 +10,15 @@ type VideoTextQuestion struct {
 	QuestionText     *string  `json:"question_text,omitempty"`
 	Status           *string  `json:"status,omitempty"`
 }
+
+var VideoTextQuestionFields = struct {
+	ID               string
+	QuestionTargetID string
+	QuestionText     string
+	Status           string
+}{
+	ID:               "id",
+	QuestionTargetID: "question_target_id",
+	QuestionText:     "question_text",
+	Status:           "status",
+}

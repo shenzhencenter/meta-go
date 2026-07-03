@@ -41,9 +41,14 @@ func DecodeGetIGMediaBoostEligibilityInfoBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetIGMediaBoostEligibilityInfo(ctx context.Context, client *core.Client, id string, params GetIGMediaBoostEligibilityInfoParams) (*objects.IGMediaBoostEligibilityInfo, error) {
+func GetIGMediaBoostEligibilityInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetIGMediaBoostEligibilityInfoParams) (*objects.IGMediaBoostEligibilityInfo, *core.Response, error) {
 	var out objects.IGMediaBoostEligibilityInfo
 	call := GetIGMediaBoostEligibilityInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGMediaBoostEligibilityInfo(ctx context.Context, client *core.Client, id string, params GetIGMediaBoostEligibilityInfoParams) (*objects.IGMediaBoostEligibilityInfo, error) {
+	out, _, err := GetIGMediaBoostEligibilityInfoWithResponse(ctx, client, id, params)
+	return out, err
 }

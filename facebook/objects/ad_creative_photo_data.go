@@ -12,3 +12,19 @@ type AdCreativePhotoData struct {
 	PageWelcomeMessage                  *string  `json:"page_welcome_message,omitempty"`
 	URL                                 *string  `json:"url,omitempty"`
 }
+
+var AdCreativePhotoDataFields = struct {
+	BrandedContentSharedToSponsorStatus string
+	BrandedContentSponsorPageID         string
+	Caption                             string
+	ImageHash                           string
+	PageWelcomeMessage                  string
+	URL                                 string
+}{
+	BrandedContentSharedToSponsorStatus: "branded_content_shared_to_sponsor_status",
+	BrandedContentSponsorPageID:         "branded_content_sponsor_page_id",
+	Caption:                             "caption",
+	ImageHash:                           "image_hash",
+	PageWelcomeMessage:                  "page_welcome_message",
+	URL:                                 "url",
+}

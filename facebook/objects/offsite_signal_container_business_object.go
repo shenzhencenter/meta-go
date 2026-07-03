@@ -13,3 +13,21 @@ type OffsiteSignalContainerBusinessObject struct {
 	Name                            *string   `json:"name,omitempty"`
 	PrimaryContainerID              *core.ID  `json:"primary_container_id,omitempty"`
 }
+
+var OffsiteSignalContainerBusinessObjectFields = struct {
+	Business                        string
+	ID                              string
+	IsEligibleForSharingToAdAccount string
+	IsEligibleForSharingToBusiness  string
+	IsUnavailable                   string
+	Name                            string
+	PrimaryContainerID              string
+}{
+	Business:                        "business",
+	ID:                              "id",
+	IsEligibleForSharingToAdAccount: "is_eligible_for_sharing_to_ad_account",
+	IsEligibleForSharingToBusiness:  "is_eligible_for_sharing_to_business",
+	IsUnavailable:                   "is_unavailable",
+	Name:                            "name",
+	PrimaryContainerID:              "primary_container_id",
+}

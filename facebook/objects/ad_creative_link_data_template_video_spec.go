@@ -9,3 +9,13 @@ type AdCreativeLinkDataTemplateVideoSpec struct {
 	Customization          *[]map[string]string `json:"customization,omitempty"`
 	TemplateID             *core.ID             `json:"template_id,omitempty"`
 }
+
+var AdCreativeLinkDataTemplateVideoSpecFields = struct {
+	CategorizationCriteria string
+	Customization          string
+	TemplateID             string
+}{
+	CategorizationCriteria: "categorization_criteria",
+	Customization:          "customization",
+	TemplateID:             "template_id",
+}

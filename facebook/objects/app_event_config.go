@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AppEventConfig struct {
@@ -29,8 +28,66 @@ type AppEventConfig struct {
 	QueryApproximationAccuracyLevel             *string                   `json:"query_approximation_accuracy_level,omitempty"`
 	QueryCurrency                               *string                   `json:"query_currency,omitempty"`
 	QueryTimezone                               *string                   `json:"query_timezone,omitempty"`
-	RecentEventsUpdateTime                      *time.Time                `json:"recent_events_update_time,omitempty"`
+	RecentEventsUpdateTime                      *core.Time                `json:"recent_events_update_time,omitempty"`
 	SessionTimeoutInterval                      *uint64                   `json:"session_timeout_interval,omitempty"`
 	TrackAndroidAppUninstall                    *bool                     `json:"track_android_app_uninstall,omitempty"`
 	TrackIosAppUninstall                        *bool                     `json:"track_ios_app_uninstall,omitempty"`
+}
+
+var AppEventConfigFields = struct {
+	BreakdownsConfig                            string
+	BuiltinFieldsConfig                         string
+	DeprecatedEventsConfig                      string
+	EventsConfig                                string
+	ID                                          string
+	IosPurchaseValidationSecret                 string
+	IsAnyRoleAbleToSeeRestrictedInsights        string
+	IsImplicitPurchaseLoggingOnAndroidSupported string
+	IsImplicitPurchaseLoggingOnIosSupported     string
+	IsTrackAndroidAppUninstallSupported         string
+	IsTrackIosAppUninstallSupported             string
+	JourneyBackfillStatus                       string
+	JourneyConversionEvents                     string
+	JourneyEnabled                              string
+	JourneyTimeout                              string
+	LatestSdkVersions                           string
+	LogAndroidImplicitPurchaseEvents            string
+	LogAutomaticAnalyticsEvents                 string
+	LogImplicitPurchaseEvents                   string
+	PrevJourneyConversionEvents                 string
+	QueryApproximationAccuracyLevel             string
+	QueryCurrency                               string
+	QueryTimezone                               string
+	RecentEventsUpdateTime                      string
+	SessionTimeoutInterval                      string
+	TrackAndroidAppUninstall                    string
+	TrackIosAppUninstall                        string
+}{
+	BreakdownsConfig:                     "breakdowns_config",
+	BuiltinFieldsConfig:                  "builtin_fields_config",
+	DeprecatedEventsConfig:               "deprecated_events_config",
+	EventsConfig:                         "events_config",
+	ID:                                   "id",
+	IosPurchaseValidationSecret:          "ios_purchase_validation_secret",
+	IsAnyRoleAbleToSeeRestrictedInsights: "is_any_role_able_to_see_restricted_insights",
+	IsImplicitPurchaseLoggingOnAndroidSupported: "is_implicit_purchase_logging_on_android_supported",
+	IsImplicitPurchaseLoggingOnIosSupported:     "is_implicit_purchase_logging_on_ios_supported",
+	IsTrackAndroidAppUninstallSupported:         "is_track_android_app_uninstall_supported",
+	IsTrackIosAppUninstallSupported:             "is_track_ios_app_uninstall_supported",
+	JourneyBackfillStatus:                       "journey_backfill_status",
+	JourneyConversionEvents:                     "journey_conversion_events",
+	JourneyEnabled:                              "journey_enabled",
+	JourneyTimeout:                              "journey_timeout",
+	LatestSdkVersions:                           "latest_sdk_versions",
+	LogAndroidImplicitPurchaseEvents:            "log_android_implicit_purchase_events",
+	LogAutomaticAnalyticsEvents:                 "log_automatic_analytics_events",
+	LogImplicitPurchaseEvents:                   "log_implicit_purchase_events",
+	PrevJourneyConversionEvents:                 "prev_journey_conversion_events",
+	QueryApproximationAccuracyLevel:             "query_approximation_accuracy_level",
+	QueryCurrency:                               "query_currency",
+	QueryTimezone:                               "query_timezone",
+	RecentEventsUpdateTime:                      "recent_events_update_time",
+	SessionTimeoutInterval:                      "session_timeout_interval",
+	TrackAndroidAppUninstall:                    "track_android_app_uninstall",
+	TrackIosAppUninstall:                        "track_ios_app_uninstall",
 }

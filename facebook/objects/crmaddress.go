@@ -20,3 +20,35 @@ type CRMAddress struct {
 	ValidationStatus   *string  `json:"validation_status,omitempty"`
 	VatTaxID           *core.ID `json:"vat_tax_id,omitempty"`
 }
+
+var CRMAddressFields = struct {
+	City               string
+	CnpjTaxID          string
+	Country            string
+	ID                 string
+	PostalCode         string
+	RegistrationLabel  string
+	RegistrationNumber string
+	State              string
+	Street1            string
+	Street2            string
+	Street3            string
+	Street4            string
+	ValidationStatus   string
+	VatTaxID           string
+}{
+	City:               "city",
+	CnpjTaxID:          "cnpj_tax_id",
+	Country:            "country",
+	ID:                 "id",
+	PostalCode:         "postal_code",
+	RegistrationLabel:  "registration_label",
+	RegistrationNumber: "registration_number",
+	State:              "state",
+	Street1:            "street1",
+	Street2:            "street2",
+	Street3:            "street3",
+	Street4:            "street4",
+	ValidationStatus:   "validation_status",
+	VatTaxID:           "vat_tax_id",
+}

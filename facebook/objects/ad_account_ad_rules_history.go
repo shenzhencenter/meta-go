@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AdAccountAdRulesHistory struct {
@@ -14,5 +13,27 @@ type AdAccountAdRulesHistory struct {
 	Results          *[]AdRuleHistoryResult `json:"results,omitempty"`
 	RuleID           *core.ID               `json:"rule_id,omitempty"`
 	ScheduleSpec     *AdRuleScheduleSpec    `json:"schedule_spec,omitempty"`
-	Timestamp        *time.Time             `json:"timestamp,omitempty"`
+	Timestamp        *core.Time             `json:"timestamp,omitempty"`
+}
+
+var AdAccountAdRulesHistoryFields = struct {
+	EvaluationSpec   string
+	ExceptionCode    string
+	ExceptionMessage string
+	ExecutionSpec    string
+	IsManual         string
+	Results          string
+	RuleID           string
+	ScheduleSpec     string
+	Timestamp        string
+}{
+	EvaluationSpec:   "evaluation_spec",
+	ExceptionCode:    "exception_code",
+	ExceptionMessage: "exception_message",
+	ExecutionSpec:    "execution_spec",
+	IsManual:         "is_manual",
+	Results:          "results",
+	RuleID:           "rule_id",
+	ScheduleSpec:     "schedule_spec",
+	Timestamp:        "timestamp",
 }

@@ -41,9 +41,14 @@ func DecodeGetPersonalAdsPersonaBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetPersonalAdsPersona(ctx context.Context, client *core.Client, id string, params GetPersonalAdsPersonaParams) (*objects.PersonalAdsPersona, error) {
+func GetPersonalAdsPersonaWithResponse(ctx context.Context, client *core.Client, id string, params GetPersonalAdsPersonaParams) (*objects.PersonalAdsPersona, *core.Response, error) {
 	var out objects.PersonalAdsPersona
 	call := GetPersonalAdsPersonaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPersonalAdsPersona(ctx context.Context, client *core.Client, id string, params GetPersonalAdsPersonaParams) (*objects.PersonalAdsPersona, error) {
+	out, _, err := GetPersonalAdsPersonaWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetPageUpcomingChangeBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetPageUpcomingChange(ctx context.Context, client *core.Client, id string, params GetPageUpcomingChangeParams) (*objects.PageUpcomingChange, error) {
+func GetPageUpcomingChangeWithResponse(ctx context.Context, client *core.Client, id string, params GetPageUpcomingChangeParams) (*objects.PageUpcomingChange, *core.Response, error) {
 	var out objects.PageUpcomingChange
 	call := GetPageUpcomingChangeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageUpcomingChange(ctx context.Context, client *core.Client, id string, params GetPageUpcomingChangeParams) (*objects.PageUpcomingChange, error) {
+	out, _, err := GetPageUpcomingChangeWithResponse(ctx, client, id, params)
+	return out, err
 }

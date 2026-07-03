@@ -10,3 +10,23 @@ type ReachFrequencyEstimatesCurve struct {
 	RawReach          *[]int   `json:"raw_reach,omitempty"`
 	Reach             *[]int   `json:"reach,omitempty"`
 }
+
+var ReachFrequencyEstimatesCurveFields = struct {
+	Budget            string
+	Conversion        string
+	Impression        string
+	InterpolatedReach string
+	NumPoints         string
+	RawImpression     string
+	RawReach          string
+	Reach             string
+}{
+	Budget:            "budget",
+	Conversion:        "conversion",
+	Impression:        "impression",
+	InterpolatedReach: "interpolated_reach",
+	NumPoints:         "num_points",
+	RawImpression:     "raw_impression",
+	RawReach:          "raw_reach",
+	Reach:             "reach",
+}

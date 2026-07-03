@@ -11,3 +11,17 @@ type CPASBusinessSetupConfig struct {
 	CapabilitiesComplianceStatus *[]map[string]map[string]interface{} `json:"capabilities_compliance_status,omitempty"`
 	ID                           *core.ID                             `json:"id,omitempty"`
 }
+
+var CPASBusinessSetupConfigFields = struct {
+	AcceptedCollabAdsTos         string
+	Business                     string
+	BusinessCapabilitiesStatus   string
+	CapabilitiesComplianceStatus string
+	ID                           string
+}{
+	AcceptedCollabAdsTos:         "accepted_collab_ads_tos",
+	Business:                     "business",
+	BusinessCapabilitiesStatus:   "business_capabilities_status",
+	CapabilitiesComplianceStatus: "capabilities_compliance_status",
+	ID:                           "id",
+}

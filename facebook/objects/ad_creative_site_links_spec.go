@@ -22,3 +22,39 @@ type AdCreativeSiteLinksSpec struct {
 	SiteLinkURLRecommenderType *string  `json:"site_link_url_recommender_type,omitempty"`
 	SiteLinkWebsiteDataSource  *string  `json:"site_link_website_data_source,omitempty"`
 }
+
+var AdCreativeSiteLinksSpecFields = struct {
+	IsDefaultingEligible       string
+	IsSiteLinkSticky           string
+	SiteLinkClassification     string
+	SiteLinkExtraMetadata      string
+	SiteLinkHash               string
+	SiteLinkID                 string
+	SiteLinkImageHash          string
+	SiteLinkImageURL           string
+	SiteLinkLanguage           string
+	SiteLinkOriginalURL        string
+	SiteLinkRecommendationType string
+	SiteLinkTitle              string
+	SiteLinkURL                string
+	SiteLinkURLAnchor          string
+	SiteLinkURLRecommenderType string
+	SiteLinkWebsiteDataSource  string
+}{
+	IsDefaultingEligible:       "is_defaulting_eligible",
+	IsSiteLinkSticky:           "is_site_link_sticky",
+	SiteLinkClassification:     "site_link_classification",
+	SiteLinkExtraMetadata:      "site_link_extra_metadata",
+	SiteLinkHash:               "site_link_hash",
+	SiteLinkID:                 "site_link_id",
+	SiteLinkImageHash:          "site_link_image_hash",
+	SiteLinkImageURL:           "site_link_image_url",
+	SiteLinkLanguage:           "site_link_language",
+	SiteLinkOriginalURL:        "site_link_original_url",
+	SiteLinkRecommendationType: "site_link_recommendation_type",
+	SiteLinkTitle:              "site_link_title",
+	SiteLinkURL:                "site_link_url",
+	SiteLinkURLAnchor:          "site_link_url_anchor",
+	SiteLinkURLRecommenderType: "site_link_url_recommender_type",
+	SiteLinkWebsiteDataSource:  "site_link_website_data_source",
+}

@@ -41,9 +41,14 @@ func DecodeGetAdExportPresetBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetAdExportPreset(ctx context.Context, client *core.Client, id string, params GetAdExportPresetParams) (*objects.AdExportPreset, error) {
+func GetAdExportPresetWithResponse(ctx context.Context, client *core.Client, id string, params GetAdExportPresetParams) (*objects.AdExportPreset, *core.Response, error) {
 	var out objects.AdExportPreset
 	call := GetAdExportPresetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdExportPreset(ctx context.Context, client *core.Client, id string, params GetAdExportPresetParams) (*objects.AdExportPreset, error) {
+	out, _, err := GetAdExportPresetWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -11,3 +11,17 @@ type ALMGuidance struct {
 	ParentAdvertiserID   *core.ID                  `json:"parent_advertiser_id,omitempty"`
 	ParentAdvertiserName *string                   `json:"parent_advertiser_name,omitempty"`
 }
+
+var ALMGuidanceFields = struct {
+	AdAccountID          string
+	Guidances            string
+	OpportunityScore     string
+	ParentAdvertiserID   string
+	ParentAdvertiserName string
+}{
+	AdAccountID:          "ad_account_id",
+	Guidances:            "guidances",
+	OpportunityScore:     "opportunity_score",
+	ParentAdvertiserID:   "parent_advertiser_id",
+	ParentAdvertiserName: "parent_advertiser_name",
+}

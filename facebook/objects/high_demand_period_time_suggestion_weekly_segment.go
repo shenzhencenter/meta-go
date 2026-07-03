@@ -6,3 +6,15 @@ type HighDemandPeriodTimeSuggestionWeeklySegment struct {
 	StartMinute  *int      `json:"start_minute,omitempty"`
 	TimezoneType *string   `json:"timezone_type,omitempty"`
 }
+
+var HighDemandPeriodTimeSuggestionWeeklySegmentFields = struct {
+	Days         string
+	EndMinute    string
+	StartMinute  string
+	TimezoneType string
+}{
+	Days:         "days",
+	EndMinute:    "end_minute",
+	StartMinute:  "start_minute",
+	TimezoneType: "timezone_type",
+}

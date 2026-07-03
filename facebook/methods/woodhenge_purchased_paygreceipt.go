@@ -41,9 +41,14 @@ func DecodeGetWoodhengePurchasedPAYGReceiptBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetWoodhengePurchasedPAYGReceipt(ctx context.Context, client *core.Client, id string, params GetWoodhengePurchasedPAYGReceiptParams) (*objects.WoodhengePurchasedPAYGReceipt, error) {
+func GetWoodhengePurchasedPAYGReceiptWithResponse(ctx context.Context, client *core.Client, id string, params GetWoodhengePurchasedPAYGReceiptParams) (*objects.WoodhengePurchasedPAYGReceipt, *core.Response, error) {
 	var out objects.WoodhengePurchasedPAYGReceipt
 	call := GetWoodhengePurchasedPAYGReceiptBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWoodhengePurchasedPAYGReceipt(ctx context.Context, client *core.Client, id string, params GetWoodhengePurchasedPAYGReceiptParams) (*objects.WoodhengePurchasedPAYGReceipt, error) {
+	out, _, err := GetWoodhengePurchasedPAYGReceiptWithResponse(ctx, client, id, params)
+	return out, err
 }

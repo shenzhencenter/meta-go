@@ -53,9 +53,14 @@ func DecodeGetAnalyticsSegmentBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetAnalyticsSegment(ctx context.Context, client *core.Client, id string, params GetAnalyticsSegmentParams) (*objects.AnalyticsSegment, error) {
+func GetAnalyticsSegmentWithResponse(ctx context.Context, client *core.Client, id string, params GetAnalyticsSegmentParams) (*objects.AnalyticsSegment, *core.Response, error) {
 	var out objects.AnalyticsSegment
 	call := GetAnalyticsSegmentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAnalyticsSegment(ctx context.Context, client *core.Client, id string, params GetAnalyticsSegmentParams) (*objects.AnalyticsSegment, error) {
+	out, _, err := GetAnalyticsSegmentWithResponse(ctx, client, id, params)
+	return out, err
 }

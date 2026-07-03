@@ -6,14 +6,13 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetAlbumCommentsParams struct {
 	Filter     *enums.AlbumcommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.AlbumcommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.AlbumcommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                              `facebook:"since"`
+	Since      *core.Time                              `facebook:"since"`
 	Extra      core.Params                             `facebook:"-"`
 }
 
@@ -59,11 +58,16 @@ func DecodeGetAlbumCommentsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetAlbumComments(ctx context.Context, client *core.Client, id string, params GetAlbumCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetAlbumCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetAlbumCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetAlbumCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAlbumComments(ctx context.Context, client *core.Client, id string, params GetAlbumCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetAlbumCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAlbumCommentsParams struct {
@@ -152,11 +156,16 @@ func DecodeCreateAlbumCommentsBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreateAlbumComments(ctx context.Context, client *core.Client, id string, params CreateAlbumCommentsParams) (*objects.Comment, error) {
+func CreateAlbumCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAlbumCommentsParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreateAlbumCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAlbumComments(ctx context.Context, client *core.Client, id string, params CreateAlbumCommentsParams) (*objects.Comment, error) {
+	out, _, err := CreateAlbumCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAlbumLikesParams struct {
@@ -193,11 +202,16 @@ func DecodeGetAlbumLikesBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetAlbumLikes(ctx context.Context, client *core.Client, id string, params GetAlbumLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetAlbumLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetAlbumLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetAlbumLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAlbumLikes(ctx context.Context, client *core.Client, id string, params GetAlbumLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetAlbumLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAlbumLikesParams struct {
@@ -254,11 +268,16 @@ func DecodeCreateAlbumLikesBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func CreateAlbumLikes(ctx context.Context, client *core.Client, id string, params CreateAlbumLikesParams) (*objects.Album, error) {
+func CreateAlbumLikesWithResponse(ctx context.Context, client *core.Client, id string, params CreateAlbumLikesParams) (*objects.Album, *core.Response, error) {
 	var out objects.Album
 	call := CreateAlbumLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAlbumLikes(ctx context.Context, client *core.Client, id string, params CreateAlbumLikesParams) (*objects.Album, error) {
+	out, _, err := CreateAlbumLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAlbumPhotosParams struct {
@@ -295,11 +314,16 @@ func DecodeGetAlbumPhotosBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetAlbumPhotos(ctx context.Context, client *core.Client, id string, params GetAlbumPhotosParams) (*core.Cursor[objects.Photo], error) {
+func GetAlbumPhotosWithResponse(ctx context.Context, client *core.Client, id string, params GetAlbumPhotosParams) (*core.Cursor[objects.Photo], *core.Response, error) {
 	var out core.Cursor[objects.Photo]
 	call := GetAlbumPhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAlbumPhotos(ctx context.Context, client *core.Client, id string, params GetAlbumPhotosParams) (*core.Cursor[objects.Photo], error) {
+	out, _, err := GetAlbumPhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAlbumPhotosParams struct {
@@ -310,7 +334,7 @@ type CreateAlbumPhotosParams struct {
 	ApplicationID                         *core.ID                                            `facebook:"application_id"`
 	Attempt                               *uint64                                             `facebook:"attempt"`
 	AudienceExp                           *bool                                               `facebook:"audience_exp"`
-	BackdatedTime                         *time.Time                                          `facebook:"backdated_time"`
+	BackdatedTime                         *core.Time                                          `facebook:"backdated_time"`
 	BackdatedTimeGranularity              *enums.AlbumphotosBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	Caption                               *string                                             `facebook:"caption"`
 	ComposerSessionID                     *core.ID                                            `facebook:"composer_session_id"`
@@ -540,11 +564,16 @@ func DecodeCreateAlbumPhotosBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateAlbumPhotos(ctx context.Context, client *core.Client, id string, params CreateAlbumPhotosParams) (*objects.Photo, error) {
+func CreateAlbumPhotosWithResponse(ctx context.Context, client *core.Client, id string, params CreateAlbumPhotosParams) (*objects.Photo, *core.Response, error) {
 	var out objects.Photo
 	call := CreateAlbumPhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAlbumPhotos(ctx context.Context, client *core.Client, id string, params CreateAlbumPhotosParams) (*objects.Photo, error) {
+	out, _, err := CreateAlbumPhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAlbumPictureParams struct {
@@ -589,11 +618,16 @@ func DecodeGetAlbumPictureBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetAlbumPicture(ctx context.Context, client *core.Client, id string, params GetAlbumPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+func GetAlbumPictureWithResponse(ctx context.Context, client *core.Client, id string, params GetAlbumPictureParams) (*core.Cursor[objects.ProfilePictureSource], *core.Response, error) {
 	var out core.Cursor[objects.ProfilePictureSource]
 	call := GetAlbumPictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAlbumPicture(ctx context.Context, client *core.Client, id string, params GetAlbumPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	out, _, err := GetAlbumPictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAlbumParams struct {
@@ -630,9 +664,14 @@ func DecodeGetAlbumBatchResponse(response *core.BatchResponse) (*objects.Album, 
 	return &out, nil
 }
 
-func GetAlbum(ctx context.Context, client *core.Client, id string, params GetAlbumParams) (*objects.Album, error) {
+func GetAlbumWithResponse(ctx context.Context, client *core.Client, id string, params GetAlbumParams) (*objects.Album, *core.Response, error) {
 	var out objects.Album
 	call := GetAlbumBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAlbum(ctx context.Context, client *core.Client, id string, params GetAlbumParams) (*objects.Album, error) {
+	out, _, err := GetAlbumWithResponse(ctx, client, id, params)
+	return out, err
 }

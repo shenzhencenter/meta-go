@@ -7,3 +7,17 @@ type PublisherDeliveryReport struct {
 	Status               *string   `json:"status,omitempty"`
 	URL                  *string   `json:"url,omitempty"`
 }
+
+var PublisherDeliveryReportFields = struct {
+	ContentTypes         string
+	EstimatedImpressions string
+	Name                 string
+	Status               string
+	URL                  string
+}{
+	ContentTypes:         "content_types",
+	EstimatedImpressions: "estimated_impressions",
+	Name:                 "name",
+	Status:               "status",
+	URL:                  "url",
+}

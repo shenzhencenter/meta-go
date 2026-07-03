@@ -30,3 +30,55 @@ type AdAccountTargetingUnified struct {
 	Type                   *string   `json:"type,omitempty"`
 	Valid                  *bool     `json:"valid,omitempty"`
 }
+
+var AdAccountTargetingUnifiedFields = struct {
+	AudienceSizeLowerBound string
+	AudienceSizeUpperBound string
+	ConversionLift         string
+	Description            string
+	ID                     string
+	Img                    string
+	Info                   string
+	InfoTitle              string
+	IsRecommendation       string
+	IsYouthAdsAgeGated     string
+	Key                    string
+	Link                   string
+	Name                   string
+	Parent                 string
+	Partner                string
+	Path                   string
+	PerformanceRating      string
+	RawName                string
+	RecommendationModel    string
+	SearchInterestID       string
+	Source                 string
+	Spend                  string
+	Type                   string
+	Valid                  string
+}{
+	AudienceSizeLowerBound: "audience_size_lower_bound",
+	AudienceSizeUpperBound: "audience_size_upper_bound",
+	ConversionLift:         "conversion_lift",
+	Description:            "description",
+	ID:                     "id",
+	Img:                    "img",
+	Info:                   "info",
+	InfoTitle:              "info_title",
+	IsRecommendation:       "is_recommendation",
+	IsYouthAdsAgeGated:     "is_youth_ads_age_gated",
+	Key:                    "key",
+	Link:                   "link",
+	Name:                   "name",
+	Parent:                 "parent",
+	Partner:                "partner",
+	Path:                   "path",
+	PerformanceRating:      "performance_rating",
+	RawName:                "raw_name",
+	RecommendationModel:    "recommendation_model",
+	SearchInterestID:       "search_interest_id",
+	Source:                 "source",
+	Spend:                  "spend",
+	Type:                   "type",
+	Valid:                  "valid",
+}

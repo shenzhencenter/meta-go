@@ -41,11 +41,16 @@ func DecodeGetEventSourceGroupSharedAccountsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetEventSourceGroupSharedAccounts(ctx context.Context, client *core.Client, id string, params GetEventSourceGroupSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetEventSourceGroupSharedAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetEventSourceGroupSharedAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetEventSourceGroupSharedAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventSourceGroupSharedAccounts(ctx context.Context, client *core.Client, id string, params GetEventSourceGroupSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetEventSourceGroupSharedAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateEventSourceGroupSharedAccountsParams struct {
@@ -84,11 +89,16 @@ func DecodeCreateEventSourceGroupSharedAccountsBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func CreateEventSourceGroupSharedAccounts(ctx context.Context, client *core.Client, id string, params CreateEventSourceGroupSharedAccountsParams) (*objects.EventSourceGroup, error) {
+func CreateEventSourceGroupSharedAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateEventSourceGroupSharedAccountsParams) (*objects.EventSourceGroup, *core.Response, error) {
 	var out objects.EventSourceGroup
 	call := CreateEventSourceGroupSharedAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateEventSourceGroupSharedAccounts(ctx context.Context, client *core.Client, id string, params CreateEventSourceGroupSharedAccountsParams) (*objects.EventSourceGroup, error) {
+	out, _, err := CreateEventSourceGroupSharedAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetEventSourceGroupParams struct {
@@ -125,11 +135,16 @@ func DecodeGetEventSourceGroupBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetEventSourceGroup(ctx context.Context, client *core.Client, id string, params GetEventSourceGroupParams) (*objects.EventSourceGroup, error) {
+func GetEventSourceGroupWithResponse(ctx context.Context, client *core.Client, id string, params GetEventSourceGroupParams) (*objects.EventSourceGroup, *core.Response, error) {
 	var out objects.EventSourceGroup
 	call := GetEventSourceGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventSourceGroup(ctx context.Context, client *core.Client, id string, params GetEventSourceGroupParams) (*objects.EventSourceGroup, error) {
+	out, _, err := GetEventSourceGroupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateEventSourceGroupParams struct {
@@ -170,9 +185,14 @@ func DecodeUpdateEventSourceGroupBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdateEventSourceGroup(ctx context.Context, client *core.Client, id string, params UpdateEventSourceGroupParams) (*objects.EventSourceGroup, error) {
+func UpdateEventSourceGroupWithResponse(ctx context.Context, client *core.Client, id string, params UpdateEventSourceGroupParams) (*objects.EventSourceGroup, *core.Response, error) {
 	var out objects.EventSourceGroup
 	call := UpdateEventSourceGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateEventSourceGroup(ctx context.Context, client *core.Client, id string, params UpdateEventSourceGroupParams) (*objects.EventSourceGroup, error) {
+	out, _, err := UpdateEventSourceGroupWithResponse(ctx, client, id, params)
+	return out, err
 }

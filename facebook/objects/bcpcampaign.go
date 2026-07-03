@@ -23,3 +23,41 @@ type BCPCampaign struct {
 	PaymentAmountForContent        *uint64              `json:"payment_amount_for_content,omitempty"`
 	PaymentDescription             *string              `json:"payment_description,omitempty"`
 }
+
+var BCPCampaignFields = struct {
+	AdsPermissionRequired          string
+	ApplicationDeadline            string
+	CampaignGoal                   string
+	CampaignGoalOther              string
+	ContentDeliveryDeadline        string
+	ContentDeliveryStartDate       string
+	ContentRequirements            string
+	ContentRequirementsDescription string
+	Currency                       string
+	DealNegotiationType            string
+	Description                    string
+	HasFreeProduct                 string
+	ID                             string
+	Name                           string
+	PaymentAmountForAds            string
+	PaymentAmountForContent        string
+	PaymentDescription             string
+}{
+	AdsPermissionRequired:          "ads_permission_required",
+	ApplicationDeadline:            "application_deadline",
+	CampaignGoal:                   "campaign_goal",
+	CampaignGoalOther:              "campaign_goal_other",
+	ContentDeliveryDeadline:        "content_delivery_deadline",
+	ContentDeliveryStartDate:       "content_delivery_start_date",
+	ContentRequirements:            "content_requirements",
+	ContentRequirementsDescription: "content_requirements_description",
+	Currency:                       "currency",
+	DealNegotiationType:            "deal_negotiation_type",
+	Description:                    "description",
+	HasFreeProduct:                 "has_free_product",
+	ID:                             "id",
+	Name:                           "name",
+	PaymentAmountForAds:            "payment_amount_for_ads",
+	PaymentAmountForContent:        "payment_amount_for_content",
+	PaymentDescription:             "payment_description",
+}

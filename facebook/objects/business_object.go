@@ -11,3 +11,17 @@ type BusinessObject struct {
 	Name      *string                 `json:"name,omitempty"`
 	Picture   *string                 `json:"picture,omitempty"`
 }
+
+var BusinessObjectFields = struct {
+	Asset     string
+	AssetType string
+	ID        string
+	Name      string
+	Picture   string
+}{
+	Asset:     "asset",
+	AssetType: "asset_type",
+	ID:        "id",
+	Name:      "name",
+	Picture:   "picture",
+}

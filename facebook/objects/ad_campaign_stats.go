@@ -30,3 +30,55 @@ type AdCampaignStats struct {
 	UniqueClicks            *uint64                 `json:"unique_clicks,omitempty"`
 	UniqueImpressions       *string                 `json:"unique_impressions,omitempty"`
 }
+
+var AdCampaignStatsFields = struct {
+	AccountID               string
+	Actions                 string
+	AdgroupID               string
+	CampaignID              string
+	CampaignIds             string
+	Clicks                  string
+	EndTime                 string
+	ID                      string
+	Impressions             string
+	InlineActions           string
+	IoNumber                string
+	IsCompleted             string
+	LineNumber              string
+	NewsfeedPosition        string
+	SocialClicks            string
+	SocialImpressions       string
+	SocialSpent             string
+	SocialUniqueClicks      string
+	SocialUniqueImpressions string
+	Spent                   string
+	StartTime               string
+	ToplineID               string
+	UniqueClicks            string
+	UniqueImpressions       string
+}{
+	AccountID:               "account_id",
+	Actions:                 "actions",
+	AdgroupID:               "adgroup_id",
+	CampaignID:              "campaign_id",
+	CampaignIds:             "campaign_ids",
+	Clicks:                  "clicks",
+	EndTime:                 "end_time",
+	ID:                      "id",
+	Impressions:             "impressions",
+	InlineActions:           "inline_actions",
+	IoNumber:                "io_number",
+	IsCompleted:             "is_completed",
+	LineNumber:              "line_number",
+	NewsfeedPosition:        "newsfeed_position",
+	SocialClicks:            "social_clicks",
+	SocialImpressions:       "social_impressions",
+	SocialSpent:             "social_spent",
+	SocialUniqueClicks:      "social_unique_clicks",
+	SocialUniqueImpressions: "social_unique_impressions",
+	Spent:                   "spent",
+	StartTime:               "start_time",
+	ToplineID:               "topline_id",
+	UniqueClicks:            "unique_clicks",
+	UniqueImpressions:       "unique_impressions",
+}

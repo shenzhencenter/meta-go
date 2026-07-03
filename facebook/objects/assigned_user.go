@@ -10,3 +10,15 @@ type AssignedUser struct {
 	Name     *string   `json:"name,omitempty"`
 	UserType *string   `json:"user_type,omitempty"`
 }
+
+var AssignedUserFields = struct {
+	Business string
+	ID       string
+	Name     string
+	UserType string
+}{
+	Business: "business",
+	ID:       "id",
+	Name:     "name",
+	UserType: "user_type",
+}

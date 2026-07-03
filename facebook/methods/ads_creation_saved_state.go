@@ -41,9 +41,14 @@ func DecodeGetAdsCreationSavedStateBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetAdsCreationSavedState(ctx context.Context, client *core.Client, id string, params GetAdsCreationSavedStateParams) (*objects.AdsCreationSavedState, error) {
+func GetAdsCreationSavedStateWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsCreationSavedStateParams) (*objects.AdsCreationSavedState, *core.Response, error) {
 	var out objects.AdsCreationSavedState
 	call := GetAdsCreationSavedStateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsCreationSavedState(ctx context.Context, client *core.Client, id string, params GetAdsCreationSavedStateParams) (*objects.AdsCreationSavedState, error) {
+	out, _, err := GetAdsCreationSavedStateWithResponse(ctx, client, id, params)
+	return out, err
 }

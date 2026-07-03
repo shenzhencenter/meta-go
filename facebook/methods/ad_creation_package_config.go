@@ -41,9 +41,14 @@ func DecodeGetAdCreationPackageConfigBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetAdCreationPackageConfig(ctx context.Context, client *core.Client, id string, params GetAdCreationPackageConfigParams) (*objects.AdCreationPackageConfig, error) {
+func GetAdCreationPackageConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetAdCreationPackageConfigParams) (*objects.AdCreationPackageConfig, *core.Response, error) {
 	var out objects.AdCreationPackageConfig
 	call := GetAdCreationPackageConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdCreationPackageConfig(ctx context.Context, client *core.Client, id string, params GetAdCreationPackageConfigParams) (*objects.AdCreationPackageConfig, error) {
+	out, _, err := GetAdCreationPackageConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

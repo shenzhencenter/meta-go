@@ -17,3 +17,29 @@ type ProductCatalogDiagnosticGroup struct {
 	Title                    *string                                                `json:"title,omitempty"`
 	Type                     *enums.ProductcatalogdiagnosticgroupType               `json:"type,omitempty"`
 }
+
+var ProductCatalogDiagnosticGroupFields = struct {
+	AffectedChannels         string
+	AffectedEntity           string
+	AffectedFeatures         string
+	Diagnostics              string
+	ErrorCode                string
+	NumberOfAffectedEntities string
+	NumberOfAffectedItems    string
+	Severity                 string
+	Subtitle                 string
+	Title                    string
+	Type                     string
+}{
+	AffectedChannels:         "affected_channels",
+	AffectedEntity:           "affected_entity",
+	AffectedFeatures:         "affected_features",
+	Diagnostics:              "diagnostics",
+	ErrorCode:                "error_code",
+	NumberOfAffectedEntities: "number_of_affected_entities",
+	NumberOfAffectedItems:    "number_of_affected_items",
+	Severity:                 "severity",
+	Subtitle:                 "subtitle",
+	Title:                    "title",
+	Type:                     "type",
+}

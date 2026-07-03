@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetPageAbTestsParams struct {
@@ -43,11 +42,16 @@ func DecodeGetPageAbTestsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPageAbTests(ctx context.Context, client *core.Client, id string, params GetPageAbTestsParams) (*core.Cursor[objects.PagePostExperiment], error) {
+func GetPageAbTestsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageAbTestsParams) (*core.Cursor[objects.PagePostExperiment], *core.Response, error) {
 	var out core.Cursor[objects.PagePostExperiment]
 	call := GetPageAbTestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageAbTests(ctx context.Context, client *core.Client, id string, params GetPageAbTestsParams) (*core.Cursor[objects.PagePostExperiment], error) {
+	out, _, err := GetPageAbTestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageAbTestsParams struct {
@@ -100,11 +104,16 @@ func DecodeCreatePageAbTestsBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreatePageAbTests(ctx context.Context, client *core.Client, id string, params CreatePageAbTestsParams) (*objects.PagePostExperiment, error) {
+func CreatePageAbTestsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageAbTestsParams) (*objects.PagePostExperiment, *core.Response, error) {
 	var out objects.PagePostExperiment
 	call := CreatePageAbTestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageAbTests(ctx context.Context, client *core.Client, id string, params CreatePageAbTestsParams) (*objects.PagePostExperiment, error) {
+	out, _, err := CreatePageAbTestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageAdsEligibilityParams struct {
@@ -145,18 +154,23 @@ func DecodeGetPageAdsEligibilityBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPageAdsEligibility(ctx context.Context, client *core.Client, id string, params GetPageAdsEligibilityParams) (*core.Cursor[objects.AdsEligibility], error) {
+func GetPageAdsEligibilityWithResponse(ctx context.Context, client *core.Client, id string, params GetPageAdsEligibilityParams) (*core.Cursor[objects.AdsEligibility], *core.Response, error) {
 	var out core.Cursor[objects.AdsEligibility]
 	call := GetPageAdsEligibilityBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageAdsEligibility(ctx context.Context, client *core.Client, id string, params GetPageAdsEligibilityParams) (*core.Cursor[objects.AdsEligibility], error) {
+	out, _, err := GetPageAdsEligibilityWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageAdsPostsParams struct {
 	ExcludeDynamicAds   *bool       `facebook:"exclude_dynamic_ads"`
 	IncludeInlineCreate *bool       `facebook:"include_inline_create"`
-	Since               *time.Time  `facebook:"since"`
-	Until               *time.Time  `facebook:"until"`
+	Since               *core.Time  `facebook:"since"`
+	Until               *core.Time  `facebook:"until"`
 	Extra               core.Params `facebook:"-"`
 }
 
@@ -202,11 +216,16 @@ func DecodeGetPageAdsPostsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPageAdsPosts(ctx context.Context, client *core.Client, id string, params GetPageAdsPostsParams) (*core.Cursor[objects.PagePost], error) {
+func GetPageAdsPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageAdsPostsParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPageAdsPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageAdsPosts(ctx context.Context, client *core.Client, id string, params GetPageAdsPostsParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPageAdsPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageAgenciesParams struct {
@@ -245,11 +264,16 @@ func DecodeDeletePageAgenciesBatchResponse(response *core.BatchResponse) (*map[s
 	return &out, nil
 }
 
-func DeletePageAgencies(ctx context.Context, client *core.Client, id string, params DeletePageAgenciesParams) (*map[string]interface{}, error) {
+func DeletePageAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageAgenciesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageAgencies(ctx context.Context, client *core.Client, id string, params DeletePageAgenciesParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageAgenciesParams struct {
@@ -286,11 +310,16 @@ func DecodeGetPageAgenciesBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPageAgencies(ctx context.Context, client *core.Client, id string, params GetPageAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetPageAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetPageAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageAgencies(ctx context.Context, client *core.Client, id string, params GetPageAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetPageAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageAgenciesParams struct {
@@ -333,11 +362,16 @@ func DecodeCreatePageAgenciesBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreatePageAgencies(ctx context.Context, client *core.Client, id string, params CreatePageAgenciesParams) (*objects.Page, error) {
+func CreatePageAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageAgenciesParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageAgencies(ctx context.Context, client *core.Client, id string, params CreatePageAgenciesParams) (*objects.Page, error) {
+	out, _, err := CreatePageAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageAlbumsParams struct {
@@ -374,11 +408,16 @@ func DecodeGetPageAlbumsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetPageAlbums(ctx context.Context, client *core.Client, id string, params GetPageAlbumsParams) (*core.Cursor[objects.Album], error) {
+func GetPageAlbumsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageAlbumsParams) (*core.Cursor[objects.Album], *core.Response, error) {
 	var out core.Cursor[objects.Album]
 	call := GetPageAlbumsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageAlbums(ctx context.Context, client *core.Client, id string, params GetPageAlbumsParams) (*core.Cursor[objects.Album], error) {
+	out, _, err := GetPageAlbumsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageArExperienceParams struct {
@@ -415,11 +454,16 @@ func DecodeGetPageArExperienceBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPageArExperience(ctx context.Context, client *core.Client, id string, params GetPageArExperienceParams) (*core.Cursor[objects.ArAdsDataContainer], error) {
+func GetPageArExperienceWithResponse(ctx context.Context, client *core.Client, id string, params GetPageArExperienceParams) (*core.Cursor[objects.ArAdsDataContainer], *core.Response, error) {
 	var out core.Cursor[objects.ArAdsDataContainer]
 	call := GetPageArExperienceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageArExperience(ctx context.Context, client *core.Client, id string, params GetPageArExperienceParams) (*core.Cursor[objects.ArAdsDataContainer], error) {
+	out, _, err := GetPageArExperienceWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageAssignedUsersParams struct {
@@ -458,11 +502,16 @@ func DecodeDeletePageAssignedUsersBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func DeletePageAssignedUsers(ctx context.Context, client *core.Client, id string, params DeletePageAssignedUsersParams) (*map[string]interface{}, error) {
+func DeletePageAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageAssignedUsersParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageAssignedUsers(ctx context.Context, client *core.Client, id string, params DeletePageAssignedUsersParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageAssignedUsersParams struct {
@@ -501,11 +550,16 @@ func DecodeGetPageAssignedUsersBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetPageAssignedUsers(ctx context.Context, client *core.Client, id string, params GetPageAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+func GetPageAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params GetPageAssignedUsersParams) (*core.Cursor[objects.AssignedUser], *core.Response, error) {
 	var out core.Cursor[objects.AssignedUser]
 	call := GetPageAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageAssignedUsers(ctx context.Context, client *core.Client, id string, params GetPageAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
+	out, _, err := GetPageAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageAssignedUsersParams struct {
@@ -548,11 +602,16 @@ func DecodeCreatePageAssignedUsersBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreatePageAssignedUsers(ctx context.Context, client *core.Client, id string, params CreatePageAssignedUsersParams) (*objects.Page, error) {
+func CreatePageAssignedUsersWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageAssignedUsersParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageAssignedUsersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageAssignedUsers(ctx context.Context, client *core.Client, id string, params CreatePageAssignedUsersParams) (*objects.Page, error) {
+	out, _, err := CreatePageAssignedUsersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageBlockedParams struct {
@@ -605,11 +664,16 @@ func DecodeDeletePageBlockedBatchResponse(response *core.BatchResponse) (*map[st
 	return &out, nil
 }
 
-func DeletePageBlocked(ctx context.Context, client *core.Client, id string, params DeletePageBlockedParams) (*map[string]interface{}, error) {
+func DeletePageBlockedWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageBlockedParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageBlockedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageBlocked(ctx context.Context, client *core.Client, id string, params DeletePageBlockedParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageBlockedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageBlockedParams struct {
@@ -654,11 +718,16 @@ func DecodeGetPageBlockedBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPageBlocked(ctx context.Context, client *core.Client, id string, params GetPageBlockedParams) (*core.Cursor[objects.Profile], error) {
+func GetPageBlockedWithResponse(ctx context.Context, client *core.Client, id string, params GetPageBlockedParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetPageBlockedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageBlocked(ctx context.Context, client *core.Client, id string, params GetPageBlockedParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetPageBlockedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageBlockedParams struct {
@@ -711,11 +780,16 @@ func DecodeCreatePageBlockedBatchResponse(response *core.BatchResponse) (*map[st
 	return &out, nil
 }
 
-func CreatePageBlocked(ctx context.Context, client *core.Client, id string, params CreatePageBlockedParams) (*map[string]interface{}, error) {
+func CreatePageBlockedWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageBlockedParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePageBlockedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageBlocked(ctx context.Context, client *core.Client, id string, params CreatePageBlockedParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePageBlockedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageBusinessMessagingFeatureStatusParams struct {
@@ -754,11 +828,16 @@ func DecodeCreatePageBusinessMessagingFeatureStatusBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreatePageBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreatePageBusinessMessagingFeatureStatusParams) (*objects.Page, error) {
+func CreatePageBusinessMessagingFeatureStatusWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageBusinessMessagingFeatureStatusParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageBusinessMessagingFeatureStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreatePageBusinessMessagingFeatureStatusParams) (*objects.Page, error) {
+	out, _, err := CreatePageBusinessMessagingFeatureStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageBusinessprojectsParams struct {
@@ -799,21 +878,26 @@ func DecodeGetPageBusinessprojectsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetPageBusinessprojects(ctx context.Context, client *core.Client, id string, params GetPageBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], error) {
+func GetPageBusinessprojectsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], *core.Response, error) {
 	var out core.Cursor[objects.BusinessProject]
 	call := GetPageBusinessprojectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageBusinessprojects(ctx context.Context, client *core.Client, id string, params GetPageBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], error) {
+	out, _, err := GetPageBusinessprojectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCallMetricsParams struct {
 	AudioStats                   map[string]interface{}                      `facebook:"audio_stats"`
-	CallEndedTime                time.Time                                   `facebook:"call_ended_time"`
+	CallEndedTime                core.Time                                   `facebook:"call_ended_time"`
 	CallID                       core.ID                                     `facebook:"call_id"`
 	EndCallReason                enums.PagecallMetricsEndCallReasonEnumParam `facebook:"end_call_reason"`
 	EndCallSubreason             *string                                     `facebook:"end_call_subreason"`
-	FirstAudioPacketReceivedTime time.Time                                   `facebook:"first_audio_packet_received_time"`
-	FirstVideoPacketReceivedTime *time.Time                                  `facebook:"first_video_packet_received_time"`
+	FirstAudioPacketReceivedTime core.Time                                   `facebook:"first_audio_packet_received_time"`
+	FirstVideoPacketReceivedTime *core.Time                                  `facebook:"first_video_packet_received_time"`
 	Platform                     enums.PagecallMetricsPlatformEnumParam      `facebook:"platform"`
 	VideoStats                   *map[string]interface{}                     `facebook:"video_stats"`
 	Extra                        core.Params                                 `facebook:"-"`
@@ -864,11 +948,16 @@ func DecodeCreatePageCallMetricsBatchResponse(response *core.BatchResponse) (*ma
 	return &out, nil
 }
 
-func CreatePageCallMetrics(ctx context.Context, client *core.Client, id string, params CreatePageCallMetricsParams) (*map[string]interface{}, error) {
+func CreatePageCallMetricsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCallMetricsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePageCallMetricsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCallMetrics(ctx context.Context, client *core.Client, id string, params CreatePageCallMetricsParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePageCallMetricsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCallToActionsParams struct {
@@ -905,11 +994,16 @@ func DecodeGetPageCallToActionsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetPageCallToActions(ctx context.Context, client *core.Client, id string, params GetPageCallToActionsParams) (*core.Cursor[objects.PageCallToAction], error) {
+func GetPageCallToActionsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCallToActionsParams) (*core.Cursor[objects.PageCallToAction], *core.Response, error) {
 	var out core.Cursor[objects.PageCallToAction]
 	call := GetPageCallToActionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCallToActions(ctx context.Context, client *core.Client, id string, params GetPageCallToActionsParams) (*core.Cursor[objects.PageCallToAction], error) {
+	out, _, err := GetPageCallToActionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCallsParams struct {
@@ -976,11 +1070,16 @@ func DecodeCreatePageCallsBatchResponse(response *core.BatchResponse) (*map[stri
 	return &out, nil
 }
 
-func CreatePageCalls(ctx context.Context, client *core.Client, id string, params CreatePageCallsParams) (*map[string]interface{}, error) {
+func CreatePageCallsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCallsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePageCallsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCalls(ctx context.Context, client *core.Client, id string, params CreatePageCallsParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePageCallsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCanvasElementsParams struct {
@@ -1017,11 +1116,16 @@ func DecodeGetPageCanvasElementsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPageCanvasElements(ctx context.Context, client *core.Client, id string, params GetPageCanvasElementsParams) (*core.Cursor[objects.CanvasBodyElement], error) {
+func GetPageCanvasElementsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCanvasElementsParams) (*core.Cursor[objects.CanvasBodyElement], *core.Response, error) {
 	var out core.Cursor[objects.CanvasBodyElement]
 	call := GetPageCanvasElementsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCanvasElements(ctx context.Context, client *core.Client, id string, params GetPageCanvasElementsParams) (*core.Cursor[objects.CanvasBodyElement], error) {
+	out, _, err := GetPageCanvasElementsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCanvasElementsParams struct {
@@ -1110,11 +1214,16 @@ func DecodeCreatePageCanvasElementsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreatePageCanvasElements(ctx context.Context, client *core.Client, id string, params CreatePageCanvasElementsParams) (*objects.CanvasBodyElement, error) {
+func CreatePageCanvasElementsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCanvasElementsParams) (*objects.CanvasBodyElement, *core.Response, error) {
 	var out objects.CanvasBodyElement
 	call := CreatePageCanvasElementsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCanvasElements(ctx context.Context, client *core.Client, id string, params CreatePageCanvasElementsParams) (*objects.CanvasBodyElement, error) {
+	out, _, err := CreatePageCanvasElementsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCanvasesParams struct {
@@ -1159,11 +1268,16 @@ func DecodeGetPageCanvasesBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPageCanvases(ctx context.Context, client *core.Client, id string, params GetPageCanvasesParams) (*core.Cursor[objects.Canvas], error) {
+func GetPageCanvasesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCanvasesParams) (*core.Cursor[objects.Canvas], *core.Response, error) {
 	var out core.Cursor[objects.Canvas]
 	call := GetPageCanvasesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCanvases(ctx context.Context, client *core.Client, id string, params GetPageCanvasesParams) (*core.Cursor[objects.Canvas], error) {
+	out, _, err := GetPageCanvasesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCanvasesParams struct {
@@ -1236,11 +1350,16 @@ func DecodeCreatePageCanvasesBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreatePageCanvases(ctx context.Context, client *core.Client, id string, params CreatePageCanvasesParams) (*objects.Canvas, error) {
+func CreatePageCanvasesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCanvasesParams) (*objects.Canvas, *core.Response, error) {
 	var out objects.Canvas
 	call := CreatePageCanvasesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCanvases(ctx context.Context, client *core.Client, id string, params CreatePageCanvasesParams) (*objects.Canvas, error) {
+	out, _, err := CreatePageCanvasesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageChatPluginParams struct {
@@ -1277,11 +1396,16 @@ func DecodeGetPageChatPluginBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetPageChatPlugin(ctx context.Context, client *core.Client, id string, params GetPageChatPluginParams) (*core.Cursor[objects.ChatPlugin], error) {
+func GetPageChatPluginWithResponse(ctx context.Context, client *core.Client, id string, params GetPageChatPluginParams) (*core.Cursor[objects.ChatPlugin], *core.Response, error) {
 	var out core.Cursor[objects.ChatPlugin]
 	call := GetPageChatPluginBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageChatPlugin(ctx context.Context, client *core.Client, id string, params GetPageChatPluginParams) (*core.Cursor[objects.ChatPlugin], error) {
+	out, _, err := GetPageChatPluginWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCommerceMerchantSettingsParams struct {
@@ -1318,18 +1442,23 @@ func DecodeGetPageCommerceMerchantSettingsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetPageCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetPageCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], error) {
+func GetPageCommerceMerchantSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], *core.Response, error) {
 	var out core.Cursor[objects.CommerceMerchantSettings]
 	call := GetPageCommerceMerchantSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetPageCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], error) {
+	out, _, err := GetPageCommerceMerchantSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCommerceOrdersParams struct {
 	Filters       *[]enums.PagecommerceOrdersFiltersEnumParam `facebook:"filters"`
 	State         *[]enums.PagecommerceOrdersStateEnumParam   `facebook:"state"`
-	UpdatedAfter  *time.Time                                  `facebook:"updated_after"`
-	UpdatedBefore *time.Time                                  `facebook:"updated_before"`
+	UpdatedAfter  *core.Time                                  `facebook:"updated_after"`
+	UpdatedBefore *core.Time                                  `facebook:"updated_before"`
 	Extra         core.Params                                 `facebook:"-"`
 }
 
@@ -1375,16 +1504,21 @@ func DecodeGetPageCommerceOrdersBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPageCommerceOrders(ctx context.Context, client *core.Client, id string, params GetPageCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], error) {
+func GetPageCommerceOrdersWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrder]
 	call := GetPageCommerceOrdersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCommerceOrders(ctx context.Context, client *core.Client, id string, params GetPageCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], error) {
+	out, _, err := GetPageCommerceOrdersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCommercePayoutsParams struct {
-	EndTime   *time.Time  `facebook:"end_time"`
-	StartTime *time.Time  `facebook:"start_time"`
+	EndTime   *core.Time  `facebook:"end_time"`
+	StartTime *core.Time  `facebook:"start_time"`
 	Extra     core.Params `facebook:"-"`
 }
 
@@ -1424,17 +1558,22 @@ func DecodeGetPageCommercePayoutsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetPageCommercePayouts(ctx context.Context, client *core.Client, id string, params GetPageCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], error) {
+func GetPageCommercePayoutsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], *core.Response, error) {
 	var out core.Cursor[objects.CommercePayout]
 	call := GetPageCommercePayoutsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCommercePayouts(ctx context.Context, client *core.Client, id string, params GetPageCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], error) {
+	out, _, err := GetPageCommercePayoutsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCommerceTransactionsParams struct {
-	EndTime           *time.Time  `facebook:"end_time"`
+	EndTime           *core.Time  `facebook:"end_time"`
 	PayoutReferenceID *core.ID    `facebook:"payout_reference_id"`
-	StartTime         *time.Time  `facebook:"start_time"`
+	StartTime         *core.Time  `facebook:"start_time"`
 	Extra             core.Params `facebook:"-"`
 }
 
@@ -1477,11 +1616,16 @@ func DecodeGetPageCommerceTransactionsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetPageCommerceTransactions(ctx context.Context, client *core.Client, id string, params GetPageCommerceTransactionsParams) (*core.Cursor[objects.CommerceOrderTransactionDetail], error) {
+func GetPageCommerceTransactionsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCommerceTransactionsParams) (*core.Cursor[objects.CommerceOrderTransactionDetail], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrderTransactionDetail]
 	call := GetPageCommerceTransactionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCommerceTransactions(ctx context.Context, client *core.Client, id string, params GetPageCommerceTransactionsParams) (*core.Cursor[objects.CommerceOrderTransactionDetail], error) {
+	out, _, err := GetPageCommerceTransactionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageConversationsParams struct {
@@ -1534,11 +1678,16 @@ func DecodeGetPageConversationsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetPageConversations(ctx context.Context, client *core.Client, id string, params GetPageConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
+func GetPageConversationsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageConversationsParams) (*core.Cursor[objects.UnifiedThread], *core.Response, error) {
 	var out core.Cursor[objects.UnifiedThread]
 	call := GetPageConversationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageConversations(ctx context.Context, client *core.Client, id string, params GetPageConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
+	out, _, err := GetPageConversationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCopyrightManualClaimsParams struct {
@@ -1597,11 +1746,16 @@ func DecodeCreatePageCopyrightManualClaimsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreatePageCopyrightManualClaims(ctx context.Context, client *core.Client, id string, params CreatePageCopyrightManualClaimsParams) (*objects.VideoCopyrightMatch, error) {
+func CreatePageCopyrightManualClaimsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCopyrightManualClaimsParams) (*objects.VideoCopyrightMatch, *core.Response, error) {
 	var out objects.VideoCopyrightMatch
 	call := CreatePageCopyrightManualClaimsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCopyrightManualClaims(ctx context.Context, client *core.Client, id string, params CreatePageCopyrightManualClaimsParams) (*objects.VideoCopyrightMatch, error) {
+	out, _, err := CreatePageCopyrightManualClaimsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCrosspostWhitelistedPagesParams struct {
@@ -1638,11 +1792,16 @@ func DecodeGetPageCrosspostWhitelistedPagesBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetPageCrosspostWhitelistedPages(ctx context.Context, client *core.Client, id string, params GetPageCrosspostWhitelistedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetPageCrosspostWhitelistedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCrosspostWhitelistedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPageCrosspostWhitelistedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCrosspostWhitelistedPages(ctx context.Context, client *core.Client, id string, params GetPageCrosspostWhitelistedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPageCrosspostWhitelistedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCtxOptimizationEligibilityParams struct {
@@ -1679,11 +1838,16 @@ func DecodeGetPageCtxOptimizationEligibilityBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetPageCtxOptimizationEligibility(ctx context.Context, client *core.Client, id string, params GetPageCtxOptimizationEligibilityParams) (*core.Cursor[objects.CTXOptimizationEligibility], error) {
+func GetPageCtxOptimizationEligibilityWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCtxOptimizationEligibilityParams) (*core.Cursor[objects.CTXOptimizationEligibility], *core.Response, error) {
 	var out core.Cursor[objects.CTXOptimizationEligibility]
 	call := GetPageCtxOptimizationEligibilityBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCtxOptimizationEligibility(ctx context.Context, client *core.Client, id string, params GetPageCtxOptimizationEligibilityParams) (*core.Cursor[objects.CTXOptimizationEligibility], error) {
+	out, _, err := GetPageCtxOptimizationEligibilityWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCustomLabelsParams struct {
@@ -1720,11 +1884,16 @@ func DecodeGetPageCustomLabelsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPageCustomLabels(ctx context.Context, client *core.Client, id string, params GetPageCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], error) {
+func GetPageCustomLabelsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], *core.Response, error) {
 	var out core.Cursor[objects.PageUserMessageThreadLabel]
 	call := GetPageCustomLabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCustomLabels(ctx context.Context, client *core.Client, id string, params GetPageCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], error) {
+	out, _, err := GetPageCustomLabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCustomLabelsParams struct {
@@ -1767,11 +1936,16 @@ func DecodeCreatePageCustomLabelsBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreatePageCustomLabels(ctx context.Context, client *core.Client, id string, params CreatePageCustomLabelsParams) (*objects.PageUserMessageThreadLabel, error) {
+func CreatePageCustomLabelsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCustomLabelsParams) (*objects.PageUserMessageThreadLabel, *core.Response, error) {
 	var out objects.PageUserMessageThreadLabel
 	call := CreatePageCustomLabelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCustomLabels(ctx context.Context, client *core.Client, id string, params CreatePageCustomLabelsParams) (*objects.PageUserMessageThreadLabel, error) {
+	out, _, err := CreatePageCustomLabelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageCustomUserSettingsParams struct {
@@ -1812,11 +1986,16 @@ func DecodeDeletePageCustomUserSettingsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func DeletePageCustomUserSettings(ctx context.Context, client *core.Client, id string, params DeletePageCustomUserSettingsParams) (*map[string]interface{}, error) {
+func DeletePageCustomUserSettingsWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageCustomUserSettingsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageCustomUserSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageCustomUserSettings(ctx context.Context, client *core.Client, id string, params DeletePageCustomUserSettingsParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageCustomUserSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCustomUserSettingsParams struct {
@@ -1855,11 +2034,16 @@ func DecodeGetPageCustomUserSettingsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetPageCustomUserSettings(ctx context.Context, client *core.Client, id string, params GetPageCustomUserSettingsParams) (*core.Cursor[objects.CustomUserSettings], error) {
+func GetPageCustomUserSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCustomUserSettingsParams) (*core.Cursor[objects.CustomUserSettings], *core.Response, error) {
 	var out core.Cursor[objects.CustomUserSettings]
 	call := GetPageCustomUserSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCustomUserSettings(ctx context.Context, client *core.Client, id string, params GetPageCustomUserSettingsParams) (*core.Cursor[objects.CustomUserSettings], error) {
+	out, _, err := GetPageCustomUserSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageCustomUserSettingsParams struct {
@@ -1902,11 +2086,16 @@ func DecodeCreatePageCustomUserSettingsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreatePageCustomUserSettings(ctx context.Context, client *core.Client, id string, params CreatePageCustomUserSettingsParams) (*objects.Page, error) {
+func CreatePageCustomUserSettingsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageCustomUserSettingsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageCustomUserSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageCustomUserSettings(ctx context.Context, client *core.Client, id string, params CreatePageCustomUserSettingsParams) (*objects.Page, error) {
+	out, _, err := CreatePageCustomUserSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageDatasetParams struct {
@@ -1943,11 +2132,16 @@ func DecodeGetPageDatasetBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPageDataset(ctx context.Context, client *core.Client, id string, params GetPageDatasetParams) (*core.Cursor[objects.Dataset], error) {
+func GetPageDatasetWithResponse(ctx context.Context, client *core.Client, id string, params GetPageDatasetParams) (*core.Cursor[objects.Dataset], *core.Response, error) {
 	var out core.Cursor[objects.Dataset]
 	call := GetPageDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageDataset(ctx context.Context, client *core.Client, id string, params GetPageDatasetParams) (*core.Cursor[objects.Dataset], error) {
+	out, _, err := GetPageDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageDatasetParams struct {
@@ -1988,11 +2182,16 @@ func DecodeCreatePageDatasetBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreatePageDataset(ctx context.Context, client *core.Client, id string, params CreatePageDatasetParams) (*objects.Dataset, error) {
+func CreatePageDatasetWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageDatasetParams) (*objects.Dataset, *core.Response, error) {
 	var out objects.Dataset
 	call := CreatePageDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageDataset(ctx context.Context, client *core.Client, id string, params CreatePageDatasetParams) (*objects.Dataset, error) {
+	out, _, err := CreatePageDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageEventsParams struct {
@@ -2045,11 +2244,16 @@ func DecodeGetPageEventsBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetPageEvents(ctx context.Context, client *core.Client, id string, params GetPageEventsParams) (*core.Cursor[objects.Event], error) {
+func GetPageEventsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageEventsParams) (*core.Cursor[objects.Event], *core.Response, error) {
 	var out core.Cursor[objects.Event]
 	call := GetPageEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageEvents(ctx context.Context, client *core.Client, id string, params GetPageEventsParams) (*core.Cursor[objects.Event], error) {
+	out, _, err := GetPageEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageExtendThreadControlParams struct {
@@ -2092,11 +2296,16 @@ func DecodeCreatePageExtendThreadControlBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreatePageExtendThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageExtendThreadControlParams) (*objects.Page, error) {
+func CreatePageExtendThreadControlWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageExtendThreadControlParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageExtendThreadControlBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageExtendThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageExtendThreadControlParams) (*objects.Page, error) {
+	out, _, err := CreatePageExtendThreadControlWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageFantasyGamesParams struct {
@@ -2133,11 +2342,16 @@ func DecodeGetPageFantasyGamesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPageFantasyGames(ctx context.Context, client *core.Client, id string, params GetPageFantasyGamesParams) (*core.Cursor[objects.FantasyGame], error) {
+func GetPageFantasyGamesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageFantasyGamesParams) (*core.Cursor[objects.FantasyGame], *core.Response, error) {
 	var out core.Cursor[objects.FantasyGame]
 	call := GetPageFantasyGamesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageFantasyGames(ctx context.Context, client *core.Client, id string, params GetPageFantasyGamesParams) (*core.Cursor[objects.FantasyGame], error) {
+	out, _, err := GetPageFantasyGamesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageFeedParams struct {
@@ -2190,11 +2404,16 @@ func DecodeGetPageFeedBatchResponse(response *core.BatchResponse) (*core.Cursor[
 	return &out, nil
 }
 
-func GetPageFeed(ctx context.Context, client *core.Client, id string, params GetPageFeedParams) (*core.Cursor[objects.PagePost], error) {
+func GetPageFeedWithResponse(ctx context.Context, client *core.Client, id string, params GetPageFeedParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPageFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageFeed(ctx context.Context, client *core.Client, id string, params GetPageFeedParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPageFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageFeedParams struct {
@@ -2208,7 +2427,7 @@ type CreatePageFeedParams struct {
 	AttachPlaceSuggestion     *bool                                            `facebook:"attach_place_suggestion"`
 	AttachedMedia             *[]map[string]interface{}                        `facebook:"attached_media"`
 	AudienceExp               *bool                                            `facebook:"audience_exp"`
-	BackdatedTime             *time.Time                                       `facebook:"backdated_time"`
+	BackdatedTime             *core.Time                                       `facebook:"backdated_time"`
 	BackdatedTimeGranularity  *enums.PagefeedBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	BreakingNews              *bool                                            `facebook:"breaking_news"`
 	BreakingNewsExpiration    *uint64                                          `facebook:"breaking_news_expiration"`
@@ -2284,7 +2503,7 @@ type CreatePageFeedParams struct {
 	Ref                       *[]string                                        `facebook:"ref"`
 	ReferenceableImageIds     *[]core.ID                                       `facebook:"referenceable_image_ids"`
 	ReferralID                *core.ID                                         `facebook:"referral_id"`
-	ScheduledPublishTime      *time.Time                                       `facebook:"scheduled_publish_time"`
+	ScheduledPublishTime      *core.Time                                       `facebook:"scheduled_publish_time"`
 	Source                    *string                                          `facebook:"source"`
 	SponsorID                 *core.ID                                         `facebook:"sponsor_id"`
 	SponsorRelationship       *uint64                                          `facebook:"sponsor_relationship"`
@@ -2655,11 +2874,16 @@ func DecodeCreatePageFeedBatchResponse(response *core.BatchResponse) (*objects.P
 	return &out, nil
 }
 
-func CreatePageFeed(ctx context.Context, client *core.Client, id string, params CreatePageFeedParams) (*objects.Page, error) {
+func CreatePageFeedWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageFeedParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageFeed(ctx context.Context, client *core.Client, id string, params CreatePageFeedParams) (*objects.Page, error) {
+	out, _, err := CreatePageFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageGlobalBrandChildrenParams struct {
@@ -2696,11 +2920,16 @@ func DecodeGetPageGlobalBrandChildrenBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetPageGlobalBrandChildren(ctx context.Context, client *core.Client, id string, params GetPageGlobalBrandChildrenParams) (*core.Cursor[objects.Page], error) {
+func GetPageGlobalBrandChildrenWithResponse(ctx context.Context, client *core.Client, id string, params GetPageGlobalBrandChildrenParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPageGlobalBrandChildrenBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageGlobalBrandChildren(ctx context.Context, client *core.Client, id string, params GetPageGlobalBrandChildrenParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPageGlobalBrandChildrenWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageImageCopyrightsParams struct {
@@ -2737,11 +2966,16 @@ func DecodeGetPageImageCopyrightsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetPageImageCopyrights(ctx context.Context, client *core.Client, id string, params GetPageImageCopyrightsParams) (*core.Cursor[objects.ImageCopyright], error) {
+func GetPageImageCopyrightsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageImageCopyrightsParams) (*core.Cursor[objects.ImageCopyright], *core.Response, error) {
 	var out core.Cursor[objects.ImageCopyright]
 	call := GetPageImageCopyrightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageImageCopyrights(ctx context.Context, client *core.Client, id string, params GetPageImageCopyrightsParams) (*core.Cursor[objects.ImageCopyright], error) {
+	out, _, err := GetPageImageCopyrightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageImageCopyrightsParams struct {
@@ -2812,11 +3046,16 @@ func DecodeCreatePageImageCopyrightsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreatePageImageCopyrights(ctx context.Context, client *core.Client, id string, params CreatePageImageCopyrightsParams) (*objects.ImageCopyright, error) {
+func CreatePageImageCopyrightsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageImageCopyrightsParams) (*objects.ImageCopyright, *core.Response, error) {
 	var out objects.ImageCopyright
 	call := CreatePageImageCopyrightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageImageCopyrights(ctx context.Context, client *core.Client, id string, params CreatePageImageCopyrightsParams) (*objects.ImageCopyright, error) {
+	out, _, err := CreatePageImageCopyrightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageIndexedVideosParams struct {
@@ -2853,11 +3092,16 @@ func DecodeGetPageIndexedVideosBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetPageIndexedVideos(ctx context.Context, client *core.Client, id string, params GetPageIndexedVideosParams) (*core.Cursor[objects.AdVideo], error) {
+func GetPageIndexedVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetPageIndexedVideosParams) (*core.Cursor[objects.AdVideo], *core.Response, error) {
 	var out core.Cursor[objects.AdVideo]
 	call := GetPageIndexedVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageIndexedVideos(ctx context.Context, client *core.Client, id string, params GetPageIndexedVideosParams) (*core.Cursor[objects.AdVideo], error) {
+	out, _, err := GetPageIndexedVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageInsightsParams struct {
@@ -2866,8 +3110,8 @@ type GetPageInsightsParams struct {
 	Metric                    *[]map[string]interface{}              `facebook:"metric"`
 	Period                    *enums.PageinsightsPeriodEnumParam     `facebook:"period"`
 	ShowDescriptionFromAPIDoc *bool                                  `facebook:"show_description_from_api_doc"`
-	Since                     *time.Time                             `facebook:"since"`
-	Until                     *time.Time                             `facebook:"until"`
+	Since                     *core.Time                             `facebook:"since"`
+	Until                     *core.Time                             `facebook:"until"`
 	Extra                     core.Params                            `facebook:"-"`
 }
 
@@ -2922,11 +3166,16 @@ func DecodeGetPageInsightsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPageInsights(ctx context.Context, client *core.Client, id string, params GetPageInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetPageInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetPageInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageInsights(ctx context.Context, client *core.Client, id string, params GetPageInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetPageInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageInstagramAccountsParams struct {
@@ -2963,11 +3212,16 @@ func DecodeGetPageInstagramAccountsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetPageInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetPageInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+func GetPageInstagramAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageInstagramAccountsParams) (*core.Cursor[objects.IGUser], *core.Response, error) {
 	var out core.Cursor[objects.IGUser]
 	call := GetPageInstagramAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetPageInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+	out, _, err := GetPageInstagramAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageLeadgenFormsParams struct {
@@ -3004,11 +3258,16 @@ func DecodeGetPageLeadgenFormsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPageLeadgenForms(ctx context.Context, client *core.Client, id string, params GetPageLeadgenFormsParams) (*core.Cursor[objects.LeadgenForm], error) {
+func GetPageLeadgenFormsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageLeadgenFormsParams) (*core.Cursor[objects.LeadgenForm], *core.Response, error) {
 	var out core.Cursor[objects.LeadgenForm]
 	call := GetPageLeadgenFormsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageLeadgenForms(ctx context.Context, client *core.Client, id string, params GetPageLeadgenFormsParams) (*core.Cursor[objects.LeadgenForm], error) {
+	out, _, err := GetPageLeadgenFormsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageLeadgenFormsParams struct {
@@ -3113,11 +3372,16 @@ func DecodeCreatePageLeadgenFormsBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreatePageLeadgenForms(ctx context.Context, client *core.Client, id string, params CreatePageLeadgenFormsParams) (*objects.LeadgenForm, error) {
+func CreatePageLeadgenFormsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageLeadgenFormsParams) (*objects.LeadgenForm, *core.Response, error) {
 	var out objects.LeadgenForm
 	call := CreatePageLeadgenFormsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageLeadgenForms(ctx context.Context, client *core.Client, id string, params CreatePageLeadgenFormsParams) (*objects.LeadgenForm, error) {
+	out, _, err := CreatePageLeadgenFormsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageLikesParams struct {
@@ -3158,11 +3422,16 @@ func DecodeGetPageLikesBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetPageLikes(ctx context.Context, client *core.Client, id string, params GetPageLikesParams) (*core.Cursor[objects.Page], error) {
+func GetPageLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageLikesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPageLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageLikes(ctx context.Context, client *core.Client, id string, params GetPageLikesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPageLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageLiveVideosParams struct {
@@ -3207,11 +3476,16 @@ func DecodeGetPageLiveVideosBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetPageLiveVideos(ctx context.Context, client *core.Client, id string, params GetPageLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
+func GetPageLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetPageLiveVideosParams) (*core.Cursor[objects.LiveVideo], *core.Response, error) {
 	var out core.Cursor[objects.LiveVideo]
 	call := GetPageLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageLiveVideos(ctx context.Context, client *core.Client, id string, params GetPageLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
+	out, _, err := GetPageLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageLiveVideosParams struct {
@@ -3344,11 +3618,16 @@ func DecodeCreatePageLiveVideosBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreatePageLiveVideos(ctx context.Context, client *core.Client, id string, params CreatePageLiveVideosParams) (*objects.LiveVideo, error) {
+func CreatePageLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageLiveVideosParams) (*objects.LiveVideo, *core.Response, error) {
 	var out objects.LiveVideo
 	call := CreatePageLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageLiveVideos(ctx context.Context, client *core.Client, id string, params CreatePageLiveVideosParams) (*objects.LiveVideo, error) {
+	out, _, err := CreatePageLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageLocationsParams struct {
@@ -3389,11 +3668,16 @@ func DecodeDeletePageLocationsBatchResponse(response *core.BatchResponse) (*map[
 	return &out, nil
 }
 
-func DeletePageLocations(ctx context.Context, client *core.Client, id string, params DeletePageLocationsParams) (*map[string]interface{}, error) {
+func DeletePageLocationsWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageLocationsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageLocationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageLocations(ctx context.Context, client *core.Client, id string, params DeletePageLocationsParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageLocationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageLocationsParams struct {
@@ -3430,11 +3714,16 @@ func DecodeGetPageLocationsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetPageLocations(ctx context.Context, client *core.Client, id string, params GetPageLocationsParams) (*core.Cursor[objects.Page], error) {
+func GetPageLocationsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageLocationsParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPageLocationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageLocations(ctx context.Context, client *core.Client, id string, params GetPageLocationsParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPageLocationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageLocationsParams struct {
@@ -3565,11 +3854,16 @@ func DecodeCreatePageLocationsBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreatePageLocations(ctx context.Context, client *core.Client, id string, params CreatePageLocationsParams) (*objects.Page, error) {
+func CreatePageLocationsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageLocationsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageLocationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageLocations(ctx context.Context, client *core.Client, id string, params CreatePageLocationsParams) (*objects.Page, error) {
+	out, _, err := CreatePageLocationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMediaFingerprintsParams struct {
@@ -3610,11 +3904,16 @@ func DecodeGetPageMediaFingerprintsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetPageMediaFingerprints(ctx context.Context, client *core.Client, id string, params GetPageMediaFingerprintsParams) (*core.Cursor[objects.MediaFingerprint], error) {
+func GetPageMediaFingerprintsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMediaFingerprintsParams) (*core.Cursor[objects.MediaFingerprint], *core.Response, error) {
 	var out core.Cursor[objects.MediaFingerprint]
 	call := GetPageMediaFingerprintsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMediaFingerprints(ctx context.Context, client *core.Client, id string, params GetPageMediaFingerprintsParams) (*core.Cursor[objects.MediaFingerprint], error) {
+	out, _, err := GetPageMediaFingerprintsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMediaFingerprintsParams struct {
@@ -3663,11 +3962,16 @@ func DecodeCreatePageMediaFingerprintsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreatePageMediaFingerprints(ctx context.Context, client *core.Client, id string, params CreatePageMediaFingerprintsParams) (*objects.MediaFingerprint, error) {
+func CreatePageMediaFingerprintsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMediaFingerprintsParams) (*objects.MediaFingerprint, *core.Response, error) {
 	var out objects.MediaFingerprint
 	call := CreatePageMediaFingerprintsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMediaFingerprints(ctx context.Context, client *core.Client, id string, params CreatePageMediaFingerprintsParams) (*objects.MediaFingerprint, error) {
+	out, _, err := CreatePageMediaFingerprintsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMessageAttachmentsParams struct {
@@ -3710,11 +4014,16 @@ func DecodeCreatePageMessageAttachmentsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreatePageMessageAttachments(ctx context.Context, client *core.Client, id string, params CreatePageMessageAttachmentsParams) (*map[string]interface{}, error) {
+func CreatePageMessageAttachmentsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMessageAttachmentsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePageMessageAttachmentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMessageAttachments(ctx context.Context, client *core.Client, id string, params CreatePageMessageAttachmentsParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePageMessageAttachmentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageMessageTemplatesParams struct {
@@ -3757,11 +4066,16 @@ func DecodeDeletePageMessageTemplatesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func DeletePageMessageTemplates(ctx context.Context, client *core.Client, id string, params DeletePageMessageTemplatesParams) (*map[string]interface{}, error) {
+func DeletePageMessageTemplatesWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageMessageTemplatesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageMessageTemplatesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageMessageTemplates(ctx context.Context, client *core.Client, id string, params DeletePageMessageTemplatesParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageMessageTemplatesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMessageTemplatesParams struct {
@@ -3822,11 +4136,16 @@ func DecodeGetPageMessageTemplatesBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetPageMessageTemplates(ctx context.Context, client *core.Client, id string, params GetPageMessageTemplatesParams) (*core.Cursor[objects.MessengerBusinessTemplate], error) {
+func GetPageMessageTemplatesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMessageTemplatesParams) (*core.Cursor[objects.MessengerBusinessTemplate], *core.Response, error) {
 	var out core.Cursor[objects.MessengerBusinessTemplate]
 	call := GetPageMessageTemplatesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMessageTemplates(ctx context.Context, client *core.Client, id string, params GetPageMessageTemplatesParams) (*core.Cursor[objects.MessengerBusinessTemplate], error) {
+	out, _, err := GetPageMessageTemplatesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMessageTemplatesParams struct {
@@ -3885,11 +4204,16 @@ func DecodeCreatePageMessageTemplatesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreatePageMessageTemplates(ctx context.Context, client *core.Client, id string, params CreatePageMessageTemplatesParams) (*objects.Page, error) {
+func CreatePageMessageTemplatesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMessageTemplatesParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageMessageTemplatesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMessageTemplates(ctx context.Context, client *core.Client, id string, params CreatePageMessageTemplatesParams) (*objects.Page, error) {
+	out, _, err := CreatePageMessageTemplatesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMessagesParams struct {
@@ -3972,11 +4296,16 @@ func DecodeCreatePageMessagesBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreatePageMessages(ctx context.Context, client *core.Client, id string, params CreatePageMessagesParams) (*objects.Page, error) {
+func CreatePageMessagesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMessagesParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageMessagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMessages(ctx context.Context, client *core.Client, id string, params CreatePageMessagesParams) (*objects.Page, error) {
+	out, _, err := CreatePageMessagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMessagingFeatureReviewParams struct {
@@ -4013,11 +4342,16 @@ func DecodeGetPageMessagingFeatureReviewBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetPageMessagingFeatureReview(ctx context.Context, client *core.Client, id string, params GetPageMessagingFeatureReviewParams) (*core.Cursor[objects.MessagingFeatureReview], error) {
+func GetPageMessagingFeatureReviewWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMessagingFeatureReviewParams) (*core.Cursor[objects.MessagingFeatureReview], *core.Response, error) {
 	var out core.Cursor[objects.MessagingFeatureReview]
 	call := GetPageMessagingFeatureReviewBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMessagingFeatureReview(ctx context.Context, client *core.Client, id string, params GetPageMessagingFeatureReviewParams) (*core.Cursor[objects.MessagingFeatureReview], error) {
+	out, _, err := GetPageMessagingFeatureReviewWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMessengerCallPermissionsParams struct {
@@ -4056,11 +4390,16 @@ func DecodeGetPageMessengerCallPermissionsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetPageMessengerCallPermissions(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallPermissionsParams) (*core.Cursor[objects.MessengerCallPermissions], error) {
+func GetPageMessengerCallPermissionsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallPermissionsParams) (*core.Cursor[objects.MessengerCallPermissions], *core.Response, error) {
 	var out core.Cursor[objects.MessengerCallPermissions]
 	call := GetPageMessengerCallPermissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMessengerCallPermissions(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallPermissionsParams) (*core.Cursor[objects.MessengerCallPermissions], error) {
+	out, _, err := GetPageMessengerCallPermissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMessengerCallSettingsParams struct {
@@ -4097,11 +4436,16 @@ func DecodeGetPageMessengerCallSettingsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetPageMessengerCallSettings(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallSettingsParams) (*core.Cursor[objects.MessengerCallSettings], error) {
+func GetPageMessengerCallSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallSettingsParams) (*core.Cursor[objects.MessengerCallSettings], *core.Response, error) {
 	var out core.Cursor[objects.MessengerCallSettings]
 	call := GetPageMessengerCallSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMessengerCallSettings(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallSettingsParams) (*core.Cursor[objects.MessengerCallSettings], error) {
+	out, _, err := GetPageMessengerCallSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMessengerCallSettingsParams struct {
@@ -4158,11 +4502,16 @@ func DecodeCreatePageMessengerCallSettingsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreatePageMessengerCallSettings(ctx context.Context, client *core.Client, id string, params CreatePageMessengerCallSettingsParams) (*objects.Page, error) {
+func CreatePageMessengerCallSettingsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMessengerCallSettingsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageMessengerCallSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMessengerCallSettings(ctx context.Context, client *core.Client, id string, params CreatePageMessengerCallSettingsParams) (*objects.Page, error) {
+	out, _, err := CreatePageMessengerCallSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMessengerLeadFormsParams struct {
@@ -4199,11 +4548,16 @@ func DecodeGetPageMessengerLeadFormsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetPageMessengerLeadForms(ctx context.Context, client *core.Client, id string, params GetPageMessengerLeadFormsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStepList], error) {
+func GetPageMessengerLeadFormsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMessengerLeadFormsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStepList], *core.Response, error) {
 	var out core.Cursor[objects.MessengerAdsPartialAutomatedStepList]
 	call := GetPageMessengerLeadFormsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMessengerLeadForms(ctx context.Context, client *core.Client, id string, params GetPageMessengerLeadFormsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStepList], error) {
+	out, _, err := GetPageMessengerLeadFormsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMessengerLeadFormsParams struct {
@@ -4282,11 +4636,16 @@ func DecodeCreatePageMessengerLeadFormsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreatePageMessengerLeadForms(ctx context.Context, client *core.Client, id string, params CreatePageMessengerLeadFormsParams) (*objects.Page, error) {
+func CreatePageMessengerLeadFormsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMessengerLeadFormsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageMessengerLeadFormsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMessengerLeadForms(ctx context.Context, client *core.Client, id string, params CreatePageMessengerLeadFormsParams) (*objects.Page, error) {
+	out, _, err := CreatePageMessengerLeadFormsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageMessengerProfileParams struct {
@@ -4329,11 +4688,16 @@ func DecodeDeletePageMessengerProfileBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func DeletePageMessengerProfile(ctx context.Context, client *core.Client, id string, params DeletePageMessengerProfileParams) (*map[string]interface{}, error) {
+func DeletePageMessengerProfileWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageMessengerProfileParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageMessengerProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageMessengerProfile(ctx context.Context, client *core.Client, id string, params DeletePageMessengerProfileParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageMessengerProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageMessengerProfileParams struct {
@@ -4374,11 +4738,16 @@ func DecodeGetPageMessengerProfileBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetPageMessengerProfile(ctx context.Context, client *core.Client, id string, params GetPageMessengerProfileParams) (*core.Cursor[objects.MessengerProfile], error) {
+func GetPageMessengerProfileWithResponse(ctx context.Context, client *core.Client, id string, params GetPageMessengerProfileParams) (*core.Cursor[objects.MessengerProfile], *core.Response, error) {
 	var out core.Cursor[objects.MessengerProfile]
 	call := GetPageMessengerProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageMessengerProfile(ctx context.Context, client *core.Client, id string, params GetPageMessengerProfileParams) (*core.Cursor[objects.MessengerProfile], error) {
+	out, _, err := GetPageMessengerProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageMessengerProfileParams struct {
@@ -4447,11 +4816,16 @@ func DecodeCreatePageMessengerProfileBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreatePageMessengerProfile(ctx context.Context, client *core.Client, id string, params CreatePageMessengerProfileParams) (*objects.Page, error) {
+func CreatePageMessengerProfileWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageMessengerProfileParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageMessengerProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageMessengerProfile(ctx context.Context, client *core.Client, id string, params CreatePageMessengerProfileParams) (*objects.Page, error) {
+	out, _, err := CreatePageMessengerProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageModerateConversationsParams struct {
@@ -4492,11 +4866,16 @@ func DecodeCreatePageModerateConversationsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreatePageModerateConversations(ctx context.Context, client *core.Client, id string, params CreatePageModerateConversationsParams) (*objects.Page, error) {
+func CreatePageModerateConversationsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageModerateConversationsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageModerateConversationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageModerateConversations(ctx context.Context, client *core.Client, id string, params CreatePageModerateConversationsParams) (*objects.Page, error) {
+	out, _, err := CreatePageModerateConversationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageNlpConfigsParams struct {
@@ -4561,11 +4940,16 @@ func DecodeCreatePageNlpConfigsBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreatePageNlpConfigs(ctx context.Context, client *core.Client, id string, params CreatePageNlpConfigsParams) (*objects.Page, error) {
+func CreatePageNlpConfigsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageNlpConfigsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageNlpConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageNlpConfigs(ctx context.Context, client *core.Client, id string, params CreatePageNlpConfigsParams) (*objects.Page, error) {
+	out, _, err := CreatePageNlpConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageNotificationMessageTokensParams struct {
@@ -4573,9 +4957,9 @@ type GetPageNotificationMessageTokensParams struct {
 	DoNotReturnDuplicates       *bool                                                      `facebook:"do_not_return_duplicates"`
 	HasReceivedMarketingMessage *bool                                                      `facebook:"has_received_marketing_message"`
 	OptInSource                 *[]enums.PagenotificationMessageTokensOptInSourceEnumParam `facebook:"opt_in_source"`
-	Since                       *time.Time                                                 `facebook:"since"`
+	Since                       *core.Time                                                 `facebook:"since"`
 	SubscriberTagIds            *[]core.ID                                                 `facebook:"subscriber_tag_ids"`
-	Until                       *time.Time                                                 `facebook:"until"`
+	Until                       *core.Time                                                 `facebook:"until"`
 	Extra                       core.Params                                                `facebook:"-"`
 }
 
@@ -4630,11 +5014,16 @@ func DecodeGetPageNotificationMessageTokensBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetPageNotificationMessageTokens(ctx context.Context, client *core.Client, id string, params GetPageNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
+func GetPageNotificationMessageTokensWithResponse(ctx context.Context, client *core.Client, id string, params GetPageNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], *core.Response, error) {
 	var out core.Cursor[objects.UserPageOneTimeOptInTokenSettings]
 	call := GetPageNotificationMessageTokensBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageNotificationMessageTokens(ctx context.Context, client *core.Client, id string, params GetPageNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
+	out, _, err := GetPageNotificationMessageTokensWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageNotificationMessagesDevSupportParams struct {
@@ -4675,11 +5064,16 @@ func DecodeCreatePageNotificationMessagesDevSupportBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreatePageNotificationMessagesDevSupport(ctx context.Context, client *core.Client, id string, params CreatePageNotificationMessagesDevSupportParams) (*objects.Page, error) {
+func CreatePageNotificationMessagesDevSupportWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageNotificationMessagesDevSupportParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageNotificationMessagesDevSupportBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageNotificationMessagesDevSupport(ctx context.Context, client *core.Client, id string, params CreatePageNotificationMessagesDevSupportParams) (*objects.Page, error) {
+	out, _, err := CreatePageNotificationMessagesDevSupportWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePageBackedInstagramAccountsParams struct {
@@ -4716,11 +5110,16 @@ func DecodeGetPagePageBackedInstagramAccountsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetPagePageBackedInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetPagePageBackedInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+func GetPagePageBackedInstagramAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePageBackedInstagramAccountsParams) (*core.Cursor[objects.IGUser], *core.Response, error) {
 	var out core.Cursor[objects.IGUser]
 	call := GetPagePageBackedInstagramAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePageBackedInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetPagePageBackedInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
+	out, _, err := GetPagePageBackedInstagramAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePageBackedInstagramAccountsParams struct {
@@ -4757,11 +5156,16 @@ func DecodeCreatePagePageBackedInstagramAccountsBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreatePagePageBackedInstagramAccounts(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedInstagramAccountsParams) (*objects.IGUser, error) {
+func CreatePagePageBackedInstagramAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedInstagramAccountsParams) (*objects.IGUser, *core.Response, error) {
 	var out objects.IGUser
 	call := CreatePagePageBackedInstagramAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePageBackedInstagramAccounts(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedInstagramAccountsParams) (*objects.IGUser, error) {
+	out, _, err := CreatePagePageBackedInstagramAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePageBackedThreadsAccountsParams struct {
@@ -4798,11 +5202,16 @@ func DecodeCreatePagePageBackedThreadsAccountsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreatePagePageBackedThreadsAccounts(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedThreadsAccountsParams) (*map[string]interface{}, error) {
+func CreatePagePageBackedThreadsAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedThreadsAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePagePageBackedThreadsAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePageBackedThreadsAccounts(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedThreadsAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePagePageBackedThreadsAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePageWhatsappNumberVerificationParams struct {
@@ -4845,11 +5254,16 @@ func DecodeCreatePagePageWhatsappNumberVerificationBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreatePagePageWhatsappNumberVerification(ctx context.Context, client *core.Client, id string, params CreatePagePageWhatsappNumberVerificationParams) (*objects.Page, error) {
+func CreatePagePageWhatsappNumberVerificationWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePageWhatsappNumberVerificationParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePagePageWhatsappNumberVerificationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePageWhatsappNumberVerification(ctx context.Context, client *core.Client, id string, params CreatePagePageWhatsappNumberVerificationParams) (*objects.Page, error) {
+	out, _, err := CreatePagePageWhatsappNumberVerificationWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePassThreadControlParams struct {
@@ -4896,11 +5310,16 @@ func DecodeCreatePagePassThreadControlBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreatePagePassThreadControl(ctx context.Context, client *core.Client, id string, params CreatePagePassThreadControlParams) (*objects.Page, error) {
+func CreatePagePassThreadControlWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePassThreadControlParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePagePassThreadControlBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePassThreadControl(ctx context.Context, client *core.Client, id string, params CreatePagePassThreadControlParams) (*objects.Page, error) {
+	out, _, err := CreatePagePassThreadControlWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePersonasParams struct {
@@ -4937,11 +5356,16 @@ func DecodeGetPagePersonasBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPagePersonas(ctx context.Context, client *core.Client, id string, params GetPagePersonasParams) (*core.Cursor[objects.Persona], error) {
+func GetPagePersonasWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePersonasParams) (*core.Cursor[objects.Persona], *core.Response, error) {
 	var out core.Cursor[objects.Persona]
 	call := GetPagePersonasBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePersonas(ctx context.Context, client *core.Client, id string, params GetPagePersonasParams) (*core.Cursor[objects.Persona], error) {
+	out, _, err := GetPagePersonasWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePersonasParams struct {
@@ -4982,11 +5406,16 @@ func DecodeCreatePagePersonasBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreatePagePersonas(ctx context.Context, client *core.Client, id string, params CreatePagePersonasParams) (*objects.Persona, error) {
+func CreatePagePersonasWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePersonasParams) (*objects.Persona, *core.Response, error) {
 	var out objects.Persona
 	call := CreatePagePersonasBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePersonas(ctx context.Context, client *core.Client, id string, params CreatePagePersonasParams) (*objects.Persona, error) {
+	out, _, err := CreatePagePersonasWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePhotoStoriesParams struct {
@@ -5027,11 +5456,16 @@ func DecodeCreatePagePhotoStoriesBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreatePagePhotoStories(ctx context.Context, client *core.Client, id string, params CreatePagePhotoStoriesParams) (*objects.Page, error) {
+func CreatePagePhotoStoriesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePhotoStoriesParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePagePhotoStoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePhotoStories(ctx context.Context, client *core.Client, id string, params CreatePagePhotoStoriesParams) (*objects.Page, error) {
+	out, _, err := CreatePagePhotoStoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePhotosParams struct {
@@ -5080,11 +5514,16 @@ func DecodeGetPagePhotosBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetPagePhotos(ctx context.Context, client *core.Client, id string, params GetPagePhotosParams) (*core.Cursor[objects.Photo], error) {
+func GetPagePhotosWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePhotosParams) (*core.Cursor[objects.Photo], *core.Response, error) {
 	var out core.Cursor[objects.Photo]
 	call := GetPagePhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePhotos(ctx context.Context, client *core.Client, id string, params GetPagePhotosParams) (*core.Cursor[objects.Photo], error) {
+	out, _, err := GetPagePhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePhotosParams struct {
@@ -5095,7 +5534,7 @@ type CreatePagePhotosParams struct {
 	ApplicationID                         *core.ID                                           `facebook:"application_id"`
 	Attempt                               *uint64                                            `facebook:"attempt"`
 	AudienceExp                           *bool                                              `facebook:"audience_exp"`
-	BackdatedTime                         *time.Time                                         `facebook:"backdated_time"`
+	BackdatedTime                         *core.Time                                         `facebook:"backdated_time"`
 	BackdatedTimeGranularity              *enums.PagephotosBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	Caption                               *string                                            `facebook:"caption"`
 	ComposerSessionID                     *core.ID                                           `facebook:"composer_session_id"`
@@ -5345,11 +5784,16 @@ func DecodeCreatePagePhotosBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func CreatePagePhotos(ctx context.Context, client *core.Client, id string, params CreatePagePhotosParams) (*objects.Photo, error) {
+func CreatePagePhotosWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePhotosParams) (*objects.Photo, *core.Response, error) {
 	var out objects.Photo
 	call := CreatePagePhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePhotos(ctx context.Context, client *core.Client, id string, params CreatePagePhotosParams) (*objects.Photo, error) {
+	out, _, err := CreatePagePhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePictureParams struct {
@@ -5402,11 +5846,16 @@ func DecodeGetPagePictureBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPagePicture(ctx context.Context, client *core.Client, id string, params GetPagePictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+func GetPagePictureWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePictureParams) (*core.Cursor[objects.ProfilePictureSource], *core.Response, error) {
 	var out core.Cursor[objects.ProfilePictureSource]
 	call := GetPagePictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePicture(ctx context.Context, client *core.Client, id string, params GetPagePictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	out, _, err := GetPagePictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePagePictureParams struct {
@@ -5547,11 +5996,16 @@ func DecodeCreatePagePictureBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreatePagePicture(ctx context.Context, client *core.Client, id string, params CreatePagePictureParams) (*objects.ProfilePictureSource, error) {
+func CreatePagePictureWithResponse(ctx context.Context, client *core.Client, id string, params CreatePagePictureParams) (*objects.ProfilePictureSource, *core.Response, error) {
 	var out objects.ProfilePictureSource
 	call := CreatePagePictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePagePicture(ctx context.Context, client *core.Client, id string, params CreatePagePictureParams) (*objects.ProfilePictureSource, error) {
+	out, _, err := CreatePagePictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePostsParams struct {
@@ -5608,11 +6062,16 @@ func DecodeGetPagePostsBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetPagePosts(ctx context.Context, client *core.Client, id string, params GetPagePostsParams) (*core.Cursor[objects.PagePost], error) {
+func GetPagePostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePostsParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPagePostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePosts(ctx context.Context, client *core.Client, id string, params GetPagePostsParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPagePostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageProductCatalogsParams struct {
@@ -5649,11 +6108,16 @@ func DecodeGetPageProductCatalogsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetPageProductCatalogs(ctx context.Context, client *core.Client, id string, params GetPageProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetPageProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetPageProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageProductCatalogs(ctx context.Context, client *core.Client, id string, params GetPageProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetPageProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePublishedPostsParams struct {
@@ -5706,11 +6170,16 @@ func DecodeGetPagePublishedPostsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPagePublishedPosts(ctx context.Context, client *core.Client, id string, params GetPagePublishedPostsParams) (*core.Cursor[objects.PagePost], error) {
+func GetPagePublishedPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePublishedPostsParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPagePublishedPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePublishedPosts(ctx context.Context, client *core.Client, id string, params GetPagePublishedPostsParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPagePublishedPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageRatingsParams struct {
@@ -5747,11 +6216,16 @@ func DecodeGetPageRatingsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPageRatings(ctx context.Context, client *core.Client, id string, params GetPageRatingsParams) (*core.Cursor[objects.Recommendation], error) {
+func GetPageRatingsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageRatingsParams) (*core.Cursor[objects.Recommendation], *core.Response, error) {
 	var out core.Cursor[objects.Recommendation]
 	call := GetPageRatingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageRatings(ctx context.Context, client *core.Client, id string, params GetPageRatingsParams) (*core.Cursor[objects.Recommendation], error) {
+	out, _, err := GetPageRatingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageReleaseThreadControlParams struct {
@@ -5790,11 +6264,16 @@ func DecodeCreatePageReleaseThreadControlBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreatePageReleaseThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageReleaseThreadControlParams) (*objects.Page, error) {
+func CreatePageReleaseThreadControlWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageReleaseThreadControlParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageReleaseThreadControlBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageReleaseThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageReleaseThreadControlParams) (*objects.Page, error) {
+	out, _, err := CreatePageReleaseThreadControlWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageRequestThreadControlParams struct {
@@ -5837,11 +6316,16 @@ func DecodeCreatePageRequestThreadControlBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreatePageRequestThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageRequestThreadControlParams) (*objects.Page, error) {
+func CreatePageRequestThreadControlWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageRequestThreadControlParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageRequestThreadControlBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageRequestThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageRequestThreadControlParams) (*objects.Page, error) {
+	out, _, err := CreatePageRequestThreadControlWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageRolesParams struct {
@@ -5886,11 +6370,16 @@ func DecodeGetPageRolesBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetPageRoles(ctx context.Context, client *core.Client, id string, params GetPageRolesParams) (*core.Cursor[objects.User], error) {
+func GetPageRolesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageRolesParams) (*core.Cursor[objects.User], *core.Response, error) {
 	var out core.Cursor[objects.User]
 	call := GetPageRolesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageRoles(ctx context.Context, client *core.Client, id string, params GetPageRolesParams) (*core.Cursor[objects.User], error) {
+	out, _, err := GetPageRolesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageRtbDynamicPostsParams struct {
@@ -5927,11 +6416,16 @@ func DecodeGetPageRtbDynamicPostsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetPageRtbDynamicPosts(ctx context.Context, client *core.Client, id string, params GetPageRtbDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], error) {
+func GetPageRtbDynamicPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageRtbDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], *core.Response, error) {
 	var out core.Cursor[objects.RTBDynamicPost]
 	call := GetPageRtbDynamicPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageRtbDynamicPosts(ctx context.Context, client *core.Client, id string, params GetPageRtbDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], error) {
+	out, _, err := GetPageRtbDynamicPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageScheduledLiveVideoParams struct {
@@ -5978,11 +6472,16 @@ func DecodeCreatePageScheduledLiveVideoBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreatePageScheduledLiveVideo(ctx context.Context, client *core.Client, id string, params CreatePageScheduledLiveVideoParams) (*objects.ScheduledLiveVideo, error) {
+func CreatePageScheduledLiveVideoWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageScheduledLiveVideoParams) (*objects.ScheduledLiveVideo, *core.Response, error) {
 	var out objects.ScheduledLiveVideo
 	call := CreatePageScheduledLiveVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageScheduledLiveVideo(ctx context.Context, client *core.Client, id string, params CreatePageScheduledLiveVideoParams) (*objects.ScheduledLiveVideo, error) {
+	out, _, err := CreatePageScheduledLiveVideoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageScheduledPostsParams struct {
@@ -6019,11 +6518,16 @@ func DecodeGetPageScheduledPostsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPageScheduledPosts(ctx context.Context, client *core.Client, id string, params GetPageScheduledPostsParams) (*core.Cursor[objects.PagePost], error) {
+func GetPageScheduledPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageScheduledPostsParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPageScheduledPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageScheduledPosts(ctx context.Context, client *core.Client, id string, params GetPageScheduledPostsParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPageScheduledPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageSettingsParams struct {
@@ -6060,11 +6564,16 @@ func DecodeGetPageSettingsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPageSettings(ctx context.Context, client *core.Client, id string, params GetPageSettingsParams) (*core.Cursor[objects.PageSettings], error) {
+func GetPageSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageSettingsParams) (*core.Cursor[objects.PageSettings], *core.Response, error) {
 	var out core.Cursor[objects.PageSettings]
 	call := GetPageSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageSettings(ctx context.Context, client *core.Client, id string, params GetPageSettingsParams) (*core.Cursor[objects.PageSettings], error) {
+	out, _, err := GetPageSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageSettingsParams struct {
@@ -6105,11 +6614,16 @@ func DecodeCreatePageSettingsBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreatePageSettings(ctx context.Context, client *core.Client, id string, params CreatePageSettingsParams) (*objects.Page, error) {
+func CreatePageSettingsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageSettingsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageSettings(ctx context.Context, client *core.Client, id string, params CreatePageSettingsParams) (*objects.Page, error) {
+	out, _, err := CreatePageSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageShopSetupStatusParams struct {
@@ -6146,11 +6660,16 @@ func DecodeGetPageShopSetupStatusBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetPageShopSetupStatus(ctx context.Context, client *core.Client, id string, params GetPageShopSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], error) {
+func GetPageShopSetupStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetPageShopSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], *core.Response, error) {
 	var out core.Cursor[objects.CommerceMerchantSettingsSetupStatus]
 	call := GetPageShopSetupStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageShopSetupStatus(ctx context.Context, client *core.Client, id string, params GetPageShopSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], error) {
+	out, _, err := GetPageShopSetupStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageSpaceParticipantsParams struct {
@@ -6187,11 +6706,16 @@ func DecodeGetPageSpaceParticipantsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetPageSpaceParticipants(ctx context.Context, client *core.Client, id string, params GetPageSpaceParticipantsParams) (*core.Cursor[objects.Page], error) {
+func GetPageSpaceParticipantsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageSpaceParticipantsParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPageSpaceParticipantsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageSpaceParticipants(ctx context.Context, client *core.Client, id string, params GetPageSpaceParticipantsParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPageSpaceParticipantsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageSpaceParticipantsParams struct {
@@ -6232,11 +6756,16 @@ func DecodeCreatePageSpaceParticipantsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreatePageSpaceParticipants(ctx context.Context, client *core.Client, id string, params CreatePageSpaceParticipantsParams) (*objects.Page, error) {
+func CreatePageSpaceParticipantsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageSpaceParticipantsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageSpaceParticipantsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageSpaceParticipants(ctx context.Context, client *core.Client, id string, params CreatePageSpaceParticipantsParams) (*objects.Page, error) {
+	out, _, err := CreatePageSpaceParticipantsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageStoreLocationsParams struct {
@@ -6273,17 +6802,22 @@ func DecodeGetPageStoreLocationsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPageStoreLocations(ctx context.Context, client *core.Client, id string, params GetPageStoreLocationsParams) (*core.Cursor[objects.StoreLocation], error) {
+func GetPageStoreLocationsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageStoreLocationsParams) (*core.Cursor[objects.StoreLocation], *core.Response, error) {
 	var out core.Cursor[objects.StoreLocation]
 	call := GetPageStoreLocationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageStoreLocations(ctx context.Context, client *core.Client, id string, params GetPageStoreLocationsParams) (*core.Cursor[objects.StoreLocation], error) {
+	out, _, err := GetPageStoreLocationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageStoriesParams struct {
-	Since  *time.Time                          `facebook:"since"`
+	Since  *core.Time                          `facebook:"since"`
 	Status *[]enums.PagestoriesStatusEnumParam `facebook:"status"`
-	Until  *time.Time                          `facebook:"until"`
+	Until  *core.Time                          `facebook:"until"`
 	Extra  core.Params                         `facebook:"-"`
 }
 
@@ -6326,11 +6860,16 @@ func DecodeGetPageStoriesBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPageStories(ctx context.Context, client *core.Client, id string, params GetPageStoriesParams) (*core.Cursor[objects.Stories], error) {
+func GetPageStoriesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageStoriesParams) (*core.Cursor[objects.Stories], *core.Response, error) {
 	var out core.Cursor[objects.Stories]
 	call := GetPageStoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageStories(ctx context.Context, client *core.Client, id string, params GetPageStoriesParams) (*core.Cursor[objects.Stories], error) {
+	out, _, err := GetPageStoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageSubscribedAppsParams struct {
@@ -6367,11 +6906,16 @@ func DecodeDeletePageSubscribedAppsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func DeletePageSubscribedApps(ctx context.Context, client *core.Client, id string, params DeletePageSubscribedAppsParams) (*map[string]interface{}, error) {
+func DeletePageSubscribedAppsWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageSubscribedAppsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageSubscribedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageSubscribedApps(ctx context.Context, client *core.Client, id string, params DeletePageSubscribedAppsParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageSubscribedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageSubscribedAppsParams struct {
@@ -6408,11 +6952,16 @@ func DecodeGetPageSubscribedAppsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetPageSubscribedApps(ctx context.Context, client *core.Client, id string, params GetPageSubscribedAppsParams) (*core.Cursor[objects.Application], error) {
+func GetPageSubscribedAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageSubscribedAppsParams) (*core.Cursor[objects.Application], *core.Response, error) {
 	var out core.Cursor[objects.Application]
 	call := GetPageSubscribedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageSubscribedApps(ctx context.Context, client *core.Client, id string, params GetPageSubscribedAppsParams) (*core.Cursor[objects.Application], error) {
+	out, _, err := GetPageSubscribedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageSubscribedAppsParams struct {
@@ -6451,11 +7000,16 @@ func DecodeCreatePageSubscribedAppsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreatePageSubscribedApps(ctx context.Context, client *core.Client, id string, params CreatePageSubscribedAppsParams) (*objects.Page, error) {
+func CreatePageSubscribedAppsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageSubscribedAppsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageSubscribedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageSubscribedApps(ctx context.Context, client *core.Client, id string, params CreatePageSubscribedAppsParams) (*objects.Page, error) {
+	out, _, err := CreatePageSubscribedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageTabsParams struct {
@@ -6496,11 +7050,16 @@ func DecodeGetPageTabsBatchResponse(response *core.BatchResponse) (*core.Cursor[
 	return &out, nil
 }
 
-func GetPageTabs(ctx context.Context, client *core.Client, id string, params GetPageTabsParams) (*core.Cursor[objects.Tab], error) {
+func GetPageTabsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageTabsParams) (*core.Cursor[objects.Tab], *core.Response, error) {
 	var out core.Cursor[objects.Tab]
 	call := GetPageTabsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageTabs(ctx context.Context, client *core.Client, id string, params GetPageTabsParams) (*core.Cursor[objects.Tab], error) {
+	out, _, err := GetPageTabsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageTaggedParams struct {
@@ -6537,11 +7096,16 @@ func DecodeGetPageTaggedBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetPageTagged(ctx context.Context, client *core.Client, id string, params GetPageTaggedParams) (*core.Cursor[objects.PagePost], error) {
+func GetPageTaggedWithResponse(ctx context.Context, client *core.Client, id string, params GetPageTaggedParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPageTaggedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageTagged(ctx context.Context, client *core.Client, id string, params GetPageTaggedParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPageTaggedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageTakeThreadControlParams struct {
@@ -6584,11 +7148,16 @@ func DecodeCreatePageTakeThreadControlBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreatePageTakeThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageTakeThreadControlParams) (*objects.Page, error) {
+func CreatePageTakeThreadControlWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageTakeThreadControlParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageTakeThreadControlBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageTakeThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageTakeThreadControlParams) (*objects.Page, error) {
+	out, _, err := CreatePageTakeThreadControlWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageThreadOwnerParams struct {
@@ -6627,11 +7196,16 @@ func DecodeGetPageThreadOwnerBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetPageThreadOwner(ctx context.Context, client *core.Client, id string, params GetPageThreadOwnerParams) (*core.Cursor[objects.PageThreadOwner], error) {
+func GetPageThreadOwnerWithResponse(ctx context.Context, client *core.Client, id string, params GetPageThreadOwnerParams) (*core.Cursor[objects.PageThreadOwner], *core.Response, error) {
 	var out core.Cursor[objects.PageThreadOwner]
 	call := GetPageThreadOwnerBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageThreadOwner(ctx context.Context, client *core.Client, id string, params GetPageThreadOwnerParams) (*core.Cursor[objects.PageThreadOwner], error) {
+	out, _, err := GetPageThreadOwnerWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageThreadsParams struct {
@@ -6684,11 +7258,16 @@ func DecodeGetPageThreadsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetPageThreads(ctx context.Context, client *core.Client, id string, params GetPageThreadsParams) (*core.Cursor[objects.UnifiedThread], error) {
+func GetPageThreadsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageThreadsParams) (*core.Cursor[objects.UnifiedThread], *core.Response, error) {
 	var out core.Cursor[objects.UnifiedThread]
 	call := GetPageThreadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageThreads(ctx context.Context, client *core.Client, id string, params GetPageThreadsParams) (*core.Cursor[objects.UnifiedThread], error) {
+	out, _, err := GetPageThreadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageUnlinkAccountsParams struct {
@@ -6727,11 +7306,16 @@ func DecodeCreatePageUnlinkAccountsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreatePageUnlinkAccounts(ctx context.Context, client *core.Client, id string, params CreatePageUnlinkAccountsParams) (*objects.Page, error) {
+func CreatePageUnlinkAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageUnlinkAccountsParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := CreatePageUnlinkAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageUnlinkAccounts(ctx context.Context, client *core.Client, id string, params CreatePageUnlinkAccountsParams) (*objects.Page, error) {
+	out, _, err := CreatePageUnlinkAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageVideoCopyrightRulesParams struct {
@@ -6776,11 +7360,16 @@ func DecodeGetPageVideoCopyrightRulesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetPageVideoCopyrightRules(ctx context.Context, client *core.Client, id string, params GetPageVideoCopyrightRulesParams) (*core.Cursor[objects.VideoCopyrightRule], error) {
+func GetPageVideoCopyrightRulesWithResponse(ctx context.Context, client *core.Client, id string, params GetPageVideoCopyrightRulesParams) (*core.Cursor[objects.VideoCopyrightRule], *core.Response, error) {
 	var out core.Cursor[objects.VideoCopyrightRule]
 	call := GetPageVideoCopyrightRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageVideoCopyrightRules(ctx context.Context, client *core.Client, id string, params GetPageVideoCopyrightRulesParams) (*core.Cursor[objects.VideoCopyrightRule], error) {
+	out, _, err := GetPageVideoCopyrightRulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageVideoCopyrightRulesParams struct {
@@ -6821,11 +7410,16 @@ func DecodeCreatePageVideoCopyrightRulesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreatePageVideoCopyrightRules(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightRulesParams) (*objects.VideoCopyrightRule, error) {
+func CreatePageVideoCopyrightRulesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightRulesParams) (*objects.VideoCopyrightRule, *core.Response, error) {
 	var out objects.VideoCopyrightRule
 	call := CreatePageVideoCopyrightRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageVideoCopyrightRules(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightRulesParams) (*objects.VideoCopyrightRule, error) {
+	out, _, err := CreatePageVideoCopyrightRulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageVideoCopyrightsParams struct {
@@ -6912,11 +7506,16 @@ func DecodeCreatePageVideoCopyrightsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreatePageVideoCopyrights(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightsParams) (*objects.VideoCopyright, error) {
+func CreatePageVideoCopyrightsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightsParams) (*objects.VideoCopyright, *core.Response, error) {
 	var out objects.VideoCopyright
 	call := CreatePageVideoCopyrightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageVideoCopyrights(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightsParams) (*objects.VideoCopyright, error) {
+	out, _, err := CreatePageVideoCopyrightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageVideoListsParams struct {
@@ -6953,16 +7552,21 @@ func DecodeGetPageVideoListsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetPageVideoLists(ctx context.Context, client *core.Client, id string, params GetPageVideoListsParams) (*core.Cursor[objects.VideoList], error) {
+func GetPageVideoListsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageVideoListsParams) (*core.Cursor[objects.VideoList], *core.Response, error) {
 	var out core.Cursor[objects.VideoList]
 	call := GetPageVideoListsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageVideoLists(ctx context.Context, client *core.Client, id string, params GetPageVideoListsParams) (*core.Cursor[objects.VideoList], error) {
+	out, _, err := GetPageVideoListsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageVideoReelsParams struct {
-	Since *time.Time  `facebook:"since"`
-	Until *time.Time  `facebook:"until"`
+	Since *core.Time  `facebook:"since"`
+	Until *core.Time  `facebook:"until"`
 	Extra core.Params `facebook:"-"`
 }
 
@@ -7002,18 +7606,23 @@ func DecodeGetPageVideoReelsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetPageVideoReels(ctx context.Context, client *core.Client, id string, params GetPageVideoReelsParams) (*core.Cursor[objects.AdVideo], error) {
+func GetPageVideoReelsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageVideoReelsParams) (*core.Cursor[objects.AdVideo], *core.Response, error) {
 	var out core.Cursor[objects.AdVideo]
 	call := GetPageVideoReelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageVideoReels(ctx context.Context, client *core.Client, id string, params GetPageVideoReelsParams) (*core.Cursor[objects.AdVideo], error) {
+	out, _, err := GetPageVideoReelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageVideoReelsParams struct {
 	Description          *string                                  `facebook:"description"`
 	FeedTargeting        *map[string]interface{}                  `facebook:"feed_targeting"`
 	Place                *string                                  `facebook:"place"`
-	ScheduledPublishTime *time.Time                               `facebook:"scheduled_publish_time"`
+	ScheduledPublishTime *core.Time                               `facebook:"scheduled_publish_time"`
 	Targeting            *map[string]interface{}                  `facebook:"targeting"`
 	Title                *string                                  `facebook:"title"`
 	UploadPhase          enums.PagevideoReelsUploadPhaseEnumParam `facebook:"upload_phase"`
@@ -7077,18 +7686,23 @@ func DecodeCreatePageVideoReelsBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func CreatePageVideoReels(ctx context.Context, client *core.Client, id string, params CreatePageVideoReelsParams) (*objects.AdVideo, error) {
+func CreatePageVideoReelsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageVideoReelsParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreatePageVideoReelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageVideoReels(ctx context.Context, client *core.Client, id string, params CreatePageVideoReelsParams) (*objects.AdVideo, error) {
+	out, _, err := CreatePageVideoReelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageVideoStoriesParams struct {
 	Description          *string                                    `facebook:"description"`
 	FeedTargeting        *map[string]interface{}                    `facebook:"feed_targeting"`
 	Place                *string                                    `facebook:"place"`
-	ScheduledPublishTime *time.Time                                 `facebook:"scheduled_publish_time"`
+	ScheduledPublishTime *core.Time                                 `facebook:"scheduled_publish_time"`
 	Targeting            *map[string]interface{}                    `facebook:"targeting"`
 	Title                *string                                    `facebook:"title"`
 	UploadPhase          enums.PagevideoStoriesUploadPhaseEnumParam `facebook:"upload_phase"`
@@ -7152,11 +7766,16 @@ func DecodeCreatePageVideoStoriesBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func CreatePageVideoStories(ctx context.Context, client *core.Client, id string, params CreatePageVideoStoriesParams) (*map[string]interface{}, error) {
+func CreatePageVideoStoriesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageVideoStoriesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePageVideoStoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageVideoStories(ctx context.Context, client *core.Client, id string, params CreatePageVideoStoriesParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePageVideoStoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageVideosParams struct {
@@ -7197,11 +7816,16 @@ func DecodeGetPageVideosBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetPageVideos(ctx context.Context, client *core.Client, id string, params GetPageVideosParams) (*core.Cursor[objects.AdVideo], error) {
+func GetPageVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetPageVideosParams) (*core.Cursor[objects.AdVideo], *core.Response, error) {
 	var out core.Cursor[objects.AdVideo]
 	call := GetPageVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageVideos(ctx context.Context, client *core.Client, id string, params GetPageVideosParams) (*core.Cursor[objects.AdVideo], error) {
+	out, _, err := GetPageVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageVideosParams struct {
@@ -7602,11 +8226,16 @@ func DecodeCreatePageVideosBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func CreatePageVideos(ctx context.Context, client *core.Client, id string, params CreatePageVideosParams) (*objects.AdVideo, error) {
+func CreatePageVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageVideosParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreatePageVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageVideos(ctx context.Context, client *core.Client, id string, params CreatePageVideosParams) (*objects.AdVideo, error) {
+	out, _, err := CreatePageVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageVisitorPostsParams struct {
@@ -7659,11 +8288,16 @@ func DecodeGetPageVisitorPostsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPageVisitorPosts(ctx context.Context, client *core.Client, id string, params GetPageVisitorPostsParams) (*core.Cursor[objects.PagePost], error) {
+func GetPageVisitorPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageVisitorPostsParams) (*core.Cursor[objects.PagePost], *core.Response, error) {
 	var out core.Cursor[objects.PagePost]
 	call := GetPageVisitorPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageVisitorPosts(ctx context.Context, client *core.Client, id string, params GetPageVisitorPostsParams) (*core.Cursor[objects.PagePost], error) {
+	out, _, err := GetPageVisitorPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageWelcomeMessageFlowsParams struct {
@@ -7702,11 +8336,16 @@ func DecodeDeletePageWelcomeMessageFlowsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func DeletePageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params DeletePageWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
+func DeletePageWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageWelcomeMessageFlowsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params DeletePageWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageWelcomeMessageFlowsParams struct {
@@ -7751,11 +8390,16 @@ func DecodeGetPageWelcomeMessageFlowsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetPageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetPageWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
+func GetPageWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params GetPageWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], *core.Response, error) {
 	var out core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]
 	call := GetPageWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetPageWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
+	out, _, err := GetPageWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageWelcomeMessageFlowsParams struct {
@@ -7808,11 +8452,16 @@ func DecodeCreatePageWelcomeMessageFlowsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreatePageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params CreatePageWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
+func CreatePageWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageWelcomeMessageFlowsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePageWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params CreatePageWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePageWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageParams struct {
@@ -7853,11 +8502,16 @@ func DecodeGetPageBatchResponse(response *core.BatchResponse) (*objects.Page, er
 	return &out, nil
 }
 
-func GetPage(ctx context.Context, client *core.Client, id string, params GetPageParams) (*objects.Page, error) {
+func GetPageWithResponse(ctx context.Context, client *core.Client, id string, params GetPageParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := GetPageBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPage(ctx context.Context, client *core.Client, id string, params GetPageParams) (*objects.Page, error) {
+	out, _, err := GetPageWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdatePageParams struct {
@@ -8126,9 +8780,14 @@ func DecodeUpdatePageBatchResponse(response *core.BatchResponse) (*objects.Page,
 	return &out, nil
 }
 
-func UpdatePage(ctx context.Context, client *core.Client, id string, params UpdatePageParams) (*objects.Page, error) {
+func UpdatePageWithResponse(ctx context.Context, client *core.Client, id string, params UpdatePageParams) (*objects.Page, *core.Response, error) {
 	var out objects.Page
 	call := UpdatePageBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdatePage(ctx context.Context, client *core.Client, id string, params UpdatePageParams) (*objects.Page, error) {
+	out, _, err := UpdatePageWithResponse(ctx, client, id, params)
+	return out, err
 }

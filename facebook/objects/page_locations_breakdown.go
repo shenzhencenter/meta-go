@@ -15,3 +15,25 @@ type PageLocationsBreakdown struct {
 	ParentRegionID                         *core.ID `json:"parent_region_id,omitempty"`
 	ParentRegionName                       *string  `json:"parent_region_name,omitempty"`
 }
+
+var PageLocationsBreakdownFields = struct {
+	LocationID                             string
+	LocationName                           string
+	LocationType                           string
+	NumPages                               string
+	NumPagesEligibleForStoreVisitReporting string
+	NumUnpublishedOrClosedPages            string
+	ParentCountryCode                      string
+	ParentRegionID                         string
+	ParentRegionName                       string
+}{
+	LocationID:                             "location_id",
+	LocationName:                           "location_name",
+	LocationType:                           "location_type",
+	NumPages:                               "num_pages",
+	NumPagesEligibleForStoreVisitReporting: "num_pages_eligible_for_store_visit_reporting",
+	NumUnpublishedOrClosedPages:            "num_unpublished_or_closed_pages",
+	ParentCountryCode:                      "parent_country_code",
+	ParentRegionID:                         "parent_region_id",
+	ParentRegionName:                       "parent_region_name",
+}

@@ -41,9 +41,14 @@ func DecodeGetALMEndAdvertiserInfoBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetALMEndAdvertiserInfo(ctx context.Context, client *core.Client, id string, params GetALMEndAdvertiserInfoParams) (*objects.ALMEndAdvertiserInfo, error) {
+func GetALMEndAdvertiserInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetALMEndAdvertiserInfoParams) (*objects.ALMEndAdvertiserInfo, *core.Response, error) {
 	var out objects.ALMEndAdvertiserInfo
 	call := GetALMEndAdvertiserInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetALMEndAdvertiserInfo(ctx context.Context, client *core.Client, id string, params GetALMEndAdvertiserInfoParams) (*objects.ALMEndAdvertiserInfo, error) {
+	out, _, err := GetALMEndAdvertiserInfoWithResponse(ctx, client, id, params)
+	return out, err
 }

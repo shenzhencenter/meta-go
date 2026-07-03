@@ -10,3 +10,15 @@ type EventRegistrationSetting struct {
 	TargetType    *string    `json:"target_type,omitempty"`
 	TicketTierIds *[]core.ID `json:"ticket_tier_ids,omitempty"`
 }
+
+var EventRegistrationSettingFields = struct {
+	ID            string
+	Questions     string
+	TargetType    string
+	TicketTierIds string
+}{
+	ID:            "id",
+	Questions:     "questions",
+	TargetType:    "target_type",
+	TicketTierIds: "ticket_tier_ids",
+}

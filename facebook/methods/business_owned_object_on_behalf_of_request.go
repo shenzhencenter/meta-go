@@ -41,9 +41,14 @@ func DecodeGetBusinessOwnedObjectOnBehalfOfRequestBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetBusinessOwnedObjectOnBehalfOfRequest(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedObjectOnBehalfOfRequestParams) (*objects.BusinessOwnedObjectOnBehalfOfRequest, error) {
+func GetBusinessOwnedObjectOnBehalfOfRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedObjectOnBehalfOfRequestParams) (*objects.BusinessOwnedObjectOnBehalfOfRequest, *core.Response, error) {
 	var out objects.BusinessOwnedObjectOnBehalfOfRequest
 	call := GetBusinessOwnedObjectOnBehalfOfRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessOwnedObjectOnBehalfOfRequest(ctx context.Context, client *core.Client, id string, params GetBusinessOwnedObjectOnBehalfOfRequestParams) (*objects.BusinessOwnedObjectOnBehalfOfRequest, error) {
+	out, _, err := GetBusinessOwnedObjectOnBehalfOfRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetMusicVideoCopyrightBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetMusicVideoCopyright(ctx context.Context, client *core.Client, id string, params GetMusicVideoCopyrightParams) (*objects.MusicVideoCopyright, error) {
+func GetMusicVideoCopyrightWithResponse(ctx context.Context, client *core.Client, id string, params GetMusicVideoCopyrightParams) (*objects.MusicVideoCopyright, *core.Response, error) {
 	var out objects.MusicVideoCopyright
 	call := GetMusicVideoCopyrightBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMusicVideoCopyright(ctx context.Context, client *core.Client, id string, params GetMusicVideoCopyrightParams) (*objects.MusicVideoCopyright, error) {
+	out, _, err := GetMusicVideoCopyrightWithResponse(ctx, client, id, params)
+	return out, err
 }

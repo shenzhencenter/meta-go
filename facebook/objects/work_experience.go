@@ -16,3 +16,27 @@ type WorkExperience struct {
 	StartDate   *string                   `json:"start_date,omitempty"`
 	With        *[]User                   `json:"with,omitempty"`
 }
+
+var WorkExperienceFields = struct {
+	Description string
+	Employer    string
+	EndDate     string
+	From        string
+	ID          string
+	Location    string
+	Position    string
+	Projects    string
+	StartDate   string
+	With        string
+}{
+	Description: "description",
+	Employer:    "employer",
+	EndDate:     "end_date",
+	From:        "from",
+	ID:          "id",
+	Location:    "location",
+	Position:    "position",
+	Projects:    "projects",
+	StartDate:   "start_date",
+	With:        "with",
+}

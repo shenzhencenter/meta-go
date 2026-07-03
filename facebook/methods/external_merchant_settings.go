@@ -41,9 +41,14 @@ func DecodeGetExternalMerchantSettingsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetExternalMerchantSettings(ctx context.Context, client *core.Client, id string, params GetExternalMerchantSettingsParams) (*objects.ExternalMerchantSettings, error) {
+func GetExternalMerchantSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetExternalMerchantSettingsParams) (*objects.ExternalMerchantSettings, *core.Response, error) {
 	var out objects.ExternalMerchantSettings
 	call := GetExternalMerchantSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetExternalMerchantSettings(ctx context.Context, client *core.Client, id string, params GetExternalMerchantSettingsParams) (*objects.ExternalMerchantSettings, error) {
+	out, _, err := GetExternalMerchantSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

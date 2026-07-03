@@ -9,3 +9,13 @@ type AdRuleEvaluationSpec struct {
 	Filters        *[]AdRuleFilters                          `json:"filters,omitempty"`
 	Trigger        *AdRuleTrigger                            `json:"trigger,omitempty"`
 }
+
+var AdRuleEvaluationSpecFields = struct {
+	EvaluationType string
+	Filters        string
+	Trigger        string
+}{
+	EvaluationType: "evaluation_type",
+	Filters:        "filters",
+	Trigger:        "trigger",
+}

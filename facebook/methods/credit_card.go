@@ -41,9 +41,14 @@ func DecodeGetCreditCardBatchResponse(response *core.BatchResponse) (*objects.Cr
 	return &out, nil
 }
 
-func GetCreditCard(ctx context.Context, client *core.Client, id string, params GetCreditCardParams) (*objects.CreditCard, error) {
+func GetCreditCardWithResponse(ctx context.Context, client *core.Client, id string, params GetCreditCardParams) (*objects.CreditCard, *core.Response, error) {
 	var out objects.CreditCard
 	call := GetCreditCardBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCreditCard(ctx context.Context, client *core.Client, id string, params GetCreditCardParams) (*objects.CreditCard, error) {
+	out, _, err := GetCreditCardWithResponse(ctx, client, id, params)
+	return out, err
 }

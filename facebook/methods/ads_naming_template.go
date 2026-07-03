@@ -41,9 +41,14 @@ func DecodeGetAdsNamingTemplateBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetAdsNamingTemplate(ctx context.Context, client *core.Client, id string, params GetAdsNamingTemplateParams) (*objects.AdsNamingTemplate, error) {
+func GetAdsNamingTemplateWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsNamingTemplateParams) (*objects.AdsNamingTemplate, *core.Response, error) {
 	var out objects.AdsNamingTemplate
 	call := GetAdsNamingTemplateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsNamingTemplate(ctx context.Context, client *core.Client, id string, params GetAdsNamingTemplateParams) (*objects.AdsNamingTemplate, error) {
+	out, _, err := GetAdsNamingTemplateWithResponse(ctx, client, id, params)
+	return out, err
 }

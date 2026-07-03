@@ -42,11 +42,16 @@ func DecodeDeleteHighDemandPeriodBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func DeleteHighDemandPeriod(ctx context.Context, client *core.Client, id string, params DeleteHighDemandPeriodParams) (*map[string]interface{}, error) {
+func DeleteHighDemandPeriodWithResponse(ctx context.Context, client *core.Client, id string, params DeleteHighDemandPeriodParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteHighDemandPeriodBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteHighDemandPeriod(ctx context.Context, client *core.Client, id string, params DeleteHighDemandPeriodParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteHighDemandPeriodWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetHighDemandPeriodParams struct {
@@ -83,11 +88,16 @@ func DecodeGetHighDemandPeriodBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetHighDemandPeriod(ctx context.Context, client *core.Client, id string, params GetHighDemandPeriodParams) (*objects.HighDemandPeriod, error) {
+func GetHighDemandPeriodWithResponse(ctx context.Context, client *core.Client, id string, params GetHighDemandPeriodParams) (*objects.HighDemandPeriod, *core.Response, error) {
 	var out objects.HighDemandPeriod
 	call := GetHighDemandPeriodBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHighDemandPeriod(ctx context.Context, client *core.Client, id string, params GetHighDemandPeriodParams) (*objects.HighDemandPeriod, error) {
+	out, _, err := GetHighDemandPeriodWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateHighDemandPeriodParams struct {
@@ -140,9 +150,14 @@ func DecodeUpdateHighDemandPeriodBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdateHighDemandPeriod(ctx context.Context, client *core.Client, id string, params UpdateHighDemandPeriodParams) (*objects.HighDemandPeriod, error) {
+func UpdateHighDemandPeriodWithResponse(ctx context.Context, client *core.Client, id string, params UpdateHighDemandPeriodParams) (*objects.HighDemandPeriod, *core.Response, error) {
 	var out objects.HighDemandPeriod
 	call := UpdateHighDemandPeriodBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateHighDemandPeriod(ctx context.Context, client *core.Client, id string, params UpdateHighDemandPeriodParams) (*objects.HighDemandPeriod, error) {
+	out, _, err := UpdateHighDemandPeriodWithResponse(ctx, client, id, params)
+	return out, err
 }

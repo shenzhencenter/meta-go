@@ -30,3 +30,63 @@ type FlexibleTargeting struct {
 	WorkEmployers        *[]IDName `json:"work_employers,omitempty"`
 	WorkPositions        *[]IDName `json:"work_positions,omitempty"`
 }
+
+var FlexibleTargetingFields = struct {
+	Behaviors            string
+	CollegeYears         string
+	Connections          string
+	CustomAudiences      string
+	EducationMajors      string
+	EducationSchools     string
+	EducationStatuses    string
+	EthnicAffinity       string
+	FamilyStatuses       string
+	FriendsOfConnections string
+	Generation           string
+	HomeOwnership        string
+	HomeType             string
+	HomeValue            string
+	HouseholdComposition string
+	Income               string
+	Industries           string
+	InterestedIn         string
+	Interests            string
+	LifeEvents           string
+	Moms                 string
+	NetWorth             string
+	OfficeType           string
+	Politics             string
+	RelationshipStatuses string
+	UserAdclusters       string
+	WorkEmployers        string
+	WorkPositions        string
+}{
+	Behaviors:            "behaviors",
+	CollegeYears:         "college_years",
+	Connections:          "connections",
+	CustomAudiences:      "custom_audiences",
+	EducationMajors:      "education_majors",
+	EducationSchools:     "education_schools",
+	EducationStatuses:    "education_statuses",
+	EthnicAffinity:       "ethnic_affinity",
+	FamilyStatuses:       "family_statuses",
+	FriendsOfConnections: "friends_of_connections",
+	Generation:           "generation",
+	HomeOwnership:        "home_ownership",
+	HomeType:             "home_type",
+	HomeValue:            "home_value",
+	HouseholdComposition: "household_composition",
+	Income:               "income",
+	Industries:           "industries",
+	InterestedIn:         "interested_in",
+	Interests:            "interests",
+	LifeEvents:           "life_events",
+	Moms:                 "moms",
+	NetWorth:             "net_worth",
+	OfficeType:           "office_type",
+	Politics:             "politics",
+	RelationshipStatuses: "relationship_statuses",
+	UserAdclusters:       "user_adclusters",
+	WorkEmployers:        "work_employers",
+	WorkPositions:        "work_positions",
+}

@@ -8,3 +8,19 @@ type Privacy struct {
 	Networks    *string `json:"networks,omitempty"`
 	Value       *string `json:"value,omitempty"`
 }
+
+var PrivacyFields = struct {
+	Allow       string
+	Deny        string
+	Description string
+	Friends     string
+	Networks    string
+	Value       string
+}{
+	Allow:       "allow",
+	Deny:        "deny",
+	Description: "description",
+	Friends:     "friends",
+	Networks:    "networks",
+	Value:       "value",
+}

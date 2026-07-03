@@ -43,11 +43,16 @@ func DecodeCreatePublisherBlockListAppendPublisherUrlsBatchResponse(response *co
 	return &out, nil
 }
 
-func CreatePublisherBlockListAppendPublisherUrls(ctx context.Context, client *core.Client, id string, params CreatePublisherBlockListAppendPublisherUrlsParams) (*map[string]interface{}, error) {
+func CreatePublisherBlockListAppendPublisherUrlsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePublisherBlockListAppendPublisherUrlsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreatePublisherBlockListAppendPublisherUrlsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePublisherBlockListAppendPublisherUrls(ctx context.Context, client *core.Client, id string, params CreatePublisherBlockListAppendPublisherUrlsParams) (*map[string]interface{}, error) {
+	out, _, err := CreatePublisherBlockListAppendPublisherUrlsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPublisherBlockListPagedWebPublishersParams struct {
@@ -88,11 +93,16 @@ func DecodeGetPublisherBlockListPagedWebPublishersBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetPublisherBlockListPagedWebPublishers(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListPagedWebPublishersParams) (*core.Cursor[objects.WebPublisher], error) {
+func GetPublisherBlockListPagedWebPublishersWithResponse(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListPagedWebPublishersParams) (*core.Cursor[objects.WebPublisher], *core.Response, error) {
 	var out core.Cursor[objects.WebPublisher]
 	call := GetPublisherBlockListPagedWebPublishersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPublisherBlockListPagedWebPublishers(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListPagedWebPublishersParams) (*core.Cursor[objects.WebPublisher], error) {
+	out, _, err := GetPublisherBlockListPagedWebPublishersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePublisherBlockListParams struct {
@@ -129,11 +139,16 @@ func DecodeDeletePublisherBlockListBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func DeletePublisherBlockList(ctx context.Context, client *core.Client, id string, params DeletePublisherBlockListParams) (*map[string]interface{}, error) {
+func DeletePublisherBlockListWithResponse(ctx context.Context, client *core.Client, id string, params DeletePublisherBlockListParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePublisherBlockListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePublisherBlockList(ctx context.Context, client *core.Client, id string, params DeletePublisherBlockListParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePublisherBlockListWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPublisherBlockListParams struct {
@@ -182,11 +197,16 @@ func DecodeGetPublisherBlockListBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetPublisherBlockList(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListParams) (*objects.PublisherBlockList, error) {
+func GetPublisherBlockListWithResponse(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListParams) (*objects.PublisherBlockList, *core.Response, error) {
 	var out objects.PublisherBlockList
 	call := GetPublisherBlockListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPublisherBlockList(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListParams) (*objects.PublisherBlockList, error) {
+	out, _, err := GetPublisherBlockListWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdatePublisherBlockListParams struct {
@@ -225,9 +245,14 @@ func DecodeUpdatePublisherBlockListBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func UpdatePublisherBlockList(ctx context.Context, client *core.Client, id string, params UpdatePublisherBlockListParams) (*objects.PublisherBlockList, error) {
+func UpdatePublisherBlockListWithResponse(ctx context.Context, client *core.Client, id string, params UpdatePublisherBlockListParams) (*objects.PublisherBlockList, *core.Response, error) {
 	var out objects.PublisherBlockList
 	call := UpdatePublisherBlockListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdatePublisherBlockList(ctx context.Context, client *core.Client, id string, params UpdatePublisherBlockListParams) (*objects.PublisherBlockList, error) {
+	out, _, err := UpdatePublisherBlockListWithResponse(ctx, client, id, params)
+	return out, err
 }

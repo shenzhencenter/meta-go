@@ -14,3 +14,23 @@ type AdRecommendation struct {
 	Title              *string                           `json:"title,omitempty"`
 	Value              *string                           `json:"value,omitempty"`
 }
+
+var AdRecommendationFields = struct {
+	BlameField         string
+	Code               string
+	Confidence         string
+	Importance         string
+	Message            string
+	RecommendationData string
+	Title              string
+	Value              string
+}{
+	BlameField:         "blame_field",
+	Code:               "code",
+	Confidence:         "confidence",
+	Importance:         "importance",
+	Message:            "message",
+	RecommendationData: "recommendation_data",
+	Title:              "title",
+	Value:              "value",
+}

@@ -12,3 +12,19 @@ type BusinessAdvertisableApplicationsResult struct {
 	Name                    *string   `json:"name,omitempty"`
 	PhotoURL                *string   `json:"photo_url,omitempty"`
 }
+
+var BusinessAdvertisableApplicationsResultFields = struct {
+	AreAppEventsUnavailable string
+	Business                string
+	HasInsightPermission    string
+	ID                      string
+	Name                    string
+	PhotoURL                string
+}{
+	AreAppEventsUnavailable: "are_app_events_unavailable",
+	Business:                "business",
+	HasInsightPermission:    "has_insight_permission",
+	ID:                      "id",
+	Name:                    "name",
+	PhotoURL:                "photo_url",
+}

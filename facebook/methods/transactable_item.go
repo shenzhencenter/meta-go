@@ -42,11 +42,16 @@ func DecodeGetTransactableItemChannelsToIntegrityStatusBatchResponse(response *c
 	return &out, nil
 }
 
-func GetTransactableItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetTransactableItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetTransactableItemChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetTransactableItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetTransactableItemChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetTransactableItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetTransactableItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetTransactableItemChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetTransactableItemOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetTransactableItemOverrideDetailsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetTransactableItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetTransactableItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetTransactableItemOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetTransactableItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetTransactableItemOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetTransactableItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetTransactableItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetTransactableItemOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetTransactableItemParams struct {
@@ -132,9 +142,14 @@ func DecodeGetTransactableItemBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetTransactableItem(ctx context.Context, client *core.Client, id string, params GetTransactableItemParams) (*objects.TransactableItem, error) {
+func GetTransactableItemWithResponse(ctx context.Context, client *core.Client, id string, params GetTransactableItemParams) (*objects.TransactableItem, *core.Response, error) {
 	var out objects.TransactableItem
 	call := GetTransactableItemBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetTransactableItem(ctx context.Context, client *core.Client, id string, params GetTransactableItemParams) (*objects.TransactableItem, error) {
+	out, _, err := GetTransactableItemWithResponse(ctx, client, id, params)
+	return out, err
 }

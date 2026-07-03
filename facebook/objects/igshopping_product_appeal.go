@@ -11,3 +11,17 @@ type IGShoppingProductAppeal struct {
 	RejectionReasons    *[]string `json:"rejection_reasons,omitempty"`
 	ReviewStatus        *string   `json:"review_status,omitempty"`
 }
+
+var IGShoppingProductAppealFields = struct {
+	EligibleForAppeal   string
+	ProductAppealStatus string
+	ProductID           string
+	RejectionReasons    string
+	ReviewStatus        string
+}{
+	EligibleForAppeal:   "eligible_for_appeal",
+	ProductAppealStatus: "product_appeal_status",
+	ProductID:           "product_id",
+	RejectionReasons:    "rejection_reasons",
+	ReviewStatus:        "review_status",
+}

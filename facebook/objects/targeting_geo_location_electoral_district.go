@@ -7,3 +7,17 @@ type TargetingGeoLocationElectoralDistrict struct {
 	Key               *string `json:"key,omitempty"`
 	Name              *string `json:"name,omitempty"`
 }
+
+var TargetingGeoLocationElectoralDistrictFields = struct {
+	Country           string
+	DeprecationCode   string
+	ElectoralDistrict string
+	Key               string
+	Name              string
+}{
+	Country:           "country",
+	DeprecationCode:   "deprecation_code",
+	ElectoralDistrict: "electoral_district",
+	Key:               "key",
+	Name:              "name",
+}

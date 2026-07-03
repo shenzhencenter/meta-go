@@ -10,3 +10,15 @@ type Place struct {
 	Name          *string   `json:"name,omitempty"`
 	OverallRating *float64  `json:"overall_rating,omitempty"`
 }
+
+var PlaceFields = struct {
+	ID            string
+	Location      string
+	Name          string
+	OverallRating string
+}{
+	ID:            "id",
+	Location:      "location",
+	Name:          "name",
+	OverallRating: "overall_rating",
+}

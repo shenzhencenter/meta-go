@@ -12,3 +12,19 @@ type InstagramRelatedProductTags struct {
 	PriceLabel      *string  `json:"price_label,omitempty"`
 	SalePriceLabel  *string  `json:"sale_price_label,omitempty"`
 }
+
+var InstagramRelatedProductTagsFields = struct {
+	CheckoutSetting string
+	ID              string
+	ImageURI        string
+	Name            string
+	PriceLabel      string
+	SalePriceLabel  string
+}{
+	CheckoutSetting: "checkout_setting",
+	ID:              "id",
+	ImageURI:        "image_uri",
+	Name:            "name",
+	PriceLabel:      "price_label",
+	SalePriceLabel:  "sale_price_label",
+}

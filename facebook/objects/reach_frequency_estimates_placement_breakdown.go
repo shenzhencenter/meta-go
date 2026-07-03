@@ -18,3 +18,39 @@ type ReachFrequencyEstimatesPlacementBreakdown struct {
 	Msite           *[]float64 `json:"msite,omitempty"`
 	SuggestedVideos *[]float64 `json:"suggested_videos,omitempty"`
 }
+
+var ReachFrequencyEstimatesPlacementBreakdownFields = struct {
+	Android         string
+	AudienceNetwork string
+	Desktop         string
+	FacebookSearch  string
+	FbReels         string
+	FbReelsOverlay  string
+	IgAndroid       string
+	IgIos           string
+	IgOther         string
+	IgReels         string
+	IgStory         string
+	InstantArticles string
+	InstreamVideos  string
+	Ios             string
+	Msite           string
+	SuggestedVideos string
+}{
+	Android:         "android",
+	AudienceNetwork: "audience_network",
+	Desktop:         "desktop",
+	FacebookSearch:  "facebook_search",
+	FbReels:         "fb_reels",
+	FbReelsOverlay:  "fb_reels_overlay",
+	IgAndroid:       "ig_android",
+	IgIos:           "ig_ios",
+	IgOther:         "ig_other",
+	IgReels:         "ig_reels",
+	IgStory:         "ig_story",
+	InstantArticles: "instant_articles",
+	InstreamVideos:  "instream_videos",
+	Ios:             "ios",
+	Msite:           "msite",
+	SuggestedVideos: "suggested_videos",
+}

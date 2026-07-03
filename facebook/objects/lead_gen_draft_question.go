@@ -14,3 +14,23 @@ type LeadGenDraftQuestion struct {
 	Options                       *[]LeadGenQuestionOption                     `json:"options,omitempty"`
 	Type                          *string                                      `json:"type,omitempty"`
 }
+
+var LeadGenDraftQuestionFields = struct {
+	ConditionalQuestionsChoices   string
+	ConditionalQuestionsGroupID   string
+	DependentConditionalQuestions string
+	InlineContext                 string
+	Key                           string
+	Label                         string
+	Options                       string
+	Type                          string
+}{
+	ConditionalQuestionsChoices:   "conditional_questions_choices",
+	ConditionalQuestionsGroupID:   "conditional_questions_group_id",
+	DependentConditionalQuestions: "dependent_conditional_questions",
+	InlineContext:                 "inline_context",
+	Key:                           "key",
+	Label:                         "label",
+	Options:                       "options",
+	Type:                          "type",
+}

@@ -15,3 +15,25 @@ type ManagementSiteLink struct {
 	LinkType      *string  `json:"link_type,omitempty"`
 	LinkURL       *string  `json:"link_url,omitempty"`
 }
+
+var ManagementSiteLinkFields = struct {
+	AdAccountID   string
+	ID            string
+	LinkDomain    string
+	LinkHash      string
+	LinkImageHash string
+	LinkImageURL  string
+	LinkTitle     string
+	LinkType      string
+	LinkURL       string
+}{
+	AdAccountID:   "ad_account_id",
+	ID:            "id",
+	LinkDomain:    "link_domain",
+	LinkHash:      "link_hash",
+	LinkImageHash: "link_image_hash",
+	LinkImageURL:  "link_image_url",
+	LinkTitle:     "link_title",
+	LinkType:      "link_type",
+	LinkURL:       "link_url",
+}

@@ -41,11 +41,16 @@ func DecodeGetMessengerAdsPartialAutomatedStepListStepsBatchResponse(response *c
 	return &out, nil
 }
 
-func GetMessengerAdsPartialAutomatedStepListSteps(ctx context.Context, client *core.Client, id string, params GetMessengerAdsPartialAutomatedStepListStepsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStep], error) {
+func GetMessengerAdsPartialAutomatedStepListStepsWithResponse(ctx context.Context, client *core.Client, id string, params GetMessengerAdsPartialAutomatedStepListStepsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStep], *core.Response, error) {
 	var out core.Cursor[objects.MessengerAdsPartialAutomatedStep]
 	call := GetMessengerAdsPartialAutomatedStepListStepsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMessengerAdsPartialAutomatedStepListSteps(ctx context.Context, client *core.Client, id string, params GetMessengerAdsPartialAutomatedStepListStepsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStep], error) {
+	out, _, err := GetMessengerAdsPartialAutomatedStepListStepsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetMessengerAdsPartialAutomatedStepListParams struct {
@@ -82,9 +87,14 @@ func DecodeGetMessengerAdsPartialAutomatedStepListBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetMessengerAdsPartialAutomatedStepList(ctx context.Context, client *core.Client, id string, params GetMessengerAdsPartialAutomatedStepListParams) (*objects.MessengerAdsPartialAutomatedStepList, error) {
+func GetMessengerAdsPartialAutomatedStepListWithResponse(ctx context.Context, client *core.Client, id string, params GetMessengerAdsPartialAutomatedStepListParams) (*objects.MessengerAdsPartialAutomatedStepList, *core.Response, error) {
 	var out objects.MessengerAdsPartialAutomatedStepList
 	call := GetMessengerAdsPartialAutomatedStepListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMessengerAdsPartialAutomatedStepList(ctx context.Context, client *core.Client, id string, params GetMessengerAdsPartialAutomatedStepListParams) (*objects.MessengerAdsPartialAutomatedStepList, error) {
+	out, _, err := GetMessengerAdsPartialAutomatedStepListWithResponse(ctx, client, id, params)
+	return out, err
 }

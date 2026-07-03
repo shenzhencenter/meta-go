@@ -5,3 +5,13 @@ type PageCTXDefaultGreetingText struct {
 	Ctm  *string `json:"ctm,omitempty"`
 	Ctwa *string `json:"ctwa,omitempty"`
 }
+
+var PageCTXDefaultGreetingTextFields = struct {
+	Ctd  string
+	Ctm  string
+	Ctwa string
+}{
+	Ctd:  "ctd",
+	Ctm:  "ctm",
+	Ctwa: "ctwa",
+}

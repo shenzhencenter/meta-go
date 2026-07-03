@@ -31,3 +31,57 @@ type ExtendedCreditApplication struct {
 	TaxID               *core.ID        `json:"tax_id,omitempty"`
 	Terms               *string         `json:"terms,omitempty"`
 }
+
+var ExtendedCreditApplicationFields = struct {
+	BillingCountry      string
+	City                string
+	Cnpj                string
+	Country             string
+	DisplayCurrency     string
+	DunsNumber          string
+	ID                  string
+	InvoiceEmailAddress string
+	IsUmi               string
+	LegalEntityName     string
+	OriginalOnlineLimit string
+	PhoneNumber         string
+	PostalCode          string
+	ProductTypes        string
+	ProposedCreditLimit string
+	RegistrationNumber  string
+	RunID               string
+	State               string
+	Status              string
+	Street1             string
+	Street2             string
+	Submitter           string
+	TaxExemptStatus     string
+	TaxID               string
+	Terms               string
+}{
+	BillingCountry:      "billing_country",
+	City:                "city",
+	Cnpj:                "cnpj",
+	Country:             "country",
+	DisplayCurrency:     "display_currency",
+	DunsNumber:          "duns_number",
+	ID:                  "id",
+	InvoiceEmailAddress: "invoice_email_address",
+	IsUmi:               "is_umi",
+	LegalEntityName:     "legal_entity_name",
+	OriginalOnlineLimit: "original_online_limit",
+	PhoneNumber:         "phone_number",
+	PostalCode:          "postal_code",
+	ProductTypes:        "product_types",
+	ProposedCreditLimit: "proposed_credit_limit",
+	RegistrationNumber:  "registration_number",
+	RunID:               "run_id",
+	State:               "state",
+	Status:              "status",
+	Street1:             "street1",
+	Street2:             "street2",
+	Submitter:           "submitter",
+	TaxExemptStatus:     "tax_exempt_status",
+	TaxID:               "tax_id",
+	Terms:               "terms",
+}

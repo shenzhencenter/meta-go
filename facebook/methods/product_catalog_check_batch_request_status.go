@@ -68,9 +68,14 @@ func DecodeGetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchR
 	return &out, nil
 }
 
-func GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusParams) (*core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet], error) {
+func GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusParams) (*core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet]
 	call := GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusParams) (*core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet], error) {
+	out, _, err := GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusWithResponse(ctx, client, id, params)
+	return out, err
 }

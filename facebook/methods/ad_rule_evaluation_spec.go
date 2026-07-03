@@ -41,9 +41,14 @@ func DecodeGetAdRuleEvaluationSpecBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdRuleEvaluationSpec(ctx context.Context, client *core.Client, id string, params GetAdRuleEvaluationSpecParams) (*objects.AdRuleEvaluationSpec, error) {
+func GetAdRuleEvaluationSpecWithResponse(ctx context.Context, client *core.Client, id string, params GetAdRuleEvaluationSpecParams) (*objects.AdRuleEvaluationSpec, *core.Response, error) {
 	var out objects.AdRuleEvaluationSpec
 	call := GetAdRuleEvaluationSpecBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdRuleEvaluationSpec(ctx context.Context, client *core.Client, id string, params GetAdRuleEvaluationSpecParams) (*objects.AdRuleEvaluationSpec, error) {
+	out, _, err := GetAdRuleEvaluationSpecWithResponse(ctx, client, id, params)
+	return out, err
 }

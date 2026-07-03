@@ -10,3 +10,13 @@ type AdRuleHistoryResult struct {
 	ObjectID   *core.ID                             `json:"object_id,omitempty"`
 	ObjectType *enums.AdrulehistoryresultObjectType `json:"object_type,omitempty"`
 }
+
+var AdRuleHistoryResultFields = struct {
+	Actions    string
+	ObjectID   string
+	ObjectType string
+}{
+	Actions:    "actions",
+	ObjectID:   "object_id",
+	ObjectType: "object_type",
+}

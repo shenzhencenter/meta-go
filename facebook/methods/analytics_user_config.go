@@ -41,9 +41,14 @@ func DecodeGetAnalyticsUserConfigBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetAnalyticsUserConfig(ctx context.Context, client *core.Client, id string, params GetAnalyticsUserConfigParams) (*objects.AnalyticsUserConfig, error) {
+func GetAnalyticsUserConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetAnalyticsUserConfigParams) (*objects.AnalyticsUserConfig, *core.Response, error) {
 	var out objects.AnalyticsUserConfig
 	call := GetAnalyticsUserConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAnalyticsUserConfig(ctx context.Context, client *core.Client, id string, params GetAnalyticsUserConfigParams) (*objects.AnalyticsUserConfig, error) {
+	out, _, err := GetAnalyticsUserConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

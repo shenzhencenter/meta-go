@@ -43,11 +43,16 @@ func DecodeDeleteExtendedCreditInvoiceGroupAdAccountsBatchResponse(response *cor
 	return &out, nil
 }
 
-func DeleteExtendedCreditInvoiceGroupAdAccounts(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditInvoiceGroupAdAccountsParams) (*map[string]interface{}, error) {
+func DeleteExtendedCreditInvoiceGroupAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditInvoiceGroupAdAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteExtendedCreditInvoiceGroupAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteExtendedCreditInvoiceGroupAdAccounts(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditInvoiceGroupAdAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteExtendedCreditInvoiceGroupAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetExtendedCreditInvoiceGroupAdAccountsParams struct {
@@ -84,11 +89,16 @@ func DecodeGetExtendedCreditInvoiceGroupAdAccountsBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetExtendedCreditInvoiceGroupAdAccounts(ctx context.Context, client *core.Client, id string, params GetExtendedCreditInvoiceGroupAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetExtendedCreditInvoiceGroupAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetExtendedCreditInvoiceGroupAdAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetExtendedCreditInvoiceGroupAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetExtendedCreditInvoiceGroupAdAccounts(ctx context.Context, client *core.Client, id string, params GetExtendedCreditInvoiceGroupAdAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetExtendedCreditInvoiceGroupAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateExtendedCreditInvoiceGroupAdAccountsParams struct {
@@ -127,11 +137,16 @@ func DecodeCreateExtendedCreditInvoiceGroupAdAccountsBatchResponse(response *cor
 	return &out, nil
 }
 
-func CreateExtendedCreditInvoiceGroupAdAccounts(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditInvoiceGroupAdAccountsParams) (*objects.AdAccount, error) {
+func CreateExtendedCreditInvoiceGroupAdAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditInvoiceGroupAdAccountsParams) (*objects.AdAccount, *core.Response, error) {
 	var out objects.AdAccount
 	call := CreateExtendedCreditInvoiceGroupAdAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateExtendedCreditInvoiceGroupAdAccounts(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditInvoiceGroupAdAccountsParams) (*objects.AdAccount, error) {
+	out, _, err := CreateExtendedCreditInvoiceGroupAdAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteExtendedCreditInvoiceGroupParams struct {
@@ -168,11 +183,16 @@ func DecodeDeleteExtendedCreditInvoiceGroupBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func DeleteExtendedCreditInvoiceGroup(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditInvoiceGroupParams) (*map[string]interface{}, error) {
+func DeleteExtendedCreditInvoiceGroupWithResponse(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditInvoiceGroupParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteExtendedCreditInvoiceGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteExtendedCreditInvoiceGroup(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditInvoiceGroupParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteExtendedCreditInvoiceGroupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetExtendedCreditInvoiceGroupParams struct {
@@ -209,11 +229,16 @@ func DecodeGetExtendedCreditInvoiceGroupBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetExtendedCreditInvoiceGroup(ctx context.Context, client *core.Client, id string, params GetExtendedCreditInvoiceGroupParams) (*objects.ExtendedCreditInvoiceGroup, error) {
+func GetExtendedCreditInvoiceGroupWithResponse(ctx context.Context, client *core.Client, id string, params GetExtendedCreditInvoiceGroupParams) (*objects.ExtendedCreditInvoiceGroup, *core.Response, error) {
 	var out objects.ExtendedCreditInvoiceGroup
 	call := GetExtendedCreditInvoiceGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetExtendedCreditInvoiceGroup(ctx context.Context, client *core.Client, id string, params GetExtendedCreditInvoiceGroupParams) (*objects.ExtendedCreditInvoiceGroup, error) {
+	out, _, err := GetExtendedCreditInvoiceGroupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateExtendedCreditInvoiceGroupParams struct {
@@ -258,9 +283,14 @@ func DecodeUpdateExtendedCreditInvoiceGroupBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func UpdateExtendedCreditInvoiceGroup(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditInvoiceGroupParams) (*objects.ExtendedCreditInvoiceGroup, error) {
+func UpdateExtendedCreditInvoiceGroupWithResponse(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditInvoiceGroupParams) (*objects.ExtendedCreditInvoiceGroup, *core.Response, error) {
 	var out objects.ExtendedCreditInvoiceGroup
 	call := UpdateExtendedCreditInvoiceGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateExtendedCreditInvoiceGroup(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditInvoiceGroupParams) (*objects.ExtendedCreditInvoiceGroup, error) {
+	out, _, err := UpdateExtendedCreditInvoiceGroupWithResponse(ctx, client, id, params)
+	return out, err
 }

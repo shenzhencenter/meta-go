@@ -10,3 +10,23 @@ type CustomAudienceMatchRateInsights struct {
 	PhoneQuality         *string  `json:"phone_quality,omitempty"`
 	PhoneUploadVolumePct *float64 `json:"phone_upload_volume_pct,omitempty"`
 }
+
+var CustomAudienceMatchRateInsightsFields = struct {
+	EmailQuality         string
+	EmailUploadVolumePct string
+	IsEligible           string
+	MadidQuality         string
+	MadidUploadVolumePct string
+	MatchRateScore       string
+	PhoneQuality         string
+	PhoneUploadVolumePct string
+}{
+	EmailQuality:         "email_quality",
+	EmailUploadVolumePct: "email_upload_volume_pct",
+	IsEligible:           "is_eligible",
+	MadidQuality:         "madid_quality",
+	MadidUploadVolumePct: "madid_upload_volume_pct",
+	MatchRateScore:       "match_rate_score",
+	PhoneQuality:         "phone_quality",
+	PhoneUploadVolumePct: "phone_upload_volume_pct",
+}

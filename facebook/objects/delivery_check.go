@@ -6,3 +6,15 @@ type DeliveryCheck struct {
 	ExtraInfo   *DeliveryCheckExtraInfo `json:"extra_info,omitempty"`
 	Summary     *string                 `json:"summary,omitempty"`
 }
+
+var DeliveryCheckFields = struct {
+	CheckName   string
+	Description string
+	ExtraInfo   string
+	Summary     string
+}{
+	CheckName:   "check_name",
+	Description: "description",
+	ExtraInfo:   "extra_info",
+	Summary:     "summary",
+}

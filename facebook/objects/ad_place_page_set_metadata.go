@@ -6,3 +6,15 @@ type AdPlacePageSetMetadata struct {
 	ExtraData   *string                 `json:"extra_data,omitempty"`
 	FixedRadius *map[string]interface{} `json:"fixed_radius,omitempty"`
 }
+
+var AdPlacePageSetMetadataFields = struct {
+	Audience    string
+	Custom      string
+	ExtraData   string
+	FixedRadius string
+}{
+	Audience:    "audience",
+	Custom:      "custom",
+	ExtraData:   "extra_data",
+	FixedRadius: "fixed_radius",
+}

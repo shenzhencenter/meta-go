@@ -12,3 +12,19 @@ type WhatsAppBusinessHealthStatus struct {
 	Errors            *[]map[string]interface{} `json:"errors,omitempty"`
 	ID                *core.ID                  `json:"id,omitempty"`
 }
+
+var WhatsAppBusinessHealthStatusFields = struct {
+	AdditionalInfo    string
+	CanReceiveCallSip string
+	CanSendMessage    string
+	EntityType        string
+	Errors            string
+	ID                string
+}{
+	AdditionalInfo:    "additional_info",
+	CanReceiveCallSip: "can_receive_call_sip",
+	CanSendMessage:    "can_send_message",
+	EntityType:        "entity_type",
+	Errors:            "errors",
+	ID:                "id",
+}

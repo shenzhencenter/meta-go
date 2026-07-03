@@ -41,9 +41,14 @@ func DecodeGetBusinessTagBatchResponse(response *core.BatchResponse) (*objects.B
 	return &out, nil
 }
 
-func GetBusinessTag(ctx context.Context, client *core.Client, id string, params GetBusinessTagParams) (*objects.BusinessTag, error) {
+func GetBusinessTagWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessTagParams) (*objects.BusinessTag, *core.Response, error) {
 	var out objects.BusinessTag
 	call := GetBusinessTagBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessTag(ctx context.Context, client *core.Client, id string, params GetBusinessTagParams) (*objects.BusinessTag, error) {
+	out, _, err := GetBusinessTagWithResponse(ctx, client, id, params)
+	return out, err
 }

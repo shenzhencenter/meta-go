@@ -42,11 +42,16 @@ func DecodeGetBusinessAgreementBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetBusinessAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessAgreementParams) (*objects.BusinessAgreement, error) {
+func GetBusinessAgreementWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessAgreementParams) (*objects.BusinessAgreement, *core.Response, error) {
 	var out objects.BusinessAgreement
 	call := GetBusinessAgreementBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessAgreementParams) (*objects.BusinessAgreement, error) {
+	out, _, err := GetBusinessAgreementWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateBusinessAgreementParams struct {
@@ -91,9 +96,14 @@ func DecodeUpdateBusinessAgreementBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func UpdateBusinessAgreement(ctx context.Context, client *core.Client, id string, params UpdateBusinessAgreementParams) (*objects.BusinessAgreement, error) {
+func UpdateBusinessAgreementWithResponse(ctx context.Context, client *core.Client, id string, params UpdateBusinessAgreementParams) (*objects.BusinessAgreement, *core.Response, error) {
 	var out objects.BusinessAgreement
 	call := UpdateBusinessAgreementBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateBusinessAgreement(ctx context.Context, client *core.Client, id string, params UpdateBusinessAgreementParams) (*objects.BusinessAgreement, error) {
+	out, _, err := UpdateBusinessAgreementWithResponse(ctx, client, id, params)
+	return out, err
 }

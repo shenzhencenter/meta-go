@@ -41,11 +41,16 @@ func DecodeGetCommerceOrderCancellationsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetCommerceOrderCancellations(ctx context.Context, client *core.Client, id string, params GetCommerceOrderCancellationsParams) (*core.Cursor[objects.CommerceOrderCancellation], error) {
+func GetCommerceOrderCancellationsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceOrderCancellationsParams) (*core.Cursor[objects.CommerceOrderCancellation], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrderCancellation]
 	call := GetCommerceOrderCancellationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceOrderCancellations(ctx context.Context, client *core.Client, id string, params GetCommerceOrderCancellationsParams) (*core.Cursor[objects.CommerceOrderCancellation], error) {
+	out, _, err := GetCommerceOrderCancellationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceOrderItemsParams struct {
@@ -82,11 +87,16 @@ func DecodeGetCommerceOrderItemsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetCommerceOrderItems(ctx context.Context, client *core.Client, id string, params GetCommerceOrderItemsParams) (*core.Cursor[objects.CommerceOrderItem], error) {
+func GetCommerceOrderItemsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceOrderItemsParams) (*core.Cursor[objects.CommerceOrderItem], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrderItem]
 	call := GetCommerceOrderItemsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceOrderItems(ctx context.Context, client *core.Client, id string, params GetCommerceOrderItemsParams) (*core.Cursor[objects.CommerceOrderItem], error) {
+	out, _, err := GetCommerceOrderItemsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceOrderPaymentsParams struct {
@@ -123,11 +133,16 @@ func DecodeGetCommerceOrderPaymentsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetCommerceOrderPayments(ctx context.Context, client *core.Client, id string, params GetCommerceOrderPaymentsParams) (*core.Cursor[objects.CommerceOrderPayment], error) {
+func GetCommerceOrderPaymentsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceOrderPaymentsParams) (*core.Cursor[objects.CommerceOrderPayment], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrderPayment]
 	call := GetCommerceOrderPaymentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceOrderPayments(ctx context.Context, client *core.Client, id string, params GetCommerceOrderPaymentsParams) (*core.Cursor[objects.CommerceOrderPayment], error) {
+	out, _, err := GetCommerceOrderPaymentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceOrderRefundsParams struct {
@@ -164,11 +179,16 @@ func DecodeGetCommerceOrderRefundsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetCommerceOrderRefunds(ctx context.Context, client *core.Client, id string, params GetCommerceOrderRefundsParams) (*core.Cursor[objects.CommerceOrderRefund], error) {
+func GetCommerceOrderRefundsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceOrderRefundsParams) (*core.Cursor[objects.CommerceOrderRefund], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrderRefund]
 	call := GetCommerceOrderRefundsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceOrderRefunds(ctx context.Context, client *core.Client, id string, params GetCommerceOrderRefundsParams) (*core.Cursor[objects.CommerceOrderRefund], error) {
+	out, _, err := GetCommerceOrderRefundsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceOrderShipmentsParams struct {
@@ -205,11 +225,16 @@ func DecodeGetCommerceOrderShipmentsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetCommerceOrderShipments(ctx context.Context, client *core.Client, id string, params GetCommerceOrderShipmentsParams) (*core.Cursor[objects.CommerceOrderShipment], error) {
+func GetCommerceOrderShipmentsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceOrderShipmentsParams) (*core.Cursor[objects.CommerceOrderShipment], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrderShipment]
 	call := GetCommerceOrderShipmentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceOrderShipments(ctx context.Context, client *core.Client, id string, params GetCommerceOrderShipmentsParams) (*core.Cursor[objects.CommerceOrderShipment], error) {
+	out, _, err := GetCommerceOrderShipmentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCommerceOrderShipmentsParams struct {
@@ -284,11 +309,16 @@ func DecodeCreateCommerceOrderShipmentsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateCommerceOrderShipments(ctx context.Context, client *core.Client, id string, params CreateCommerceOrderShipmentsParams) (*objects.CommerceOrder, error) {
+func CreateCommerceOrderShipmentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateCommerceOrderShipmentsParams) (*objects.CommerceOrder, *core.Response, error) {
 	var out objects.CommerceOrder
 	call := CreateCommerceOrderShipmentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCommerceOrderShipments(ctx context.Context, client *core.Client, id string, params CreateCommerceOrderShipmentsParams) (*objects.CommerceOrder, error) {
+	out, _, err := CreateCommerceOrderShipmentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceOrderParams struct {
@@ -325,9 +355,14 @@ func DecodeGetCommerceOrderBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetCommerceOrder(ctx context.Context, client *core.Client, id string, params GetCommerceOrderParams) (*objects.CommerceOrder, error) {
+func GetCommerceOrderWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceOrderParams) (*objects.CommerceOrder, *core.Response, error) {
 	var out objects.CommerceOrder
 	call := GetCommerceOrderBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceOrder(ctx context.Context, client *core.Client, id string, params GetCommerceOrderParams) (*objects.CommerceOrder, error) {
+	out, _, err := GetCommerceOrderWithResponse(ctx, client, id, params)
+	return out, err
 }

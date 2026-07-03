@@ -42,11 +42,16 @@ func DecodeDeleteBusinessRoleRequestBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func DeleteBusinessRoleRequest(ctx context.Context, client *core.Client, id string, params DeleteBusinessRoleRequestParams) (*map[string]interface{}, error) {
+func DeleteBusinessRoleRequestWithResponse(ctx context.Context, client *core.Client, id string, params DeleteBusinessRoleRequestParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteBusinessRoleRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteBusinessRoleRequest(ctx context.Context, client *core.Client, id string, params DeleteBusinessRoleRequestParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteBusinessRoleRequestWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetBusinessRoleRequestParams struct {
@@ -83,11 +88,16 @@ func DecodeGetBusinessRoleRequestBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetBusinessRoleRequest(ctx context.Context, client *core.Client, id string, params GetBusinessRoleRequestParams) (*objects.BusinessRoleRequest, error) {
+func GetBusinessRoleRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessRoleRequestParams) (*objects.BusinessRoleRequest, *core.Response, error) {
 	var out objects.BusinessRoleRequest
 	call := GetBusinessRoleRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessRoleRequest(ctx context.Context, client *core.Client, id string, params GetBusinessRoleRequestParams) (*objects.BusinessRoleRequest, error) {
+	out, _, err := GetBusinessRoleRequestWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateBusinessRoleRequestParams struct {
@@ -132,9 +142,14 @@ func DecodeUpdateBusinessRoleRequestBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func UpdateBusinessRoleRequest(ctx context.Context, client *core.Client, id string, params UpdateBusinessRoleRequestParams) (*objects.BusinessRoleRequest, error) {
+func UpdateBusinessRoleRequestWithResponse(ctx context.Context, client *core.Client, id string, params UpdateBusinessRoleRequestParams) (*objects.BusinessRoleRequest, *core.Response, error) {
 	var out objects.BusinessRoleRequest
 	call := UpdateBusinessRoleRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateBusinessRoleRequest(ctx context.Context, client *core.Client, id string, params UpdateBusinessRoleRequestParams) (*objects.BusinessRoleRequest, error) {
+	out, _, err := UpdateBusinessRoleRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

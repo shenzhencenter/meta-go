@@ -14,3 +14,23 @@ type PartnerAccountLinking struct {
 	Partnername           *string      `json:"partnername,omitempty"`
 	Pixel                 *string      `json:"pixel,omitempty"`
 }
+
+var PartnerAccountLinkingFields = struct {
+	Adaccount             string
+	App                   string
+	Business              string
+	Externalidentifier    string
+	Externalidentifieruri string
+	ID                    string
+	Partnername           string
+	Pixel                 string
+}{
+	Adaccount:             "adaccount",
+	App:                   "app",
+	Business:              "business",
+	Externalidentifier:    "externalidentifier",
+	Externalidentifieruri: "externalidentifieruri",
+	ID:                    "id",
+	Partnername:           "partnername",
+	Pixel:                 "pixel",
+}

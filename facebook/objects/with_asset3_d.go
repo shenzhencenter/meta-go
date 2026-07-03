@@ -7,3 +7,9 @@ import (
 type WithAsset3D struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var WithAsset3DFields = struct {
+	ID string
+}{
+	ID: "id",
+}

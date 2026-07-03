@@ -8,3 +8,11 @@ type AdAccountSubscribedApps struct {
 	AppID   *core.ID `json:"app_id,omitempty"`
 	AppName *string  `json:"app_name,omitempty"`
 }
+
+var AdAccountSubscribedAppsFields = struct {
+	AppID   string
+	AppName string
+}{
+	AppID:   "app_id",
+	AppName: "app_name",
+}

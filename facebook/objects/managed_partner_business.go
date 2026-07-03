@@ -9,3 +9,21 @@ type ManagedPartnerBusiness struct {
 	SellerBusinessStatus *string                       `json:"seller_business_status,omitempty"`
 	Template             *[]map[string]interface{}     `json:"template,omitempty"`
 }
+
+var ManagedPartnerBusinessFields = struct {
+	AdAccount            string
+	CatalogSegment       string
+	ExtendedCredit       string
+	Page                 string
+	SellerBusinessInfo   string
+	SellerBusinessStatus string
+	Template             string
+}{
+	AdAccount:            "ad_account",
+	CatalogSegment:       "catalog_segment",
+	ExtendedCredit:       "extended_credit",
+	Page:                 "page",
+	SellerBusinessInfo:   "seller_business_info",
+	SellerBusinessStatus: "seller_business_status",
+	Template:             "template",
+}

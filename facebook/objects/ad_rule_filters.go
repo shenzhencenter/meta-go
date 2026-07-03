@@ -9,3 +9,13 @@ type AdRuleFilters struct {
 	Operator *enums.AdrulefiltersOperator `json:"operator,omitempty"`
 	Value    *map[string]interface{}      `json:"value,omitempty"`
 }
+
+var AdRuleFiltersFields = struct {
+	Field    string
+	Operator string
+	Value    string
+}{
+	Field:    "field",
+	Operator: "operator",
+	Value:    "value",
+}

@@ -41,9 +41,14 @@ func DecodeGetCatalogWebsiteOnboardingSettingsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetCatalogWebsiteOnboardingSettings(ctx context.Context, client *core.Client, id string, params GetCatalogWebsiteOnboardingSettingsParams) (*objects.CatalogWebsiteOnboardingSettings, error) {
+func GetCatalogWebsiteOnboardingSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetCatalogWebsiteOnboardingSettingsParams) (*objects.CatalogWebsiteOnboardingSettings, *core.Response, error) {
 	var out objects.CatalogWebsiteOnboardingSettings
 	call := GetCatalogWebsiteOnboardingSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCatalogWebsiteOnboardingSettings(ctx context.Context, client *core.Client, id string, params GetCatalogWebsiteOnboardingSettingsParams) (*objects.CatalogWebsiteOnboardingSettings, error) {
+	out, _, err := GetCatalogWebsiteOnboardingSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

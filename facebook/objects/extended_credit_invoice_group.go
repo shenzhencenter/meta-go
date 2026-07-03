@@ -15,3 +15,25 @@ type ExtendedCreditInvoiceGroup struct {
 	Name             *string              `json:"name,omitempty"`
 	SoldToAddress    *CRMAddress          `json:"sold_to_address,omitempty"`
 }
+
+var ExtendedCreditInvoiceGroupFields = struct {
+	AutoEnroll       string
+	BillToAddress    string
+	CustomerPoNumber string
+	Email            string
+	Emails           string
+	ID               string
+	LiableAddress    string
+	Name             string
+	SoldToAddress    string
+}{
+	AutoEnroll:       "auto_enroll",
+	BillToAddress:    "bill_to_address",
+	CustomerPoNumber: "customer_po_number",
+	Email:            "email",
+	Emails:           "emails",
+	ID:               "id",
+	LiableAddress:    "liable_address",
+	Name:             "name",
+	SoldToAddress:    "sold_to_address",
+}

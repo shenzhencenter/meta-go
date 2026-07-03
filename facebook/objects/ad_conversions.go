@@ -10,3 +10,15 @@ type AdConversions struct {
 	CampaignID *core.ID       `json:"campaign_id,omitempty"`
 	Values     *[]interface{} `json:"values,omitempty"`
 }
+
+var AdConversionsFields = struct {
+	AccountID  string
+	AdgroupID  string
+	CampaignID string
+	Values     string
+}{
+	AccountID:  "account_id",
+	AdgroupID:  "adgroup_id",
+	CampaignID: "campaign_id",
+	Values:     "values",
+}

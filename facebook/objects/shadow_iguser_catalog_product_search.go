@@ -14,3 +14,23 @@ type ShadowIGUserCatalogProductSearch struct {
 	RetailerID      *core.ID                             `json:"retailer_id,omitempty"`
 	ReviewStatus    *string                              `json:"review_status,omitempty"`
 }
+
+var ShadowIGUserCatalogProductSearchFields = struct {
+	ImageURL        string
+	IsCheckoutFlow  string
+	MerchantID      string
+	ProductID       string
+	ProductName     string
+	ProductVariants string
+	RetailerID      string
+	ReviewStatus    string
+}{
+	ImageURL:        "image_url",
+	IsCheckoutFlow:  "is_checkout_flow",
+	MerchantID:      "merchant_id",
+	ProductID:       "product_id",
+	ProductName:     "product_name",
+	ProductVariants: "product_variants",
+	RetailerID:      "retailer_id",
+	ReviewStatus:    "review_status",
+}

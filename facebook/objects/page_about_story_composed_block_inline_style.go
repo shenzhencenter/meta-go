@@ -5,3 +5,13 @@ type PageAboutStoryComposedBlockInlineStyle struct {
 	Offset *int    `json:"offset,omitempty"`
 	Style  *string `json:"style,omitempty"`
 }
+
+var PageAboutStoryComposedBlockInlineStyleFields = struct {
+	Length string
+	Offset string
+	Style  string
+}{
+	Length: "length",
+	Offset: "offset",
+	Style:  "style",
+}

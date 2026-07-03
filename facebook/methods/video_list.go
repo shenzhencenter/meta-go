@@ -41,11 +41,16 @@ func DecodeGetVideoListVideosBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetVideoListVideos(ctx context.Context, client *core.Client, id string, params GetVideoListVideosParams) (*core.Cursor[objects.AdVideo], error) {
+func GetVideoListVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoListVideosParams) (*core.Cursor[objects.AdVideo], *core.Response, error) {
 	var out core.Cursor[objects.AdVideo]
 	call := GetVideoListVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoListVideos(ctx context.Context, client *core.Client, id string, params GetVideoListVideosParams) (*core.Cursor[objects.AdVideo], error) {
+	out, _, err := GetVideoListVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetVideoListParams struct {
@@ -82,9 +87,14 @@ func DecodeGetVideoListBatchResponse(response *core.BatchResponse) (*objects.Vid
 	return &out, nil
 }
 
-func GetVideoList(ctx context.Context, client *core.Client, id string, params GetVideoListParams) (*objects.VideoList, error) {
+func GetVideoListWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoListParams) (*objects.VideoList, *core.Response, error) {
 	var out objects.VideoList
 	call := GetVideoListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoList(ctx context.Context, client *core.Client, id string, params GetVideoListParams) (*objects.VideoList, error) {
+	out, _, err := GetVideoListWithResponse(ctx, client, id, params)
+	return out, err
 }

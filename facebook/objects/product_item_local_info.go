@@ -15,3 +15,25 @@ type ProductItemLocalInfo struct {
 	InferredCircleOrigin           *ProductItemLocalInfoLatLongShape   `json:"inferred_circle_origin,omitempty"`
 	InferredCircleRadius           *float64                            `json:"inferred_circle_radius,omitempty"`
 }
+
+var ProductItemLocalInfoFields = struct {
+	AvailabilityCircleOrigin       string
+	AvailabilityCircleRadius       string
+	AvailabilityCircleRadiusUnit   string
+	AvailabilityPolygonCoordinates string
+	AvailabilityPostalCodes        string
+	AvailabilitySource             string
+	ID                             string
+	InferredCircleOrigin           string
+	InferredCircleRadius           string
+}{
+	AvailabilityCircleOrigin:       "availability_circle_origin",
+	AvailabilityCircleRadius:       "availability_circle_radius",
+	AvailabilityCircleRadiusUnit:   "availability_circle_radius_unit",
+	AvailabilityPolygonCoordinates: "availability_polygon_coordinates",
+	AvailabilityPostalCodes:        "availability_postal_codes",
+	AvailabilitySource:             "availability_source",
+	ID:                             "id",
+	InferredCircleOrigin:           "inferred_circle_origin",
+	InferredCircleRadius:           "inferred_circle_radius",
+}

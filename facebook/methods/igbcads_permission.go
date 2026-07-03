@@ -41,9 +41,14 @@ func DecodeGetIGBCAdsPermissionBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetIGBCAdsPermission(ctx context.Context, client *core.Client, id string, params GetIGBCAdsPermissionParams) (*objects.IGBCAdsPermission, error) {
+func GetIGBCAdsPermissionWithResponse(ctx context.Context, client *core.Client, id string, params GetIGBCAdsPermissionParams) (*objects.IGBCAdsPermission, *core.Response, error) {
 	var out objects.IGBCAdsPermission
 	call := GetIGBCAdsPermissionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGBCAdsPermission(ctx context.Context, client *core.Client, id string, params GetIGBCAdsPermissionParams) (*objects.IGBCAdsPermission, error) {
+	out, _, err := GetIGBCAdsPermissionWithResponse(ctx, client, id, params)
+	return out, err
 }

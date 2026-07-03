@@ -41,9 +41,14 @@ func DecodeGetBrandRequestBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetBrandRequest(ctx context.Context, client *core.Client, id string, params GetBrandRequestParams) (*objects.BrandRequest, error) {
+func GetBrandRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetBrandRequestParams) (*objects.BrandRequest, *core.Response, error) {
 	var out objects.BrandRequest
 	call := GetBrandRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBrandRequest(ctx context.Context, client *core.Client, id string, params GetBrandRequestParams) (*objects.BrandRequest, error) {
+	out, _, err := GetBrandRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

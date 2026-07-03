@@ -42,11 +42,16 @@ func DecodeDeletePageCallToActionBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func DeletePageCallToAction(ctx context.Context, client *core.Client, id string, params DeletePageCallToActionParams) (*map[string]interface{}, error) {
+func DeletePageCallToActionWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageCallToActionParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageCallToActionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageCallToAction(ctx context.Context, client *core.Client, id string, params DeletePageCallToActionParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageCallToActionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageCallToActionParams struct {
@@ -83,11 +88,16 @@ func DecodeGetPageCallToActionBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetPageCallToAction(ctx context.Context, client *core.Client, id string, params GetPageCallToActionParams) (*objects.PageCallToAction, error) {
+func GetPageCallToActionWithResponse(ctx context.Context, client *core.Client, id string, params GetPageCallToActionParams) (*objects.PageCallToAction, *core.Response, error) {
 	var out objects.PageCallToAction
 	call := GetPageCallToActionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageCallToAction(ctx context.Context, client *core.Client, id string, params GetPageCallToActionParams) (*objects.PageCallToAction, error) {
+	out, _, err := GetPageCallToActionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdatePageCallToActionParams struct {
@@ -172,9 +182,14 @@ func DecodeUpdatePageCallToActionBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdatePageCallToAction(ctx context.Context, client *core.Client, id string, params UpdatePageCallToActionParams) (*objects.PageCallToAction, error) {
+func UpdatePageCallToActionWithResponse(ctx context.Context, client *core.Client, id string, params UpdatePageCallToActionParams) (*objects.PageCallToAction, *core.Response, error) {
 	var out objects.PageCallToAction
 	call := UpdatePageCallToActionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdatePageCallToAction(ctx context.Context, client *core.Client, id string, params UpdatePageCallToActionParams) (*objects.PageCallToAction, error) {
+	out, _, err := UpdatePageCallToActionWithResponse(ctx, client, id, params)
+	return out, err
 }

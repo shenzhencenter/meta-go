@@ -9,3 +9,13 @@ type CPASLsbImageBank struct {
 	CatalogSegmentProxyID *core.ID `json:"catalog_segment_proxy_id,omitempty"`
 	ID                    *core.ID `json:"id,omitempty"`
 }
+
+var CPASLsbImageBankFields = struct {
+	AdGroupID             string
+	CatalogSegmentProxyID string
+	ID                    string
+}{
+	AdGroupID:             "ad_group_id",
+	CatalogSegmentProxyID: "catalog_segment_proxy_id",
+	ID:                    "id",
+}

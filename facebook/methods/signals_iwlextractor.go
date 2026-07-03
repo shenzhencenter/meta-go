@@ -41,9 +41,14 @@ func DecodeGetSignalsIWLExtractorBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetSignalsIWLExtractor(ctx context.Context, client *core.Client, id string, params GetSignalsIWLExtractorParams) (*objects.SignalsIWLExtractor, error) {
+func GetSignalsIWLExtractorWithResponse(ctx context.Context, client *core.Client, id string, params GetSignalsIWLExtractorParams) (*objects.SignalsIWLExtractor, *core.Response, error) {
 	var out objects.SignalsIWLExtractor
 	call := GetSignalsIWLExtractorBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSignalsIWLExtractor(ctx context.Context, client *core.Client, id string, params GetSignalsIWLExtractorParams) (*objects.SignalsIWLExtractor, error) {
+	out, _, err := GetSignalsIWLExtractorWithResponse(ctx, client, id, params)
+	return out, err
 }

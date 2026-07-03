@@ -5,3 +5,13 @@ type AdAssetFeedAdditionalDataPageNudgeMessage struct {
 	QuickReplies *[]map[string]interface{} `json:"quick_replies,omitempty"`
 	Text         *string                   `json:"text,omitempty"`
 }
+
+var AdAssetFeedAdditionalDataPageNudgeMessageFields = struct {
+	Enabled      string
+	QuickReplies string
+	Text         string
+}{
+	Enabled:      "enabled",
+	QuickReplies: "quick_replies",
+	Text:         "text",
+}

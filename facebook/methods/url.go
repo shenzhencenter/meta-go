@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetURLParams struct {
@@ -43,11 +42,16 @@ func DecodeGetURLBatchResponse(response *core.BatchResponse) (*objects.URL, erro
 	return &out, nil
 }
 
-func GetURL(ctx context.Context, client *core.Client, id string, params GetURLParams) (*objects.URL, error) {
+func GetURLWithResponse(ctx context.Context, client *core.Client, id string, params GetURLParams) (*objects.URL, *core.Response, error) {
 	var out objects.URL
 	call := GetURLBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetURL(ctx context.Context, client *core.Client, id string, params GetURLParams) (*objects.URL, error) {
+	out, _, err := GetURLWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateURLParams struct {
@@ -56,7 +60,7 @@ type UpdateURLParams struct {
 	Hmac      *string            `facebook:"hmac"`
 	Locale    *[]string          `facebook:"locale"`
 	Scopes    *[]enums.URLScopes `facebook:"scopes"`
-	Ts        *time.Time         `facebook:"ts"`
+	Ts        *core.Time         `facebook:"ts"`
 	Extra     core.Params        `facebook:"-"`
 }
 
@@ -108,9 +112,14 @@ func DecodeUpdateURLBatchResponse(response *core.BatchResponse) (*objects.URL, e
 	return &out, nil
 }
 
-func UpdateURL(ctx context.Context, client *core.Client, id string, params UpdateURLParams) (*objects.URL, error) {
+func UpdateURLWithResponse(ctx context.Context, client *core.Client, id string, params UpdateURLParams) (*objects.URL, *core.Response, error) {
 	var out objects.URL
 	call := UpdateURLBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateURL(ctx context.Context, client *core.Client, id string, params UpdateURLParams) (*objects.URL, error) {
+	out, _, err := UpdateURLWithResponse(ctx, client, id, params)
+	return out, err
 }

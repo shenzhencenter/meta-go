@@ -46,11 +46,16 @@ func DecodeGetStoriesInsightsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetStoriesInsights(ctx context.Context, client *core.Client, id string, params GetStoriesInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetStoriesInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetStoriesInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetStoriesInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetStoriesInsights(ctx context.Context, client *core.Client, id string, params GetStoriesInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetStoriesInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetStoriesParams struct {
@@ -87,9 +92,14 @@ func DecodeGetStoriesBatchResponse(response *core.BatchResponse) (*objects.Stori
 	return &out, nil
 }
 
-func GetStories(ctx context.Context, client *core.Client, id string, params GetStoriesParams) (*objects.Stories, error) {
+func GetStoriesWithResponse(ctx context.Context, client *core.Client, id string, params GetStoriesParams) (*objects.Stories, *core.Response, error) {
 	var out objects.Stories
 	call := GetStoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetStories(ctx context.Context, client *core.Client, id string, params GetStoriesParams) (*objects.Stories, error) {
+	out, _, err := GetStoriesWithResponse(ctx, client, id, params)
+	return out, err
 }

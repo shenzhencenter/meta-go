@@ -14,3 +14,23 @@ type AdsConversionGoal struct {
 	PerformanceGoal            *string  `json:"performance_goal,omitempty"`
 	UpdateStatus               *string  `json:"update_status,omitempty"`
 }
+
+var AdsConversionGoalFields = struct {
+	AdAccountID                string
+	ConversionEventValueSource string
+	Description                string
+	GoalCreationMethod         string
+	ID                         string
+	Name                       string
+	PerformanceGoal            string
+	UpdateStatus               string
+}{
+	AdAccountID:                "ad_account_id",
+	ConversionEventValueSource: "conversion_event_value_source",
+	Description:                "description",
+	GoalCreationMethod:         "goal_creation_method",
+	ID:                         "id",
+	Name:                       "name",
+	PerformanceGoal:            "performance_goal",
+	UpdateStatus:               "update_status",
+}

@@ -7,3 +7,17 @@ type MessengerCallSettings struct {
 	IconEnabled  *bool                   `json:"icon_enabled,omitempty"`
 	VideoEnabled *bool                   `json:"video_enabled,omitempty"`
 }
+
+var MessengerCallSettingsFields = struct {
+	AudioEnabled string
+	CallHours    string
+	CallRouting  string
+	IconEnabled  string
+	VideoEnabled string
+}{
+	AudioEnabled: "audio_enabled",
+	CallHours:    "call_hours",
+	CallRouting:  "call_routing",
+	IconEnabled:  "icon_enabled",
+	VideoEnabled: "video_enabled",
+}

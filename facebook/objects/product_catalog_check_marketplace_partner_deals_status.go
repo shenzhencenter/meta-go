@@ -9,3 +9,13 @@ type ProductCatalogCheckMarketplacePartnerDealsStatus struct {
 	SessionID *core.ID                  `json:"session_id,omitempty"`
 	Status    *string                   `json:"status,omitempty"`
 }
+
+var ProductCatalogCheckMarketplacePartnerDealsStatusFields = struct {
+	Errors    string
+	SessionID string
+	Status    string
+}{
+	Errors:    "errors",
+	SessionID: "session_id",
+	Status:    "status",
+}

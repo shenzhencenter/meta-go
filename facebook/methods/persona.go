@@ -41,11 +41,16 @@ func DecodeDeletePersonaBatchResponse(response *core.BatchResponse) (*map[string
 	return &out, nil
 }
 
-func DeletePersona(ctx context.Context, client *core.Client, id string, params DeletePersonaParams) (*map[string]interface{}, error) {
+func DeletePersonaWithResponse(ctx context.Context, client *core.Client, id string, params DeletePersonaParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePersonaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePersona(ctx context.Context, client *core.Client, id string, params DeletePersonaParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePersonaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPersonaParams struct {
@@ -82,9 +87,14 @@ func DecodeGetPersonaBatchResponse(response *core.BatchResponse) (*objects.Perso
 	return &out, nil
 }
 
-func GetPersona(ctx context.Context, client *core.Client, id string, params GetPersonaParams) (*objects.Persona, error) {
+func GetPersonaWithResponse(ctx context.Context, client *core.Client, id string, params GetPersonaParams) (*objects.Persona, *core.Response, error) {
 	var out objects.Persona
 	call := GetPersonaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPersona(ctx context.Context, client *core.Client, id string, params GetPersonaParams) (*objects.Persona, error) {
+	out, _, err := GetPersonaWithResponse(ctx, client, id, params)
+	return out, err
 }

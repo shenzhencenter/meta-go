@@ -9,3 +9,13 @@ type CatalogWebsiteOnboardingSettings struct {
 	QualityBand *string  `json:"quality_band,omitempty"`
 	Status      *string  `json:"status,omitempty"`
 }
+
+var CatalogWebsiteOnboardingSettingsFields = struct {
+	ID          string
+	QualityBand string
+	Status      string
+}{
+	ID:          "id",
+	QualityBand: "quality_band",
+	Status:      "status",
+}

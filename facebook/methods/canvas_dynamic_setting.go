@@ -41,9 +41,14 @@ func DecodeGetCanvasDynamicSettingBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetCanvasDynamicSetting(ctx context.Context, client *core.Client, id string, params GetCanvasDynamicSettingParams) (*objects.CanvasDynamicSetting, error) {
+func GetCanvasDynamicSettingWithResponse(ctx context.Context, client *core.Client, id string, params GetCanvasDynamicSettingParams) (*objects.CanvasDynamicSetting, *core.Response, error) {
 	var out objects.CanvasDynamicSetting
 	call := GetCanvasDynamicSettingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCanvasDynamicSetting(ctx context.Context, client *core.Client, id string, params GetCanvasDynamicSettingParams) (*objects.CanvasDynamicSetting, error) {
+	out, _, err := GetCanvasDynamicSettingWithResponse(ctx, client, id, params)
+	return out, err
 }

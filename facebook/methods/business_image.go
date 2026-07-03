@@ -41,9 +41,14 @@ func DecodeGetBusinessImageBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetBusinessImage(ctx context.Context, client *core.Client, id string, params GetBusinessImageParams) (*objects.BusinessImage, error) {
+func GetBusinessImageWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessImageParams) (*objects.BusinessImage, *core.Response, error) {
 	var out objects.BusinessImage
 	call := GetBusinessImageBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessImage(ctx context.Context, client *core.Client, id string, params GetBusinessImageParams) (*objects.BusinessImage, error) {
+	out, _, err := GetBusinessImageWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusParams struct {
@@ -45,15 +44,20 @@ func DecodeGetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusBatchResponse(resp
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusParams) (*core.Cursor[objects.BusinessMessagingFeatureStatus], error) {
+func GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusParams) (*core.Cursor[objects.BusinessMessagingFeatureStatus], *core.Response, error) {
 	var out core.Cursor[objects.BusinessMessagingFeatureStatus]
 	call := GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusParams) (*core.Cursor[objects.BusinessMessagingFeatureStatus], error) {
+	out, _, err := GetIGUserForIGOnlyAPIBusinessMessagingFeatureStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIContentPublishingLimitParams struct {
-	Since *time.Time  `facebook:"since"`
+	Since *core.Time  `facebook:"since"`
 	Extra core.Params `facebook:"-"`
 }
 
@@ -90,11 +94,16 @@ func DecodeGetIGUserForIGOnlyAPIContentPublishingLimitBatchResponse(response *co
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIContentPublishingLimit(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], error) {
+func GetIGUserForIGOnlyAPIContentPublishingLimitWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], *core.Response, error) {
 	var out core.Cursor[objects.ContentPublishingLimitResponse]
 	call := GetIGUserForIGOnlyAPIContentPublishingLimitBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIContentPublishingLimit(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], error) {
+	out, _, err := GetIGUserForIGOnlyAPIContentPublishingLimitWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIConversationsParams struct {
@@ -147,11 +156,16 @@ func DecodeGetIGUserForIGOnlyAPIConversationsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIConversations(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
+func GetIGUserForIGOnlyAPIConversationsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIConversationsParams) (*core.Cursor[objects.UnifiedThread], *core.Response, error) {
 	var out core.Cursor[objects.UnifiedThread]
 	call := GetIGUserForIGOnlyAPIConversationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIConversations(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
+	out, _, err := GetIGUserForIGOnlyAPIConversationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIInsightsParams struct {
@@ -159,9 +173,9 @@ type GetIGUserForIGOnlyAPIInsightsParams struct {
 	Metric     []enums.UserinsightsMetricEnumParam     `facebook:"metric"`
 	MetricType *enums.UserinsightsMetricTypeEnumParam  `facebook:"metric_type"`
 	Period     []enums.UserinsightsPeriodEnumParam     `facebook:"period"`
-	Since      *time.Time                              `facebook:"since"`
+	Since      *core.Time                              `facebook:"since"`
 	Timeframe  *enums.UserinsightsTimeframeEnumParam   `facebook:"timeframe"`
-	Until      *time.Time                              `facebook:"until"`
+	Until      *core.Time                              `facebook:"until"`
 	Extra      core.Params                             `facebook:"-"`
 }
 
@@ -212,11 +226,16 @@ func DecodeGetIGUserForIGOnlyAPIInsightsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIInsights(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetIGUserForIGOnlyAPIInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetIGUserForIGOnlyAPIInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIInsights(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetIGUserForIGOnlyAPIInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPILiveMediaParams struct {
@@ -253,16 +272,21 @@ func DecodeGetIGUserForIGOnlyAPILiveMediaBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPILiveMedia(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPILiveMediaParams) (*core.Cursor[objects.Media], error) {
+func GetIGUserForIGOnlyAPILiveMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPILiveMediaParams) (*core.Cursor[objects.Media], *core.Response, error) {
 	var out core.Cursor[objects.Media]
 	call := GetIGUserForIGOnlyAPILiveMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPILiveMedia(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPILiveMediaParams) (*core.Cursor[objects.Media], error) {
+	out, _, err := GetIGUserForIGOnlyAPILiveMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIMediaParams struct {
-	Since *time.Time  `facebook:"since"`
-	Until *time.Time  `facebook:"until"`
+	Since *core.Time  `facebook:"since"`
+	Until *core.Time  `facebook:"until"`
 	Extra core.Params `facebook:"-"`
 }
 
@@ -302,11 +326,16 @@ func DecodeGetIGUserForIGOnlyAPIMediaBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIMedia(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIMediaParams) (*core.Cursor[objects.Media], error) {
+func GetIGUserForIGOnlyAPIMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIMediaParams) (*core.Cursor[objects.Media], *core.Response, error) {
 	var out core.Cursor[objects.Media]
 	call := GetIGUserForIGOnlyAPIMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIMedia(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIMediaParams) (*core.Cursor[objects.Media], error) {
+	out, _, err := GetIGUserForIGOnlyAPIMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIMediaParams struct {
@@ -423,11 +452,16 @@ func DecodeCreateIGUserForIGOnlyAPIMediaBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIMedia(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMediaParams) (*objects.IGGraphMedia, error) {
+func CreateIGUserForIGOnlyAPIMediaWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMediaParams) (*objects.IGGraphMedia, *core.Response, error) {
 	var out objects.IGGraphMedia
 	call := CreateIGUserForIGOnlyAPIMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIMedia(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMediaParams) (*objects.IGGraphMedia, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIMediapublishParams struct {
@@ -466,11 +500,16 @@ func DecodeCreateIGUserForIGOnlyAPIMediapublishBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIMediapublish(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMediapublishParams) (*map[string]interface{}, error) {
+func CreateIGUserForIGOnlyAPIMediapublishWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMediapublishParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserForIGOnlyAPIMediapublishBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIMediapublish(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMediapublishParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIMediapublishWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIMentionsParams struct {
@@ -515,11 +554,16 @@ func DecodeCreateIGUserForIGOnlyAPIMentionsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIMentions(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMentionsParams) (*map[string]interface{}, error) {
+func CreateIGUserForIGOnlyAPIMentionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMentionsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserForIGOnlyAPIMentionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIMentions(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMentionsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIMentionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIMessageattachmentsParams struct {
@@ -558,11 +602,16 @@ func DecodeCreateIGUserForIGOnlyAPIMessageattachmentsBatchResponse(response *cor
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIMessageattachments(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessageattachmentsParams) (*map[string]interface{}, error) {
+func CreateIGUserForIGOnlyAPIMessageattachmentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessageattachmentsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserForIGOnlyAPIMessageattachmentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIMessageattachments(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessageattachmentsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIMessageattachmentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIMessagesParams struct {
@@ -635,11 +684,16 @@ func DecodeCreateIGUserForIGOnlyAPIMessagesBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIMessages(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessagesParams) (*map[string]interface{}, error) {
+func CreateIGUserForIGOnlyAPIMessagesWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessagesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateIGUserForIGOnlyAPIMessagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIMessages(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessagesParams) (*map[string]interface{}, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIMessagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGUserForIGOnlyAPIMessengerProfileParams struct {
@@ -678,11 +732,16 @@ func DecodeDeleteIGUserForIGOnlyAPIMessengerProfileBatchResponse(response *core.
 	return &out, nil
 }
 
-func DeleteIGUserForIGOnlyAPIMessengerProfile(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPIMessengerProfileParams) (*map[string]interface{}, error) {
+func DeleteIGUserForIGOnlyAPIMessengerProfileWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPIMessengerProfileParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGUserForIGOnlyAPIMessengerProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGUserForIGOnlyAPIMessengerProfile(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPIMessengerProfileParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGUserForIGOnlyAPIMessengerProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIMessengerProfileParams struct {
@@ -719,11 +778,16 @@ func DecodeGetIGUserForIGOnlyAPIMessengerProfileBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIMessengerProfile(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIMessengerProfileParams) (*core.Cursor[objects.UserProfile], error) {
+func GetIGUserForIGOnlyAPIMessengerProfileWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIMessengerProfileParams) (*core.Cursor[objects.UserProfile], *core.Response, error) {
 	var out core.Cursor[objects.UserProfile]
 	call := GetIGUserForIGOnlyAPIMessengerProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIMessengerProfile(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIMessengerProfileParams) (*core.Cursor[objects.UserProfile], error) {
+	out, _, err := GetIGUserForIGOnlyAPIMessengerProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIMessengerProfileParams struct {
@@ -768,11 +832,16 @@ func DecodeCreateIGUserForIGOnlyAPIMessengerProfileBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIMessengerProfile(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessengerProfileParams) (*objects.IGGraphUser, error) {
+func CreateIGUserForIGOnlyAPIMessengerProfileWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessengerProfileParams) (*objects.IGGraphUser, *core.Response, error) {
 	var out objects.IGGraphUser
 	call := CreateIGUserForIGOnlyAPIMessengerProfileBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIMessengerProfile(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIMessengerProfileParams) (*objects.IGGraphUser, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIMessengerProfileWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIStoriesParams struct {
@@ -809,11 +878,16 @@ func DecodeGetIGUserForIGOnlyAPIStoriesBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIStories(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIStoriesParams) (*core.Cursor[objects.Media], error) {
+func GetIGUserForIGOnlyAPIStoriesWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIStoriesParams) (*core.Cursor[objects.Media], *core.Response, error) {
 	var out core.Cursor[objects.Media]
 	call := GetIGUserForIGOnlyAPIStoriesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIStories(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIStoriesParams) (*core.Cursor[objects.Media], error) {
+	out, _, err := GetIGUserForIGOnlyAPIStoriesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGUserForIGOnlyAPISubscribedAppsParams struct {
@@ -850,11 +924,16 @@ func DecodeDeleteIGUserForIGOnlyAPISubscribedAppsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func DeleteIGUserForIGOnlyAPISubscribedApps(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPISubscribedAppsParams) (*map[string]interface{}, error) {
+func DeleteIGUserForIGOnlyAPISubscribedAppsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPISubscribedAppsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGUserForIGOnlyAPISubscribedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGUserForIGOnlyAPISubscribedApps(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPISubscribedAppsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGUserForIGOnlyAPISubscribedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPISubscribedAppsParams struct {
@@ -891,11 +970,16 @@ func DecodeGetIGUserForIGOnlyAPISubscribedAppsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPISubscribedApps(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPISubscribedAppsParams) (*core.Cursor[objects.UserSubscribedAppsData], error) {
+func GetIGUserForIGOnlyAPISubscribedAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPISubscribedAppsParams) (*core.Cursor[objects.UserSubscribedAppsData], *core.Response, error) {
 	var out core.Cursor[objects.UserSubscribedAppsData]
 	call := GetIGUserForIGOnlyAPISubscribedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPISubscribedApps(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPISubscribedAppsParams) (*core.Cursor[objects.UserSubscribedAppsData], error) {
+	out, _, err := GetIGUserForIGOnlyAPISubscribedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPISubscribedAppsParams struct {
@@ -934,11 +1018,16 @@ func DecodeCreateIGUserForIGOnlyAPISubscribedAppsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPISubscribedApps(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPISubscribedAppsParams) (*objects.IGGraphUser, error) {
+func CreateIGUserForIGOnlyAPISubscribedAppsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPISubscribedAppsParams) (*objects.IGGraphUser, *core.Response, error) {
 	var out objects.IGGraphUser
 	call := CreateIGUserForIGOnlyAPISubscribedAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPISubscribedApps(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPISubscribedAppsParams) (*objects.IGGraphUser, error) {
+	out, _, err := CreateIGUserForIGOnlyAPISubscribedAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPITagsParams struct {
@@ -975,11 +1064,16 @@ func DecodeGetIGUserForIGOnlyAPITagsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPITags(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPITagsParams) (*core.Cursor[objects.Media], error) {
+func GetIGUserForIGOnlyAPITagsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPITagsParams) (*core.Cursor[objects.Media], *core.Response, error) {
 	var out core.Cursor[objects.Media]
 	call := GetIGUserForIGOnlyAPITagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPITags(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPITagsParams) (*core.Cursor[objects.Media], error) {
+	out, _, err := GetIGUserForIGOnlyAPITagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsParams struct {
@@ -1020,11 +1114,16 @@ func DecodeDeleteIGUserForIGOnlyAPIWelcomeMessageFlowsBatchResponse(response *co
 	return &out, nil
 }
 
-func DeleteIGUserForIGOnlyAPIWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
+func DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGUserForIGOnlyAPIWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGUserForIGOnlyAPIWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIWelcomeMessageFlowsParams struct {
@@ -1069,11 +1168,16 @@ func DecodeGetIGUserForIGOnlyAPIWelcomeMessageFlowsBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPIWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
+func GetIGUserForIGOnlyAPIWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], *core.Response, error) {
 	var out core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]
 	call := GetIGUserForIGOnlyAPIWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPIWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
+	out, _, err := GetIGUserForIGOnlyAPIWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGUserForIGOnlyAPIWelcomeMessageFlowsParams struct {
@@ -1126,11 +1230,16 @@ func DecodeCreateIGUserForIGOnlyAPIWelcomeMessageFlowsBatchResponse(response *co
 	return &out, nil
 }
 
-func CreateIGUserForIGOnlyAPIWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*objects.IGGraphCTXPartnerAppWelcomeMessageFlow, error) {
+func CreateIGUserForIGOnlyAPIWelcomeMessageFlowsWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*objects.IGGraphCTXPartnerAppWelcomeMessageFlow, *core.Response, error) {
 	var out objects.IGGraphCTXPartnerAppWelcomeMessageFlow
 	call := CreateIGUserForIGOnlyAPIWelcomeMessageFlowsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGUserForIGOnlyAPIWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params CreateIGUserForIGOnlyAPIWelcomeMessageFlowsParams) (*objects.IGGraphCTXPartnerAppWelcomeMessageFlow, error) {
+	out, _, err := CreateIGUserForIGOnlyAPIWelcomeMessageFlowsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserForIGOnlyAPIParams struct {
@@ -1167,9 +1276,14 @@ func DecodeGetIGUserForIGOnlyAPIBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetIGUserForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIParams) (*objects.User, error) {
+func GetIGUserForIGOnlyAPIWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIParams) (*objects.User, *core.Response, error) {
 	var out objects.User
 	call := GetIGUserForIGOnlyAPIBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserForIGOnlyAPI(ctx context.Context, client *core.Client, id string, params GetIGUserForIGOnlyAPIParams) (*objects.User, error) {
+	out, _, err := GetIGUserForIGOnlyAPIWithResponse(ctx, client, id, params)
+	return out, err
 }

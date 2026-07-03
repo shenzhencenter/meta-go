@@ -41,11 +41,16 @@ func DecodeGetCPASLsbImageBankBackupImagesBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetCPASLsbImageBankBackupImages(ctx context.Context, client *core.Client, id string, params GetCPASLsbImageBankBackupImagesParams) (*core.Cursor[objects.ProductImage], error) {
+func GetCPASLsbImageBankBackupImagesWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASLsbImageBankBackupImagesParams) (*core.Cursor[objects.ProductImage], *core.Response, error) {
 	var out core.Cursor[objects.ProductImage]
 	call := GetCPASLsbImageBankBackupImagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASLsbImageBankBackupImages(ctx context.Context, client *core.Client, id string, params GetCPASLsbImageBankBackupImagesParams) (*core.Cursor[objects.ProductImage], error) {
+	out, _, err := GetCPASLsbImageBankBackupImagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCPASLsbImageBankParams struct {
@@ -82,11 +87,16 @@ func DecodeGetCPASLsbImageBankBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetCPASLsbImageBank(ctx context.Context, client *core.Client, id string, params GetCPASLsbImageBankParams) (*objects.CPASLsbImageBank, error) {
+func GetCPASLsbImageBankWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASLsbImageBankParams) (*objects.CPASLsbImageBank, *core.Response, error) {
 	var out objects.CPASLsbImageBank
 	call := GetCPASLsbImageBankBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASLsbImageBank(ctx context.Context, client *core.Client, id string, params GetCPASLsbImageBankParams) (*objects.CPASLsbImageBank, error) {
+	out, _, err := GetCPASLsbImageBankWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCPASLsbImageBankParams struct {
@@ -125,9 +135,14 @@ func DecodeUpdateCPASLsbImageBankBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdateCPASLsbImageBank(ctx context.Context, client *core.Client, id string, params UpdateCPASLsbImageBankParams) (*objects.CPASLsbImageBank, error) {
+func UpdateCPASLsbImageBankWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCPASLsbImageBankParams) (*objects.CPASLsbImageBank, *core.Response, error) {
 	var out objects.CPASLsbImageBank
 	call := UpdateCPASLsbImageBankBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateCPASLsbImageBank(ctx context.Context, client *core.Client, id string, params UpdateCPASLsbImageBankParams) (*objects.CPASLsbImageBank, error) {
+	out, _, err := UpdateCPASLsbImageBankWithResponse(ctx, client, id, params)
+	return out, err
 }

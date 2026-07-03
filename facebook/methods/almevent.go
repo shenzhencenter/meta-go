@@ -41,9 +41,14 @@ func DecodeGetALMEventBatchResponse(response *core.BatchResponse) (*objects.ALME
 	return &out, nil
 }
 
-func GetALMEvent(ctx context.Context, client *core.Client, id string, params GetALMEventParams) (*objects.ALMEvent, error) {
+func GetALMEventWithResponse(ctx context.Context, client *core.Client, id string, params GetALMEventParams) (*objects.ALMEvent, *core.Response, error) {
 	var out objects.ALMEvent
 	call := GetALMEventBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetALMEvent(ctx context.Context, client *core.Client, id string, params GetALMEventParams) (*objects.ALMEvent, error) {
+	out, _, err := GetALMEventWithResponse(ctx, client, id, params)
+	return out, err
 }

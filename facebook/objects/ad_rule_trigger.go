@@ -10,3 +10,15 @@ type AdRuleTrigger struct {
 	Type     *enums.AdruletriggerType     `json:"type,omitempty"`
 	Value    *map[string]interface{}      `json:"value,omitempty"`
 }
+
+var AdRuleTriggerFields = struct {
+	Field    string
+	Operator string
+	Type     string
+	Value    string
+}{
+	Field:    "field",
+	Operator: "operator",
+	Type:     "type",
+	Value:    "value",
+}

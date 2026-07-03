@@ -41,11 +41,16 @@ func DecodeGetCanvasPreviewBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetCanvasPreview(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewParams) (*core.Cursor[objects.CanvasPreview], error) {
+func GetCanvasPreviewWithResponse(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewParams) (*core.Cursor[objects.CanvasPreview], *core.Response, error) {
 	var out core.Cursor[objects.CanvasPreview]
 	call := GetCanvasPreviewBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCanvasPreview(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewParams) (*core.Cursor[objects.CanvasPreview], error) {
+	out, _, err := GetCanvasPreviewWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCanvasPreviewsParams struct {
@@ -86,11 +91,16 @@ func DecodeGetCanvasPreviewsBatchResponse(response *core.BatchResponse) (*core.C
 	return &out, nil
 }
 
-func GetCanvasPreviews(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewsParams) (*core.Cursor[objects.TextWithEntities], error) {
+func GetCanvasPreviewsWithResponse(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewsParams) (*core.Cursor[objects.TextWithEntities], *core.Response, error) {
 	var out core.Cursor[objects.TextWithEntities]
 	call := GetCanvasPreviewsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCanvasPreviews(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewsParams) (*core.Cursor[objects.TextWithEntities], error) {
+	out, _, err := GetCanvasPreviewsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCanvasParams struct {
@@ -127,11 +137,16 @@ func DecodeGetCanvasBatchResponse(response *core.BatchResponse) (*objects.Canvas
 	return &out, nil
 }
 
-func GetCanvas(ctx context.Context, client *core.Client, id string, params GetCanvasParams) (*objects.Canvas, error) {
+func GetCanvasWithResponse(ctx context.Context, client *core.Client, id string, params GetCanvasParams) (*objects.Canvas, *core.Response, error) {
 	var out objects.Canvas
 	call := GetCanvasBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCanvas(ctx context.Context, client *core.Client, id string, params GetCanvasParams) (*objects.Canvas, error) {
+	out, _, err := GetCanvasWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCanvasParams struct {
@@ -204,9 +219,14 @@ func DecodeUpdateCanvasBatchResponse(response *core.BatchResponse) (*objects.Can
 	return &out, nil
 }
 
-func UpdateCanvas(ctx context.Context, client *core.Client, id string, params UpdateCanvasParams) (*objects.Canvas, error) {
+func UpdateCanvasWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCanvasParams) (*objects.Canvas, *core.Response, error) {
 	var out objects.Canvas
 	call := UpdateCanvasBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateCanvas(ctx context.Context, client *core.Client, id string, params UpdateCanvasParams) (*objects.Canvas, error) {
+	out, _, err := UpdateCanvasWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -11,3 +11,17 @@ type ProductCatalogDataSource struct {
 	Name                *string  `json:"name,omitempty"`
 	UploadType          *string  `json:"upload_type,omitempty"`
 }
+
+var ProductCatalogDataSourceFields = struct {
+	AppID               string
+	ID                  string
+	IngestionSourceType string
+	Name                string
+	UploadType          string
+}{
+	AppID:               "app_id",
+	ID:                  "id",
+	IngestionSourceType: "ingestion_source_type",
+	Name:                "name",
+	UploadType:          "upload_type",
+}

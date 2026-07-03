@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetOfflineConversionDataSetAdaccountsParams struct {
@@ -45,11 +44,16 @@ func DecodeGetOfflineConversionDataSetAdaccountsBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetAdaccounts(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetOfflineConversionDataSetAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetOfflineConversionDataSetAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetAdaccounts(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetOfflineConversionDataSetAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetAgenciesParams struct {
@@ -86,11 +90,16 @@ func DecodeGetOfflineConversionDataSetAgenciesBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetAgencies(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetOfflineConversionDataSetAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetOfflineConversionDataSetAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetAgencies(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetOfflineConversionDataSetAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetAudiencesParams struct {
@@ -135,11 +144,16 @@ func DecodeGetOfflineConversionDataSetAudiencesBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetAudiences(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAudiencesParams) (*core.Cursor[objects.CustomAudience], error) {
+func GetOfflineConversionDataSetAudiencesWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAudiencesParams) (*core.Cursor[objects.CustomAudience], *core.Response, error) {
 	var out core.Cursor[objects.CustomAudience]
 	call := GetOfflineConversionDataSetAudiencesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetAudiences(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetAudiencesParams) (*core.Cursor[objects.CustomAudience], error) {
+	out, _, err := GetOfflineConversionDataSetAudiencesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetCustomconversionsParams struct {
@@ -180,11 +194,16 @@ func DecodeGetOfflineConversionDataSetCustomconversionsBatchResponse(response *c
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetCustomconversions(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetCustomconversionsParams) (*core.Cursor[objects.CustomConversion], error) {
+func GetOfflineConversionDataSetCustomconversionsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetCustomconversionsParams) (*core.Cursor[objects.CustomConversion], *core.Response, error) {
 	var out core.Cursor[objects.CustomConversion]
 	call := GetOfflineConversionDataSetCustomconversionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetCustomconversions(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetCustomconversionsParams) (*core.Cursor[objects.CustomConversion], error) {
+	out, _, err := GetOfflineConversionDataSetCustomconversionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetServerEventsPermittedBusinessParams struct {
@@ -221,11 +240,16 @@ func DecodeGetOfflineConversionDataSetServerEventsPermittedBusinessBatchResponse
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetServerEventsPermittedBusiness(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetServerEventsPermittedBusinessParams) (*core.Cursor[objects.Business], error) {
+func GetOfflineConversionDataSetServerEventsPermittedBusinessWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetServerEventsPermittedBusinessParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetOfflineConversionDataSetServerEventsPermittedBusinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetServerEventsPermittedBusiness(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetServerEventsPermittedBusinessParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetOfflineConversionDataSetServerEventsPermittedBusinessWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetSharedAccountsParams struct {
@@ -266,11 +290,16 @@ func DecodeGetOfflineConversionDataSetSharedAccountsBatchResponse(response *core
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetSharedAccounts(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetOfflineConversionDataSetSharedAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetSharedAccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetOfflineConversionDataSetSharedAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetSharedAccounts(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetOfflineConversionDataSetSharedAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetSharedAgenciesParams struct {
@@ -309,11 +338,16 @@ func DecodeGetOfflineConversionDataSetSharedAgenciesBatchResponse(response *core
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetSharedAgencies(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetSharedAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetOfflineConversionDataSetSharedAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetSharedAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetOfflineConversionDataSetSharedAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetSharedAgencies(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetSharedAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetOfflineConversionDataSetSharedAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetStatsParams struct {
@@ -374,18 +408,23 @@ func DecodeGetOfflineConversionDataSetStatsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetStats(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetStatsParams) (*core.Cursor[objects.OfflineConversionDataSetStats], error) {
+func GetOfflineConversionDataSetStatsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetStatsParams) (*core.Cursor[objects.OfflineConversionDataSetStats], *core.Response, error) {
 	var out core.Cursor[objects.OfflineConversionDataSetStats]
 	call := GetOfflineConversionDataSetStatsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetStats(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetStatsParams) (*core.Cursor[objects.OfflineConversionDataSetStats], error) {
+	out, _, err := GetOfflineConversionDataSetStatsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetUploadsParams struct {
-	EndTime   *time.Time                                            `facebook:"end_time"`
+	EndTime   *core.Time                                            `facebook:"end_time"`
 	Order     *enums.OfflineconversiondatasetuploadsOrderEnumParam  `facebook:"order"`
 	SortBy    *enums.OfflineconversiondatasetuploadsSortByEnumParam `facebook:"sort_by"`
-	StartTime *time.Time                                            `facebook:"start_time"`
+	StartTime *core.Time                                            `facebook:"start_time"`
 	UploadTag *string                                               `facebook:"upload_tag"`
 	Extra     core.Params                                           `facebook:"-"`
 }
@@ -435,11 +474,16 @@ func DecodeGetOfflineConversionDataSetUploadsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetOfflineConversionDataSetUploads(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], error) {
+func GetOfflineConversionDataSetUploadsWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], *core.Response, error) {
 	var out core.Cursor[objects.OfflineConversionDataSetUpload]
 	call := GetOfflineConversionDataSetUploadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSetUploads(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], error) {
+	out, _, err := GetOfflineConversionDataSetUploadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOfflineConversionDataSetParams struct {
@@ -476,9 +520,14 @@ func DecodeGetOfflineConversionDataSetBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetOfflineConversionDataSet(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetParams) (*objects.OfflineConversionDataSet, error) {
+func GetOfflineConversionDataSetWithResponse(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetParams) (*objects.OfflineConversionDataSet, *core.Response, error) {
 	var out objects.OfflineConversionDataSet
 	call := GetOfflineConversionDataSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOfflineConversionDataSet(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetParams) (*objects.OfflineConversionDataSet, error) {
+	out, _, err := GetOfflineConversionDataSetWithResponse(ctx, client, id, params)
+	return out, err
 }

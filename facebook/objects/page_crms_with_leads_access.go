@@ -10,3 +10,15 @@ type PageCrmsWithLeadsAccess struct {
 	IntegrationType *string  `json:"integration_type,omitempty"`
 	Name            *string  `json:"name,omitempty"`
 }
+
+var PageCrmsWithLeadsAccessFields = struct {
+	CanAccessLeads  string
+	ID              string
+	IntegrationType string
+	Name            string
+}{
+	CanAccessLeads:  "can_access_leads",
+	ID:              "id",
+	IntegrationType: "integration_type",
+	Name:            "name",
+}

@@ -9,3 +9,13 @@ type BusinessVideoTBusinessFolderPathItem struct {
 	ParentFolderID *core.ID `json:"parent_folder_id,omitempty"`
 	Type           *string  `json:"type,omitempty"`
 }
+
+var BusinessVideoTBusinessFolderPathItemFields = struct {
+	ID             string
+	ParentFolderID string
+	Type           string
+}{
+	ID:             "id",
+	ParentFolderID: "parent_folder_id",
+	Type:           "type",
+}

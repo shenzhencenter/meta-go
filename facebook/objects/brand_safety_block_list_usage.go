@@ -7,3 +7,17 @@ type BrandSafetyBlockListUsage struct {
 	Position     *string `json:"position,omitempty"`
 	Threshold    *int    `json:"threshold,omitempty"`
 }
+
+var BrandSafetyBlockListUsageFields = struct {
+	CurrentUsage string
+	NewUsage     string
+	Platform     string
+	Position     string
+	Threshold    string
+}{
+	CurrentUsage: "current_usage",
+	NewUsage:     "new_usage",
+	Platform:     "platform",
+	Position:     "position",
+	Threshold:    "threshold",
+}

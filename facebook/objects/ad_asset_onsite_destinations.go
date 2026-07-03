@@ -11,3 +11,17 @@ type AdAssetOnsiteDestinations struct {
 	Source                     *string  `json:"source,omitempty"`
 	StorefrontShopID           *core.ID `json:"storefront_shop_id,omitempty"`
 }
+
+var AdAssetOnsiteDestinationsFields = struct {
+	AutoOptimization           string
+	DetailsPageProductID       string
+	ShopCollectionProductSetID string
+	Source                     string
+	StorefrontShopID           string
+}{
+	AutoOptimization:           "auto_optimization",
+	DetailsPageProductID:       "details_page_product_id",
+	ShopCollectionProductSetID: "shop_collection_product_set_id",
+	Source:                     "source",
+	StorefrontShopID:           "storefront_shop_id",
+}

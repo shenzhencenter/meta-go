@@ -7,3 +7,9 @@ import (
 type AdLightCampaignGroup struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var AdLightCampaignGroupFields = struct {
+	ID string
+}{
+	ID: "id",
+}

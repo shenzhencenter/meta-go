@@ -10,3 +10,15 @@ type AsyncRequest struct {
 	Status *int     `json:"status,omitempty"`
 	Type   *int     `json:"type,omitempty"`
 }
+
+var AsyncRequestFields = struct {
+	ID     string
+	Result string
+	Status string
+	Type   string
+}{
+	ID:     "id",
+	Result: "result",
+	Status: "status",
+	Type:   "type",
+}

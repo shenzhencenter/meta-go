@@ -14,3 +14,23 @@ type TargetingDynamicRule struct {
 	Post             *string  `json:"post,omitempty"`
 	RetentionSeconds *string  `json:"retention_seconds,omitempty"`
 }
+
+var TargetingDynamicRuleFields = struct {
+	ActionType       string
+	AdGroupID        string
+	CampaignGroupID  string
+	CampaignID       string
+	ImpressionCount  string
+	PageID           string
+	Post             string
+	RetentionSeconds string
+}{
+	ActionType:       "action.type",
+	AdGroupID:        "ad_group_id",
+	CampaignGroupID:  "campaign_group_id",
+	CampaignID:       "campaign_id",
+	ImpressionCount:  "impression_count",
+	PageID:           "page_id",
+	Post:             "post",
+	RetentionSeconds: "retention_seconds",
+}

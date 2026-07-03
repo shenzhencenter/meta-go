@@ -23,3 +23,41 @@ type AdCreativeVideoData struct {
 	Title                               *string                              `json:"title,omitempty"`
 	VideoID                             *core.ID                             `json:"video_id,omitempty"`
 }
+
+var AdCreativeVideoDataFields = struct {
+	AdditionalImageIndex                string
+	BrandedContentSharedToSponsorStatus string
+	BrandedContentSponsorPageID         string
+	CallToAction                        string
+	CollectionThumbnails                string
+	CustomizationRulesSpec              string
+	ImageHash                           string
+	ImageURL                            string
+	LinkDescription                     string
+	Message                             string
+	OfferID                             string
+	PageWelcomeMessage                  string
+	PostClickConfiguration              string
+	RetailerItemIds                     string
+	Targeting                           string
+	Title                               string
+	VideoID                             string
+}{
+	AdditionalImageIndex:                "additional_image_index",
+	BrandedContentSharedToSponsorStatus: "branded_content_shared_to_sponsor_status",
+	BrandedContentSponsorPageID:         "branded_content_sponsor_page_id",
+	CallToAction:                        "call_to_action",
+	CollectionThumbnails:                "collection_thumbnails",
+	CustomizationRulesSpec:              "customization_rules_spec",
+	ImageHash:                           "image_hash",
+	ImageURL:                            "image_url",
+	LinkDescription:                     "link_description",
+	Message:                             "message",
+	OfferID:                             "offer_id",
+	PageWelcomeMessage:                  "page_welcome_message",
+	PostClickConfiguration:              "post_click_configuration",
+	RetailerItemIds:                     "retailer_item_ids",
+	Targeting:                           "targeting",
+	Title:                               "title",
+	VideoID:                             "video_id",
+}

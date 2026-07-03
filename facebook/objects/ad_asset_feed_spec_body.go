@@ -5,3 +5,13 @@ type AdAssetFeedSpecBody struct {
 	Text     *string                      `json:"text,omitempty"`
 	URLTags  *string                      `json:"url_tags,omitempty"`
 }
+
+var AdAssetFeedSpecBodyFields = struct {
+	Adlabels string
+	Text     string
+	URLTags  string
+}{
+	Adlabels: "adlabels",
+	Text:     "text",
+	URLTags:  "url_tags",
+}

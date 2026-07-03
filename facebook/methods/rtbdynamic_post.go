@@ -6,14 +6,13 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetRTBDynamicPostCommentsParams struct {
 	Filter     *enums.RtbdynamicpostcommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.RtbdynamicpostcommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.RtbdynamicpostcommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                                       `facebook:"since"`
+	Since      *core.Time                                       `facebook:"since"`
 	Extra      core.Params                                      `facebook:"-"`
 }
 
@@ -59,11 +58,16 @@ func DecodeGetRTBDynamicPostCommentsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetRTBDynamicPostComments(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetRTBDynamicPostCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetRTBDynamicPostCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetRTBDynamicPostComments(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetRTBDynamicPostCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetRTBDynamicPostLikesParams struct {
@@ -100,11 +104,16 @@ func DecodeGetRTBDynamicPostLikesBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetRTBDynamicPostLikes(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetRTBDynamicPostLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetRTBDynamicPostLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetRTBDynamicPostLikes(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetRTBDynamicPostLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetRTBDynamicPostParams struct {
@@ -141,9 +150,14 @@ func DecodeGetRTBDynamicPostBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetRTBDynamicPost(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostParams) (*objects.RTBDynamicPost, error) {
+func GetRTBDynamicPostWithResponse(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostParams) (*objects.RTBDynamicPost, *core.Response, error) {
 	var out objects.RTBDynamicPost
 	call := GetRTBDynamicPostBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetRTBDynamicPost(ctx context.Context, client *core.Client, id string, params GetRTBDynamicPostParams) (*objects.RTBDynamicPost, error) {
+	out, _, err := GetRTBDynamicPostWithResponse(ctx, client, id, params)
+	return out, err
 }

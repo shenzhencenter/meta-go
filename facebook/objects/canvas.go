@@ -34,3 +34,63 @@ type Canvas struct {
 	UpdateTime                *int                         `json:"update_time,omitempty"`
 	UseRetailerItemIds        *bool                        `json:"use_retailer_item_ids,omitempty"`
 }
+
+var CanvasFields = struct {
+	BackgroundColor           string
+	BodyElements              string
+	BusinessID                string
+	CanvasLink                string
+	CollectionHeroImage       string
+	CollectionHeroVideo       string
+	CollectionThumbnails      string
+	DynamicSetting            string
+	ElementPayload            string
+	FbBodyElements            string
+	HeroAssetFacebookPostID   string
+	HeroAssetInstagramMediaID string
+	ID                        string
+	IsHidden                  string
+	IsPublished               string
+	LastEditor                string
+	LinkedDocuments           string
+	Name                      string
+	Owner                     string
+	PropertyList              string
+	SourceTemplate            string
+	StoreURL                  string
+	StyleList                 string
+	Tags                      string
+	UiPropertyList            string
+	UnusedBodyElements        string
+	UpdateTime                string
+	UseRetailerItemIds        string
+}{
+	BackgroundColor:           "background_color",
+	BodyElements:              "body_elements",
+	BusinessID:                "business_id",
+	CanvasLink:                "canvas_link",
+	CollectionHeroImage:       "collection_hero_image",
+	CollectionHeroVideo:       "collection_hero_video",
+	CollectionThumbnails:      "collection_thumbnails",
+	DynamicSetting:            "dynamic_setting",
+	ElementPayload:            "element_payload",
+	FbBodyElements:            "fb_body_elements",
+	HeroAssetFacebookPostID:   "hero_asset_facebook_post_id",
+	HeroAssetInstagramMediaID: "hero_asset_instagram_media_id",
+	ID:                        "id",
+	IsHidden:                  "is_hidden",
+	IsPublished:               "is_published",
+	LastEditor:                "last_editor",
+	LinkedDocuments:           "linked_documents",
+	Name:                      "name",
+	Owner:                     "owner",
+	PropertyList:              "property_list",
+	SourceTemplate:            "source_template",
+	StoreURL:                  "store_url",
+	StyleList:                 "style_list",
+	Tags:                      "tags",
+	UiPropertyList:            "ui_property_list",
+	UnusedBodyElements:        "unused_body_elements",
+	UpdateTime:                "update_time",
+	UseRetailerItemIds:        "use_retailer_item_ids",
+}

@@ -6,3 +6,15 @@ type AdCampaignGroupAdvantageState struct {
 	AdvantagePlacementState *string `json:"advantage_placement_state,omitempty"`
 	AdvantageState          *string `json:"advantage_state,omitempty"`
 }
+
+var AdCampaignGroupAdvantageStateFields = struct {
+	AdvantageAudienceState  string
+	AdvantageBudgetState    string
+	AdvantagePlacementState string
+	AdvantageState          string
+}{
+	AdvantageAudienceState:  "advantage_audience_state",
+	AdvantageBudgetState:    "advantage_budget_state",
+	AdvantagePlacementState: "advantage_placement_state",
+	AdvantageState:          "advantage_state",
+}

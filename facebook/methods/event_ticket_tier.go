@@ -41,9 +41,14 @@ func DecodeGetEventTicketTierBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetEventTicketTier(ctx context.Context, client *core.Client, id string, params GetEventTicketTierParams) (*objects.EventTicketTier, error) {
+func GetEventTicketTierWithResponse(ctx context.Context, client *core.Client, id string, params GetEventTicketTierParams) (*objects.EventTicketTier, *core.Response, error) {
 	var out objects.EventTicketTier
 	call := GetEventTicketTierBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetEventTicketTier(ctx context.Context, client *core.Client, id string, params GetEventTicketTierParams) (*objects.EventTicketTier, error) {
+	out, _, err := GetEventTicketTierWithResponse(ctx, client, id, params)
+	return out, err
 }

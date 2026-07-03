@@ -41,9 +41,14 @@ func DecodeGetAdDraftBatchResponse(response *core.BatchResponse) (*objects.AdDra
 	return &out, nil
 }
 
-func GetAdDraft(ctx context.Context, client *core.Client, id string, params GetAdDraftParams) (*objects.AdDraft, error) {
+func GetAdDraftWithResponse(ctx context.Context, client *core.Client, id string, params GetAdDraftParams) (*objects.AdDraft, *core.Response, error) {
 	var out objects.AdDraft
 	call := GetAdDraftBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdDraft(ctx context.Context, client *core.Client, id string, params GetAdDraftParams) (*objects.AdDraft, error) {
+	out, _, err := GetAdDraftWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -9,3 +9,13 @@ type CustomAudiencesTOS struct {
 	ID      *core.ID `json:"id,omitempty"`
 	Type    *string  `json:"type,omitempty"`
 }
+
+var CustomAudiencesTOSFields = struct {
+	Content string
+	ID      string
+	Type    string
+}{
+	Content: "content",
+	ID:      "id",
+	Type:    "type",
+}

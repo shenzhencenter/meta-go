@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AudioVisualReferenceMatch struct {
@@ -13,11 +12,11 @@ type AudioVisualReferenceMatch struct {
 	ConflictType                             *string                                `json:"conflict_type,omitempty"`
 	ConflictingCountries                     *[]string                              `json:"conflicting_countries,omitempty"`
 	CountryResolutionHistory                 *[]map[string][]map[string]interface{} `json:"country_resolution_history,omitempty"`
-	CreationTime                             *time.Time                             `json:"creation_time,omitempty"`
+	CreationTime                             *core.Time                             `json:"creation_time,omitempty"`
 	CurrentConflictResolvedCountries         *[]map[string]map[string]interface{}   `json:"current_conflict_resolved_countries,omitempty"`
 	DisplayedMatchState                      *string                                `json:"displayed_match_state,omitempty"`
 	DisputeFormDataEntriesWithTranslations   *[]map[string]interface{}              `json:"dispute_form_data_entries_with_translations,omitempty"`
-	ExpirationTime                           *time.Time                             `json:"expiration_time,omitempty"`
+	ExpirationTime                           *core.Time                             `json:"expiration_time,omitempty"`
 	ID                                       *core.ID                               `json:"id,omitempty"`
 	IsDisputable                             *bool                                  `json:"is_disputable,omitempty"`
 	MatchState                               *string                                `json:"match_state,omitempty"`
@@ -33,9 +32,77 @@ type AudioVisualReferenceMatch struct {
 	RejectionFormDataEntriesWithTranslations *[]map[string]interface{}              `json:"rejection_form_data_entries_with_translations,omitempty"`
 	ResolutionDetails                        *string                                `json:"resolution_details,omitempty"`
 	ResolutionReason                         *string                                `json:"resolution_reason,omitempty"`
-	UpdateTime                               *time.Time                             `json:"update_time,omitempty"`
+	UpdateTime                               *core.Time                             `json:"update_time,omitempty"`
 	ViewsOnMatchedSide                       *uint64                                `json:"views_on_matched_side,omitempty"`
 	VisualConflictingSegments                *[]map[string]interface{}              `json:"visual_conflicting_segments,omitempty"`
 	VisualCurrentConflictResolvedSegments    *[]map[string]interface{}              `json:"visual_current_conflict_resolved_segments,omitempty"`
 	VisualSegmentResolutionHistory           *[]map[string]interface{}              `json:"visual_segment_resolution_history,omitempty"`
+}
+
+var AudioVisualReferenceMatchFields = struct {
+	AudioConflictingSegments                 string
+	AudioCurrentConflictResolvedSegments     string
+	AudioSegmentResolutionHistory            string
+	ConflictStatus                           string
+	ConflictType                             string
+	ConflictingCountries                     string
+	CountryResolutionHistory                 string
+	CreationTime                             string
+	CurrentConflictResolvedCountries         string
+	DisplayedMatchState                      string
+	DisputeFormDataEntriesWithTranslations   string
+	ExpirationTime                           string
+	ID                                       string
+	IsDisputable                             string
+	MatchState                               string
+	MatchedOverlapPercentage                 string
+	MatchedOwnerMatchDurationInSec           string
+	MatchedReferenceOwner                    string
+	ModificationHistory                      string
+	NumMatchesOnMatchedSide                  string
+	NumMatchesOnRefSide                      string
+	RefOwnerMatchDurationInSec               string
+	ReferenceOverlapPercentage               string
+	ReferenceOwner                           string
+	RejectionFormDataEntriesWithTranslations string
+	ResolutionDetails                        string
+	ResolutionReason                         string
+	UpdateTime                               string
+	ViewsOnMatchedSide                       string
+	VisualConflictingSegments                string
+	VisualCurrentConflictResolvedSegments    string
+	VisualSegmentResolutionHistory           string
+}{
+	AudioConflictingSegments:                 "audio_conflicting_segments",
+	AudioCurrentConflictResolvedSegments:     "audio_current_conflict_resolved_segments",
+	AudioSegmentResolutionHistory:            "audio_segment_resolution_history",
+	ConflictStatus:                           "conflict_status",
+	ConflictType:                             "conflict_type",
+	ConflictingCountries:                     "conflicting_countries",
+	CountryResolutionHistory:                 "country_resolution_history",
+	CreationTime:                             "creation_time",
+	CurrentConflictResolvedCountries:         "current_conflict_resolved_countries",
+	DisplayedMatchState:                      "displayed_match_state",
+	DisputeFormDataEntriesWithTranslations:   "dispute_form_data_entries_with_translations",
+	ExpirationTime:                           "expiration_time",
+	ID:                                       "id",
+	IsDisputable:                             "is_disputable",
+	MatchState:                               "match_state",
+	MatchedOverlapPercentage:                 "matched_overlap_percentage",
+	MatchedOwnerMatchDurationInSec:           "matched_owner_match_duration_in_sec",
+	MatchedReferenceOwner:                    "matched_reference_owner",
+	ModificationHistory:                      "modification_history",
+	NumMatchesOnMatchedSide:                  "num_matches_on_matched_side",
+	NumMatchesOnRefSide:                      "num_matches_on_ref_side",
+	RefOwnerMatchDurationInSec:               "ref_owner_match_duration_in_sec",
+	ReferenceOverlapPercentage:               "reference_overlap_percentage",
+	ReferenceOwner:                           "reference_owner",
+	RejectionFormDataEntriesWithTranslations: "rejection_form_data_entries_with_translations",
+	ResolutionDetails:                        "resolution_details",
+	ResolutionReason:                         "resolution_reason",
+	UpdateTime:                               "update_time",
+	ViewsOnMatchedSide:                       "views_on_matched_side",
+	VisualConflictingSegments:                "visual_conflicting_segments",
+	VisualCurrentConflictResolvedSegments:    "visual_current_conflict_resolved_segments",
+	VisualSegmentResolutionHistory:           "visual_segment_resolution_history",
 }

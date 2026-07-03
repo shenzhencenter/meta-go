@@ -12,3 +12,19 @@ type AdPlacePageSet struct {
 	PagesCount    *int      `json:"pages_count,omitempty"`
 	ParentPage    *Page     `json:"parent_page,omitempty"`
 }
+
+var AdPlacePageSetFields = struct {
+	AccountID     string
+	ID            string
+	LocationTypes string
+	Name          string
+	PagesCount    string
+	ParentPage    string
+}{
+	AccountID:     "account_id",
+	ID:            "id",
+	LocationTypes: "location_types",
+	Name:          "name",
+	PagesCount:    "pages_count",
+	ParentPage:    "parent_page",
+}

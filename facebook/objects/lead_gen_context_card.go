@@ -12,3 +12,19 @@ type LeadGenContextCard struct {
 	Style      *string   `json:"style,omitempty"`
 	Title      *string   `json:"title,omitempty"`
 }
+
+var LeadGenContextCardFields = struct {
+	ButtonText string
+	Content    string
+	CoverPhoto string
+	ID         string
+	Style      string
+	Title      string
+}{
+	ButtonText: "button_text",
+	Content:    "content",
+	CoverPhoto: "cover_photo",
+	ID:         "id",
+	Style:      "style",
+	Title:      "title",
+}

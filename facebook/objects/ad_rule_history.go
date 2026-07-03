@@ -1,7 +1,7 @@
 package objects
 
 import (
-	"time"
+	core "github.com/shenzhencenter/meta-go/facebook"
 )
 
 type AdRuleHistory struct {
@@ -12,5 +12,25 @@ type AdRuleHistory struct {
 	IsManual         *bool                  `json:"is_manual,omitempty"`
 	Results          *[]AdRuleHistoryResult `json:"results,omitempty"`
 	ScheduleSpec     *AdRuleScheduleSpec    `json:"schedule_spec,omitempty"`
-	Timestamp        *time.Time             `json:"timestamp,omitempty"`
+	Timestamp        *core.Time             `json:"timestamp,omitempty"`
+}
+
+var AdRuleHistoryFields = struct {
+	EvaluationSpec   string
+	ExceptionCode    string
+	ExceptionMessage string
+	ExecutionSpec    string
+	IsManual         string
+	Results          string
+	ScheduleSpec     string
+	Timestamp        string
+}{
+	EvaluationSpec:   "evaluation_spec",
+	ExceptionCode:    "exception_code",
+	ExceptionMessage: "exception_message",
+	ExecutionSpec:    "execution_spec",
+	IsManual:         "is_manual",
+	Results:          "results",
+	ScheduleSpec:     "schedule_spec",
+	Timestamp:        "timestamp",
 }

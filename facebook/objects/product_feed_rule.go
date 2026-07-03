@@ -10,3 +10,15 @@ type ProductFeedRule struct {
 	Params    *[]map[string]string `json:"params,omitempty"`
 	RuleType  *string              `json:"rule_type,omitempty"`
 }
+
+var ProductFeedRuleFields = struct {
+	Attribute string
+	ID        string
+	Params    string
+	RuleType  string
+}{
+	Attribute: "attribute",
+	ID:        "id",
+	Params:    "params",
+	RuleType:  "rule_type",
+}

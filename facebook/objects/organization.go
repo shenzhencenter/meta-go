@@ -9,3 +9,13 @@ type Organization struct {
 	LegalEntityName *string   `json:"legal_entity_name,omitempty"`
 	OwnerBusiness   *Business `json:"owner_business,omitempty"`
 }
+
+var OrganizationFields = struct {
+	ID              string
+	LegalEntityName string
+	OwnerBusiness   string
+}{
+	ID:              "id",
+	LegalEntityName: "legal_entity_name",
+	OwnerBusiness:   "owner_business",
+}

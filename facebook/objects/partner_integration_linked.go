@@ -22,3 +22,39 @@ type PartnerIntegrationLinked struct {
 	ProductCatalog               *ProductCatalog           `json:"product_catalog,omitempty"`
 	SetupStatus                  *string                   `json:"setup_status,omitempty"`
 }
+
+var PartnerIntegrationLinkedFields = struct {
+	AdsPixel                     string
+	Application                  string
+	CompletedIntegrationTypes    string
+	ExternalBusinessConnectionID string
+	ExternalID                   string
+	HasOauthToken                string
+	ID                           string
+	MbeAppID                     string
+	MbeAssetID                   string
+	MbeExternalBusinessID        string
+	Name                         string
+	OfflineConversionDataSet     string
+	Page                         string
+	Partner                      string
+	ProductCatalog               string
+	SetupStatus                  string
+}{
+	AdsPixel:                     "ads_pixel",
+	Application:                  "application",
+	CompletedIntegrationTypes:    "completed_integration_types",
+	ExternalBusinessConnectionID: "external_business_connection_id",
+	ExternalID:                   "external_id",
+	HasOauthToken:                "has_oauth_token",
+	ID:                           "id",
+	MbeAppID:                     "mbe_app_id",
+	MbeAssetID:                   "mbe_asset_id",
+	MbeExternalBusinessID:        "mbe_external_business_id",
+	Name:                         "name",
+	OfflineConversionDataSet:     "offline_conversion_data_set",
+	Page:                         "page",
+	Partner:                      "partner",
+	ProductCatalog:               "product_catalog",
+	SetupStatus:                  "setup_status",
+}

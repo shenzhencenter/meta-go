@@ -41,9 +41,14 @@ func DecodeGetLeadGenDirectCRMIntegrationConfigBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetLeadGenDirectCRMIntegrationConfig(ctx context.Context, client *core.Client, id string, params GetLeadGenDirectCRMIntegrationConfigParams) (*objects.LeadGenDirectCRMIntegrationConfig, error) {
+func GetLeadGenDirectCRMIntegrationConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetLeadGenDirectCRMIntegrationConfigParams) (*objects.LeadGenDirectCRMIntegrationConfig, *core.Response, error) {
 	var out objects.LeadGenDirectCRMIntegrationConfig
 	call := GetLeadGenDirectCRMIntegrationConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLeadGenDirectCRMIntegrationConfig(ctx context.Context, client *core.Client, id string, params GetLeadGenDirectCRMIntegrationConfigParams) (*objects.LeadGenDirectCRMIntegrationConfig, error) {
+	out, _, err := GetLeadGenDirectCRMIntegrationConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

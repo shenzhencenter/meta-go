@@ -14,3 +14,31 @@ type AdCampaignLearningStageInfo struct {
 	SigeditRemoval                *bool                   `json:"sigedit_removal,omitempty"`
 	Status                        *string                 `json:"status,omitempty"`
 }
+
+var AdCampaignLearningStageInfoFields = struct {
+	AttributionWindows            string
+	CasSegment                    string
+	Conversions                   string
+	CurrentBudgetPrediction       string
+	DynamicLpConversionsThreshold string
+	DynamicLpDaysThreshold        string
+	DynamicLpStatus               string
+	IsOneToOneCboBudget           string
+	LastSigEditTs                 string
+	RecommendedBudgetPrediction   string
+	SigeditRemoval                string
+	Status                        string
+}{
+	AttributionWindows:            "attribution_windows",
+	CasSegment:                    "cas_segment",
+	Conversions:                   "conversions",
+	CurrentBudgetPrediction:       "current_budget_prediction",
+	DynamicLpConversionsThreshold: "dynamic_lp_conversions_threshold",
+	DynamicLpDaysThreshold:        "dynamic_lp_days_threshold",
+	DynamicLpStatus:               "dynamic_lp_status",
+	IsOneToOneCboBudget:           "is_one_to_one_cbo_budget",
+	LastSigEditTs:                 "last_sig_edit_ts",
+	RecommendedBudgetPrediction:   "recommended_budget_prediction",
+	SigeditRemoval:                "sigedit_removal",
+	Status:                        "status",
+}

@@ -41,9 +41,14 @@ func DecodeGetImageCopyrightDisputeBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetImageCopyrightDispute(ctx context.Context, client *core.Client, id string, params GetImageCopyrightDisputeParams) (*objects.ImageCopyrightDispute, error) {
+func GetImageCopyrightDisputeWithResponse(ctx context.Context, client *core.Client, id string, params GetImageCopyrightDisputeParams) (*objects.ImageCopyrightDispute, *core.Response, error) {
 	var out objects.ImageCopyrightDispute
 	call := GetImageCopyrightDisputeBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetImageCopyrightDispute(ctx context.Context, client *core.Client, id string, params GetImageCopyrightDisputeParams) (*objects.ImageCopyrightDispute, error) {
+	out, _, err := GetImageCopyrightDisputeWithResponse(ctx, client, id, params)
+	return out, err
 }

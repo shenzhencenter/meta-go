@@ -14,3 +14,23 @@ type StoreLocation struct {
 	StoreCode     *string                 `json:"store_code,omitempty"`
 	ZipCode       *string                 `json:"zip_code,omitempty"`
 }
+
+var StoreLocationFields = struct {
+	FullAddress   string
+	Hours         string
+	ID            string
+	PhoneNumber   string
+	PickupOptions string
+	PriceRange    string
+	StoreCode     string
+	ZipCode       string
+}{
+	FullAddress:   "full_address",
+	Hours:         "hours",
+	ID:            "id",
+	PhoneNumber:   "phone_number",
+	PickupOptions: "pickup_options",
+	PriceRange:    "price_range",
+	StoreCode:     "store_code",
+	ZipCode:       "zip_code",
+}

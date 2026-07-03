@@ -41,9 +41,14 @@ func DecodeGetAdLightCampaignGroupBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdLightCampaignGroup(ctx context.Context, client *core.Client, id string, params GetAdLightCampaignGroupParams) (*objects.AdLightCampaignGroup, error) {
+func GetAdLightCampaignGroupWithResponse(ctx context.Context, client *core.Client, id string, params GetAdLightCampaignGroupParams) (*objects.AdLightCampaignGroup, *core.Response, error) {
 	var out objects.AdLightCampaignGroup
 	call := GetAdLightCampaignGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdLightCampaignGroup(ctx context.Context, client *core.Client, id string, params GetAdLightCampaignGroupParams) (*objects.AdLightCampaignGroup, error) {
+	out, _, err := GetAdLightCampaignGroupWithResponse(ctx, client, id, params)
+	return out, err
 }

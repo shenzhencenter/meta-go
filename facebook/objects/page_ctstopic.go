@@ -12,3 +12,19 @@ type PageCTSTopic struct {
 	Subscriber *int     `json:"subscriber,omitempty"`
 	Title      *string  `json:"title,omitempty"`
 }
+
+var PageCTSTopicFields = struct {
+	AppID      string
+	Frequency  string
+	ImageHash  string
+	ImageURL   string
+	Subscriber string
+	Title      string
+}{
+	AppID:      "app_id",
+	Frequency:  "frequency",
+	ImageHash:  "image_hash",
+	ImageURL:   "image_url",
+	Subscriber: "subscriber",
+	Title:      "title",
+}

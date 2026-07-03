@@ -11,3 +11,17 @@ type SavedMessageResponse struct {
 	Message   *string  `json:"message,omitempty"`
 	Title     *string  `json:"title,omitempty"`
 }
+
+var SavedMessageResponseFields = struct {
+	ID        string
+	Image     string
+	IsEnabled string
+	Message   string
+	Title     string
+}{
+	ID:        "id",
+	Image:     "image",
+	IsEnabled: "is_enabled",
+	Message:   "message",
+	Title:     "title",
+}

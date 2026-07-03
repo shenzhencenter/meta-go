@@ -25,3 +25,45 @@ type McomInvoiceDetails struct {
 	Status                      *string                   `json:"status,omitempty"`
 	TrackingInfo                *map[string]interface{}   `json:"tracking_info,omitempty"`
 }
+
+var McomInvoiceDetailsFields = struct {
+	AdditionalAmounts           string
+	BuyerNotes                  string
+	CurrencyAmount              string
+	ExternalInvoiceID           string
+	Features                    string
+	InvoiceCreated              string
+	InvoiceID                   string
+	InvoiceInstructions         string
+	InvoiceInstructionsImageURL string
+	InvoiceUpdated              string
+	OutstandingAmount           string
+	PaidAmount                  string
+	Payments                    string
+	PlatformLogoURL             string
+	PlatformName                string
+	ProductItems                string
+	ShippingAddress             string
+	Status                      string
+	TrackingInfo                string
+}{
+	AdditionalAmounts:           "additional_amounts",
+	BuyerNotes:                  "buyer_notes",
+	CurrencyAmount:              "currency_amount",
+	ExternalInvoiceID:           "external_invoice_id",
+	Features:                    "features",
+	InvoiceCreated:              "invoice_created",
+	InvoiceID:                   "invoice_id",
+	InvoiceInstructions:         "invoice_instructions",
+	InvoiceInstructionsImageURL: "invoice_instructions_image_url",
+	InvoiceUpdated:              "invoice_updated",
+	OutstandingAmount:           "outstanding_amount",
+	PaidAmount:                  "paid_amount",
+	Payments:                    "payments",
+	PlatformLogoURL:             "platform_logo_url",
+	PlatformName:                "platform_name",
+	ProductItems:                "product_items",
+	ShippingAddress:             "shipping_address",
+	Status:                      "status",
+	TrackingInfo:                "tracking_info",
+}

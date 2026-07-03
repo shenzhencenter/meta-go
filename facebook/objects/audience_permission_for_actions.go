@@ -7,3 +7,17 @@ type AudiencePermissionForActions struct {
 	SubtypeSupportsLookalike   *bool `json:"subtype_supports_lookalike,omitempty"`
 	SupportsRecipientLookalike *bool `json:"supports_recipient_lookalike,omitempty"`
 }
+
+var AudiencePermissionForActionsFields = struct {
+	CanEdit                    string
+	CanSeeInsight              string
+	CanShare                   string
+	SubtypeSupportsLookalike   string
+	SupportsRecipientLookalike string
+}{
+	CanEdit:                    "can_edit",
+	CanSeeInsight:              "can_see_insight",
+	CanShare:                   "can_share",
+	SubtypeSupportsLookalike:   "subtype_supports_lookalike",
+	SupportsRecipientLookalike: "supports_recipient_lookalike",
+}

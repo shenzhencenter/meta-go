@@ -41,9 +41,14 @@ func DecodeGetLiveVideoErrorBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetLiveVideoError(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorParams) (*objects.LiveVideoError, error) {
+func GetLiveVideoErrorWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorParams) (*objects.LiveVideoError, *core.Response, error) {
 	var out objects.LiveVideoError
 	call := GetLiveVideoErrorBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoError(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorParams) (*objects.LiveVideoError, error) {
+	out, _, err := GetLiveVideoErrorWithResponse(ctx, client, id, params)
+	return out, err
 }

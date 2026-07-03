@@ -7,3 +7,17 @@ type PagePaymentOptions struct {
 	Mastercard *uint64 `json:"mastercard,omitempty"`
 	Visa       *uint64 `json:"visa,omitempty"`
 }
+
+var PagePaymentOptionsFields = struct {
+	Amex       string
+	CashOnly   string
+	Discover   string
+	Mastercard string
+	Visa       string
+}{
+	Amex:       "amex",
+	CashOnly:   "cash_only",
+	Discover:   "discover",
+	Mastercard: "mastercard",
+	Visa:       "visa",
+}

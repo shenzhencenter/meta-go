@@ -46,11 +46,16 @@ func DecodeGetAdAsyncRequestSetRequestsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetAdAsyncRequestSetRequests(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestSetRequestsParams) (*core.Cursor[objects.AdAsyncRequest], error) {
+func GetAdAsyncRequestSetRequestsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestSetRequestsParams) (*core.Cursor[objects.AdAsyncRequest], *core.Response, error) {
 	var out core.Cursor[objects.AdAsyncRequest]
 	call := GetAdAsyncRequestSetRequestsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdAsyncRequestSetRequests(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestSetRequestsParams) (*core.Cursor[objects.AdAsyncRequest], error) {
+	out, _, err := GetAdAsyncRequestSetRequestsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdAsyncRequestSetParams struct {
@@ -87,11 +92,16 @@ func DecodeDeleteAdAsyncRequestSetBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func DeleteAdAsyncRequestSet(ctx context.Context, client *core.Client, id string, params DeleteAdAsyncRequestSetParams) (*map[string]interface{}, error) {
+func DeleteAdAsyncRequestSetWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdAsyncRequestSetParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdAsyncRequestSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdAsyncRequestSet(ctx context.Context, client *core.Client, id string, params DeleteAdAsyncRequestSetParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdAsyncRequestSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdAsyncRequestSetParams struct {
@@ -128,11 +138,16 @@ func DecodeGetAdAsyncRequestSetBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetAdAsyncRequestSet(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestSetParams) (*objects.AdAsyncRequestSet, error) {
+func GetAdAsyncRequestSetWithResponse(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestSetParams) (*objects.AdAsyncRequestSet, *core.Response, error) {
 	var out objects.AdAsyncRequestSet
 	call := GetAdAsyncRequestSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdAsyncRequestSet(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestSetParams) (*objects.AdAsyncRequestSet, error) {
+	out, _, err := GetAdAsyncRequestSetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdAsyncRequestSetParams struct {
@@ -181,9 +196,14 @@ func DecodeUpdateAdAsyncRequestSetBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func UpdateAdAsyncRequestSet(ctx context.Context, client *core.Client, id string, params UpdateAdAsyncRequestSetParams) (*objects.AdAsyncRequestSet, error) {
+func UpdateAdAsyncRequestSetWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdAsyncRequestSetParams) (*objects.AdAsyncRequestSet, *core.Response, error) {
 	var out objects.AdAsyncRequestSet
 	call := UpdateAdAsyncRequestSetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdAsyncRequestSet(ctx context.Context, client *core.Client, id string, params UpdateAdAsyncRequestSetParams) (*objects.AdAsyncRequestSet, error) {
+	out, _, err := UpdateAdAsyncRequestSetWithResponse(ctx, client, id, params)
+	return out, err
 }

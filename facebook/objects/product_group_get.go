@@ -13,3 +13,21 @@ type ProductGroupGet struct {
 	RetailerID                *core.ID                  `json:"retailer_id,omitempty"`
 	Variants                  *[]map[string]interface{} `json:"variants,omitempty"`
 }
+
+var ProductGroupGetFields = struct {
+	ID                        string
+	MiniShopsProductSetsCount string
+	ProductCatalog            string
+	Products                  string
+	RepresentativeItemID      string
+	RetailerID                string
+	Variants                  string
+}{
+	ID:                        "id",
+	MiniShopsProductSetsCount: "mini_shops_product_sets_count",
+	ProductCatalog:            "product_catalog",
+	Products:                  "products",
+	RepresentativeItemID:      "representative_item_id",
+	RetailerID:                "retailer_id",
+	Variants:                  "variants",
+}

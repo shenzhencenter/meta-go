@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetAdVideoBoostAdsListParams struct {
@@ -43,11 +42,16 @@ func DecodeGetAdVideoBoostAdsListBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetAdVideoBoostAdsList(ctx context.Context, client *core.Client, id string, params GetAdVideoBoostAdsListParams) (*core.Cursor[objects.VideoBoostMediaAd], error) {
+func GetAdVideoBoostAdsListWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoBoostAdsListParams) (*core.Cursor[objects.VideoBoostMediaAd], *core.Response, error) {
 	var out core.Cursor[objects.VideoBoostMediaAd]
 	call := GetAdVideoBoostAdsListBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoBoostAdsList(ctx context.Context, client *core.Client, id string, params GetAdVideoBoostAdsListParams) (*core.Cursor[objects.VideoBoostMediaAd], error) {
+	out, _, err := GetAdVideoBoostAdsListWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoCaptionsParams struct {
@@ -84,11 +88,16 @@ func DecodeGetAdVideoCaptionsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetAdVideoCaptions(ctx context.Context, client *core.Client, id string, params GetAdVideoCaptionsParams) (*core.Cursor[objects.VideoCaption], error) {
+func GetAdVideoCaptionsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoCaptionsParams) (*core.Cursor[objects.VideoCaption], *core.Response, error) {
 	var out core.Cursor[objects.VideoCaption]
 	call := GetAdVideoCaptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoCaptions(ctx context.Context, client *core.Client, id string, params GetAdVideoCaptionsParams) (*core.Cursor[objects.VideoCaption], error) {
+	out, _, err := GetAdVideoCaptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdVideoCaptionsParams struct {
@@ -137,11 +146,16 @@ func DecodeCreateAdVideoCaptionsBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateAdVideoCaptions(ctx context.Context, client *core.Client, id string, params CreateAdVideoCaptionsParams) (*objects.AdVideo, error) {
+func CreateAdVideoCaptionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdVideoCaptionsParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateAdVideoCaptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdVideoCaptions(ctx context.Context, client *core.Client, id string, params CreateAdVideoCaptionsParams) (*objects.AdVideo, error) {
+	out, _, err := CreateAdVideoCaptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoCollaboratorsParams struct {
@@ -178,11 +192,16 @@ func DecodeGetAdVideoCollaboratorsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdVideoCollaborators(ctx context.Context, client *core.Client, id string, params GetAdVideoCollaboratorsParams) (*core.Cursor[objects.VideoCollaborators], error) {
+func GetAdVideoCollaboratorsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoCollaboratorsParams) (*core.Cursor[objects.VideoCollaborators], *core.Response, error) {
 	var out core.Cursor[objects.VideoCollaborators]
 	call := GetAdVideoCollaboratorsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoCollaborators(ctx context.Context, client *core.Client, id string, params GetAdVideoCollaboratorsParams) (*core.Cursor[objects.VideoCollaborators], error) {
+	out, _, err := GetAdVideoCollaboratorsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdVideoCollaboratorsParams struct {
@@ -221,18 +240,23 @@ func DecodeCreateAdVideoCollaboratorsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateAdVideoCollaborators(ctx context.Context, client *core.Client, id string, params CreateAdVideoCollaboratorsParams) (*objects.AdVideo, error) {
+func CreateAdVideoCollaboratorsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdVideoCollaboratorsParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateAdVideoCollaboratorsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdVideoCollaborators(ctx context.Context, client *core.Client, id string, params CreateAdVideoCollaboratorsParams) (*objects.AdVideo, error) {
+	out, _, err := CreateAdVideoCollaboratorsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoCommentsParams struct {
 	Filter     *enums.VideocommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.VideocommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.VideocommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                              `facebook:"since"`
+	Since      *core.Time                              `facebook:"since"`
 	Extra      core.Params                             `facebook:"-"`
 }
 
@@ -278,11 +302,16 @@ func DecodeGetAdVideoCommentsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetAdVideoComments(ctx context.Context, client *core.Client, id string, params GetAdVideoCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetAdVideoCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetAdVideoCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoComments(ctx context.Context, client *core.Client, id string, params GetAdVideoCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetAdVideoCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdVideoCommentsParams struct {
@@ -371,11 +400,16 @@ func DecodeCreateAdVideoCommentsBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateAdVideoComments(ctx context.Context, client *core.Client, id string, params CreateAdVideoCommentsParams) (*objects.Comment, error) {
+func CreateAdVideoCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdVideoCommentsParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreateAdVideoCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdVideoComments(ctx context.Context, client *core.Client, id string, params CreateAdVideoCommentsParams) (*objects.Comment, error) {
+	out, _, err := CreateAdVideoCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoCrosspostSharedPagesParams struct {
@@ -412,11 +446,16 @@ func DecodeGetAdVideoCrosspostSharedPagesBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetAdVideoCrosspostSharedPages(ctx context.Context, client *core.Client, id string, params GetAdVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], error) {
+func GetAdVideoCrosspostSharedPagesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetAdVideoCrosspostSharedPagesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoCrosspostSharedPages(ctx context.Context, client *core.Client, id string, params GetAdVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetAdVideoCrosspostSharedPagesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoLikesParams struct {
@@ -453,11 +492,16 @@ func DecodeGetAdVideoLikesBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetAdVideoLikes(ctx context.Context, client *core.Client, id string, params GetAdVideoLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetAdVideoLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetAdVideoLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoLikes(ctx context.Context, client *core.Client, id string, params GetAdVideoLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetAdVideoLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdVideoLikesParams struct {
@@ -514,11 +558,16 @@ func DecodeCreateAdVideoLikesBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreateAdVideoLikes(ctx context.Context, client *core.Client, id string, params CreateAdVideoLikesParams) (*objects.AdVideo, error) {
+func CreateAdVideoLikesWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdVideoLikesParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateAdVideoLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdVideoLikes(ctx context.Context, client *core.Client, id string, params CreateAdVideoLikesParams) (*objects.AdVideo, error) {
+	out, _, err := CreateAdVideoLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoPollSettingsParams struct {
@@ -555,11 +604,16 @@ func DecodeGetAdVideoPollSettingsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetAdVideoPollSettings(ctx context.Context, client *core.Client, id string, params GetAdVideoPollSettingsParams) (*core.Cursor[objects.PollSettings], error) {
+func GetAdVideoPollSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoPollSettingsParams) (*core.Cursor[objects.PollSettings], *core.Response, error) {
 	var out core.Cursor[objects.PollSettings]
 	call := GetAdVideoPollSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoPollSettings(ctx context.Context, client *core.Client, id string, params GetAdVideoPollSettingsParams) (*core.Cursor[objects.PollSettings], error) {
+	out, _, err := GetAdVideoPollSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoPollsParams struct {
@@ -596,11 +650,16 @@ func DecodeGetAdVideoPollsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetAdVideoPolls(ctx context.Context, client *core.Client, id string, params GetAdVideoPollsParams) (*core.Cursor[objects.VideoPoll], error) {
+func GetAdVideoPollsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoPollsParams) (*core.Cursor[objects.VideoPoll], *core.Response, error) {
 	var out core.Cursor[objects.VideoPoll]
 	call := GetAdVideoPollsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoPolls(ctx context.Context, client *core.Client, id string, params GetAdVideoPollsParams) (*core.Cursor[objects.VideoPoll], error) {
+	out, _, err := GetAdVideoPollsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdVideoPollsParams struct {
@@ -661,11 +720,16 @@ func DecodeCreateAdVideoPollsBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreateAdVideoPolls(ctx context.Context, client *core.Client, id string, params CreateAdVideoPollsParams) (*objects.VideoPoll, error) {
+func CreateAdVideoPollsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdVideoPollsParams) (*objects.VideoPoll, *core.Response, error) {
 	var out objects.VideoPoll
 	call := CreateAdVideoPollsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdVideoPolls(ctx context.Context, client *core.Client, id string, params CreateAdVideoPollsParams) (*objects.VideoPoll, error) {
+	out, _, err := CreateAdVideoPollsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoSponsorTagsParams struct {
@@ -702,11 +766,16 @@ func DecodeGetAdVideoSponsorTagsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetAdVideoSponsorTags(ctx context.Context, client *core.Client, id string, params GetAdVideoSponsorTagsParams) (*core.Cursor[objects.Page], error) {
+func GetAdVideoSponsorTagsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoSponsorTagsParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetAdVideoSponsorTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoSponsorTags(ctx context.Context, client *core.Client, id string, params GetAdVideoSponsorTagsParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetAdVideoSponsorTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoTagsParams struct {
@@ -743,11 +812,16 @@ func DecodeGetAdVideoTagsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetAdVideoTags(ctx context.Context, client *core.Client, id string, params GetAdVideoTagsParams) (*core.Cursor[objects.TaggableSubject], error) {
+func GetAdVideoTagsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoTagsParams) (*core.Cursor[objects.TaggableSubject], *core.Response, error) {
 	var out core.Cursor[objects.TaggableSubject]
 	call := GetAdVideoTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoTags(ctx context.Context, client *core.Client, id string, params GetAdVideoTagsParams) (*core.Cursor[objects.TaggableSubject], error) {
+	out, _, err := GetAdVideoTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoThumbnailsParams struct {
@@ -784,11 +858,16 @@ func DecodeGetAdVideoThumbnailsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetAdVideoThumbnails(ctx context.Context, client *core.Client, id string, params GetAdVideoThumbnailsParams) (*core.Cursor[objects.VideoThumbnail], error) {
+func GetAdVideoThumbnailsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoThumbnailsParams) (*core.Cursor[objects.VideoThumbnail], *core.Response, error) {
 	var out core.Cursor[objects.VideoThumbnail]
 	call := GetAdVideoThumbnailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoThumbnails(ctx context.Context, client *core.Client, id string, params GetAdVideoThumbnailsParams) (*core.Cursor[objects.VideoThumbnail], error) {
+	out, _, err := GetAdVideoThumbnailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdVideoThumbnailsParams struct {
@@ -831,18 +910,23 @@ func DecodeCreateAdVideoThumbnailsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateAdVideoThumbnails(ctx context.Context, client *core.Client, id string, params CreateAdVideoThumbnailsParams) (*objects.AdVideo, error) {
+func CreateAdVideoThumbnailsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdVideoThumbnailsParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateAdVideoThumbnailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdVideoThumbnails(ctx context.Context, client *core.Client, id string, params CreateAdVideoThumbnailsParams) (*objects.AdVideo, error) {
+	out, _, err := CreateAdVideoThumbnailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoVideoInsightsParams struct {
 	Metric *[]map[string]interface{}                `facebook:"metric"`
 	Period *enums.VideovideoInsightsPeriodEnumParam `facebook:"period"`
-	Since  *time.Time                               `facebook:"since"`
-	Until  *time.Time                               `facebook:"until"`
+	Since  *core.Time                               `facebook:"since"`
+	Until  *core.Time                               `facebook:"until"`
 	Extra  core.Params                              `facebook:"-"`
 }
 
@@ -888,11 +972,16 @@ func DecodeGetAdVideoVideoInsightsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetAdVideoVideoInsights(ctx context.Context, client *core.Client, id string, params GetAdVideoVideoInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetAdVideoVideoInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoVideoInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetAdVideoVideoInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideoVideoInsights(ctx context.Context, client *core.Client, id string, params GetAdVideoVideoInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetAdVideoVideoInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdVideoParams struct {
@@ -929,11 +1018,16 @@ func DecodeDeleteAdVideoBatchResponse(response *core.BatchResponse) (*map[string
 	return &out, nil
 }
 
-func DeleteAdVideo(ctx context.Context, client *core.Client, id string, params DeleteAdVideoParams) (*map[string]interface{}, error) {
+func DeleteAdVideoWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdVideoParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdVideo(ctx context.Context, client *core.Client, id string, params DeleteAdVideoParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdVideoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdVideoParams struct {
@@ -970,18 +1064,23 @@ func DecodeGetAdVideoBatchResponse(response *core.BatchResponse) (*objects.AdVid
 	return &out, nil
 }
 
-func GetAdVideo(ctx context.Context, client *core.Client, id string, params GetAdVideoParams) (*objects.AdVideo, error) {
+func GetAdVideoWithResponse(ctx context.Context, client *core.Client, id string, params GetAdVideoParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := GetAdVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdVideo(ctx context.Context, client *core.Client, id string, params GetAdVideoParams) (*objects.AdVideo, error) {
+	out, _, err := GetAdVideoWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdVideoParams struct {
 	AdBreaks                  *[]interface{}                       `facebook:"ad_breaks"`
 	AllowBmCrossposting       *bool                                `facebook:"allow_bm_crossposting"`
 	AllowCrosspostingForPages *[]map[string]interface{}            `facebook:"allow_crossposting_for_pages"`
-	BackdatedTime             *time.Time                           `facebook:"backdated_time"`
+	BackdatedTime             *core.Time                           `facebook:"backdated_time"`
 	BackdatedTimeGranularity  *enums.VideoBackdatedTimeGranularity `facebook:"backdated_time_granularity"`
 	CallToAction              *map[string]interface{}              `facebook:"call_to_action"`
 	ContentCategory           *enums.VideoContentCategory          `facebook:"content_category"`
@@ -1123,9 +1222,14 @@ func DecodeUpdateAdVideoBatchResponse(response *core.BatchResponse) (*objects.Ad
 	return &out, nil
 }
 
-func UpdateAdVideo(ctx context.Context, client *core.Client, id string, params UpdateAdVideoParams) (*objects.AdVideo, error) {
+func UpdateAdVideoWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdVideoParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := UpdateAdVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdVideo(ctx context.Context, client *core.Client, id string, params UpdateAdVideoParams) (*objects.AdVideo, error) {
+	out, _, err := UpdateAdVideoWithResponse(ctx, client, id, params)
+	return out, err
 }

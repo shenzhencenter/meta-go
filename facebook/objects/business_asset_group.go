@@ -9,3 +9,13 @@ type BusinessAssetGroup struct {
 	Name          *string   `json:"name,omitempty"`
 	OwnerBusiness *Business `json:"owner_business,omitempty"`
 }
+
+var BusinessAssetGroupFields = struct {
+	ID            string
+	Name          string
+	OwnerBusiness string
+}{
+	ID:            "id",
+	Name:          "name",
+	OwnerBusiness: "owner_business",
+}

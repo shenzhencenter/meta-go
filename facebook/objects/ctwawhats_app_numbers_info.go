@@ -15,3 +15,25 @@ type CTWAWhatsAppNumbersInfo struct {
 	WhatsappNumber          *string  `json:"whatsapp_number,omitempty"`
 	WhatsappSmbDevice       *string  `json:"whatsapp_smb_device,omitempty"`
 }
+
+var CTWAWhatsAppNumbersInfoFields = struct {
+	CanManageWaFlows        string
+	FormattedWhatsappNumber string
+	IsBusinessNumber        string
+	IsCallingEnabled        string
+	NumberCountryPrefix     string
+	PageWhatsappNumberID    string
+	WabaID                  string
+	WhatsappNumber          string
+	WhatsappSmbDevice       string
+}{
+	CanManageWaFlows:        "can_manage_wa_flows",
+	FormattedWhatsappNumber: "formatted_whatsapp_number",
+	IsBusinessNumber:        "is_business_number",
+	IsCallingEnabled:        "is_calling_enabled",
+	NumberCountryPrefix:     "number_country_prefix",
+	PageWhatsappNumberID:    "page_whatsapp_number_id",
+	WabaID:                  "waba_id",
+	WhatsappNumber:          "whatsapp_number",
+	WhatsappSmbDevice:       "whatsapp_smb_device",
+}

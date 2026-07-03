@@ -41,9 +41,14 @@ func DecodeGetGeoGatingPolicyBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetGeoGatingPolicy(ctx context.Context, client *core.Client, id string, params GetGeoGatingPolicyParams) (*objects.GeoGatingPolicy, error) {
+func GetGeoGatingPolicyWithResponse(ctx context.Context, client *core.Client, id string, params GetGeoGatingPolicyParams) (*objects.GeoGatingPolicy, *core.Response, error) {
 	var out objects.GeoGatingPolicy
 	call := GetGeoGatingPolicyBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGeoGatingPolicy(ctx context.Context, client *core.Client, id string, params GetGeoGatingPolicyParams) (*objects.GeoGatingPolicy, error) {
+	out, _, err := GetGeoGatingPolicyWithResponse(ctx, client, id, params)
+	return out, err
 }

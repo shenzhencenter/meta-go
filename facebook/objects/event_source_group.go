@@ -11,3 +11,17 @@ type EventSourceGroup struct {
 	Name          *string                `json:"name,omitempty"`
 	OwnerBusiness *Business              `json:"owner_business,omitempty"`
 }
+
+var EventSourceGroupFields = struct {
+	Business      string
+	EventSources  string
+	ID            string
+	Name          string
+	OwnerBusiness string
+}{
+	Business:      "business",
+	EventSources:  "event_sources",
+	ID:            "id",
+	Name:          "name",
+	OwnerBusiness: "owner_business",
+}

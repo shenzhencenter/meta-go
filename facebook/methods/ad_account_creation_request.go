@@ -41,11 +41,16 @@ func DecodeGetAdAccountCreationRequestAdaccountsBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetAdAccountCreationRequestAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdAccountCreationRequestAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetAdAccountCreationRequestAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdAccountCreationRequestAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetAdAccountCreationRequestAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdAccountCreationRequestAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdAccountCreationRequestAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetAdAccountCreationRequestAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdAccountCreationRequestParams struct {
@@ -82,9 +87,14 @@ func DecodeGetAdAccountCreationRequestBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetAdAccountCreationRequest(ctx context.Context, client *core.Client, id string, params GetAdAccountCreationRequestParams) (*objects.AdAccountCreationRequest, error) {
+func GetAdAccountCreationRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetAdAccountCreationRequestParams) (*objects.AdAccountCreationRequest, *core.Response, error) {
 	var out objects.AdAccountCreationRequest
 	call := GetAdAccountCreationRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdAccountCreationRequest(ctx context.Context, client *core.Client, id string, params GetAdAccountCreationRequestParams) (*objects.AdAccountCreationRequest, error) {
+	out, _, err := GetAdAccountCreationRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

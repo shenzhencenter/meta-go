@@ -9,3 +9,21 @@ type AdCreativeTemplateURLSpec struct {
 	Web          *map[string]interface{} `json:"web,omitempty"`
 	WindowsPhone *map[string]interface{} `json:"windows_phone,omitempty"`
 }
+
+var AdCreativeTemplateURLSpecFields = struct {
+	Android      string
+	Config       string
+	Ios          string
+	Ipad         string
+	Iphone       string
+	Web          string
+	WindowsPhone string
+}{
+	Android:      "android",
+	Config:       "config",
+	Ios:          "ios",
+	Ipad:         "ipad",
+	Iphone:       "iphone",
+	Web:          "web",
+	WindowsPhone: "windows_phone",
+}

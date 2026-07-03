@@ -13,3 +13,21 @@ type BrandSafetyDownloadable struct {
 	RequestSurface          *string  `json:"request_surface,omitempty"`
 	URL                     *string  `json:"url,omitempty"`
 }
+
+var BrandSafetyDownloadableFields = struct {
+	AccountContextID        string
+	AsyncJobPercentComplete string
+	AsyncJobStatus          string
+	FileName                string
+	ID                      string
+	RequestSurface          string
+	URL                     string
+}{
+	AccountContextID:        "account_context_id",
+	AsyncJobPercentComplete: "async_job_percent_complete",
+	AsyncJobStatus:          "async_job_status",
+	FileName:                "file_name",
+	ID:                      "id",
+	RequestSurface:          "request_surface",
+	URL:                     "url",
+}

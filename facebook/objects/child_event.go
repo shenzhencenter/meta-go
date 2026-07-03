@@ -10,3 +10,15 @@ type ChildEvent struct {
 	StartTime *string  `json:"start_time,omitempty"`
 	TicketURI *string  `json:"ticket_uri,omitempty"`
 }
+
+var ChildEventFields = struct {
+	EndTime   string
+	ID        string
+	StartTime string
+	TicketURI string
+}{
+	EndTime:   "end_time",
+	ID:        "id",
+	StartTime: "start_time",
+	TicketURI: "ticket_uri",
+}

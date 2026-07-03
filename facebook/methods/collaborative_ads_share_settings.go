@@ -41,9 +41,14 @@ func DecodeGetCollaborativeAdsShareSettingsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetCollaborativeAdsShareSettings(ctx context.Context, client *core.Client, id string, params GetCollaborativeAdsShareSettingsParams) (*objects.CollaborativeAdsShareSettings, error) {
+func GetCollaborativeAdsShareSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetCollaborativeAdsShareSettingsParams) (*objects.CollaborativeAdsShareSettings, *core.Response, error) {
 	var out objects.CollaborativeAdsShareSettings
 	call := GetCollaborativeAdsShareSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCollaborativeAdsShareSettings(ctx context.Context, client *core.Client, id string, params GetCollaborativeAdsShareSettingsParams) (*objects.CollaborativeAdsShareSettings, error) {
+	out, _, err := GetCollaborativeAdsShareSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

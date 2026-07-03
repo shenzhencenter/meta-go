@@ -41,9 +41,14 @@ func DecodeGetWifiInformationBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetWifiInformation(ctx context.Context, client *core.Client, id string, params GetWifiInformationParams) (*objects.WifiInformation, error) {
+func GetWifiInformationWithResponse(ctx context.Context, client *core.Client, id string, params GetWifiInformationParams) (*objects.WifiInformation, *core.Response, error) {
 	var out objects.WifiInformation
 	call := GetWifiInformationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWifiInformation(ctx context.Context, client *core.Client, id string, params GetWifiInformationParams) (*objects.WifiInformation, error) {
+	out, _, err := GetWifiInformationWithResponse(ctx, client, id, params)
+	return out, err
 }

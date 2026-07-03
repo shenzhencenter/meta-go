@@ -41,9 +41,14 @@ func DecodeGetFranchiseProgramBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetFranchiseProgram(ctx context.Context, client *core.Client, id string, params GetFranchiseProgramParams) (*objects.FranchiseProgram, error) {
+func GetFranchiseProgramWithResponse(ctx context.Context, client *core.Client, id string, params GetFranchiseProgramParams) (*objects.FranchiseProgram, *core.Response, error) {
 	var out objects.FranchiseProgram
 	call := GetFranchiseProgramBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFranchiseProgram(ctx context.Context, client *core.Client, id string, params GetFranchiseProgramParams) (*objects.FranchiseProgram, error) {
+	out, _, err := GetFranchiseProgramWithResponse(ctx, client, id, params)
+	return out, err
 }

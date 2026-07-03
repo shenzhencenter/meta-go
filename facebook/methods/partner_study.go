@@ -41,9 +41,14 @@ func DecodeGetPartnerStudyBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetPartnerStudy(ctx context.Context, client *core.Client, id string, params GetPartnerStudyParams) (*objects.PartnerStudy, error) {
+func GetPartnerStudyWithResponse(ctx context.Context, client *core.Client, id string, params GetPartnerStudyParams) (*objects.PartnerStudy, *core.Response, error) {
 	var out objects.PartnerStudy
 	call := GetPartnerStudyBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPartnerStudy(ctx context.Context, client *core.Client, id string, params GetPartnerStudyParams) (*objects.PartnerStudy, error) {
+	out, _, err := GetPartnerStudyWithResponse(ctx, client, id, params)
+	return out, err
 }

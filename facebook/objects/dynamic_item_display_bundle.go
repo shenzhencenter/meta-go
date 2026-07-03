@@ -13,3 +13,21 @@ type DynamicItemDisplayBundle struct {
 	TextTokens     *[]map[string]string `json:"text_tokens,omitempty"`
 	URL            *string              `json:"url,omitempty"`
 }
+
+var DynamicItemDisplayBundleFields = struct {
+	AdditionalUrls string
+	Description    string
+	ID             string
+	Name           string
+	ProductSet     string
+	TextTokens     string
+	URL            string
+}{
+	AdditionalUrls: "additional_urls",
+	Description:    "description",
+	ID:             "id",
+	Name:           "name",
+	ProductSet:     "product_set",
+	TextTokens:     "text_tokens",
+	URL:            "url",
+}

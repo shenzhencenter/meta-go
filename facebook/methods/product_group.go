@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetProductGroupProductsParams struct {
@@ -43,11 +42,16 @@ func DecodeGetProductGroupProductsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetProductGroupProducts(ctx context.Context, client *core.Client, id string, params GetProductGroupProductsParams) (*core.Cursor[objects.ProductItem], error) {
+func GetProductGroupProductsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductGroupProductsParams) (*core.Cursor[objects.ProductItem], *core.Response, error) {
 	var out core.Cursor[objects.ProductItem]
 	call := GetProductGroupProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductGroupProducts(ctx context.Context, client *core.Client, id string, params GetProductGroupProductsParams) (*core.Cursor[objects.ProductItem], error) {
+	out, _, err := GetProductGroupProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductGroupProductsParams struct {
@@ -114,8 +118,8 @@ type CreateProductGroupProductsParams struct {
 	ReturnPolicyDays            *uint64                                                    `facebook:"return_policy_days"`
 	RichTextDescription         *string                                                    `facebook:"rich_text_description"`
 	SalePrice                   *uint64                                                    `facebook:"sale_price"`
-	SalePriceEndDate            *time.Time                                                 `facebook:"sale_price_end_date"`
-	SalePriceStartDate          *time.Time                                                 `facebook:"sale_price_start_date"`
+	SalePriceEndDate            *core.Time                                                 `facebook:"sale_price_end_date"`
+	SalePriceStartDate          *core.Time                                                 `facebook:"sale_price_start_date"`
 	ShortDescription            *string                                                    `facebook:"short_description"`
 	Size                        *string                                                    `facebook:"size"`
 	StartDate                   *string                                                    `facebook:"start_date"`
@@ -366,11 +370,16 @@ func DecodeCreateProductGroupProductsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func CreateProductGroupProducts(ctx context.Context, client *core.Client, id string, params CreateProductGroupProductsParams) (*objects.ProductItem, error) {
+func CreateProductGroupProductsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductGroupProductsParams) (*objects.ProductItem, *core.Response, error) {
 	var out objects.ProductItem
 	call := CreateProductGroupProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductGroupProducts(ctx context.Context, client *core.Client, id string, params CreateProductGroupProductsParams) (*objects.ProductItem, error) {
+	out, _, err := CreateProductGroupProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductGroupParams struct {
@@ -411,11 +420,16 @@ func DecodeDeleteProductGroupBatchResponse(response *core.BatchResponse) (*map[s
 	return &out, nil
 }
 
-func DeleteProductGroup(ctx context.Context, client *core.Client, id string, params DeleteProductGroupParams) (*map[string]interface{}, error) {
+func DeleteProductGroupWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductGroupParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductGroup(ctx context.Context, client *core.Client, id string, params DeleteProductGroupParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductGroupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductGroupParams struct {
@@ -452,11 +466,16 @@ func DecodeGetProductGroupBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func GetProductGroup(ctx context.Context, client *core.Client, id string, params GetProductGroupParams) (*objects.ProductGroup, error) {
+func GetProductGroupWithResponse(ctx context.Context, client *core.Client, id string, params GetProductGroupParams) (*objects.ProductGroup, *core.Response, error) {
 	var out objects.ProductGroup
 	call := GetProductGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductGroup(ctx context.Context, client *core.Client, id string, params GetProductGroupParams) (*objects.ProductGroup, error) {
+	out, _, err := GetProductGroupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateProductGroupParams struct {
@@ -501,9 +520,14 @@ func DecodeUpdateProductGroupBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func UpdateProductGroup(ctx context.Context, client *core.Client, id string, params UpdateProductGroupParams) (*objects.ProductGroup, error) {
+func UpdateProductGroupWithResponse(ctx context.Context, client *core.Client, id string, params UpdateProductGroupParams) (*objects.ProductGroup, *core.Response, error) {
 	var out objects.ProductGroup
 	call := UpdateProductGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateProductGroup(ctx context.Context, client *core.Client, id string, params UpdateProductGroupParams) (*objects.ProductGroup, error) {
+	out, _, err := UpdateProductGroupWithResponse(ctx, client, id, params)
+	return out, err
 }

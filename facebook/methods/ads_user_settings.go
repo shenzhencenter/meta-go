@@ -41,9 +41,14 @@ func DecodeGetAdsUserSettingsBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetAdsUserSettings(ctx context.Context, client *core.Client, id string, params GetAdsUserSettingsParams) (*objects.AdsUserSettings, error) {
+func GetAdsUserSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsUserSettingsParams) (*objects.AdsUserSettings, *core.Response, error) {
 	var out objects.AdsUserSettings
 	call := GetAdsUserSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsUserSettings(ctx context.Context, client *core.Client, id string, params GetAdsUserSettingsParams) (*objects.AdsUserSettings, error) {
+	out, _, err := GetAdsUserSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

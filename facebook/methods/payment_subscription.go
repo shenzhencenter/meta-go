@@ -41,9 +41,14 @@ func DecodeGetPaymentSubscriptionBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetPaymentSubscription(ctx context.Context, client *core.Client, id string, params GetPaymentSubscriptionParams) (*objects.PaymentSubscription, error) {
+func GetPaymentSubscriptionWithResponse(ctx context.Context, client *core.Client, id string, params GetPaymentSubscriptionParams) (*objects.PaymentSubscription, *core.Response, error) {
 	var out objects.PaymentSubscription
 	call := GetPaymentSubscriptionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPaymentSubscription(ctx context.Context, client *core.Client, id string, params GetPaymentSubscriptionParams) (*objects.PaymentSubscription, error) {
+	out, _, err := GetPaymentSubscriptionWithResponse(ctx, client, id, params)
+	return out, err
 }

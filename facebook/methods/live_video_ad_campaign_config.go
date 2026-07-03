@@ -41,9 +41,14 @@ func DecodeGetLiveVideoAdCampaignConfigBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetLiveVideoAdCampaignConfig(ctx context.Context, client *core.Client, id string, params GetLiveVideoAdCampaignConfigParams) (*objects.LiveVideoAdCampaignConfig, error) {
+func GetLiveVideoAdCampaignConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetLiveVideoAdCampaignConfigParams) (*objects.LiveVideoAdCampaignConfig, *core.Response, error) {
 	var out objects.LiveVideoAdCampaignConfig
 	call := GetLiveVideoAdCampaignConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLiveVideoAdCampaignConfig(ctx context.Context, client *core.Client, id string, params GetLiveVideoAdCampaignConfigParams) (*objects.LiveVideoAdCampaignConfig, error) {
+	out, _, err := GetLiveVideoAdCampaignConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

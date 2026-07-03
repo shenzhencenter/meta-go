@@ -9,3 +9,13 @@ type PlayableContent struct {
 	Name  *string  `json:"name,omitempty"`
 	Owner *Profile `json:"owner,omitempty"`
 }
+
+var PlayableContentFields = struct {
+	ID    string
+	Name  string
+	Owner string
+}{
+	ID:    "id",
+	Name:  "name",
+	Owner: "owner",
+}

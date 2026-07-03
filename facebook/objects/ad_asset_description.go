@@ -9,3 +9,13 @@ type AdAssetDescription struct {
 	Text    *string  `json:"text,omitempty"`
 	URLTags *string  `json:"url_tags,omitempty"`
 }
+
+var AdAssetDescriptionFields = struct {
+	ID      string
+	Text    string
+	URLTags string
+}{
+	ID:      "id",
+	Text:    "text",
+	URLTags: "url_tags",
+}

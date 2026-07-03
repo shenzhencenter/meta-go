@@ -42,11 +42,16 @@ func DecodeCreateAdRuleExecuteBatchResponse(response *core.BatchResponse) (*map[
 	return &out, nil
 }
 
-func CreateAdRuleExecute(ctx context.Context, client *core.Client, id string, params CreateAdRuleExecuteParams) (*map[string]interface{}, error) {
+func CreateAdRuleExecuteWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdRuleExecuteParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateAdRuleExecuteBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdRuleExecute(ctx context.Context, client *core.Client, id string, params CreateAdRuleExecuteParams) (*map[string]interface{}, error) {
+	out, _, err := CreateAdRuleExecuteWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdRuleHistoryParams struct {
@@ -95,11 +100,16 @@ func DecodeGetAdRuleHistoryBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetAdRuleHistory(ctx context.Context, client *core.Client, id string, params GetAdRuleHistoryParams) (*core.Cursor[objects.AdRuleHistory], error) {
+func GetAdRuleHistoryWithResponse(ctx context.Context, client *core.Client, id string, params GetAdRuleHistoryParams) (*core.Cursor[objects.AdRuleHistory], *core.Response, error) {
 	var out core.Cursor[objects.AdRuleHistory]
 	call := GetAdRuleHistoryBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdRuleHistory(ctx context.Context, client *core.Client, id string, params GetAdRuleHistoryParams) (*core.Cursor[objects.AdRuleHistory], error) {
+	out, _, err := GetAdRuleHistoryWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateAdRulePreviewParams struct {
@@ -136,11 +146,16 @@ func DecodeCreateAdRulePreviewBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func CreateAdRulePreview(ctx context.Context, client *core.Client, id string, params CreateAdRulePreviewParams) (*objects.AdRule, error) {
+func CreateAdRulePreviewWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdRulePreviewParams) (*objects.AdRule, *core.Response, error) {
 	var out objects.AdRule
 	call := CreateAdRulePreviewBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdRulePreview(ctx context.Context, client *core.Client, id string, params CreateAdRulePreviewParams) (*objects.AdRule, error) {
+	out, _, err := CreateAdRulePreviewWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteAdRuleParams struct {
@@ -177,11 +192,16 @@ func DecodeDeleteAdRuleBatchResponse(response *core.BatchResponse) (*map[string]
 	return &out, nil
 }
 
-func DeleteAdRule(ctx context.Context, client *core.Client, id string, params DeleteAdRuleParams) (*map[string]interface{}, error) {
+func DeleteAdRuleWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdRuleParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdRule(ctx context.Context, client *core.Client, id string, params DeleteAdRuleParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdRuleWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdRuleParams struct {
@@ -218,11 +238,16 @@ func DecodeGetAdRuleBatchResponse(response *core.BatchResponse) (*objects.AdRule
 	return &out, nil
 }
 
-func GetAdRule(ctx context.Context, client *core.Client, id string, params GetAdRuleParams) (*objects.AdRule, error) {
+func GetAdRuleWithResponse(ctx context.Context, client *core.Client, id string, params GetAdRuleParams) (*objects.AdRule, *core.Response, error) {
 	var out objects.AdRule
 	call := GetAdRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdRule(ctx context.Context, client *core.Client, id string, params GetAdRuleParams) (*objects.AdRule, error) {
+	out, _, err := GetAdRuleWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateAdRuleParams struct {
@@ -279,9 +304,14 @@ func DecodeUpdateAdRuleBatchResponse(response *core.BatchResponse) (*objects.AdR
 	return &out, nil
 }
 
-func UpdateAdRule(ctx context.Context, client *core.Client, id string, params UpdateAdRuleParams) (*objects.AdRule, error) {
+func UpdateAdRuleWithResponse(ctx context.Context, client *core.Client, id string, params UpdateAdRuleParams) (*objects.AdRule, *core.Response, error) {
 	var out objects.AdRule
 	call := UpdateAdRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateAdRule(ctx context.Context, client *core.Client, id string, params UpdateAdRuleParams) (*objects.AdRule, error) {
+	out, _, err := UpdateAdRuleWithResponse(ctx, client, id, params)
+	return out, err
 }

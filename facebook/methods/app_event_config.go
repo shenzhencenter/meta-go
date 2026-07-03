@@ -45,9 +45,14 @@ func DecodeGetAppEventConfigBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetAppEventConfig(ctx context.Context, client *core.Client, id string, params GetAppEventConfigParams) (*objects.AppEventConfig, error) {
+func GetAppEventConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetAppEventConfigParams) (*objects.AppEventConfig, *core.Response, error) {
 	var out objects.AppEventConfig
 	call := GetAppEventConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAppEventConfig(ctx context.Context, client *core.Client, id string, params GetAppEventConfigParams) (*objects.AppEventConfig, error) {
+	out, _, err := GetAppEventConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

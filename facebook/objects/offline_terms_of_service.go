@@ -9,3 +9,13 @@ type OfflineTermsOfService struct {
 	ID           *core.ID `json:"id,omitempty"`
 	SignedByUser *User    `json:"signed_by_user,omitempty"`
 }
+
+var OfflineTermsOfServiceFields = struct {
+	AcceptTime   string
+	ID           string
+	SignedByUser string
+}{
+	AcceptTime:   "accept_time",
+	ID:           "id",
+	SignedByUser: "signed_by_user",
+}

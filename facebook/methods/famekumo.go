@@ -41,9 +41,14 @@ func DecodeGetFAMEKumoBatchResponse(response *core.BatchResponse) (*objects.FAME
 	return &out, nil
 }
 
-func GetFAMEKumo(ctx context.Context, client *core.Client, id string, params GetFAMEKumoParams) (*objects.FAMEKumo, error) {
+func GetFAMEKumoWithResponse(ctx context.Context, client *core.Client, id string, params GetFAMEKumoParams) (*objects.FAMEKumo, *core.Response, error) {
 	var out objects.FAMEKumo
 	call := GetFAMEKumoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetFAMEKumo(ctx context.Context, client *core.Client, id string, params GetFAMEKumoParams) (*objects.FAMEKumo, error) {
+	out, _, err := GetFAMEKumoWithResponse(ctx, client, id, params)
+	return out, err
 }

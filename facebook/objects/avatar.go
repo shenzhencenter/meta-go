@@ -7,3 +7,9 @@ import (
 type Avatar struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var AvatarFields = struct {
+	ID string
+}{
+	ID: "id",
+}

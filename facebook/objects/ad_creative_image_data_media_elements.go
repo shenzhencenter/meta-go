@@ -10,3 +10,15 @@ type AdCreativeImageDataMediaElements struct {
 	X           *float64 `json:"x,omitempty"`
 	Y           *float64 `json:"y,omitempty"`
 }
+
+var AdCreativeImageDataMediaElementsFields = struct {
+	ElementID   string
+	ElementType string
+	X           string
+	Y           string
+}{
+	ElementID:   "element_id",
+	ElementType: "element_type",
+	X:           "x",
+	Y:           "y",
+}

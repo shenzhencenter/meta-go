@@ -7,3 +7,17 @@ type FBPageAndInstagramAccount struct {
 	IsManaged          *bool                `json:"is_managed,omitempty"`
 	MatchedBy          *string              `json:"matched_by,omitempty"`
 }
+
+var FBPageAndInstagramAccountFields = struct {
+	AdPermissions      string
+	BcPermissionStatus string
+	BcPermissions      string
+	IsManaged          string
+	MatchedBy          string
+}{
+	AdPermissions:      "ad_permissions",
+	BcPermissionStatus: "bc_permission_status",
+	BcPermissions:      "bc_permissions",
+	IsManaged:          "is_managed",
+	MatchedBy:          "matched_by",
+}

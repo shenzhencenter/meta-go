@@ -13,3 +13,21 @@ type AdAccountSpendLimit struct {
 	TimeStart   *uint64  `json:"time_start,omitempty"`
 	TimeStop    *uint64  `json:"time_stop,omitempty"`
 }
+
+var AdAccountSpendLimitFields = struct {
+	AmountSpent string
+	GroupID     string
+	LimitID     string
+	LimitValue  string
+	TimeCreated string
+	TimeStart   string
+	TimeStop    string
+}{
+	AmountSpent: "amount_spent",
+	GroupID:     "group_id",
+	LimitID:     "limit_id",
+	LimitValue:  "limit_value",
+	TimeCreated: "time_created",
+	TimeStart:   "time_start",
+	TimeStop:    "time_stop",
+}

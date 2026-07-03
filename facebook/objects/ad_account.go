@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type AdAccount struct {
@@ -25,7 +24,7 @@ type AdAccount struct {
 	BusinessStreet2                    *string                             `json:"business_street2,omitempty"`
 	BusinessZip                        *string                             `json:"business_zip,omitempty"`
 	Capabilities                       *[]string                           `json:"capabilities,omitempty"`
-	CreatedTime                        *time.Time                          `json:"created_time,omitempty"`
+	CreatedTime                        *core.Time                          `json:"created_time,omitempty"`
 	Currency                           *string                             `json:"currency,omitempty"`
 	CustomAudienceInfo                 *CustomAudienceGroup                `json:"custom_audience_info,omitempty"`
 	DefaultDsaBeneficiary              *string                             `json:"default_dsa_beneficiary,omitempty"`
@@ -78,8 +77,164 @@ type AdAccount struct {
 	TimezoneName                       *string                             `json:"timezone_name,omitempty"`
 	TimezoneOffsetHoursUtc             *float64                            `json:"timezone_offset_hours_utc,omitempty"`
 	TosAccepted                        *map[string]int                     `json:"tos_accepted,omitempty"`
-	UserAccessExpireTime               *time.Time                          `json:"user_access_expire_time,omitempty"`
+	UserAccessExpireTime               *core.Time                          `json:"user_access_expire_time,omitempty"`
 	UserTasks                          *[]string                           `json:"user_tasks,omitempty"`
 	UserTosAccepted                    *map[string]int                     `json:"user_tos_accepted,omitempty"`
 	ViewableBusiness                   *Business                           `json:"viewable_business,omitempty"`
+}
+
+var AdAccountFields = struct {
+	AccountID                          string
+	AccountStatus                      string
+	AdAccountPromotableObjects         string
+	Age                                string
+	AgencyClientDeclaration            string
+	AllCapabilities                    string
+	AmountSpent                        string
+	AttributionSpec                    string
+	Balance                            string
+	BrandSafetyContentFilterLevels     string
+	Business                           string
+	BusinessCity                       string
+	BusinessCountryCode                string
+	BusinessName                       string
+	BusinessState                      string
+	BusinessStreet                     string
+	BusinessStreet2                    string
+	BusinessZip                        string
+	Capabilities                       string
+	CreatedTime                        string
+	Currency                           string
+	CustomAudienceInfo                 string
+	DefaultDsaBeneficiary              string
+	DefaultDsaPayor                    string
+	DisableReason                      string
+	EndAdvertiser                      string
+	EndAdvertiserName                  string
+	ExistingCustomers                  string
+	ExpiredFundingSourceDetails        string
+	ExtendedCreditInvoiceGroup         string
+	FailedDeliveryChecks               string
+	FbEntity                           string
+	FundingSource                      string
+	FundingSourceDetails               string
+	HasMigratedPermissions             string
+	HasPageAuthorizedAdaccount         string
+	ID                                 string
+	IoNumber                           string
+	IsAttributionSpecSystemDefault     string
+	IsBaSkipDelayedEligible            string
+	IsDirectDealsEnabled               string
+	IsInX3dsAuthorizationEnabledMarket string
+	IsNotificationsEnabled             string
+	IsPersonal                         string
+	IsPrepayAccount                    string
+	IsTaxIDRequired                    string
+	LiableAddress                      string
+	LineNumbers                        string
+	MarketingMessagesSettings          string
+	MediaAgency                        string
+	MinCampaignGroupSpendCap           string
+	MinDailyBudget                     string
+	Name                               string
+	OffsiteCloSignalStatus             string
+	OffsitePixelsTosAccepted           string
+	OpportunityScore                   string
+	OpportunityScoreWeight             string
+	Owner                              string
+	OwnerBusiness                      string
+	Partner                            string
+	RfSpec                             string
+	SendBillToAddress                  string
+	ShowCheckoutExperience             string
+	SoldToAddress                      string
+	SpendCap                           string
+	TaxID                              string
+	TaxIDStatus                        string
+	TaxIDType                          string
+	TimezoneID                         string
+	TimezoneName                       string
+	TimezoneOffsetHoursUtc             string
+	TosAccepted                        string
+	UserAccessExpireTime               string
+	UserTasks                          string
+	UserTosAccepted                    string
+	ViewableBusiness                   string
+}{
+	AccountID:                          "account_id",
+	AccountStatus:                      "account_status",
+	AdAccountPromotableObjects:         "ad_account_promotable_objects",
+	Age:                                "age",
+	AgencyClientDeclaration:            "agency_client_declaration",
+	AllCapabilities:                    "all_capabilities",
+	AmountSpent:                        "amount_spent",
+	AttributionSpec:                    "attribution_spec",
+	Balance:                            "balance",
+	BrandSafetyContentFilterLevels:     "brand_safety_content_filter_levels",
+	Business:                           "business",
+	BusinessCity:                       "business_city",
+	BusinessCountryCode:                "business_country_code",
+	BusinessName:                       "business_name",
+	BusinessState:                      "business_state",
+	BusinessStreet:                     "business_street",
+	BusinessStreet2:                    "business_street2",
+	BusinessZip:                        "business_zip",
+	Capabilities:                       "capabilities",
+	CreatedTime:                        "created_time",
+	Currency:                           "currency",
+	CustomAudienceInfo:                 "custom_audience_info",
+	DefaultDsaBeneficiary:              "default_dsa_beneficiary",
+	DefaultDsaPayor:                    "default_dsa_payor",
+	DisableReason:                      "disable_reason",
+	EndAdvertiser:                      "end_advertiser",
+	EndAdvertiserName:                  "end_advertiser_name",
+	ExistingCustomers:                  "existing_customers",
+	ExpiredFundingSourceDetails:        "expired_funding_source_details",
+	ExtendedCreditInvoiceGroup:         "extended_credit_invoice_group",
+	FailedDeliveryChecks:               "failed_delivery_checks",
+	FbEntity:                           "fb_entity",
+	FundingSource:                      "funding_source",
+	FundingSourceDetails:               "funding_source_details",
+	HasMigratedPermissions:             "has_migrated_permissions",
+	HasPageAuthorizedAdaccount:         "has_page_authorized_adaccount",
+	ID:                                 "id",
+	IoNumber:                           "io_number",
+	IsAttributionSpecSystemDefault:     "is_attribution_spec_system_default",
+	IsBaSkipDelayedEligible:            "is_ba_skip_delayed_eligible",
+	IsDirectDealsEnabled:               "is_direct_deals_enabled",
+	IsInX3dsAuthorizationEnabledMarket: "is_in_3ds_authorization_enabled_market",
+	IsNotificationsEnabled:             "is_notifications_enabled",
+	IsPersonal:                         "is_personal",
+	IsPrepayAccount:                    "is_prepay_account",
+	IsTaxIDRequired:                    "is_tax_id_required",
+	LiableAddress:                      "liable_address",
+	LineNumbers:                        "line_numbers",
+	MarketingMessagesSettings:          "marketing_messages_settings",
+	MediaAgency:                        "media_agency",
+	MinCampaignGroupSpendCap:           "min_campaign_group_spend_cap",
+	MinDailyBudget:                     "min_daily_budget",
+	Name:                               "name",
+	OffsiteCloSignalStatus:             "offsite_clo_signal_status",
+	OffsitePixelsTosAccepted:           "offsite_pixels_tos_accepted",
+	OpportunityScore:                   "opportunity_score",
+	OpportunityScoreWeight:             "opportunity_score_weight",
+	Owner:                              "owner",
+	OwnerBusiness:                      "owner_business",
+	Partner:                            "partner",
+	RfSpec:                             "rf_spec",
+	SendBillToAddress:                  "send_bill_to_address",
+	ShowCheckoutExperience:             "show_checkout_experience",
+	SoldToAddress:                      "sold_to_address",
+	SpendCap:                           "spend_cap",
+	TaxID:                              "tax_id",
+	TaxIDStatus:                        "tax_id_status",
+	TaxIDType:                          "tax_id_type",
+	TimezoneID:                         "timezone_id",
+	TimezoneName:                       "timezone_name",
+	TimezoneOffsetHoursUtc:             "timezone_offset_hours_utc",
+	TosAccepted:                        "tos_accepted",
+	UserAccessExpireTime:               "user_access_expire_time",
+	UserTasks:                          "user_tasks",
+	UserTosAccepted:                    "user_tos_accepted",
+	ViewableBusiness:                   "viewable_business",
 }

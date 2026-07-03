@@ -9,3 +9,13 @@ type AdAccountUser struct {
 	Name  *string   `json:"name,omitempty"`
 	Tasks *[]string `json:"tasks,omitempty"`
 }
+
+var AdAccountUserFields = struct {
+	ID    string
+	Name  string
+	Tasks string
+}{
+	ID:    "id",
+	Name:  "name",
+	Tasks: "tasks",
+}

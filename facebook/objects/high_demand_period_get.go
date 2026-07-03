@@ -14,3 +14,23 @@ type HighDemandPeriodGet struct {
 	TimeStart       *string                   `json:"time_start,omitempty"`
 	WeeklySchedule  *[]map[string]interface{} `json:"weekly_schedule,omitempty"`
 }
+
+var HighDemandPeriodGetFields = struct {
+	AdObjectID      string
+	BudgetValue     string
+	BudgetValueType string
+	ID              string
+	RecurrenceType  string
+	TimeEnd         string
+	TimeStart       string
+	WeeklySchedule  string
+}{
+	AdObjectID:      "ad_object_id",
+	BudgetValue:     "budget_value",
+	BudgetValueType: "budget_value_type",
+	ID:              "id",
+	RecurrenceType:  "recurrence_type",
+	TimeEnd:         "time_end",
+	TimeStart:       "time_start",
+	WeeklySchedule:  "weekly_schedule",
+}

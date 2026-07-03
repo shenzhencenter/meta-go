@@ -22,3 +22,37 @@ type OfflineProductItem struct {
 	URL                  *string                                   `json:"url,omitempty"`
 	Visibility           *enums.OfflineproductitemVisibility       `json:"visibility,omitempty"`
 }
+
+var OfflineProductItemFields = struct {
+	Applinks             string
+	Brand                string
+	Category             string
+	Currency             string
+	Description          string
+	ID                   string
+	ImageFetchStatus     string
+	ImageURL             string
+	Images               string
+	Name                 string
+	OfflineProductItemID string
+	Price                string
+	SanitizedImages      string
+	URL                  string
+	Visibility           string
+}{
+	Applinks:             "applinks",
+	Brand:                "brand",
+	Category:             "category",
+	Currency:             "currency",
+	Description:          "description",
+	ID:                   "id",
+	ImageFetchStatus:     "image_fetch_status",
+	ImageURL:             "image_url",
+	Images:               "images",
+	Name:                 "name",
+	OfflineProductItemID: "offline_product_item_id",
+	Price:                "price",
+	SanitizedImages:      "sanitized_images",
+	URL:                  "url",
+	Visibility:           "visibility",
+}

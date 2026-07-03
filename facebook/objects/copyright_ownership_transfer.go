@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type CopyrightOwnershipTransfer struct {
@@ -14,5 +13,27 @@ type CopyrightOwnershipTransfer struct {
 	SendingRightsHolder     *Profile                  `json:"sending_rights_holder,omitempty"`
 	Status                  *string                   `json:"status,omitempty"`
 	TransferTerritories     *[]string                 `json:"transfer_territories,omitempty"`
-	TransferTime            *time.Time                `json:"transfer_time,omitempty"`
+	TransferTime            *core.Time                `json:"transfer_time,omitempty"`
+}
+
+var CopyrightOwnershipTransferFields = struct {
+	Assets                  string
+	HasOwnershipBeenUpdated string
+	ID                      string
+	NumAssets               string
+	ReceivingRightsHolder   string
+	SendingRightsHolder     string
+	Status                  string
+	TransferTerritories     string
+	TransferTime            string
+}{
+	Assets:                  "assets",
+	HasOwnershipBeenUpdated: "has_ownership_been_updated",
+	ID:                      "id",
+	NumAssets:               "num_assets",
+	ReceivingRightsHolder:   "receiving_rights_holder",
+	SendingRightsHolder:     "sending_rights_holder",
+	Status:                  "status",
+	TransferTerritories:     "transfer_territories",
+	TransferTime:            "transfer_time",
 }

@@ -2,7 +2,6 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type Status struct {
@@ -11,5 +10,21 @@ type Status struct {
 	ID          *core.ID                `json:"id,omitempty"`
 	Message     *string                 `json:"message,omitempty"`
 	Place       *Place                  `json:"place,omitempty"`
-	UpdatedTime *time.Time              `json:"updated_time,omitempty"`
+	UpdatedTime *core.Time              `json:"updated_time,omitempty"`
+}
+
+var StatusFields = struct {
+	Event       string
+	From        string
+	ID          string
+	Message     string
+	Place       string
+	UpdatedTime string
+}{
+	Event:       "event",
+	From:        "from",
+	ID:          "id",
+	Message:     "message",
+	Place:       "place",
+	UpdatedTime: "updated_time",
 }

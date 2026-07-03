@@ -41,9 +41,14 @@ func DecodeGetCPASAdvertiserPartnershipRecommendationBatchResponse(response *cor
 	return &out, nil
 }
 
-func GetCPASAdvertiserPartnershipRecommendation(ctx context.Context, client *core.Client, id string, params GetCPASAdvertiserPartnershipRecommendationParams) (*objects.CPASAdvertiserPartnershipRecommendation, error) {
+func GetCPASAdvertiserPartnershipRecommendationWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASAdvertiserPartnershipRecommendationParams) (*objects.CPASAdvertiserPartnershipRecommendation, *core.Response, error) {
 	var out objects.CPASAdvertiserPartnershipRecommendation
 	call := GetCPASAdvertiserPartnershipRecommendationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASAdvertiserPartnershipRecommendation(ctx context.Context, client *core.Client, id string, params GetCPASAdvertiserPartnershipRecommendationParams) (*objects.CPASAdvertiserPartnershipRecommendation, error) {
+	out, _, err := GetCPASAdvertiserPartnershipRecommendationWithResponse(ctx, client, id, params)
+	return out, err
 }

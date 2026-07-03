@@ -41,9 +41,14 @@ func DecodeGetALMAdAccountInfoBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetALMAdAccountInfo(ctx context.Context, client *core.Client, id string, params GetALMAdAccountInfoParams) (*objects.ALMAdAccountInfo, error) {
+func GetALMAdAccountInfoWithResponse(ctx context.Context, client *core.Client, id string, params GetALMAdAccountInfoParams) (*objects.ALMAdAccountInfo, *core.Response, error) {
 	var out objects.ALMAdAccountInfo
 	call := GetALMAdAccountInfoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetALMAdAccountInfo(ctx context.Context, client *core.Client, id string, params GetALMAdAccountInfoParams) (*objects.ALMAdAccountInfo, error) {
+	out, _, err := GetALMAdAccountInfoWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,11 +41,16 @@ func DecodeGetOmegaCustomerTrxCampaignsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetOmegaCustomerTrxCampaigns(ctx context.Context, client *core.Client, id string, params GetOmegaCustomerTrxCampaignsParams) (*core.Cursor[objects.InvoiceCampaign], error) {
+func GetOmegaCustomerTrxCampaignsWithResponse(ctx context.Context, client *core.Client, id string, params GetOmegaCustomerTrxCampaignsParams) (*core.Cursor[objects.InvoiceCampaign], *core.Response, error) {
 	var out core.Cursor[objects.InvoiceCampaign]
 	call := GetOmegaCustomerTrxCampaignsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOmegaCustomerTrxCampaigns(ctx context.Context, client *core.Client, id string, params GetOmegaCustomerTrxCampaignsParams) (*core.Cursor[objects.InvoiceCampaign], error) {
+	out, _, err := GetOmegaCustomerTrxCampaignsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetOmegaCustomerTrxParams struct {
@@ -82,9 +87,14 @@ func DecodeGetOmegaCustomerTrxBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetOmegaCustomerTrx(ctx context.Context, client *core.Client, id string, params GetOmegaCustomerTrxParams) (*objects.OmegaCustomerTrx, error) {
+func GetOmegaCustomerTrxWithResponse(ctx context.Context, client *core.Client, id string, params GetOmegaCustomerTrxParams) (*objects.OmegaCustomerTrx, *core.Response, error) {
 	var out objects.OmegaCustomerTrx
 	call := GetOmegaCustomerTrxBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetOmegaCustomerTrx(ctx context.Context, client *core.Client, id string, params GetOmegaCustomerTrxParams) (*objects.OmegaCustomerTrx, error) {
+	out, _, err := GetOmegaCustomerTrxWithResponse(ctx, client, id, params)
+	return out, err
 }

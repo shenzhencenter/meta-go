@@ -6,13 +6,12 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetCustomConversionStatsParams struct {
 	Aggregation *enums.CustomconversionstatsAggregationEnumParam `facebook:"aggregation"`
-	EndTime     *time.Time                                       `facebook:"end_time"`
-	StartTime   *time.Time                                       `facebook:"start_time"`
+	EndTime     *core.Time                                       `facebook:"end_time"`
+	StartTime   *core.Time                                       `facebook:"start_time"`
 	Extra       core.Params                                      `facebook:"-"`
 }
 
@@ -55,11 +54,16 @@ func DecodeGetCustomConversionStatsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetCustomConversionStats(ctx context.Context, client *core.Client, id string, params GetCustomConversionStatsParams) (*core.Cursor[objects.CustomConversionStatsResult], error) {
+func GetCustomConversionStatsWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomConversionStatsParams) (*core.Cursor[objects.CustomConversionStatsResult], *core.Response, error) {
 	var out core.Cursor[objects.CustomConversionStatsResult]
 	call := GetCustomConversionStatsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomConversionStats(ctx context.Context, client *core.Client, id string, params GetCustomConversionStatsParams) (*core.Cursor[objects.CustomConversionStatsResult], error) {
+	out, _, err := GetCustomConversionStatsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteCustomConversionParams struct {
@@ -96,11 +100,16 @@ func DecodeDeleteCustomConversionBatchResponse(response *core.BatchResponse) (*m
 	return &out, nil
 }
 
-func DeleteCustomConversion(ctx context.Context, client *core.Client, id string, params DeleteCustomConversionParams) (*map[string]interface{}, error) {
+func DeleteCustomConversionWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCustomConversionParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCustomConversionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteCustomConversion(ctx context.Context, client *core.Client, id string, params DeleteCustomConversionParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCustomConversionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCustomConversionParams struct {
@@ -137,11 +146,16 @@ func DecodeGetCustomConversionBatchResponse(response *core.BatchResponse) (*obje
 	return &out, nil
 }
 
-func GetCustomConversion(ctx context.Context, client *core.Client, id string, params GetCustomConversionParams) (*objects.CustomConversion, error) {
+func GetCustomConversionWithResponse(ctx context.Context, client *core.Client, id string, params GetCustomConversionParams) (*objects.CustomConversion, *core.Response, error) {
 	var out objects.CustomConversion
 	call := GetCustomConversionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCustomConversion(ctx context.Context, client *core.Client, id string, params GetCustomConversionParams) (*objects.CustomConversion, error) {
+	out, _, err := GetCustomConversionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCustomConversionParams struct {
@@ -190,9 +204,14 @@ func DecodeUpdateCustomConversionBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func UpdateCustomConversion(ctx context.Context, client *core.Client, id string, params UpdateCustomConversionParams) (*objects.CustomConversion, error) {
+func UpdateCustomConversionWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCustomConversionParams) (*objects.CustomConversion, *core.Response, error) {
 	var out objects.CustomConversion
 	call := UpdateCustomConversionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateCustomConversion(ctx context.Context, client *core.Client, id string, params UpdateCustomConversionParams) (*objects.CustomConversion, error) {
+	out, _, err := UpdateCustomConversionWithResponse(ctx, client, id, params)
+	return out, err
 }

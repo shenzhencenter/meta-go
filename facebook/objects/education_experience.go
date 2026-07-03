@@ -14,3 +14,23 @@ type EducationExperience struct {
 	With          *[]User       `json:"with,omitempty"`
 	Year          *Page         `json:"year,omitempty"`
 }
+
+var EducationExperienceFields = struct {
+	Classes       string
+	Concentration string
+	Degree        string
+	ID            string
+	School        string
+	Type          string
+	With          string
+	Year          string
+}{
+	Classes:       "classes",
+	Concentration: "concentration",
+	Degree:        "degree",
+	ID:            "id",
+	School:        "school",
+	Type:          "type",
+	With:          "with",
+	Year:          "year",
+}

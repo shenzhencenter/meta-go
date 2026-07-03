@@ -6,14 +6,13 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetCommerceMerchantSettingsCommerceOrdersParams struct {
 	Filters       *[]enums.CommercemerchantsettingscommerceOrdersFiltersEnumParam `facebook:"filters"`
 	State         *[]enums.CommercemerchantsettingscommerceOrdersStateEnumParam   `facebook:"state"`
-	UpdatedAfter  *time.Time                                                      `facebook:"updated_after"`
-	UpdatedBefore *time.Time                                                      `facebook:"updated_before"`
+	UpdatedAfter  *core.Time                                                      `facebook:"updated_after"`
+	UpdatedBefore *core.Time                                                      `facebook:"updated_before"`
 	Extra         core.Params                                                     `facebook:"-"`
 }
 
@@ -59,16 +58,21 @@ func DecodeGetCommerceMerchantSettingsCommerceOrdersBatchResponse(response *core
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsCommerceOrders(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], error) {
+func GetCommerceMerchantSettingsCommerceOrdersWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], *core.Response, error) {
 	var out core.Cursor[objects.CommerceOrder]
 	call := GetCommerceMerchantSettingsCommerceOrdersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsCommerceOrders(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], error) {
+	out, _, err := GetCommerceMerchantSettingsCommerceOrdersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsCommercePayoutsParams struct {
-	EndTime   *time.Time  `facebook:"end_time"`
-	StartTime *time.Time  `facebook:"start_time"`
+	EndTime   *core.Time  `facebook:"end_time"`
+	StartTime *core.Time  `facebook:"start_time"`
 	Extra     core.Params `facebook:"-"`
 }
 
@@ -108,11 +112,16 @@ func DecodeGetCommerceMerchantSettingsCommercePayoutsBatchResponse(response *cor
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsCommercePayouts(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], error) {
+func GetCommerceMerchantSettingsCommercePayoutsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], *core.Response, error) {
 	var out core.Cursor[objects.CommercePayout]
 	call := GetCommerceMerchantSettingsCommercePayoutsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsCommercePayouts(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], error) {
+	out, _, err := GetCommerceMerchantSettingsCommercePayoutsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsOrderManagementAppsParams struct {
@@ -149,11 +158,16 @@ func DecodeGetCommerceMerchantSettingsOrderManagementAppsBatchResponse(response 
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsOrderManagementApps(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsOrderManagementAppsParams) (*core.Cursor[objects.Application], error) {
+func GetCommerceMerchantSettingsOrderManagementAppsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsOrderManagementAppsParams) (*core.Cursor[objects.Application], *core.Response, error) {
 	var out core.Cursor[objects.Application]
 	call := GetCommerceMerchantSettingsOrderManagementAppsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsOrderManagementApps(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsOrderManagementAppsParams) (*core.Cursor[objects.Application], error) {
+	out, _, err := GetCommerceMerchantSettingsOrderManagementAppsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsProductCatalogsParams struct {
@@ -190,17 +204,22 @@ func DecodeGetCommerceMerchantSettingsProductCatalogsBatchResponse(response *cor
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsProductCatalogs(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+func GetCommerceMerchantSettingsProductCatalogsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], *core.Response, error) {
 	var out core.Cursor[objects.ProductCatalog]
 	call := GetCommerceMerchantSettingsProductCatalogsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsProductCatalogs(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
+	out, _, err := GetCommerceMerchantSettingsProductCatalogsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsReturnsParams struct {
-	EndTimeCreated   *time.Time                                                `facebook:"end_time_created"`
+	EndTimeCreated   *core.Time                                                `facebook:"end_time_created"`
 	MerchantReturnID *core.ID                                                  `facebook:"merchant_return_id"`
-	StartTimeCreated *time.Time                                                `facebook:"start_time_created"`
+	StartTimeCreated *core.Time                                                `facebook:"start_time_created"`
 	Statuses         *[]enums.CommercemerchantsettingsreturnsStatusesEnumParam `facebook:"statuses"`
 	Extra            core.Params                                               `facebook:"-"`
 }
@@ -247,11 +266,16 @@ func DecodeGetCommerceMerchantSettingsReturnsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsReturns(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsReturnsParams) (*core.Cursor[objects.CommerceReturn], error) {
+func GetCommerceMerchantSettingsReturnsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsReturnsParams) (*core.Cursor[objects.CommerceReturn], *core.Response, error) {
 	var out core.Cursor[objects.CommerceReturn]
 	call := GetCommerceMerchantSettingsReturnsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsReturns(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsReturnsParams) (*core.Cursor[objects.CommerceReturn], error) {
+	out, _, err := GetCommerceMerchantSettingsReturnsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsSetupStatusParams struct {
@@ -288,11 +312,16 @@ func DecodeGetCommerceMerchantSettingsSetupStatusBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsSetupStatus(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], error) {
+func GetCommerceMerchantSettingsSetupStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], *core.Response, error) {
 	var out core.Cursor[objects.CommerceMerchantSettingsSetupStatus]
 	call := GetCommerceMerchantSettingsSetupStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsSetupStatus(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], error) {
+	out, _, err := GetCommerceMerchantSettingsSetupStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCommerceMerchantSettingsShippingProfilesParams struct {
@@ -349,11 +378,16 @@ func DecodeCreateCommerceMerchantSettingsShippingProfilesBatchResponse(response 
 	return &out, nil
 }
 
-func CreateCommerceMerchantSettingsShippingProfiles(ctx context.Context, client *core.Client, id string, params CreateCommerceMerchantSettingsShippingProfilesParams) (*map[string]interface{}, error) {
+func CreateCommerceMerchantSettingsShippingProfilesWithResponse(ctx context.Context, client *core.Client, id string, params CreateCommerceMerchantSettingsShippingProfilesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateCommerceMerchantSettingsShippingProfilesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCommerceMerchantSettingsShippingProfiles(ctx context.Context, client *core.Client, id string, params CreateCommerceMerchantSettingsShippingProfilesParams) (*map[string]interface{}, error) {
+	out, _, err := CreateCommerceMerchantSettingsShippingProfilesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsShopsParams struct {
@@ -390,11 +424,16 @@ func DecodeGetCommerceMerchantSettingsShopsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsShops(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsShopsParams) (*core.Cursor[objects.Shop], error) {
+func GetCommerceMerchantSettingsShopsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsShopsParams) (*core.Cursor[objects.Shop], *core.Response, error) {
 	var out core.Cursor[objects.Shop]
 	call := GetCommerceMerchantSettingsShopsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsShops(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsShopsParams) (*core.Cursor[objects.Shop], error) {
+	out, _, err := GetCommerceMerchantSettingsShopsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsTaxSettingsParams struct {
@@ -431,11 +470,16 @@ func DecodeGetCommerceMerchantSettingsTaxSettingsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetCommerceMerchantSettingsTaxSettings(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsTaxSettingsParams) (*core.Cursor[objects.CommerceMerchantTaxSettings], error) {
+func GetCommerceMerchantSettingsTaxSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsTaxSettingsParams) (*core.Cursor[objects.CommerceMerchantTaxSettings], *core.Response, error) {
 	var out core.Cursor[objects.CommerceMerchantTaxSettings]
 	call := GetCommerceMerchantSettingsTaxSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettingsTaxSettings(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsTaxSettingsParams) (*core.Cursor[objects.CommerceMerchantTaxSettings], error) {
+	out, _, err := GetCommerceMerchantSettingsTaxSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommerceMerchantSettingsParams struct {
@@ -472,11 +516,16 @@ func DecodeGetCommerceMerchantSettingsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsParams) (*objects.CommerceMerchantSettings, error) {
+func GetCommerceMerchantSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsParams) (*objects.CommerceMerchantSettings, *core.Response, error) {
 	var out objects.CommerceMerchantSettings
 	call := GetCommerceMerchantSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetCommerceMerchantSettingsParams) (*objects.CommerceMerchantSettings, error) {
+	out, _, err := GetCommerceMerchantSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCommerceMerchantSettingsParams struct {
@@ -529,9 +578,14 @@ func DecodeUpdateCommerceMerchantSettingsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func UpdateCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params UpdateCommerceMerchantSettingsParams) (*objects.CommerceMerchantSettings, error) {
+func UpdateCommerceMerchantSettingsWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCommerceMerchantSettingsParams) (*objects.CommerceMerchantSettings, *core.Response, error) {
 	var out objects.CommerceMerchantSettings
 	call := UpdateCommerceMerchantSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params UpdateCommerceMerchantSettingsParams) (*objects.CommerceMerchantSettings, error) {
+	out, _, err := UpdateCommerceMerchantSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

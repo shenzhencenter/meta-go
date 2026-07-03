@@ -41,9 +41,14 @@ func DecodeGetBusinessRequestBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetBusinessRequest(ctx context.Context, client *core.Client, id string, params GetBusinessRequestParams) (*objects.BusinessRequest, error) {
+func GetBusinessRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessRequestParams) (*objects.BusinessRequest, *core.Response, error) {
 	var out objects.BusinessRequest
 	call := GetBusinessRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessRequest(ctx context.Context, client *core.Client, id string, params GetBusinessRequestParams) (*objects.BusinessRequest, error) {
+	out, _, err := GetBusinessRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

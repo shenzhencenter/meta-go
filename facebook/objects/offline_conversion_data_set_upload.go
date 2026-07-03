@@ -20,3 +20,35 @@ type OfflineConversionDataSetUpload struct {
 	UploadTag         *string  `json:"upload_tag,omitempty"`
 	ValidEntries      *int     `json:"valid_entries,omitempty"`
 }
+
+var OfflineConversionDataSetUploadFields = struct {
+	APICalls          string
+	CreationTime      string
+	DuplicateEntries  string
+	EventStats        string
+	EventTimeMax      string
+	EventTimeMin      string
+	FirstUploadTime   string
+	ID                string
+	IsExcludedForLift string
+	LastUploadTime    string
+	MatchRateApprox   string
+	MatchedEntries    string
+	UploadTag         string
+	ValidEntries      string
+}{
+	APICalls:          "api_calls",
+	CreationTime:      "creation_time",
+	DuplicateEntries:  "duplicate_entries",
+	EventStats:        "event_stats",
+	EventTimeMax:      "event_time_max",
+	EventTimeMin:      "event_time_min",
+	FirstUploadTime:   "first_upload_time",
+	ID:                "id",
+	IsExcludedForLift: "is_excluded_for_lift",
+	LastUploadTime:    "last_upload_time",
+	MatchRateApprox:   "match_rate_approx",
+	MatchedEntries:    "matched_entries",
+	UploadTag:         "upload_tag",
+	ValidEntries:      "valid_entries",
+}

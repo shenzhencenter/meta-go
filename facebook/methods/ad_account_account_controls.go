@@ -41,9 +41,14 @@ func DecodeCreateAdAccountAccountControlsAccountControlsBatchResponse(response *
 	return &out, nil
 }
 
-func CreateAdAccountAccountControlsAccountControls(ctx context.Context, client *core.Client, id string, params CreateAdAccountAccountControlsAccountControlsParams) (*objects.AdAccountAccountControlsPost, error) {
+func CreateAdAccountAccountControlsAccountControlsWithResponse(ctx context.Context, client *core.Client, id string, params CreateAdAccountAccountControlsAccountControlsParams) (*objects.AdAccountAccountControlsPost, *core.Response, error) {
 	var out objects.AdAccountAccountControlsPost
 	call := CreateAdAccountAccountControlsAccountControlsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateAdAccountAccountControlsAccountControls(ctx context.Context, client *core.Client, id string, params CreateAdAccountAccountControlsAccountControlsParams) (*objects.AdAccountAccountControlsPost, error) {
+	out, _, err := CreateAdAccountAccountControlsAccountControlsWithResponse(ctx, client, id, params)
+	return out, err
 }

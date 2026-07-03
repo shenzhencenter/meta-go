@@ -17,3 +17,29 @@ type AdAssetVideo struct {
 	VideoID         *core.ID   `json:"video_id,omitempty"`
 	VideoName       *string    `json:"video_name,omitempty"`
 }
+
+var AdAssetVideoFields = struct {
+	CaptionIds      string
+	ID              string
+	SourceImageURL  string
+	Tag             string
+	ThumbnailHash   string
+	ThumbnailSource string
+	ThumbnailURL    string
+	URL             string
+	URLTags         string
+	VideoID         string
+	VideoName       string
+}{
+	CaptionIds:      "caption_ids",
+	ID:              "id",
+	SourceImageURL:  "source_image_url",
+	Tag:             "tag",
+	ThumbnailHash:   "thumbnail_hash",
+	ThumbnailSource: "thumbnail_source",
+	ThumbnailURL:    "thumbnail_url",
+	URL:             "url",
+	URLTags:         "url_tags",
+	VideoID:         "video_id",
+	VideoName:       "video_name",
+}

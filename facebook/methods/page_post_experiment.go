@@ -41,11 +41,16 @@ func DecodeGetPagePostExperimentVideoInsightsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetPagePostExperimentVideoInsights(ctx context.Context, client *core.Client, id string, params GetPagePostExperimentVideoInsightsParams) (*core.Cursor[objects.PagePostExperimentVideoInsightsQueryResult], error) {
+func GetPagePostExperimentVideoInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePostExperimentVideoInsightsParams) (*core.Cursor[objects.PagePostExperimentVideoInsightsQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.PagePostExperimentVideoInsightsQueryResult]
 	call := GetPagePostExperimentVideoInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePostExperimentVideoInsights(ctx context.Context, client *core.Client, id string, params GetPagePostExperimentVideoInsightsParams) (*core.Cursor[objects.PagePostExperimentVideoInsightsQueryResult], error) {
+	out, _, err := GetPagePostExperimentVideoInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePagePostExperimentParams struct {
@@ -82,11 +87,16 @@ func DecodeDeletePagePostExperimentBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func DeletePagePostExperiment(ctx context.Context, client *core.Client, id string, params DeletePagePostExperimentParams) (*map[string]interface{}, error) {
+func DeletePagePostExperimentWithResponse(ctx context.Context, client *core.Client, id string, params DeletePagePostExperimentParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePagePostExperimentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePagePostExperiment(ctx context.Context, client *core.Client, id string, params DeletePagePostExperimentParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePagePostExperimentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPagePostExperimentParams struct {
@@ -123,9 +133,14 @@ func DecodeGetPagePostExperimentBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetPagePostExperiment(ctx context.Context, client *core.Client, id string, params GetPagePostExperimentParams) (*objects.PagePostExperiment, error) {
+func GetPagePostExperimentWithResponse(ctx context.Context, client *core.Client, id string, params GetPagePostExperimentParams) (*objects.PagePostExperiment, *core.Response, error) {
 	var out objects.PagePostExperiment
 	call := GetPagePostExperimentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPagePostExperiment(ctx context.Context, client *core.Client, id string, params GetPagePostExperimentParams) (*objects.PagePostExperiment, error) {
+	out, _, err := GetPagePostExperimentWithResponse(ctx, client, id, params)
+	return out, err
 }

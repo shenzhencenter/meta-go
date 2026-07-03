@@ -8,3 +8,19 @@ type CommerceMerchantSettingsSetupStatus struct {
 	ReviewStatus                     *map[string]interface{} `json:"review_status,omitempty"`
 	ShopSetup                        *string                 `json:"shop_setup,omitempty"`
 }
+
+var CommerceMerchantSettingsSetupStatusFields = struct {
+	DealsSetup                       string
+	MarketplaceApprovalStatus        string
+	MarketplaceApprovalStatusDetails string
+	PaymentSetup                     string
+	ReviewStatus                     string
+	ShopSetup                        string
+}{
+	DealsSetup:                       "deals_setup",
+	MarketplaceApprovalStatus:        "marketplace_approval_status",
+	MarketplaceApprovalStatusDetails: "marketplace_approval_status_details",
+	PaymentSetup:                     "payment_setup",
+	ReviewStatus:                     "review_status",
+	ShopSetup:                        "shop_setup",
+}

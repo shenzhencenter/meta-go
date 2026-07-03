@@ -41,9 +41,14 @@ func DecodeGetMediaCopyrightAttributionBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetMediaCopyrightAttribution(ctx context.Context, client *core.Client, id string, params GetMediaCopyrightAttributionParams) (*objects.MediaCopyrightAttribution, error) {
+func GetMediaCopyrightAttributionWithResponse(ctx context.Context, client *core.Client, id string, params GetMediaCopyrightAttributionParams) (*objects.MediaCopyrightAttribution, *core.Response, error) {
 	var out objects.MediaCopyrightAttribution
 	call := GetMediaCopyrightAttributionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMediaCopyrightAttribution(ctx context.Context, client *core.Client, id string, params GetMediaCopyrightAttributionParams) (*objects.MediaCopyrightAttribution, error) {
+	out, _, err := GetMediaCopyrightAttributionWithResponse(ctx, client, id, params)
+	return out, err
 }

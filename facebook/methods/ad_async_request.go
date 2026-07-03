@@ -41,11 +41,16 @@ func DecodeDeleteAdAsyncRequestBatchResponse(response *core.BatchResponse) (*map
 	return &out, nil
 }
 
-func DeleteAdAsyncRequest(ctx context.Context, client *core.Client, id string, params DeleteAdAsyncRequestParams) (*map[string]interface{}, error) {
+func DeleteAdAsyncRequestWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdAsyncRequestParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteAdAsyncRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdAsyncRequest(ctx context.Context, client *core.Client, id string, params DeleteAdAsyncRequestParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteAdAsyncRequestWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdAsyncRequestParams struct {
@@ -82,9 +87,14 @@ func DecodeGetAdAsyncRequestBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetAdAsyncRequest(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestParams) (*objects.AdAsyncRequest, error) {
+func GetAdAsyncRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestParams) (*objects.AdAsyncRequest, *core.Response, error) {
 	var out objects.AdAsyncRequest
 	call := GetAdAsyncRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdAsyncRequest(ctx context.Context, client *core.Client, id string, params GetAdAsyncRequestParams) (*objects.AdAsyncRequest, error) {
+	out, _, err := GetAdAsyncRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

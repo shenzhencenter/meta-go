@@ -41,9 +41,14 @@ func DecodeGetAdImageBatchResponse(response *core.BatchResponse) (*objects.AdIma
 	return &out, nil
 }
 
-func GetAdImage(ctx context.Context, client *core.Client, id string, params GetAdImageParams) (*objects.AdImage, error) {
+func GetAdImageWithResponse(ctx context.Context, client *core.Client, id string, params GetAdImageParams) (*objects.AdImage, *core.Response, error) {
 	var out objects.AdImage
 	call := GetAdImageBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdImage(ctx context.Context, client *core.Client, id string, params GetAdImageParams) (*objects.AdImage, error) {
+	out, _, err := GetAdImageWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type DeleteApplicationAccountsParams struct {
@@ -49,11 +48,16 @@ func DecodeDeleteApplicationAccountsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func DeleteApplicationAccounts(ctx context.Context, client *core.Client, id string, params DeleteApplicationAccountsParams) (*map[string]interface{}, error) {
+func DeleteApplicationAccountsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteApplicationAccountsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteApplicationAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteApplicationAccounts(ctx context.Context, client *core.Client, id string, params DeleteApplicationAccountsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteApplicationAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAccountsParams struct {
@@ -94,11 +98,16 @@ func DecodeGetApplicationAccountsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetApplicationAccounts(ctx context.Context, client *core.Client, id string, params GetApplicationAccountsParams) (*core.Cursor[objects.TestAccount], error) {
+func GetApplicationAccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAccountsParams) (*core.Cursor[objects.TestAccount], *core.Response, error) {
 	var out core.Cursor[objects.TestAccount]
 	call := GetApplicationAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAccounts(ctx context.Context, client *core.Client, id string, params GetApplicationAccountsParams) (*core.Cursor[objects.TestAccount], error) {
+	out, _, err := GetApplicationAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAccountsParams struct {
@@ -163,11 +172,16 @@ func DecodeCreateApplicationAccountsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func CreateApplicationAccounts(ctx context.Context, client *core.Client, id string, params CreateApplicationAccountsParams) (*objects.TestAccount, error) {
+func CreateApplicationAccountsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAccountsParams) (*objects.TestAccount, *core.Response, error) {
 	var out objects.TestAccount
 	call := CreateApplicationAccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAccounts(ctx context.Context, client *core.Client, id string, params CreateApplicationAccountsParams) (*objects.TestAccount, error) {
+	out, _, err := CreateApplicationAccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationActivitiesParams struct {
@@ -398,11 +412,16 @@ func DecodeCreateApplicationActivitiesBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func CreateApplicationActivities(ctx context.Context, client *core.Client, id string, params CreateApplicationActivitiesParams) (*map[string]interface{}, error) {
+func CreateApplicationActivitiesWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationActivitiesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationActivitiesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationActivities(ctx context.Context, client *core.Client, id string, params CreateApplicationActivitiesParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationActivitiesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAdPlacementGroupsParams struct {
@@ -439,11 +458,16 @@ func DecodeGetApplicationAdPlacementGroupsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetApplicationAdPlacementGroups(ctx context.Context, client *core.Client, id string, params GetApplicationAdPlacementGroupsParams) (*core.Cursor[objects.AdPlacementGroup], error) {
+func GetApplicationAdPlacementGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAdPlacementGroupsParams) (*core.Cursor[objects.AdPlacementGroup], *core.Response, error) {
 	var out core.Cursor[objects.AdPlacementGroup]
 	call := GetApplicationAdPlacementGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAdPlacementGroups(ctx context.Context, client *core.Client, id string, params GetApplicationAdPlacementGroupsParams) (*core.Cursor[objects.AdPlacementGroup], error) {
+	out, _, err := GetApplicationAdPlacementGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAdnetworkPlacementsParams struct {
@@ -484,11 +508,16 @@ func DecodeGetApplicationAdnetworkPlacementsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetApplicationAdnetworkPlacements(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkPlacementsParams) (*core.Cursor[objects.AdPlacement], error) {
+func GetApplicationAdnetworkPlacementsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkPlacementsParams) (*core.Cursor[objects.AdPlacement], *core.Response, error) {
 	var out core.Cursor[objects.AdPlacement]
 	call := GetApplicationAdnetworkPlacementsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAdnetworkPlacements(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkPlacementsParams) (*core.Cursor[objects.AdPlacement], error) {
+	out, _, err := GetApplicationAdnetworkPlacementsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAdnetworkanalyticsParams struct {
@@ -500,8 +529,8 @@ type GetApplicationAdnetworkanalyticsParams struct {
 	OrderingColumn     *enums.ApplicationadnetworkanalyticsOrderingColumnEnumParam    `facebook:"ordering_column"`
 	OrderingType       *enums.ApplicationadnetworkanalyticsOrderingTypeEnumParam      `facebook:"ordering_type"`
 	ShouldIncludeUntil *bool                                                          `facebook:"should_include_until"`
-	Since              *time.Time                                                     `facebook:"since"`
-	Until              *time.Time                                                     `facebook:"until"`
+	Since              *core.Time                                                     `facebook:"since"`
+	Until              *core.Time                                                     `facebook:"until"`
 	Extra              core.Params                                                    `facebook:"-"`
 }
 
@@ -563,11 +592,16 @@ func DecodeGetApplicationAdnetworkanalyticsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetApplicationAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+func GetApplicationAdnetworkanalyticsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]
 	call := GetApplicationAdnetworkanalyticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+	out, _, err := GetApplicationAdnetworkanalyticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAdnetworkanalyticsParams struct {
@@ -578,8 +612,8 @@ type CreateApplicationAdnetworkanalyticsParams struct {
 	Metrics           []enums.ApplicationadnetworkanalyticsMetricsEnumParam          `facebook:"metrics"`
 	OrderingColumn    *enums.ApplicationadnetworkanalyticsOrderingColumnEnumParam    `facebook:"ordering_column"`
 	OrderingType      *enums.ApplicationadnetworkanalyticsOrderingTypeEnumParam      `facebook:"ordering_type"`
-	Since             *time.Time                                                     `facebook:"since"`
-	Until             *time.Time                                                     `facebook:"until"`
+	Since             *core.Time                                                     `facebook:"since"`
+	Until             *core.Time                                                     `facebook:"until"`
 	Extra             core.Params                                                    `facebook:"-"`
 }
 
@@ -638,11 +672,16 @@ func DecodeCreateApplicationAdnetworkanalyticsBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreateApplicationAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateApplicationAdnetworkanalyticsParams) (*objects.Application, error) {
+func CreateApplicationAdnetworkanalyticsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAdnetworkanalyticsParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationAdnetworkanalyticsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateApplicationAdnetworkanalyticsParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationAdnetworkanalyticsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAdnetworkanalyticsResultsParams struct {
@@ -683,11 +722,16 @@ func DecodeGetApplicationAdnetworkanalyticsResultsBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetApplicationAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+func GetApplicationAdnetworkanalyticsResultsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], *core.Response, error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]
 	call := GetApplicationAdnetworkanalyticsResultsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetApplicationAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+	out, _, err := GetApplicationAdnetworkanalyticsResultsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAemAttributionParams struct {
@@ -732,11 +776,16 @@ func DecodeGetApplicationAemAttributionBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetApplicationAemAttribution(ctx context.Context, client *core.Client, id string, params GetApplicationAemAttributionParams) (*core.Cursor[objects.AEMAttribution], error) {
+func GetApplicationAemAttributionWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAemAttributionParams) (*core.Cursor[objects.AEMAttribution], *core.Response, error) {
 	var out core.Cursor[objects.AEMAttribution]
 	call := GetApplicationAemAttributionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAemAttribution(ctx context.Context, client *core.Client, id string, params GetApplicationAemAttributionParams) (*core.Cursor[objects.AEMAttribution], error) {
+	out, _, err := GetApplicationAemAttributionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAemConversionConfigsParams struct {
@@ -777,11 +826,16 @@ func DecodeGetApplicationAemConversionConfigsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetApplicationAemConversionConfigs(ctx context.Context, client *core.Client, id string, params GetApplicationAemConversionConfigsParams) (*core.Cursor[objects.AEMConversionConfig], error) {
+func GetApplicationAemConversionConfigsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAemConversionConfigsParams) (*core.Cursor[objects.AEMConversionConfig], *core.Response, error) {
 	var out core.Cursor[objects.AEMConversionConfig]
 	call := GetApplicationAemConversionConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAemConversionConfigs(ctx context.Context, client *core.Client, id string, params GetApplicationAemConversionConfigsParams) (*core.Cursor[objects.AEMConversionConfig], error) {
+	out, _, err := GetApplicationAemConversionConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAemConversionFilterParams struct {
@@ -826,11 +880,16 @@ func DecodeGetApplicationAemConversionFilterBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetApplicationAemConversionFilter(ctx context.Context, client *core.Client, id string, params GetApplicationAemConversionFilterParams) (*core.Cursor[objects.AEMConversionFilter], error) {
+func GetApplicationAemConversionFilterWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAemConversionFilterParams) (*core.Cursor[objects.AEMConversionFilter], *core.Response, error) {
 	var out core.Cursor[objects.AEMConversionFilter]
 	call := GetApplicationAemConversionFilterBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAemConversionFilter(ctx context.Context, client *core.Client, id string, params GetApplicationAemConversionFilterParams) (*core.Cursor[objects.AEMConversionFilter], error) {
+	out, _, err := GetApplicationAemConversionFilterWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAemConversionsParams struct {
@@ -869,11 +928,16 @@ func DecodeCreateApplicationAemConversionsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateApplicationAemConversions(ctx context.Context, client *core.Client, id string, params CreateApplicationAemConversionsParams) (*map[string]interface{}, error) {
+func CreateApplicationAemConversionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAemConversionsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationAemConversionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAemConversions(ctx context.Context, client *core.Client, id string, params CreateApplicationAemConversionsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationAemConversionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAemSkanReadinessParams struct {
@@ -932,11 +996,16 @@ func DecodeCreateApplicationAemSkanReadinessBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateApplicationAemSkanReadiness(ctx context.Context, client *core.Client, id string, params CreateApplicationAemSkanReadinessParams) (*map[string]interface{}, error) {
+func CreateApplicationAemSkanReadinessWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAemSkanReadinessParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationAemSkanReadinessBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAemSkanReadiness(ctx context.Context, client *core.Client, id string, params CreateApplicationAemSkanReadinessParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationAemSkanReadinessWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAgenciesParams struct {
@@ -973,11 +1042,16 @@ func DecodeGetApplicationAgenciesBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetApplicationAgencies(ctx context.Context, client *core.Client, id string, params GetApplicationAgenciesParams) (*core.Cursor[objects.Business], error) {
+func GetApplicationAgenciesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAgenciesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetApplicationAgenciesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAgencies(ctx context.Context, client *core.Client, id string, params GetApplicationAgenciesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetApplicationAgenciesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAggregateRevenueParams struct {
@@ -1030,11 +1104,16 @@ func DecodeCreateApplicationAggregateRevenueBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func CreateApplicationAggregateRevenue(ctx context.Context, client *core.Client, id string, params CreateApplicationAggregateRevenueParams) (*map[string]interface{}, error) {
+func CreateApplicationAggregateRevenueWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAggregateRevenueParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationAggregateRevenueBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAggregateRevenue(ctx context.Context, client *core.Client, id string, params CreateApplicationAggregateRevenueParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationAggregateRevenueWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAndroidDialogConfigsParams struct {
@@ -1071,11 +1150,16 @@ func DecodeGetApplicationAndroidDialogConfigsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetApplicationAndroidDialogConfigs(ctx context.Context, client *core.Client, id string, params GetApplicationAndroidDialogConfigsParams) (*core.Cursor[objects.ApplicationDialogConfig], error) {
+func GetApplicationAndroidDialogConfigsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAndroidDialogConfigsParams) (*core.Cursor[objects.ApplicationDialogConfig], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationDialogConfig]
 	call := GetApplicationAndroidDialogConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAndroidDialogConfigs(ctx context.Context, client *core.Client, id string, params GetApplicationAndroidDialogConfigsParams) (*core.Cursor[objects.ApplicationDialogConfig], error) {
+	out, _, err := GetApplicationAndroidDialogConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAppCapiSettingsParams struct {
@@ -1112,11 +1196,16 @@ func DecodeGetApplicationAppCapiSettingsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetApplicationAppCapiSettings(ctx context.Context, client *core.Client, id string, params GetApplicationAppCapiSettingsParams) (*core.Cursor[objects.ApplicationAppCapiSetting], error) {
+func GetApplicationAppCapiSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAppCapiSettingsParams) (*core.Cursor[objects.ApplicationAppCapiSetting], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationAppCapiSetting]
 	call := GetApplicationAppCapiSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAppCapiSettings(ctx context.Context, client *core.Client, id string, params GetApplicationAppCapiSettingsParams) (*core.Cursor[objects.ApplicationAppCapiSetting], error) {
+	out, _, err := GetApplicationAppCapiSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAppEventTypesParams struct {
@@ -1153,11 +1242,16 @@ func DecodeGetApplicationAppEventTypesBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetApplicationAppEventTypes(ctx context.Context, client *core.Client, id string, params GetApplicationAppEventTypesParams) (*core.Cursor[objects.ApplicationAppEventTypes], error) {
+func GetApplicationAppEventTypesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAppEventTypesParams) (*core.Cursor[objects.ApplicationAppEventTypes], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationAppEventTypes]
 	call := GetApplicationAppEventTypesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAppEventTypes(ctx context.Context, client *core.Client, id string, params GetApplicationAppEventTypesParams) (*core.Cursor[objects.ApplicationAppEventTypes], error) {
+	out, _, err := GetApplicationAppEventTypesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAppIndexingParams struct {
@@ -1212,11 +1306,16 @@ func DecodeCreateApplicationAppIndexingBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateApplicationAppIndexing(ctx context.Context, client *core.Client, id string, params CreateApplicationAppIndexingParams) (*objects.Application, error) {
+func CreateApplicationAppIndexingWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAppIndexingParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationAppIndexingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAppIndexing(ctx context.Context, client *core.Client, id string, params CreateApplicationAppIndexingParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationAppIndexingWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAppIndexingSessionParams struct {
@@ -1259,11 +1358,16 @@ func DecodeCreateApplicationAppIndexingSessionBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreateApplicationAppIndexingSession(ctx context.Context, client *core.Client, id string, params CreateApplicationAppIndexingSessionParams) (*objects.Application, error) {
+func CreateApplicationAppIndexingSessionWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAppIndexingSessionParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationAppIndexingSessionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAppIndexingSession(ctx context.Context, client *core.Client, id string, params CreateApplicationAppIndexingSessionParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationAppIndexingSessionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAppInstalledGroupsParams struct {
@@ -1304,11 +1408,16 @@ func DecodeGetApplicationAppInstalledGroupsBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetApplicationAppInstalledGroups(ctx context.Context, client *core.Client, id string, params GetApplicationAppInstalledGroupsParams) (*core.Cursor[objects.Group], error) {
+func GetApplicationAppInstalledGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAppInstalledGroupsParams) (*core.Cursor[objects.Group], *core.Response, error) {
 	var out core.Cursor[objects.Group]
 	call := GetApplicationAppInstalledGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAppInstalledGroups(ctx context.Context, client *core.Client, id string, params GetApplicationAppInstalledGroupsParams) (*core.Cursor[objects.Group], error) {
+	out, _, err := GetApplicationAppInstalledGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAppPushDeviceTokenParams struct {
@@ -1353,11 +1462,16 @@ func DecodeCreateApplicationAppPushDeviceTokenBatchResponse(response *core.Batch
 	return &out, nil
 }
 
-func CreateApplicationAppPushDeviceToken(ctx context.Context, client *core.Client, id string, params CreateApplicationAppPushDeviceTokenParams) (*objects.Application, error) {
+func CreateApplicationAppPushDeviceTokenWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAppPushDeviceTokenParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationAppPushDeviceTokenBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAppPushDeviceToken(ctx context.Context, client *core.Client, id string, params CreateApplicationAppPushDeviceTokenParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationAppPushDeviceTokenWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAppassetsParams struct {
@@ -1394,11 +1508,16 @@ func DecodeGetApplicationAppassetsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetApplicationAppassets(ctx context.Context, client *core.Client, id string, params GetApplicationAppassetsParams) (*core.Cursor[objects.CanvasAppAsset], error) {
+func GetApplicationAppassetsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAppassetsParams) (*core.Cursor[objects.CanvasAppAsset], *core.Response, error) {
 	var out core.Cursor[objects.CanvasAppAsset]
 	call := GetApplicationAppassetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAppassets(ctx context.Context, client *core.Client, id string, params GetApplicationAppassetsParams) (*core.Cursor[objects.CanvasAppAsset], error) {
+	out, _, err := GetApplicationAppassetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationAssetsParams struct {
@@ -1443,11 +1562,16 @@ func DecodeCreateApplicationAssetsBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func CreateApplicationAssets(ctx context.Context, client *core.Client, id string, params CreateApplicationAssetsParams) (*objects.Application, error) {
+func CreateApplicationAssetsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationAssetsParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationAssetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationAssets(ctx context.Context, client *core.Client, id string, params CreateApplicationAssetsParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationAssetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationAuthorizedAdaccountsParams struct {
@@ -1488,11 +1612,16 @@ func DecodeGetApplicationAuthorizedAdaccountsBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetApplicationAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params GetApplicationAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+func GetApplicationAuthorizedAdaccountsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], *core.Response, error) {
 	var out core.Cursor[objects.AdAccount]
 	call := GetApplicationAuthorizedAdaccountsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params GetApplicationAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
+	out, _, err := GetApplicationAuthorizedAdaccountsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationButtonAutoDetectionDeviceSelectionParams struct {
@@ -1533,11 +1662,16 @@ func DecodeGetApplicationButtonAutoDetectionDeviceSelectionBatchResponse(respons
 	return &out, nil
 }
 
-func GetApplicationButtonAutoDetectionDeviceSelection(ctx context.Context, client *core.Client, id string, params GetApplicationButtonAutoDetectionDeviceSelectionParams) (*core.Cursor[objects.ButtonAutoDetectionDeviceSelection], error) {
+func GetApplicationButtonAutoDetectionDeviceSelectionWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationButtonAutoDetectionDeviceSelectionParams) (*core.Cursor[objects.ButtonAutoDetectionDeviceSelection], *core.Response, error) {
 	var out core.Cursor[objects.ButtonAutoDetectionDeviceSelection]
 	call := GetApplicationButtonAutoDetectionDeviceSelectionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationButtonAutoDetectionDeviceSelection(ctx context.Context, client *core.Client, id string, params GetApplicationButtonAutoDetectionDeviceSelectionParams) (*core.Cursor[objects.ButtonAutoDetectionDeviceSelection], error) {
+	out, _, err := GetApplicationButtonAutoDetectionDeviceSelectionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationCloudbridgeSettingsParams struct {
@@ -1574,11 +1708,16 @@ func DecodeGetApplicationCloudbridgeSettingsBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetApplicationCloudbridgeSettings(ctx context.Context, client *core.Client, id string, params GetApplicationCloudbridgeSettingsParams) (*core.Cursor[objects.CloudbridgeSetting], error) {
+func GetApplicationCloudbridgeSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationCloudbridgeSettingsParams) (*core.Cursor[objects.CloudbridgeSetting], *core.Response, error) {
 	var out core.Cursor[objects.CloudbridgeSetting]
 	call := GetApplicationCloudbridgeSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationCloudbridgeSettings(ctx context.Context, client *core.Client, id string, params GetApplicationCloudbridgeSettingsParams) (*core.Cursor[objects.CloudbridgeSetting], error) {
+	out, _, err := GetApplicationCloudbridgeSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationCodelessEventMappingsParams struct {
@@ -1625,11 +1764,16 @@ func DecodeCreateApplicationCodelessEventMappingsBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func CreateApplicationCodelessEventMappings(ctx context.Context, client *core.Client, id string, params CreateApplicationCodelessEventMappingsParams) (*objects.Application, error) {
+func CreateApplicationCodelessEventMappingsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationCodelessEventMappingsParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationCodelessEventMappingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationCodelessEventMappings(ctx context.Context, client *core.Client, id string, params CreateApplicationCodelessEventMappingsParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationCodelessEventMappingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationConnectedClientBusinessesParams struct {
@@ -1666,11 +1810,16 @@ func DecodeGetApplicationConnectedClientBusinessesBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetApplicationConnectedClientBusinesses(ctx context.Context, client *core.Client, id string, params GetApplicationConnectedClientBusinessesParams) (*core.Cursor[objects.Business], error) {
+func GetApplicationConnectedClientBusinessesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationConnectedClientBusinessesParams) (*core.Cursor[objects.Business], *core.Response, error) {
 	var out core.Cursor[objects.Business]
 	call := GetApplicationConnectedClientBusinessesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationConnectedClientBusinesses(ctx context.Context, client *core.Client, id string, params GetApplicationConnectedClientBusinessesParams) (*core.Cursor[objects.Business], error) {
+	out, _, err := GetApplicationConnectedClientBusinessesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationDaChecksParams struct {
@@ -1715,11 +1864,16 @@ func DecodeGetApplicationDaChecksBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetApplicationDaChecks(ctx context.Context, client *core.Client, id string, params GetApplicationDaChecksParams) (*core.Cursor[objects.DACheck], error) {
+func GetApplicationDaChecksWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationDaChecksParams) (*core.Cursor[objects.DACheck], *core.Response, error) {
 	var out core.Cursor[objects.DACheck]
 	call := GetApplicationDaChecksBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationDaChecks(ctx context.Context, client *core.Client, id string, params GetApplicationDaChecksParams) (*core.Cursor[objects.DACheck], error) {
+	out, _, err := GetApplicationDaChecksWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationDomainReportsParams struct {
@@ -1758,11 +1912,16 @@ func DecodeCreateApplicationDomainReportsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateApplicationDomainReports(ctx context.Context, client *core.Client, id string, params CreateApplicationDomainReportsParams) (*map[string]interface{}, error) {
+func CreateApplicationDomainReportsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationDomainReportsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationDomainReportsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationDomainReports(ctx context.Context, client *core.Client, id string, params CreateApplicationDomainReportsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationDomainReportsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationIapPurchasesParams struct {
@@ -1801,11 +1960,16 @@ func DecodeGetApplicationIapPurchasesBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetApplicationIapPurchases(ctx context.Context, client *core.Client, id string, params GetApplicationIapPurchasesParams) (*core.Cursor[objects.DCPAppStoreOrder], error) {
+func GetApplicationIapPurchasesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationIapPurchasesParams) (*core.Cursor[objects.DCPAppStoreOrder], *core.Response, error) {
 	var out core.Cursor[objects.DCPAppStoreOrder]
 	call := GetApplicationIapPurchasesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationIapPurchases(ctx context.Context, client *core.Client, id string, params GetApplicationIapPurchasesParams) (*core.Cursor[objects.DCPAppStoreOrder], error) {
+	out, _, err := GetApplicationIapPurchasesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationIosDialogConfigsParams struct {
@@ -1842,11 +2006,16 @@ func DecodeGetApplicationIosDialogConfigsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetApplicationIosDialogConfigs(ctx context.Context, client *core.Client, id string, params GetApplicationIosDialogConfigsParams) (*core.Cursor[objects.ApplicationDialogConfig], error) {
+func GetApplicationIosDialogConfigsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationIosDialogConfigsParams) (*core.Cursor[objects.ApplicationDialogConfig], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationDialogConfig]
 	call := GetApplicationIosDialogConfigsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationIosDialogConfigs(ctx context.Context, client *core.Client, id string, params GetApplicationIosDialogConfigsParams) (*core.Cursor[objects.ApplicationDialogConfig], error) {
+	out, _, err := GetApplicationIosDialogConfigsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationLinkedDatasetParams struct {
@@ -1883,11 +2052,16 @@ func DecodeGetApplicationLinkedDatasetBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetApplicationLinkedDataset(ctx context.Context, client *core.Client, id string, params GetApplicationLinkedDatasetParams) (*core.Cursor[objects.AdsDataset], error) {
+func GetApplicationLinkedDatasetWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationLinkedDatasetParams) (*core.Cursor[objects.AdsDataset], *core.Response, error) {
 	var out core.Cursor[objects.AdsDataset]
 	call := GetApplicationLinkedDatasetBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationLinkedDataset(ctx context.Context, client *core.Client, id string, params GetApplicationLinkedDatasetParams) (*core.Cursor[objects.AdsDataset], error) {
+	out, _, err := GetApplicationLinkedDatasetWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationMmpAuditingParams struct {
@@ -2020,11 +2194,16 @@ func DecodeCreateApplicationMmpAuditingBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func CreateApplicationMmpAuditing(ctx context.Context, client *core.Client, id string, params CreateApplicationMmpAuditingParams) (*map[string]interface{}, error) {
+func CreateApplicationMmpAuditingWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationMmpAuditingParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationMmpAuditingBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationMmpAuditing(ctx context.Context, client *core.Client, id string, params CreateApplicationMmpAuditingParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationMmpAuditingWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationMobileSdkGkParams struct {
@@ -2077,11 +2256,16 @@ func DecodeGetApplicationMobileSdkGkBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetApplicationMobileSdkGk(ctx context.Context, client *core.Client, id string, params GetApplicationMobileSdkGkParams) (*core.Cursor[objects.MobileSdkGk], error) {
+func GetApplicationMobileSdkGkWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationMobileSdkGkParams) (*core.Cursor[objects.MobileSdkGk], *core.Response, error) {
 	var out core.Cursor[objects.MobileSdkGk]
 	call := GetApplicationMobileSdkGkBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationMobileSdkGk(ctx context.Context, client *core.Client, id string, params GetApplicationMobileSdkGkParams) (*core.Cursor[objects.MobileSdkGk], error) {
+	out, _, err := GetApplicationMobileSdkGkWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationMonetizedDigitalStoreObjectsParams struct {
@@ -2118,11 +2302,16 @@ func DecodeGetApplicationMonetizedDigitalStoreObjectsBatchResponse(response *cor
 	return &out, nil
 }
 
-func GetApplicationMonetizedDigitalStoreObjects(ctx context.Context, client *core.Client, id string, params GetApplicationMonetizedDigitalStoreObjectsParams) (*core.Cursor[objects.MonetizedDigitalStoreObject], error) {
+func GetApplicationMonetizedDigitalStoreObjectsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationMonetizedDigitalStoreObjectsParams) (*core.Cursor[objects.MonetizedDigitalStoreObject], *core.Response, error) {
 	var out core.Cursor[objects.MonetizedDigitalStoreObject]
 	call := GetApplicationMonetizedDigitalStoreObjectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationMonetizedDigitalStoreObjects(ctx context.Context, client *core.Client, id string, params GetApplicationMonetizedDigitalStoreObjectsParams) (*core.Cursor[objects.MonetizedDigitalStoreObject], error) {
+	out, _, err := GetApplicationMonetizedDigitalStoreObjectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationMonetizedDigitalStoreObjectsParams struct {
@@ -2163,11 +2352,16 @@ func DecodeCreateApplicationMonetizedDigitalStoreObjectsBatchResponse(response *
 	return &out, nil
 }
 
-func CreateApplicationMonetizedDigitalStoreObjects(ctx context.Context, client *core.Client, id string, params CreateApplicationMonetizedDigitalStoreObjectsParams) (*objects.MonetizedDigitalStoreObject, error) {
+func CreateApplicationMonetizedDigitalStoreObjectsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationMonetizedDigitalStoreObjectsParams) (*objects.MonetizedDigitalStoreObject, *core.Response, error) {
 	var out objects.MonetizedDigitalStoreObject
 	call := CreateApplicationMonetizedDigitalStoreObjectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationMonetizedDigitalStoreObjects(ctx context.Context, client *core.Client, id string, params CreateApplicationMonetizedDigitalStoreObjectsParams) (*objects.MonetizedDigitalStoreObject, error) {
+	out, _, err := CreateApplicationMonetizedDigitalStoreObjectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationObjectTypesParams struct {
@@ -2204,11 +2398,16 @@ func DecodeGetApplicationObjectTypesBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetApplicationObjectTypes(ctx context.Context, client *core.Client, id string, params GetApplicationObjectTypesParams) (*core.Cursor[objects.NullNode], error) {
+func GetApplicationObjectTypesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationObjectTypesParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetApplicationObjectTypesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationObjectTypes(ctx context.Context, client *core.Client, id string, params GetApplicationObjectTypesParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetApplicationObjectTypesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationObjectsParams struct {
@@ -2245,11 +2444,16 @@ func DecodeGetApplicationObjectsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetApplicationObjects(ctx context.Context, client *core.Client, id string, params GetApplicationObjectsParams) (*core.Cursor[objects.NullNode], error) {
+func GetApplicationObjectsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationObjectsParams) (*core.Cursor[objects.NullNode], *core.Response, error) {
 	var out core.Cursor[objects.NullNode]
 	call := GetApplicationObjectsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationObjects(ctx context.Context, client *core.Client, id string, params GetApplicationObjectsParams) (*core.Cursor[objects.NullNode], error) {
+	out, _, err := GetApplicationObjectsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationOccludespopupsParams struct {
@@ -2294,11 +2498,16 @@ func DecodeCreateApplicationOccludespopupsBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func CreateApplicationOccludespopups(ctx context.Context, client *core.Client, id string, params CreateApplicationOccludespopupsParams) (*map[string]interface{}, error) {
+func CreateApplicationOccludespopupsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationOccludespopupsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationOccludespopupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationOccludespopups(ctx context.Context, client *core.Client, id string, params CreateApplicationOccludespopupsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationOccludespopupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationPermissionsParams struct {
@@ -2355,11 +2564,16 @@ func DecodeGetApplicationPermissionsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetApplicationPermissions(ctx context.Context, client *core.Client, id string, params GetApplicationPermissionsParams) (*core.Cursor[objects.ApplicationPermission], error) {
+func GetApplicationPermissionsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationPermissionsParams) (*core.Cursor[objects.ApplicationPermission], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationPermission]
 	call := GetApplicationPermissionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationPermissions(ctx context.Context, client *core.Client, id string, params GetApplicationPermissionsParams) (*core.Cursor[objects.ApplicationPermission], error) {
+	out, _, err := GetApplicationPermissionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationProductsParams struct {
@@ -2400,11 +2614,16 @@ func DecodeGetApplicationProductsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetApplicationProducts(ctx context.Context, client *core.Client, id string, params GetApplicationProductsParams) (*core.Cursor[objects.GamesIAPProduct], error) {
+func GetApplicationProductsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationProductsParams) (*core.Cursor[objects.GamesIAPProduct], *core.Response, error) {
 	var out core.Cursor[objects.GamesIAPProduct]
 	call := GetApplicationProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationProducts(ctx context.Context, client *core.Client, id string, params GetApplicationProductsParams) (*core.Cursor[objects.GamesIAPProduct], error) {
+	out, _, err := GetApplicationProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationPurchasesParams struct {
@@ -2441,11 +2660,16 @@ func DecodeGetApplicationPurchasesBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetApplicationPurchases(ctx context.Context, client *core.Client, id string, params GetApplicationPurchasesParams) (*core.Cursor[objects.GamesIAPOrder], error) {
+func GetApplicationPurchasesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationPurchasesParams) (*core.Cursor[objects.GamesIAPOrder], *core.Response, error) {
 	var out core.Cursor[objects.GamesIAPOrder]
 	call := GetApplicationPurchasesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationPurchases(ctx context.Context, client *core.Client, id string, params GetApplicationPurchasesParams) (*core.Cursor[objects.GamesIAPOrder], error) {
+	out, _, err := GetApplicationPurchasesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationRolesParams struct {
@@ -2482,11 +2706,16 @@ func DecodeGetApplicationRolesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetApplicationRoles(ctx context.Context, client *core.Client, id string, params GetApplicationRolesParams) (*core.Cursor[objects.ApplicationRoles], error) {
+func GetApplicationRolesWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationRolesParams) (*core.Cursor[objects.ApplicationRoles], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationRoles]
 	call := GetApplicationRolesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationRoles(ctx context.Context, client *core.Client, id string, params GetApplicationRolesParams) (*core.Cursor[objects.ApplicationRoles], error) {
+	out, _, err := GetApplicationRolesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationServerDomainInfosParams struct {
@@ -2523,11 +2752,16 @@ func DecodeGetApplicationServerDomainInfosBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func GetApplicationServerDomainInfos(ctx context.Context, client *core.Client, id string, params GetApplicationServerDomainInfosParams) (*core.Cursor[objects.ApplicationServerDomainInfos], error) {
+func GetApplicationServerDomainInfosWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationServerDomainInfosParams) (*core.Cursor[objects.ApplicationServerDomainInfos], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationServerDomainInfos]
 	call := GetApplicationServerDomainInfosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationServerDomainInfos(ctx context.Context, client *core.Client, id string, params GetApplicationServerDomainInfosParams) (*core.Cursor[objects.ApplicationServerDomainInfos], error) {
+	out, _, err := GetApplicationServerDomainInfosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationSgwDatasetStatusParams struct {
@@ -2566,11 +2800,16 @@ func DecodeGetApplicationSgwDatasetStatusBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetApplicationSgwDatasetStatus(ctx context.Context, client *core.Client, id string, params GetApplicationSgwDatasetStatusParams) (*core.Cursor[objects.ApplicationSgwDatasetStatus], error) {
+func GetApplicationSgwDatasetStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationSgwDatasetStatusParams) (*core.Cursor[objects.ApplicationSgwDatasetStatus], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationSgwDatasetStatus]
 	call := GetApplicationSgwDatasetStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationSgwDatasetStatus(ctx context.Context, client *core.Client, id string, params GetApplicationSgwDatasetStatusParams) (*core.Cursor[objects.ApplicationSgwDatasetStatus], error) {
+	out, _, err := GetApplicationSgwDatasetStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationSgwInstallDeferralLinkParams struct {
@@ -2613,11 +2852,16 @@ func DecodeGetApplicationSgwInstallDeferralLinkBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func GetApplicationSgwInstallDeferralLink(ctx context.Context, client *core.Client, id string, params GetApplicationSgwInstallDeferralLinkParams) (*core.Cursor[objects.ApplicationSgwInstallDeferralLink], error) {
+func GetApplicationSgwInstallDeferralLinkWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationSgwInstallDeferralLinkParams) (*core.Cursor[objects.ApplicationSgwInstallDeferralLink], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationSgwInstallDeferralLink]
 	call := GetApplicationSgwInstallDeferralLinkBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationSgwInstallDeferralLink(ctx context.Context, client *core.Client, id string, params GetApplicationSgwInstallDeferralLinkParams) (*core.Cursor[objects.ApplicationSgwInstallDeferralLink], error) {
+	out, _, err := GetApplicationSgwInstallDeferralLinkWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteApplicationSubscriptionsParams struct {
@@ -2662,11 +2906,16 @@ func DecodeDeleteApplicationSubscriptionsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func DeleteApplicationSubscriptions(ctx context.Context, client *core.Client, id string, params DeleteApplicationSubscriptionsParams) (*map[string]interface{}, error) {
+func DeleteApplicationSubscriptionsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteApplicationSubscriptionsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteApplicationSubscriptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteApplicationSubscriptions(ctx context.Context, client *core.Client, id string, params DeleteApplicationSubscriptionsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteApplicationSubscriptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationSubscriptionsParams struct {
@@ -2703,11 +2952,16 @@ func DecodeGetApplicationSubscriptionsBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetApplicationSubscriptions(ctx context.Context, client *core.Client, id string, params GetApplicationSubscriptionsParams) (*core.Cursor[objects.ApplicationSubscriptions], error) {
+func GetApplicationSubscriptionsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationSubscriptionsParams) (*core.Cursor[objects.ApplicationSubscriptions], *core.Response, error) {
 	var out core.Cursor[objects.ApplicationSubscriptions]
 	call := GetApplicationSubscriptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationSubscriptions(ctx context.Context, client *core.Client, id string, params GetApplicationSubscriptionsParams) (*core.Cursor[objects.ApplicationSubscriptions], error) {
+	out, _, err := GetApplicationSubscriptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationSubscriptionsParams struct {
@@ -2766,11 +3020,16 @@ func DecodeCreateApplicationSubscriptionsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func CreateApplicationSubscriptions(ctx context.Context, client *core.Client, id string, params CreateApplicationSubscriptionsParams) (*objects.ApplicationSubscriptions, error) {
+func CreateApplicationSubscriptionsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationSubscriptionsParams) (*objects.ApplicationSubscriptions, *core.Response, error) {
 	var out objects.ApplicationSubscriptions
 	call := CreateApplicationSubscriptionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationSubscriptions(ctx context.Context, client *core.Client, id string, params CreateApplicationSubscriptionsParams) (*objects.ApplicationSubscriptions, error) {
+	out, _, err := CreateApplicationSubscriptionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationThreatPrivacyGroupsMemberParams struct {
@@ -2819,11 +3078,16 @@ func DecodeGetApplicationThreatPrivacyGroupsMemberBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetApplicationThreatPrivacyGroupsMember(ctx context.Context, client *core.Client, id string, params GetApplicationThreatPrivacyGroupsMemberParams) (*core.Cursor[objects.ThreatPrivacyGroup], error) {
+func GetApplicationThreatPrivacyGroupsMemberWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationThreatPrivacyGroupsMemberParams) (*core.Cursor[objects.ThreatPrivacyGroup], *core.Response, error) {
 	var out core.Cursor[objects.ThreatPrivacyGroup]
 	call := GetApplicationThreatPrivacyGroupsMemberBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationThreatPrivacyGroupsMember(ctx context.Context, client *core.Client, id string, params GetApplicationThreatPrivacyGroupsMemberParams) (*core.Cursor[objects.ThreatPrivacyGroup], error) {
+	out, _, err := GetApplicationThreatPrivacyGroupsMemberWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationThreatPrivacyGroupsOwnerParams struct {
@@ -2872,11 +3136,16 @@ func DecodeGetApplicationThreatPrivacyGroupsOwnerBatchResponse(response *core.Ba
 	return &out, nil
 }
 
-func GetApplicationThreatPrivacyGroupsOwner(ctx context.Context, client *core.Client, id string, params GetApplicationThreatPrivacyGroupsOwnerParams) (*core.Cursor[objects.ThreatPrivacyGroup], error) {
+func GetApplicationThreatPrivacyGroupsOwnerWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationThreatPrivacyGroupsOwnerParams) (*core.Cursor[objects.ThreatPrivacyGroup], *core.Response, error) {
 	var out core.Cursor[objects.ThreatPrivacyGroup]
 	call := GetApplicationThreatPrivacyGroupsOwnerBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationThreatPrivacyGroupsOwner(ctx context.Context, client *core.Client, id string, params GetApplicationThreatPrivacyGroupsOwnerParams) (*core.Cursor[objects.ThreatPrivacyGroup], error) {
+	out, _, err := GetApplicationThreatPrivacyGroupsOwnerWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationUploadsParams struct {
@@ -2929,11 +3198,16 @@ func DecodeCreateApplicationUploadsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateApplicationUploads(ctx context.Context, client *core.Client, id string, params CreateApplicationUploadsParams) (*map[string]interface{}, error) {
+func CreateApplicationUploadsWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationUploadsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateApplicationUploadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationUploads(ctx context.Context, client *core.Client, id string, params CreateApplicationUploadsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateApplicationUploadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateApplicationWhatsappBusinessSolutionParams struct {
@@ -2978,11 +3252,16 @@ func DecodeCreateApplicationWhatsappBusinessSolutionBatchResponse(response *core
 	return &out, nil
 }
 
-func CreateApplicationWhatsappBusinessSolution(ctx context.Context, client *core.Client, id string, params CreateApplicationWhatsappBusinessSolutionParams) (*objects.Application, error) {
+func CreateApplicationWhatsappBusinessSolutionWithResponse(ctx context.Context, client *core.Client, id string, params CreateApplicationWhatsappBusinessSolutionParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := CreateApplicationWhatsappBusinessSolutionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateApplicationWhatsappBusinessSolution(ctx context.Context, client *core.Client, id string, params CreateApplicationWhatsappBusinessSolutionParams) (*objects.Application, error) {
+	out, _, err := CreateApplicationWhatsappBusinessSolutionWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationWhatsappBusinessSolutionsParams struct {
@@ -3023,11 +3302,16 @@ func DecodeGetApplicationWhatsappBusinessSolutionsBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetApplicationWhatsappBusinessSolutions(ctx context.Context, client *core.Client, id string, params GetApplicationWhatsappBusinessSolutionsParams) (*core.Cursor[objects.WhatsAppBusinessSolution], error) {
+func GetApplicationWhatsappBusinessSolutionsWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationWhatsappBusinessSolutionsParams) (*core.Cursor[objects.WhatsAppBusinessSolution], *core.Response, error) {
 	var out core.Cursor[objects.WhatsAppBusinessSolution]
 	call := GetApplicationWhatsappBusinessSolutionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplicationWhatsappBusinessSolutions(ctx context.Context, client *core.Client, id string, params GetApplicationWhatsappBusinessSolutionsParams) (*core.Cursor[objects.WhatsAppBusinessSolution], error) {
+	out, _, err := GetApplicationWhatsappBusinessSolutionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetApplicationParams struct {
@@ -3068,11 +3352,16 @@ func DecodeGetApplicationBatchResponse(response *core.BatchResponse) (*objects.A
 	return &out, nil
 }
 
-func GetApplication(ctx context.Context, client *core.Client, id string, params GetApplicationParams) (*objects.Application, error) {
+func GetApplicationWithResponse(ctx context.Context, client *core.Client, id string, params GetApplicationParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := GetApplicationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetApplication(ctx context.Context, client *core.Client, id string, params GetApplicationParams) (*objects.Application, error) {
+	out, _, err := GetApplicationWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateApplicationParams struct {
@@ -3229,9 +3518,14 @@ func DecodeUpdateApplicationBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func UpdateApplication(ctx context.Context, client *core.Client, id string, params UpdateApplicationParams) (*objects.Application, error) {
+func UpdateApplicationWithResponse(ctx context.Context, client *core.Client, id string, params UpdateApplicationParams) (*objects.Application, *core.Response, error) {
 	var out objects.Application
 	call := UpdateApplicationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateApplication(ctx context.Context, client *core.Client, id string, params UpdateApplicationParams) (*objects.Application, error) {
+	out, _, err := UpdateApplicationWithResponse(ctx, client, id, params)
+	return out, err
 }

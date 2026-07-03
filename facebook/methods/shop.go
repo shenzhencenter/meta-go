@@ -41,9 +41,14 @@ func DecodeGetShopBatchResponse(response *core.BatchResponse) (*objects.Shop, er
 	return &out, nil
 }
 
-func GetShop(ctx context.Context, client *core.Client, id string, params GetShopParams) (*objects.Shop, error) {
+func GetShopWithResponse(ctx context.Context, client *core.Client, id string, params GetShopParams) (*objects.Shop, *core.Response, error) {
 	var out objects.Shop
 	call := GetShopBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetShop(ctx context.Context, client *core.Client, id string, params GetShopParams) (*objects.Shop, error) {
+	out, _, err := GetShopWithResponse(ctx, client, id, params)
+	return out, err
 }

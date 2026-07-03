@@ -18,3 +18,39 @@ type AdCreativeFeatureCustomizations struct {
 	TextExtraction      *map[string]interface{} `json:"text_extraction,omitempty"`
 	TextStyle           *string                 `json:"text_style,omitempty"`
 }
+
+var AdCreativeFeatureCustomizationsFields = struct {
+	AspectRatioConfig   string
+	BackgroundColor     string
+	CatalogFeedTagName  string
+	FbFeedTagName       string
+	FbReelsTagName      string
+	FbStoryTagName      string
+	FontName            string
+	IgFeedTagName       string
+	IgReelsTagName      string
+	IgStreamTagName     string
+	ImageCropStyle      string
+	PeCarousel          string
+	RecompositionType   string
+	ShowcaseCardDisplay string
+	TextExtraction      string
+	TextStyle           string
+}{
+	AspectRatioConfig:   "aspect_ratio_config",
+	BackgroundColor:     "background_color",
+	CatalogFeedTagName:  "catalog_feed_tag_name",
+	FbFeedTagName:       "fb_feed_tag_name",
+	FbReelsTagName:      "fb_reels_tag_name",
+	FbStoryTagName:      "fb_story_tag_name",
+	FontName:            "font_name",
+	IgFeedTagName:       "ig_feed_tag_name",
+	IgReelsTagName:      "ig_reels_tag_name",
+	IgStreamTagName:     "ig_stream_tag_name",
+	ImageCropStyle:      "image_crop_style",
+	PeCarousel:          "pe_carousel",
+	RecompositionType:   "recomposition_type",
+	ShowcaseCardDisplay: "showcase_card_display",
+	TextExtraction:      "text_extraction",
+	TextStyle:           "text_style",
+}

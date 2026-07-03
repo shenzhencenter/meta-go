@@ -11,3 +11,17 @@ type TargetingGeoLocationZip struct {
 	PrimaryCityID *core.ID `json:"primary_city_id,omitempty"`
 	RegionID      *core.ID `json:"region_id,omitempty"`
 }
+
+var TargetingGeoLocationZipFields = struct {
+	Country       string
+	Key           string
+	Name          string
+	PrimaryCityID string
+	RegionID      string
+}{
+	Country:       "country",
+	Key:           "key",
+	Name:          "name",
+	PrimaryCityID: "primary_city_id",
+	RegionID:      "region_id",
+}

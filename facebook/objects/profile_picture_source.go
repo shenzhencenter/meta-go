@@ -11,3 +11,25 @@ type ProfilePictureSource struct {
 	URL          *string `json:"url,omitempty"`
 	Width        *uint64 `json:"width,omitempty"`
 }
+
+var ProfilePictureSourceFields = struct {
+	Bottom       string
+	CacheKey     string
+	Height       string
+	IsSilhouette string
+	Left         string
+	Right        string
+	Top          string
+	URL          string
+	Width        string
+}{
+	Bottom:       "bottom",
+	CacheKey:     "cache_key",
+	Height:       "height",
+	IsSilhouette: "is_silhouette",
+	Left:         "left",
+	Right:        "right",
+	Top:          "top",
+	URL:          "url",
+	Width:        "width",
+}

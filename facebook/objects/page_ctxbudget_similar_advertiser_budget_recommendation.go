@@ -8,3 +8,19 @@ type PageCTXBudgetSimilarAdvertiserBudgetRecommendation struct {
 	ReportedConversionsNewModel         *string `json:"reported_conversions_new_model,omitempty"`
 	ReportedConversionsWithoutThreshold *string `json:"reported_conversions_without_threshold,omitempty"`
 }
+
+var PageCTXBudgetSimilarAdvertiserBudgetRecommendationFields = struct {
+	Budget                              string
+	BudgetNewModel                      string
+	BudgetWithoutThreshold              string
+	ReportedConversion                  string
+	ReportedConversionsNewModel         string
+	ReportedConversionsWithoutThreshold string
+}{
+	Budget:                              "budget",
+	BudgetNewModel:                      "budget_new_model",
+	BudgetWithoutThreshold:              "budget_without_threshold",
+	ReportedConversion:                  "reported_conversion",
+	ReportedConversionsNewModel:         "reported_conversions_new_model",
+	ReportedConversionsWithoutThreshold: "reported_conversions_without_threshold",
+}

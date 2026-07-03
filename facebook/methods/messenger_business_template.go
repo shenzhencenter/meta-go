@@ -42,11 +42,16 @@ func DecodeGetMessengerBusinessTemplateBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetMessengerBusinessTemplate(ctx context.Context, client *core.Client, id string, params GetMessengerBusinessTemplateParams) (*objects.MessengerBusinessTemplate, error) {
+func GetMessengerBusinessTemplateWithResponse(ctx context.Context, client *core.Client, id string, params GetMessengerBusinessTemplateParams) (*objects.MessengerBusinessTemplate, *core.Response, error) {
 	var out objects.MessengerBusinessTemplate
 	call := GetMessengerBusinessTemplateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMessengerBusinessTemplate(ctx context.Context, client *core.Client, id string, params GetMessengerBusinessTemplateParams) (*objects.MessengerBusinessTemplate, error) {
+	out, _, err := GetMessengerBusinessTemplateWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateMessengerBusinessTemplateParams struct {
@@ -91,9 +96,14 @@ func DecodeUpdateMessengerBusinessTemplateBatchResponse(response *core.BatchResp
 	return &out, nil
 }
 
-func UpdateMessengerBusinessTemplate(ctx context.Context, client *core.Client, id string, params UpdateMessengerBusinessTemplateParams) (*objects.MessengerBusinessTemplate, error) {
+func UpdateMessengerBusinessTemplateWithResponse(ctx context.Context, client *core.Client, id string, params UpdateMessengerBusinessTemplateParams) (*objects.MessengerBusinessTemplate, *core.Response, error) {
 	var out objects.MessengerBusinessTemplate
 	call := UpdateMessengerBusinessTemplateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateMessengerBusinessTemplate(ctx context.Context, client *core.Client, id string, params UpdateMessengerBusinessTemplateParams) (*objects.MessengerBusinessTemplate, error) {
+	out, _, err := UpdateMessengerBusinessTemplateWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -9,3 +9,21 @@ type CheckBatchRequestStatus struct {
 	Warnings             *[]map[string]interface{} `json:"warnings,omitempty"`
 	WarningsTotalCount   *int                      `json:"warnings_total_count,omitempty"`
 }
+
+var CheckBatchRequestStatusFields = struct {
+	Errors               string
+	ErrorsTotalCount     string
+	Handle               string
+	IdsOfInvalidRequests string
+	Status               string
+	Warnings             string
+	WarningsTotalCount   string
+}{
+	Errors:               "errors",
+	ErrorsTotalCount:     "errors_total_count",
+	Handle:               "handle",
+	IdsOfInvalidRequests: "ids_of_invalid_requests",
+	Status:               "status",
+	Warnings:             "warnings",
+	WarningsTotalCount:   "warnings_total_count",
+}

@@ -5,3 +5,13 @@ type CustomAudienceGroup struct {
 	ExistingCustomerTag   *string `json:"existing_customer_tag,omitempty"`
 	NewCustomerTag        *string `json:"new_customer_tag,omitempty"`
 }
+
+var CustomAudienceGroupFields = struct {
+	AudienceTypeParamName string
+	ExistingCustomerTag   string
+	NewCustomerTag        string
+}{
+	AudienceTypeParamName: "audience_type_param_name",
+	ExistingCustomerTag:   "existing_customer_tag",
+	NewCustomerTag:        "new_customer_tag",
+}

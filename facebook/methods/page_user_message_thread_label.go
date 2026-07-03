@@ -43,11 +43,16 @@ func DecodeDeletePageUserMessageThreadLabelLabelBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func DeletePageUserMessageThreadLabelLabel(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelLabelParams) (*map[string]interface{}, error) {
+func DeletePageUserMessageThreadLabelLabelWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelLabelParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageUserMessageThreadLabelLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageUserMessageThreadLabelLabel(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelLabelParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageUserMessageThreadLabelLabelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePageUserMessageThreadLabelLabelParams struct {
@@ -86,11 +91,16 @@ func DecodeCreatePageUserMessageThreadLabelLabelBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func CreatePageUserMessageThreadLabelLabel(ctx context.Context, client *core.Client, id string, params CreatePageUserMessageThreadLabelLabelParams) (*objects.PageUserMessageThreadLabel, error) {
+func CreatePageUserMessageThreadLabelLabelWithResponse(ctx context.Context, client *core.Client, id string, params CreatePageUserMessageThreadLabelLabelParams) (*objects.PageUserMessageThreadLabel, *core.Response, error) {
 	var out objects.PageUserMessageThreadLabel
 	call := CreatePageUserMessageThreadLabelLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePageUserMessageThreadLabelLabel(ctx context.Context, client *core.Client, id string, params CreatePageUserMessageThreadLabelLabelParams) (*objects.PageUserMessageThreadLabel, error) {
+	out, _, err := CreatePageUserMessageThreadLabelLabelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePageUserMessageThreadLabelParams struct {
@@ -127,11 +137,16 @@ func DecodeDeletePageUserMessageThreadLabelBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func DeletePageUserMessageThreadLabel(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelParams) (*map[string]interface{}, error) {
+func DeletePageUserMessageThreadLabelWithResponse(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePageUserMessageThreadLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePageUserMessageThreadLabel(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePageUserMessageThreadLabelWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPageUserMessageThreadLabelParams struct {
@@ -168,9 +183,14 @@ func DecodeGetPageUserMessageThreadLabelBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetPageUserMessageThreadLabel(ctx context.Context, client *core.Client, id string, params GetPageUserMessageThreadLabelParams) (*objects.PageUserMessageThreadLabel, error) {
+func GetPageUserMessageThreadLabelWithResponse(ctx context.Context, client *core.Client, id string, params GetPageUserMessageThreadLabelParams) (*objects.PageUserMessageThreadLabel, *core.Response, error) {
 	var out objects.PageUserMessageThreadLabel
 	call := GetPageUserMessageThreadLabelBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageUserMessageThreadLabel(ctx context.Context, client *core.Client, id string, params GetPageUserMessageThreadLabelParams) (*objects.PageUserMessageThreadLabel, error) {
+	out, _, err := GetPageUserMessageThreadLabelWithResponse(ctx, client, id, params)
+	return out, err
 }

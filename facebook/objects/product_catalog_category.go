@@ -9,3 +9,21 @@ type ProductCatalogCategory struct {
 	NumItems       *int                 `json:"num_items,omitempty"`
 	Tokens         *[]map[string]string `json:"tokens,omitempty"`
 }
+
+var ProductCatalogCategoryFields = struct {
+	CriteriaValue  string
+	Description    string
+	DestinationURI string
+	ImageURL       string
+	Name           string
+	NumItems       string
+	Tokens         string
+}{
+	CriteriaValue:  "criteria_value",
+	Description:    "description",
+	DestinationURI: "destination_uri",
+	ImageURL:       "image_url",
+	Name:           "name",
+	NumItems:       "num_items",
+	Tokens:         "tokens",
+}

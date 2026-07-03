@@ -41,9 +41,14 @@ func DecodeGetBrandSafetyDownloadableBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetBrandSafetyDownloadable(ctx context.Context, client *core.Client, id string, params GetBrandSafetyDownloadableParams) (*objects.BrandSafetyDownloadable, error) {
+func GetBrandSafetyDownloadableWithResponse(ctx context.Context, client *core.Client, id string, params GetBrandSafetyDownloadableParams) (*objects.BrandSafetyDownloadable, *core.Response, error) {
 	var out objects.BrandSafetyDownloadable
 	call := GetBrandSafetyDownloadableBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBrandSafetyDownloadable(ctx context.Context, client *core.Client, id string, params GetBrandSafetyDownloadableParams) (*objects.BrandSafetyDownloadable, error) {
+	out, _, err := GetBrandSafetyDownloadableWithResponse(ctx, client, id, params)
+	return out, err
 }

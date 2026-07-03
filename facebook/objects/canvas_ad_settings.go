@@ -13,3 +13,21 @@ type CanvasAdSettings struct {
 	ProductSetID               *core.ID `json:"product_set_id,omitempty"`
 	UseRetailerItemIds         *bool    `json:"use_retailer_item_ids,omitempty"`
 }
+
+var CanvasAdSettingsFields = struct {
+	IsCanvasCollectionEligible string
+	LeadFormCreatedTime        string
+	LeadFormName               string
+	LeadGenFormID              string
+	LeadsCount                 string
+	ProductSetID               string
+	UseRetailerItemIds         string
+}{
+	IsCanvasCollectionEligible: "is_canvas_collection_eligible",
+	LeadFormCreatedTime:        "lead_form_created_time",
+	LeadFormName:               "lead_form_name",
+	LeadGenFormID:              "lead_gen_form_id",
+	LeadsCount:                 "leads_count",
+	ProductSetID:               "product_set_id",
+	UseRetailerItemIds:         "use_retailer_item_ids",
+}

@@ -41,9 +41,14 @@ func DecodeGetAdCustomDerivedMetricsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetAdCustomDerivedMetrics(ctx context.Context, client *core.Client, id string, params GetAdCustomDerivedMetricsParams) (*objects.AdCustomDerivedMetrics, error) {
+func GetAdCustomDerivedMetricsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdCustomDerivedMetricsParams) (*objects.AdCustomDerivedMetrics, *core.Response, error) {
 	var out objects.AdCustomDerivedMetrics
 	call := GetAdCustomDerivedMetricsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdCustomDerivedMetrics(ctx context.Context, client *core.Client, id string, params GetAdCustomDerivedMetricsParams) (*objects.AdCustomDerivedMetrics, error) {
+	out, _, err := GetAdCustomDerivedMetricsWithResponse(ctx, client, id, params)
+	return out, err
 }

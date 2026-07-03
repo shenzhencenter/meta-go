@@ -41,9 +41,14 @@ func DecodeGetWithAsset3DBatchResponse(response *core.BatchResponse) (*objects.W
 	return &out, nil
 }
 
-func GetWithAsset3D(ctx context.Context, client *core.Client, id string, params GetWithAsset3DParams) (*objects.WithAsset3D, error) {
+func GetWithAsset3DWithResponse(ctx context.Context, client *core.Client, id string, params GetWithAsset3DParams) (*objects.WithAsset3D, *core.Response, error) {
 	var out objects.WithAsset3D
 	call := GetWithAsset3DBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWithAsset3D(ctx context.Context, client *core.Client, id string, params GetWithAsset3DParams) (*objects.WithAsset3D, error) {
+	out, _, err := GetWithAsset3DWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -12,3 +12,19 @@ type CallAdsPhoneData struct {
 	Page                    *Page    `json:"page,omitempty"`
 	PhoneNumber             *string  `json:"phone_number,omitempty"`
 }
+
+var CallAdsPhoneDataFields = struct {
+	CallAdsPhoneDataUseCase string
+	CallbackVariant         string
+	DestinationWebsiteURL   string
+	ID                      string
+	Page                    string
+	PhoneNumber             string
+}{
+	CallAdsPhoneDataUseCase: "call_ads_phone_data_use_case",
+	CallbackVariant:         "callback_variant",
+	DestinationWebsiteURL:   "destination_website_url",
+	ID:                      "id",
+	Page:                    "page",
+	PhoneNumber:             "phone_number",
+}

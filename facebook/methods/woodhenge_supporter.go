@@ -41,9 +41,14 @@ func DecodeGetWoodhengeSupporterBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetWoodhengeSupporter(ctx context.Context, client *core.Client, id string, params GetWoodhengeSupporterParams) (*objects.WoodhengeSupporter, error) {
+func GetWoodhengeSupporterWithResponse(ctx context.Context, client *core.Client, id string, params GetWoodhengeSupporterParams) (*objects.WoodhengeSupporter, *core.Response, error) {
 	var out objects.WoodhengeSupporter
 	call := GetWoodhengeSupporterBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWoodhengeSupporter(ctx context.Context, client *core.Client, id string, params GetWoodhengeSupporterParams) (*objects.WoodhengeSupporter, error) {
+	out, _, err := GetWoodhengeSupporterWithResponse(ctx, client, id, params)
+	return out, err
 }

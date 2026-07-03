@@ -1,10 +1,18 @@
 package objects
 
 import (
-	"time"
+	core "github.com/shenzhencenter/meta-go/facebook"
 )
 
 type MarketingMessagesOnboardingStatus struct {
 	Status *string    `json:"status,omitempty"`
-	Time   *time.Time `json:"time,omitempty"`
+	Time   *core.Time `json:"time,omitempty"`
+}
+
+var MarketingMessagesOnboardingStatusFields = struct {
+	Status string
+	Time   string
+}{
+	Status: "status",
+	Time:   "time",
 }

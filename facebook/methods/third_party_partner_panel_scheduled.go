@@ -41,9 +41,14 @@ func DecodeGetThirdPartyPartnerPanelScheduledBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetThirdPartyPartnerPanelScheduled(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelScheduledParams) (*objects.ThirdPartyPartnerPanelScheduled, error) {
+func GetThirdPartyPartnerPanelScheduledWithResponse(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelScheduledParams) (*objects.ThirdPartyPartnerPanelScheduled, *core.Response, error) {
 	var out objects.ThirdPartyPartnerPanelScheduled
 	call := GetThirdPartyPartnerPanelScheduledBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetThirdPartyPartnerPanelScheduled(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelScheduledParams) (*objects.ThirdPartyPartnerPanelScheduled, error) {
+	out, _, err := GetThirdPartyPartnerPanelScheduledWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -9,3 +9,13 @@ type ValueBasedEligibleSource struct {
 	Title *string  `json:"title,omitempty"`
 	Type  *string  `json:"type,omitempty"`
 }
+
+var ValueBasedEligibleSourceFields = struct {
+	ID    string
+	Title string
+	Type  string
+}{
+	ID:    "id",
+	Title: "title",
+	Type:  "type",
+}

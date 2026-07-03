@@ -12,3 +12,19 @@ type ShadowIGScheduledMedia struct {
 	PublishTimestamp *int     `json:"publish_timestamp,omitempty"`
 	ThumbnailURL     *string  `json:"thumbnail_url,omitempty"`
 }
+
+var ShadowIGScheduledMediaFields = struct {
+	Caption          string
+	ID               string
+	MediaType        string
+	MediaURL         string
+	PublishTimestamp string
+	ThumbnailURL     string
+}{
+	Caption:          "caption",
+	ID:               "id",
+	MediaType:        "media_type",
+	MediaURL:         "media_url",
+	PublishTimestamp: "publish_timestamp",
+	ThumbnailURL:     "thumbnail_url",
+}

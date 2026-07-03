@@ -14,3 +14,21 @@ type VideoPoll struct {
 	ShowResults      *bool                  `json:"show_results,omitempty"`
 	Status           *enums.VideopollStatus `json:"status,omitempty"`
 }
+
+var VideoPollFields = struct {
+	CloseAfterVoting string
+	DefaultOpen      string
+	ID               string
+	Question         string
+	ShowGradient     string
+	ShowResults      string
+	Status           string
+}{
+	CloseAfterVoting: "close_after_voting",
+	DefaultOpen:      "default_open",
+	ID:               "id",
+	Question:         "question",
+	ShowGradient:     "show_gradient",
+	ShowResults:      "show_results",
+	Status:           "status",
+}

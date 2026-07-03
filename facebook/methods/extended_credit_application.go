@@ -41,9 +41,14 @@ func DecodeGetExtendedCreditApplicationBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetExtendedCreditApplication(ctx context.Context, client *core.Client, id string, params GetExtendedCreditApplicationParams) (*objects.ExtendedCreditApplication, error) {
+func GetExtendedCreditApplicationWithResponse(ctx context.Context, client *core.Client, id string, params GetExtendedCreditApplicationParams) (*objects.ExtendedCreditApplication, *core.Response, error) {
 	var out objects.ExtendedCreditApplication
 	call := GetExtendedCreditApplicationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetExtendedCreditApplication(ctx context.Context, client *core.Client, id string, params GetExtendedCreditApplicationParams) (*objects.ExtendedCreditApplication, error) {
+	out, _, err := GetExtendedCreditApplicationWithResponse(ctx, client, id, params)
+	return out, err
 }

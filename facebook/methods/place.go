@@ -41,9 +41,14 @@ func DecodeGetPlaceBatchResponse(response *core.BatchResponse) (*objects.Place, 
 	return &out, nil
 }
 
-func GetPlace(ctx context.Context, client *core.Client, id string, params GetPlaceParams) (*objects.Place, error) {
+func GetPlaceWithResponse(ctx context.Context, client *core.Client, id string, params GetPlaceParams) (*objects.Place, *core.Response, error) {
 	var out objects.Place
 	call := GetPlaceBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPlace(ctx context.Context, client *core.Client, id string, params GetPlaceParams) (*objects.Place, error) {
+	out, _, err := GetPlaceWithResponse(ctx, client, id, params)
+	return out, err
 }

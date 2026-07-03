@@ -17,3 +17,29 @@ type AdsTargetingInsights struct {
 	Spend          *float64 `json:"spend,omitempty"`
 	Type           *string  `json:"type,omitempty"`
 }
+
+var AdsTargetingInsightsFields = struct {
+	AudienceSize   string
+	Clicks         string
+	ConversionCost string
+	Conversions    string
+	Description    string
+	ID             string
+	Impressions    string
+	Name           string
+	Revenue        string
+	Spend          string
+	Type           string
+}{
+	AudienceSize:   "audience_size",
+	Clicks:         "clicks",
+	ConversionCost: "conversion_cost",
+	Conversions:    "conversions",
+	Description:    "description",
+	ID:             "id",
+	Impressions:    "impressions",
+	Name:           "name",
+	Revenue:        "revenue",
+	Spend:          "spend",
+	Type:           "type",
+}

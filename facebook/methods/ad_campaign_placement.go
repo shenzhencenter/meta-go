@@ -67,9 +67,14 @@ func DecodeGetAdCampaignPlacementBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func GetAdCampaignPlacement(ctx context.Context, client *core.Client, params GetAdCampaignPlacementParams) (*objects.AdCampaignPlacementGet, error) {
+func GetAdCampaignPlacementWithResponse(ctx context.Context, client *core.Client, params GetAdCampaignPlacementParams) (*objects.AdCampaignPlacementGet, *core.Response, error) {
 	var out objects.AdCampaignPlacementGet
 	call := GetAdCampaignPlacementBatchCall(params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdCampaignPlacement(ctx context.Context, client *core.Client, params GetAdCampaignPlacementParams) (*objects.AdCampaignPlacementGet, error) {
+	out, _, err := GetAdCampaignPlacementWithResponse(ctx, client, params)
+	return out, err
 }

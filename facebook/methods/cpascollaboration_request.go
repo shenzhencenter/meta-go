@@ -41,9 +41,14 @@ func DecodeGetCPASCollaborationRequestBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetCPASCollaborationRequest(ctx context.Context, client *core.Client, id string, params GetCPASCollaborationRequestParams) (*objects.CPASCollaborationRequest, error) {
+func GetCPASCollaborationRequestWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASCollaborationRequestParams) (*objects.CPASCollaborationRequest, *core.Response, error) {
 	var out objects.CPASCollaborationRequest
 	call := GetCPASCollaborationRequestBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASCollaborationRequest(ctx context.Context, client *core.Client, id string, params GetCPASCollaborationRequestParams) (*objects.CPASCollaborationRequest, error) {
+	out, _, err := GetCPASCollaborationRequestWithResponse(ctx, client, id, params)
+	return out, err
 }

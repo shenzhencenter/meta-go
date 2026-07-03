@@ -21,3 +21,37 @@ type AdCreativeLinkDataChildAttachment struct {
 	StaticCard              *bool                           `json:"static_card,omitempty"`
 	VideoID                 *core.ID                        `json:"video_id,omitempty"`
 }
+
+var AdCreativeLinkDataChildAttachmentFields = struct {
+	AndroidURL              string
+	CallToAction            string
+	Caption                 string
+	Description             string
+	IgMediaID               string
+	ImageCrops              string
+	ImageHash               string
+	IosURL                  string
+	Link                    string
+	MarketingMessageButtons string
+	Name                    string
+	Picture                 string
+	PlaceData               string
+	StaticCard              string
+	VideoID                 string
+}{
+	AndroidURL:              "android_url",
+	CallToAction:            "call_to_action",
+	Caption:                 "caption",
+	Description:             "description",
+	IgMediaID:               "ig_media_id",
+	ImageCrops:              "image_crops",
+	ImageHash:               "image_hash",
+	IosURL:                  "ios_url",
+	Link:                    "link",
+	MarketingMessageButtons: "marketing_message_buttons",
+	Name:                    "name",
+	Picture:                 "picture",
+	PlaceData:               "place_data",
+	StaticCard:              "static_card",
+	VideoID:                 "video_id",
+}

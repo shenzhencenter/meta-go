@@ -41,9 +41,14 @@ func DecodeGetCPASAdCreationTemplateBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetCPASAdCreationTemplate(ctx context.Context, client *core.Client, id string, params GetCPASAdCreationTemplateParams) (*objects.CPASAdCreationTemplate, error) {
+func GetCPASAdCreationTemplateWithResponse(ctx context.Context, client *core.Client, id string, params GetCPASAdCreationTemplateParams) (*objects.CPASAdCreationTemplate, *core.Response, error) {
 	var out objects.CPASAdCreationTemplate
 	call := GetCPASAdCreationTemplateBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCPASAdCreationTemplate(ctx context.Context, client *core.Client, id string, params GetCPASAdCreationTemplateParams) (*objects.CPASAdCreationTemplate, error) {
+	out, _, err := GetCPASAdCreationTemplateWithResponse(ctx, client, id, params)
+	return out, err
 }

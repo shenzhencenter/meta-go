@@ -5,3 +5,13 @@ type ProductItemCommerceInsights struct {
 	OrganicImpressions *uint64 `json:"organic_impressions,omitempty"`
 	PaidImpressions    *uint64 `json:"paid_impressions,omitempty"`
 }
+
+var ProductItemCommerceInsightsFields = struct {
+	MessageSends       string
+	OrganicImpressions string
+	PaidImpressions    string
+}{
+	MessageSends:       "message_sends",
+	OrganicImpressions: "organic_impressions",
+	PaidImpressions:    "paid_impressions",
+}

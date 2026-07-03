@@ -16,3 +16,27 @@ type AdCreativeVideoDataCustomOverlaySpec struct {
 	Template          *enums.AdcreativevideodatacustomoverlayspecTemplate          `json:"template,omitempty"`
 	TextColor         *string                                                      `json:"text_color,omitempty"`
 }
+
+var AdCreativeVideoDataCustomOverlaySpecFields = struct {
+	BackgroundColor   string
+	BackgroundOpacity string
+	Duration          string
+	FloatWithMargin   string
+	FullWidth         string
+	Option            string
+	Position          string
+	Start             string
+	Template          string
+	TextColor         string
+}{
+	BackgroundColor:   "background_color",
+	BackgroundOpacity: "background_opacity",
+	Duration:          "duration",
+	FloatWithMargin:   "float_with_margin",
+	FullWidth:         "full_width",
+	Option:            "option",
+	Position:          "position",
+	Start:             "start",
+	Template:          "template",
+	TextColor:         "text_color",
+}

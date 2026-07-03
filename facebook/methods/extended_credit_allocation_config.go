@@ -41,11 +41,16 @@ func DecodeDeleteExtendedCreditAllocationConfigBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func DeleteExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditAllocationConfigParams) (*map[string]interface{}, error) {
+func DeleteExtendedCreditAllocationConfigWithResponse(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditAllocationConfigParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteExtendedCreditAllocationConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditAllocationConfigParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteExtendedCreditAllocationConfigWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetExtendedCreditAllocationConfigParams struct {
@@ -82,11 +87,16 @@ func DecodeGetExtendedCreditAllocationConfigBatchResponse(response *core.BatchRe
 	return &out, nil
 }
 
-func GetExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params GetExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, error) {
+func GetExtendedCreditAllocationConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, *core.Response, error) {
 	var out objects.ExtendedCreditAllocationConfig
 	call := GetExtendedCreditAllocationConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params GetExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, error) {
+	out, _, err := GetExtendedCreditAllocationConfigWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateExtendedCreditAllocationConfigParams struct {
@@ -127,9 +137,14 @@ func DecodeUpdateExtendedCreditAllocationConfigBatchResponse(response *core.Batc
 	return &out, nil
 }
 
-func UpdateExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, error) {
+func UpdateExtendedCreditAllocationConfigWithResponse(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, *core.Response, error) {
 	var out objects.ExtendedCreditAllocationConfig
 	call := UpdateExtendedCreditAllocationConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, error) {
+	out, _, err := UpdateExtendedCreditAllocationConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

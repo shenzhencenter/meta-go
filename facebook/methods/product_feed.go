@@ -50,11 +50,16 @@ func DecodeGetProductFeedAutomotiveModelsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetProductFeedAutomotiveModels(ctx context.Context, client *core.Client, id string, params GetProductFeedAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], error) {
+func GetProductFeedAutomotiveModelsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], *core.Response, error) {
 	var out core.Cursor[objects.AutomotiveModel]
 	call := GetProductFeedAutomotiveModelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedAutomotiveModels(ctx context.Context, client *core.Client, id string, params GetProductFeedAutomotiveModelsParams) (*core.Cursor[objects.AutomotiveModel], error) {
+	out, _, err := GetProductFeedAutomotiveModelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedDestinationsParams struct {
@@ -99,11 +104,16 @@ func DecodeGetProductFeedDestinationsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetProductFeedDestinations(ctx context.Context, client *core.Client, id string, params GetProductFeedDestinationsParams) (*core.Cursor[objects.Destination], error) {
+func GetProductFeedDestinationsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedDestinationsParams) (*core.Cursor[objects.Destination], *core.Response, error) {
 	var out core.Cursor[objects.Destination]
 	call := GetProductFeedDestinationsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedDestinations(ctx context.Context, client *core.Client, id string, params GetProductFeedDestinationsParams) (*core.Cursor[objects.Destination], error) {
+	out, _, err := GetProductFeedDestinationsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedFlightsParams struct {
@@ -148,11 +158,16 @@ func DecodeGetProductFeedFlightsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetProductFeedFlights(ctx context.Context, client *core.Client, id string, params GetProductFeedFlightsParams) (*core.Cursor[objects.Flight], error) {
+func GetProductFeedFlightsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedFlightsParams) (*core.Cursor[objects.Flight], *core.Response, error) {
 	var out core.Cursor[objects.Flight]
 	call := GetProductFeedFlightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedFlights(ctx context.Context, client *core.Client, id string, params GetProductFeedFlightsParams) (*core.Cursor[objects.Flight], error) {
+	out, _, err := GetProductFeedFlightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedHomeListingsParams struct {
@@ -197,11 +212,16 @@ func DecodeGetProductFeedHomeListingsBatchResponse(response *core.BatchResponse)
 	return &out, nil
 }
 
-func GetProductFeedHomeListings(ctx context.Context, client *core.Client, id string, params GetProductFeedHomeListingsParams) (*core.Cursor[objects.HomeListing], error) {
+func GetProductFeedHomeListingsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedHomeListingsParams) (*core.Cursor[objects.HomeListing], *core.Response, error) {
 	var out core.Cursor[objects.HomeListing]
 	call := GetProductFeedHomeListingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedHomeListings(ctx context.Context, client *core.Client, id string, params GetProductFeedHomeListingsParams) (*core.Cursor[objects.HomeListing], error) {
+	out, _, err := GetProductFeedHomeListingsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedHotelsParams struct {
@@ -246,11 +266,16 @@ func DecodeGetProductFeedHotelsBatchResponse(response *core.BatchResponse) (*cor
 	return &out, nil
 }
 
-func GetProductFeedHotels(ctx context.Context, client *core.Client, id string, params GetProductFeedHotelsParams) (*core.Cursor[objects.Hotel], error) {
+func GetProductFeedHotelsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedHotelsParams) (*core.Cursor[objects.Hotel], *core.Response, error) {
 	var out core.Cursor[objects.Hotel]
 	call := GetProductFeedHotelsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedHotels(ctx context.Context, client *core.Client, id string, params GetProductFeedHotelsParams) (*core.Cursor[objects.Hotel], error) {
+	out, _, err := GetProductFeedHotelsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedProductsParams struct {
@@ -303,11 +328,16 @@ func DecodeGetProductFeedProductsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetProductFeedProducts(ctx context.Context, client *core.Client, id string, params GetProductFeedProductsParams) (*core.Cursor[objects.ProductItem], error) {
+func GetProductFeedProductsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedProductsParams) (*core.Cursor[objects.ProductItem], *core.Response, error) {
 	var out core.Cursor[objects.ProductItem]
 	call := GetProductFeedProductsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedProducts(ctx context.Context, client *core.Client, id string, params GetProductFeedProductsParams) (*core.Cursor[objects.ProductItem], error) {
+	out, _, err := GetProductFeedProductsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedRulesParams struct {
@@ -344,11 +374,16 @@ func DecodeGetProductFeedRulesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetProductFeedRules(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesParams) (*core.Cursor[objects.ProductFeedRule], error) {
+func GetProductFeedRulesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesParams) (*core.Cursor[objects.ProductFeedRule], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeedRule]
 	call := GetProductFeedRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedRules(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesParams) (*core.Cursor[objects.ProductFeedRule], error) {
+	out, _, err := GetProductFeedRulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductFeedRulesParams struct {
@@ -393,11 +428,16 @@ func DecodeCreateProductFeedRulesBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateProductFeedRules(ctx context.Context, client *core.Client, id string, params CreateProductFeedRulesParams) (*objects.ProductFeedRule, error) {
+func CreateProductFeedRulesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductFeedRulesParams) (*objects.ProductFeedRule, *core.Response, error) {
 	var out objects.ProductFeedRule
 	call := CreateProductFeedRulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductFeedRules(ctx context.Context, client *core.Client, id string, params CreateProductFeedRulesParams) (*objects.ProductFeedRule, error) {
+	out, _, err := CreateProductFeedRulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductFeedSupplementaryFeedAssocsParams struct {
@@ -436,11 +476,16 @@ func DecodeCreateProductFeedSupplementaryFeedAssocsBatchResponse(response *core.
 	return &out, nil
 }
 
-func CreateProductFeedSupplementaryFeedAssocs(ctx context.Context, client *core.Client, id string, params CreateProductFeedSupplementaryFeedAssocsParams) (*map[string]interface{}, error) {
+func CreateProductFeedSupplementaryFeedAssocsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductFeedSupplementaryFeedAssocsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := CreateProductFeedSupplementaryFeedAssocsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductFeedSupplementaryFeedAssocs(ctx context.Context, client *core.Client, id string, params CreateProductFeedSupplementaryFeedAssocsParams) (*map[string]interface{}, error) {
+	out, _, err := CreateProductFeedSupplementaryFeedAssocsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedUploadSchedulesParams struct {
@@ -477,11 +522,16 @@ func DecodeGetProductFeedUploadSchedulesBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetProductFeedUploadSchedules(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadSchedulesParams) (*core.Cursor[objects.ProductFeedSchedule], error) {
+func GetProductFeedUploadSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadSchedulesParams) (*core.Cursor[objects.ProductFeedSchedule], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeedSchedule]
 	call := GetProductFeedUploadSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedUploadSchedules(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadSchedulesParams) (*core.Cursor[objects.ProductFeedSchedule], error) {
+	out, _, err := GetProductFeedUploadSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductFeedUploadSchedulesParams struct {
@@ -522,11 +572,16 @@ func DecodeCreateProductFeedUploadSchedulesBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func CreateProductFeedUploadSchedules(ctx context.Context, client *core.Client, id string, params CreateProductFeedUploadSchedulesParams) (*objects.ProductFeed, error) {
+func CreateProductFeedUploadSchedulesWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductFeedUploadSchedulesParams) (*objects.ProductFeed, *core.Response, error) {
 	var out objects.ProductFeed
 	call := CreateProductFeedUploadSchedulesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductFeedUploadSchedules(ctx context.Context, client *core.Client, id string, params CreateProductFeedUploadSchedulesParams) (*objects.ProductFeed, error) {
+	out, _, err := CreateProductFeedUploadSchedulesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedUploadsParams struct {
@@ -563,11 +618,16 @@ func DecodeGetProductFeedUploadsBatchResponse(response *core.BatchResponse) (*co
 	return &out, nil
 }
 
-func GetProductFeedUploads(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadsParams) (*core.Cursor[objects.ProductFeedUpload], error) {
+func GetProductFeedUploadsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadsParams) (*core.Cursor[objects.ProductFeedUpload], *core.Response, error) {
 	var out core.Cursor[objects.ProductFeedUpload]
 	call := GetProductFeedUploadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedUploads(ctx context.Context, client *core.Client, id string, params GetProductFeedUploadsParams) (*core.Cursor[objects.ProductFeedUpload], error) {
+	out, _, err := GetProductFeedUploadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateProductFeedUploadsParams struct {
@@ -628,11 +688,16 @@ func DecodeCreateProductFeedUploadsBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func CreateProductFeedUploads(ctx context.Context, client *core.Client, id string, params CreateProductFeedUploadsParams) (*objects.ProductFeedUpload, error) {
+func CreateProductFeedUploadsWithResponse(ctx context.Context, client *core.Client, id string, params CreateProductFeedUploadsParams) (*objects.ProductFeedUpload, *core.Response, error) {
 	var out objects.ProductFeedUpload
 	call := CreateProductFeedUploadsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateProductFeedUploads(ctx context.Context, client *core.Client, id string, params CreateProductFeedUploadsParams) (*objects.ProductFeedUpload, error) {
+	out, _, err := CreateProductFeedUploadsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedVehicleOffersParams struct {
@@ -677,11 +742,16 @@ func DecodeGetProductFeedVehicleOffersBatchResponse(response *core.BatchResponse
 	return &out, nil
 }
 
-func GetProductFeedVehicleOffers(ctx context.Context, client *core.Client, id string, params GetProductFeedVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], error) {
+func GetProductFeedVehicleOffersWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], *core.Response, error) {
 	var out core.Cursor[objects.VehicleOffer]
 	call := GetProductFeedVehicleOffersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedVehicleOffers(ctx context.Context, client *core.Client, id string, params GetProductFeedVehicleOffersParams) (*core.Cursor[objects.VehicleOffer], error) {
+	out, _, err := GetProductFeedVehicleOffersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedVehiclesParams struct {
@@ -726,11 +796,16 @@ func DecodeGetProductFeedVehiclesBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetProductFeedVehicles(ctx context.Context, client *core.Client, id string, params GetProductFeedVehiclesParams) (*core.Cursor[objects.Vehicle], error) {
+func GetProductFeedVehiclesWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedVehiclesParams) (*core.Cursor[objects.Vehicle], *core.Response, error) {
 	var out core.Cursor[objects.Vehicle]
 	call := GetProductFeedVehiclesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeedVehicles(ctx context.Context, client *core.Client, id string, params GetProductFeedVehiclesParams) (*core.Cursor[objects.Vehicle], error) {
+	out, _, err := GetProductFeedVehiclesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductFeedParams struct {
@@ -767,11 +842,16 @@ func DecodeDeleteProductFeedBatchResponse(response *core.BatchResponse) (*map[st
 	return &out, nil
 }
 
-func DeleteProductFeed(ctx context.Context, client *core.Client, id string, params DeleteProductFeedParams) (*map[string]interface{}, error) {
+func DeleteProductFeedWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductFeedParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductFeed(ctx context.Context, client *core.Client, id string, params DeleteProductFeedParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductFeedParams struct {
@@ -808,11 +888,16 @@ func DecodeGetProductFeedBatchResponse(response *core.BatchResponse) (*objects.P
 	return &out, nil
 }
 
-func GetProductFeed(ctx context.Context, client *core.Client, id string, params GetProductFeedParams) (*objects.ProductFeed, error) {
+func GetProductFeedWithResponse(ctx context.Context, client *core.Client, id string, params GetProductFeedParams) (*objects.ProductFeed, *core.Response, error) {
 	var out objects.ProductFeed
 	call := GetProductFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductFeed(ctx context.Context, client *core.Client, id string, params GetProductFeedParams) (*objects.ProductFeed, error) {
+	out, _, err := GetProductFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateProductFeedParams struct {
@@ -885,9 +970,14 @@ func DecodeUpdateProductFeedBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func UpdateProductFeed(ctx context.Context, client *core.Client, id string, params UpdateProductFeedParams) (*objects.ProductFeed, error) {
+func UpdateProductFeedWithResponse(ctx context.Context, client *core.Client, id string, params UpdateProductFeedParams) (*objects.ProductFeed, *core.Response, error) {
 	var out objects.ProductFeed
 	call := UpdateProductFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateProductFeed(ctx context.Context, client *core.Client, id string, params UpdateProductFeedParams) (*objects.ProductFeed, error) {
+	out, _, err := UpdateProductFeedWithResponse(ctx, client, id, params)
+	return out, err
 }

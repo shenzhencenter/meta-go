@@ -8,3 +8,19 @@ type DACheck struct {
 	Title       *string `json:"title,omitempty"`
 	UserMessage *string `json:"user_message,omitempty"`
 }
+
+var DACheckFields = struct {
+	ActionURI   string
+	Description string
+	Key         string
+	Result      string
+	Title       string
+	UserMessage string
+}{
+	ActionURI:   "action_uri",
+	Description: "description",
+	Key:         "key",
+	Result:      "result",
+	Title:       "title",
+	UserMessage: "user_message",
+}

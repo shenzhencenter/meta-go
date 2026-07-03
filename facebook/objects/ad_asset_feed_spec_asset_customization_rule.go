@@ -15,3 +15,33 @@ type AdAssetFeedSpecAssetCustomizationRule struct {
 	TitleLabel            *AdAssetFeedSpecAssetLabel                 `json:"title_label,omitempty"`
 	VideoLabel            *AdAssetFeedSpecAssetLabel                 `json:"video_label,omitempty"`
 }
+
+var AdAssetFeedSpecAssetCustomizationRuleFields = struct {
+	BodyLabel             string
+	CallToActionLabel     string
+	CallToActionTypeLabel string
+	CaptionLabel          string
+	CarouselLabel         string
+	CustomizationSpec     string
+	DescriptionLabel      string
+	ImageLabel            string
+	IsDefault             string
+	LinkURLLabel          string
+	Priority              string
+	TitleLabel            string
+	VideoLabel            string
+}{
+	BodyLabel:             "body_label",
+	CallToActionLabel:     "call_to_action_label",
+	CallToActionTypeLabel: "call_to_action_type_label",
+	CaptionLabel:          "caption_label",
+	CarouselLabel:         "carousel_label",
+	CustomizationSpec:     "customization_spec",
+	DescriptionLabel:      "description_label",
+	ImageLabel:            "image_label",
+	IsDefault:             "is_default",
+	LinkURLLabel:          "link_url_label",
+	Priority:              "priority",
+	TitleLabel:            "title_label",
+	VideoLabel:            "video_label",
+}

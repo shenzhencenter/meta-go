@@ -41,9 +41,14 @@ func DecodeGetHoursBatchResponse(response *core.BatchResponse) (*objects.Hours, 
 	return &out, nil
 }
 
-func GetHours(ctx context.Context, client *core.Client, id string, params GetHoursParams) (*objects.Hours, error) {
+func GetHoursWithResponse(ctx context.Context, client *core.Client, id string, params GetHoursParams) (*objects.Hours, *core.Response, error) {
 	var out objects.Hours
 	call := GetHoursBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetHours(ctx context.Context, client *core.Client, id string, params GetHoursParams) (*objects.Hours, error) {
+	out, _, err := GetHoursWithResponse(ctx, client, id, params)
+	return out, err
 }

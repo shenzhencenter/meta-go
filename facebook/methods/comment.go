@@ -6,14 +6,13 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetCommentCommentsParams struct {
 	Filter     *enums.CommentcommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.CommentcommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.CommentcommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                                `facebook:"since"`
+	Since      *core.Time                                `facebook:"since"`
 	Extra      core.Params                               `facebook:"-"`
 }
 
@@ -59,11 +58,16 @@ func DecodeGetCommentCommentsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetCommentComments(ctx context.Context, client *core.Client, id string, params GetCommentCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetCommentCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommentCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetCommentCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommentComments(ctx context.Context, client *core.Client, id string, params GetCommentCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetCommentCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCommentCommentsParams struct {
@@ -152,11 +156,16 @@ func DecodeCreateCommentCommentsBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateCommentComments(ctx context.Context, client *core.Client, id string, params CreateCommentCommentsParams) (*objects.Comment, error) {
+func CreateCommentCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreateCommentCommentsParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreateCommentCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCommentComments(ctx context.Context, client *core.Client, id string, params CreateCommentCommentsParams) (*objects.Comment, error) {
+	out, _, err := CreateCommentCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteCommentLikesParams struct {
@@ -209,11 +218,16 @@ func DecodeDeleteCommentLikesBatchResponse(response *core.BatchResponse) (*map[s
 	return &out, nil
 }
 
-func DeleteCommentLikes(ctx context.Context, client *core.Client, id string, params DeleteCommentLikesParams) (*map[string]interface{}, error) {
+func DeleteCommentLikesWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCommentLikesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCommentLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteCommentLikes(ctx context.Context, client *core.Client, id string, params DeleteCommentLikesParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCommentLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommentLikesParams struct {
@@ -250,11 +264,16 @@ func DecodeGetCommentLikesBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetCommentLikes(ctx context.Context, client *core.Client, id string, params GetCommentLikesParams) (*core.Cursor[objects.Profile], error) {
+func GetCommentLikesWithResponse(ctx context.Context, client *core.Client, id string, params GetCommentLikesParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetCommentLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommentLikes(ctx context.Context, client *core.Client, id string, params GetCommentLikesParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetCommentLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateCommentLikesParams struct {
@@ -307,11 +326,16 @@ func DecodeCreateCommentLikesBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreateCommentLikes(ctx context.Context, client *core.Client, id string, params CreateCommentLikesParams) (*objects.Comment, error) {
+func CreateCommentLikesWithResponse(ctx context.Context, client *core.Client, id string, params CreateCommentLikesParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreateCommentLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateCommentLikes(ctx context.Context, client *core.Client, id string, params CreateCommentLikesParams) (*objects.Comment, error) {
+	out, _, err := CreateCommentLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommentReactionsParams struct {
@@ -352,11 +376,16 @@ func DecodeGetCommentReactionsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetCommentReactions(ctx context.Context, client *core.Client, id string, params GetCommentReactionsParams) (*core.Cursor[objects.Profile], error) {
+func GetCommentReactionsWithResponse(ctx context.Context, client *core.Client, id string, params GetCommentReactionsParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetCommentReactionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCommentReactions(ctx context.Context, client *core.Client, id string, params GetCommentReactionsParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetCommentReactionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteCommentParams struct {
@@ -393,11 +422,16 @@ func DecodeDeleteCommentBatchResponse(response *core.BatchResponse) (*map[string
 	return &out, nil
 }
 
-func DeleteComment(ctx context.Context, client *core.Client, id string, params DeleteCommentParams) (*map[string]interface{}, error) {
+func DeleteCommentWithResponse(ctx context.Context, client *core.Client, id string, params DeleteCommentParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteCommentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteComment(ctx context.Context, client *core.Client, id string, params DeleteCommentParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteCommentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetCommentParams struct {
@@ -434,11 +468,16 @@ func DecodeGetCommentBatchResponse(response *core.BatchResponse) (*objects.Comme
 	return &out, nil
 }
 
-func GetComment(ctx context.Context, client *core.Client, id string, params GetCommentParams) (*objects.Comment, error) {
+func GetCommentWithResponse(ctx context.Context, client *core.Client, id string, params GetCommentParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := GetCommentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetComment(ctx context.Context, client *core.Client, id string, params GetCommentParams) (*objects.Comment, error) {
+	out, _, err := GetCommentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateCommentParams struct {
@@ -495,9 +534,14 @@ func DecodeUpdateCommentBatchResponse(response *core.BatchResponse) (*objects.Co
 	return &out, nil
 }
 
-func UpdateComment(ctx context.Context, client *core.Client, id string, params UpdateCommentParams) (*objects.Comment, error) {
+func UpdateCommentWithResponse(ctx context.Context, client *core.Client, id string, params UpdateCommentParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := UpdateCommentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateComment(ctx context.Context, client *core.Client, id string, params UpdateCommentParams) (*objects.Comment, error) {
+	out, _, err := UpdateCommentWithResponse(ctx, client, id, params)
+	return out, err
 }

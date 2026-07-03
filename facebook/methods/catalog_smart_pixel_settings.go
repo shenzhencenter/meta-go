@@ -41,9 +41,14 @@ func DecodeGetCatalogSmartPixelSettingsBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetCatalogSmartPixelSettings(ctx context.Context, client *core.Client, id string, params GetCatalogSmartPixelSettingsParams) (*objects.CatalogSmartPixelSettings, error) {
+func GetCatalogSmartPixelSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetCatalogSmartPixelSettingsParams) (*objects.CatalogSmartPixelSettings, *core.Response, error) {
 	var out objects.CatalogSmartPixelSettings
 	call := GetCatalogSmartPixelSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCatalogSmartPixelSettings(ctx context.Context, client *core.Client, id string, params GetCatalogSmartPixelSettingsParams) (*objects.CatalogSmartPixelSettings, error) {
+	out, _, err := GetCatalogSmartPixelSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

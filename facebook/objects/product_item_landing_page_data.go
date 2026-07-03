@@ -7,3 +7,9 @@ import (
 type ProductItemLandingPageData struct {
 	Availability *enums.ProductitemlandingpagedataAvailability `json:"availability,omitempty"`
 }
+
+var ProductItemLandingPageDataFields = struct {
+	Availability string
+}{
+	Availability: "availability",
+}

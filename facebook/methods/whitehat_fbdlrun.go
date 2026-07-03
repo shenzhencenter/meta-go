@@ -41,9 +41,14 @@ func DecodeGetWhitehatFBDLRunBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetWhitehatFBDLRun(ctx context.Context, client *core.Client, id string, params GetWhitehatFBDLRunParams) (*objects.WhitehatFBDLRun, error) {
+func GetWhitehatFBDLRunWithResponse(ctx context.Context, client *core.Client, id string, params GetWhitehatFBDLRunParams) (*objects.WhitehatFBDLRun, *core.Response, error) {
 	var out objects.WhitehatFBDLRun
 	call := GetWhitehatFBDLRunBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetWhitehatFBDLRun(ctx context.Context, client *core.Client, id string, params GetWhitehatFBDLRunParams) (*objects.WhitehatFBDLRun, error) {
+	out, _, err := GetWhitehatFBDLRunWithResponse(ctx, client, id, params)
+	return out, err
 }

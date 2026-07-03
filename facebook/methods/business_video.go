@@ -41,9 +41,14 @@ func DecodeGetBusinessVideoBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetBusinessVideo(ctx context.Context, client *core.Client, id string, params GetBusinessVideoParams) (*objects.BusinessVideo, error) {
+func GetBusinessVideoWithResponse(ctx context.Context, client *core.Client, id string, params GetBusinessVideoParams) (*objects.BusinessVideo, *core.Response, error) {
 	var out objects.BusinessVideo
 	call := GetBusinessVideoBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetBusinessVideo(ctx context.Context, client *core.Client, id string, params GetBusinessVideoParams) (*objects.BusinessVideo, error) {
+	out, _, err := GetBusinessVideoWithResponse(ctx, client, id, params)
+	return out, err
 }

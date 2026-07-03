@@ -41,9 +41,14 @@ func DecodeDeleteAdCampaignGroupGendeleteBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func DeleteAdCampaignGroupGendelete(ctx context.Context, client *core.Client, id string, params DeleteAdCampaignGroupGendeleteParams) (*objects.AdCampaignGroupDelete, error) {
+func DeleteAdCampaignGroupGendeleteWithResponse(ctx context.Context, client *core.Client, id string, params DeleteAdCampaignGroupGendeleteParams) (*objects.AdCampaignGroupDelete, *core.Response, error) {
 	var out objects.AdCampaignGroupDelete
 	call := DeleteAdCampaignGroupGendeleteBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteAdCampaignGroupGendelete(ctx context.Context, client *core.Client, id string, params DeleteAdCampaignGroupGendeleteParams) (*objects.AdCampaignGroupDelete, error) {
+	out, _, err := DeleteAdCampaignGroupGendeleteWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,9 +41,14 @@ func DecodeGetSavedMessageResponseBatchResponse(response *core.BatchResponse) (*
 	return &out, nil
 }
 
-func GetSavedMessageResponse(ctx context.Context, client *core.Client, id string, params GetSavedMessageResponseParams) (*objects.SavedMessageResponse, error) {
+func GetSavedMessageResponseWithResponse(ctx context.Context, client *core.Client, id string, params GetSavedMessageResponseParams) (*objects.SavedMessageResponse, *core.Response, error) {
 	var out objects.SavedMessageResponse
 	call := GetSavedMessageResponseBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSavedMessageResponse(ctx context.Context, client *core.Client, id string, params GetSavedMessageResponseParams) (*objects.SavedMessageResponse, error) {
+	out, _, err := GetSavedMessageResponseWithResponse(ctx, client, id, params)
+	return out, err
 }

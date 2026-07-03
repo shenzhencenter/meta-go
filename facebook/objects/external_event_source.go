@@ -9,3 +9,13 @@ type ExternalEventSource struct {
 	Name       *string  `json:"name,omitempty"`
 	SourceType *string  `json:"source_type,omitempty"`
 }
+
+var ExternalEventSourceFields = struct {
+	ID         string
+	Name       string
+	SourceType string
+}{
+	ID:         "id",
+	Name:       "name",
+	SourceType: "source_type",
+}

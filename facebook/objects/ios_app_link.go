@@ -9,3 +9,13 @@ type IosAppLink struct {
 	AppStoreID *core.ID `json:"app_store_id,omitempty"`
 	URL        *string  `json:"url,omitempty"`
 }
+
+var IosAppLinkFields = struct {
+	AppName    string
+	AppStoreID string
+	URL        string
+}{
+	AppName:    "app_name",
+	AppStoreID: "app_store_id",
+	URL:        "url",
+}

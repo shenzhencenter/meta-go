@@ -17,3 +17,29 @@ type HotelRoom struct {
 	SalePrice   *string              `json:"sale_price,omitempty"`
 	URL         *string              `json:"url,omitempty"`
 }
+
+var HotelRoomFields = struct {
+	Applinks    string
+	BasePrice   string
+	Currency    string
+	Description string
+	ID          string
+	Images      string
+	MarginLevel string
+	Name        string
+	RoomID      string
+	SalePrice   string
+	URL         string
+}{
+	Applinks:    "applinks",
+	BasePrice:   "base_price",
+	Currency:    "currency",
+	Description: "description",
+	ID:          "id",
+	Images:      "images",
+	MarginLevel: "margin_level",
+	Name:        "name",
+	RoomID:      "room_id",
+	SalePrice:   "sale_price",
+	URL:         "url",
+}

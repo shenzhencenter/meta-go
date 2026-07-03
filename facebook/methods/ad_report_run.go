@@ -41,11 +41,16 @@ func DecodeGetAdReportRunInsightsBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetAdReportRunInsights(ctx context.Context, client *core.Client, id string, params GetAdReportRunInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
+func GetAdReportRunInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetAdReportRunInsightsParams) (*core.Cursor[objects.AdsInsights], *core.Response, error) {
 	var out core.Cursor[objects.AdsInsights]
 	call := GetAdReportRunInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdReportRunInsights(ctx context.Context, client *core.Client, id string, params GetAdReportRunInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
+	out, _, err := GetAdReportRunInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetAdReportRunParams struct {
@@ -82,9 +87,14 @@ func DecodeGetAdReportRunBatchResponse(response *core.BatchResponse) (*objects.A
 	return &out, nil
 }
 
-func GetAdReportRun(ctx context.Context, client *core.Client, id string, params GetAdReportRunParams) (*objects.AdReportRun, error) {
+func GetAdReportRunWithResponse(ctx context.Context, client *core.Client, id string, params GetAdReportRunParams) (*objects.AdReportRun, *core.Response, error) {
 	var out objects.AdReportRun
 	call := GetAdReportRunBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdReportRun(ctx context.Context, client *core.Client, id string, params GetAdReportRunParams) (*objects.AdReportRun, error) {
+	out, _, err := GetAdReportRunWithResponse(ctx, client, id, params)
+	return out, err
 }

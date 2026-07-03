@@ -41,9 +41,14 @@ func DecodeGetAdsReportBuilderExportCoreBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetAdsReportBuilderExportCore(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderExportCoreParams) (*objects.AdsReportBuilderExportCore, error) {
+func GetAdsReportBuilderExportCoreWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderExportCoreParams) (*objects.AdsReportBuilderExportCore, *core.Response, error) {
 	var out objects.AdsReportBuilderExportCore
 	call := GetAdsReportBuilderExportCoreBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsReportBuilderExportCore(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderExportCoreParams) (*objects.AdsReportBuilderExportCore, error) {
+	out, _, err := GetAdsReportBuilderExportCoreWithResponse(ctx, client, id, params)
+	return out, err
 }

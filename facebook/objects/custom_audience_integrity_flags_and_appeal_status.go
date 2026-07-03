@@ -9,3 +9,21 @@ type CustomAudienceIntegrityFlagsAndAppealStatus struct {
 	LatestAppealTime       *uint64   `json:"latest_appeal_time,omitempty"`
 	RestrictionStatus      *string   `json:"restriction_status,omitempty"`
 }
+
+var CustomAudienceIntegrityFlagsAndAppealStatusFields = struct {
+	CloseoutTime           string
+	DaysUntilEnforcement   string
+	FlaggedFields          string
+	IsEnforcementRolledOut string
+	LatestAppealRequestor  string
+	LatestAppealTime       string
+	RestrictionStatus      string
+}{
+	CloseoutTime:           "closeout_time",
+	DaysUntilEnforcement:   "days_until_enforcement",
+	FlaggedFields:          "flagged_fields",
+	IsEnforcementRolledOut: "is_enforcement_rolled_out",
+	LatestAppealRequestor:  "latest_appeal_requestor",
+	LatestAppealTime:       "latest_appeal_time",
+	RestrictionStatus:      "restriction_status",
+}

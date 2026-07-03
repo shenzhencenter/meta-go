@@ -41,9 +41,14 @@ func DecodeGetAdToplineDetailBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func GetAdToplineDetail(ctx context.Context, client *core.Client, id string, params GetAdToplineDetailParams) (*objects.AdToplineDetail, error) {
+func GetAdToplineDetailWithResponse(ctx context.Context, client *core.Client, id string, params GetAdToplineDetailParams) (*objects.AdToplineDetail, *core.Response, error) {
 	var out objects.AdToplineDetail
 	call := GetAdToplineDetailBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdToplineDetail(ctx context.Context, client *core.Client, id string, params GetAdToplineDetailParams) (*objects.AdToplineDetail, error) {
+	out, _, err := GetAdToplineDetailWithResponse(ctx, client, id, params)
+	return out, err
 }

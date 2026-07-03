@@ -41,9 +41,14 @@ func DecodeGetAdsReportBuilderSavedReportBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetAdsReportBuilderSavedReport(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderSavedReportParams) (*objects.AdsReportBuilderSavedReport, error) {
+func GetAdsReportBuilderSavedReportWithResponse(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderSavedReportParams) (*objects.AdsReportBuilderSavedReport, *core.Response, error) {
 	var out objects.AdsReportBuilderSavedReport
 	call := GetAdsReportBuilderSavedReportBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAdsReportBuilderSavedReport(ctx context.Context, client *core.Client, id string, params GetAdsReportBuilderSavedReportParams) (*objects.AdsReportBuilderSavedReport, error) {
+	out, _, err := GetAdsReportBuilderSavedReportWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -41,11 +41,16 @@ func DecodeDeleteLeadBatchResponse(response *core.BatchResponse) (*map[string]in
 	return &out, nil
 }
 
-func DeleteLead(ctx context.Context, client *core.Client, id string, params DeleteLeadParams) (*map[string]interface{}, error) {
+func DeleteLeadWithResponse(ctx context.Context, client *core.Client, id string, params DeleteLeadParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteLeadBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteLead(ctx context.Context, client *core.Client, id string, params DeleteLeadParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteLeadWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetLeadParams struct {
@@ -82,9 +87,14 @@ func DecodeGetLeadBatchResponse(response *core.BatchResponse) (*objects.Lead, er
 	return &out, nil
 }
 
-func GetLead(ctx context.Context, client *core.Client, id string, params GetLeadParams) (*objects.Lead, error) {
+func GetLeadWithResponse(ctx context.Context, client *core.Client, id string, params GetLeadParams) (*objects.Lead, *core.Response, error) {
 	var out objects.Lead
 	call := GetLeadBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetLead(ctx context.Context, client *core.Client, id string, params GetLeadParams) (*objects.Lead, error) {
+	out, _, err := GetLeadWithResponse(ctx, client, id, params)
+	return out, err
 }

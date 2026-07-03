@@ -41,9 +41,14 @@ func DecodeGetVideoTextQuestionBatchResponse(response *core.BatchResponse) (*obj
 	return &out, nil
 }
 
-func GetVideoTextQuestion(ctx context.Context, client *core.Client, id string, params GetVideoTextQuestionParams) (*objects.VideoTextQuestion, error) {
+func GetVideoTextQuestionWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoTextQuestionParams) (*objects.VideoTextQuestion, *core.Response, error) {
 	var out objects.VideoTextQuestion
 	call := GetVideoTextQuestionBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoTextQuestion(ctx context.Context, client *core.Client, id string, params GetVideoTextQuestionParams) (*objects.VideoTextQuestion, error) {
+	out, _, err := GetVideoTextQuestionWithResponse(ctx, client, id, params)
+	return out, err
 }

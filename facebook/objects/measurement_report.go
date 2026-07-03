@@ -11,3 +11,17 @@ type MeasurementReport struct {
 	ReportType   *string                 `json:"report_type,omitempty"`
 	Status       *string                 `json:"status,omitempty"`
 }
+
+var MeasurementReportFields = struct {
+	DownloadUrls string
+	ID           string
+	Metadata     string
+	ReportType   string
+	Status       string
+}{
+	DownloadUrls: "download_urls",
+	ID:           "id",
+	Metadata:     "metadata",
+	ReportType:   "report_type",
+	Status:       "status",
+}

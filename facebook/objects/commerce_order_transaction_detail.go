@@ -19,3 +19,33 @@ type CommerceOrderTransactionDetail struct {
 	TransactionType   *string                 `json:"transaction_type,omitempty"`
 	TransferID        *core.ID                `json:"transfer_id,omitempty"`
 }
+
+var CommerceOrderTransactionDetailFields = struct {
+	MerchantOrderID   string
+	NetPaymentAmount  string
+	OrderCreated      string
+	OrderDetails      string
+	OrderID           string
+	PayoutReferenceID string
+	PostalCode        string
+	ProcessingFee     string
+	State             string
+	TaxRate           string
+	TransactionDate   string
+	TransactionType   string
+	TransferID        string
+}{
+	MerchantOrderID:   "merchant_order_id",
+	NetPaymentAmount:  "net_payment_amount",
+	OrderCreated:      "order_created",
+	OrderDetails:      "order_details",
+	OrderID:           "order_id",
+	PayoutReferenceID: "payout_reference_id",
+	PostalCode:        "postal_code",
+	ProcessingFee:     "processing_fee",
+	State:             "state",
+	TaxRate:           "tax_rate",
+	TransactionDate:   "transaction_date",
+	TransactionType:   "transaction_type",
+	TransferID:        "transfer_id",
+}

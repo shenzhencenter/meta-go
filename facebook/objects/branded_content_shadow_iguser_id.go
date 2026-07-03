@@ -7,3 +7,9 @@ import (
 type BrandedContentShadowIGUserID struct {
 	ID *core.ID `json:"id,omitempty"`
 }
+
+var BrandedContentShadowIGUserIDFields = struct {
+	ID string
+}{
+	ID: "id",
+}

@@ -25,3 +25,45 @@ type ExtendedCredit struct {
 	SendBillToBizName               *string                         `json:"send_bill_to_biz_name,omitempty"`
 	SoldToAddress                   *CRMAddress                     `json:"sold_to_address,omitempty"`
 }
+
+var ExtendedCreditFields = struct {
+	AllocatedAmount                 string
+	Balance                         string
+	CreditAvailable                 string
+	CreditType                      string
+	ID                              string
+	IsAccessRevoked                 string
+	IsAutomatedExperience           string
+	LegalEntityName                 string
+	LiableAddress                   string
+	LiableBizName                   string
+	MaxBalance                      string
+	OnlineMaxBalance                string
+	OwnerBusiness                   string
+	OwnerBusinessName               string
+	PartitionFrom                   string
+	ReceivingCreditAllocationConfig string
+	SendBillToAddress               string
+	SendBillToBizName               string
+	SoldToAddress                   string
+}{
+	AllocatedAmount:                 "allocated_amount",
+	Balance:                         "balance",
+	CreditAvailable:                 "credit_available",
+	CreditType:                      "credit_type",
+	ID:                              "id",
+	IsAccessRevoked:                 "is_access_revoked",
+	IsAutomatedExperience:           "is_automated_experience",
+	LegalEntityName:                 "legal_entity_name",
+	LiableAddress:                   "liable_address",
+	LiableBizName:                   "liable_biz_name",
+	MaxBalance:                      "max_balance",
+	OnlineMaxBalance:                "online_max_balance",
+	OwnerBusiness:                   "owner_business",
+	OwnerBusinessName:               "owner_business_name",
+	PartitionFrom:                   "partition_from",
+	ReceivingCreditAllocationConfig: "receiving_credit_allocation_config",
+	SendBillToAddress:               "send_bill_to_address",
+	SendBillToBizName:               "send_bill_to_biz_name",
+	SoldToAddress:                   "sold_to_address",
+}

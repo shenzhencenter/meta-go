@@ -11,3 +11,15 @@ type ProductFeedRuleGet struct {
 	Params    *[]map[string]interface{}         `json:"params,omitempty"`
 	RuleType  *enums.ProductfeedrulegetRuleType `json:"rule_type,omitempty"`
 }
+
+var ProductFeedRuleGetFields = struct {
+	Attribute string
+	ID        string
+	Params    string
+	RuleType  string
+}{
+	Attribute: "attribute",
+	ID:        "id",
+	Params:    "params",
+	RuleType:  "rule_type",
+}

@@ -17,3 +17,29 @@ type PartnerCategory struct {
 	Status           *string  `json:"status,omitempty"`
 	TargetingType    *string  `json:"targeting_type,omitempty"`
 }
+
+var PartnerCategoryFields = struct {
+	ApproximateCount string
+	Country          string
+	Description      string
+	Details          string
+	ID               string
+	IsPrivate        string
+	Name             string
+	ParentCategory   string
+	Source           string
+	Status           string
+	TargetingType    string
+}{
+	ApproximateCount: "approximate_count",
+	Country:          "country",
+	Description:      "description",
+	Details:          "details",
+	ID:               "id",
+	IsPrivate:        "is_private",
+	Name:             "name",
+	ParentCategory:   "parent_category",
+	Source:           "source",
+	Status:           "status",
+	TargetingType:    "targeting_type",
+}

@@ -41,9 +41,14 @@ func DecodeGetPageLeadsAccessConfigBatchResponse(response *core.BatchResponse) (
 	return &out, nil
 }
 
-func GetPageLeadsAccessConfig(ctx context.Context, client *core.Client, id string, params GetPageLeadsAccessConfigParams) (*objects.PageLeadsAccessConfig, error) {
+func GetPageLeadsAccessConfigWithResponse(ctx context.Context, client *core.Client, id string, params GetPageLeadsAccessConfigParams) (*objects.PageLeadsAccessConfig, *core.Response, error) {
 	var out objects.PageLeadsAccessConfig
 	call := GetPageLeadsAccessConfigBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPageLeadsAccessConfig(ctx context.Context, client *core.Client, id string, params GetPageLeadsAccessConfigParams) (*objects.PageLeadsAccessConfig, error) {
+	out, _, err := GetPageLeadsAccessConfigWithResponse(ctx, client, id, params)
+	return out, err
 }

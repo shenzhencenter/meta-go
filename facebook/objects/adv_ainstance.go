@@ -10,3 +10,15 @@ type AdvAInstance struct {
 	Name          *string   `json:"name,omitempty"`
 	OwnerBusiness *Business `json:"owner_business,omitempty"`
 }
+
+var AdvAInstanceFields = struct {
+	ID            string
+	InstanceType  string
+	Name          string
+	OwnerBusiness string
+}{
+	ID:            "id",
+	InstanceType:  "instance_type",
+	Name:          "name",
+	OwnerBusiness: "owner_business",
+}

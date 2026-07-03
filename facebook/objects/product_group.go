@@ -10,3 +10,15 @@ type ProductGroup struct {
 	RetailerID     *core.ID          `json:"retailer_id,omitempty"`
 	Variants       *[]ProductVariant `json:"variants,omitempty"`
 }
+
+var ProductGroupFields = struct {
+	ID             string
+	ProductCatalog string
+	RetailerID     string
+	Variants       string
+}{
+	ID:             "id",
+	ProductCatalog: "product_catalog",
+	RetailerID:     "retailer_id",
+	Variants:       "variants",
+}

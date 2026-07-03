@@ -42,11 +42,16 @@ func DecodeGetDestinationChannelsToIntegrityStatusBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetDestinationChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetDestinationChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetDestinationChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetDestinationChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetDestinationChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDestinationChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetDestinationChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetDestinationChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetDestinationOverrideDetailsParams struct {
@@ -91,11 +96,16 @@ func DecodeGetDestinationOverrideDetailsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetDestinationOverrideDetails(ctx context.Context, client *core.Client, id string, params GetDestinationOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetDestinationOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetDestinationOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetDestinationOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDestinationOverrideDetails(ctx context.Context, client *core.Client, id string, params GetDestinationOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetDestinationOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetDestinationVideosMetadataParams struct {
@@ -132,11 +142,16 @@ func DecodeGetDestinationVideosMetadataBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetDestinationVideosMetadata(ctx context.Context, client *core.Client, id string, params GetDestinationVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetDestinationVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetDestinationVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetDestinationVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDestinationVideosMetadata(ctx context.Context, client *core.Client, id string, params GetDestinationVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetDestinationVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetDestinationParams struct {
@@ -173,9 +188,14 @@ func DecodeGetDestinationBatchResponse(response *core.BatchResponse) (*objects.D
 	return &out, nil
 }
 
-func GetDestination(ctx context.Context, client *core.Client, id string, params GetDestinationParams) (*objects.Destination, error) {
+func GetDestinationWithResponse(ctx context.Context, client *core.Client, id string, params GetDestinationParams) (*objects.Destination, *core.Response, error) {
 	var out objects.Destination
 	call := GetDestinationBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetDestination(ctx context.Context, client *core.Client, id string, params GetDestinationParams) (*objects.Destination, error) {
+	out, _, err := GetDestinationWithResponse(ctx, client, id, params)
+	return out, err
 }

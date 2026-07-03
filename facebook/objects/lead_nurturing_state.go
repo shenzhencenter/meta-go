@@ -12,3 +12,27 @@ type LeadNurturingState struct {
 	UpdatedEmail         *string                 `json:"updated_email,omitempty"`
 	UpdatedPhoneNumber   *string                 `json:"updated_phone_number,omitempty"`
 }
+
+var LeadNurturingStateFields = struct {
+	AiAgentMode          string
+	ConversationSummary  string
+	HandoffReason        string
+	LeadInterestLevel    string
+	NeededManualActions  string
+	QualificationDetails string
+	QualificationStatus  string
+	ScheduledTime        string
+	UpdatedEmail         string
+	UpdatedPhoneNumber   string
+}{
+	AiAgentMode:          "ai_agent_mode",
+	ConversationSummary:  "conversation_summary",
+	HandoffReason:        "handoff_reason",
+	LeadInterestLevel:    "lead_interest_level",
+	NeededManualActions:  "needed_manual_actions",
+	QualificationDetails: "qualification_details",
+	QualificationStatus:  "qualification_status",
+	ScheduledTime:        "scheduled_time",
+	UpdatedEmail:         "updated_email",
+	UpdatedPhoneNumber:   "updated_phone_number",
+}

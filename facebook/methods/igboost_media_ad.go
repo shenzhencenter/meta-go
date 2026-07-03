@@ -41,9 +41,14 @@ func DecodeGetIGBoostMediaAdBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetIGBoostMediaAd(ctx context.Context, client *core.Client, id string, params GetIGBoostMediaAdParams) (*objects.IGBoostMediaAd, error) {
+func GetIGBoostMediaAdWithResponse(ctx context.Context, client *core.Client, id string, params GetIGBoostMediaAdParams) (*objects.IGBoostMediaAd, *core.Response, error) {
 	var out objects.IGBoostMediaAd
 	call := GetIGBoostMediaAdBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGBoostMediaAd(ctx context.Context, client *core.Client, id string, params GetIGBoostMediaAdParams) (*objects.IGBoostMediaAd, error) {
+	out, _, err := GetIGBoostMediaAdWithResponse(ctx, client, id, params)
+	return out, err
 }

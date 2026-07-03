@@ -9,3 +9,13 @@ type AdCreativeCollectionThumbnailInfo struct {
 	ElementCrops      *AdsImageCrops `json:"element_crops,omitempty"`
 	ElementID         *core.ID       `json:"element_id,omitempty"`
 }
+
+var AdCreativeCollectionThumbnailInfoFields = struct {
+	ElementChildIndex string
+	ElementCrops      string
+	ElementID         string
+}{
+	ElementChildIndex: "element_child_index",
+	ElementCrops:      "element_crops",
+	ElementID:         "element_id",
+}

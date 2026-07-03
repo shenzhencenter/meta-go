@@ -12,3 +12,19 @@ type BusinessAssetSharingAgreement struct {
 	RequestStatus    *string   `json:"request_status,omitempty"`
 	RequestType      *string   `json:"request_type,omitempty"`
 }
+
+var BusinessAssetSharingAgreementFields = struct {
+	ID               string
+	Initiator        string
+	Recipient        string
+	RelationshipType string
+	RequestStatus    string
+	RequestType      string
+}{
+	ID:               "id",
+	Initiator:        "initiator",
+	Recipient:        "recipient",
+	RelationshipType: "relationship_type",
+	RequestStatus:    "request_status",
+	RequestType:      "request_type",
+}

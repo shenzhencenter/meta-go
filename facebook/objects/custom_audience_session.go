@@ -14,3 +14,23 @@ type CustomAudienceSession struct {
 	Stage             *string  `json:"stage,omitempty"`
 	StartTime         *string  `json:"start_time,omitempty"`
 }
+
+var CustomAudienceSessionFields = struct {
+	EndTime           string
+	NumInvalidEntries string
+	NumMatched        string
+	NumReceived       string
+	Progress          string
+	SessionID         string
+	Stage             string
+	StartTime         string
+}{
+	EndTime:           "end_time",
+	NumInvalidEntries: "num_invalid_entries",
+	NumMatched:        "num_matched",
+	NumReceived:       "num_received",
+	Progress:          "progress",
+	SessionID:         "session_id",
+	Stage:             "stage",
+	StartTime:         "start_time",
+}

@@ -41,9 +41,14 @@ func DecodeGetAvatarBatchResponse(response *core.BatchResponse) (*objects.Avatar
 	return &out, nil
 }
 
-func GetAvatar(ctx context.Context, client *core.Client, id string, params GetAvatarParams) (*objects.Avatar, error) {
+func GetAvatarWithResponse(ctx context.Context, client *core.Client, id string, params GetAvatarParams) (*objects.Avatar, *core.Response, error) {
 	var out objects.Avatar
 	call := GetAvatarBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAvatar(ctx context.Context, client *core.Client, id string, params GetAvatarParams) (*objects.Avatar, error) {
+	out, _, err := GetAvatarWithResponse(ctx, client, id, params)
+	return out, err
 }

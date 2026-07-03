@@ -41,9 +41,14 @@ func DecodeGetCTXPartnerAppWelcomeMessageFlowBatchResponse(response *core.BatchR
 	return &out, nil
 }
 
-func GetCTXPartnerAppWelcomeMessageFlow(ctx context.Context, client *core.Client, id string, params GetCTXPartnerAppWelcomeMessageFlowParams) (*objects.CTXPartnerAppWelcomeMessageFlow, error) {
+func GetCTXPartnerAppWelcomeMessageFlowWithResponse(ctx context.Context, client *core.Client, id string, params GetCTXPartnerAppWelcomeMessageFlowParams) (*objects.CTXPartnerAppWelcomeMessageFlow, *core.Response, error) {
 	var out objects.CTXPartnerAppWelcomeMessageFlow
 	call := GetCTXPartnerAppWelcomeMessageFlowBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetCTXPartnerAppWelcomeMessageFlow(ctx context.Context, client *core.Client, id string, params GetCTXPartnerAppWelcomeMessageFlowParams) (*objects.CTXPartnerAppWelcomeMessageFlow, error) {
+	out, _, err := GetCTXPartnerAppWelcomeMessageFlowWithResponse(ctx, client, id, params)
+	return out, err
 }

@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetProductItemChannelsToIntegrityStatusParams struct {
@@ -43,11 +42,16 @@ func DecodeGetProductItemChannelsToIntegrityStatusBatchResponse(response *core.B
 	return &out, nil
 }
 
-func GetProductItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+func GetProductItemChannelsToIntegrityStatusWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], *core.Response, error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
 	call := GetProductItemChannelsToIntegrityStatusBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	out, _, err := GetProductItemChannelsToIntegrityStatusWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductItemOverrideDetailsParams struct {
@@ -92,11 +96,16 @@ func DecodeGetProductItemOverrideDetailsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetProductItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+func GetProductItemOverrideDetailsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], *core.Response, error) {
 	var out core.Cursor[objects.OverrideDetails]
 	call := GetProductItemOverrideDetailsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
+	out, _, err := GetProductItemOverrideDetailsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductItemProductSetsParams struct {
@@ -133,11 +142,16 @@ func DecodeGetProductItemProductSetsBatchResponse(response *core.BatchResponse) 
 	return &out, nil
 }
 
-func GetProductItemProductSets(ctx context.Context, client *core.Client, id string, params GetProductItemProductSetsParams) (*core.Cursor[objects.ProductSet], error) {
+func GetProductItemProductSetsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemProductSetsParams) (*core.Cursor[objects.ProductSet], *core.Response, error) {
 	var out core.Cursor[objects.ProductSet]
 	call := GetProductItemProductSetsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItemProductSets(ctx context.Context, client *core.Client, id string, params GetProductItemProductSetsParams) (*core.Cursor[objects.ProductSet], error) {
+	out, _, err := GetProductItemProductSetsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductItemVideosMetadataParams struct {
@@ -174,11 +188,16 @@ func DecodeGetProductItemVideosMetadataBatchResponse(response *core.BatchRespons
 	return &out, nil
 }
 
-func GetProductItemVideosMetadata(ctx context.Context, client *core.Client, id string, params GetProductItemVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+func GetProductItemVideosMetadataWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], *core.Response, error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
 	call := GetProductItemVideosMetadataBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItemVideosMetadata(ctx context.Context, client *core.Client, id string, params GetProductItemVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	out, _, err := GetProductItemVideosMetadataWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteProductItemParams struct {
@@ -215,11 +234,16 @@ func DecodeDeleteProductItemBatchResponse(response *core.BatchResponse) (*map[st
 	return &out, nil
 }
 
-func DeleteProductItem(ctx context.Context, client *core.Client, id string, params DeleteProductItemParams) (*map[string]interface{}, error) {
+func DeleteProductItemWithResponse(ctx context.Context, client *core.Client, id string, params DeleteProductItemParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteProductItemBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteProductItem(ctx context.Context, client *core.Client, id string, params DeleteProductItemParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteProductItemWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetProductItemParams struct {
@@ -276,11 +300,16 @@ func DecodeGetProductItemBatchResponse(response *core.BatchResponse) (*objects.P
 	return &out, nil
 }
 
-func GetProductItem(ctx context.Context, client *core.Client, id string, params GetProductItemParams) (*objects.ProductItem, error) {
+func GetProductItemWithResponse(ctx context.Context, client *core.Client, id string, params GetProductItemParams) (*objects.ProductItem, *core.Response, error) {
 	var out objects.ProductItem
 	call := GetProductItemBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductItem(ctx context.Context, client *core.Client, id string, params GetProductItemParams) (*objects.ProductItem, error) {
+	out, _, err := GetProductItemWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateProductItemParams struct {
@@ -352,8 +381,8 @@ type UpdateProductItemParams struct {
 	ReturnPolicyDays            *uint64                                  `facebook:"return_policy_days"`
 	RichTextDescription         *string                                  `facebook:"rich_text_description"`
 	SalePrice                   *uint64                                  `facebook:"sale_price"`
-	SalePriceEndDate            *time.Time                               `facebook:"sale_price_end_date"`
-	SalePriceStartDate          *time.Time                               `facebook:"sale_price_start_date"`
+	SalePriceEndDate            *core.Time                               `facebook:"sale_price_end_date"`
+	SalePriceStartDate          *core.Time                               `facebook:"sale_price_start_date"`
 	ShortDescription            *string                                  `facebook:"short_description"`
 	Size                        *string                                  `facebook:"size"`
 	StartDate                   *string                                  `facebook:"start_date"`
@@ -633,9 +662,14 @@ func DecodeUpdateProductItemBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func UpdateProductItem(ctx context.Context, client *core.Client, id string, params UpdateProductItemParams) (*objects.ProductItem, error) {
+func UpdateProductItemWithResponse(ctx context.Context, client *core.Client, id string, params UpdateProductItemParams) (*objects.ProductItem, *core.Response, error) {
 	var out objects.ProductItem
 	call := UpdateProductItemBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateProductItem(ctx context.Context, client *core.Client, id string, params UpdateProductItemParams) (*objects.ProductItem, error) {
+	out, _, err := UpdateProductItemWithResponse(ctx, client, id, params)
+	return out, err
 }

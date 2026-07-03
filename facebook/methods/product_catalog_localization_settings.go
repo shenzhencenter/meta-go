@@ -41,9 +41,14 @@ func DecodeGetProductCatalogLocalizationSettingsBatchResponse(response *core.Bat
 	return &out, nil
 }
 
-func GetProductCatalogLocalizationSettings(ctx context.Context, client *core.Client, id string, params GetProductCatalogLocalizationSettingsParams) (*objects.ProductCatalogLocalizationSettings, error) {
+func GetProductCatalogLocalizationSettingsWithResponse(ctx context.Context, client *core.Client, id string, params GetProductCatalogLocalizationSettingsParams) (*objects.ProductCatalogLocalizationSettings, *core.Response, error) {
 	var out objects.ProductCatalogLocalizationSettings
 	call := GetProductCatalogLocalizationSettingsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetProductCatalogLocalizationSettings(ctx context.Context, client *core.Client, id string, params GetProductCatalogLocalizationSettingsParams) (*objects.ProductCatalogLocalizationSettings, error) {
+	out, _, err := GetProductCatalogLocalizationSettingsWithResponse(ctx, client, id, params)
+	return out, err
 }

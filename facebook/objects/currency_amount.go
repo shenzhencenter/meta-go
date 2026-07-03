@@ -6,3 +6,15 @@ type CurrencyAmount struct {
 	Currency           *string `json:"currency,omitempty"`
 	OffsettedAmount    *string `json:"offsetted_amount,omitempty"`
 }
+
+var CurrencyAmountFields = struct {
+	Amount             string
+	AmountInHundredths string
+	Currency           string
+	OffsettedAmount    string
+}{
+	Amount:             "amount",
+	AmountInHundredths: "amount_in_hundredths",
+	Currency:           "currency",
+	OffsettedAmount:    "offsetted_amount",
+}

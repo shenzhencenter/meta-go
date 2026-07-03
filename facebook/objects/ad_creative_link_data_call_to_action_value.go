@@ -22,3 +22,39 @@ type AdCreativeLinkDataCallToActionValue struct {
 	ProductLink           *string   `json:"product_link,omitempty"`
 	WhatsappNumber        *string   `json:"whatsapp_number,omitempty"`
 }
+
+var AdCreativeLinkDataCallToActionValueFields = struct {
+	AndroidURL            string
+	AppDestination        string
+	AppLink               string
+	Application           string
+	EventID               string
+	IosURL                string
+	LandOnWhatsappCatalog string
+	LandOnWhatsappProfile string
+	LeadGenFormID         string
+	Link                  string
+	LinkCaption           string
+	LinkFormat            string
+	ObjectStoreUrls       string
+	Page                  string
+	ProductLink           string
+	WhatsappNumber        string
+}{
+	AndroidURL:            "android_url",
+	AppDestination:        "app_destination",
+	AppLink:               "app_link",
+	Application:           "application",
+	EventID:               "event_id",
+	IosURL:                "ios_url",
+	LandOnWhatsappCatalog: "land_on_whatsapp_catalog",
+	LandOnWhatsappProfile: "land_on_whatsapp_profile",
+	LeadGenFormID:         "lead_gen_form_id",
+	Link:                  "link",
+	LinkCaption:           "link_caption",
+	LinkFormat:            "link_format",
+	ObjectStoreUrls:       "object_store_urls",
+	Page:                  "page",
+	ProductLink:           "product_link",
+	WhatsappNumber:        "whatsapp_number",
+}

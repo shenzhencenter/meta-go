@@ -41,11 +41,16 @@ func DecodeGetInstagramUserUpcomingEventsBatchResponse(response *core.BatchRespo
 	return &out, nil
 }
 
-func GetInstagramUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params GetInstagramUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], error) {
+func GetInstagramUserUpcomingEventsWithResponse(ctx context.Context, client *core.Client, id string, params GetInstagramUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], *core.Response, error) {
 	var out core.Cursor[objects.IGUpcomingEvent]
 	call := GetInstagramUserUpcomingEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetInstagramUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params GetInstagramUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], error) {
+	out, _, err := GetInstagramUserUpcomingEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetInstagramUserParams struct {
@@ -86,9 +91,14 @@ func DecodeGetInstagramUserBatchResponse(response *core.BatchResponse) (*objects
 	return &out, nil
 }
 
-func GetInstagramUser(ctx context.Context, client *core.Client, id string, params GetInstagramUserParams) (*objects.InstagramUser, error) {
+func GetInstagramUserWithResponse(ctx context.Context, client *core.Client, id string, params GetInstagramUserParams) (*objects.InstagramUser, *core.Response, error) {
 	var out objects.InstagramUser
 	call := GetInstagramUserBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetInstagramUser(ctx context.Context, client *core.Client, id string, params GetInstagramUserParams) (*objects.InstagramUser, error) {
+	out, _, err := GetInstagramUserWithResponse(ctx, client, id, params)
+	return out, err
 }

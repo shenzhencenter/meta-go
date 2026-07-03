@@ -10,3 +10,15 @@ type AudienceOverlap struct {
 	Name           *string  `json:"name,omitempty"`
 	Overlap        *int     `json:"overlap,omitempty"`
 }
+
+var AudienceOverlapFields = struct {
+	EstimatedReach string
+	ID             string
+	Name           string
+	Overlap        string
+}{
+	EstimatedReach: "estimated_reach",
+	ID:             "id",
+	Name:           "name",
+	Overlap:        "overlap",
+}

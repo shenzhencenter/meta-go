@@ -11,3 +11,17 @@ type ThirdPartyMeasurementReportDataset struct {
 	Product  *string                   `json:"product,omitempty"`
 	Schema   *[]map[string]interface{} `json:"schema,omitempty"`
 }
+
+var ThirdPartyMeasurementReportDatasetFields = struct {
+	Category string
+	ID       string
+	Partner  string
+	Product  string
+	Schema   string
+}{
+	Category: "category",
+	ID:       "id",
+	Partner:  "partner",
+	Product:  "product",
+	Schema:   "schema",
+}

@@ -13,3 +13,21 @@ type AdCreativeMediaSourcingSpec struct {
 	Titles          *[]map[string]interface{} `json:"titles,omitempty"`
 	Videos          *[]map[string]interface{} `json:"videos,omitempty"`
 }
+
+var AdCreativeMediaSourcingSpecFields = struct {
+	Bodies          string
+	Descriptions    string
+	Images          string
+	PushMetadataIds string
+	RelatedMedia    string
+	Titles          string
+	Videos          string
+}{
+	Bodies:          "bodies",
+	Descriptions:    "descriptions",
+	Images:          "images",
+	PushMetadataIds: "push_metadata_ids",
+	RelatedMedia:    "related_media",
+	Titles:          "titles",
+	Videos:          "videos",
+}

@@ -2,11 +2,10 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type MusicVideoCopyright struct {
-	CreationTime          *time.Time                   `json:"creation_time,omitempty"`
+	CreationTime          *core.Time                   `json:"creation_time,omitempty"`
 	DisplayedMatchesCount *int                         `json:"displayed_matches_count,omitempty"`
 	ID                    *core.ID                     `json:"id,omitempty"`
 	InConflict            *bool                        `json:"in_conflict,omitempty"`
@@ -16,8 +15,40 @@ type MusicVideoCopyright struct {
 	ReferenceFileStatus   *string                      `json:"reference_file_status,omitempty"`
 	RidgeMonitoringStatus *string                      `json:"ridge_monitoring_status,omitempty"`
 	Tags                  *[]string                    `json:"tags,omitempty"`
-	UpdateTime            *time.Time                   `json:"update_time,omitempty"`
+	UpdateTime            *core.Time                   `json:"update_time,omitempty"`
 	VideoAsset            *CopyrightReferenceContainer `json:"video_asset,omitempty"`
 	WhitelistedFbUsers    *[]map[string]interface{}    `json:"whitelisted_fb_users,omitempty"`
 	WhitelistedIgUsers    *[]string                    `json:"whitelisted_ig_users,omitempty"`
+}
+
+var MusicVideoCopyrightFields = struct {
+	CreationTime          string
+	DisplayedMatchesCount string
+	ID                    string
+	InConflict            string
+	Isrc                  string
+	MatchRule             string
+	OwnershipCountries    string
+	ReferenceFileStatus   string
+	RidgeMonitoringStatus string
+	Tags                  string
+	UpdateTime            string
+	VideoAsset            string
+	WhitelistedFbUsers    string
+	WhitelistedIgUsers    string
+}{
+	CreationTime:          "creation_time",
+	DisplayedMatchesCount: "displayed_matches_count",
+	ID:                    "id",
+	InConflict:            "in_conflict",
+	Isrc:                  "isrc",
+	MatchRule:             "match_rule",
+	OwnershipCountries:    "ownership_countries",
+	ReferenceFileStatus:   "reference_file_status",
+	RidgeMonitoringStatus: "ridge_monitoring_status",
+	Tags:                  "tags",
+	UpdateTime:            "update_time",
+	VideoAsset:            "video_asset",
+	WhitelistedFbUsers:    "whitelisted_fb_users",
+	WhitelistedIgUsers:    "whitelisted_ig_users",
 }

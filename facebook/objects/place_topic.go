@@ -13,3 +13,21 @@ type PlaceTopic struct {
 	PluralName       *string   `json:"plural_name,omitempty"`
 	TopSubtopicNames *[]string `json:"top_subtopic_names,omitempty"`
 }
+
+var PlaceTopicFields = struct {
+	Count            string
+	HasChildren      string
+	IconURL          string
+	ID               string
+	Name             string
+	PluralName       string
+	TopSubtopicNames string
+}{
+	Count:            "count",
+	HasChildren:      "has_children",
+	IconURL:          "icon_url",
+	ID:               "id",
+	Name:             "name",
+	PluralName:       "plural_name",
+	TopSubtopicNames: "top_subtopic_names",
+}

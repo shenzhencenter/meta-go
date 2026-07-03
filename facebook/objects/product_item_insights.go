@@ -7,3 +7,17 @@ type ProductItemInsights struct {
 	PurchaseCount     *int `json:"purchase_count,omitempty"`
 	ViewContentCount  *int `json:"view_content_count,omitempty"`
 }
+
+var ProductItemInsightsFields = struct {
+	AdClickCount      string
+	AdImpressionCount string
+	AddToCartCount    string
+	PurchaseCount     string
+	ViewContentCount  string
+}{
+	AdClickCount:      "ad_click_count",
+	AdImpressionCount: "ad_impression_count",
+	AddToCartCount:    "add_to_cart_count",
+	PurchaseCount:     "purchase_count",
+	ViewContentCount:  "view_content_count",
+}

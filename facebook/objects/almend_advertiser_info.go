@@ -11,3 +11,17 @@ type ALMEndAdvertiserInfo struct {
 	ParentAdvertiserName *string   `json:"parent_advertiser_name,omitempty"`
 	Tag                  *[]string `json:"tag,omitempty"`
 }
+
+var ALMEndAdvertiserInfoFields = struct {
+	EstimatedAdBudget    string
+	ID                   string
+	ParentAdvertiserID   string
+	ParentAdvertiserName string
+	Tag                  string
+}{
+	EstimatedAdBudget:    "estimated_ad_budget",
+	ID:                   "id",
+	ParentAdvertiserID:   "parent_advertiser_id",
+	ParentAdvertiserName: "parent_advertiser_name",
+	Tag:                  "tag",
+}

@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type GetPostAttachmentsParams struct {
@@ -43,18 +42,23 @@ func DecodeGetPostAttachmentsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetPostAttachments(ctx context.Context, client *core.Client, id string, params GetPostAttachmentsParams) (*core.Cursor[objects.StoryAttachment], error) {
+func GetPostAttachmentsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostAttachmentsParams) (*core.Cursor[objects.StoryAttachment], *core.Response, error) {
 	var out core.Cursor[objects.StoryAttachment]
 	call := GetPostAttachmentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostAttachments(ctx context.Context, client *core.Client, id string, params GetPostAttachmentsParams) (*core.Cursor[objects.StoryAttachment], error) {
+	out, _, err := GetPostAttachmentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostCommentsParams struct {
 	Filter     *enums.PostcommentsFilterEnumParam     `facebook:"filter"`
 	LiveFilter *enums.PostcommentsLiveFilterEnumParam `facebook:"live_filter"`
 	Order      *enums.PostcommentsOrderEnumParam      `facebook:"order"`
-	Since      *time.Time                             `facebook:"since"`
+	Since      *core.Time                             `facebook:"since"`
 	Extra      core.Params                            `facebook:"-"`
 }
 
@@ -100,11 +104,16 @@ func DecodeGetPostCommentsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPostComments(ctx context.Context, client *core.Client, id string, params GetPostCommentsParams) (*core.Cursor[objects.Comment], error) {
+func GetPostCommentsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostCommentsParams) (*core.Cursor[objects.Comment], *core.Response, error) {
 	var out core.Cursor[objects.Comment]
 	call := GetPostCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostComments(ctx context.Context, client *core.Client, id string, params GetPostCommentsParams) (*core.Cursor[objects.Comment], error) {
+	out, _, err := GetPostCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePostCommentsParams struct {
@@ -185,11 +194,16 @@ func DecodeCreatePostCommentsBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreatePostComments(ctx context.Context, client *core.Client, id string, params CreatePostCommentsParams) (*objects.Comment, error) {
+func CreatePostCommentsWithResponse(ctx context.Context, client *core.Client, id string, params CreatePostCommentsParams) (*objects.Comment, *core.Response, error) {
 	var out objects.Comment
 	call := CreatePostCommentsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePostComments(ctx context.Context, client *core.Client, id string, params CreatePostCommentsParams) (*objects.Comment, error) {
+	out, _, err := CreatePostCommentsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostDynamicPostsParams struct {
@@ -226,19 +240,24 @@ func DecodeGetPostDynamicPostsBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetPostDynamicPosts(ctx context.Context, client *core.Client, id string, params GetPostDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], error) {
+func GetPostDynamicPostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], *core.Response, error) {
 	var out core.Cursor[objects.RTBDynamicPost]
 	call := GetPostDynamicPostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostDynamicPosts(ctx context.Context, client *core.Client, id string, params GetPostDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], error) {
+	out, _, err := GetPostDynamicPostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostInsightsParams struct {
 	DatePreset *enums.PostinsightsDatePresetEnumParam `facebook:"date_preset"`
 	Metric     *[]map[string]interface{}              `facebook:"metric"`
 	Period     *enums.PostinsightsPeriodEnumParam     `facebook:"period"`
-	Since      *time.Time                             `facebook:"since"`
-	Until      *time.Time                             `facebook:"until"`
+	Since      *core.Time                             `facebook:"since"`
+	Until      *core.Time                             `facebook:"until"`
 	Extra      core.Params                            `facebook:"-"`
 }
 
@@ -287,11 +306,16 @@ func DecodeGetPostInsightsBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetPostInsights(ctx context.Context, client *core.Client, id string, params GetPostInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+func GetPostInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostInsightsParams) (*core.Cursor[objects.InsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.InsightsResult]
 	call := GetPostInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostInsights(ctx context.Context, client *core.Client, id string, params GetPostInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
+	out, _, err := GetPostInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePostLikesParams struct {
@@ -340,11 +364,16 @@ func DecodeDeletePostLikesBatchResponse(response *core.BatchResponse) (*map[stri
 	return &out, nil
 }
 
-func DeletePostLikes(ctx context.Context, client *core.Client, id string, params DeletePostLikesParams) (*map[string]interface{}, error) {
+func DeletePostLikesWithResponse(ctx context.Context, client *core.Client, id string, params DeletePostLikesParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePostLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePostLikes(ctx context.Context, client *core.Client, id string, params DeletePostLikesParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePostLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreatePostLikesParams struct {
@@ -397,11 +426,16 @@ func DecodeCreatePostLikesBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func CreatePostLikes(ctx context.Context, client *core.Client, id string, params CreatePostLikesParams) (*objects.Post, error) {
+func CreatePostLikesWithResponse(ctx context.Context, client *core.Client, id string, params CreatePostLikesParams) (*objects.Post, *core.Response, error) {
 	var out objects.Post
 	call := CreatePostLikesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreatePostLikes(ctx context.Context, client *core.Client, id string, params CreatePostLikesParams) (*objects.Post, error) {
+	out, _, err := CreatePostLikesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostReactionsParams struct {
@@ -442,11 +476,16 @@ func DecodeGetPostReactionsBatchResponse(response *core.BatchResponse) (*core.Cu
 	return &out, nil
 }
 
-func GetPostReactions(ctx context.Context, client *core.Client, id string, params GetPostReactionsParams) (*core.Cursor[objects.Profile], error) {
+func GetPostReactionsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostReactionsParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetPostReactionsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostReactions(ctx context.Context, client *core.Client, id string, params GetPostReactionsParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetPostReactionsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostSharedpostsParams struct {
@@ -483,11 +522,16 @@ func DecodeGetPostSharedpostsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetPostSharedposts(ctx context.Context, client *core.Client, id string, params GetPostSharedpostsParams) (*core.Cursor[objects.Post], error) {
+func GetPostSharedpostsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostSharedpostsParams) (*core.Cursor[objects.Post], *core.Response, error) {
 	var out core.Cursor[objects.Post]
 	call := GetPostSharedpostsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostSharedposts(ctx context.Context, client *core.Client, id string, params GetPostSharedpostsParams) (*core.Cursor[objects.Post], error) {
+	out, _, err := GetPostSharedpostsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostSponsorTagsParams struct {
@@ -524,11 +568,16 @@ func DecodeGetPostSponsorTagsBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetPostSponsorTags(ctx context.Context, client *core.Client, id string, params GetPostSponsorTagsParams) (*core.Cursor[objects.Page], error) {
+func GetPostSponsorTagsWithResponse(ctx context.Context, client *core.Client, id string, params GetPostSponsorTagsParams) (*core.Cursor[objects.Page], *core.Response, error) {
 	var out core.Cursor[objects.Page]
 	call := GetPostSponsorTagsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostSponsorTags(ctx context.Context, client *core.Client, id string, params GetPostSponsorTagsParams) (*core.Cursor[objects.Page], error) {
+	out, _, err := GetPostSponsorTagsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostToParams struct {
@@ -565,11 +614,16 @@ func DecodeGetPostToBatchResponse(response *core.BatchResponse) (*core.Cursor[ob
 	return &out, nil
 }
 
-func GetPostTo(ctx context.Context, client *core.Client, id string, params GetPostToParams) (*core.Cursor[objects.Profile], error) {
+func GetPostToWithResponse(ctx context.Context, client *core.Client, id string, params GetPostToParams) (*core.Cursor[objects.Profile], *core.Response, error) {
 	var out core.Cursor[objects.Profile]
 	call := GetPostToBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPostTo(ctx context.Context, client *core.Client, id string, params GetPostToParams) (*core.Cursor[objects.Profile], error) {
+	out, _, err := GetPostToWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeletePostParams struct {
@@ -606,11 +660,16 @@ func DecodeDeletePostBatchResponse(response *core.BatchResponse) (*map[string]in
 	return &out, nil
 }
 
-func DeletePost(ctx context.Context, client *core.Client, id string, params DeletePostParams) (*map[string]interface{}, error) {
+func DeletePostWithResponse(ctx context.Context, client *core.Client, id string, params DeletePostParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeletePostBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeletePost(ctx context.Context, client *core.Client, id string, params DeletePostParams) (*map[string]interface{}, error) {
+	out, _, err := DeletePostWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetPostParams struct {
@@ -655,16 +714,21 @@ func DecodeGetPostBatchResponse(response *core.BatchResponse) (*objects.Post, er
 	return &out, nil
 }
 
-func GetPost(ctx context.Context, client *core.Client, id string, params GetPostParams) (*objects.Post, error) {
+func GetPostWithResponse(ctx context.Context, client *core.Client, id string, params GetPostParams) (*objects.Post, *core.Response, error) {
 	var out objects.Post
 	call := GetPostBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetPost(ctx context.Context, client *core.Client, id string, params GetPostParams) (*objects.Post, error) {
+	out, _, err := GetPostWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdatePostParams struct {
 	AttachedMedia               *[]map[string]interface{}           `facebook:"attached_media"`
-	BackdatedTime               *time.Time                          `facebook:"backdated_time"`
+	BackdatedTime               *core.Time                          `facebook:"backdated_time"`
 	BackdatedTimeGranularity    *enums.PostBackdatedTimeGranularity `facebook:"backdated_time_granularity"`
 	ComposerSessionID           *core.ID                            `facebook:"composer_session_id"`
 	DirectShareStatus           *uint64                             `facebook:"direct_share_status"`
@@ -820,9 +884,14 @@ func DecodeUpdatePostBatchResponse(response *core.BatchResponse) (*objects.Post,
 	return &out, nil
 }
 
-func UpdatePost(ctx context.Context, client *core.Client, id string, params UpdatePostParams) (*objects.Post, error) {
+func UpdatePostWithResponse(ctx context.Context, client *core.Client, id string, params UpdatePostParams) (*objects.Post, *core.Response, error) {
 	var out objects.Post
 	call := UpdatePostBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdatePost(ctx context.Context, client *core.Client, id string, params UpdatePostParams) (*objects.Post, error) {
+	out, _, err := UpdatePostWithResponse(ctx, client, id, params)
+	return out, err
 }

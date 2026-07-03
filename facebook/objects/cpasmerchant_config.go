@@ -13,3 +13,21 @@ type CPASMerchantConfig struct {
 	OutcomesComplianceStatus *[]map[string]map[string]interface{} `json:"outcomes_compliance_status,omitempty"`
 	QualifiedToOnboard       *bool                                `json:"qualified_to_onboard,omitempty"`
 }
+
+var CPASMerchantConfigFields = struct {
+	AcceptedTos              string
+	BetaFeatures             string
+	BusinessOutcomesStatus   string
+	ID                       string
+	IsTestMerchant           string
+	OutcomesComplianceStatus string
+	QualifiedToOnboard       string
+}{
+	AcceptedTos:              "accepted_tos",
+	BetaFeatures:             "beta_features",
+	BusinessOutcomesStatus:   "business_outcomes_status",
+	ID:                       "id",
+	IsTestMerchant:           "is_test_merchant",
+	OutcomesComplianceStatus: "outcomes_compliance_status",
+	QualifiedToOnboard:       "qualified_to_onboard",
+}

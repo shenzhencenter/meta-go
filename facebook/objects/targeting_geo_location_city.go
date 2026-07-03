@@ -13,3 +13,21 @@ type TargetingGeoLocationCity struct {
 	Region       *string  `json:"region,omitempty"`
 	RegionID     *core.ID `json:"region_id,omitempty"`
 }
+
+var TargetingGeoLocationCityFields = struct {
+	Country      string
+	DistanceUnit string
+	Key          string
+	Name         string
+	Radius       string
+	Region       string
+	RegionID     string
+}{
+	Country:      "country",
+	DistanceUnit: "distance_unit",
+	Key:          "key",
+	Name:         "name",
+	Radius:       "radius",
+	Region:       "region",
+	RegionID:     "region_id",
+}

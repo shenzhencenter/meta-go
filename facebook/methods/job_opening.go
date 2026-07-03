@@ -41,9 +41,14 @@ func DecodeGetJobOpeningBatchResponse(response *core.BatchResponse) (*objects.Jo
 	return &out, nil
 }
 
-func GetJobOpening(ctx context.Context, client *core.Client, id string, params GetJobOpeningParams) (*objects.JobOpening, error) {
+func GetJobOpeningWithResponse(ctx context.Context, client *core.Client, id string, params GetJobOpeningParams) (*objects.JobOpening, *core.Response, error) {
 	var out objects.JobOpening
 	call := GetJobOpeningBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetJobOpening(ctx context.Context, client *core.Client, id string, params GetJobOpeningParams) (*objects.JobOpening, error) {
+	out, _, err := GetJobOpeningWithResponse(ctx, client, id, params)
+	return out, err
 }

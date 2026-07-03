@@ -17,3 +17,29 @@ type AdAssetCustomizationRuleCustomizationSpec struct {
 	PublisherPlatforms       *[]string                                                         `json:"publisher_platforms,omitempty"`
 	ThreadsPositions         *[]string                                                         `json:"threads_positions,omitempty"`
 }
+
+var AdAssetCustomizationRuleCustomizationSpecFields = struct {
+	AgeMax                   string
+	AgeMin                   string
+	AudienceNetworkPositions string
+	DevicePlatforms          string
+	FacebookPositions        string
+	GeoLocations             string
+	InstagramPositions       string
+	Locales                  string
+	MessengerPositions       string
+	PublisherPlatforms       string
+	ThreadsPositions         string
+}{
+	AgeMax:                   "age_max",
+	AgeMin:                   "age_min",
+	AudienceNetworkPositions: "audience_network_positions",
+	DevicePlatforms:          "device_platforms",
+	FacebookPositions:        "facebook_positions",
+	GeoLocations:             "geo_locations",
+	InstagramPositions:       "instagram_positions",
+	Locales:                  "locales",
+	MessengerPositions:       "messenger_positions",
+	PublisherPlatforms:       "publisher_platforms",
+	ThreadsPositions:         "threads_positions",
+}

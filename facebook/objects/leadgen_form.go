@@ -2,14 +2,13 @@ package objects
 
 import (
 	core "github.com/shenzhencenter/meta-go/facebook"
-	"time"
 )
 
 type LeadgenForm struct {
 	AllowOrganicLead                 *bool                `json:"allow_organic_lead,omitempty"`
 	BlockDisplayForNonTargetedViewer *bool                `json:"block_display_for_non_targeted_viewer,omitempty"`
 	ContextCard                      *LeadGenContextCard  `json:"context_card,omitempty"`
-	CreatedTime                      *time.Time           `json:"created_time,omitempty"`
+	CreatedTime                      *core.Time           `json:"created_time,omitempty"`
 	Creator                          *User                `json:"creator,omitempty"`
 	ExpiredLeadsCount                *uint64              `json:"expired_leads_count,omitempty"`
 	FollowUpActionText               *string              `json:"follow_up_action_text,omitempty"`
@@ -29,4 +28,54 @@ type LeadgenForm struct {
 	Status                           *string              `json:"status,omitempty"`
 	ThankYouPage                     *LeadGenThankYouPage `json:"thank_you_page,omitempty"`
 	TrackingParameters               *[]map[string]string `json:"tracking_parameters,omitempty"`
+}
+
+var LeadgenFormFields = struct {
+	AllowOrganicLead                 string
+	BlockDisplayForNonTargetedViewer string
+	ContextCard                      string
+	CreatedTime                      string
+	Creator                          string
+	ExpiredLeadsCount                string
+	FollowUpActionText               string
+	FollowUpActionURL                string
+	ID                               string
+	IsOptimizedForQuality            string
+	LeadsCount                       string
+	LegalContent                     string
+	Locale                           string
+	Name                             string
+	OrganicLeadsCount                string
+	Page                             string
+	PageID                           string
+	PrivacyPolicyURL                 string
+	QuestionPageCustomHeadline       string
+	Questions                        string
+	Status                           string
+	ThankYouPage                     string
+	TrackingParameters               string
+}{
+	AllowOrganicLead:                 "allow_organic_lead",
+	BlockDisplayForNonTargetedViewer: "block_display_for_non_targeted_viewer",
+	ContextCard:                      "context_card",
+	CreatedTime:                      "created_time",
+	Creator:                          "creator",
+	ExpiredLeadsCount:                "expired_leads_count",
+	FollowUpActionText:               "follow_up_action_text",
+	FollowUpActionURL:                "follow_up_action_url",
+	ID:                               "id",
+	IsOptimizedForQuality:            "is_optimized_for_quality",
+	LeadsCount:                       "leads_count",
+	LegalContent:                     "legal_content",
+	Locale:                           "locale",
+	Name:                             "name",
+	OrganicLeadsCount:                "organic_leads_count",
+	Page:                             "page",
+	PageID:                           "page_id",
+	PrivacyPolicyURL:                 "privacy_policy_url",
+	QuestionPageCustomHeadline:       "question_page_custom_headline",
+	Questions:                        "questions",
+	Status:                           "status",
+	ThankYouPage:                     "thank_you_page",
+	TrackingParameters:               "tracking_parameters",
 }

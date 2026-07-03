@@ -42,11 +42,16 @@ func DecodeGetIGUserExportForCAMBrandedContentMediaBatchResponse(response *core.
 	return &out, nil
 }
 
-func GetIGUserExportForCAMBrandedContentMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMBrandedContentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+func GetIGUserExportForCAMBrandedContentMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMBrandedContentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], *core.Response, error) {
 	var out core.Cursor[objects.IGMediaExportForCAM]
 	call := GetIGUserExportForCAMBrandedContentMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserExportForCAMBrandedContentMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMBrandedContentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+	out, _, err := GetIGUserExportForCAMBrandedContentMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserExportForCAMInsightsParams struct {
@@ -99,11 +104,16 @@ func DecodeGetIGUserExportForCAMInsightsBatchResponse(response *core.BatchRespon
 	return &out, nil
 }
 
-func GetIGUserExportForCAMInsights(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMInsightsParams) (*core.Cursor[objects.IGUserExportForCAMInsightsResult], error) {
+func GetIGUserExportForCAMInsightsWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMInsightsParams) (*core.Cursor[objects.IGUserExportForCAMInsightsResult], *core.Response, error) {
 	var out core.Cursor[objects.IGUserExportForCAMInsightsResult]
 	call := GetIGUserExportForCAMInsightsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserExportForCAMInsights(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMInsightsParams) (*core.Cursor[objects.IGUserExportForCAMInsightsResult], error) {
+	out, _, err := GetIGUserExportForCAMInsightsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserExportForCAMPastPartnershipAdsMediaParams struct {
@@ -140,11 +150,16 @@ func DecodeGetIGUserExportForCAMPastPartnershipAdsMediaBatchResponse(response *c
 	return &out, nil
 }
 
-func GetIGUserExportForCAMPastPartnershipAdsMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMPastPartnershipAdsMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+func GetIGUserExportForCAMPastPartnershipAdsMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMPastPartnershipAdsMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], *core.Response, error) {
 	var out core.Cursor[objects.IGMediaExportForCAM]
 	call := GetIGUserExportForCAMPastPartnershipAdsMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserExportForCAMPastPartnershipAdsMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMPastPartnershipAdsMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+	out, _, err := GetIGUserExportForCAMPastPartnershipAdsMediaWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGUserExportForCAMRecentMediaParams struct {
@@ -181,9 +196,14 @@ func DecodeGetIGUserExportForCAMRecentMediaBatchResponse(response *core.BatchRes
 	return &out, nil
 }
 
-func GetIGUserExportForCAMRecentMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMRecentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+func GetIGUserExportForCAMRecentMediaWithResponse(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMRecentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], *core.Response, error) {
 	var out core.Cursor[objects.IGMediaExportForCAM]
 	call := GetIGUserExportForCAMRecentMediaBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGUserExportForCAMRecentMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMRecentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+	out, _, err := GetIGUserExportForCAMRecentMediaWithResponse(ctx, client, id, params)
+	return out, err
 }

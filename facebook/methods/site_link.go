@@ -41,9 +41,14 @@ func DecodeGetSiteLinkBatchResponse(response *core.BatchResponse) (*objects.Site
 	return &out, nil
 }
 
-func GetSiteLink(ctx context.Context, client *core.Client, id string, params GetSiteLinkParams) (*objects.SiteLink, error) {
+func GetSiteLinkWithResponse(ctx context.Context, client *core.Client, id string, params GetSiteLinkParams) (*objects.SiteLink, *core.Response, error) {
 	var out objects.SiteLink
 	call := GetSiteLinkBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetSiteLink(ctx context.Context, client *core.Client, id string, params GetSiteLinkParams) (*objects.SiteLink, error) {
+	out, _, err := GetSiteLinkWithResponse(ctx, client, id, params)
+	return out, err
 }

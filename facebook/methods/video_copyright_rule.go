@@ -41,9 +41,14 @@ func DecodeGetVideoCopyrightRuleBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func GetVideoCopyrightRule(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightRuleParams) (*objects.VideoCopyrightRule, error) {
+func GetVideoCopyrightRuleWithResponse(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightRuleParams) (*objects.VideoCopyrightRule, *core.Response, error) {
 	var out objects.VideoCopyrightRule
 	call := GetVideoCopyrightRuleBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetVideoCopyrightRule(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightRuleParams) (*objects.VideoCopyrightRule, error) {
+	out, _, err := GetVideoCopyrightRuleWithResponse(ctx, client, id, params)
+	return out, err
 }

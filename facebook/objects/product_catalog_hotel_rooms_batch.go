@@ -6,3 +6,15 @@ type ProductCatalogHotelRoomsBatch struct {
 	Handle           *string                   `json:"handle,omitempty"`
 	Status           *string                   `json:"status,omitempty"`
 }
+
+var ProductCatalogHotelRoomsBatchFields = struct {
+	Errors           string
+	ErrorsTotalCount string
+	Handle           string
+	Status           string
+}{
+	Errors:           "errors",
+	ErrorsTotalCount: "errors_total_count",
+	Handle:           "handle",
+	Status:           "status",
+}

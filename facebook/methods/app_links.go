@@ -41,9 +41,14 @@ func DecodeGetAppLinksBatchResponse(response *core.BatchResponse) (*objects.AppL
 	return &out, nil
 }
 
-func GetAppLinks(ctx context.Context, client *core.Client, id string, params GetAppLinksParams) (*objects.AppLinks, error) {
+func GetAppLinksWithResponse(ctx context.Context, client *core.Client, id string, params GetAppLinksParams) (*objects.AppLinks, *core.Response, error) {
 	var out objects.AppLinks
 	call := GetAppLinksBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetAppLinks(ctx context.Context, client *core.Client, id string, params GetAppLinksParams) (*objects.AppLinks, error) {
+	out, _, err := GetAppLinksWithResponse(ctx, client, id, params)
+	return out, err
 }

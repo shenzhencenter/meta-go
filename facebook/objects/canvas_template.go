@@ -20,3 +20,35 @@ type CanvasTemplate struct {
 	SubVerticals          *[]string                            `json:"sub_verticals,omitempty"`
 	Verticals             *[]map[string]string                 `json:"verticals,omitempty"`
 }
+
+var CanvasTemplateFields = struct {
+	Channels              string
+	Description           string
+	Document              string
+	ID                    string
+	IsMultiTabSupportable string
+	IsNew                 string
+	Name                  string
+	Objectives            string
+	OwnerID               string
+	RequiredCapabilities  string
+	SnapshotPhoto         string
+	Status                string
+	SubVerticals          string
+	Verticals             string
+}{
+	Channels:              "channels",
+	Description:           "description",
+	Document:              "document",
+	ID:                    "id",
+	IsMultiTabSupportable: "is_multi_tab_supportable",
+	IsNew:                 "is_new",
+	Name:                  "name",
+	Objectives:            "objectives",
+	OwnerID:               "owner_id",
+	RequiredCapabilities:  "required_capabilities",
+	SnapshotPhoto:         "snapshot_photo",
+	Status:                "status",
+	SubVerticals:          "sub_verticals",
+	Verticals:             "verticals",
+}

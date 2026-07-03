@@ -6,7 +6,6 @@ import (
 	"github.com/shenzhencenter/meta-go/facebook/enums"
 	"github.com/shenzhencenter/meta-go/facebook/objects"
 	"net/http"
-	"time"
 )
 
 type DeleteGroupAdminsParams struct {
@@ -45,11 +44,16 @@ func DecodeDeleteGroupAdminsBatchResponse(response *core.BatchResponse) (*map[st
 	return &out, nil
 }
 
-func DeleteGroupAdmins(ctx context.Context, client *core.Client, id string, params DeleteGroupAdminsParams) (*map[string]interface{}, error) {
+func DeleteGroupAdminsWithResponse(ctx context.Context, client *core.Client, id string, params DeleteGroupAdminsParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteGroupAdminsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteGroupAdmins(ctx context.Context, client *core.Client, id string, params DeleteGroupAdminsParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteGroupAdminsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupAdminsParams struct {
@@ -88,11 +92,16 @@ func DecodeCreateGroupAdminsBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateGroupAdmins(ctx context.Context, client *core.Client, id string, params CreateGroupAdminsParams) (*objects.Group, error) {
+func CreateGroupAdminsWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupAdminsParams) (*objects.Group, *core.Response, error) {
 	var out objects.Group
 	call := CreateGroupAdminsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupAdmins(ctx context.Context, client *core.Client, id string, params CreateGroupAdminsParams) (*objects.Group, error) {
+	out, _, err := CreateGroupAdminsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupAlbumsParams struct {
@@ -129,11 +138,16 @@ func DecodeGetGroupAlbumsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetGroupAlbums(ctx context.Context, client *core.Client, id string, params GetGroupAlbumsParams) (*core.Cursor[objects.Album], error) {
+func GetGroupAlbumsWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupAlbumsParams) (*core.Cursor[objects.Album], *core.Response, error) {
 	var out core.Cursor[objects.Album]
 	call := GetGroupAlbumsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupAlbums(ctx context.Context, client *core.Client, id string, params GetGroupAlbumsParams) (*core.Cursor[objects.Album], error) {
+	out, _, err := GetGroupAlbumsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupDocsParams struct {
@@ -170,11 +184,16 @@ func DecodeGetGroupDocsBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetGroupDocs(ctx context.Context, client *core.Client, id string, params GetGroupDocsParams) (*core.Cursor[objects.Doc], error) {
+func GetGroupDocsWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupDocsParams) (*core.Cursor[objects.Doc], *core.Response, error) {
 	var out core.Cursor[objects.Doc]
 	call := GetGroupDocsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupDocs(ctx context.Context, client *core.Client, id string, params GetGroupDocsParams) (*core.Cursor[objects.Doc], error) {
+	out, _, err := GetGroupDocsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupEventsParams struct {
@@ -211,19 +230,24 @@ func DecodeGetGroupEventsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetGroupEvents(ctx context.Context, client *core.Client, id string, params GetGroupEventsParams) (*core.Cursor[objects.Event], error) {
+func GetGroupEventsWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupEventsParams) (*core.Cursor[objects.Event], *core.Response, error) {
 	var out core.Cursor[objects.Event]
 	call := GetGroupEventsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupEvents(ctx context.Context, client *core.Client, id string, params GetGroupEventsParams) (*core.Cursor[objects.Event], error) {
+	out, _, err := GetGroupEventsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupFeedParams struct {
 	IncludeHidden *bool       `facebook:"include_hidden"`
 	Q             *string     `facebook:"q"`
 	ShowExpired   *bool       `facebook:"show_expired"`
-	Since         *time.Time  `facebook:"since"`
-	Until         *time.Time  `facebook:"until"`
+	Since         *core.Time  `facebook:"since"`
+	Until         *core.Time  `facebook:"until"`
 	With          *string     `facebook:"with"`
 	Extra         core.Params `facebook:"-"`
 }
@@ -276,11 +300,16 @@ func DecodeGetGroupFeedBatchResponse(response *core.BatchResponse) (*core.Cursor
 	return &out, nil
 }
 
-func GetGroupFeed(ctx context.Context, client *core.Client, id string, params GetGroupFeedParams) (*core.Cursor[objects.Post], error) {
+func GetGroupFeedWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupFeedParams) (*core.Cursor[objects.Post], *core.Response, error) {
 	var out core.Cursor[objects.Post]
 	call := GetGroupFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupFeed(ctx context.Context, client *core.Client, id string, params GetGroupFeedParams) (*core.Cursor[objects.Post], error) {
+	out, _, err := GetGroupFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupFeedParams struct {
@@ -294,7 +323,7 @@ type CreateGroupFeedParams struct {
 	AttachPlaceSuggestion     *bool                                             `facebook:"attach_place_suggestion"`
 	AttachedMedia             *[]map[string]interface{}                         `facebook:"attached_media"`
 	AudienceExp               *bool                                             `facebook:"audience_exp"`
-	BackdatedTime             *time.Time                                        `facebook:"backdated_time"`
+	BackdatedTime             *core.Time                                        `facebook:"backdated_time"`
 	BackdatedTimeGranularity  *enums.GroupfeedBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	BreakingNews              *bool                                             `facebook:"breaking_news"`
 	BreakingNewsExpiration    *uint64                                           `facebook:"breaking_news_expiration"`
@@ -369,7 +398,7 @@ type CreateGroupFeedParams struct {
 	Ref                       *[]string                                         `facebook:"ref"`
 	ReferenceableImageIds     *[]core.ID                                        `facebook:"referenceable_image_ids"`
 	ReferralID                *core.ID                                          `facebook:"referral_id"`
-	ScheduledPublishTime      *time.Time                                        `facebook:"scheduled_publish_time"`
+	ScheduledPublishTime      *core.Time                                        `facebook:"scheduled_publish_time"`
 	Source                    *string                                           `facebook:"source"`
 	SponsorID                 *core.ID                                          `facebook:"sponsor_id"`
 	SponsorRelationship       *uint64                                           `facebook:"sponsor_relationship"`
@@ -737,11 +766,16 @@ func DecodeCreateGroupFeedBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func CreateGroupFeed(ctx context.Context, client *core.Client, id string, params CreateGroupFeedParams) (*objects.Post, error) {
+func CreateGroupFeedWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupFeedParams) (*objects.Post, *core.Response, error) {
 	var out objects.Post
 	call := CreateGroupFeedBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupFeed(ctx context.Context, client *core.Client, id string, params CreateGroupFeedParams) (*objects.Post, error) {
+	out, _, err := CreateGroupFeedWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupFilesParams struct {
@@ -778,11 +812,16 @@ func DecodeGetGroupFilesBatchResponse(response *core.BatchResponse) (*core.Curso
 	return &out, nil
 }
 
-func GetGroupFiles(ctx context.Context, client *core.Client, id string, params GetGroupFilesParams) (*core.Cursor[objects.GroupFile], error) {
+func GetGroupFilesWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupFilesParams) (*core.Cursor[objects.GroupFile], *core.Response, error) {
 	var out core.Cursor[objects.GroupFile]
 	call := GetGroupFilesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupFiles(ctx context.Context, client *core.Client, id string, params GetGroupFilesParams) (*core.Cursor[objects.GroupFile], error) {
+	out, _, err := GetGroupFilesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupGroupsParams struct {
@@ -819,11 +858,16 @@ func DecodeGetGroupGroupsBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetGroupGroups(ctx context.Context, client *core.Client, id string, params GetGroupGroupsParams) (*core.Cursor[objects.Group], error) {
+func GetGroupGroupsWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupGroupsParams) (*core.Cursor[objects.Group], *core.Response, error) {
 	var out core.Cursor[objects.Group]
 	call := GetGroupGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupGroups(ctx context.Context, client *core.Client, id string, params GetGroupGroupsParams) (*core.Cursor[objects.Group], error) {
+	out, _, err := GetGroupGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupGroupsParams struct {
@@ -902,11 +946,16 @@ func DecodeCreateGroupGroupsBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateGroupGroups(ctx context.Context, client *core.Client, id string, params CreateGroupGroupsParams) (*objects.Group, error) {
+func CreateGroupGroupsWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupGroupsParams) (*objects.Group, *core.Response, error) {
 	var out objects.Group
 	call := CreateGroupGroupsBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupGroups(ctx context.Context, client *core.Client, id string, params CreateGroupGroupsParams) (*objects.Group, error) {
+	out, _, err := CreateGroupGroupsWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupLiveVideosParams struct {
@@ -951,11 +1000,16 @@ func DecodeGetGroupLiveVideosBatchResponse(response *core.BatchResponse) (*core.
 	return &out, nil
 }
 
-func GetGroupLiveVideos(ctx context.Context, client *core.Client, id string, params GetGroupLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
+func GetGroupLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupLiveVideosParams) (*core.Cursor[objects.LiveVideo], *core.Response, error) {
 	var out core.Cursor[objects.LiveVideo]
 	call := GetGroupLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupLiveVideos(ctx context.Context, client *core.Client, id string, params GetGroupLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
+	out, _, err := GetGroupLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupLiveVideosParams struct {
@@ -1072,11 +1126,16 @@ func DecodeCreateGroupLiveVideosBatchResponse(response *core.BatchResponse) (*ob
 	return &out, nil
 }
 
-func CreateGroupLiveVideos(ctx context.Context, client *core.Client, id string, params CreateGroupLiveVideosParams) (*objects.LiveVideo, error) {
+func CreateGroupLiveVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupLiveVideosParams) (*objects.LiveVideo, *core.Response, error) {
 	var out objects.LiveVideo
 	call := CreateGroupLiveVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupLiveVideos(ctx context.Context, client *core.Client, id string, params CreateGroupLiveVideosParams) (*objects.LiveVideo, error) {
+	out, _, err := CreateGroupLiveVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteGroupMembersParams struct {
@@ -1121,11 +1180,16 @@ func DecodeDeleteGroupMembersBatchResponse(response *core.BatchResponse) (*map[s
 	return &out, nil
 }
 
-func DeleteGroupMembers(ctx context.Context, client *core.Client, id string, params DeleteGroupMembersParams) (*map[string]interface{}, error) {
+func DeleteGroupMembersWithResponse(ctx context.Context, client *core.Client, id string, params DeleteGroupMembersParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteGroupMembersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteGroupMembers(ctx context.Context, client *core.Client, id string, params DeleteGroupMembersParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteGroupMembersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupMembersParams struct {
@@ -1182,11 +1246,16 @@ func DecodeCreateGroupMembersBatchResponse(response *core.BatchResponse) (*objec
 	return &out, nil
 }
 
-func CreateGroupMembers(ctx context.Context, client *core.Client, id string, params CreateGroupMembersParams) (*objects.Group, error) {
+func CreateGroupMembersWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupMembersParams) (*objects.Group, *core.Response, error) {
 	var out objects.Group
 	call := CreateGroupMembersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupMembers(ctx context.Context, client *core.Client, id string, params CreateGroupMembersParams) (*objects.Group, error) {
+	out, _, err := CreateGroupMembersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupOptedInMembersParams struct {
@@ -1223,11 +1292,16 @@ func DecodeGetGroupOptedInMembersBatchResponse(response *core.BatchResponse) (*c
 	return &out, nil
 }
 
-func GetGroupOptedInMembers(ctx context.Context, client *core.Client, id string, params GetGroupOptedInMembersParams) (*core.Cursor[objects.User], error) {
+func GetGroupOptedInMembersWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupOptedInMembersParams) (*core.Cursor[objects.User], *core.Response, error) {
 	var out core.Cursor[objects.User]
 	call := GetGroupOptedInMembersBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupOptedInMembers(ctx context.Context, client *core.Client, id string, params GetGroupOptedInMembersParams) (*core.Cursor[objects.User], error) {
+	out, _, err := GetGroupOptedInMembersWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupPhotosParams struct {
@@ -1238,7 +1312,7 @@ type CreateGroupPhotosParams struct {
 	ApplicationID                         *core.ID                                            `facebook:"application_id"`
 	Attempt                               *uint64                                             `facebook:"attempt"`
 	AudienceExp                           *bool                                               `facebook:"audience_exp"`
-	BackdatedTime                         *time.Time                                          `facebook:"backdated_time"`
+	BackdatedTime                         *core.Time                                          `facebook:"backdated_time"`
 	BackdatedTimeGranularity              *enums.GroupphotosBackdatedTimeGranularityEnumParam `facebook:"backdated_time_granularity"`
 	Caption                               *string                                             `facebook:"caption"`
 	ComposerSessionID                     *core.ID                                            `facebook:"composer_session_id"`
@@ -1468,11 +1542,16 @@ func DecodeCreateGroupPhotosBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateGroupPhotos(ctx context.Context, client *core.Client, id string, params CreateGroupPhotosParams) (*objects.Photo, error) {
+func CreateGroupPhotosWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupPhotosParams) (*objects.Photo, *core.Response, error) {
 	var out objects.Photo
 	call := CreateGroupPhotosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupPhotos(ctx context.Context, client *core.Client, id string, params CreateGroupPhotosParams) (*objects.Photo, error) {
+	out, _, err := CreateGroupPhotosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupPictureParams struct {
@@ -1525,11 +1604,16 @@ func DecodeGetGroupPictureBatchResponse(response *core.BatchResponse) (*core.Cur
 	return &out, nil
 }
 
-func GetGroupPicture(ctx context.Context, client *core.Client, id string, params GetGroupPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+func GetGroupPictureWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupPictureParams) (*core.Cursor[objects.ProfilePictureSource], *core.Response, error) {
 	var out core.Cursor[objects.ProfilePictureSource]
 	call := GetGroupPictureBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupPicture(ctx context.Context, client *core.Client, id string, params GetGroupPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
+	out, _, err := GetGroupPictureWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupVideosParams struct {
@@ -1570,11 +1654,16 @@ func DecodeGetGroupVideosBatchResponse(response *core.BatchResponse) (*core.Curs
 	return &out, nil
 }
 
-func GetGroupVideos(ctx context.Context, client *core.Client, id string, params GetGroupVideosParams) (*core.Cursor[objects.AdVideo], error) {
+func GetGroupVideosWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupVideosParams) (*core.Cursor[objects.AdVideo], *core.Response, error) {
 	var out core.Cursor[objects.AdVideo]
 	call := GetGroupVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroupVideos(ctx context.Context, client *core.Client, id string, params GetGroupVideosParams) (*core.Cursor[objects.AdVideo], error) {
+	out, _, err := GetGroupVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateGroupVideosParams struct {
@@ -1895,11 +1984,16 @@ func DecodeCreateGroupVideosBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func CreateGroupVideos(ctx context.Context, client *core.Client, id string, params CreateGroupVideosParams) (*objects.AdVideo, error) {
+func CreateGroupVideosWithResponse(ctx context.Context, client *core.Client, id string, params CreateGroupVideosParams) (*objects.AdVideo, *core.Response, error) {
 	var out objects.AdVideo
 	call := CreateGroupVideosBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateGroupVideos(ctx context.Context, client *core.Client, id string, params CreateGroupVideosParams) (*objects.AdVideo, error) {
+	out, _, err := CreateGroupVideosWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetGroupParams struct {
@@ -1940,11 +2034,16 @@ func DecodeGetGroupBatchResponse(response *core.BatchResponse) (*objects.Group, 
 	return &out, nil
 }
 
-func GetGroup(ctx context.Context, client *core.Client, id string, params GetGroupParams) (*objects.Group, error) {
+func GetGroupWithResponse(ctx context.Context, client *core.Client, id string, params GetGroupParams) (*objects.Group, *core.Response, error) {
 	var out objects.Group
 	call := GetGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetGroup(ctx context.Context, client *core.Client, id string, params GetGroupParams) (*objects.Group, error) {
+	out, _, err := GetGroupWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateGroupParams struct {
@@ -2045,9 +2144,14 @@ func DecodeUpdateGroupBatchResponse(response *core.BatchResponse) (*objects.Grou
 	return &out, nil
 }
 
-func UpdateGroup(ctx context.Context, client *core.Client, id string, params UpdateGroupParams) (*objects.Group, error) {
+func UpdateGroupWithResponse(ctx context.Context, client *core.Client, id string, params UpdateGroupParams) (*objects.Group, *core.Response, error) {
 	var out objects.Group
 	call := UpdateGroupBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateGroup(ctx context.Context, client *core.Client, id string, params UpdateGroupParams) (*objects.Group, error) {
+	out, _, err := UpdateGroupWithResponse(ctx, client, id, params)
+	return out, err
 }

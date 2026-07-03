@@ -11,3 +11,17 @@ type CoverPhoto struct {
 	OffsetY *float64 `json:"offset_y,omitempty"`
 	Source  *string  `json:"source,omitempty"`
 }
+
+var CoverPhotoFields = struct {
+	CoverID string
+	ID      string
+	OffsetX string
+	OffsetY string
+	Source  string
+}{
+	CoverID: "cover_id",
+	ID:      "id",
+	OffsetX: "offset_x",
+	OffsetY: "offset_y",
+	Source:  "source",
+}

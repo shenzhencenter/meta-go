@@ -41,9 +41,14 @@ func DecodeGetMailingAddressBatchResponse(response *core.BatchResponse) (*object
 	return &out, nil
 }
 
-func GetMailingAddress(ctx context.Context, client *core.Client, id string, params GetMailingAddressParams) (*objects.MailingAddress, error) {
+func GetMailingAddressWithResponse(ctx context.Context, client *core.Client, id string, params GetMailingAddressParams) (*objects.MailingAddress, *core.Response, error) {
 	var out objects.MailingAddress
 	call := GetMailingAddressBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetMailingAddress(ctx context.Context, client *core.Client, id string, params GetMailingAddressParams) (*objects.MailingAddress, error) {
+	out, _, err := GetMailingAddressWithResponse(ctx, client, id, params)
+	return out, err
 }

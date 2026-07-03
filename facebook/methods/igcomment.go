@@ -41,11 +41,16 @@ func DecodeGetIGCommentRepliesBatchResponse(response *core.BatchResponse) (*core
 	return &out, nil
 }
 
-func GetIGCommentReplies(ctx context.Context, client *core.Client, id string, params GetIGCommentRepliesParams) (*core.Cursor[objects.IGComment], error) {
+func GetIGCommentRepliesWithResponse(ctx context.Context, client *core.Client, id string, params GetIGCommentRepliesParams) (*core.Cursor[objects.IGComment], *core.Response, error) {
 	var out core.Cursor[objects.IGComment]
 	call := GetIGCommentRepliesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGCommentReplies(ctx context.Context, client *core.Client, id string, params GetIGCommentRepliesParams) (*core.Cursor[objects.IGComment], error) {
+	out, _, err := GetIGCommentRepliesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type CreateIGCommentRepliesParams struct {
@@ -86,11 +91,16 @@ func DecodeCreateIGCommentRepliesBatchResponse(response *core.BatchResponse) (*o
 	return &out, nil
 }
 
-func CreateIGCommentReplies(ctx context.Context, client *core.Client, id string, params CreateIGCommentRepliesParams) (*objects.IGComment, error) {
+func CreateIGCommentRepliesWithResponse(ctx context.Context, client *core.Client, id string, params CreateIGCommentRepliesParams) (*objects.IGComment, *core.Response, error) {
 	var out objects.IGComment
 	call := CreateIGCommentRepliesBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func CreateIGCommentReplies(ctx context.Context, client *core.Client, id string, params CreateIGCommentRepliesParams) (*objects.IGComment, error) {
+	out, _, err := CreateIGCommentRepliesWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type DeleteIGCommentParams struct {
@@ -131,11 +141,16 @@ func DecodeDeleteIGCommentBatchResponse(response *core.BatchResponse) (*map[stri
 	return &out, nil
 }
 
-func DeleteIGComment(ctx context.Context, client *core.Client, id string, params DeleteIGCommentParams) (*map[string]interface{}, error) {
+func DeleteIGCommentWithResponse(ctx context.Context, client *core.Client, id string, params DeleteIGCommentParams) (*map[string]interface{}, *core.Response, error) {
 	var out map[string]interface{}
 	call := DeleteIGCommentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func DeleteIGComment(ctx context.Context, client *core.Client, id string, params DeleteIGCommentParams) (*map[string]interface{}, error) {
+	out, _, err := DeleteIGCommentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type GetIGCommentParams struct {
@@ -172,11 +187,16 @@ func DecodeGetIGCommentBatchResponse(response *core.BatchResponse) (*objects.IGC
 	return &out, nil
 }
 
-func GetIGComment(ctx context.Context, client *core.Client, id string, params GetIGCommentParams) (*objects.IGComment, error) {
+func GetIGCommentWithResponse(ctx context.Context, client *core.Client, id string, params GetIGCommentParams) (*objects.IGComment, *core.Response, error) {
 	var out objects.IGComment
 	call := GetIGCommentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func GetIGComment(ctx context.Context, client *core.Client, id string, params GetIGCommentParams) (*objects.IGComment, error) {
+	out, _, err := GetIGCommentWithResponse(ctx, client, id, params)
+	return out, err
 }
 
 type UpdateIGCommentParams struct {
@@ -219,9 +239,14 @@ func DecodeUpdateIGCommentBatchResponse(response *core.BatchResponse) (*objects.
 	return &out, nil
 }
 
-func UpdateIGComment(ctx context.Context, client *core.Client, id string, params UpdateIGCommentParams) (*objects.IGComment, error) {
+func UpdateIGCommentWithResponse(ctx context.Context, client *core.Client, id string, params UpdateIGCommentParams) (*objects.IGComment, *core.Response, error) {
 	var out objects.IGComment
 	call := UpdateIGCommentBatchCall(id, params)
-	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
-	return &out, err
+	response, err := client.RequestWithResponse(ctx, call.Method, call.RelativeURL, call.Params, &out)
+	return &out, response, err
+}
+
+func UpdateIGComment(ctx context.Context, client *core.Client, id string, params UpdateIGCommentParams) (*objects.IGComment, error) {
+	out, _, err := UpdateIGCommentWithResponse(ctx, client, id, params)
+	return out, err
 }

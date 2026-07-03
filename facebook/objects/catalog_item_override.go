@@ -11,3 +11,17 @@ type CatalogItemOverride struct {
 	OverrideValue        *string               `json:"override_value,omitempty"`
 	UploadExpectedMethod *string               `json:"upload_expected_method,omitempty"`
 }
+
+var CatalogItemOverrideFields = struct {
+	ID                   string
+	LocalInfo            string
+	OverrideType         string
+	OverrideValue        string
+	UploadExpectedMethod string
+}{
+	ID:                   "id",
+	LocalInfo:            "local_info",
+	OverrideType:         "override_type",
+	OverrideValue:        "override_value",
+	UploadExpectedMethod: "upload_expected_method",
+}
