@@ -19,8 +19,31 @@ func (params GetWithAsset3DParams) ToParams() core.Params {
 	return out
 }
 
+func GetWithAsset3DBatchCall(id string, params GetWithAsset3DParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWithAsset3DBatchRequest(id string, params GetWithAsset3DParams, options ...core.BatchOption) *core.BatchRequest[objects.WithAsset3D] {
+	return core.NewBatchRequest[objects.WithAsset3D](GetWithAsset3DBatchCall(id, params, options...))
+}
+
+func DecodeGetWithAsset3DBatchResponse(response *core.BatchResponse) (*objects.WithAsset3D, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WithAsset3D
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWithAsset3D(ctx context.Context, client *core.Client, id string, params GetWithAsset3DParams) (*objects.WithAsset3D, error) {
 	var out objects.WithAsset3D
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWithAsset3DBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

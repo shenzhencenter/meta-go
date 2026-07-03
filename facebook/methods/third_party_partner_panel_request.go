@@ -19,8 +19,31 @@ func (params GetThirdPartyPartnerPanelRequestParams) ToParams() core.Params {
 	return out
 }
 
+func GetThirdPartyPartnerPanelRequestBatchCall(id string, params GetThirdPartyPartnerPanelRequestParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetThirdPartyPartnerPanelRequestBatchRequest(id string, params GetThirdPartyPartnerPanelRequestParams, options ...core.BatchOption) *core.BatchRequest[objects.ThirdPartyPartnerPanelRequest] {
+	return core.NewBatchRequest[objects.ThirdPartyPartnerPanelRequest](GetThirdPartyPartnerPanelRequestBatchCall(id, params, options...))
+}
+
+func DecodeGetThirdPartyPartnerPanelRequestBatchResponse(response *core.BatchResponse) (*objects.ThirdPartyPartnerPanelRequest, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ThirdPartyPartnerPanelRequest
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetThirdPartyPartnerPanelRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerPanelRequestParams) (*objects.ThirdPartyPartnerPanelRequest, error) {
 	var out objects.ThirdPartyPartnerPanelRequest
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetThirdPartyPartnerPanelRequestBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

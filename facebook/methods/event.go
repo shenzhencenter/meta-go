@@ -20,9 +20,32 @@ func (params GetEventCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventCommentsBatchCall(id string, params GetEventCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetEventCommentsBatchRequest(id string, params GetEventCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetEventCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventComments(ctx context.Context, client *core.Client, id string, params GetEventCommentsParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetEventCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetEventFeedParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventFeedBatchCall(id string, params GetEventFeedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "feed"), params.ToParams(), options...)
+}
+
+func NewGetEventFeedBatchRequest(id string, params GetEventFeedParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventFeedBatchCall(id, params, options...))
+}
+
+func DecodeGetEventFeedBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventFeed(ctx context.Context, client *core.Client, id string, params GetEventFeedParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "feed"), params.ToParams(), &out)
+	call := GetEventFeedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -56,9 +102,32 @@ func (params GetEventLiveVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventLiveVideosBatchCall(id string, params GetEventLiveVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "live_videos"), params.ToParams(), options...)
+}
+
+func NewGetEventLiveVideosBatchRequest(id string, params GetEventLiveVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventLiveVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetEventLiveVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventLiveVideos(ctx context.Context, client *core.Client, id string, params GetEventLiveVideosParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "live_videos"), params.ToParams(), &out)
+	call := GetEventLiveVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -154,9 +223,32 @@ func (params CreateEventLiveVideosParams) ToParams() core.Params {
 	return out
 }
 
+func CreateEventLiveVideosBatchCall(id string, params CreateEventLiveVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "live_videos"), params.ToParams(), options...)
+}
+
+func NewCreateEventLiveVideosBatchRequest(id string, params CreateEventLiveVideosParams, options ...core.BatchOption) *core.BatchRequest[objects.LiveVideo] {
+	return core.NewBatchRequest[objects.LiveVideo](CreateEventLiveVideosBatchCall(id, params, options...))
+}
+
+func DecodeCreateEventLiveVideosBatchResponse(response *core.BatchResponse) (*objects.LiveVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LiveVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateEventLiveVideos(ctx context.Context, client *core.Client, id string, params CreateEventLiveVideosParams) (*objects.LiveVideo, error) {
 	var out objects.LiveVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "live_videos"), params.ToParams(), &out)
+	call := CreateEventLiveVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -172,9 +264,32 @@ func (params GetEventPhotosParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventPhotosBatchCall(id string, params GetEventPhotosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), options...)
+}
+
+func NewGetEventPhotosBatchRequest(id string, params GetEventPhotosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventPhotosBatchCall(id, params, options...))
+}
+
+func DecodeGetEventPhotosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventPhotos(ctx context.Context, client *core.Client, id string, params GetEventPhotosParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	call := GetEventPhotosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -190,9 +305,32 @@ func (params GetEventPictureParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventPictureBatchCall(id string, params GetEventPictureParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), options...)
+}
+
+func NewGetEventPictureBatchRequest(id string, params GetEventPictureParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventPictureBatchCall(id, params, options...))
+}
+
+func DecodeGetEventPictureBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventPicture(ctx context.Context, client *core.Client, id string, params GetEventPictureParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	call := GetEventPictureBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -208,9 +346,32 @@ func (params GetEventPostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventPostsBatchCall(id string, params GetEventPostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "posts"), params.ToParams(), options...)
+}
+
+func NewGetEventPostsBatchRequest(id string, params GetEventPostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventPostsBatchCall(id, params, options...))
+}
+
+func DecodeGetEventPostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventPosts(ctx context.Context, client *core.Client, id string, params GetEventPostsParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "posts"), params.ToParams(), &out)
+	call := GetEventPostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -226,9 +387,32 @@ func (params GetEventRolesParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventRolesBatchCall(id string, params GetEventRolesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "roles"), params.ToParams(), options...)
+}
+
+func NewGetEventRolesBatchRequest(id string, params GetEventRolesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetEventRolesBatchCall(id, params, options...))
+}
+
+func DecodeGetEventRolesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventRoles(ctx context.Context, client *core.Client, id string, params GetEventRolesParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "roles"), params.ToParams(), &out)
+	call := GetEventRolesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -244,9 +428,32 @@ func (params GetEventTicketTiersParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventTicketTiersBatchCall(id string, params GetEventTicketTiersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ticket_tiers"), params.ToParams(), options...)
+}
+
+func NewGetEventTicketTiersBatchRequest(id string, params GetEventTicketTiersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.EventTicketTier]] {
+	return core.NewBatchRequest[core.Cursor[objects.EventTicketTier]](GetEventTicketTiersBatchCall(id, params, options...))
+}
+
+func DecodeGetEventTicketTiersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.EventTicketTier], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.EventTicketTier]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventTicketTiers(ctx context.Context, client *core.Client, id string, params GetEventTicketTiersParams) (*core.Cursor[objects.EventTicketTier], error) {
 	var out core.Cursor[objects.EventTicketTier]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ticket_tiers"), params.ToParams(), &out)
+	call := GetEventTicketTiersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -262,9 +469,32 @@ func (params GetEventVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventVideosBatchCall(id string, params GetEventVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "videos"), params.ToParams(), options...)
+}
+
+func NewGetEventVideosBatchRequest(id string, params GetEventVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.NullNode]] {
+	return core.NewBatchRequest[core.Cursor[objects.NullNode]](GetEventVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetEventVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.NullNode], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.NullNode]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEventVideos(ctx context.Context, client *core.Client, id string, params GetEventVideosParams) (*core.Cursor[objects.NullNode], error) {
 	var out core.Cursor[objects.NullNode]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "videos"), params.ToParams(), &out)
+	call := GetEventVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -280,8 +510,31 @@ func (params GetEventParams) ToParams() core.Params {
 	return out
 }
 
+func GetEventBatchCall(id string, params GetEventParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetEventBatchRequest(id string, params GetEventParams, options ...core.BatchOption) *core.BatchRequest[objects.Event] {
+	return core.NewBatchRequest[objects.Event](GetEventBatchCall(id, params, options...))
+}
+
+func DecodeGetEventBatchResponse(response *core.BatchResponse) (*objects.Event, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Event
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetEvent(ctx context.Context, client *core.Client, id string, params GetEventParams) (*objects.Event, error) {
 	var out objects.Event
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetEventBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

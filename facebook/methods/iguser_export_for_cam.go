@@ -20,9 +20,32 @@ func (params GetIGUserExportForCAMBrandedContentMediaParams) ToParams() core.Par
 	return out
 }
 
+func GetIGUserExportForCAMBrandedContentMediaBatchCall(id string, params GetIGUserExportForCAMBrandedContentMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "branded_content_media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserExportForCAMBrandedContentMediaBatchRequest(id string, params GetIGUserExportForCAMBrandedContentMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMediaExportForCAM]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMediaExportForCAM]](GetIGUserExportForCAMBrandedContentMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserExportForCAMBrandedContentMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMediaExportForCAM]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserExportForCAMBrandedContentMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMBrandedContentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
 	var out core.Cursor[objects.IGMediaExportForCAM]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "branded_content_media"), params.ToParams(), &out)
+	call := GetIGUserExportForCAMBrandedContentMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -54,9 +77,32 @@ func (params GetIGUserExportForCAMInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserExportForCAMInsightsBatchCall(id string, params GetIGUserExportForCAMInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewGetIGUserExportForCAMInsightsBatchRequest(id string, params GetIGUserExportForCAMInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUserExportForCAMInsightsResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUserExportForCAMInsightsResult]](GetIGUserExportForCAMInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserExportForCAMInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUserExportForCAMInsightsResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUserExportForCAMInsightsResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserExportForCAMInsights(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMInsightsParams) (*core.Cursor[objects.IGUserExportForCAMInsightsResult], error) {
 	var out core.Cursor[objects.IGUserExportForCAMInsightsResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := GetIGUserExportForCAMInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -72,9 +118,32 @@ func (params GetIGUserExportForCAMPastPartnershipAdsMediaParams) ToParams() core
 	return out
 }
 
+func GetIGUserExportForCAMPastPartnershipAdsMediaBatchCall(id string, params GetIGUserExportForCAMPastPartnershipAdsMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "past_partnership_ads_media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserExportForCAMPastPartnershipAdsMediaBatchRequest(id string, params GetIGUserExportForCAMPastPartnershipAdsMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMediaExportForCAM]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMediaExportForCAM]](GetIGUserExportForCAMPastPartnershipAdsMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserExportForCAMPastPartnershipAdsMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMediaExportForCAM]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserExportForCAMPastPartnershipAdsMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMPastPartnershipAdsMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
 	var out core.Cursor[objects.IGMediaExportForCAM]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "past_partnership_ads_media"), params.ToParams(), &out)
+	call := GetIGUserExportForCAMPastPartnershipAdsMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -90,8 +159,31 @@ func (params GetIGUserExportForCAMRecentMediaParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserExportForCAMRecentMediaBatchCall(id string, params GetIGUserExportForCAMRecentMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "recent_media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserExportForCAMRecentMediaBatchRequest(id string, params GetIGUserExportForCAMRecentMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMediaExportForCAM]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMediaExportForCAM]](GetIGUserExportForCAMRecentMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserExportForCAMRecentMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMediaExportForCAM], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMediaExportForCAM]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserExportForCAMRecentMedia(ctx context.Context, client *core.Client, id string, params GetIGUserExportForCAMRecentMediaParams) (*core.Cursor[objects.IGMediaExportForCAM], error) {
 	var out core.Cursor[objects.IGMediaExportForCAM]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "recent_media"), params.ToParams(), &out)
+	call := GetIGUserExportForCAMRecentMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

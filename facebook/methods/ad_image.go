@@ -19,8 +19,31 @@ func (params GetAdImageParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdImageBatchCall(id string, params GetAdImageParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdImageBatchRequest(id string, params GetAdImageParams, options ...core.BatchOption) *core.BatchRequest[objects.AdImage] {
+	return core.NewBatchRequest[objects.AdImage](GetAdImageBatchCall(id, params, options...))
+}
+
+func DecodeGetAdImageBatchResponse(response *core.BatchResponse) (*objects.AdImage, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdImage
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdImage(ctx context.Context, client *core.Client, id string, params GetAdImageParams) (*objects.AdImage, error) {
 	var out objects.AdImage
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdImageBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

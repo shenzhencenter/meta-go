@@ -19,9 +19,32 @@ func (params GetInstagramUserUpcomingEventsParams) ToParams() core.Params {
 	return out
 }
 
+func GetInstagramUserUpcomingEventsBatchCall(id string, params GetInstagramUserUpcomingEventsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "upcoming_events"), params.ToParams(), options...)
+}
+
+func NewGetInstagramUserUpcomingEventsBatchRequest(id string, params GetInstagramUserUpcomingEventsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUpcomingEvent]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUpcomingEvent]](GetInstagramUserUpcomingEventsBatchCall(id, params, options...))
+}
+
+func DecodeGetInstagramUserUpcomingEventsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUpcomingEvent], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUpcomingEvent]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetInstagramUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params GetInstagramUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], error) {
 	var out core.Cursor[objects.IGUpcomingEvent]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "upcoming_events"), params.ToParams(), &out)
+	call := GetInstagramUserUpcomingEventsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,8 +64,31 @@ func (params GetInstagramUserParams) ToParams() core.Params {
 	return out
 }
 
+func GetInstagramUserBatchCall(id string, params GetInstagramUserParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetInstagramUserBatchRequest(id string, params GetInstagramUserParams, options ...core.BatchOption) *core.BatchRequest[objects.InstagramUser] {
+	return core.NewBatchRequest[objects.InstagramUser](GetInstagramUserBatchCall(id, params, options...))
+}
+
+func DecodeGetInstagramUserBatchResponse(response *core.BatchResponse) (*objects.InstagramUser, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.InstagramUser
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetInstagramUser(ctx context.Context, client *core.Client, id string, params GetInstagramUserParams) (*objects.InstagramUser, error) {
 	var out objects.InstagramUser
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetInstagramUserBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

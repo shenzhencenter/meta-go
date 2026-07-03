@@ -21,9 +21,32 @@ func (params GetProductItemChannelsToIntegrityStatusParams) ToParams() core.Para
 	return out
 }
 
+func GetProductItemChannelsToIntegrityStatusBatchCall(id string, params GetProductItemChannelsToIntegrityStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), options...)
+}
+
+func NewGetProductItemChannelsToIntegrityStatusBatchRequest(id string, params GetProductItemChannelsToIntegrityStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]](GetProductItemChannelsToIntegrityStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetProductItemChannelsToIntegrityStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), &out)
+	call := GetProductItemChannelsToIntegrityStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -47,9 +70,32 @@ func (params GetProductItemOverrideDetailsParams) ToParams() core.Params {
 	return out
 }
 
+func GetProductItemOverrideDetailsBatchCall(id string, params GetProductItemOverrideDetailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), options...)
+}
+
+func NewGetProductItemOverrideDetailsBatchRequest(id string, params GetProductItemOverrideDetailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OverrideDetails]] {
+	return core.NewBatchRequest[core.Cursor[objects.OverrideDetails]](GetProductItemOverrideDetailsBatchCall(id, params, options...))
+}
+
+func DecodeGetProductItemOverrideDetailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OverrideDetails], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OverrideDetails]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
 	var out core.Cursor[objects.OverrideDetails]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), &out)
+	call := GetProductItemOverrideDetailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -65,9 +111,32 @@ func (params GetProductItemProductSetsParams) ToParams() core.Params {
 	return out
 }
 
+func GetProductItemProductSetsBatchCall(id string, params GetProductItemProductSetsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "product_sets"), params.ToParams(), options...)
+}
+
+func NewGetProductItemProductSetsBatchRequest(id string, params GetProductItemProductSetsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductSet]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductSet]](GetProductItemProductSetsBatchCall(id, params, options...))
+}
+
+func DecodeGetProductItemProductSetsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductSet], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductSet]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductItemProductSets(ctx context.Context, client *core.Client, id string, params GetProductItemProductSetsParams) (*core.Cursor[objects.ProductSet], error) {
 	var out core.Cursor[objects.ProductSet]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "product_sets"), params.ToParams(), &out)
+	call := GetProductItemProductSetsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -83,9 +152,32 @@ func (params GetProductItemVideosMetadataParams) ToParams() core.Params {
 	return out
 }
 
+func GetProductItemVideosMetadataBatchCall(id string, params GetProductItemVideosMetadataParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "videos_metadata"), params.ToParams(), options...)
+}
+
+func NewGetProductItemVideosMetadataBatchRequest(id string, params GetProductItemVideosMetadataParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.DynamicVideoMetadata]] {
+	return core.NewBatchRequest[core.Cursor[objects.DynamicVideoMetadata]](GetProductItemVideosMetadataBatchCall(id, params, options...))
+}
+
+func DecodeGetProductItemVideosMetadataBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.DynamicVideoMetadata]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductItemVideosMetadata(ctx context.Context, client *core.Client, id string, params GetProductItemVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "videos_metadata"), params.ToParams(), &out)
+	call := GetProductItemVideosMetadataBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -101,9 +193,32 @@ func (params DeleteProductItemParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteProductItemBatchCall(id string, params DeleteProductItemParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteProductItemBatchRequest(id string, params DeleteProductItemParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteProductItemBatchCall(id, params, options...))
+}
+
+func DecodeDeleteProductItemBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteProductItem(ctx context.Context, client *core.Client, id string, params DeleteProductItemParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteProductItemBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -139,9 +254,32 @@ func (params GetProductItemParams) ToParams() core.Params {
 	return out
 }
 
+func GetProductItemBatchCall(id string, params GetProductItemParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetProductItemBatchRequest(id string, params GetProductItemParams, options ...core.BatchOption) *core.BatchRequest[objects.ProductItem] {
+	return core.NewBatchRequest[objects.ProductItem](GetProductItemBatchCall(id, params, options...))
+}
+
+func DecodeGetProductItemBatchResponse(response *core.BatchResponse) (*objects.ProductItem, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ProductItem
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductItem(ctx context.Context, client *core.Client, id string, params GetProductItemParams) (*objects.ProductItem, error) {
 	var out objects.ProductItem
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetProductItemBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -473,8 +611,31 @@ func (params UpdateProductItemParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateProductItemBatchCall(id string, params UpdateProductItemParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateProductItemBatchRequest(id string, params UpdateProductItemParams, options ...core.BatchOption) *core.BatchRequest[objects.ProductItem] {
+	return core.NewBatchRequest[objects.ProductItem](UpdateProductItemBatchCall(id, params, options...))
+}
+
+func DecodeUpdateProductItemBatchResponse(response *core.BatchResponse) (*objects.ProductItem, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ProductItem
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateProductItem(ctx context.Context, client *core.Client, id string, params UpdateProductItemParams) (*objects.ProductItem, error) {
 	var out objects.ProductItem
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateProductItemBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

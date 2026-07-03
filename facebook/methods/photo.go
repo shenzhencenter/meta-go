@@ -37,9 +37,32 @@ func (params GetPhotoCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPhotoCommentsBatchCall(id string, params GetPhotoCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetPhotoCommentsBatchRequest(id string, params GetPhotoCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Comment]] {
+	return core.NewBatchRequest[core.Cursor[objects.Comment]](GetPhotoCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetPhotoCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Comment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Comment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPhotoComments(ctx context.Context, client *core.Client, id string, params GetPhotoCommentsParams) (*core.Cursor[objects.Comment], error) {
 	var out core.Cursor[objects.Comment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetPhotoCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -107,9 +130,32 @@ func (params CreatePhotoCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePhotoCommentsBatchCall(id string, params CreatePhotoCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewCreatePhotoCommentsBatchRequest(id string, params CreatePhotoCommentsParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](CreatePhotoCommentsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePhotoCommentsBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePhotoComments(ctx context.Context, client *core.Client, id string, params CreatePhotoCommentsParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := CreatePhotoCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -145,9 +191,32 @@ func (params GetPhotoInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPhotoInsightsBatchCall(id string, params GetPhotoInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewGetPhotoInsightsBatchRequest(id string, params GetPhotoInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.InsightsResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.InsightsResult]](GetPhotoInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetPhotoInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.InsightsResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.InsightsResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPhotoInsights(ctx context.Context, client *core.Client, id string, params GetPhotoInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
 	var out core.Cursor[objects.InsightsResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := GetPhotoInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -163,9 +232,32 @@ func (params GetPhotoLikesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPhotoLikesBatchCall(id string, params GetPhotoLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewGetPhotoLikesBatchRequest(id string, params GetPhotoLikesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetPhotoLikesBatchCall(id, params, options...))
+}
+
+func DecodeGetPhotoLikesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPhotoLikes(ctx context.Context, client *core.Client, id string, params GetPhotoLikesParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := GetPhotoLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -201,9 +293,32 @@ func (params CreatePhotoLikesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePhotoLikesBatchCall(id string, params CreatePhotoLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewCreatePhotoLikesBatchRequest(id string, params CreatePhotoLikesParams, options ...core.BatchOption) *core.BatchRequest[objects.Photo] {
+	return core.NewBatchRequest[objects.Photo](CreatePhotoLikesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePhotoLikesBatchResponse(response *core.BatchResponse) (*objects.Photo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Photo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePhotoLikes(ctx context.Context, client *core.Client, id string, params CreatePhotoLikesParams) (*objects.Photo, error) {
 	var out objects.Photo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := CreatePhotoLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -219,9 +334,32 @@ func (params GetPhotoSponsorTagsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPhotoSponsorTagsBatchCall(id string, params GetPhotoSponsorTagsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "sponsor_tags"), params.ToParams(), options...)
+}
+
+func NewGetPhotoSponsorTagsBatchRequest(id string, params GetPhotoSponsorTagsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetPhotoSponsorTagsBatchCall(id, params, options...))
+}
+
+func DecodeGetPhotoSponsorTagsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPhotoSponsorTags(ctx context.Context, client *core.Client, id string, params GetPhotoSponsorTagsParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "sponsor_tags"), params.ToParams(), &out)
+	call := GetPhotoSponsorTagsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -237,9 +375,32 @@ func (params DeletePhotoParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePhotoBatchCall(id string, params DeletePhotoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeletePhotoBatchRequest(id string, params DeletePhotoParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePhotoBatchCall(id, params, options...))
+}
+
+func DecodeDeletePhotoBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePhoto(ctx context.Context, client *core.Client, id string, params DeletePhotoParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeletePhotoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -255,8 +416,31 @@ func (params GetPhotoParams) ToParams() core.Params {
 	return out
 }
 
+func GetPhotoBatchCall(id string, params GetPhotoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPhotoBatchRequest(id string, params GetPhotoParams, options ...core.BatchOption) *core.BatchRequest[objects.Photo] {
+	return core.NewBatchRequest[objects.Photo](GetPhotoBatchCall(id, params, options...))
+}
+
+func DecodeGetPhotoBatchResponse(response *core.BatchResponse) (*objects.Photo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Photo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPhoto(ctx context.Context, client *core.Client, id string, params GetPhotoParams) (*objects.Photo, error) {
 	var out objects.Photo
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPhotoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

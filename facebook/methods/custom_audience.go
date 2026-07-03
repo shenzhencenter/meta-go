@@ -25,9 +25,32 @@ func (params DeleteCustomAudienceAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteCustomAudienceAdaccountsBatchCall(id string, params DeleteCustomAudienceAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "adaccounts"), params.ToParams(), options...)
+}
+
+func NewDeleteCustomAudienceAdaccountsBatchRequest(id string, params DeleteCustomAudienceAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteCustomAudienceAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteCustomAudienceAdaccountsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceAdaccountsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "adaccounts"), params.ToParams(), &out)
+	call := DeleteCustomAudienceAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -47,9 +70,32 @@ func (params GetCustomAudienceAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceAdaccountsBatchCall(id string, params GetCustomAudienceAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adaccounts"), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceAdaccountsBatchRequest(id string, params GetCustomAudienceAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdAccount]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdAccount]](GetCustomAudienceAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceAdaccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdAccount], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdAccount]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
 	var out core.Cursor[objects.AdAccount]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adaccounts"), params.ToParams(), &out)
+	call := GetCustomAudienceAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -81,9 +127,32 @@ func (params CreateCustomAudienceAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCustomAudienceAdaccountsBatchCall(id string, params CreateCustomAudienceAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "adaccounts"), params.ToParams(), options...)
+}
+
+func NewCreateCustomAudienceAdaccountsBatchRequest(id string, params CreateCustomAudienceAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.CustomAudience] {
+	return core.NewBatchRequest[objects.CustomAudience](CreateCustomAudienceAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreateCustomAudienceAdaccountsBatchResponse(response *core.BatchResponse) (*objects.CustomAudience, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CustomAudience
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCustomAudienceAdaccounts(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceAdaccountsParams) (*objects.CustomAudience, error) {
 	var out objects.CustomAudience
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "adaccounts"), params.ToParams(), &out)
+	call := CreateCustomAudienceAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -107,9 +176,32 @@ func (params GetCustomAudienceAdsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceAdsBatchCall(id string, params GetCustomAudienceAdsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ads"), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceAdsBatchRequest(id string, params GetCustomAudienceAdsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Ad]] {
+	return core.NewBatchRequest[core.Cursor[objects.Ad]](GetCustomAudienceAdsBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceAdsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Ad], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Ad]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudienceAds(ctx context.Context, client *core.Client, id string, params GetCustomAudienceAdsParams) (*core.Cursor[objects.Ad], error) {
 	var out core.Cursor[objects.Ad]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ads"), params.ToParams(), &out)
+	call := GetCustomAudienceAdsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -149,9 +241,32 @@ func (params GetCustomAudienceHealthParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceHealthBatchCall(id string, params GetCustomAudienceHealthParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "health"), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceHealthBatchRequest(id string, params GetCustomAudienceHealthParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CustomAudienceHealth]] {
+	return core.NewBatchRequest[core.Cursor[objects.CustomAudienceHealth]](GetCustomAudienceHealthBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceHealthBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CustomAudienceHealth], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CustomAudienceHealth]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudienceHealth(ctx context.Context, client *core.Client, id string, params GetCustomAudienceHealthParams) (*core.Cursor[objects.CustomAudienceHealth], error) {
 	var out core.Cursor[objects.CustomAudienceHealth]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "health"), params.ToParams(), &out)
+	call := GetCustomAudienceHealthBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -171,9 +286,32 @@ func (params GetCustomAudienceSaltsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceSaltsBatchCall(id string, params GetCustomAudienceSaltsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "salts"), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceSaltsBatchRequest(id string, params GetCustomAudienceSaltsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CustomAudienceSalts]] {
+	return core.NewBatchRequest[core.Cursor[objects.CustomAudienceSalts]](GetCustomAudienceSaltsBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceSaltsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CustomAudienceSalts], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CustomAudienceSalts]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudienceSalts(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSaltsParams) (*core.Cursor[objects.CustomAudienceSalts], error) {
 	var out core.Cursor[objects.CustomAudienceSalts]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "salts"), params.ToParams(), &out)
+	call := GetCustomAudienceSaltsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -195,9 +333,32 @@ func (params CreateCustomAudienceSaltsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCustomAudienceSaltsBatchCall(id string, params CreateCustomAudienceSaltsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "salts"), params.ToParams(), options...)
+}
+
+func NewCreateCustomAudienceSaltsBatchRequest(id string, params CreateCustomAudienceSaltsParams, options ...core.BatchOption) *core.BatchRequest[objects.CustomAudience] {
+	return core.NewBatchRequest[objects.CustomAudience](CreateCustomAudienceSaltsBatchCall(id, params, options...))
+}
+
+func DecodeCreateCustomAudienceSaltsBatchResponse(response *core.BatchResponse) (*objects.CustomAudience, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CustomAudience
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCustomAudienceSalts(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceSaltsParams) (*objects.CustomAudience, error) {
 	var out objects.CustomAudience
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "salts"), params.ToParams(), &out)
+	call := CreateCustomAudienceSaltsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -217,9 +378,32 @@ func (params GetCustomAudienceSessionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceSessionsBatchCall(id string, params GetCustomAudienceSessionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "sessions"), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceSessionsBatchRequest(id string, params GetCustomAudienceSessionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CustomAudienceSession]] {
+	return core.NewBatchRequest[core.Cursor[objects.CustomAudienceSession]](GetCustomAudienceSessionsBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceSessionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CustomAudienceSession], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CustomAudienceSession]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudienceSessions(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSessionsParams) (*core.Cursor[objects.CustomAudienceSession], error) {
 	var out core.Cursor[objects.CustomAudienceSession]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "sessions"), params.ToParams(), &out)
+	call := GetCustomAudienceSessionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -235,9 +419,32 @@ func (params GetCustomAudienceSharedAccountInfoParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceSharedAccountInfoBatchCall(id string, params GetCustomAudienceSharedAccountInfoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "shared_account_info"), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceSharedAccountInfoBatchRequest(id string, params GetCustomAudienceSharedAccountInfoParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CustomAudiencesharedAccountInfo]] {
+	return core.NewBatchRequest[core.Cursor[objects.CustomAudiencesharedAccountInfo]](GetCustomAudienceSharedAccountInfoBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceSharedAccountInfoBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CustomAudiencesharedAccountInfo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CustomAudiencesharedAccountInfo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudienceSharedAccountInfo(ctx context.Context, client *core.Client, id string, params GetCustomAudienceSharedAccountInfoParams) (*core.Cursor[objects.CustomAudiencesharedAccountInfo], error) {
 	var out core.Cursor[objects.CustomAudiencesharedAccountInfo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "shared_account_info"), params.ToParams(), &out)
+	call := GetCustomAudienceSharedAccountInfoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -265,9 +472,32 @@ func (params DeleteCustomAudienceUsersParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteCustomAudienceUsersBatchCall(id string, params DeleteCustomAudienceUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "users"), params.ToParams(), options...)
+}
+
+func NewDeleteCustomAudienceUsersBatchRequest(id string, params DeleteCustomAudienceUsersParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteCustomAudienceUsersBatchCall(id, params, options...))
+}
+
+func DecodeDeleteCustomAudienceUsersBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteCustomAudienceUsers(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceUsersParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "users"), params.ToParams(), &out)
+	call := DeleteCustomAudienceUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -295,9 +525,32 @@ func (params CreateCustomAudienceUsersParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCustomAudienceUsersBatchCall(id string, params CreateCustomAudienceUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "users"), params.ToParams(), options...)
+}
+
+func NewCreateCustomAudienceUsersBatchRequest(id string, params CreateCustomAudienceUsersParams, options ...core.BatchOption) *core.BatchRequest[objects.CustomAudience] {
+	return core.NewBatchRequest[objects.CustomAudience](CreateCustomAudienceUsersBatchCall(id, params, options...))
+}
+
+func DecodeCreateCustomAudienceUsersBatchResponse(response *core.BatchResponse) (*objects.CustomAudience, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CustomAudience
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCustomAudienceUsers(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersParams) (*objects.CustomAudience, error) {
 	var out objects.CustomAudience
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "users"), params.ToParams(), &out)
+	call := CreateCustomAudienceUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -321,9 +574,32 @@ func (params CreateCustomAudienceUsersreplaceParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCustomAudienceUsersreplaceBatchCall(id string, params CreateCustomAudienceUsersreplaceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "usersreplace"), params.ToParams(), options...)
+}
+
+func NewCreateCustomAudienceUsersreplaceBatchRequest(id string, params CreateCustomAudienceUsersreplaceParams, options ...core.BatchOption) *core.BatchRequest[objects.CustomAudience] {
+	return core.NewBatchRequest[objects.CustomAudience](CreateCustomAudienceUsersreplaceBatchCall(id, params, options...))
+}
+
+func DecodeCreateCustomAudienceUsersreplaceBatchResponse(response *core.BatchResponse) (*objects.CustomAudience, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CustomAudience
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCustomAudienceUsersreplace(ctx context.Context, client *core.Client, id string, params CreateCustomAudienceUsersreplaceParams) (*objects.CustomAudience, error) {
 	var out objects.CustomAudience
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "usersreplace"), params.ToParams(), &out)
+	call := CreateCustomAudienceUsersreplaceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -339,9 +615,32 @@ func (params DeleteCustomAudienceParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteCustomAudienceBatchCall(id string, params DeleteCustomAudienceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteCustomAudienceBatchRequest(id string, params DeleteCustomAudienceParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteCustomAudienceBatchCall(id, params, options...))
+}
+
+func DecodeDeleteCustomAudienceBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteCustomAudience(ctx context.Context, client *core.Client, id string, params DeleteCustomAudienceParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteCustomAudienceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -373,9 +672,32 @@ func (params GetCustomAudienceParams) ToParams() core.Params {
 	return out
 }
 
+func GetCustomAudienceBatchCall(id string, params GetCustomAudienceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCustomAudienceBatchRequest(id string, params GetCustomAudienceParams, options ...core.BatchOption) *core.BatchRequest[objects.CustomAudience] {
+	return core.NewBatchRequest[objects.CustomAudience](GetCustomAudienceBatchCall(id, params, options...))
+}
+
+func DecodeGetCustomAudienceBatchResponse(response *core.BatchResponse) (*objects.CustomAudience, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CustomAudience
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCustomAudience(ctx context.Context, client *core.Client, id string, params GetCustomAudienceParams) (*objects.CustomAudience, error) {
 	var out objects.CustomAudience
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCustomAudienceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -491,8 +813,31 @@ func (params UpdateCustomAudienceParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateCustomAudienceBatchCall(id string, params UpdateCustomAudienceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateCustomAudienceBatchRequest(id string, params UpdateCustomAudienceParams, options ...core.BatchOption) *core.BatchRequest[objects.CustomAudience] {
+	return core.NewBatchRequest[objects.CustomAudience](UpdateCustomAudienceBatchCall(id, params, options...))
+}
+
+func DecodeUpdateCustomAudienceBatchResponse(response *core.BatchResponse) (*objects.CustomAudience, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CustomAudience
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateCustomAudience(ctx context.Context, client *core.Client, id string, params UpdateCustomAudienceParams) (*objects.CustomAudience, error) {
 	var out objects.CustomAudience
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateCustomAudienceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

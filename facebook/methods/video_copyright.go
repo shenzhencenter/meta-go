@@ -20,9 +20,32 @@ func (params GetVideoCopyrightUpdateRecordsParams) ToParams() core.Params {
 	return out
 }
 
+func GetVideoCopyrightUpdateRecordsBatchCall(id string, params GetVideoCopyrightUpdateRecordsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "update_records"), params.ToParams(), options...)
+}
+
+func NewGetVideoCopyrightUpdateRecordsBatchRequest(id string, params GetVideoCopyrightUpdateRecordsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MediaCopyrightUpdateRecord]] {
+	return core.NewBatchRequest[core.Cursor[objects.MediaCopyrightUpdateRecord]](GetVideoCopyrightUpdateRecordsBatchCall(id, params, options...))
+}
+
+func DecodeGetVideoCopyrightUpdateRecordsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MediaCopyrightUpdateRecord], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MediaCopyrightUpdateRecord]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetVideoCopyrightUpdateRecords(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightUpdateRecordsParams) (*core.Cursor[objects.MediaCopyrightUpdateRecord], error) {
 	var out core.Cursor[objects.MediaCopyrightUpdateRecord]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "update_records"), params.ToParams(), &out)
+	call := GetVideoCopyrightUpdateRecordsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetVideoCopyrightParams) ToParams() core.Params {
 	return out
 }
 
+func GetVideoCopyrightBatchCall(id string, params GetVideoCopyrightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetVideoCopyrightBatchRequest(id string, params GetVideoCopyrightParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyright] {
+	return core.NewBatchRequest[objects.VideoCopyright](GetVideoCopyrightBatchCall(id, params, options...))
+}
+
+func DecodeGetVideoCopyrightBatchResponse(response *core.BatchResponse) (*objects.VideoCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetVideoCopyright(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightParams) (*objects.VideoCopyright, error) {
 	var out objects.VideoCopyright
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetVideoCopyrightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -100,8 +146,31 @@ func (params UpdateVideoCopyrightParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateVideoCopyrightBatchCall(id string, params UpdateVideoCopyrightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateVideoCopyrightBatchRequest(id string, params UpdateVideoCopyrightParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyright] {
+	return core.NewBatchRequest[objects.VideoCopyright](UpdateVideoCopyrightBatchCall(id, params, options...))
+}
+
+func DecodeUpdateVideoCopyrightBatchResponse(response *core.BatchResponse) (*objects.VideoCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateVideoCopyright(ctx context.Context, client *core.Client, id string, params UpdateVideoCopyrightParams) (*objects.VideoCopyright, error) {
 	var out objects.VideoCopyright
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateVideoCopyrightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

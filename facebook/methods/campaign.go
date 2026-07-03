@@ -21,9 +21,32 @@ func (params GetCampaignAdStudiesParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignAdStudiesBatchCall(id string, params GetCampaignAdStudiesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ad_studies"), params.ToParams(), options...)
+}
+
+func NewGetCampaignAdStudiesBatchRequest(id string, params GetCampaignAdStudiesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdStudy]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdStudy]](GetCampaignAdStudiesBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignAdStudiesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdStudy], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdStudy]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignAdStudies(ctx context.Context, client *core.Client, id string, params GetCampaignAdStudiesParams) (*core.Cursor[objects.AdStudy], error) {
 	var out core.Cursor[objects.AdStudy]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ad_studies"), params.ToParams(), &out)
+	call := GetCampaignAdStudiesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -45,9 +68,32 @@ func (params CreateCampaignAdlabelsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCampaignAdlabelsBatchCall(id string, params CreateCampaignAdlabelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "adlabels"), params.ToParams(), options...)
+}
+
+func NewCreateCampaignAdlabelsBatchRequest(id string, params CreateCampaignAdlabelsParams, options ...core.BatchOption) *core.BatchRequest[objects.Campaign] {
+	return core.NewBatchRequest[objects.Campaign](CreateCampaignAdlabelsBatchCall(id, params, options...))
+}
+
+func DecodeCreateCampaignAdlabelsBatchResponse(response *core.BatchResponse) (*objects.Campaign, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Campaign
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCampaignAdlabels(ctx context.Context, client *core.Client, id string, params CreateCampaignAdlabelsParams) (*objects.Campaign, error) {
 	var out objects.Campaign
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "adlabels"), params.ToParams(), &out)
+	call := CreateCampaignAdlabelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -67,9 +113,32 @@ func (params GetCampaignAdrulesGovernedParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignAdrulesGovernedBatchCall(id string, params GetCampaignAdrulesGovernedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adrules_governed"), params.ToParams(), options...)
+}
+
+func NewGetCampaignAdrulesGovernedBatchRequest(id string, params GetCampaignAdrulesGovernedParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdRule]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdRule]](GetCampaignAdrulesGovernedBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignAdrulesGovernedBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdRule], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdRule]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignAdrulesGoverned(ctx context.Context, client *core.Client, id string, params GetCampaignAdrulesGovernedParams) (*core.Cursor[objects.AdRule], error) {
 	var out core.Cursor[objects.AdRule]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adrules_governed"), params.ToParams(), &out)
+	call := GetCampaignAdrulesGovernedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -101,9 +170,32 @@ func (params GetCampaignAdsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignAdsBatchCall(id string, params GetCampaignAdsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ads"), params.ToParams(), options...)
+}
+
+func NewGetCampaignAdsBatchRequest(id string, params GetCampaignAdsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Ad]] {
+	return core.NewBatchRequest[core.Cursor[objects.Ad]](GetCampaignAdsBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignAdsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Ad], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Ad]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignAds(ctx context.Context, client *core.Client, id string, params GetCampaignAdsParams) (*core.Cursor[objects.Ad], error) {
 	var out core.Cursor[objects.Ad]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ads"), params.ToParams(), &out)
+	call := GetCampaignAdsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -135,9 +227,32 @@ func (params GetCampaignAdsetsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignAdsetsBatchCall(id string, params GetCampaignAdsetsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adsets"), params.ToParams(), options...)
+}
+
+func NewGetCampaignAdsetsBatchRequest(id string, params GetCampaignAdsetsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdSet]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdSet]](GetCampaignAdsetsBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignAdsetsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdSet], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdSet]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignAdsets(ctx context.Context, client *core.Client, id string, params GetCampaignAdsetsParams) (*core.Cursor[objects.AdSet], error) {
 	var out core.Cursor[objects.AdSet]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adsets"), params.ToParams(), &out)
+	call := GetCampaignAdsetsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -161,9 +276,32 @@ func (params GetCampaignBudgetSchedulesParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignBudgetSchedulesBatchCall(id string, params GetCampaignBudgetSchedulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "budget_schedules"), params.ToParams(), options...)
+}
+
+func NewGetCampaignBudgetSchedulesBatchRequest(id string, params GetCampaignBudgetSchedulesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.HighDemandPeriod]] {
+	return core.NewBatchRequest[core.Cursor[objects.HighDemandPeriod]](GetCampaignBudgetSchedulesBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignBudgetSchedulesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.HighDemandPeriod], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.HighDemandPeriod]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignBudgetSchedules(ctx context.Context, client *core.Client, id string, params GetCampaignBudgetSchedulesParams) (*core.Cursor[objects.HighDemandPeriod], error) {
 	var out core.Cursor[objects.HighDemandPeriod]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "budget_schedules"), params.ToParams(), &out)
+	call := GetCampaignBudgetSchedulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -187,9 +325,32 @@ func (params CreateCampaignBudgetSchedulesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCampaignBudgetSchedulesBatchCall(id string, params CreateCampaignBudgetSchedulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "budget_schedules"), params.ToParams(), options...)
+}
+
+func NewCreateCampaignBudgetSchedulesBatchRequest(id string, params CreateCampaignBudgetSchedulesParams, options ...core.BatchOption) *core.BatchRequest[objects.HighDemandPeriod] {
+	return core.NewBatchRequest[objects.HighDemandPeriod](CreateCampaignBudgetSchedulesBatchCall(id, params, options...))
+}
+
+func DecodeCreateCampaignBudgetSchedulesBatchResponse(response *core.BatchResponse) (*objects.HighDemandPeriod, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.HighDemandPeriod
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCampaignBudgetSchedules(ctx context.Context, client *core.Client, id string, params CreateCampaignBudgetSchedulesParams) (*objects.HighDemandPeriod, error) {
 	var out objects.HighDemandPeriod
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "budget_schedules"), params.ToParams(), &out)
+	call := CreateCampaignBudgetSchedulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -221,9 +382,32 @@ func (params GetCampaignCopiesParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignCopiesBatchCall(id string, params GetCampaignCopiesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "copies"), params.ToParams(), options...)
+}
+
+func NewGetCampaignCopiesBatchRequest(id string, params GetCampaignCopiesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Campaign]] {
+	return core.NewBatchRequest[core.Cursor[objects.Campaign]](GetCampaignCopiesBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignCopiesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Campaign], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Campaign]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignCopies(ctx context.Context, client *core.Client, id string, params GetCampaignCopiesParams) (*core.Cursor[objects.Campaign], error) {
 	var out core.Cursor[objects.Campaign]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "copies"), params.ToParams(), &out)
+	call := GetCampaignCopiesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -267,9 +451,32 @@ func (params CreateCampaignCopiesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCampaignCopiesBatchCall(id string, params CreateCampaignCopiesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "copies"), params.ToParams(), options...)
+}
+
+func NewCreateCampaignCopiesBatchRequest(id string, params CreateCampaignCopiesParams, options ...core.BatchOption) *core.BatchRequest[objects.Campaign] {
+	return core.NewBatchRequest[objects.Campaign](CreateCampaignCopiesBatchCall(id, params, options...))
+}
+
+func DecodeCreateCampaignCopiesBatchResponse(response *core.BatchResponse) (*objects.Campaign, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Campaign
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCampaignCopies(ctx context.Context, client *core.Client, id string, params CreateCampaignCopiesParams) (*objects.Campaign, error) {
 	var out objects.Campaign
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "copies"), params.ToParams(), &out)
+	call := CreateCampaignCopiesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -377,9 +584,32 @@ func (params GetCampaignInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignInsightsBatchCall(id string, params GetCampaignInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewGetCampaignInsightsBatchRequest(id string, params GetCampaignInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdsInsights]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdsInsights]](GetCampaignInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdsInsights], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdsInsights]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaignInsights(ctx context.Context, client *core.Client, id string, params GetCampaignInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
 	var out core.Cursor[objects.AdsInsights]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := GetCampaignInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -487,9 +717,32 @@ func (params CreateCampaignInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCampaignInsightsBatchCall(id string, params CreateCampaignInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewCreateCampaignInsightsBatchRequest(id string, params CreateCampaignInsightsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdReportRun] {
+	return core.NewBatchRequest[objects.AdReportRun](CreateCampaignInsightsBatchCall(id, params, options...))
+}
+
+func DecodeCreateCampaignInsightsBatchResponse(response *core.BatchResponse) (*objects.AdReportRun, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdReportRun
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCampaignInsights(ctx context.Context, client *core.Client, id string, params CreateCampaignInsightsParams) (*objects.AdReportRun, error) {
 	var out objects.AdReportRun
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := CreateCampaignInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -505,9 +758,32 @@ func (params DeleteCampaignParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteCampaignBatchCall(id string, params DeleteCampaignParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteCampaignBatchRequest(id string, params DeleteCampaignParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteCampaignBatchCall(id, params, options...))
+}
+
+func DecodeDeleteCampaignBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteCampaign(ctx context.Context, client *core.Client, id string, params DeleteCampaignParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteCampaignBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -539,9 +815,32 @@ func (params GetCampaignParams) ToParams() core.Params {
 	return out
 }
 
+func GetCampaignBatchCall(id string, params GetCampaignParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCampaignBatchRequest(id string, params GetCampaignParams, options ...core.BatchOption) *core.BatchRequest[objects.Campaign] {
+	return core.NewBatchRequest[objects.Campaign](GetCampaignBatchCall(id, params, options...))
+}
+
+func DecodeGetCampaignBatchResponse(response *core.BatchResponse) (*objects.Campaign, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Campaign
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCampaign(ctx context.Context, client *core.Client, id string, params GetCampaignParams) (*objects.Campaign, error) {
 	var out objects.Campaign
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCampaignBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -681,8 +980,31 @@ func (params UpdateCampaignParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateCampaignBatchCall(id string, params UpdateCampaignParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateCampaignBatchRequest(id string, params UpdateCampaignParams, options ...core.BatchOption) *core.BatchRequest[objects.Campaign] {
+	return core.NewBatchRequest[objects.Campaign](UpdateCampaignBatchCall(id, params, options...))
+}
+
+func DecodeUpdateCampaignBatchResponse(response *core.BatchResponse) (*objects.Campaign, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Campaign
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateCampaign(ctx context.Context, client *core.Client, id string, params UpdateCampaignParams) (*objects.Campaign, error) {
 	var out objects.Campaign
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateCampaignBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

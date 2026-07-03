@@ -21,9 +21,32 @@ func (params DeletePageUserMessageThreadLabelLabelParams) ToParams() core.Params
 	return out
 }
 
+func DeletePageUserMessageThreadLabelLabelBatchCall(id string, params DeletePageUserMessageThreadLabelLabelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "label"), params.ToParams(), options...)
+}
+
+func NewDeletePageUserMessageThreadLabelLabelBatchRequest(id string, params DeletePageUserMessageThreadLabelLabelParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageUserMessageThreadLabelLabelBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageUserMessageThreadLabelLabelBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageUserMessageThreadLabelLabel(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelLabelParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "label"), params.ToParams(), &out)
+	call := DeletePageUserMessageThreadLabelLabelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,9 +64,32 @@ func (params CreatePageUserMessageThreadLabelLabelParams) ToParams() core.Params
 	return out
 }
 
+func CreatePageUserMessageThreadLabelLabelBatchCall(id string, params CreatePageUserMessageThreadLabelLabelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "label"), params.ToParams(), options...)
+}
+
+func NewCreatePageUserMessageThreadLabelLabelBatchRequest(id string, params CreatePageUserMessageThreadLabelLabelParams, options ...core.BatchOption) *core.BatchRequest[objects.PageUserMessageThreadLabel] {
+	return core.NewBatchRequest[objects.PageUserMessageThreadLabel](CreatePageUserMessageThreadLabelLabelBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageUserMessageThreadLabelLabelBatchResponse(response *core.BatchResponse) (*objects.PageUserMessageThreadLabel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageUserMessageThreadLabel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageUserMessageThreadLabelLabel(ctx context.Context, client *core.Client, id string, params CreatePageUserMessageThreadLabelLabelParams) (*objects.PageUserMessageThreadLabel, error) {
 	var out objects.PageUserMessageThreadLabel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "label"), params.ToParams(), &out)
+	call := CreatePageUserMessageThreadLabelLabelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -59,9 +105,32 @@ func (params DeletePageUserMessageThreadLabelParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageUserMessageThreadLabelBatchCall(id string, params DeletePageUserMessageThreadLabelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeletePageUserMessageThreadLabelBatchRequest(id string, params DeletePageUserMessageThreadLabelParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageUserMessageThreadLabelBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageUserMessageThreadLabelBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageUserMessageThreadLabel(ctx context.Context, client *core.Client, id string, params DeletePageUserMessageThreadLabelParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeletePageUserMessageThreadLabelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -77,8 +146,31 @@ func (params GetPageUserMessageThreadLabelParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageUserMessageThreadLabelBatchCall(id string, params GetPageUserMessageThreadLabelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPageUserMessageThreadLabelBatchRequest(id string, params GetPageUserMessageThreadLabelParams, options ...core.BatchOption) *core.BatchRequest[objects.PageUserMessageThreadLabel] {
+	return core.NewBatchRequest[objects.PageUserMessageThreadLabel](GetPageUserMessageThreadLabelBatchCall(id, params, options...))
+}
+
+func DecodeGetPageUserMessageThreadLabelBatchResponse(response *core.BatchResponse) (*objects.PageUserMessageThreadLabel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageUserMessageThreadLabel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageUserMessageThreadLabel(ctx context.Context, client *core.Client, id string, params GetPageUserMessageThreadLabelParams) (*objects.PageUserMessageThreadLabel, error) {
 	var out objects.PageUserMessageThreadLabel
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPageUserMessageThreadLabelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -45,8 +45,31 @@ func (params GetAdCampaignPlacementParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdCampaignPlacementBatchCall(params GetAdCampaignPlacementParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath("ad_campaign_placement"), params.ToParams(), options...)
+}
+
+func NewGetAdCampaignPlacementBatchRequest(params GetAdCampaignPlacementParams, options ...core.BatchOption) *core.BatchRequest[objects.AdCampaignPlacementGet] {
+	return core.NewBatchRequest[objects.AdCampaignPlacementGet](GetAdCampaignPlacementBatchCall(params, options...))
+}
+
+func DecodeGetAdCampaignPlacementBatchResponse(response *core.BatchResponse) (*objects.AdCampaignPlacementGet, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdCampaignPlacementGet
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdCampaignPlacement(ctx context.Context, client *core.Client, params GetAdCampaignPlacementParams) (*objects.AdCampaignPlacementGet, error) {
 	var out objects.AdCampaignPlacementGet
-	err := client.Request(ctx, http.MethodGet, core.GraphPath("ad_campaign_placement"), params.ToParams(), &out)
+	call := GetAdCampaignPlacementBatchCall(params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,8 +19,31 @@ func (params GetALMAdAccountInfoParams) ToParams() core.Params {
 	return out
 }
 
+func GetALMAdAccountInfoBatchCall(id string, params GetALMAdAccountInfoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetALMAdAccountInfoBatchRequest(id string, params GetALMAdAccountInfoParams, options ...core.BatchOption) *core.BatchRequest[objects.ALMAdAccountInfo] {
+	return core.NewBatchRequest[objects.ALMAdAccountInfo](GetALMAdAccountInfoBatchCall(id, params, options...))
+}
+
+func DecodeGetALMAdAccountInfoBatchResponse(response *core.BatchResponse) (*objects.ALMAdAccountInfo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ALMAdAccountInfo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetALMAdAccountInfo(ctx context.Context, client *core.Client, id string, params GetALMAdAccountInfoParams) (*objects.ALMAdAccountInfo, error) {
 	var out objects.ALMAdAccountInfo
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetALMAdAccountInfoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

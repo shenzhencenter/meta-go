@@ -19,8 +19,31 @@ func (params GetShadowIGMediaBuilderParams) ToParams() core.Params {
 	return out
 }
 
+func GetShadowIGMediaBuilderBatchCall(id string, params GetShadowIGMediaBuilderParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetShadowIGMediaBuilderBatchRequest(id string, params GetShadowIGMediaBuilderParams, options ...core.BatchOption) *core.BatchRequest[objects.ShadowIGMediaBuilder] {
+	return core.NewBatchRequest[objects.ShadowIGMediaBuilder](GetShadowIGMediaBuilderBatchCall(id, params, options...))
+}
+
+func DecodeGetShadowIGMediaBuilderBatchResponse(response *core.BatchResponse) (*objects.ShadowIGMediaBuilder, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ShadowIGMediaBuilder
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetShadowIGMediaBuilder(ctx context.Context, client *core.Client, id string, params GetShadowIGMediaBuilderParams) (*objects.ShadowIGMediaBuilder, error) {
 	var out objects.ShadowIGMediaBuilder
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetShadowIGMediaBuilderBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,8 +19,31 @@ func (params GetCPASCollaborationRequestParams) ToParams() core.Params {
 	return out
 }
 
+func GetCPASCollaborationRequestBatchCall(id string, params GetCPASCollaborationRequestParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCPASCollaborationRequestBatchRequest(id string, params GetCPASCollaborationRequestParams, options ...core.BatchOption) *core.BatchRequest[objects.CPASCollaborationRequest] {
+	return core.NewBatchRequest[objects.CPASCollaborationRequest](GetCPASCollaborationRequestBatchCall(id, params, options...))
+}
+
+func DecodeGetCPASCollaborationRequestBatchResponse(response *core.BatchResponse) (*objects.CPASCollaborationRequest, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CPASCollaborationRequest
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCPASCollaborationRequest(ctx context.Context, client *core.Client, id string, params GetCPASCollaborationRequestParams) (*objects.CPASCollaborationRequest, error) {
 	var out objects.CPASCollaborationRequest
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCPASCollaborationRequestBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

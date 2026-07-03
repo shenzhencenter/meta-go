@@ -20,9 +20,32 @@ func (params GetTransactableItemChannelsToIntegrityStatusParams) ToParams() core
 	return out
 }
 
+func GetTransactableItemChannelsToIntegrityStatusBatchCall(id string, params GetTransactableItemChannelsToIntegrityStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), options...)
+}
+
+func NewGetTransactableItemChannelsToIntegrityStatusBatchRequest(id string, params GetTransactableItemChannelsToIntegrityStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]](GetTransactableItemChannelsToIntegrityStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetTransactableItemChannelsToIntegrityStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetTransactableItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetTransactableItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), &out)
+	call := GetTransactableItemChannelsToIntegrityStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -46,9 +69,32 @@ func (params GetTransactableItemOverrideDetailsParams) ToParams() core.Params {
 	return out
 }
 
+func GetTransactableItemOverrideDetailsBatchCall(id string, params GetTransactableItemOverrideDetailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), options...)
+}
+
+func NewGetTransactableItemOverrideDetailsBatchRequest(id string, params GetTransactableItemOverrideDetailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OverrideDetails]] {
+	return core.NewBatchRequest[core.Cursor[objects.OverrideDetails]](GetTransactableItemOverrideDetailsBatchCall(id, params, options...))
+}
+
+func DecodeGetTransactableItemOverrideDetailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OverrideDetails], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OverrideDetails]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetTransactableItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetTransactableItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
 	var out core.Cursor[objects.OverrideDetails]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), &out)
+	call := GetTransactableItemOverrideDetailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -64,8 +110,31 @@ func (params GetTransactableItemParams) ToParams() core.Params {
 	return out
 }
 
+func GetTransactableItemBatchCall(id string, params GetTransactableItemParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetTransactableItemBatchRequest(id string, params GetTransactableItemParams, options ...core.BatchOption) *core.BatchRequest[objects.TransactableItem] {
+	return core.NewBatchRequest[objects.TransactableItem](GetTransactableItemBatchCall(id, params, options...))
+}
+
+func DecodeGetTransactableItemBatchResponse(response *core.BatchResponse) (*objects.TransactableItem, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.TransactableItem
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetTransactableItem(ctx context.Context, client *core.Client, id string, params GetTransactableItemParams) (*objects.TransactableItem, error) {
 	var out objects.TransactableItem
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetTransactableItemBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -31,8 +31,31 @@ func (params GetAnalyticsSegmentParams) ToParams() core.Params {
 	return out
 }
 
+func GetAnalyticsSegmentBatchCall(id string, params GetAnalyticsSegmentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAnalyticsSegmentBatchRequest(id string, params GetAnalyticsSegmentParams, options ...core.BatchOption) *core.BatchRequest[objects.AnalyticsSegment] {
+	return core.NewBatchRequest[objects.AnalyticsSegment](GetAnalyticsSegmentBatchCall(id, params, options...))
+}
+
+func DecodeGetAnalyticsSegmentBatchResponse(response *core.BatchResponse) (*objects.AnalyticsSegment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AnalyticsSegment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAnalyticsSegment(ctx context.Context, client *core.Client, id string, params GetAnalyticsSegmentParams) (*objects.AnalyticsSegment, error) {
 	var out objects.AnalyticsSegment
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAnalyticsSegmentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

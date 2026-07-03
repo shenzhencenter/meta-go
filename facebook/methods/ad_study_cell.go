@@ -20,9 +20,32 @@ func (params GetAdStudyCellAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdStudyCellAdaccountsBatchCall(id string, params GetAdStudyCellAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adaccounts"), params.ToParams(), options...)
+}
+
+func NewGetAdStudyCellAdaccountsBatchRequest(id string, params GetAdStudyCellAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdAccount]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdAccount]](GetAdStudyCellAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdStudyCellAdaccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdAccount], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdAccount]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdStudyCellAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
 	var out core.Cursor[objects.AdAccount]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adaccounts"), params.ToParams(), &out)
+	call := GetAdStudyCellAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetAdStudyCellAdsetsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdStudyCellAdsetsBatchCall(id string, params GetAdStudyCellAdsetsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adsets"), params.ToParams(), options...)
+}
+
+func NewGetAdStudyCellAdsetsBatchRequest(id string, params GetAdStudyCellAdsetsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdSet]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdSet]](GetAdStudyCellAdsetsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdStudyCellAdsetsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdSet], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdSet]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdStudyCellAdsets(ctx context.Context, client *core.Client, id string, params GetAdStudyCellAdsetsParams) (*core.Cursor[objects.AdSet], error) {
 	var out core.Cursor[objects.AdSet]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adsets"), params.ToParams(), &out)
+	call := GetAdStudyCellAdsetsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -56,9 +102,32 @@ func (params GetAdStudyCellCampaignsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdStudyCellCampaignsBatchCall(id string, params GetAdStudyCellCampaignsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "campaigns"), params.ToParams(), options...)
+}
+
+func NewGetAdStudyCellCampaignsBatchRequest(id string, params GetAdStudyCellCampaignsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Campaign]] {
+	return core.NewBatchRequest[core.Cursor[objects.Campaign]](GetAdStudyCellCampaignsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdStudyCellCampaignsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Campaign], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Campaign]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdStudyCellCampaigns(ctx context.Context, client *core.Client, id string, params GetAdStudyCellCampaignsParams) (*core.Cursor[objects.Campaign], error) {
 	var out core.Cursor[objects.Campaign]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "campaigns"), params.ToParams(), &out)
+	call := GetAdStudyCellCampaignsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -74,9 +143,32 @@ func (params GetAdStudyCellParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdStudyCellBatchCall(id string, params GetAdStudyCellParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdStudyCellBatchRequest(id string, params GetAdStudyCellParams, options ...core.BatchOption) *core.BatchRequest[objects.AdStudyCell] {
+	return core.NewBatchRequest[objects.AdStudyCell](GetAdStudyCellBatchCall(id, params, options...))
+}
+
+func DecodeGetAdStudyCellBatchResponse(response *core.BatchResponse) (*objects.AdStudyCell, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdStudyCell
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdStudyCell(ctx context.Context, client *core.Client, id string, params GetAdStudyCellParams) (*objects.AdStudyCell, error) {
 	var out objects.AdStudyCell
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdStudyCellBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -120,8 +212,31 @@ func (params UpdateAdStudyCellParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateAdStudyCellBatchCall(id string, params UpdateAdStudyCellParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateAdStudyCellBatchRequest(id string, params UpdateAdStudyCellParams, options ...core.BatchOption) *core.BatchRequest[objects.AdStudyCell] {
+	return core.NewBatchRequest[objects.AdStudyCell](UpdateAdStudyCellBatchCall(id, params, options...))
+}
+
+func DecodeUpdateAdStudyCellBatchResponse(response *core.BatchResponse) (*objects.AdStudyCell, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdStudyCell
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateAdStudyCell(ctx context.Context, client *core.Client, id string, params UpdateAdStudyCellParams) (*objects.AdStudyCell, error) {
 	var out objects.AdStudyCell
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateAdStudyCellBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

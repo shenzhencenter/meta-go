@@ -19,8 +19,31 @@ func (params GetCreditCardParams) ToParams() core.Params {
 	return out
 }
 
+func GetCreditCardBatchCall(id string, params GetCreditCardParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCreditCardBatchRequest(id string, params GetCreditCardParams, options ...core.BatchOption) *core.BatchRequest[objects.CreditCard] {
+	return core.NewBatchRequest[objects.CreditCard](GetCreditCardBatchCall(id, params, options...))
+}
+
+func DecodeGetCreditCardBatchResponse(response *core.BatchResponse) (*objects.CreditCard, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CreditCard
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCreditCard(ctx context.Context, client *core.Client, id string, params GetCreditCardParams) (*objects.CreditCard, error) {
 	var out objects.CreditCard
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCreditCardBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

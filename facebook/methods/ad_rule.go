@@ -20,9 +20,32 @@ func (params CreateAdRuleExecuteParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdRuleExecuteBatchCall(id string, params CreateAdRuleExecuteParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "execute"), params.ToParams(), options...)
+}
+
+func NewCreateAdRuleExecuteBatchRequest(id string, params CreateAdRuleExecuteParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateAdRuleExecuteBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdRuleExecuteBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdRuleExecute(ctx context.Context, client *core.Client, id string, params CreateAdRuleExecuteParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "execute"), params.ToParams(), &out)
+	call := CreateAdRuleExecuteBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -50,9 +73,32 @@ func (params GetAdRuleHistoryParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdRuleHistoryBatchCall(id string, params GetAdRuleHistoryParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "history"), params.ToParams(), options...)
+}
+
+func NewGetAdRuleHistoryBatchRequest(id string, params GetAdRuleHistoryParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdRuleHistory]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdRuleHistory]](GetAdRuleHistoryBatchCall(id, params, options...))
+}
+
+func DecodeGetAdRuleHistoryBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdRuleHistory], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdRuleHistory]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdRuleHistory(ctx context.Context, client *core.Client, id string, params GetAdRuleHistoryParams) (*core.Cursor[objects.AdRuleHistory], error) {
 	var out core.Cursor[objects.AdRuleHistory]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "history"), params.ToParams(), &out)
+	call := GetAdRuleHistoryBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -68,9 +114,32 @@ func (params CreateAdRulePreviewParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdRulePreviewBatchCall(id string, params CreateAdRulePreviewParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "preview"), params.ToParams(), options...)
+}
+
+func NewCreateAdRulePreviewBatchRequest(id string, params CreateAdRulePreviewParams, options ...core.BatchOption) *core.BatchRequest[objects.AdRule] {
+	return core.NewBatchRequest[objects.AdRule](CreateAdRulePreviewBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdRulePreviewBatchResponse(response *core.BatchResponse) (*objects.AdRule, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdRule
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdRulePreview(ctx context.Context, client *core.Client, id string, params CreateAdRulePreviewParams) (*objects.AdRule, error) {
 	var out objects.AdRule
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "preview"), params.ToParams(), &out)
+	call := CreateAdRulePreviewBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -86,9 +155,32 @@ func (params DeleteAdRuleParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteAdRuleBatchCall(id string, params DeleteAdRuleParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteAdRuleBatchRequest(id string, params DeleteAdRuleParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteAdRuleBatchCall(id, params, options...))
+}
+
+func DecodeDeleteAdRuleBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteAdRule(ctx context.Context, client *core.Client, id string, params DeleteAdRuleParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteAdRuleBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -104,9 +196,32 @@ func (params GetAdRuleParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdRuleBatchCall(id string, params GetAdRuleParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdRuleBatchRequest(id string, params GetAdRuleParams, options ...core.BatchOption) *core.BatchRequest[objects.AdRule] {
+	return core.NewBatchRequest[objects.AdRule](GetAdRuleBatchCall(id, params, options...))
+}
+
+func DecodeGetAdRuleBatchResponse(response *core.BatchResponse) (*objects.AdRule, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdRule
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdRule(ctx context.Context, client *core.Client, id string, params GetAdRuleParams) (*objects.AdRule, error) {
 	var out objects.AdRule
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdRuleBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -142,8 +257,31 @@ func (params UpdateAdRuleParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateAdRuleBatchCall(id string, params UpdateAdRuleParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateAdRuleBatchRequest(id string, params UpdateAdRuleParams, options ...core.BatchOption) *core.BatchRequest[objects.AdRule] {
+	return core.NewBatchRequest[objects.AdRule](UpdateAdRuleBatchCall(id, params, options...))
+}
+
+func DecodeUpdateAdRuleBatchResponse(response *core.BatchResponse) (*objects.AdRule, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdRule
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateAdRule(ctx context.Context, client *core.Client, id string, params UpdateAdRuleParams) (*objects.AdRule, error) {
 	var out objects.AdRule
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateAdRuleBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

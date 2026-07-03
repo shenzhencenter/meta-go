@@ -20,9 +20,32 @@ func (params GetBusinessAgreementParams) ToParams() core.Params {
 	return out
 }
 
+func GetBusinessAgreementBatchCall(id string, params GetBusinessAgreementParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetBusinessAgreementBatchRequest(id string, params GetBusinessAgreementParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAgreement] {
+	return core.NewBatchRequest[objects.BusinessAgreement](GetBusinessAgreementBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAgreementBatchResponse(response *core.BatchResponse) (*objects.BusinessAgreement, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAgreement
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAgreement(ctx context.Context, client *core.Client, id string, params GetBusinessAgreementParams) (*objects.BusinessAgreement, error) {
 	var out objects.BusinessAgreement
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetBusinessAgreementBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -46,8 +69,31 @@ func (params UpdateBusinessAgreementParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateBusinessAgreementBatchCall(id string, params UpdateBusinessAgreementParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateBusinessAgreementBatchRequest(id string, params UpdateBusinessAgreementParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAgreement] {
+	return core.NewBatchRequest[objects.BusinessAgreement](UpdateBusinessAgreementBatchCall(id, params, options...))
+}
+
+func DecodeUpdateBusinessAgreementBatchResponse(response *core.BatchResponse) (*objects.BusinessAgreement, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAgreement
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateBusinessAgreement(ctx context.Context, client *core.Client, id string, params UpdateBusinessAgreementParams) (*objects.BusinessAgreement, error) {
 	var out objects.BusinessAgreement
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateBusinessAgreementBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

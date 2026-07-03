@@ -22,9 +22,32 @@ func (params DeleteInstagramBusinessAssetAgenciesParams) ToParams() core.Params 
 	return out
 }
 
+func DeleteInstagramBusinessAssetAgenciesBatchCall(id string, params DeleteInstagramBusinessAssetAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewDeleteInstagramBusinessAssetAgenciesBatchRequest(id string, params DeleteInstagramBusinessAssetAgenciesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteInstagramBusinessAssetAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeDeleteInstagramBusinessAssetAgenciesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAgenciesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := DeleteInstagramBusinessAssetAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -40,9 +63,32 @@ func (params GetInstagramBusinessAssetAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func GetInstagramBusinessAssetAgenciesBatchCall(id string, params GetInstagramBusinessAssetAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewGetInstagramBusinessAssetAgenciesBatchRequest(id string, params GetInstagramBusinessAssetAgenciesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Business]] {
+	return core.NewBatchRequest[core.Cursor[objects.Business]](GetInstagramBusinessAssetAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeGetInstagramBusinessAssetAgenciesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Business], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Business]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAgenciesParams) (*core.Cursor[objects.Business], error) {
 	var out core.Cursor[objects.Business]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := GetInstagramBusinessAssetAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -62,9 +108,32 @@ func (params CreateInstagramBusinessAssetAgenciesParams) ToParams() core.Params 
 	return out
 }
 
+func CreateInstagramBusinessAssetAgenciesBatchCall(id string, params CreateInstagramBusinessAssetAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewCreateInstagramBusinessAssetAgenciesBatchRequest(id string, params CreateInstagramBusinessAssetAgenciesParams, options ...core.BatchOption) *core.BatchRequest[objects.InstagramBusinessAsset] {
+	return core.NewBatchRequest[objects.InstagramBusinessAsset](CreateInstagramBusinessAssetAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeCreateInstagramBusinessAssetAgenciesBatchResponse(response *core.BatchResponse) (*objects.InstagramBusinessAsset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.InstagramBusinessAsset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateInstagramBusinessAssetAgencies(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAgenciesParams) (*objects.InstagramBusinessAsset, error) {
 	var out objects.InstagramBusinessAsset
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := CreateInstagramBusinessAssetAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -82,9 +151,32 @@ func (params DeleteInstagramBusinessAssetAssignedUsersParams) ToParams() core.Pa
 	return out
 }
 
+func DeleteInstagramBusinessAssetAssignedUsersBatchCall(id string, params DeleteInstagramBusinessAssetAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewDeleteInstagramBusinessAssetAssignedUsersBatchRequest(id string, params DeleteInstagramBusinessAssetAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteInstagramBusinessAssetAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeDeleteInstagramBusinessAssetAssignedUsersBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteInstagramBusinessAssetAssignedUsersParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := DeleteInstagramBusinessAssetAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -102,9 +194,32 @@ func (params GetInstagramBusinessAssetAssignedUsersParams) ToParams() core.Param
 	return out
 }
 
+func GetInstagramBusinessAssetAssignedUsersBatchCall(id string, params GetInstagramBusinessAssetAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewGetInstagramBusinessAssetAssignedUsersBatchRequest(id string, params GetInstagramBusinessAssetAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AssignedUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.AssignedUser]](GetInstagramBusinessAssetAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetInstagramBusinessAssetAssignedUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AssignedUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AssignedUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
 	var out core.Cursor[objects.AssignedUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := GetInstagramBusinessAssetAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -126,9 +241,32 @@ func (params CreateInstagramBusinessAssetAssignedUsersParams) ToParams() core.Pa
 	return out
 }
 
+func CreateInstagramBusinessAssetAssignedUsersBatchCall(id string, params CreateInstagramBusinessAssetAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewCreateInstagramBusinessAssetAssignedUsersBatchRequest(id string, params CreateInstagramBusinessAssetAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[objects.InstagramBusinessAsset] {
+	return core.NewBatchRequest[objects.InstagramBusinessAsset](CreateInstagramBusinessAssetAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeCreateInstagramBusinessAssetAssignedUsersBatchResponse(response *core.BatchResponse) (*objects.InstagramBusinessAsset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.InstagramBusinessAsset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateInstagramBusinessAssetAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateInstagramBusinessAssetAssignedUsersParams) (*objects.InstagramBusinessAsset, error) {
 	var out objects.InstagramBusinessAsset
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := CreateInstagramBusinessAssetAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -144,8 +282,31 @@ func (params GetInstagramBusinessAssetParams) ToParams() core.Params {
 	return out
 }
 
+func GetInstagramBusinessAssetBatchCall(id string, params GetInstagramBusinessAssetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetInstagramBusinessAssetBatchRequest(id string, params GetInstagramBusinessAssetParams, options ...core.BatchOption) *core.BatchRequest[objects.InstagramBusinessAsset] {
+	return core.NewBatchRequest[objects.InstagramBusinessAsset](GetInstagramBusinessAssetBatchCall(id, params, options...))
+}
+
+func DecodeGetInstagramBusinessAssetBatchResponse(response *core.BatchResponse) (*objects.InstagramBusinessAsset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.InstagramBusinessAsset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetInstagramBusinessAsset(ctx context.Context, client *core.Client, id string, params GetInstagramBusinessAssetParams) (*objects.InstagramBusinessAsset, error) {
 	var out objects.InstagramBusinessAsset
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetInstagramBusinessAssetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

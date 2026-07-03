@@ -24,9 +24,32 @@ func (params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams) ToParams
 	return out
 }
 
+func CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchCall(id string, params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "delete_rule_set"), params.ToParams(), options...)
+}
+
+func NewCreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchRequest(id string, params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsValueAdjustmentRuleCollection] {
+	return core.NewBatchRequest[objects.AdsValueAdjustmentRuleCollection](CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchResponse(response *core.BatchResponse) (*objects.AdsValueAdjustmentRuleCollection, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsValueAdjustmentRuleCollection
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsValueAdjustmentRuleCollectionDeleteRuleSet(ctx context.Context, client *core.Client, id string, params CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
 	var out objects.AdsValueAdjustmentRuleCollection
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "delete_rule_set"), params.ToParams(), &out)
+	call := CreateAdsValueAdjustmentRuleCollectionDeleteRuleSetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -42,9 +65,32 @@ func (params GetAdsValueAdjustmentRuleCollectionRulesParams) ToParams() core.Par
 	return out
 }
 
+func GetAdsValueAdjustmentRuleCollectionRulesBatchCall(id string, params GetAdsValueAdjustmentRuleCollectionRulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "rules"), params.ToParams(), options...)
+}
+
+func NewGetAdsValueAdjustmentRuleCollectionRulesBatchRequest(id string, params GetAdsValueAdjustmentRuleCollectionRulesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdsValueAdjustmentRulePersona]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdsValueAdjustmentRulePersona]](GetAdsValueAdjustmentRuleCollectionRulesBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsValueAdjustmentRuleCollectionRulesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdsValueAdjustmentRulePersona], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdsValueAdjustmentRulePersona]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsValueAdjustmentRuleCollectionRules(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionRulesParams) (*core.Cursor[objects.AdsValueAdjustmentRulePersona], error) {
 	var out core.Cursor[objects.AdsValueAdjustmentRulePersona]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "rules"), params.ToParams(), &out)
+	call := GetAdsValueAdjustmentRuleCollectionRulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -60,9 +106,32 @@ func (params GetAdsValueAdjustmentRuleCollectionParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsValueAdjustmentRuleCollectionBatchCall(id string, params GetAdsValueAdjustmentRuleCollectionParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdsValueAdjustmentRuleCollectionBatchRequest(id string, params GetAdsValueAdjustmentRuleCollectionParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsValueAdjustmentRuleCollection] {
+	return core.NewBatchRequest[objects.AdsValueAdjustmentRuleCollection](GetAdsValueAdjustmentRuleCollectionBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsValueAdjustmentRuleCollectionBatchResponse(response *core.BatchResponse) (*objects.AdsValueAdjustmentRuleCollection, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsValueAdjustmentRuleCollection
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsValueAdjustmentRuleCollection(ctx context.Context, client *core.Client, id string, params GetAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
 	var out objects.AdsValueAdjustmentRuleCollection
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdsValueAdjustmentRuleCollectionBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -90,8 +159,31 @@ func (params UpdateAdsValueAdjustmentRuleCollectionParams) ToParams() core.Param
 	return out
 }
 
+func UpdateAdsValueAdjustmentRuleCollectionBatchCall(id string, params UpdateAdsValueAdjustmentRuleCollectionParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateAdsValueAdjustmentRuleCollectionBatchRequest(id string, params UpdateAdsValueAdjustmentRuleCollectionParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsValueAdjustmentRuleCollection] {
+	return core.NewBatchRequest[objects.AdsValueAdjustmentRuleCollection](UpdateAdsValueAdjustmentRuleCollectionBatchCall(id, params, options...))
+}
+
+func DecodeUpdateAdsValueAdjustmentRuleCollectionBatchResponse(response *core.BatchResponse) (*objects.AdsValueAdjustmentRuleCollection, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsValueAdjustmentRuleCollection
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateAdsValueAdjustmentRuleCollection(ctx context.Context, client *core.Client, id string, params UpdateAdsValueAdjustmentRuleCollectionParams) (*objects.AdsValueAdjustmentRuleCollection, error) {
 	var out objects.AdsValueAdjustmentRuleCollection
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateAdsValueAdjustmentRuleCollectionBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

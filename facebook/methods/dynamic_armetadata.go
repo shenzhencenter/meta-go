@@ -19,8 +19,31 @@ func (params GetDynamicARMetadataParams) ToParams() core.Params {
 	return out
 }
 
+func GetDynamicARMetadataBatchCall(id string, params GetDynamicARMetadataParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetDynamicARMetadataBatchRequest(id string, params GetDynamicARMetadataParams, options ...core.BatchOption) *core.BatchRequest[objects.DynamicARMetadata] {
+	return core.NewBatchRequest[objects.DynamicARMetadata](GetDynamicARMetadataBatchCall(id, params, options...))
+}
+
+func DecodeGetDynamicARMetadataBatchResponse(response *core.BatchResponse) (*objects.DynamicARMetadata, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.DynamicARMetadata
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetDynamicARMetadata(ctx context.Context, client *core.Client, id string, params GetDynamicARMetadataParams) (*objects.DynamicARMetadata, error) {
 	var out objects.DynamicARMetadata
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetDynamicARMetadataBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -23,9 +23,32 @@ func (params GetAdsPixelAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelAdaccountsBatchCall(id string, params GetAdsPixelAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adaccounts"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelAdaccountsBatchRequest(id string, params GetAdsPixelAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdAccount]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdAccount]](GetAdsPixelAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelAdaccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdAccount], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdAccount]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelAdaccounts(ctx context.Context, client *core.Client, id string, params GetAdsPixelAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
 	var out core.Cursor[objects.AdAccount]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adaccounts"), params.ToParams(), &out)
+	call := GetAdsPixelAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -43,9 +66,32 @@ func (params DeleteAdsPixelAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteAdsPixelAgenciesBatchCall(id string, params DeleteAdsPixelAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewDeleteAdsPixelAgenciesBatchRequest(id string, params DeleteAdsPixelAgenciesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteAdsPixelAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeDeleteAdsPixelAgenciesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelAgenciesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := DeleteAdsPixelAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -61,9 +107,32 @@ func (params GetAdsPixelAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelAgenciesBatchCall(id string, params GetAdsPixelAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelAgenciesBatchRequest(id string, params GetAdsPixelAgenciesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Business]] {
+	return core.NewBatchRequest[core.Cursor[objects.Business]](GetAdsPixelAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelAgenciesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Business], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Business]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params GetAdsPixelAgenciesParams) (*core.Cursor[objects.Business], error) {
 	var out core.Cursor[objects.Business]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := GetAdsPixelAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -83,9 +152,32 @@ func (params CreateAdsPixelAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdsPixelAgenciesBatchCall(id string, params CreateAdsPixelAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewCreateAdsPixelAgenciesBatchRequest(id string, params CreateAdsPixelAgenciesParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsPixel] {
+	return core.NewBatchRequest[objects.AdsPixel](CreateAdsPixelAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsPixelAgenciesBatchResponse(response *core.BatchResponse) (*objects.AdsPixel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsPixel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsPixelAgencies(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAgenciesParams) (*objects.AdsPixel, error) {
 	var out objects.AdsPixel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := CreateAdsPixelAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -103,9 +195,32 @@ func (params CreateAdsPixelAhpConfigsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdsPixelAhpConfigsBatchCall(id string, params CreateAdsPixelAhpConfigsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "ahp_configs"), params.ToParams(), options...)
+}
+
+func NewCreateAdsPixelAhpConfigsBatchRequest(id string, params CreateAdsPixelAhpConfigsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateAdsPixelAhpConfigsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsPixelAhpConfigsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsPixelAhpConfigs(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAhpConfigsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "ahp_configs"), params.ToParams(), &out)
+	call := CreateAdsPixelAhpConfigsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -123,9 +238,32 @@ func (params GetAdsPixelAssignedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelAssignedUsersBatchCall(id string, params GetAdsPixelAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelAssignedUsersBatchRequest(id string, params GetAdsPixelAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AssignedUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.AssignedUser]](GetAdsPixelAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelAssignedUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AssignedUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AssignedUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelAssignedUsers(ctx context.Context, client *core.Client, id string, params GetAdsPixelAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
 	var out core.Cursor[objects.AssignedUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := GetAdsPixelAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -145,9 +283,32 @@ func (params CreateAdsPixelAssignedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdsPixelAssignedUsersBatchCall(id string, params CreateAdsPixelAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewCreateAdsPixelAssignedUsersBatchRequest(id string, params CreateAdsPixelAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsPixel] {
+	return core.NewBatchRequest[objects.AdsPixel](CreateAdsPixelAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsPixelAssignedUsersBatchResponse(response *core.BatchResponse) (*objects.AdsPixel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsPixel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsPixelAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateAdsPixelAssignedUsersParams) (*objects.AdsPixel, error) {
 	var out objects.AdsPixel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := CreateAdsPixelAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -171,9 +332,32 @@ func (params GetAdsPixelDaChecksParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelDaChecksBatchCall(id string, params GetAdsPixelDaChecksParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "da_checks"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelDaChecksBatchRequest(id string, params GetAdsPixelDaChecksParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.DACheck]] {
+	return core.NewBatchRequest[core.Cursor[objects.DACheck]](GetAdsPixelDaChecksBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelDaChecksBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.DACheck], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.DACheck]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelDaChecks(ctx context.Context, client *core.Client, id string, params GetAdsPixelDaChecksParams) (*core.Cursor[objects.DACheck], error) {
 	var out core.Cursor[objects.DACheck]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "da_checks"), params.ToParams(), &out)
+	call := GetAdsPixelDaChecksBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -227,9 +411,32 @@ func (params CreateAdsPixelEventsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdsPixelEventsBatchCall(id string, params CreateAdsPixelEventsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "events"), params.ToParams(), options...)
+}
+
+func NewCreateAdsPixelEventsBatchRequest(id string, params CreateAdsPixelEventsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateAdsPixelEventsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsPixelEventsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsPixelEvents(ctx context.Context, client *core.Client, id string, params CreateAdsPixelEventsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "events"), params.ToParams(), &out)
+	call := CreateAdsPixelEventsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -265,9 +472,32 @@ func (params GetAdsPixelOfflineEventUploadsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelOfflineEventUploadsBatchCall(id string, params GetAdsPixelOfflineEventUploadsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "offline_event_uploads"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelOfflineEventUploadsBatchRequest(id string, params GetAdsPixelOfflineEventUploadsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OfflineConversionDataSetUpload]] {
+	return core.NewBatchRequest[core.Cursor[objects.OfflineConversionDataSetUpload]](GetAdsPixelOfflineEventUploadsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelOfflineEventUploadsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OfflineConversionDataSetUpload], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OfflineConversionDataSetUpload]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelOfflineEventUploads(ctx context.Context, client *core.Client, id string, params GetAdsPixelOfflineEventUploadsParams) (*core.Cursor[objects.OfflineConversionDataSetUpload], error) {
 	var out core.Cursor[objects.OfflineConversionDataSetUpload]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "offline_event_uploads"), params.ToParams(), &out)
+	call := GetAdsPixelOfflineEventUploadsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -283,9 +513,32 @@ func (params GetAdsPixelOpenbridgeConfigurationsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelOpenbridgeConfigurationsBatchCall(id string, params GetAdsPixelOpenbridgeConfigurationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "openbridge_configurations"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelOpenbridgeConfigurationsBatchRequest(id string, params GetAdsPixelOpenbridgeConfigurationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OpenBridgeConfiguration]] {
+	return core.NewBatchRequest[core.Cursor[objects.OpenBridgeConfiguration]](GetAdsPixelOpenbridgeConfigurationsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelOpenbridgeConfigurationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OpenBridgeConfiguration], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OpenBridgeConfiguration]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelOpenbridgeConfigurations(ctx context.Context, client *core.Client, id string, params GetAdsPixelOpenbridgeConfigurationsParams) (*core.Cursor[objects.OpenBridgeConfiguration], error) {
 	var out core.Cursor[objects.OpenBridgeConfiguration]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "openbridge_configurations"), params.ToParams(), &out)
+	call := GetAdsPixelOpenbridgeConfigurationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -301,9 +554,32 @@ func (params CreateAdsPixelShadowtraffichelperParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdsPixelShadowtraffichelperBatchCall(id string, params CreateAdsPixelShadowtraffichelperParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "shadowtraffichelper"), params.ToParams(), options...)
+}
+
+func NewCreateAdsPixelShadowtraffichelperBatchRequest(id string, params CreateAdsPixelShadowtraffichelperParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateAdsPixelShadowtraffichelperBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsPixelShadowtraffichelperBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsPixelShadowtraffichelper(ctx context.Context, client *core.Client, id string, params CreateAdsPixelShadowtraffichelperParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "shadowtraffichelper"), params.ToParams(), &out)
+	call := CreateAdsPixelShadowtraffichelperBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -323,9 +599,32 @@ func (params DeleteAdsPixelSharedAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteAdsPixelSharedAccountsBatchCall(id string, params DeleteAdsPixelSharedAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "shared_accounts"), params.ToParams(), options...)
+}
+
+func NewDeleteAdsPixelSharedAccountsBatchRequest(id string, params DeleteAdsPixelSharedAccountsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteAdsPixelSharedAccountsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteAdsPixelSharedAccountsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params DeleteAdsPixelSharedAccountsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "shared_accounts"), params.ToParams(), &out)
+	call := DeleteAdsPixelSharedAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -343,9 +642,32 @@ func (params GetAdsPixelSharedAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelSharedAccountsBatchCall(id string, params GetAdsPixelSharedAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "shared_accounts"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelSharedAccountsBatchRequest(id string, params GetAdsPixelSharedAccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdAccount]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdAccount]](GetAdsPixelSharedAccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelSharedAccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdAccount], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdAccount]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAccountsParams) (*core.Cursor[objects.AdAccount], error) {
 	var out core.Cursor[objects.AdAccount]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "shared_accounts"), params.ToParams(), &out)
+	call := GetAdsPixelSharedAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -365,9 +687,32 @@ func (params CreateAdsPixelSharedAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdsPixelSharedAccountsBatchCall(id string, params CreateAdsPixelSharedAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "shared_accounts"), params.ToParams(), options...)
+}
+
+func NewCreateAdsPixelSharedAccountsBatchRequest(id string, params CreateAdsPixelSharedAccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsPixel] {
+	return core.NewBatchRequest[objects.AdsPixel](CreateAdsPixelSharedAccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdsPixelSharedAccountsBatchResponse(response *core.BatchResponse) (*objects.AdsPixel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsPixel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdsPixelSharedAccounts(ctx context.Context, client *core.Client, id string, params CreateAdsPixelSharedAccountsParams) (*objects.AdsPixel, error) {
 	var out objects.AdsPixel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "shared_accounts"), params.ToParams(), &out)
+	call := CreateAdsPixelSharedAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -383,9 +728,32 @@ func (params GetAdsPixelSharedAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelSharedAgenciesBatchCall(id string, params GetAdsPixelSharedAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "shared_agencies"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelSharedAgenciesBatchRequest(id string, params GetAdsPixelSharedAgenciesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Business]] {
+	return core.NewBatchRequest[core.Cursor[objects.Business]](GetAdsPixelSharedAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelSharedAgenciesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Business], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Business]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelSharedAgencies(ctx context.Context, client *core.Client, id string, params GetAdsPixelSharedAgenciesParams) (*core.Cursor[objects.Business], error) {
 	var out core.Cursor[objects.Business]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "shared_agencies"), params.ToParams(), &out)
+	call := GetAdsPixelSharedAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -425,9 +793,32 @@ func (params GetAdsPixelStatsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelStatsBatchCall(id string, params GetAdsPixelStatsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "stats"), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelStatsBatchRequest(id string, params GetAdsPixelStatsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdsPixelStatsResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdsPixelStatsResult]](GetAdsPixelStatsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelStatsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdsPixelStatsResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdsPixelStatsResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixelStats(ctx context.Context, client *core.Client, id string, params GetAdsPixelStatsParams) (*core.Cursor[objects.AdsPixelStatsResult], error) {
 	var out core.Cursor[objects.AdsPixelStatsResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "stats"), params.ToParams(), &out)
+	call := GetAdsPixelStatsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -443,9 +834,32 @@ func (params GetAdsPixelParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPixelBatchCall(id string, params GetAdsPixelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdsPixelBatchRequest(id string, params GetAdsPixelParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsPixel] {
+	return core.NewBatchRequest[objects.AdsPixel](GetAdsPixelBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPixelBatchResponse(response *core.BatchResponse) (*objects.AdsPixel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsPixel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPixel(ctx context.Context, client *core.Client, id string, params GetAdsPixelParams) (*objects.AdsPixel, error) {
 	var out objects.AdsPixel
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdsPixelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -493,8 +907,31 @@ func (params UpdateAdsPixelParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateAdsPixelBatchCall(id string, params UpdateAdsPixelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateAdsPixelBatchRequest(id string, params UpdateAdsPixelParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsPixel] {
+	return core.NewBatchRequest[objects.AdsPixel](UpdateAdsPixelBatchCall(id, params, options...))
+}
+
+func DecodeUpdateAdsPixelBatchResponse(response *core.BatchResponse) (*objects.AdsPixel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsPixel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateAdsPixel(ctx context.Context, client *core.Client, id string, params UpdateAdsPixelParams) (*objects.AdsPixel, error) {
 	var out objects.AdsPixel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateAdsPixelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -20,9 +20,32 @@ func (params GetExtendedCreditExtendedCreditInvoiceGroupsParams) ToParams() core
 	return out
 }
 
+func GetExtendedCreditExtendedCreditInvoiceGroupsBatchCall(id string, params GetExtendedCreditExtendedCreditInvoiceGroupsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "extended_credit_invoice_groups"), params.ToParams(), options...)
+}
+
+func NewGetExtendedCreditExtendedCreditInvoiceGroupsBatchRequest(id string, params GetExtendedCreditExtendedCreditInvoiceGroupsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ExtendedCreditInvoiceGroup]] {
+	return core.NewBatchRequest[core.Cursor[objects.ExtendedCreditInvoiceGroup]](GetExtendedCreditExtendedCreditInvoiceGroupsBatchCall(id, params, options...))
+}
+
+func DecodeGetExtendedCreditExtendedCreditInvoiceGroupsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ExtendedCreditInvoiceGroup], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ExtendedCreditInvoiceGroup]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetExtendedCreditExtendedCreditInvoiceGroups(ctx context.Context, client *core.Client, id string, params GetExtendedCreditExtendedCreditInvoiceGroupsParams) (*core.Cursor[objects.ExtendedCreditInvoiceGroup], error) {
 	var out core.Cursor[objects.ExtendedCreditInvoiceGroup]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "extended_credit_invoice_groups"), params.ToParams(), &out)
+	call := GetExtendedCreditExtendedCreditInvoiceGroupsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -42,9 +65,32 @@ func (params CreateExtendedCreditExtendedCreditInvoiceGroupsParams) ToParams() c
 	return out
 }
 
+func CreateExtendedCreditExtendedCreditInvoiceGroupsBatchCall(id string, params CreateExtendedCreditExtendedCreditInvoiceGroupsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "extended_credit_invoice_groups"), params.ToParams(), options...)
+}
+
+func NewCreateExtendedCreditExtendedCreditInvoiceGroupsBatchRequest(id string, params CreateExtendedCreditExtendedCreditInvoiceGroupsParams, options ...core.BatchOption) *core.BatchRequest[objects.ExtendedCreditInvoiceGroup] {
+	return core.NewBatchRequest[objects.ExtendedCreditInvoiceGroup](CreateExtendedCreditExtendedCreditInvoiceGroupsBatchCall(id, params, options...))
+}
+
+func DecodeCreateExtendedCreditExtendedCreditInvoiceGroupsBatchResponse(response *core.BatchResponse) (*objects.ExtendedCreditInvoiceGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExtendedCreditInvoiceGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateExtendedCreditExtendedCreditInvoiceGroups(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditExtendedCreditInvoiceGroupsParams) (*objects.ExtendedCreditInvoiceGroup, error) {
 	var out objects.ExtendedCreditInvoiceGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "extended_credit_invoice_groups"), params.ToParams(), &out)
+	call := CreateExtendedCreditExtendedCreditInvoiceGroupsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -64,9 +110,32 @@ func (params GetExtendedCreditOwningCreditAllocationConfigsParams) ToParams() co
 	return out
 }
 
+func GetExtendedCreditOwningCreditAllocationConfigsBatchCall(id string, params GetExtendedCreditOwningCreditAllocationConfigsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "owning_credit_allocation_configs"), params.ToParams(), options...)
+}
+
+func NewGetExtendedCreditOwningCreditAllocationConfigsBatchRequest(id string, params GetExtendedCreditOwningCreditAllocationConfigsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ExtendedCreditAllocationConfig]] {
+	return core.NewBatchRequest[core.Cursor[objects.ExtendedCreditAllocationConfig]](GetExtendedCreditOwningCreditAllocationConfigsBatchCall(id, params, options...))
+}
+
+func DecodeGetExtendedCreditOwningCreditAllocationConfigsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ExtendedCreditAllocationConfig], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ExtendedCreditAllocationConfig]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetExtendedCreditOwningCreditAllocationConfigs(ctx context.Context, client *core.Client, id string, params GetExtendedCreditOwningCreditAllocationConfigsParams) (*core.Cursor[objects.ExtendedCreditAllocationConfig], error) {
 	var out core.Cursor[objects.ExtendedCreditAllocationConfig]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "owning_credit_allocation_configs"), params.ToParams(), &out)
+	call := GetExtendedCreditOwningCreditAllocationConfigsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -100,9 +169,32 @@ func (params CreateExtendedCreditOwningCreditAllocationConfigsParams) ToParams()
 	return out
 }
 
+func CreateExtendedCreditOwningCreditAllocationConfigsBatchCall(id string, params CreateExtendedCreditOwningCreditAllocationConfigsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "owning_credit_allocation_configs"), params.ToParams(), options...)
+}
+
+func NewCreateExtendedCreditOwningCreditAllocationConfigsBatchRequest(id string, params CreateExtendedCreditOwningCreditAllocationConfigsParams, options ...core.BatchOption) *core.BatchRequest[objects.ExtendedCreditAllocationConfig] {
+	return core.NewBatchRequest[objects.ExtendedCreditAllocationConfig](CreateExtendedCreditOwningCreditAllocationConfigsBatchCall(id, params, options...))
+}
+
+func DecodeCreateExtendedCreditOwningCreditAllocationConfigsBatchResponse(response *core.BatchResponse) (*objects.ExtendedCreditAllocationConfig, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExtendedCreditAllocationConfig
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateExtendedCreditOwningCreditAllocationConfigs(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditOwningCreditAllocationConfigsParams) (*objects.ExtendedCreditAllocationConfig, error) {
 	var out objects.ExtendedCreditAllocationConfig
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "owning_credit_allocation_configs"), params.ToParams(), &out)
+	call := CreateExtendedCreditOwningCreditAllocationConfigsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -122,9 +214,32 @@ func (params CreateExtendedCreditWhatsappCreditAttachParams) ToParams() core.Par
 	return out
 }
 
+func CreateExtendedCreditWhatsappCreditAttachBatchCall(id string, params CreateExtendedCreditWhatsappCreditAttachParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "whatsapp_credit_attach"), params.ToParams(), options...)
+}
+
+func NewCreateExtendedCreditWhatsappCreditAttachBatchRequest(id string, params CreateExtendedCreditWhatsappCreditAttachParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateExtendedCreditWhatsappCreditAttachBatchCall(id, params, options...))
+}
+
+func DecodeCreateExtendedCreditWhatsappCreditAttachBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateExtendedCreditWhatsappCreditAttach(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditWhatsappCreditAttachParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "whatsapp_credit_attach"), params.ToParams(), &out)
+	call := CreateExtendedCreditWhatsappCreditAttachBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -142,9 +257,32 @@ func (params CreateExtendedCreditWhatsappCreditSharingParams) ToParams() core.Pa
 	return out
 }
 
+func CreateExtendedCreditWhatsappCreditSharingBatchCall(id string, params CreateExtendedCreditWhatsappCreditSharingParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "whatsapp_credit_sharing"), params.ToParams(), options...)
+}
+
+func NewCreateExtendedCreditWhatsappCreditSharingBatchRequest(id string, params CreateExtendedCreditWhatsappCreditSharingParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateExtendedCreditWhatsappCreditSharingBatchCall(id, params, options...))
+}
+
+func DecodeCreateExtendedCreditWhatsappCreditSharingBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateExtendedCreditWhatsappCreditSharing(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditWhatsappCreditSharingParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "whatsapp_credit_sharing"), params.ToParams(), &out)
+	call := CreateExtendedCreditWhatsappCreditSharingBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -164,9 +302,32 @@ func (params CreateExtendedCreditWhatsappCreditSharingAndAttachParams) ToParams(
 	return out
 }
 
+func CreateExtendedCreditWhatsappCreditSharingAndAttachBatchCall(id string, params CreateExtendedCreditWhatsappCreditSharingAndAttachParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "whatsapp_credit_sharing_and_attach"), params.ToParams(), options...)
+}
+
+func NewCreateExtendedCreditWhatsappCreditSharingAndAttachBatchRequest(id string, params CreateExtendedCreditWhatsappCreditSharingAndAttachParams, options ...core.BatchOption) *core.BatchRequest[objects.ExtendedCreditAllocationConfig] {
+	return core.NewBatchRequest[objects.ExtendedCreditAllocationConfig](CreateExtendedCreditWhatsappCreditSharingAndAttachBatchCall(id, params, options...))
+}
+
+func DecodeCreateExtendedCreditWhatsappCreditSharingAndAttachBatchResponse(response *core.BatchResponse) (*objects.ExtendedCreditAllocationConfig, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExtendedCreditAllocationConfig
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateExtendedCreditWhatsappCreditSharingAndAttach(ctx context.Context, client *core.Client, id string, params CreateExtendedCreditWhatsappCreditSharingAndAttachParams) (*objects.ExtendedCreditAllocationConfig, error) {
 	var out objects.ExtendedCreditAllocationConfig
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "whatsapp_credit_sharing_and_attach"), params.ToParams(), &out)
+	call := CreateExtendedCreditWhatsappCreditSharingAndAttachBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -182,8 +343,31 @@ func (params GetExtendedCreditParams) ToParams() core.Params {
 	return out
 }
 
+func GetExtendedCreditBatchCall(id string, params GetExtendedCreditParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetExtendedCreditBatchRequest(id string, params GetExtendedCreditParams, options ...core.BatchOption) *core.BatchRequest[objects.ExtendedCredit] {
+	return core.NewBatchRequest[objects.ExtendedCredit](GetExtendedCreditBatchCall(id, params, options...))
+}
+
+func DecodeGetExtendedCreditBatchResponse(response *core.BatchResponse) (*objects.ExtendedCredit, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExtendedCredit
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetExtendedCredit(ctx context.Context, client *core.Client, id string, params GetExtendedCreditParams) (*objects.ExtendedCredit, error) {
 	var out objects.ExtendedCredit
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetExtendedCreditBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

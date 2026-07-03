@@ -19,8 +19,31 @@ func (params GetVideoCopyrightMatchParams) ToParams() core.Params {
 	return out
 }
 
+func GetVideoCopyrightMatchBatchCall(id string, params GetVideoCopyrightMatchParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetVideoCopyrightMatchBatchRequest(id string, params GetVideoCopyrightMatchParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyrightMatch] {
+	return core.NewBatchRequest[objects.VideoCopyrightMatch](GetVideoCopyrightMatchBatchCall(id, params, options...))
+}
+
+func DecodeGetVideoCopyrightMatchBatchResponse(response *core.BatchResponse) (*objects.VideoCopyrightMatch, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyrightMatch
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetVideoCopyrightMatch(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightMatchParams) (*objects.VideoCopyrightMatch, error) {
 	var out objects.VideoCopyrightMatch
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetVideoCopyrightMatchBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

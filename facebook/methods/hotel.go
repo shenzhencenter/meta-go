@@ -20,9 +20,32 @@ func (params GetHotelChannelsToIntegrityStatusParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelChannelsToIntegrityStatusBatchCall(id string, params GetHotelChannelsToIntegrityStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), options...)
+}
+
+func NewGetHotelChannelsToIntegrityStatusBatchRequest(id string, params GetHotelChannelsToIntegrityStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]](GetHotelChannelsToIntegrityStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelChannelsToIntegrityStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotelChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetHotelChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), &out)
+	call := GetHotelChannelsToIntegrityStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetHotelHotelRoomsParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelHotelRoomsBatchCall(id string, params GetHotelHotelRoomsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "hotel_rooms"), params.ToParams(), options...)
+}
+
+func NewGetHotelHotelRoomsBatchRequest(id string, params GetHotelHotelRoomsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.HotelRoom]] {
+	return core.NewBatchRequest[core.Cursor[objects.HotelRoom]](GetHotelHotelRoomsBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelHotelRoomsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.HotelRoom], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.HotelRoom]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotelHotelRooms(ctx context.Context, client *core.Client, id string, params GetHotelHotelRoomsParams) (*core.Cursor[objects.HotelRoom], error) {
 	var out core.Cursor[objects.HotelRoom]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "hotel_rooms"), params.ToParams(), &out)
+	call := GetHotelHotelRoomsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -64,9 +110,32 @@ func (params GetHotelOverrideDetailsParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelOverrideDetailsBatchCall(id string, params GetHotelOverrideDetailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), options...)
+}
+
+func NewGetHotelOverrideDetailsBatchRequest(id string, params GetHotelOverrideDetailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OverrideDetails]] {
+	return core.NewBatchRequest[core.Cursor[objects.OverrideDetails]](GetHotelOverrideDetailsBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelOverrideDetailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OverrideDetails], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OverrideDetails]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotelOverrideDetails(ctx context.Context, client *core.Client, id string, params GetHotelOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
 	var out core.Cursor[objects.OverrideDetails]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), &out)
+	call := GetHotelOverrideDetailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -82,9 +151,32 @@ func (params GetHotelVideosMetadataParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelVideosMetadataBatchCall(id string, params GetHotelVideosMetadataParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "videos_metadata"), params.ToParams(), options...)
+}
+
+func NewGetHotelVideosMetadataBatchRequest(id string, params GetHotelVideosMetadataParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.DynamicVideoMetadata]] {
+	return core.NewBatchRequest[core.Cursor[objects.DynamicVideoMetadata]](GetHotelVideosMetadataBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelVideosMetadataBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.DynamicVideoMetadata]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotelVideosMetadata(ctx context.Context, client *core.Client, id string, params GetHotelVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "videos_metadata"), params.ToParams(), &out)
+	call := GetHotelVideosMetadataBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -100,9 +192,32 @@ func (params DeleteHotelParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteHotelBatchCall(id string, params DeleteHotelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteHotelBatchRequest(id string, params DeleteHotelParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteHotelBatchCall(id, params, options...))
+}
+
+func DecodeDeleteHotelBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteHotel(ctx context.Context, client *core.Client, id string, params DeleteHotelParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteHotelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -118,9 +233,32 @@ func (params GetHotelParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelBatchCall(id string, params GetHotelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetHotelBatchRequest(id string, params GetHotelParams, options ...core.BatchOption) *core.BatchRequest[objects.Hotel] {
+	return core.NewBatchRequest[objects.Hotel](GetHotelBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelBatchResponse(response *core.BatchResponse) (*objects.Hotel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Hotel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotel(ctx context.Context, client *core.Client, id string, params GetHotelParams) (*objects.Hotel, error) {
 	var out objects.Hotel
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetHotelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -184,8 +322,31 @@ func (params UpdateHotelParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateHotelBatchCall(id string, params UpdateHotelParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateHotelBatchRequest(id string, params UpdateHotelParams, options ...core.BatchOption) *core.BatchRequest[objects.Hotel] {
+	return core.NewBatchRequest[objects.Hotel](UpdateHotelBatchCall(id, params, options...))
+}
+
+func DecodeUpdateHotelBatchResponse(response *core.BatchResponse) (*objects.Hotel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Hotel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateHotel(ctx context.Context, client *core.Client, id string, params UpdateHotelParams) (*objects.Hotel, error) {
 	var out objects.Hotel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateHotelBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

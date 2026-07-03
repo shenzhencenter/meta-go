@@ -19,8 +19,31 @@ func (params GetProductFeedRulesRulesParams) ToParams() core.Params {
 	return out
 }
 
+func GetProductFeedRulesRulesBatchCall(id string, params GetProductFeedRulesRulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "rules"), params.ToParams(), options...)
+}
+
+func NewGetProductFeedRulesRulesBatchRequest(id string, params GetProductFeedRulesRulesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductFeedRulesGet]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductFeedRulesGet]](GetProductFeedRulesRulesBatchCall(id, params, options...))
+}
+
+func DecodeGetProductFeedRulesRulesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductFeedRulesGet], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductFeedRulesGet]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductFeedRulesRules(ctx context.Context, client *core.Client, id string, params GetProductFeedRulesRulesParams) (*core.Cursor[objects.ProductFeedRulesGet], error) {
 	var out core.Cursor[objects.ProductFeedRulesGet]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "rules"), params.ToParams(), &out)
+	call := GetProductFeedRulesRulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

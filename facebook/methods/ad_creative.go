@@ -23,9 +23,32 @@ func (params CreateAdCreativeAdlabelsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdCreativeAdlabelsBatchCall(id string, params CreateAdCreativeAdlabelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "adlabels"), params.ToParams(), options...)
+}
+
+func NewCreateAdCreativeAdlabelsBatchRequest(id string, params CreateAdCreativeAdlabelsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdCreative] {
+	return core.NewBatchRequest[objects.AdCreative](CreateAdCreativeAdlabelsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdCreativeAdlabelsBatchResponse(response *core.BatchResponse) (*objects.AdCreative, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdCreative
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdCreativeAdlabels(ctx context.Context, client *core.Client, id string, params CreateAdCreativeAdlabelsParams) (*objects.AdCreative, error) {
 	var out objects.AdCreative
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "adlabels"), params.ToParams(), &out)
+	call := CreateAdCreativeAdlabelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,9 +64,32 @@ func (params GetAdCreativeCreativeInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdCreativeCreativeInsightsBatchCall(id string, params GetAdCreativeCreativeInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "creative_insights"), params.ToParams(), options...)
+}
+
+func NewGetAdCreativeCreativeInsightsBatchRequest(id string, params GetAdCreativeCreativeInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdCreativeInsights]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdCreativeInsights]](GetAdCreativeCreativeInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdCreativeCreativeInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdCreativeInsights], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdCreativeInsights]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdCreativeCreativeInsights(ctx context.Context, client *core.Client, id string, params GetAdCreativeCreativeInsightsParams) (*core.Cursor[objects.AdCreativeInsights], error) {
 	var out core.Cursor[objects.AdCreativeInsights]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "creative_insights"), params.ToParams(), &out)
+	call := GetAdCreativeCreativeInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -113,9 +159,32 @@ func (params GetAdCreativePreviewsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdCreativePreviewsBatchCall(id string, params GetAdCreativePreviewsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "previews"), params.ToParams(), options...)
+}
+
+func NewGetAdCreativePreviewsBatchRequest(id string, params GetAdCreativePreviewsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdPreview]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdPreview]](GetAdCreativePreviewsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdCreativePreviewsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdPreview], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdPreview]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdCreativePreviews(ctx context.Context, client *core.Client, id string, params GetAdCreativePreviewsParams) (*core.Cursor[objects.AdPreview], error) {
 	var out core.Cursor[objects.AdPreview]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "previews"), params.ToParams(), &out)
+	call := GetAdCreativePreviewsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -147,9 +216,32 @@ func (params DeleteAdCreativeParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteAdCreativeBatchCall(id string, params DeleteAdCreativeParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteAdCreativeBatchRequest(id string, params DeleteAdCreativeParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteAdCreativeBatchCall(id, params, options...))
+}
+
+func DecodeDeleteAdCreativeBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteAdCreative(ctx context.Context, client *core.Client, id string, params DeleteAdCreativeParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteAdCreativeBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -173,9 +265,32 @@ func (params GetAdCreativeParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdCreativeBatchCall(id string, params GetAdCreativeParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdCreativeBatchRequest(id string, params GetAdCreativeParams, options ...core.BatchOption) *core.BatchRequest[objects.AdCreative] {
+	return core.NewBatchRequest[objects.AdCreative](GetAdCreativeBatchCall(id, params, options...))
+}
+
+func DecodeGetAdCreativeBatchResponse(response *core.BatchResponse) (*objects.AdCreative, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdCreative
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdCreative(ctx context.Context, client *core.Client, id string, params GetAdCreativeParams) (*objects.AdCreative, error) {
 	var out objects.AdCreative
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdCreativeBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -207,8 +322,31 @@ func (params UpdateAdCreativeParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateAdCreativeBatchCall(id string, params UpdateAdCreativeParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateAdCreativeBatchRequest(id string, params UpdateAdCreativeParams, options ...core.BatchOption) *core.BatchRequest[objects.AdCreative] {
+	return core.NewBatchRequest[objects.AdCreative](UpdateAdCreativeBatchCall(id, params, options...))
+}
+
+func DecodeUpdateAdCreativeBatchResponse(response *core.BatchResponse) (*objects.AdCreative, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdCreative
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateAdCreative(ctx context.Context, client *core.Client, id string, params UpdateAdCreativeParams) (*objects.AdCreative, error) {
 	var out objects.AdCreative
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateAdCreativeBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

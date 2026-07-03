@@ -36,9 +36,32 @@ func (params GetProfilePictureParams) ToParams() core.Params {
 	return out
 }
 
+func GetProfilePictureBatchCall(id string, params GetProfilePictureParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), options...)
+}
+
+func NewGetProfilePictureBatchRequest(id string, params GetProfilePictureParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProfilePictureSource]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProfilePictureSource]](GetProfilePictureBatchCall(id, params, options...))
+}
+
+func DecodeGetProfilePictureBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProfilePictureSource], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProfilePictureSource]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProfilePicture(ctx context.Context, client *core.Client, id string, params GetProfilePictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
 	var out core.Cursor[objects.ProfilePictureSource]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	call := GetProfilePictureBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -54,8 +77,31 @@ func (params GetProfileParams) ToParams() core.Params {
 	return out
 }
 
+func GetProfileBatchCall(id string, params GetProfileParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetProfileBatchRequest(id string, params GetProfileParams, options ...core.BatchOption) *core.BatchRequest[objects.Profile] {
+	return core.NewBatchRequest[objects.Profile](GetProfileBatchCall(id, params, options...))
+}
+
+func DecodeGetProfileBatchResponse(response *core.BatchResponse) (*objects.Profile, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Profile
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProfile(ctx context.Context, client *core.Client, id string, params GetProfileParams) (*objects.Profile, error) {
 	var out objects.Profile
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetProfileBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -21,9 +21,32 @@ func (params GetPageAbTestsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageAbTestsBatchCall(id string, params GetPageAbTestsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ab_tests"), params.ToParams(), options...)
+}
+
+func NewGetPageAbTestsBatchRequest(id string, params GetPageAbTestsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePostExperiment]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePostExperiment]](GetPageAbTestsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageAbTestsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePostExperiment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePostExperiment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageAbTests(ctx context.Context, client *core.Client, id string, params GetPageAbTestsParams) (*core.Cursor[objects.PagePostExperiment], error) {
 	var out core.Cursor[objects.PagePostExperiment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ab_tests"), params.ToParams(), &out)
+	call := GetPageAbTestsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -55,9 +78,32 @@ func (params CreatePageAbTestsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageAbTestsBatchCall(id string, params CreatePageAbTestsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "ab_tests"), params.ToParams(), options...)
+}
+
+func NewCreatePageAbTestsBatchRequest(id string, params CreatePageAbTestsParams, options ...core.BatchOption) *core.BatchRequest[objects.PagePostExperiment] {
+	return core.NewBatchRequest[objects.PagePostExperiment](CreatePageAbTestsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageAbTestsBatchResponse(response *core.BatchResponse) (*objects.PagePostExperiment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PagePostExperiment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageAbTests(ctx context.Context, client *core.Client, id string, params CreatePageAbTestsParams) (*objects.PagePostExperiment, error) {
 	var out objects.PagePostExperiment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "ab_tests"), params.ToParams(), &out)
+	call := CreatePageAbTestsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -77,9 +123,32 @@ func (params GetPageAdsEligibilityParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageAdsEligibilityBatchCall(id string, params GetPageAdsEligibilityParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ads_eligibility"), params.ToParams(), options...)
+}
+
+func NewGetPageAdsEligibilityBatchRequest(id string, params GetPageAdsEligibilityParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdsEligibility]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdsEligibility]](GetPageAdsEligibilityBatchCall(id, params, options...))
+}
+
+func DecodeGetPageAdsEligibilityBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdsEligibility], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdsEligibility]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageAdsEligibility(ctx context.Context, client *core.Client, id string, params GetPageAdsEligibilityParams) (*core.Cursor[objects.AdsEligibility], error) {
 	var out core.Cursor[objects.AdsEligibility]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ads_eligibility"), params.ToParams(), &out)
+	call := GetPageAdsEligibilityBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -111,9 +180,32 @@ func (params GetPageAdsPostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageAdsPostsBatchCall(id string, params GetPageAdsPostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ads_posts"), params.ToParams(), options...)
+}
+
+func NewGetPageAdsPostsBatchRequest(id string, params GetPageAdsPostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPageAdsPostsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageAdsPostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageAdsPosts(ctx context.Context, client *core.Client, id string, params GetPageAdsPostsParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ads_posts"), params.ToParams(), &out)
+	call := GetPageAdsPostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -131,9 +223,32 @@ func (params DeletePageAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageAgenciesBatchCall(id string, params DeletePageAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewDeletePageAgenciesBatchRequest(id string, params DeletePageAgenciesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageAgenciesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageAgencies(ctx context.Context, client *core.Client, id string, params DeletePageAgenciesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := DeletePageAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -149,9 +264,32 @@ func (params GetPageAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageAgenciesBatchCall(id string, params GetPageAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewGetPageAgenciesBatchRequest(id string, params GetPageAgenciesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Business]] {
+	return core.NewBatchRequest[core.Cursor[objects.Business]](GetPageAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageAgenciesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Business], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Business]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageAgencies(ctx context.Context, client *core.Client, id string, params GetPageAgenciesParams) (*core.Cursor[objects.Business], error) {
 	var out core.Cursor[objects.Business]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := GetPageAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -173,9 +311,32 @@ func (params CreatePageAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageAgenciesBatchCall(id string, params CreatePageAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewCreatePageAgenciesBatchRequest(id string, params CreatePageAgenciesParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageAgenciesBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageAgencies(ctx context.Context, client *core.Client, id string, params CreatePageAgenciesParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := CreatePageAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -191,9 +352,32 @@ func (params GetPageAlbumsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageAlbumsBatchCall(id string, params GetPageAlbumsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "albums"), params.ToParams(), options...)
+}
+
+func NewGetPageAlbumsBatchRequest(id string, params GetPageAlbumsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Album]] {
+	return core.NewBatchRequest[core.Cursor[objects.Album]](GetPageAlbumsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageAlbumsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Album], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Album]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageAlbums(ctx context.Context, client *core.Client, id string, params GetPageAlbumsParams) (*core.Cursor[objects.Album], error) {
 	var out core.Cursor[objects.Album]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "albums"), params.ToParams(), &out)
+	call := GetPageAlbumsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -209,9 +393,32 @@ func (params GetPageArExperienceParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageArExperienceBatchCall(id string, params GetPageArExperienceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ar_experience"), params.ToParams(), options...)
+}
+
+func NewGetPageArExperienceBatchRequest(id string, params GetPageArExperienceParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ArAdsDataContainer]] {
+	return core.NewBatchRequest[core.Cursor[objects.ArAdsDataContainer]](GetPageArExperienceBatchCall(id, params, options...))
+}
+
+func DecodeGetPageArExperienceBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ArAdsDataContainer], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ArAdsDataContainer]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageArExperience(ctx context.Context, client *core.Client, id string, params GetPageArExperienceParams) (*core.Cursor[objects.ArAdsDataContainer], error) {
 	var out core.Cursor[objects.ArAdsDataContainer]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ar_experience"), params.ToParams(), &out)
+	call := GetPageArExperienceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -229,9 +436,32 @@ func (params DeletePageAssignedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageAssignedUsersBatchCall(id string, params DeletePageAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewDeletePageAssignedUsersBatchRequest(id string, params DeletePageAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageAssignedUsersBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageAssignedUsers(ctx context.Context, client *core.Client, id string, params DeletePageAssignedUsersParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := DeletePageAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -249,9 +479,32 @@ func (params GetPageAssignedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageAssignedUsersBatchCall(id string, params GetPageAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewGetPageAssignedUsersBatchRequest(id string, params GetPageAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AssignedUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.AssignedUser]](GetPageAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetPageAssignedUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AssignedUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AssignedUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageAssignedUsers(ctx context.Context, client *core.Client, id string, params GetPageAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
 	var out core.Cursor[objects.AssignedUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := GetPageAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -273,9 +526,32 @@ func (params CreatePageAssignedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageAssignedUsersBatchCall(id string, params CreatePageAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewCreatePageAssignedUsersBatchRequest(id string, params CreatePageAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageAssignedUsersBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageAssignedUsers(ctx context.Context, client *core.Client, id string, params CreatePageAssignedUsersParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := CreatePageAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -307,9 +583,32 @@ func (params DeletePageBlockedParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageBlockedBatchCall(id string, params DeletePageBlockedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "blocked"), params.ToParams(), options...)
+}
+
+func NewDeletePageBlockedBatchRequest(id string, params DeletePageBlockedParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageBlockedBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageBlockedBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageBlocked(ctx context.Context, client *core.Client, id string, params DeletePageBlockedParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "blocked"), params.ToParams(), &out)
+	call := DeletePageBlockedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -333,9 +632,32 @@ func (params GetPageBlockedParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageBlockedBatchCall(id string, params GetPageBlockedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "blocked"), params.ToParams(), options...)
+}
+
+func NewGetPageBlockedBatchRequest(id string, params GetPageBlockedParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetPageBlockedBatchCall(id, params, options...))
+}
+
+func DecodeGetPageBlockedBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageBlocked(ctx context.Context, client *core.Client, id string, params GetPageBlockedParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "blocked"), params.ToParams(), &out)
+	call := GetPageBlockedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -367,9 +689,32 @@ func (params CreatePageBlockedParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageBlockedBatchCall(id string, params CreatePageBlockedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "blocked"), params.ToParams(), options...)
+}
+
+func NewCreatePageBlockedBatchRequest(id string, params CreatePageBlockedParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePageBlockedBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageBlockedBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageBlocked(ctx context.Context, client *core.Client, id string, params CreatePageBlockedParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "blocked"), params.ToParams(), &out)
+	call := CreatePageBlockedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -387,9 +732,32 @@ func (params CreatePageBusinessMessagingFeatureStatusParams) ToParams() core.Par
 	return out
 }
 
+func CreatePageBusinessMessagingFeatureStatusBatchCall(id string, params CreatePageBusinessMessagingFeatureStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "business_messaging_feature_status"), params.ToParams(), options...)
+}
+
+func NewCreatePageBusinessMessagingFeatureStatusBatchRequest(id string, params CreatePageBusinessMessagingFeatureStatusParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageBusinessMessagingFeatureStatusBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageBusinessMessagingFeatureStatusBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreatePageBusinessMessagingFeatureStatusParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "business_messaging_feature_status"), params.ToParams(), &out)
+	call := CreatePageBusinessMessagingFeatureStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -409,9 +777,32 @@ func (params GetPageBusinessprojectsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageBusinessprojectsBatchCall(id string, params GetPageBusinessprojectsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "businessprojects"), params.ToParams(), options...)
+}
+
+func NewGetPageBusinessprojectsBatchRequest(id string, params GetPageBusinessprojectsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.BusinessProject]] {
+	return core.NewBatchRequest[core.Cursor[objects.BusinessProject]](GetPageBusinessprojectsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageBusinessprojectsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.BusinessProject], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.BusinessProject]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageBusinessprojects(ctx context.Context, client *core.Client, id string, params GetPageBusinessprojectsParams) (*core.Cursor[objects.BusinessProject], error) {
 	var out core.Cursor[objects.BusinessProject]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "businessprojects"), params.ToParams(), &out)
+	call := GetPageBusinessprojectsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -451,9 +842,32 @@ func (params CreatePageCallMetricsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCallMetricsBatchCall(id string, params CreatePageCallMetricsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "call_metrics"), params.ToParams(), options...)
+}
+
+func NewCreatePageCallMetricsBatchRequest(id string, params CreatePageCallMetricsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePageCallMetricsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCallMetricsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCallMetrics(ctx context.Context, client *core.Client, id string, params CreatePageCallMetricsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "call_metrics"), params.ToParams(), &out)
+	call := CreatePageCallMetricsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -469,9 +883,32 @@ func (params GetPageCallToActionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCallToActionsBatchCall(id string, params GetPageCallToActionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "call_to_actions"), params.ToParams(), options...)
+}
+
+func NewGetPageCallToActionsBatchRequest(id string, params GetPageCallToActionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PageCallToAction]] {
+	return core.NewBatchRequest[core.Cursor[objects.PageCallToAction]](GetPageCallToActionsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCallToActionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PageCallToAction], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PageCallToAction]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCallToActions(ctx context.Context, client *core.Client, id string, params GetPageCallToActionsParams) (*core.Cursor[objects.PageCallToAction], error) {
 	var out core.Cursor[objects.PageCallToAction]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "call_to_actions"), params.ToParams(), &out)
+	call := GetPageCallToActionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -517,9 +954,32 @@ func (params CreatePageCallsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCallsBatchCall(id string, params CreatePageCallsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "calls"), params.ToParams(), options...)
+}
+
+func NewCreatePageCallsBatchRequest(id string, params CreatePageCallsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePageCallsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCallsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCalls(ctx context.Context, client *core.Client, id string, params CreatePageCallsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "calls"), params.ToParams(), &out)
+	call := CreatePageCallsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -535,9 +995,32 @@ func (params GetPageCanvasElementsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCanvasElementsBatchCall(id string, params GetPageCanvasElementsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "canvas_elements"), params.ToParams(), options...)
+}
+
+func NewGetPageCanvasElementsBatchRequest(id string, params GetPageCanvasElementsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CanvasBodyElement]] {
+	return core.NewBatchRequest[core.Cursor[objects.CanvasBodyElement]](GetPageCanvasElementsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCanvasElementsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CanvasBodyElement], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CanvasBodyElement]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCanvasElements(ctx context.Context, client *core.Client, id string, params GetPageCanvasElementsParams) (*core.Cursor[objects.CanvasBodyElement], error) {
 	var out core.Cursor[objects.CanvasBodyElement]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "canvas_elements"), params.ToParams(), &out)
+	call := GetPageCanvasElementsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -605,9 +1088,32 @@ func (params CreatePageCanvasElementsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCanvasElementsBatchCall(id string, params CreatePageCanvasElementsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "canvas_elements"), params.ToParams(), options...)
+}
+
+func NewCreatePageCanvasElementsBatchRequest(id string, params CreatePageCanvasElementsParams, options ...core.BatchOption) *core.BatchRequest[objects.CanvasBodyElement] {
+	return core.NewBatchRequest[objects.CanvasBodyElement](CreatePageCanvasElementsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCanvasElementsBatchResponse(response *core.BatchResponse) (*objects.CanvasBodyElement, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CanvasBodyElement
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCanvasElements(ctx context.Context, client *core.Client, id string, params CreatePageCanvasElementsParams) (*objects.CanvasBodyElement, error) {
 	var out objects.CanvasBodyElement
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "canvas_elements"), params.ToParams(), &out)
+	call := CreatePageCanvasElementsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -631,9 +1137,32 @@ func (params GetPageCanvasesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCanvasesBatchCall(id string, params GetPageCanvasesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "canvases"), params.ToParams(), options...)
+}
+
+func NewGetPageCanvasesBatchRequest(id string, params GetPageCanvasesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Canvas]] {
+	return core.NewBatchRequest[core.Cursor[objects.Canvas]](GetPageCanvasesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCanvasesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Canvas], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Canvas]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCanvases(ctx context.Context, client *core.Client, id string, params GetPageCanvasesParams) (*core.Cursor[objects.Canvas], error) {
 	var out core.Cursor[objects.Canvas]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "canvases"), params.ToParams(), &out)
+	call := GetPageCanvasesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -685,9 +1214,32 @@ func (params CreatePageCanvasesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCanvasesBatchCall(id string, params CreatePageCanvasesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "canvases"), params.ToParams(), options...)
+}
+
+func NewCreatePageCanvasesBatchRequest(id string, params CreatePageCanvasesParams, options ...core.BatchOption) *core.BatchRequest[objects.Canvas] {
+	return core.NewBatchRequest[objects.Canvas](CreatePageCanvasesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCanvasesBatchResponse(response *core.BatchResponse) (*objects.Canvas, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Canvas
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCanvases(ctx context.Context, client *core.Client, id string, params CreatePageCanvasesParams) (*objects.Canvas, error) {
 	var out objects.Canvas
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "canvases"), params.ToParams(), &out)
+	call := CreatePageCanvasesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -703,9 +1255,32 @@ func (params GetPageChatPluginParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageChatPluginBatchCall(id string, params GetPageChatPluginParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "chat_plugin"), params.ToParams(), options...)
+}
+
+func NewGetPageChatPluginBatchRequest(id string, params GetPageChatPluginParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ChatPlugin]] {
+	return core.NewBatchRequest[core.Cursor[objects.ChatPlugin]](GetPageChatPluginBatchCall(id, params, options...))
+}
+
+func DecodeGetPageChatPluginBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ChatPlugin], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ChatPlugin]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageChatPlugin(ctx context.Context, client *core.Client, id string, params GetPageChatPluginParams) (*core.Cursor[objects.ChatPlugin], error) {
 	var out core.Cursor[objects.ChatPlugin]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "chat_plugin"), params.ToParams(), &out)
+	call := GetPageChatPluginBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -721,9 +1296,32 @@ func (params GetPageCommerceMerchantSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCommerceMerchantSettingsBatchCall(id string, params GetPageCommerceMerchantSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "commerce_merchant_settings"), params.ToParams(), options...)
+}
+
+func NewGetPageCommerceMerchantSettingsBatchRequest(id string, params GetPageCommerceMerchantSettingsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CommerceMerchantSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.CommerceMerchantSettings]](GetPageCommerceMerchantSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCommerceMerchantSettingsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CommerceMerchantSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CommerceMerchantSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCommerceMerchantSettings(ctx context.Context, client *core.Client, id string, params GetPageCommerceMerchantSettingsParams) (*core.Cursor[objects.CommerceMerchantSettings], error) {
 	var out core.Cursor[objects.CommerceMerchantSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "commerce_merchant_settings"), params.ToParams(), &out)
+	call := GetPageCommerceMerchantSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -755,9 +1353,32 @@ func (params GetPageCommerceOrdersParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCommerceOrdersBatchCall(id string, params GetPageCommerceOrdersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "commerce_orders"), params.ToParams(), options...)
+}
+
+func NewGetPageCommerceOrdersBatchRequest(id string, params GetPageCommerceOrdersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CommerceOrder]] {
+	return core.NewBatchRequest[core.Cursor[objects.CommerceOrder]](GetPageCommerceOrdersBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCommerceOrdersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CommerceOrder], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CommerceOrder]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCommerceOrders(ctx context.Context, client *core.Client, id string, params GetPageCommerceOrdersParams) (*core.Cursor[objects.CommerceOrder], error) {
 	var out core.Cursor[objects.CommerceOrder]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "commerce_orders"), params.ToParams(), &out)
+	call := GetPageCommerceOrdersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -781,9 +1402,32 @@ func (params GetPageCommercePayoutsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCommercePayoutsBatchCall(id string, params GetPageCommercePayoutsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "commerce_payouts"), params.ToParams(), options...)
+}
+
+func NewGetPageCommercePayoutsBatchRequest(id string, params GetPageCommercePayoutsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CommercePayout]] {
+	return core.NewBatchRequest[core.Cursor[objects.CommercePayout]](GetPageCommercePayoutsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCommercePayoutsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CommercePayout], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CommercePayout]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCommercePayouts(ctx context.Context, client *core.Client, id string, params GetPageCommercePayoutsParams) (*core.Cursor[objects.CommercePayout], error) {
 	var out core.Cursor[objects.CommercePayout]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "commerce_payouts"), params.ToParams(), &out)
+	call := GetPageCommercePayoutsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -811,9 +1455,32 @@ func (params GetPageCommerceTransactionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCommerceTransactionsBatchCall(id string, params GetPageCommerceTransactionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "commerce_transactions"), params.ToParams(), options...)
+}
+
+func NewGetPageCommerceTransactionsBatchRequest(id string, params GetPageCommerceTransactionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CommerceOrderTransactionDetail]] {
+	return core.NewBatchRequest[core.Cursor[objects.CommerceOrderTransactionDetail]](GetPageCommerceTransactionsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCommerceTransactionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CommerceOrderTransactionDetail], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CommerceOrderTransactionDetail]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCommerceTransactions(ctx context.Context, client *core.Client, id string, params GetPageCommerceTransactionsParams) (*core.Cursor[objects.CommerceOrderTransactionDetail], error) {
 	var out core.Cursor[objects.CommerceOrderTransactionDetail]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "commerce_transactions"), params.ToParams(), &out)
+	call := GetPageCommerceTransactionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -845,9 +1512,32 @@ func (params GetPageConversationsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageConversationsBatchCall(id string, params GetPageConversationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "conversations"), params.ToParams(), options...)
+}
+
+func NewGetPageConversationsBatchRequest(id string, params GetPageConversationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.UnifiedThread]] {
+	return core.NewBatchRequest[core.Cursor[objects.UnifiedThread]](GetPageConversationsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageConversationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.UnifiedThread], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.UnifiedThread]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageConversations(ctx context.Context, client *core.Client, id string, params GetPageConversationsParams) (*core.Cursor[objects.UnifiedThread], error) {
 	var out core.Cursor[objects.UnifiedThread]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "conversations"), params.ToParams(), &out)
+	call := GetPageConversationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -885,9 +1575,32 @@ func (params CreatePageCopyrightManualClaimsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCopyrightManualClaimsBatchCall(id string, params CreatePageCopyrightManualClaimsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "copyright_manual_claims"), params.ToParams(), options...)
+}
+
+func NewCreatePageCopyrightManualClaimsBatchRequest(id string, params CreatePageCopyrightManualClaimsParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyrightMatch] {
+	return core.NewBatchRequest[objects.VideoCopyrightMatch](CreatePageCopyrightManualClaimsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCopyrightManualClaimsBatchResponse(response *core.BatchResponse) (*objects.VideoCopyrightMatch, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyrightMatch
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCopyrightManualClaims(ctx context.Context, client *core.Client, id string, params CreatePageCopyrightManualClaimsParams) (*objects.VideoCopyrightMatch, error) {
 	var out objects.VideoCopyrightMatch
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "copyright_manual_claims"), params.ToParams(), &out)
+	call := CreatePageCopyrightManualClaimsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -903,9 +1616,32 @@ func (params GetPageCrosspostWhitelistedPagesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCrosspostWhitelistedPagesBatchCall(id string, params GetPageCrosspostWhitelistedPagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "crosspost_whitelisted_pages"), params.ToParams(), options...)
+}
+
+func NewGetPageCrosspostWhitelistedPagesBatchRequest(id string, params GetPageCrosspostWhitelistedPagesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetPageCrosspostWhitelistedPagesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCrosspostWhitelistedPagesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCrosspostWhitelistedPages(ctx context.Context, client *core.Client, id string, params GetPageCrosspostWhitelistedPagesParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "crosspost_whitelisted_pages"), params.ToParams(), &out)
+	call := GetPageCrosspostWhitelistedPagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -921,9 +1657,32 @@ func (params GetPageCtxOptimizationEligibilityParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCtxOptimizationEligibilityBatchCall(id string, params GetPageCtxOptimizationEligibilityParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ctx_optimization_eligibility"), params.ToParams(), options...)
+}
+
+func NewGetPageCtxOptimizationEligibilityBatchRequest(id string, params GetPageCtxOptimizationEligibilityParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CTXOptimizationEligibility]] {
+	return core.NewBatchRequest[core.Cursor[objects.CTXOptimizationEligibility]](GetPageCtxOptimizationEligibilityBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCtxOptimizationEligibilityBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CTXOptimizationEligibility], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CTXOptimizationEligibility]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCtxOptimizationEligibility(ctx context.Context, client *core.Client, id string, params GetPageCtxOptimizationEligibilityParams) (*core.Cursor[objects.CTXOptimizationEligibility], error) {
 	var out core.Cursor[objects.CTXOptimizationEligibility]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ctx_optimization_eligibility"), params.ToParams(), &out)
+	call := GetPageCtxOptimizationEligibilityBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -939,9 +1698,32 @@ func (params GetPageCustomLabelsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCustomLabelsBatchCall(id string, params GetPageCustomLabelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "custom_labels"), params.ToParams(), options...)
+}
+
+func NewGetPageCustomLabelsBatchRequest(id string, params GetPageCustomLabelsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PageUserMessageThreadLabel]] {
+	return core.NewBatchRequest[core.Cursor[objects.PageUserMessageThreadLabel]](GetPageCustomLabelsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCustomLabelsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PageUserMessageThreadLabel], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PageUserMessageThreadLabel]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCustomLabels(ctx context.Context, client *core.Client, id string, params GetPageCustomLabelsParams) (*core.Cursor[objects.PageUserMessageThreadLabel], error) {
 	var out core.Cursor[objects.PageUserMessageThreadLabel]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "custom_labels"), params.ToParams(), &out)
+	call := GetPageCustomLabelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -963,9 +1745,32 @@ func (params CreatePageCustomLabelsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCustomLabelsBatchCall(id string, params CreatePageCustomLabelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "custom_labels"), params.ToParams(), options...)
+}
+
+func NewCreatePageCustomLabelsBatchRequest(id string, params CreatePageCustomLabelsParams, options ...core.BatchOption) *core.BatchRequest[objects.PageUserMessageThreadLabel] {
+	return core.NewBatchRequest[objects.PageUserMessageThreadLabel](CreatePageCustomLabelsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCustomLabelsBatchResponse(response *core.BatchResponse) (*objects.PageUserMessageThreadLabel, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageUserMessageThreadLabel
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCustomLabels(ctx context.Context, client *core.Client, id string, params CreatePageCustomLabelsParams) (*objects.PageUserMessageThreadLabel, error) {
 	var out objects.PageUserMessageThreadLabel
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "custom_labels"), params.ToParams(), &out)
+	call := CreatePageCustomLabelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -985,9 +1790,32 @@ func (params DeletePageCustomUserSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageCustomUserSettingsBatchCall(id string, params DeletePageCustomUserSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "custom_user_settings"), params.ToParams(), options...)
+}
+
+func NewDeletePageCustomUserSettingsBatchRequest(id string, params DeletePageCustomUserSettingsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageCustomUserSettingsBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageCustomUserSettingsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageCustomUserSettings(ctx context.Context, client *core.Client, id string, params DeletePageCustomUserSettingsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "custom_user_settings"), params.ToParams(), &out)
+	call := DeletePageCustomUserSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1005,9 +1833,32 @@ func (params GetPageCustomUserSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCustomUserSettingsBatchCall(id string, params GetPageCustomUserSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "custom_user_settings"), params.ToParams(), options...)
+}
+
+func NewGetPageCustomUserSettingsBatchRequest(id string, params GetPageCustomUserSettingsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CustomUserSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.CustomUserSettings]](GetPageCustomUserSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCustomUserSettingsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CustomUserSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CustomUserSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCustomUserSettings(ctx context.Context, client *core.Client, id string, params GetPageCustomUserSettingsParams) (*core.Cursor[objects.CustomUserSettings], error) {
 	var out core.Cursor[objects.CustomUserSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "custom_user_settings"), params.ToParams(), &out)
+	call := GetPageCustomUserSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1029,9 +1880,32 @@ func (params CreatePageCustomUserSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageCustomUserSettingsBatchCall(id string, params CreatePageCustomUserSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "custom_user_settings"), params.ToParams(), options...)
+}
+
+func NewCreatePageCustomUserSettingsBatchRequest(id string, params CreatePageCustomUserSettingsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageCustomUserSettingsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageCustomUserSettingsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageCustomUserSettings(ctx context.Context, client *core.Client, id string, params CreatePageCustomUserSettingsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "custom_user_settings"), params.ToParams(), &out)
+	call := CreatePageCustomUserSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1047,9 +1921,32 @@ func (params GetPageDatasetParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageDatasetBatchCall(id string, params GetPageDatasetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "dataset"), params.ToParams(), options...)
+}
+
+func NewGetPageDatasetBatchRequest(id string, params GetPageDatasetParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Dataset]] {
+	return core.NewBatchRequest[core.Cursor[objects.Dataset]](GetPageDatasetBatchCall(id, params, options...))
+}
+
+func DecodeGetPageDatasetBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Dataset], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Dataset]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageDataset(ctx context.Context, client *core.Client, id string, params GetPageDatasetParams) (*core.Cursor[objects.Dataset], error) {
 	var out core.Cursor[objects.Dataset]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "dataset"), params.ToParams(), &out)
+	call := GetPageDatasetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1069,9 +1966,32 @@ func (params CreatePageDatasetParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageDatasetBatchCall(id string, params CreatePageDatasetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "dataset"), params.ToParams(), options...)
+}
+
+func NewCreatePageDatasetBatchRequest(id string, params CreatePageDatasetParams, options ...core.BatchOption) *core.BatchRequest[objects.Dataset] {
+	return core.NewBatchRequest[objects.Dataset](CreatePageDatasetBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageDatasetBatchResponse(response *core.BatchResponse) (*objects.Dataset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Dataset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageDataset(ctx context.Context, client *core.Client, id string, params CreatePageDatasetParams) (*objects.Dataset, error) {
 	var out objects.Dataset
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "dataset"), params.ToParams(), &out)
+	call := CreatePageDatasetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1103,9 +2023,32 @@ func (params GetPageEventsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageEventsBatchCall(id string, params GetPageEventsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "events"), params.ToParams(), options...)
+}
+
+func NewGetPageEventsBatchRequest(id string, params GetPageEventsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Event]] {
+	return core.NewBatchRequest[core.Cursor[objects.Event]](GetPageEventsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageEventsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Event], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Event]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageEvents(ctx context.Context, client *core.Client, id string, params GetPageEventsParams) (*core.Cursor[objects.Event], error) {
 	var out core.Cursor[objects.Event]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "events"), params.ToParams(), &out)
+	call := GetPageEventsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1127,9 +2070,32 @@ func (params CreatePageExtendThreadControlParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageExtendThreadControlBatchCall(id string, params CreatePageExtendThreadControlParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "extend_thread_control"), params.ToParams(), options...)
+}
+
+func NewCreatePageExtendThreadControlBatchRequest(id string, params CreatePageExtendThreadControlParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageExtendThreadControlBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageExtendThreadControlBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageExtendThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageExtendThreadControlParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "extend_thread_control"), params.ToParams(), &out)
+	call := CreatePageExtendThreadControlBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1145,9 +2111,32 @@ func (params GetPageFantasyGamesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageFantasyGamesBatchCall(id string, params GetPageFantasyGamesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "fantasy_games"), params.ToParams(), options...)
+}
+
+func NewGetPageFantasyGamesBatchRequest(id string, params GetPageFantasyGamesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.FantasyGame]] {
+	return core.NewBatchRequest[core.Cursor[objects.FantasyGame]](GetPageFantasyGamesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageFantasyGamesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.FantasyGame], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.FantasyGame]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageFantasyGames(ctx context.Context, client *core.Client, id string, params GetPageFantasyGamesParams) (*core.Cursor[objects.FantasyGame], error) {
 	var out core.Cursor[objects.FantasyGame]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "fantasy_games"), params.ToParams(), &out)
+	call := GetPageFantasyGamesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1179,9 +2168,32 @@ func (params GetPageFeedParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageFeedBatchCall(id string, params GetPageFeedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "feed"), params.ToParams(), options...)
+}
+
+func NewGetPageFeedBatchRequest(id string, params GetPageFeedParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPageFeedBatchCall(id, params, options...))
+}
+
+func DecodeGetPageFeedBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageFeed(ctx context.Context, client *core.Client, id string, params GetPageFeedParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "feed"), params.ToParams(), &out)
+	call := GetPageFeedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1621,9 +2633,32 @@ func (params CreatePageFeedParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageFeedBatchCall(id string, params CreatePageFeedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "feed"), params.ToParams(), options...)
+}
+
+func NewCreatePageFeedBatchRequest(id string, params CreatePageFeedParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageFeedBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageFeedBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageFeed(ctx context.Context, client *core.Client, id string, params CreatePageFeedParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "feed"), params.ToParams(), &out)
+	call := CreatePageFeedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1639,9 +2674,32 @@ func (params GetPageGlobalBrandChildrenParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageGlobalBrandChildrenBatchCall(id string, params GetPageGlobalBrandChildrenParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "global_brand_children"), params.ToParams(), options...)
+}
+
+func NewGetPageGlobalBrandChildrenBatchRequest(id string, params GetPageGlobalBrandChildrenParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetPageGlobalBrandChildrenBatchCall(id, params, options...))
+}
+
+func DecodeGetPageGlobalBrandChildrenBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageGlobalBrandChildren(ctx context.Context, client *core.Client, id string, params GetPageGlobalBrandChildrenParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "global_brand_children"), params.ToParams(), &out)
+	call := GetPageGlobalBrandChildrenBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1657,9 +2715,32 @@ func (params GetPageImageCopyrightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageImageCopyrightsBatchCall(id string, params GetPageImageCopyrightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "image_copyrights"), params.ToParams(), options...)
+}
+
+func NewGetPageImageCopyrightsBatchRequest(id string, params GetPageImageCopyrightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ImageCopyright]] {
+	return core.NewBatchRequest[core.Cursor[objects.ImageCopyright]](GetPageImageCopyrightsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageImageCopyrightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ImageCopyright], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ImageCopyright]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageImageCopyrights(ctx context.Context, client *core.Client, id string, params GetPageImageCopyrightsParams) (*core.Cursor[objects.ImageCopyright], error) {
 	var out core.Cursor[objects.ImageCopyright]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "image_copyrights"), params.ToParams(), &out)
+	call := GetPageImageCopyrightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1709,9 +2790,32 @@ func (params CreatePageImageCopyrightsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageImageCopyrightsBatchCall(id string, params CreatePageImageCopyrightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "image_copyrights"), params.ToParams(), options...)
+}
+
+func NewCreatePageImageCopyrightsBatchRequest(id string, params CreatePageImageCopyrightsParams, options ...core.BatchOption) *core.BatchRequest[objects.ImageCopyright] {
+	return core.NewBatchRequest[objects.ImageCopyright](CreatePageImageCopyrightsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageImageCopyrightsBatchResponse(response *core.BatchResponse) (*objects.ImageCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ImageCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageImageCopyrights(ctx context.Context, client *core.Client, id string, params CreatePageImageCopyrightsParams) (*objects.ImageCopyright, error) {
 	var out objects.ImageCopyright
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "image_copyrights"), params.ToParams(), &out)
+	call := CreatePageImageCopyrightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1727,9 +2831,32 @@ func (params GetPageIndexedVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageIndexedVideosBatchCall(id string, params GetPageIndexedVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "indexed_videos"), params.ToParams(), options...)
+}
+
+func NewGetPageIndexedVideosBatchRequest(id string, params GetPageIndexedVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdVideo]](GetPageIndexedVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetPageIndexedVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageIndexedVideos(ctx context.Context, client *core.Client, id string, params GetPageIndexedVideosParams) (*core.Cursor[objects.AdVideo], error) {
 	var out core.Cursor[objects.AdVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "indexed_videos"), params.ToParams(), &out)
+	call := GetPageIndexedVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1773,9 +2900,32 @@ func (params GetPageInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageInsightsBatchCall(id string, params GetPageInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewGetPageInsightsBatchRequest(id string, params GetPageInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.InsightsResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.InsightsResult]](GetPageInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.InsightsResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.InsightsResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageInsights(ctx context.Context, client *core.Client, id string, params GetPageInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
 	var out core.Cursor[objects.InsightsResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := GetPageInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1791,9 +2941,32 @@ func (params GetPageInstagramAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageInstagramAccountsBatchCall(id string, params GetPageInstagramAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "instagram_accounts"), params.ToParams(), options...)
+}
+
+func NewGetPageInstagramAccountsBatchRequest(id string, params GetPageInstagramAccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUser]](GetPageInstagramAccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageInstagramAccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetPageInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
 	var out core.Cursor[objects.IGUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "instagram_accounts"), params.ToParams(), &out)
+	call := GetPageInstagramAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1809,9 +2982,32 @@ func (params GetPageLeadgenFormsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageLeadgenFormsBatchCall(id string, params GetPageLeadgenFormsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "leadgen_forms"), params.ToParams(), options...)
+}
+
+func NewGetPageLeadgenFormsBatchRequest(id string, params GetPageLeadgenFormsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.LeadgenForm]] {
+	return core.NewBatchRequest[core.Cursor[objects.LeadgenForm]](GetPageLeadgenFormsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageLeadgenFormsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.LeadgenForm], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.LeadgenForm]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageLeadgenForms(ctx context.Context, client *core.Client, id string, params GetPageLeadgenFormsParams) (*core.Cursor[objects.LeadgenForm], error) {
 	var out core.Cursor[objects.LeadgenForm]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "leadgen_forms"), params.ToParams(), &out)
+	call := GetPageLeadgenFormsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1895,9 +3091,32 @@ func (params CreatePageLeadgenFormsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageLeadgenFormsBatchCall(id string, params CreatePageLeadgenFormsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "leadgen_forms"), params.ToParams(), options...)
+}
+
+func NewCreatePageLeadgenFormsBatchRequest(id string, params CreatePageLeadgenFormsParams, options ...core.BatchOption) *core.BatchRequest[objects.LeadgenForm] {
+	return core.NewBatchRequest[objects.LeadgenForm](CreatePageLeadgenFormsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageLeadgenFormsBatchResponse(response *core.BatchResponse) (*objects.LeadgenForm, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LeadgenForm
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageLeadgenForms(ctx context.Context, client *core.Client, id string, params CreatePageLeadgenFormsParams) (*objects.LeadgenForm, error) {
 	var out objects.LeadgenForm
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "leadgen_forms"), params.ToParams(), &out)
+	call := CreatePageLeadgenFormsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1917,9 +3136,32 @@ func (params GetPageLikesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageLikesBatchCall(id string, params GetPageLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewGetPageLikesBatchRequest(id string, params GetPageLikesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetPageLikesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageLikesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageLikes(ctx context.Context, client *core.Client, id string, params GetPageLikesParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := GetPageLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1943,9 +3185,32 @@ func (params GetPageLiveVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageLiveVideosBatchCall(id string, params GetPageLiveVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "live_videos"), params.ToParams(), options...)
+}
+
+func NewGetPageLiveVideosBatchRequest(id string, params GetPageLiveVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.LiveVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.LiveVideo]](GetPageLiveVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetPageLiveVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.LiveVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.LiveVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageLiveVideos(ctx context.Context, client *core.Client, id string, params GetPageLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
 	var out core.Cursor[objects.LiveVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "live_videos"), params.ToParams(), &out)
+	call := GetPageLiveVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2057,9 +3322,32 @@ func (params CreatePageLiveVideosParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageLiveVideosBatchCall(id string, params CreatePageLiveVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "live_videos"), params.ToParams(), options...)
+}
+
+func NewCreatePageLiveVideosBatchRequest(id string, params CreatePageLiveVideosParams, options ...core.BatchOption) *core.BatchRequest[objects.LiveVideo] {
+	return core.NewBatchRequest[objects.LiveVideo](CreatePageLiveVideosBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageLiveVideosBatchResponse(response *core.BatchResponse) (*objects.LiveVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LiveVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageLiveVideos(ctx context.Context, client *core.Client, id string, params CreatePageLiveVideosParams) (*objects.LiveVideo, error) {
 	var out objects.LiveVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "live_videos"), params.ToParams(), &out)
+	call := CreatePageLiveVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2079,9 +3367,32 @@ func (params DeletePageLocationsParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageLocationsBatchCall(id string, params DeletePageLocationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "locations"), params.ToParams(), options...)
+}
+
+func NewDeletePageLocationsBatchRequest(id string, params DeletePageLocationsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageLocationsBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageLocationsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageLocations(ctx context.Context, client *core.Client, id string, params DeletePageLocationsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "locations"), params.ToParams(), &out)
+	call := DeletePageLocationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2097,9 +3408,32 @@ func (params GetPageLocationsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageLocationsBatchCall(id string, params GetPageLocationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "locations"), params.ToParams(), options...)
+}
+
+func NewGetPageLocationsBatchRequest(id string, params GetPageLocationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetPageLocationsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageLocationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageLocations(ctx context.Context, client *core.Client, id string, params GetPageLocationsParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "locations"), params.ToParams(), &out)
+	call := GetPageLocationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2209,9 +3543,32 @@ func (params CreatePageLocationsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageLocationsBatchCall(id string, params CreatePageLocationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "locations"), params.ToParams(), options...)
+}
+
+func NewCreatePageLocationsBatchRequest(id string, params CreatePageLocationsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageLocationsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageLocationsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageLocations(ctx context.Context, client *core.Client, id string, params CreatePageLocationsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "locations"), params.ToParams(), &out)
+	call := CreatePageLocationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2231,9 +3588,32 @@ func (params GetPageMediaFingerprintsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMediaFingerprintsBatchCall(id string, params GetPageMediaFingerprintsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "media_fingerprints"), params.ToParams(), options...)
+}
+
+func NewGetPageMediaFingerprintsBatchRequest(id string, params GetPageMediaFingerprintsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MediaFingerprint]] {
+	return core.NewBatchRequest[core.Cursor[objects.MediaFingerprint]](GetPageMediaFingerprintsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMediaFingerprintsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MediaFingerprint], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MediaFingerprint]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMediaFingerprints(ctx context.Context, client *core.Client, id string, params GetPageMediaFingerprintsParams) (*core.Cursor[objects.MediaFingerprint], error) {
 	var out core.Cursor[objects.MediaFingerprint]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "media_fingerprints"), params.ToParams(), &out)
+	call := GetPageMediaFingerprintsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2261,9 +3641,32 @@ func (params CreatePageMediaFingerprintsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMediaFingerprintsBatchCall(id string, params CreatePageMediaFingerprintsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "media_fingerprints"), params.ToParams(), options...)
+}
+
+func NewCreatePageMediaFingerprintsBatchRequest(id string, params CreatePageMediaFingerprintsParams, options ...core.BatchOption) *core.BatchRequest[objects.MediaFingerprint] {
+	return core.NewBatchRequest[objects.MediaFingerprint](CreatePageMediaFingerprintsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMediaFingerprintsBatchResponse(response *core.BatchResponse) (*objects.MediaFingerprint, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.MediaFingerprint
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMediaFingerprints(ctx context.Context, client *core.Client, id string, params CreatePageMediaFingerprintsParams) (*objects.MediaFingerprint, error) {
 	var out objects.MediaFingerprint
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "media_fingerprints"), params.ToParams(), &out)
+	call := CreatePageMediaFingerprintsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2285,9 +3688,32 @@ func (params CreatePageMessageAttachmentsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMessageAttachmentsBatchCall(id string, params CreatePageMessageAttachmentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "message_attachments"), params.ToParams(), options...)
+}
+
+func NewCreatePageMessageAttachmentsBatchRequest(id string, params CreatePageMessageAttachmentsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePageMessageAttachmentsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMessageAttachmentsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMessageAttachments(ctx context.Context, client *core.Client, id string, params CreatePageMessageAttachmentsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "message_attachments"), params.ToParams(), &out)
+	call := CreatePageMessageAttachmentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2309,9 +3735,32 @@ func (params DeletePageMessageTemplatesParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageMessageTemplatesBatchCall(id string, params DeletePageMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "message_templates"), params.ToParams(), options...)
+}
+
+func NewDeletePageMessageTemplatesBatchRequest(id string, params DeletePageMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageMessageTemplatesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageMessageTemplates(ctx context.Context, client *core.Client, id string, params DeletePageMessageTemplatesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "message_templates"), params.ToParams(), &out)
+	call := DeletePageMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2351,9 +3800,32 @@ func (params GetPageMessageTemplatesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMessageTemplatesBatchCall(id string, params GetPageMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "message_templates"), params.ToParams(), options...)
+}
+
+func NewGetPageMessageTemplatesBatchRequest(id string, params GetPageMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MessengerBusinessTemplate]] {
+	return core.NewBatchRequest[core.Cursor[objects.MessengerBusinessTemplate]](GetPageMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMessageTemplatesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MessengerBusinessTemplate], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MessengerBusinessTemplate]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMessageTemplates(ctx context.Context, client *core.Client, id string, params GetPageMessageTemplatesParams) (*core.Cursor[objects.MessengerBusinessTemplate], error) {
 	var out core.Cursor[objects.MessengerBusinessTemplate]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "message_templates"), params.ToParams(), &out)
+	call := GetPageMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2391,9 +3863,32 @@ func (params CreatePageMessageTemplatesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMessageTemplatesBatchCall(id string, params CreatePageMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "message_templates"), params.ToParams(), options...)
+}
+
+func NewCreatePageMessageTemplatesBatchRequest(id string, params CreatePageMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMessageTemplatesBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMessageTemplates(ctx context.Context, client *core.Client, id string, params CreatePageMessageTemplatesParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "message_templates"), params.ToParams(), &out)
+	call := CreatePageMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2455,9 +3950,32 @@ func (params CreatePageMessagesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMessagesBatchCall(id string, params CreatePageMessagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "messages"), params.ToParams(), options...)
+}
+
+func NewCreatePageMessagesBatchRequest(id string, params CreatePageMessagesParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageMessagesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMessagesBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMessages(ctx context.Context, client *core.Client, id string, params CreatePageMessagesParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "messages"), params.ToParams(), &out)
+	call := CreatePageMessagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2473,9 +3991,32 @@ func (params GetPageMessagingFeatureReviewParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMessagingFeatureReviewBatchCall(id string, params GetPageMessagingFeatureReviewParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "messaging_feature_review"), params.ToParams(), options...)
+}
+
+func NewGetPageMessagingFeatureReviewBatchRequest(id string, params GetPageMessagingFeatureReviewParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MessagingFeatureReview]] {
+	return core.NewBatchRequest[core.Cursor[objects.MessagingFeatureReview]](GetPageMessagingFeatureReviewBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMessagingFeatureReviewBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MessagingFeatureReview], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MessagingFeatureReview]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMessagingFeatureReview(ctx context.Context, client *core.Client, id string, params GetPageMessagingFeatureReviewParams) (*core.Cursor[objects.MessagingFeatureReview], error) {
 	var out core.Cursor[objects.MessagingFeatureReview]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "messaging_feature_review"), params.ToParams(), &out)
+	call := GetPageMessagingFeatureReviewBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2493,9 +4034,32 @@ func (params GetPageMessengerCallPermissionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMessengerCallPermissionsBatchCall(id string, params GetPageMessengerCallPermissionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "messenger_call_permissions"), params.ToParams(), options...)
+}
+
+func NewGetPageMessengerCallPermissionsBatchRequest(id string, params GetPageMessengerCallPermissionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MessengerCallPermissions]] {
+	return core.NewBatchRequest[core.Cursor[objects.MessengerCallPermissions]](GetPageMessengerCallPermissionsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMessengerCallPermissionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MessengerCallPermissions], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MessengerCallPermissions]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMessengerCallPermissions(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallPermissionsParams) (*core.Cursor[objects.MessengerCallPermissions], error) {
 	var out core.Cursor[objects.MessengerCallPermissions]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "messenger_call_permissions"), params.ToParams(), &out)
+	call := GetPageMessengerCallPermissionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2511,9 +4075,32 @@ func (params GetPageMessengerCallSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMessengerCallSettingsBatchCall(id string, params GetPageMessengerCallSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "messenger_call_settings"), params.ToParams(), options...)
+}
+
+func NewGetPageMessengerCallSettingsBatchRequest(id string, params GetPageMessengerCallSettingsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MessengerCallSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.MessengerCallSettings]](GetPageMessengerCallSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMessengerCallSettingsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MessengerCallSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MessengerCallSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMessengerCallSettings(ctx context.Context, client *core.Client, id string, params GetPageMessengerCallSettingsParams) (*core.Cursor[objects.MessengerCallSettings], error) {
 	var out core.Cursor[objects.MessengerCallSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "messenger_call_settings"), params.ToParams(), &out)
+	call := GetPageMessengerCallSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2549,9 +4136,32 @@ func (params CreatePageMessengerCallSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMessengerCallSettingsBatchCall(id string, params CreatePageMessengerCallSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "messenger_call_settings"), params.ToParams(), options...)
+}
+
+func NewCreatePageMessengerCallSettingsBatchRequest(id string, params CreatePageMessengerCallSettingsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageMessengerCallSettingsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMessengerCallSettingsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMessengerCallSettings(ctx context.Context, client *core.Client, id string, params CreatePageMessengerCallSettingsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "messenger_call_settings"), params.ToParams(), &out)
+	call := CreatePageMessengerCallSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2567,9 +4177,32 @@ func (params GetPageMessengerLeadFormsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMessengerLeadFormsBatchCall(id string, params GetPageMessengerLeadFormsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "messenger_lead_forms"), params.ToParams(), options...)
+}
+
+func NewGetPageMessengerLeadFormsBatchRequest(id string, params GetPageMessengerLeadFormsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MessengerAdsPartialAutomatedStepList]] {
+	return core.NewBatchRequest[core.Cursor[objects.MessengerAdsPartialAutomatedStepList]](GetPageMessengerLeadFormsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMessengerLeadFormsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MessengerAdsPartialAutomatedStepList], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MessengerAdsPartialAutomatedStepList]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMessengerLeadForms(ctx context.Context, client *core.Client, id string, params GetPageMessengerLeadFormsParams) (*core.Cursor[objects.MessengerAdsPartialAutomatedStepList], error) {
 	var out core.Cursor[objects.MessengerAdsPartialAutomatedStepList]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "messenger_lead_forms"), params.ToParams(), &out)
+	call := GetPageMessengerLeadFormsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2627,9 +4260,32 @@ func (params CreatePageMessengerLeadFormsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMessengerLeadFormsBatchCall(id string, params CreatePageMessengerLeadFormsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "messenger_lead_forms"), params.ToParams(), options...)
+}
+
+func NewCreatePageMessengerLeadFormsBatchRequest(id string, params CreatePageMessengerLeadFormsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageMessengerLeadFormsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMessengerLeadFormsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMessengerLeadForms(ctx context.Context, client *core.Client, id string, params CreatePageMessengerLeadFormsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "messenger_lead_forms"), params.ToParams(), &out)
+	call := CreatePageMessengerLeadFormsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2651,9 +4307,32 @@ func (params DeletePageMessengerProfileParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageMessengerProfileBatchCall(id string, params DeletePageMessengerProfileParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "messenger_profile"), params.ToParams(), options...)
+}
+
+func NewDeletePageMessengerProfileBatchRequest(id string, params DeletePageMessengerProfileParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageMessengerProfileBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageMessengerProfileBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageMessengerProfile(ctx context.Context, client *core.Client, id string, params DeletePageMessengerProfileParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "messenger_profile"), params.ToParams(), &out)
+	call := DeletePageMessengerProfileBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2673,9 +4352,32 @@ func (params GetPageMessengerProfileParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageMessengerProfileBatchCall(id string, params GetPageMessengerProfileParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "messenger_profile"), params.ToParams(), options...)
+}
+
+func NewGetPageMessengerProfileBatchRequest(id string, params GetPageMessengerProfileParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MessengerProfile]] {
+	return core.NewBatchRequest[core.Cursor[objects.MessengerProfile]](GetPageMessengerProfileBatchCall(id, params, options...))
+}
+
+func DecodeGetPageMessengerProfileBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MessengerProfile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MessengerProfile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageMessengerProfile(ctx context.Context, client *core.Client, id string, params GetPageMessengerProfileParams) (*core.Cursor[objects.MessengerProfile], error) {
 	var out core.Cursor[objects.MessengerProfile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "messenger_profile"), params.ToParams(), &out)
+	call := GetPageMessengerProfileBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2723,9 +4425,32 @@ func (params CreatePageMessengerProfileParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageMessengerProfileBatchCall(id string, params CreatePageMessengerProfileParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "messenger_profile"), params.ToParams(), options...)
+}
+
+func NewCreatePageMessengerProfileBatchRequest(id string, params CreatePageMessengerProfileParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageMessengerProfileBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageMessengerProfileBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageMessengerProfile(ctx context.Context, client *core.Client, id string, params CreatePageMessengerProfileParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "messenger_profile"), params.ToParams(), &out)
+	call := CreatePageMessengerProfileBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2745,9 +4470,32 @@ func (params CreatePageModerateConversationsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageModerateConversationsBatchCall(id string, params CreatePageModerateConversationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "moderate_conversations"), params.ToParams(), options...)
+}
+
+func NewCreatePageModerateConversationsBatchRequest(id string, params CreatePageModerateConversationsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageModerateConversationsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageModerateConversationsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageModerateConversations(ctx context.Context, client *core.Client, id string, params CreatePageModerateConversationsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "moderate_conversations"), params.ToParams(), &out)
+	call := CreatePageModerateConversationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2791,9 +4539,32 @@ func (params CreatePageNlpConfigsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageNlpConfigsBatchCall(id string, params CreatePageNlpConfigsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "nlp_configs"), params.ToParams(), options...)
+}
+
+func NewCreatePageNlpConfigsBatchRequest(id string, params CreatePageNlpConfigsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageNlpConfigsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageNlpConfigsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageNlpConfigs(ctx context.Context, client *core.Client, id string, params CreatePageNlpConfigsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "nlp_configs"), params.ToParams(), &out)
+	call := CreatePageNlpConfigsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2837,9 +4608,32 @@ func (params GetPageNotificationMessageTokensParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageNotificationMessageTokensBatchCall(id string, params GetPageNotificationMessageTokensParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "notification_message_tokens"), params.ToParams(), options...)
+}
+
+func NewGetPageNotificationMessageTokensBatchRequest(id string, params GetPageNotificationMessageTokensParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.UserPageOneTimeOptInTokenSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.UserPageOneTimeOptInTokenSettings]](GetPageNotificationMessageTokensBatchCall(id, params, options...))
+}
+
+func DecodeGetPageNotificationMessageTokensBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.UserPageOneTimeOptInTokenSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageNotificationMessageTokens(ctx context.Context, client *core.Client, id string, params GetPageNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
 	var out core.Cursor[objects.UserPageOneTimeOptInTokenSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "notification_message_tokens"), params.ToParams(), &out)
+	call := GetPageNotificationMessageTokensBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2859,9 +4653,32 @@ func (params CreatePageNotificationMessagesDevSupportParams) ToParams() core.Par
 	return out
 }
 
+func CreatePageNotificationMessagesDevSupportBatchCall(id string, params CreatePageNotificationMessagesDevSupportParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "notification_messages_dev_support"), params.ToParams(), options...)
+}
+
+func NewCreatePageNotificationMessagesDevSupportBatchRequest(id string, params CreatePageNotificationMessagesDevSupportParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageNotificationMessagesDevSupportBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageNotificationMessagesDevSupportBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageNotificationMessagesDevSupport(ctx context.Context, client *core.Client, id string, params CreatePageNotificationMessagesDevSupportParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "notification_messages_dev_support"), params.ToParams(), &out)
+	call := CreatePageNotificationMessagesDevSupportBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2877,9 +4694,32 @@ func (params GetPagePageBackedInstagramAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPagePageBackedInstagramAccountsBatchCall(id string, params GetPagePageBackedInstagramAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "page_backed_instagram_accounts"), params.ToParams(), options...)
+}
+
+func NewGetPagePageBackedInstagramAccountsBatchRequest(id string, params GetPagePageBackedInstagramAccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUser]](GetPagePageBackedInstagramAccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetPagePageBackedInstagramAccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPagePageBackedInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetPagePageBackedInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
 	var out core.Cursor[objects.IGUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "page_backed_instagram_accounts"), params.ToParams(), &out)
+	call := GetPagePageBackedInstagramAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2895,9 +4735,32 @@ func (params CreatePagePageBackedInstagramAccountsParams) ToParams() core.Params
 	return out
 }
 
+func CreatePagePageBackedInstagramAccountsBatchCall(id string, params CreatePagePageBackedInstagramAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "page_backed_instagram_accounts"), params.ToParams(), options...)
+}
+
+func NewCreatePagePageBackedInstagramAccountsBatchRequest(id string, params CreatePagePageBackedInstagramAccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.IGUser] {
+	return core.NewBatchRequest[objects.IGUser](CreatePagePageBackedInstagramAccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePageBackedInstagramAccountsBatchResponse(response *core.BatchResponse) (*objects.IGUser, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGUser
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePageBackedInstagramAccounts(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedInstagramAccountsParams) (*objects.IGUser, error) {
 	var out objects.IGUser
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "page_backed_instagram_accounts"), params.ToParams(), &out)
+	call := CreatePagePageBackedInstagramAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2913,9 +4776,32 @@ func (params CreatePagePageBackedThreadsAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePagePageBackedThreadsAccountsBatchCall(id string, params CreatePagePageBackedThreadsAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "page_backed_threads_accounts"), params.ToParams(), options...)
+}
+
+func NewCreatePagePageBackedThreadsAccountsBatchRequest(id string, params CreatePagePageBackedThreadsAccountsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePagePageBackedThreadsAccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePageBackedThreadsAccountsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePageBackedThreadsAccounts(ctx context.Context, client *core.Client, id string, params CreatePagePageBackedThreadsAccountsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "page_backed_threads_accounts"), params.ToParams(), &out)
+	call := CreatePagePageBackedThreadsAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2937,9 +4823,32 @@ func (params CreatePagePageWhatsappNumberVerificationParams) ToParams() core.Par
 	return out
 }
 
+func CreatePagePageWhatsappNumberVerificationBatchCall(id string, params CreatePagePageWhatsappNumberVerificationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "page_whatsapp_number_verification"), params.ToParams(), options...)
+}
+
+func NewCreatePagePageWhatsappNumberVerificationBatchRequest(id string, params CreatePagePageWhatsappNumberVerificationParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePagePageWhatsappNumberVerificationBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePageWhatsappNumberVerificationBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePageWhatsappNumberVerification(ctx context.Context, client *core.Client, id string, params CreatePagePageWhatsappNumberVerificationParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "page_whatsapp_number_verification"), params.ToParams(), &out)
+	call := CreatePagePageWhatsappNumberVerificationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2965,9 +4874,32 @@ func (params CreatePagePassThreadControlParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePagePassThreadControlBatchCall(id string, params CreatePagePassThreadControlParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "pass_thread_control"), params.ToParams(), options...)
+}
+
+func NewCreatePagePassThreadControlBatchRequest(id string, params CreatePagePassThreadControlParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePagePassThreadControlBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePassThreadControlBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePassThreadControl(ctx context.Context, client *core.Client, id string, params CreatePagePassThreadControlParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "pass_thread_control"), params.ToParams(), &out)
+	call := CreatePagePassThreadControlBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -2983,9 +4915,32 @@ func (params GetPagePersonasParams) ToParams() core.Params {
 	return out
 }
 
+func GetPagePersonasBatchCall(id string, params GetPagePersonasParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "personas"), params.ToParams(), options...)
+}
+
+func NewGetPagePersonasBatchRequest(id string, params GetPagePersonasParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Persona]] {
+	return core.NewBatchRequest[core.Cursor[objects.Persona]](GetPagePersonasBatchCall(id, params, options...))
+}
+
+func DecodeGetPagePersonasBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Persona], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Persona]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPagePersonas(ctx context.Context, client *core.Client, id string, params GetPagePersonasParams) (*core.Cursor[objects.Persona], error) {
 	var out core.Cursor[objects.Persona]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "personas"), params.ToParams(), &out)
+	call := GetPagePersonasBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3005,9 +4960,32 @@ func (params CreatePagePersonasParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePagePersonasBatchCall(id string, params CreatePagePersonasParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "personas"), params.ToParams(), options...)
+}
+
+func NewCreatePagePersonasBatchRequest(id string, params CreatePagePersonasParams, options ...core.BatchOption) *core.BatchRequest[objects.Persona] {
+	return core.NewBatchRequest[objects.Persona](CreatePagePersonasBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePersonasBatchResponse(response *core.BatchResponse) (*objects.Persona, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Persona
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePersonas(ctx context.Context, client *core.Client, id string, params CreatePagePersonasParams) (*objects.Persona, error) {
 	var out objects.Persona
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "personas"), params.ToParams(), &out)
+	call := CreatePagePersonasBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3027,9 +5005,32 @@ func (params CreatePagePhotoStoriesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePagePhotoStoriesBatchCall(id string, params CreatePagePhotoStoriesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "photo_stories"), params.ToParams(), options...)
+}
+
+func NewCreatePagePhotoStoriesBatchRequest(id string, params CreatePagePhotoStoriesParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePagePhotoStoriesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePhotoStoriesBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePhotoStories(ctx context.Context, client *core.Client, id string, params CreatePagePhotoStoriesParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "photo_stories"), params.ToParams(), &out)
+	call := CreatePagePhotoStoriesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3057,9 +5058,32 @@ func (params GetPagePhotosParams) ToParams() core.Params {
 	return out
 }
 
+func GetPagePhotosBatchCall(id string, params GetPagePhotosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), options...)
+}
+
+func NewGetPagePhotosBatchRequest(id string, params GetPagePhotosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Photo]] {
+	return core.NewBatchRequest[core.Cursor[objects.Photo]](GetPagePhotosBatchCall(id, params, options...))
+}
+
+func DecodeGetPagePhotosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Photo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Photo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPagePhotos(ctx context.Context, client *core.Client, id string, params GetPagePhotosParams) (*core.Cursor[objects.Photo], error) {
 	var out core.Cursor[objects.Photo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	call := GetPagePhotosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3299,9 +5323,32 @@ func (params CreatePagePhotosParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePagePhotosBatchCall(id string, params CreatePagePhotosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), options...)
+}
+
+func NewCreatePagePhotosBatchRequest(id string, params CreatePagePhotosParams, options ...core.BatchOption) *core.BatchRequest[objects.Photo] {
+	return core.NewBatchRequest[objects.Photo](CreatePagePhotosBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePhotosBatchResponse(response *core.BatchResponse) (*objects.Photo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Photo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePhotos(ctx context.Context, client *core.Client, id string, params CreatePagePhotosParams) (*objects.Photo, error) {
 	var out objects.Photo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	call := CreatePagePhotosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3333,9 +5380,32 @@ func (params GetPagePictureParams) ToParams() core.Params {
 	return out
 }
 
+func GetPagePictureBatchCall(id string, params GetPagePictureParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), options...)
+}
+
+func NewGetPagePictureBatchRequest(id string, params GetPagePictureParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProfilePictureSource]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProfilePictureSource]](GetPagePictureBatchCall(id, params, options...))
+}
+
+func DecodeGetPagePictureBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProfilePictureSource], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProfilePictureSource]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPagePicture(ctx context.Context, client *core.Client, id string, params GetPagePictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
 	var out core.Cursor[objects.ProfilePictureSource]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	call := GetPagePictureBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3455,9 +5525,32 @@ func (params CreatePagePictureParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePagePictureBatchCall(id string, params CreatePagePictureParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "picture"), params.ToParams(), options...)
+}
+
+func NewCreatePagePictureBatchRequest(id string, params CreatePagePictureParams, options ...core.BatchOption) *core.BatchRequest[objects.ProfilePictureSource] {
+	return core.NewBatchRequest[objects.ProfilePictureSource](CreatePagePictureBatchCall(id, params, options...))
+}
+
+func DecodeCreatePagePictureBatchResponse(response *core.BatchResponse) (*objects.ProfilePictureSource, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ProfilePictureSource
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePagePicture(ctx context.Context, client *core.Client, id string, params CreatePagePictureParams) (*objects.ProfilePictureSource, error) {
 	var out objects.ProfilePictureSource
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	call := CreatePagePictureBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3493,9 +5586,32 @@ func (params GetPagePostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPagePostsBatchCall(id string, params GetPagePostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "posts"), params.ToParams(), options...)
+}
+
+func NewGetPagePostsBatchRequest(id string, params GetPagePostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPagePostsBatchCall(id, params, options...))
+}
+
+func DecodeGetPagePostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPagePosts(ctx context.Context, client *core.Client, id string, params GetPagePostsParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "posts"), params.ToParams(), &out)
+	call := GetPagePostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3511,9 +5627,32 @@ func (params GetPageProductCatalogsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageProductCatalogsBatchCall(id string, params GetPageProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "product_catalogs"), params.ToParams(), options...)
+}
+
+func NewGetPageProductCatalogsBatchRequest(id string, params GetPageProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductCatalog]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductCatalog]](GetPageProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageProductCatalogsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductCatalog], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductCatalog]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageProductCatalogs(ctx context.Context, client *core.Client, id string, params GetPageProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
 	var out core.Cursor[objects.ProductCatalog]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "product_catalogs"), params.ToParams(), &out)
+	call := GetPageProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3545,9 +5684,32 @@ func (params GetPagePublishedPostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPagePublishedPostsBatchCall(id string, params GetPagePublishedPostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "published_posts"), params.ToParams(), options...)
+}
+
+func NewGetPagePublishedPostsBatchRequest(id string, params GetPagePublishedPostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPagePublishedPostsBatchCall(id, params, options...))
+}
+
+func DecodeGetPagePublishedPostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPagePublishedPosts(ctx context.Context, client *core.Client, id string, params GetPagePublishedPostsParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "published_posts"), params.ToParams(), &out)
+	call := GetPagePublishedPostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3563,9 +5725,32 @@ func (params GetPageRatingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageRatingsBatchCall(id string, params GetPageRatingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "ratings"), params.ToParams(), options...)
+}
+
+func NewGetPageRatingsBatchRequest(id string, params GetPageRatingsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Recommendation]] {
+	return core.NewBatchRequest[core.Cursor[objects.Recommendation]](GetPageRatingsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageRatingsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Recommendation], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Recommendation]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageRatings(ctx context.Context, client *core.Client, id string, params GetPageRatingsParams) (*core.Cursor[objects.Recommendation], error) {
 	var out core.Cursor[objects.Recommendation]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "ratings"), params.ToParams(), &out)
+	call := GetPageRatingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3583,9 +5768,32 @@ func (params CreatePageReleaseThreadControlParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageReleaseThreadControlBatchCall(id string, params CreatePageReleaseThreadControlParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "release_thread_control"), params.ToParams(), options...)
+}
+
+func NewCreatePageReleaseThreadControlBatchRequest(id string, params CreatePageReleaseThreadControlParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageReleaseThreadControlBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageReleaseThreadControlBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageReleaseThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageReleaseThreadControlParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "release_thread_control"), params.ToParams(), &out)
+	call := CreatePageReleaseThreadControlBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3607,9 +5815,32 @@ func (params CreatePageRequestThreadControlParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageRequestThreadControlBatchCall(id string, params CreatePageRequestThreadControlParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "request_thread_control"), params.ToParams(), options...)
+}
+
+func NewCreatePageRequestThreadControlBatchRequest(id string, params CreatePageRequestThreadControlParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageRequestThreadControlBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageRequestThreadControlBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageRequestThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageRequestThreadControlParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "request_thread_control"), params.ToParams(), &out)
+	call := CreatePageRequestThreadControlBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3633,9 +5864,32 @@ func (params GetPageRolesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageRolesBatchCall(id string, params GetPageRolesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "roles"), params.ToParams(), options...)
+}
+
+func NewGetPageRolesBatchRequest(id string, params GetPageRolesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.User]] {
+	return core.NewBatchRequest[core.Cursor[objects.User]](GetPageRolesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageRolesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.User], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.User]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageRoles(ctx context.Context, client *core.Client, id string, params GetPageRolesParams) (*core.Cursor[objects.User], error) {
 	var out core.Cursor[objects.User]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "roles"), params.ToParams(), &out)
+	call := GetPageRolesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3651,9 +5905,32 @@ func (params GetPageRtbDynamicPostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageRtbDynamicPostsBatchCall(id string, params GetPageRtbDynamicPostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "rtb_dynamic_posts"), params.ToParams(), options...)
+}
+
+func NewGetPageRtbDynamicPostsBatchRequest(id string, params GetPageRtbDynamicPostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.RTBDynamicPost]] {
+	return core.NewBatchRequest[core.Cursor[objects.RTBDynamicPost]](GetPageRtbDynamicPostsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageRtbDynamicPostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.RTBDynamicPost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.RTBDynamicPost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageRtbDynamicPosts(ctx context.Context, client *core.Client, id string, params GetPageRtbDynamicPostsParams) (*core.Cursor[objects.RTBDynamicPost], error) {
 	var out core.Cursor[objects.RTBDynamicPost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "rtb_dynamic_posts"), params.ToParams(), &out)
+	call := GetPageRtbDynamicPostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3679,9 +5956,32 @@ func (params CreatePageScheduledLiveVideoParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageScheduledLiveVideoBatchCall(id string, params CreatePageScheduledLiveVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "scheduled_live_video"), params.ToParams(), options...)
+}
+
+func NewCreatePageScheduledLiveVideoBatchRequest(id string, params CreatePageScheduledLiveVideoParams, options ...core.BatchOption) *core.BatchRequest[objects.ScheduledLiveVideo] {
+	return core.NewBatchRequest[objects.ScheduledLiveVideo](CreatePageScheduledLiveVideoBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageScheduledLiveVideoBatchResponse(response *core.BatchResponse) (*objects.ScheduledLiveVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ScheduledLiveVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageScheduledLiveVideo(ctx context.Context, client *core.Client, id string, params CreatePageScheduledLiveVideoParams) (*objects.ScheduledLiveVideo, error) {
 	var out objects.ScheduledLiveVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "scheduled_live_video"), params.ToParams(), &out)
+	call := CreatePageScheduledLiveVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3697,9 +5997,32 @@ func (params GetPageScheduledPostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageScheduledPostsBatchCall(id string, params GetPageScheduledPostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "scheduled_posts"), params.ToParams(), options...)
+}
+
+func NewGetPageScheduledPostsBatchRequest(id string, params GetPageScheduledPostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPageScheduledPostsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageScheduledPostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageScheduledPosts(ctx context.Context, client *core.Client, id string, params GetPageScheduledPostsParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "scheduled_posts"), params.ToParams(), &out)
+	call := GetPageScheduledPostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3715,9 +6038,32 @@ func (params GetPageSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageSettingsBatchCall(id string, params GetPageSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "settings"), params.ToParams(), options...)
+}
+
+func NewGetPageSettingsBatchRequest(id string, params GetPageSettingsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PageSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.PageSettings]](GetPageSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageSettingsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PageSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PageSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageSettings(ctx context.Context, client *core.Client, id string, params GetPageSettingsParams) (*core.Cursor[objects.PageSettings], error) {
 	var out core.Cursor[objects.PageSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "settings"), params.ToParams(), &out)
+	call := GetPageSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3737,9 +6083,32 @@ func (params CreatePageSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageSettingsBatchCall(id string, params CreatePageSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "settings"), params.ToParams(), options...)
+}
+
+func NewCreatePageSettingsBatchRequest(id string, params CreatePageSettingsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageSettingsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageSettingsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageSettings(ctx context.Context, client *core.Client, id string, params CreatePageSettingsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "settings"), params.ToParams(), &out)
+	call := CreatePageSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3755,9 +6124,32 @@ func (params GetPageShopSetupStatusParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageShopSetupStatusBatchCall(id string, params GetPageShopSetupStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "shop_setup_status"), params.ToParams(), options...)
+}
+
+func NewGetPageShopSetupStatusBatchRequest(id string, params GetPageShopSetupStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CommerceMerchantSettingsSetupStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CommerceMerchantSettingsSetupStatus]](GetPageShopSetupStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetPageShopSetupStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CommerceMerchantSettingsSetupStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageShopSetupStatus(ctx context.Context, client *core.Client, id string, params GetPageShopSetupStatusParams) (*core.Cursor[objects.CommerceMerchantSettingsSetupStatus], error) {
 	var out core.Cursor[objects.CommerceMerchantSettingsSetupStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "shop_setup_status"), params.ToParams(), &out)
+	call := GetPageShopSetupStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3773,9 +6165,32 @@ func (params GetPageSpaceParticipantsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageSpaceParticipantsBatchCall(id string, params GetPageSpaceParticipantsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "space_participants"), params.ToParams(), options...)
+}
+
+func NewGetPageSpaceParticipantsBatchRequest(id string, params GetPageSpaceParticipantsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetPageSpaceParticipantsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageSpaceParticipantsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageSpaceParticipants(ctx context.Context, client *core.Client, id string, params GetPageSpaceParticipantsParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "space_participants"), params.ToParams(), &out)
+	call := GetPageSpaceParticipantsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3795,9 +6210,32 @@ func (params CreatePageSpaceParticipantsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageSpaceParticipantsBatchCall(id string, params CreatePageSpaceParticipantsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "space_participants"), params.ToParams(), options...)
+}
+
+func NewCreatePageSpaceParticipantsBatchRequest(id string, params CreatePageSpaceParticipantsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageSpaceParticipantsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageSpaceParticipantsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageSpaceParticipants(ctx context.Context, client *core.Client, id string, params CreatePageSpaceParticipantsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "space_participants"), params.ToParams(), &out)
+	call := CreatePageSpaceParticipantsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3813,9 +6251,32 @@ func (params GetPageStoreLocationsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageStoreLocationsBatchCall(id string, params GetPageStoreLocationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "store_locations"), params.ToParams(), options...)
+}
+
+func NewGetPageStoreLocationsBatchRequest(id string, params GetPageStoreLocationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.StoreLocation]] {
+	return core.NewBatchRequest[core.Cursor[objects.StoreLocation]](GetPageStoreLocationsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageStoreLocationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.StoreLocation], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.StoreLocation]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageStoreLocations(ctx context.Context, client *core.Client, id string, params GetPageStoreLocationsParams) (*core.Cursor[objects.StoreLocation], error) {
 	var out core.Cursor[objects.StoreLocation]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "store_locations"), params.ToParams(), &out)
+	call := GetPageStoreLocationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3843,9 +6304,32 @@ func (params GetPageStoriesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageStoriesBatchCall(id string, params GetPageStoriesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "stories"), params.ToParams(), options...)
+}
+
+func NewGetPageStoriesBatchRequest(id string, params GetPageStoriesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Stories]] {
+	return core.NewBatchRequest[core.Cursor[objects.Stories]](GetPageStoriesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageStoriesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Stories], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Stories]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageStories(ctx context.Context, client *core.Client, id string, params GetPageStoriesParams) (*core.Cursor[objects.Stories], error) {
 	var out core.Cursor[objects.Stories]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "stories"), params.ToParams(), &out)
+	call := GetPageStoriesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3861,9 +6345,32 @@ func (params DeletePageSubscribedAppsParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageSubscribedAppsBatchCall(id string, params DeletePageSubscribedAppsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "subscribed_apps"), params.ToParams(), options...)
+}
+
+func NewDeletePageSubscribedAppsBatchRequest(id string, params DeletePageSubscribedAppsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageSubscribedAppsBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageSubscribedAppsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageSubscribedApps(ctx context.Context, client *core.Client, id string, params DeletePageSubscribedAppsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "subscribed_apps"), params.ToParams(), &out)
+	call := DeletePageSubscribedAppsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3879,9 +6386,32 @@ func (params GetPageSubscribedAppsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageSubscribedAppsBatchCall(id string, params GetPageSubscribedAppsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "subscribed_apps"), params.ToParams(), options...)
+}
+
+func NewGetPageSubscribedAppsBatchRequest(id string, params GetPageSubscribedAppsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Application]] {
+	return core.NewBatchRequest[core.Cursor[objects.Application]](GetPageSubscribedAppsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageSubscribedAppsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Application], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Application]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageSubscribedApps(ctx context.Context, client *core.Client, id string, params GetPageSubscribedAppsParams) (*core.Cursor[objects.Application], error) {
 	var out core.Cursor[objects.Application]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "subscribed_apps"), params.ToParams(), &out)
+	call := GetPageSubscribedAppsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3899,9 +6429,32 @@ func (params CreatePageSubscribedAppsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageSubscribedAppsBatchCall(id string, params CreatePageSubscribedAppsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "subscribed_apps"), params.ToParams(), options...)
+}
+
+func NewCreatePageSubscribedAppsBatchRequest(id string, params CreatePageSubscribedAppsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageSubscribedAppsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageSubscribedAppsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageSubscribedApps(ctx context.Context, client *core.Client, id string, params CreatePageSubscribedAppsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "subscribed_apps"), params.ToParams(), &out)
+	call := CreatePageSubscribedAppsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3921,9 +6474,32 @@ func (params GetPageTabsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageTabsBatchCall(id string, params GetPageTabsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "tabs"), params.ToParams(), options...)
+}
+
+func NewGetPageTabsBatchRequest(id string, params GetPageTabsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Tab]] {
+	return core.NewBatchRequest[core.Cursor[objects.Tab]](GetPageTabsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageTabsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Tab], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Tab]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageTabs(ctx context.Context, client *core.Client, id string, params GetPageTabsParams) (*core.Cursor[objects.Tab], error) {
 	var out core.Cursor[objects.Tab]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "tabs"), params.ToParams(), &out)
+	call := GetPageTabsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3939,9 +6515,32 @@ func (params GetPageTaggedParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageTaggedBatchCall(id string, params GetPageTaggedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "tagged"), params.ToParams(), options...)
+}
+
+func NewGetPageTaggedBatchRequest(id string, params GetPageTaggedParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPageTaggedBatchCall(id, params, options...))
+}
+
+func DecodeGetPageTaggedBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageTagged(ctx context.Context, client *core.Client, id string, params GetPageTaggedParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "tagged"), params.ToParams(), &out)
+	call := GetPageTaggedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3963,9 +6562,32 @@ func (params CreatePageTakeThreadControlParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageTakeThreadControlBatchCall(id string, params CreatePageTakeThreadControlParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "take_thread_control"), params.ToParams(), options...)
+}
+
+func NewCreatePageTakeThreadControlBatchRequest(id string, params CreatePageTakeThreadControlParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageTakeThreadControlBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageTakeThreadControlBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageTakeThreadControl(ctx context.Context, client *core.Client, id string, params CreatePageTakeThreadControlParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "take_thread_control"), params.ToParams(), &out)
+	call := CreatePageTakeThreadControlBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -3983,9 +6605,32 @@ func (params GetPageThreadOwnerParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageThreadOwnerBatchCall(id string, params GetPageThreadOwnerParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "thread_owner"), params.ToParams(), options...)
+}
+
+func NewGetPageThreadOwnerBatchRequest(id string, params GetPageThreadOwnerParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PageThreadOwner]] {
+	return core.NewBatchRequest[core.Cursor[objects.PageThreadOwner]](GetPageThreadOwnerBatchCall(id, params, options...))
+}
+
+func DecodeGetPageThreadOwnerBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PageThreadOwner], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PageThreadOwner]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageThreadOwner(ctx context.Context, client *core.Client, id string, params GetPageThreadOwnerParams) (*core.Cursor[objects.PageThreadOwner], error) {
 	var out core.Cursor[objects.PageThreadOwner]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "thread_owner"), params.ToParams(), &out)
+	call := GetPageThreadOwnerBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4017,9 +6662,32 @@ func (params GetPageThreadsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageThreadsBatchCall(id string, params GetPageThreadsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "threads"), params.ToParams(), options...)
+}
+
+func NewGetPageThreadsBatchRequest(id string, params GetPageThreadsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.UnifiedThread]] {
+	return core.NewBatchRequest[core.Cursor[objects.UnifiedThread]](GetPageThreadsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageThreadsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.UnifiedThread], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.UnifiedThread]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageThreads(ctx context.Context, client *core.Client, id string, params GetPageThreadsParams) (*core.Cursor[objects.UnifiedThread], error) {
 	var out core.Cursor[objects.UnifiedThread]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "threads"), params.ToParams(), &out)
+	call := GetPageThreadsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4037,9 +6705,32 @@ func (params CreatePageUnlinkAccountsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageUnlinkAccountsBatchCall(id string, params CreatePageUnlinkAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "unlink_accounts"), params.ToParams(), options...)
+}
+
+func NewCreatePageUnlinkAccountsBatchRequest(id string, params CreatePageUnlinkAccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](CreatePageUnlinkAccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageUnlinkAccountsBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageUnlinkAccounts(ctx context.Context, client *core.Client, id string, params CreatePageUnlinkAccountsParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "unlink_accounts"), params.ToParams(), &out)
+	call := CreatePageUnlinkAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4063,9 +6754,32 @@ func (params GetPageVideoCopyrightRulesParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageVideoCopyrightRulesBatchCall(id string, params GetPageVideoCopyrightRulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "video_copyright_rules"), params.ToParams(), options...)
+}
+
+func NewGetPageVideoCopyrightRulesBatchRequest(id string, params GetPageVideoCopyrightRulesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoCopyrightRule]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoCopyrightRule]](GetPageVideoCopyrightRulesBatchCall(id, params, options...))
+}
+
+func DecodeGetPageVideoCopyrightRulesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoCopyrightRule], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoCopyrightRule]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageVideoCopyrightRules(ctx context.Context, client *core.Client, id string, params GetPageVideoCopyrightRulesParams) (*core.Cursor[objects.VideoCopyrightRule], error) {
 	var out core.Cursor[objects.VideoCopyrightRule]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "video_copyright_rules"), params.ToParams(), &out)
+	call := GetPageVideoCopyrightRulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4085,9 +6799,32 @@ func (params CreatePageVideoCopyrightRulesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageVideoCopyrightRulesBatchCall(id string, params CreatePageVideoCopyrightRulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "video_copyright_rules"), params.ToParams(), options...)
+}
+
+func NewCreatePageVideoCopyrightRulesBatchRequest(id string, params CreatePageVideoCopyrightRulesParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyrightRule] {
+	return core.NewBatchRequest[objects.VideoCopyrightRule](CreatePageVideoCopyrightRulesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageVideoCopyrightRulesBatchResponse(response *core.BatchResponse) (*objects.VideoCopyrightRule, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyrightRule
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageVideoCopyrightRules(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightRulesParams) (*objects.VideoCopyrightRule, error) {
 	var out objects.VideoCopyrightRule
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "video_copyright_rules"), params.ToParams(), &out)
+	call := CreatePageVideoCopyrightRulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4153,9 +6890,32 @@ func (params CreatePageVideoCopyrightsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageVideoCopyrightsBatchCall(id string, params CreatePageVideoCopyrightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "video_copyrights"), params.ToParams(), options...)
+}
+
+func NewCreatePageVideoCopyrightsBatchRequest(id string, params CreatePageVideoCopyrightsParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyright] {
+	return core.NewBatchRequest[objects.VideoCopyright](CreatePageVideoCopyrightsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageVideoCopyrightsBatchResponse(response *core.BatchResponse) (*objects.VideoCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageVideoCopyrights(ctx context.Context, client *core.Client, id string, params CreatePageVideoCopyrightsParams) (*objects.VideoCopyright, error) {
 	var out objects.VideoCopyright
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "video_copyrights"), params.ToParams(), &out)
+	call := CreatePageVideoCopyrightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4171,9 +6931,32 @@ func (params GetPageVideoListsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageVideoListsBatchCall(id string, params GetPageVideoListsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "video_lists"), params.ToParams(), options...)
+}
+
+func NewGetPageVideoListsBatchRequest(id string, params GetPageVideoListsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoList]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoList]](GetPageVideoListsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageVideoListsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoList], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoList]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageVideoLists(ctx context.Context, client *core.Client, id string, params GetPageVideoListsParams) (*core.Cursor[objects.VideoList], error) {
 	var out core.Cursor[objects.VideoList]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "video_lists"), params.ToParams(), &out)
+	call := GetPageVideoListsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4197,9 +6980,32 @@ func (params GetPageVideoReelsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageVideoReelsBatchCall(id string, params GetPageVideoReelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "video_reels"), params.ToParams(), options...)
+}
+
+func NewGetPageVideoReelsBatchRequest(id string, params GetPageVideoReelsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdVideo]](GetPageVideoReelsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageVideoReelsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageVideoReels(ctx context.Context, client *core.Client, id string, params GetPageVideoReelsParams) (*core.Cursor[objects.AdVideo], error) {
 	var out core.Cursor[objects.AdVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "video_reels"), params.ToParams(), &out)
+	call := GetPageVideoReelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4249,9 +7055,32 @@ func (params CreatePageVideoReelsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageVideoReelsBatchCall(id string, params CreatePageVideoReelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "video_reels"), params.ToParams(), options...)
+}
+
+func NewCreatePageVideoReelsBatchRequest(id string, params CreatePageVideoReelsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreatePageVideoReelsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageVideoReelsBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageVideoReels(ctx context.Context, client *core.Client, id string, params CreatePageVideoReelsParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "video_reels"), params.ToParams(), &out)
+	call := CreatePageVideoReelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4301,9 +7130,32 @@ func (params CreatePageVideoStoriesParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageVideoStoriesBatchCall(id string, params CreatePageVideoStoriesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "video_stories"), params.ToParams(), options...)
+}
+
+func NewCreatePageVideoStoriesBatchRequest(id string, params CreatePageVideoStoriesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePageVideoStoriesBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageVideoStoriesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageVideoStories(ctx context.Context, client *core.Client, id string, params CreatePageVideoStoriesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "video_stories"), params.ToParams(), &out)
+	call := CreatePageVideoStoriesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4323,9 +7175,32 @@ func (params GetPageVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageVideosBatchCall(id string, params GetPageVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "videos"), params.ToParams(), options...)
+}
+
+func NewGetPageVideosBatchRequest(id string, params GetPageVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdVideo]](GetPageVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetPageVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageVideos(ctx context.Context, client *core.Client, id string, params GetPageVideosParams) (*core.Cursor[objects.AdVideo], error) {
 	var out core.Cursor[objects.AdVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "videos"), params.ToParams(), &out)
+	call := GetPageVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4705,9 +7580,32 @@ func (params CreatePageVideosParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageVideosBatchCall(id string, params CreatePageVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "videos"), params.ToParams(), options...)
+}
+
+func NewCreatePageVideosBatchRequest(id string, params CreatePageVideosParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreatePageVideosBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageVideosBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageVideos(ctx context.Context, client *core.Client, id string, params CreatePageVideosParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "videos"), params.ToParams(), &out)
+	call := CreatePageVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4739,9 +7637,32 @@ func (params GetPageVisitorPostsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageVisitorPostsBatchCall(id string, params GetPageVisitorPostsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "visitor_posts"), params.ToParams(), options...)
+}
+
+func NewGetPageVisitorPostsBatchRequest(id string, params GetPageVisitorPostsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PagePost]] {
+	return core.NewBatchRequest[core.Cursor[objects.PagePost]](GetPageVisitorPostsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageVisitorPostsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PagePost], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PagePost]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageVisitorPosts(ctx context.Context, client *core.Client, id string, params GetPageVisitorPostsParams) (*core.Cursor[objects.PagePost], error) {
 	var out core.Cursor[objects.PagePost]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "visitor_posts"), params.ToParams(), &out)
+	call := GetPageVisitorPostsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4759,9 +7680,32 @@ func (params DeletePageWelcomeMessageFlowsParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageWelcomeMessageFlowsBatchCall(id string, params DeletePageWelcomeMessageFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), options...)
+}
+
+func NewDeletePageWelcomeMessageFlowsBatchRequest(id string, params DeletePageWelcomeMessageFlowsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageWelcomeMessageFlowsBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageWelcomeMessageFlowsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params DeletePageWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), &out)
+	call := DeletePageWelcomeMessageFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4785,9 +7729,32 @@ func (params GetPageWelcomeMessageFlowsParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageWelcomeMessageFlowsBatchCall(id string, params GetPageWelcomeMessageFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), options...)
+}
+
+func NewGetPageWelcomeMessageFlowsBatchRequest(id string, params GetPageWelcomeMessageFlowsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]] {
+	return core.NewBatchRequest[core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]](GetPageWelcomeMessageFlowsBatchCall(id, params, options...))
+}
+
+func DecodeGetPageWelcomeMessageFlowsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetPageWelcomeMessageFlowsParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
 	var out core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), &out)
+	call := GetPageWelcomeMessageFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4819,9 +7786,32 @@ func (params CreatePageWelcomeMessageFlowsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePageWelcomeMessageFlowsBatchCall(id string, params CreatePageWelcomeMessageFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), options...)
+}
+
+func NewCreatePageWelcomeMessageFlowsBatchRequest(id string, params CreatePageWelcomeMessageFlowsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePageWelcomeMessageFlowsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePageWelcomeMessageFlowsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePageWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params CreatePageWelcomeMessageFlowsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), &out)
+	call := CreatePageWelcomeMessageFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -4841,9 +7831,32 @@ func (params GetPageParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageBatchCall(id string, params GetPageParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPageBatchRequest(id string, params GetPageParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](GetPageBatchCall(id, params, options...))
+}
+
+func DecodeGetPageBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPage(ctx context.Context, client *core.Client, id string, params GetPageParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPageBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -5091,8 +8104,31 @@ func (params UpdatePageParams) ToParams() core.Params {
 	return out
 }
 
+func UpdatePageBatchCall(id string, params UpdatePageParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdatePageBatchRequest(id string, params UpdatePageParams, options ...core.BatchOption) *core.BatchRequest[objects.Page] {
+	return core.NewBatchRequest[objects.Page](UpdatePageBatchCall(id, params, options...))
+}
+
+func DecodeUpdatePageBatchResponse(response *core.BatchResponse) (*objects.Page, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Page
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdatePage(ctx context.Context, client *core.Client, id string, params UpdatePageParams) (*objects.Page, error) {
 	var out objects.Page
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdatePageBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -37,9 +37,32 @@ func (params GetCommentCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCommentCommentsBatchCall(id string, params GetCommentCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetCommentCommentsBatchRequest(id string, params GetCommentCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Comment]] {
+	return core.NewBatchRequest[core.Cursor[objects.Comment]](GetCommentCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetCommentCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Comment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Comment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCommentComments(ctx context.Context, client *core.Client, id string, params GetCommentCommentsParams) (*core.Cursor[objects.Comment], error) {
 	var out core.Cursor[objects.Comment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetCommentCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -107,9 +130,32 @@ func (params CreateCommentCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCommentCommentsBatchCall(id string, params CreateCommentCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewCreateCommentCommentsBatchRequest(id string, params CreateCommentCommentsParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](CreateCommentCommentsBatchCall(id, params, options...))
+}
+
+func DecodeCreateCommentCommentsBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCommentComments(ctx context.Context, client *core.Client, id string, params CreateCommentCommentsParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := CreateCommentCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -141,9 +187,32 @@ func (params DeleteCommentLikesParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteCommentLikesBatchCall(id string, params DeleteCommentLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewDeleteCommentLikesBatchRequest(id string, params DeleteCommentLikesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteCommentLikesBatchCall(id, params, options...))
+}
+
+func DecodeDeleteCommentLikesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteCommentLikes(ctx context.Context, client *core.Client, id string, params DeleteCommentLikesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := DeleteCommentLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -159,9 +228,32 @@ func (params GetCommentLikesParams) ToParams() core.Params {
 	return out
 }
 
+func GetCommentLikesBatchCall(id string, params GetCommentLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewGetCommentLikesBatchRequest(id string, params GetCommentLikesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetCommentLikesBatchCall(id, params, options...))
+}
+
+func DecodeGetCommentLikesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCommentLikes(ctx context.Context, client *core.Client, id string, params GetCommentLikesParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := GetCommentLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -193,9 +285,32 @@ func (params CreateCommentLikesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateCommentLikesBatchCall(id string, params CreateCommentLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewCreateCommentLikesBatchRequest(id string, params CreateCommentLikesParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](CreateCommentLikesBatchCall(id, params, options...))
+}
+
+func DecodeCreateCommentLikesBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateCommentLikes(ctx context.Context, client *core.Client, id string, params CreateCommentLikesParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := CreateCommentLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -215,9 +330,32 @@ func (params GetCommentReactionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCommentReactionsBatchCall(id string, params GetCommentReactionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "reactions"), params.ToParams(), options...)
+}
+
+func NewGetCommentReactionsBatchRequest(id string, params GetCommentReactionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetCommentReactionsBatchCall(id, params, options...))
+}
+
+func DecodeGetCommentReactionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCommentReactions(ctx context.Context, client *core.Client, id string, params GetCommentReactionsParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "reactions"), params.ToParams(), &out)
+	call := GetCommentReactionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -233,9 +371,32 @@ func (params DeleteCommentParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteCommentBatchCall(id string, params DeleteCommentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteCommentBatchRequest(id string, params DeleteCommentParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteCommentBatchCall(id, params, options...))
+}
+
+func DecodeDeleteCommentBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteComment(ctx context.Context, client *core.Client, id string, params DeleteCommentParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteCommentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -251,9 +412,32 @@ func (params GetCommentParams) ToParams() core.Params {
 	return out
 }
 
+func GetCommentBatchCall(id string, params GetCommentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCommentBatchRequest(id string, params GetCommentParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](GetCommentBatchCall(id, params, options...))
+}
+
+func DecodeGetCommentBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetComment(ctx context.Context, client *core.Client, id string, params GetCommentParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCommentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -289,8 +473,31 @@ func (params UpdateCommentParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateCommentBatchCall(id string, params UpdateCommentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateCommentBatchRequest(id string, params UpdateCommentParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](UpdateCommentBatchCall(id, params, options...))
+}
+
+func DecodeUpdateCommentBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateComment(ctx context.Context, client *core.Client, id string, params UpdateCommentParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateCommentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

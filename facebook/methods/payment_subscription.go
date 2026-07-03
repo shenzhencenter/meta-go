@@ -19,8 +19,31 @@ func (params GetPaymentSubscriptionParams) ToParams() core.Params {
 	return out
 }
 
+func GetPaymentSubscriptionBatchCall(id string, params GetPaymentSubscriptionParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPaymentSubscriptionBatchRequest(id string, params GetPaymentSubscriptionParams, options ...core.BatchOption) *core.BatchRequest[objects.PaymentSubscription] {
+	return core.NewBatchRequest[objects.PaymentSubscription](GetPaymentSubscriptionBatchCall(id, params, options...))
+}
+
+func DecodeGetPaymentSubscriptionBatchResponse(response *core.BatchResponse) (*objects.PaymentSubscription, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PaymentSubscription
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPaymentSubscription(ctx context.Context, client *core.Client, id string, params GetPaymentSubscriptionParams) (*objects.PaymentSubscription, error) {
 	var out objects.PaymentSubscription
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPaymentSubscriptionBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

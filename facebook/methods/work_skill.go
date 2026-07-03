@@ -19,9 +19,32 @@ func (params GetWorkSkillUsersParams) ToParams() core.Params {
 	return out
 }
 
+func GetWorkSkillUsersBatchCall(id string, params GetWorkSkillUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "users"), params.ToParams(), options...)
+}
+
+func NewGetWorkSkillUsersBatchRequest(id string, params GetWorkSkillUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.User]] {
+	return core.NewBatchRequest[core.Cursor[objects.User]](GetWorkSkillUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetWorkSkillUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.User], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.User]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWorkSkillUsers(ctx context.Context, client *core.Client, id string, params GetWorkSkillUsersParams) (*core.Cursor[objects.User], error) {
 	var out core.Cursor[objects.User]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "users"), params.ToParams(), &out)
+	call := GetWorkSkillUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -37,8 +60,31 @@ func (params GetWorkSkillParams) ToParams() core.Params {
 	return out
 }
 
+func GetWorkSkillBatchCall(id string, params GetWorkSkillParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWorkSkillBatchRequest(id string, params GetWorkSkillParams, options ...core.BatchOption) *core.BatchRequest[objects.WorkSkill] {
+	return core.NewBatchRequest[objects.WorkSkill](GetWorkSkillBatchCall(id, params, options...))
+}
+
+func DecodeGetWorkSkillBatchResponse(response *core.BatchResponse) (*objects.WorkSkill, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WorkSkill
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWorkSkill(ctx context.Context, client *core.Client, id string, params GetWorkSkillParams) (*objects.WorkSkill, error) {
 	var out objects.WorkSkill
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWorkSkillBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

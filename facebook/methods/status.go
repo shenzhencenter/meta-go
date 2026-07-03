@@ -39,9 +39,32 @@ func (params CreateStatusLikesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateStatusLikesBatchCall(id string, params CreateStatusLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewCreateStatusLikesBatchRequest(id string, params CreateStatusLikesParams, options ...core.BatchOption) *core.BatchRequest[objects.Status] {
+	return core.NewBatchRequest[objects.Status](CreateStatusLikesBatchCall(id, params, options...))
+}
+
+func DecodeCreateStatusLikesBatchResponse(response *core.BatchResponse) (*objects.Status, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Status
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateStatusLikes(ctx context.Context, client *core.Client, id string, params CreateStatusLikesParams) (*objects.Status, error) {
 	var out objects.Status
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := CreateStatusLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -57,8 +80,31 @@ func (params GetStatusParams) ToParams() core.Params {
 	return out
 }
 
+func GetStatusBatchCall(id string, params GetStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetStatusBatchRequest(id string, params GetStatusParams, options ...core.BatchOption) *core.BatchRequest[objects.Status] {
+	return core.NewBatchRequest[objects.Status](GetStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetStatusBatchResponse(response *core.BatchResponse) (*objects.Status, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Status
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetStatus(ctx context.Context, client *core.Client, id string, params GetStatusParams) (*objects.Status, error) {
 	var out objects.Status
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

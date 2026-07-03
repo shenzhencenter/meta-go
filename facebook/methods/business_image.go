@@ -19,8 +19,31 @@ func (params GetBusinessImageParams) ToParams() core.Params {
 	return out
 }
 
+func GetBusinessImageBatchCall(id string, params GetBusinessImageParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetBusinessImageBatchRequest(id string, params GetBusinessImageParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessImage] {
+	return core.NewBatchRequest[objects.BusinessImage](GetBusinessImageBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessImageBatchResponse(response *core.BatchResponse) (*objects.BusinessImage, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessImage
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessImage(ctx context.Context, client *core.Client, id string, params GetBusinessImageParams) (*objects.BusinessImage, error) {
 	var out objects.BusinessImage
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetBusinessImageBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

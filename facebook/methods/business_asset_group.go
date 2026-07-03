@@ -22,9 +22,32 @@ func (params DeleteBusinessAssetGroupAssignedUsersParams) ToParams() core.Params
 	return out
 }
 
+func DeleteBusinessAssetGroupAssignedUsersBatchCall(id string, params DeleteBusinessAssetGroupAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupAssignedUsersBatchRequest(id string, params DeleteBusinessAssetGroupAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupAssignedUsersBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupAssignedUsersParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -42,9 +65,32 @@ func (params GetBusinessAssetGroupAssignedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func GetBusinessAssetGroupAssignedUsersBatchCall(id string, params GetBusinessAssetGroupAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupAssignedUsersBatchRequest(id string, params GetBusinessAssetGroupAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AssignedUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.AssignedUser]](GetBusinessAssetGroupAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupAssignedUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AssignedUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AssignedUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupAssignedUsers(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
 	var out core.Cursor[objects.AssignedUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -78,9 +124,32 @@ func (params CreateBusinessAssetGroupAssignedUsersParams) ToParams() core.Params
 	return out
 }
 
+func CreateBusinessAssetGroupAssignedUsersBatchCall(id string, params CreateBusinessAssetGroupAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupAssignedUsersBatchRequest(id string, params CreateBusinessAssetGroupAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupAssignedUsersBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupAssignedUsersParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -98,9 +167,32 @@ func (params DeleteBusinessAssetGroupContainedAdaccountsParams) ToParams() core.
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedAdaccountsBatchCall(id string, params DeleteBusinessAssetGroupContainedAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_adaccounts"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedAdaccountsBatchRequest(id string, params DeleteBusinessAssetGroupContainedAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedAdaccountsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedAdaccounts(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedAdaccountsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_adaccounts"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -116,9 +208,32 @@ func (params GetBusinessAssetGroupContainedAdaccountsParams) ToParams() core.Par
 	return out
 }
 
+func GetBusinessAssetGroupContainedAdaccountsBatchCall(id string, params GetBusinessAssetGroupContainedAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_adaccounts"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedAdaccountsBatchRequest(id string, params GetBusinessAssetGroupContainedAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdAccount]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdAccount]](GetBusinessAssetGroupContainedAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedAdaccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdAccount], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdAccount]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedAdaccounts(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
 	var out core.Cursor[objects.AdAccount]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_adaccounts"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -136,9 +251,32 @@ func (params CreateBusinessAssetGroupContainedAdaccountsParams) ToParams() core.
 	return out
 }
 
+func CreateBusinessAssetGroupContainedAdaccountsBatchCall(id string, params CreateBusinessAssetGroupContainedAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_adaccounts"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedAdaccountsBatchRequest(id string, params CreateBusinessAssetGroupContainedAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedAdaccountsBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedAdaccounts(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedAdaccountsParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_adaccounts"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -156,9 +294,32 @@ func (params DeleteBusinessAssetGroupContainedApplicationsParams) ToParams() cor
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedApplicationsBatchCall(id string, params DeleteBusinessAssetGroupContainedApplicationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_applications"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedApplicationsBatchRequest(id string, params DeleteBusinessAssetGroupContainedApplicationsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedApplicationsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedApplicationsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedApplications(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedApplicationsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_applications"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedApplicationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -174,9 +335,32 @@ func (params GetBusinessAssetGroupContainedApplicationsParams) ToParams() core.P
 	return out
 }
 
+func GetBusinessAssetGroupContainedApplicationsBatchCall(id string, params GetBusinessAssetGroupContainedApplicationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_applications"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedApplicationsBatchRequest(id string, params GetBusinessAssetGroupContainedApplicationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Application]] {
+	return core.NewBatchRequest[core.Cursor[objects.Application]](GetBusinessAssetGroupContainedApplicationsBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedApplicationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Application], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Application]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedApplications(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedApplicationsParams) (*core.Cursor[objects.Application], error) {
 	var out core.Cursor[objects.Application]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_applications"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedApplicationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -194,9 +378,32 @@ func (params CreateBusinessAssetGroupContainedApplicationsParams) ToParams() cor
 	return out
 }
 
+func CreateBusinessAssetGroupContainedApplicationsBatchCall(id string, params CreateBusinessAssetGroupContainedApplicationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_applications"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedApplicationsBatchRequest(id string, params CreateBusinessAssetGroupContainedApplicationsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedApplicationsBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedApplicationsBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedApplications(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedApplicationsParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_applications"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedApplicationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -214,9 +421,32 @@ func (params DeleteBusinessAssetGroupContainedCustomConversionsParams) ToParams(
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedCustomConversionsBatchCall(id string, params DeleteBusinessAssetGroupContainedCustomConversionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_custom_conversions"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedCustomConversionsBatchRequest(id string, params DeleteBusinessAssetGroupContainedCustomConversionsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedCustomConversionsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedCustomConversionsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedCustomConversions(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedCustomConversionsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_custom_conversions"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedCustomConversionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -232,9 +462,32 @@ func (params GetBusinessAssetGroupContainedCustomConversionsParams) ToParams() c
 	return out
 }
 
+func GetBusinessAssetGroupContainedCustomConversionsBatchCall(id string, params GetBusinessAssetGroupContainedCustomConversionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_custom_conversions"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedCustomConversionsBatchRequest(id string, params GetBusinessAssetGroupContainedCustomConversionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CustomConversion]] {
+	return core.NewBatchRequest[core.Cursor[objects.CustomConversion]](GetBusinessAssetGroupContainedCustomConversionsBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedCustomConversionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CustomConversion], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CustomConversion]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedCustomConversions(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedCustomConversionsParams) (*core.Cursor[objects.CustomConversion], error) {
 	var out core.Cursor[objects.CustomConversion]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_custom_conversions"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedCustomConversionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -252,9 +505,32 @@ func (params CreateBusinessAssetGroupContainedCustomConversionsParams) ToParams(
 	return out
 }
 
+func CreateBusinessAssetGroupContainedCustomConversionsBatchCall(id string, params CreateBusinessAssetGroupContainedCustomConversionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_custom_conversions"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedCustomConversionsBatchRequest(id string, params CreateBusinessAssetGroupContainedCustomConversionsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedCustomConversionsBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedCustomConversionsBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedCustomConversions(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedCustomConversionsParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_custom_conversions"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedCustomConversionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -272,9 +548,32 @@ func (params DeleteBusinessAssetGroupContainedInstagramAccountsParams) ToParams(
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedInstagramAccountsBatchCall(id string, params DeleteBusinessAssetGroupContainedInstagramAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_instagram_accounts"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedInstagramAccountsBatchRequest(id string, params DeleteBusinessAssetGroupContainedInstagramAccountsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedInstagramAccountsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedInstagramAccountsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedInstagramAccounts(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedInstagramAccountsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_instagram_accounts"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedInstagramAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -290,9 +589,32 @@ func (params GetBusinessAssetGroupContainedInstagramAccountsParams) ToParams() c
 	return out
 }
 
+func GetBusinessAssetGroupContainedInstagramAccountsBatchCall(id string, params GetBusinessAssetGroupContainedInstagramAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_instagram_accounts"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedInstagramAccountsBatchRequest(id string, params GetBusinessAssetGroupContainedInstagramAccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUser]](GetBusinessAssetGroupContainedInstagramAccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedInstagramAccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedInstagramAccounts(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedInstagramAccountsParams) (*core.Cursor[objects.IGUser], error) {
 	var out core.Cursor[objects.IGUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_instagram_accounts"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedInstagramAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -310,9 +632,32 @@ func (params CreateBusinessAssetGroupContainedInstagramAccountsParams) ToParams(
 	return out
 }
 
+func CreateBusinessAssetGroupContainedInstagramAccountsBatchCall(id string, params CreateBusinessAssetGroupContainedInstagramAccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_instagram_accounts"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedInstagramAccountsBatchRequest(id string, params CreateBusinessAssetGroupContainedInstagramAccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedInstagramAccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedInstagramAccountsBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedInstagramAccounts(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedInstagramAccountsParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_instagram_accounts"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedInstagramAccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -330,9 +675,32 @@ func (params DeleteBusinessAssetGroupContainedPagesParams) ToParams() core.Param
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedPagesBatchCall(id string, params DeleteBusinessAssetGroupContainedPagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_pages"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedPagesBatchRequest(id string, params DeleteBusinessAssetGroupContainedPagesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedPagesBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedPagesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedPages(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedPagesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_pages"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedPagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -348,9 +716,32 @@ func (params GetBusinessAssetGroupContainedPagesParams) ToParams() core.Params {
 	return out
 }
 
+func GetBusinessAssetGroupContainedPagesBatchCall(id string, params GetBusinessAssetGroupContainedPagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_pages"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedPagesBatchRequest(id string, params GetBusinessAssetGroupContainedPagesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetBusinessAssetGroupContainedPagesBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedPagesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedPages(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedPagesParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_pages"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedPagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -368,9 +759,32 @@ func (params CreateBusinessAssetGroupContainedPagesParams) ToParams() core.Param
 	return out
 }
 
+func CreateBusinessAssetGroupContainedPagesBatchCall(id string, params CreateBusinessAssetGroupContainedPagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_pages"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedPagesBatchRequest(id string, params CreateBusinessAssetGroupContainedPagesParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedPagesBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedPagesBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedPages(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedPagesParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_pages"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedPagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -388,9 +802,32 @@ func (params DeleteBusinessAssetGroupContainedPixelsParams) ToParams() core.Para
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedPixelsBatchCall(id string, params DeleteBusinessAssetGroupContainedPixelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_pixels"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedPixelsBatchRequest(id string, params DeleteBusinessAssetGroupContainedPixelsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedPixelsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedPixelsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedPixels(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedPixelsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_pixels"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedPixelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -406,9 +843,32 @@ func (params GetBusinessAssetGroupContainedPixelsParams) ToParams() core.Params 
 	return out
 }
 
+func GetBusinessAssetGroupContainedPixelsBatchCall(id string, params GetBusinessAssetGroupContainedPixelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_pixels"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedPixelsBatchRequest(id string, params GetBusinessAssetGroupContainedPixelsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdsPixel]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdsPixel]](GetBusinessAssetGroupContainedPixelsBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedPixelsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdsPixel], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdsPixel]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedPixels(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedPixelsParams) (*core.Cursor[objects.AdsPixel], error) {
 	var out core.Cursor[objects.AdsPixel]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_pixels"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedPixelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -426,9 +886,32 @@ func (params CreateBusinessAssetGroupContainedPixelsParams) ToParams() core.Para
 	return out
 }
 
+func CreateBusinessAssetGroupContainedPixelsBatchCall(id string, params CreateBusinessAssetGroupContainedPixelsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_pixels"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedPixelsBatchRequest(id string, params CreateBusinessAssetGroupContainedPixelsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedPixelsBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedPixelsBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedPixels(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedPixelsParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_pixels"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedPixelsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -446,9 +929,32 @@ func (params DeleteBusinessAssetGroupContainedProductCatalogsParams) ToParams() 
 	return out
 }
 
+func DeleteBusinessAssetGroupContainedProductCatalogsBatchCall(id string, params DeleteBusinessAssetGroupContainedProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "contained_product_catalogs"), params.ToParams(), options...)
+}
+
+func NewDeleteBusinessAssetGroupContainedProductCatalogsBatchRequest(id string, params DeleteBusinessAssetGroupContainedProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteBusinessAssetGroupContainedProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteBusinessAssetGroupContainedProductCatalogsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteBusinessAssetGroupContainedProductCatalogs(ctx context.Context, client *core.Client, id string, params DeleteBusinessAssetGroupContainedProductCatalogsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "contained_product_catalogs"), params.ToParams(), &out)
+	call := DeleteBusinessAssetGroupContainedProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -464,9 +970,32 @@ func (params GetBusinessAssetGroupContainedProductCatalogsParams) ToParams() cor
 	return out
 }
 
+func GetBusinessAssetGroupContainedProductCatalogsBatchCall(id string, params GetBusinessAssetGroupContainedProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "contained_product_catalogs"), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupContainedProductCatalogsBatchRequest(id string, params GetBusinessAssetGroupContainedProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductCatalog]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductCatalog]](GetBusinessAssetGroupContainedProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupContainedProductCatalogsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductCatalog], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductCatalog]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroupContainedProductCatalogs(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupContainedProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
 	var out core.Cursor[objects.ProductCatalog]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "contained_product_catalogs"), params.ToParams(), &out)
+	call := GetBusinessAssetGroupContainedProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -484,9 +1013,32 @@ func (params CreateBusinessAssetGroupContainedProductCatalogsParams) ToParams() 
 	return out
 }
 
+func CreateBusinessAssetGroupContainedProductCatalogsBatchCall(id string, params CreateBusinessAssetGroupContainedProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "contained_product_catalogs"), params.ToParams(), options...)
+}
+
+func NewCreateBusinessAssetGroupContainedProductCatalogsBatchRequest(id string, params CreateBusinessAssetGroupContainedProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](CreateBusinessAssetGroupContainedProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeCreateBusinessAssetGroupContainedProductCatalogsBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateBusinessAssetGroupContainedProductCatalogs(ctx context.Context, client *core.Client, id string, params CreateBusinessAssetGroupContainedProductCatalogsParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "contained_product_catalogs"), params.ToParams(), &out)
+	call := CreateBusinessAssetGroupContainedProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -502,9 +1054,32 @@ func (params GetBusinessAssetGroupParams) ToParams() core.Params {
 	return out
 }
 
+func GetBusinessAssetGroupBatchCall(id string, params GetBusinessAssetGroupParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetBusinessAssetGroupBatchRequest(id string, params GetBusinessAssetGroupParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](GetBusinessAssetGroupBatchCall(id, params, options...))
+}
+
+func DecodeGetBusinessAssetGroupBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBusinessAssetGroup(ctx context.Context, client *core.Client, id string, params GetBusinessAssetGroupParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetBusinessAssetGroupBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -524,8 +1099,31 @@ func (params UpdateBusinessAssetGroupParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateBusinessAssetGroupBatchCall(id string, params UpdateBusinessAssetGroupParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateBusinessAssetGroupBatchRequest(id string, params UpdateBusinessAssetGroupParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessAssetGroup] {
+	return core.NewBatchRequest[objects.BusinessAssetGroup](UpdateBusinessAssetGroupBatchCall(id, params, options...))
+}
+
+func DecodeUpdateBusinessAssetGroupBatchResponse(response *core.BatchResponse) (*objects.BusinessAssetGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessAssetGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateBusinessAssetGroup(ctx context.Context, client *core.Client, id string, params UpdateBusinessAssetGroupParams) (*objects.BusinessAssetGroup, error) {
 	var out objects.BusinessAssetGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateBusinessAssetGroupBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

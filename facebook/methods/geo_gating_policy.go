@@ -19,8 +19,31 @@ func (params GetGeoGatingPolicyParams) ToParams() core.Params {
 	return out
 }
 
+func GetGeoGatingPolicyBatchCall(id string, params GetGeoGatingPolicyParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetGeoGatingPolicyBatchRequest(id string, params GetGeoGatingPolicyParams, options ...core.BatchOption) *core.BatchRequest[objects.GeoGatingPolicy] {
+	return core.NewBatchRequest[objects.GeoGatingPolicy](GetGeoGatingPolicyBatchCall(id, params, options...))
+}
+
+func DecodeGetGeoGatingPolicyBatchResponse(response *core.BatchResponse) (*objects.GeoGatingPolicy, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.GeoGatingPolicy
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGeoGatingPolicy(ctx context.Context, client *core.Client, id string, params GetGeoGatingPolicyParams) (*objects.GeoGatingPolicy, error) {
 	var out objects.GeoGatingPolicy
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetGeoGatingPolicyBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

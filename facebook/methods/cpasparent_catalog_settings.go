@@ -19,8 +19,31 @@ func (params GetCPASParentCatalogSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCPASParentCatalogSettingsBatchCall(id string, params GetCPASParentCatalogSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCPASParentCatalogSettingsBatchRequest(id string, params GetCPASParentCatalogSettingsParams, options ...core.BatchOption) *core.BatchRequest[objects.CPASParentCatalogSettings] {
+	return core.NewBatchRequest[objects.CPASParentCatalogSettings](GetCPASParentCatalogSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetCPASParentCatalogSettingsBatchResponse(response *core.BatchResponse) (*objects.CPASParentCatalogSettings, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CPASParentCatalogSettings
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCPASParentCatalogSettings(ctx context.Context, client *core.Client, id string, params GetCPASParentCatalogSettingsParams) (*objects.CPASParentCatalogSettings, error) {
 	var out objects.CPASParentCatalogSettings
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCPASParentCatalogSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

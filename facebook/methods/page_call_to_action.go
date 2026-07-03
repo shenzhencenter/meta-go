@@ -20,9 +20,32 @@ func (params DeletePageCallToActionParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePageCallToActionBatchCall(id string, params DeletePageCallToActionParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeletePageCallToActionBatchRequest(id string, params DeletePageCallToActionParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePageCallToActionBatchCall(id, params, options...))
+}
+
+func DecodeDeletePageCallToActionBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePageCallToAction(ctx context.Context, client *core.Client, id string, params DeletePageCallToActionParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeletePageCallToActionBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetPageCallToActionParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageCallToActionBatchCall(id string, params GetPageCallToActionParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPageCallToActionBatchRequest(id string, params GetPageCallToActionParams, options ...core.BatchOption) *core.BatchRequest[objects.PageCallToAction] {
+	return core.NewBatchRequest[objects.PageCallToAction](GetPageCallToActionBatchCall(id, params, options...))
+}
+
+func DecodeGetPageCallToActionBatchResponse(response *core.BatchResponse) (*objects.PageCallToAction, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageCallToAction
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageCallToAction(ctx context.Context, client *core.Client, id string, params GetPageCallToActionParams) (*objects.PageCallToAction, error) {
 	var out objects.PageCallToAction
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPageCallToActionBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -104,8 +150,31 @@ func (params UpdatePageCallToActionParams) ToParams() core.Params {
 	return out
 }
 
+func UpdatePageCallToActionBatchCall(id string, params UpdatePageCallToActionParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdatePageCallToActionBatchRequest(id string, params UpdatePageCallToActionParams, options ...core.BatchOption) *core.BatchRequest[objects.PageCallToAction] {
+	return core.NewBatchRequest[objects.PageCallToAction](UpdatePageCallToActionBatchCall(id, params, options...))
+}
+
+func DecodeUpdatePageCallToActionBatchResponse(response *core.BatchResponse) (*objects.PageCallToAction, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageCallToAction
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdatePageCallToAction(ctx context.Context, client *core.Client, id string, params UpdatePageCallToActionParams) (*objects.PageCallToAction, error) {
 	var out objects.PageCallToAction
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdatePageCallToActionBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

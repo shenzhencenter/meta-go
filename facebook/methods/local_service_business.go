@@ -20,9 +20,32 @@ func (params GetLocalServiceBusinessChannelsToIntegrityStatusParams) ToParams() 
 	return out
 }
 
+func GetLocalServiceBusinessChannelsToIntegrityStatusBatchCall(id string, params GetLocalServiceBusinessChannelsToIntegrityStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), options...)
+}
+
+func NewGetLocalServiceBusinessChannelsToIntegrityStatusBatchRequest(id string, params GetLocalServiceBusinessChannelsToIntegrityStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]](GetLocalServiceBusinessChannelsToIntegrityStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetLocalServiceBusinessChannelsToIntegrityStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLocalServiceBusinessChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), &out)
+	call := GetLocalServiceBusinessChannelsToIntegrityStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -46,9 +69,32 @@ func (params GetLocalServiceBusinessOverrideDetailsParams) ToParams() core.Param
 	return out
 }
 
+func GetLocalServiceBusinessOverrideDetailsBatchCall(id string, params GetLocalServiceBusinessOverrideDetailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), options...)
+}
+
+func NewGetLocalServiceBusinessOverrideDetailsBatchRequest(id string, params GetLocalServiceBusinessOverrideDetailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OverrideDetails]] {
+	return core.NewBatchRequest[core.Cursor[objects.OverrideDetails]](GetLocalServiceBusinessOverrideDetailsBatchCall(id, params, options...))
+}
+
+func DecodeGetLocalServiceBusinessOverrideDetailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OverrideDetails], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OverrideDetails]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLocalServiceBusinessOverrideDetails(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
 	var out core.Cursor[objects.OverrideDetails]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), &out)
+	call := GetLocalServiceBusinessOverrideDetailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -64,8 +110,31 @@ func (params GetLocalServiceBusinessParams) ToParams() core.Params {
 	return out
 }
 
+func GetLocalServiceBusinessBatchCall(id string, params GetLocalServiceBusinessParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetLocalServiceBusinessBatchRequest(id string, params GetLocalServiceBusinessParams, options ...core.BatchOption) *core.BatchRequest[objects.LocalServiceBusiness] {
+	return core.NewBatchRequest[objects.LocalServiceBusiness](GetLocalServiceBusinessBatchCall(id, params, options...))
+}
+
+func DecodeGetLocalServiceBusinessBatchResponse(response *core.BatchResponse) (*objects.LocalServiceBusiness, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LocalServiceBusiness
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLocalServiceBusiness(ctx context.Context, client *core.Client, id string, params GetLocalServiceBusinessParams) (*objects.LocalServiceBusiness, error) {
 	var out objects.LocalServiceBusiness
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetLocalServiceBusinessBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

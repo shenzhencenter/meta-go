@@ -19,8 +19,31 @@ func (params GetWifiInformationParams) ToParams() core.Params {
 	return out
 }
 
+func GetWifiInformationBatchCall(id string, params GetWifiInformationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWifiInformationBatchRequest(id string, params GetWifiInformationParams, options ...core.BatchOption) *core.BatchRequest[objects.WifiInformation] {
+	return core.NewBatchRequest[objects.WifiInformation](GetWifiInformationBatchCall(id, params, options...))
+}
+
+func DecodeGetWifiInformationBatchResponse(response *core.BatchResponse) (*objects.WifiInformation, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WifiInformation
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWifiInformation(ctx context.Context, client *core.Client, id string, params GetWifiInformationParams) (*objects.WifiInformation, error) {
 	var out objects.WifiInformation
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWifiInformationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

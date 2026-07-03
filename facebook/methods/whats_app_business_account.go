@@ -21,9 +21,32 @@ func (params GetWhatsAppBusinessAccountActivitiesParams) ToParams() core.Params 
 	return out
 }
 
+func GetWhatsAppBusinessAccountActivitiesBatchCall(id string, params GetWhatsAppBusinessAccountActivitiesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "activities"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountActivitiesBatchRequest(id string, params GetWhatsAppBusinessAccountActivitiesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessActivityHistory]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessActivityHistory]](GetWhatsAppBusinessAccountActivitiesBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountActivitiesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessActivityHistory], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessActivityHistory]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountActivities(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountActivitiesParams) (*core.Cursor[objects.WhatsAppBusinessActivityHistory], error) {
 	var out core.Cursor[objects.WhatsAppBusinessActivityHistory]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "activities"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountActivitiesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,9 +64,32 @@ func (params DeleteWhatsAppBusinessAccountAssignedUsersParams) ToParams() core.P
 	return out
 }
 
+func DeleteWhatsAppBusinessAccountAssignedUsersBatchCall(id string, params DeleteWhatsAppBusinessAccountAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewDeleteWhatsAppBusinessAccountAssignedUsersBatchRequest(id string, params DeleteWhatsAppBusinessAccountAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteWhatsAppBusinessAccountAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeDeleteWhatsAppBusinessAccountAssignedUsersBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteWhatsAppBusinessAccountAssignedUsers(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessAccountAssignedUsersParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := DeleteWhatsAppBusinessAccountAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -61,9 +107,32 @@ func (params GetWhatsAppBusinessAccountAssignedUsersParams) ToParams() core.Para
 	return out
 }
 
+func GetWhatsAppBusinessAccountAssignedUsersBatchCall(id string, params GetWhatsAppBusinessAccountAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountAssignedUsersBatchRequest(id string, params GetWhatsAppBusinessAccountAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AssignedUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.AssignedUser]](GetWhatsAppBusinessAccountAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountAssignedUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AssignedUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AssignedUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountAssignedUsers(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountAssignedUsersParams) (*core.Cursor[objects.AssignedUser], error) {
 	var out core.Cursor[objects.AssignedUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -83,9 +152,32 @@ func (params CreateWhatsAppBusinessAccountAssignedUsersParams) ToParams() core.P
 	return out
 }
 
+func CreateWhatsAppBusinessAccountAssignedUsersBatchCall(id string, params CreateWhatsAppBusinessAccountAssignedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountAssignedUsersBatchRequest(id string, params CreateWhatsAppBusinessAccountAssignedUsersParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountAssignedUsersBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountAssignedUsersBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountAssignedUsers(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountAssignedUsersParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "assigned_users"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountAssignedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -101,9 +193,32 @@ func (params GetWhatsAppBusinessAccountAudiencesParams) ToParams() core.Params {
 	return out
 }
 
+func GetWhatsAppBusinessAccountAudiencesBatchCall(id string, params GetWhatsAppBusinessAccountAudiencesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "audiences"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountAudiencesBatchRequest(id string, params GetWhatsAppBusinessAccountAudiencesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessAudience]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessAudience]](GetWhatsAppBusinessAccountAudiencesBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountAudiencesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessAudience], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessAudience]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountAudiences(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountAudiencesParams) (*core.Cursor[objects.WhatsAppBusinessAudience], error) {
 	var out core.Cursor[objects.WhatsAppBusinessAudience]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "audiences"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountAudiencesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -121,9 +236,32 @@ func (params CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusParams) 
 	return out
 }
 
+func CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusBatchCall(id string, params CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "business_messaging_feature_status"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusBatchRequest(id string, params CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "business_messaging_feature_status"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountBusinessMessagingFeatureStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -169,9 +307,32 @@ func (params GetWhatsAppBusinessAccountCallAnalyticsParams) ToParams() core.Para
 	return out
 }
 
+func GetWhatsAppBusinessAccountCallAnalyticsBatchCall(id string, params GetWhatsAppBusinessAccountCallAnalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "call_analytics"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountCallAnalyticsBatchRequest(id string, params GetWhatsAppBusinessAccountCallAnalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WABACallAnalytics]] {
+	return core.NewBatchRequest[core.Cursor[objects.WABACallAnalytics]](GetWhatsAppBusinessAccountCallAnalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountCallAnalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WABACallAnalytics], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WABACallAnalytics]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountCallAnalytics(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountCallAnalyticsParams) (*core.Cursor[objects.WABACallAnalytics], error) {
 	var out core.Cursor[objects.WABACallAnalytics]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "call_analytics"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountCallAnalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -221,9 +382,32 @@ func (params GetWhatsAppBusinessAccountConversationAnalyticsParams) ToParams() c
 	return out
 }
 
+func GetWhatsAppBusinessAccountConversationAnalyticsBatchCall(id string, params GetWhatsAppBusinessAccountConversationAnalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "conversation_analytics"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountConversationAnalyticsBatchRequest(id string, params GetWhatsAppBusinessAccountConversationAnalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WABAConversationAnalytics]] {
+	return core.NewBatchRequest[core.Cursor[objects.WABAConversationAnalytics]](GetWhatsAppBusinessAccountConversationAnalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountConversationAnalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WABAConversationAnalytics], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WABAConversationAnalytics]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountConversationAnalytics(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountConversationAnalyticsParams) (*core.Cursor[objects.WABAConversationAnalytics], error) {
 	var out core.Cursor[objects.WABAConversationAnalytics]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "conversation_analytics"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountConversationAnalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -239,9 +423,32 @@ func (params GetWhatsAppBusinessAccountDatasetParams) ToParams() core.Params {
 	return out
 }
 
+func GetWhatsAppBusinessAccountDatasetBatchCall(id string, params GetWhatsAppBusinessAccountDatasetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "dataset"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountDatasetBatchRequest(id string, params GetWhatsAppBusinessAccountDatasetParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Dataset]] {
+	return core.NewBatchRequest[core.Cursor[objects.Dataset]](GetWhatsAppBusinessAccountDatasetBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountDatasetBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Dataset], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Dataset]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountDataset(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountDatasetParams) (*core.Cursor[objects.Dataset], error) {
 	var out core.Cursor[objects.Dataset]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "dataset"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountDatasetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -261,9 +468,32 @@ func (params CreateWhatsAppBusinessAccountDatasetParams) ToParams() core.Params 
 	return out
 }
 
+func CreateWhatsAppBusinessAccountDatasetBatchCall(id string, params CreateWhatsAppBusinessAccountDatasetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "dataset"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountDatasetBatchRequest(id string, params CreateWhatsAppBusinessAccountDatasetParams, options ...core.BatchOption) *core.BatchRequest[objects.Dataset] {
+	return core.NewBatchRequest[objects.Dataset](CreateWhatsAppBusinessAccountDatasetBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountDatasetBatchResponse(response *core.BatchResponse) (*objects.Dataset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Dataset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountDataset(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountDatasetParams) (*objects.Dataset, error) {
 	var out objects.Dataset
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "dataset"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountDatasetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -279,9 +509,32 @@ func (params GetWhatsAppBusinessAccountDegreesOfFreedomSpecParams) ToParams() co
 	return out
 }
 
+func GetWhatsAppBusinessAccountDegreesOfFreedomSpecBatchCall(id string, params GetWhatsAppBusinessAccountDegreesOfFreedomSpecParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "degrees_of_freedom_spec"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountDegreesOfFreedomSpecBatchRequest(id string, params GetWhatsAppBusinessAccountDegreesOfFreedomSpecParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.MarketingMessagesCreativeOptimizationsOptIn]] {
+	return core.NewBatchRequest[core.Cursor[objects.MarketingMessagesCreativeOptimizationsOptIn]](GetWhatsAppBusinessAccountDegreesOfFreedomSpecBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountDegreesOfFreedomSpecBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.MarketingMessagesCreativeOptimizationsOptIn], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.MarketingMessagesCreativeOptimizationsOptIn]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountDegreesOfFreedomSpec(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountDegreesOfFreedomSpecParams) (*core.Cursor[objects.MarketingMessagesCreativeOptimizationsOptIn], error) {
 	var out core.Cursor[objects.MarketingMessagesCreativeOptimizationsOptIn]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "degrees_of_freedom_spec"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountDegreesOfFreedomSpecBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -297,9 +550,32 @@ func (params GetWhatsAppBusinessAccountFlowsParams) ToParams() core.Params {
 	return out
 }
 
+func GetWhatsAppBusinessAccountFlowsBatchCall(id string, params GetWhatsAppBusinessAccountFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "flows"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountFlowsBatchRequest(id string, params GetWhatsAppBusinessAccountFlowsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppExtension]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppExtension]](GetWhatsAppBusinessAccountFlowsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountFlowsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppExtension], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppExtension]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountFlows(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountFlowsParams) (*core.Cursor[objects.WhatsAppExtension], error) {
 	var out core.Cursor[objects.WhatsAppExtension]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "flows"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -335,9 +611,32 @@ func (params CreateWhatsAppBusinessAccountFlowsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateWhatsAppBusinessAccountFlowsBatchCall(id string, params CreateWhatsAppBusinessAccountFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "flows"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountFlowsBatchRequest(id string, params CreateWhatsAppBusinessAccountFlowsParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppExtension] {
+	return core.NewBatchRequest[objects.WhatsAppExtension](CreateWhatsAppBusinessAccountFlowsBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountFlowsBatchResponse(response *core.BatchResponse) (*objects.WhatsAppExtension, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppExtension
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountFlows(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountFlowsParams) (*objects.WhatsAppExtension, error) {
 	var out objects.WhatsAppExtension
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "flows"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -359,9 +658,32 @@ func (params CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkP
 	return out
 }
 
+func CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkBatchCall(id string, params CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "generate_payment_configuration_oauth_link"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkBatchRequest(id string, params CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLink(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "generate_payment_configuration_oauth_link"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountGeneratePaymentConfigurationOauthLinkBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -391,9 +713,32 @@ func (params GetWhatsAppBusinessAccountGroupAnalyticsParams) ToParams() core.Par
 	return out
 }
 
+func GetWhatsAppBusinessAccountGroupAnalyticsBatchCall(id string, params GetWhatsAppBusinessAccountGroupAnalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "group_analytics"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountGroupAnalyticsBatchRequest(id string, params GetWhatsAppBusinessAccountGroupAnalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WABAGroupAnalytics]] {
+	return core.NewBatchRequest[core.Cursor[objects.WABAGroupAnalytics]](GetWhatsAppBusinessAccountGroupAnalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountGroupAnalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WABAGroupAnalytics], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WABAGroupAnalytics]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountGroupAnalytics(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountGroupAnalyticsParams) (*core.Cursor[objects.WABAGroupAnalytics], error) {
 	var out core.Cursor[objects.WABAGroupAnalytics]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "group_analytics"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountGroupAnalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -409,9 +754,32 @@ func (params GetWhatsAppBusinessAccountMessageCampaignsParams) ToParams() core.P
 	return out
 }
 
+func GetWhatsAppBusinessAccountMessageCampaignsBatchCall(id string, params GetWhatsAppBusinessAccountMessageCampaignsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "message_campaigns"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountMessageCampaignsBatchRequest(id string, params GetWhatsAppBusinessAccountMessageCampaignsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessCampaign]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessCampaign]](GetWhatsAppBusinessAccountMessageCampaignsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountMessageCampaignsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessCampaign], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessCampaign]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountMessageCampaigns(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountMessageCampaignsParams) (*core.Cursor[objects.WhatsAppBusinessCampaign], error) {
 	var out core.Cursor[objects.WhatsAppBusinessCampaign]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "message_campaigns"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountMessageCampaignsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -437,9 +805,32 @@ func (params CreateWhatsAppBusinessAccountMessageSamplesParams) ToParams() core.
 	return out
 }
 
+func CreateWhatsAppBusinessAccountMessageSamplesBatchCall(id string, params CreateWhatsAppBusinessAccountMessageSamplesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "message_samples"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountMessageSamplesBatchRequest(id string, params CreateWhatsAppBusinessAccountMessageSamplesParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountMessageSamplesBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountMessageSamplesBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountMessageSamples(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountMessageSamplesParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "message_samples"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountMessageSamplesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -477,9 +868,32 @@ func (params GetWhatsAppBusinessAccountMessageTemplatePreviewsParams) ToParams()
 	return out
 }
 
+func GetWhatsAppBusinessAccountMessageTemplatePreviewsBatchCall(id string, params GetWhatsAppBusinessAccountMessageTemplatePreviewsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "message_template_previews"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountMessageTemplatePreviewsBatchRequest(id string, params GetWhatsAppBusinessAccountMessageTemplatePreviewsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessAccountMessageTemplatePreview]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessAccountMessageTemplatePreview]](GetWhatsAppBusinessAccountMessageTemplatePreviewsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountMessageTemplatePreviewsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessAccountMessageTemplatePreview], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessAccountMessageTemplatePreview]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountMessageTemplatePreviews(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountMessageTemplatePreviewsParams) (*core.Cursor[objects.WhatsAppBusinessAccountMessageTemplatePreview], error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccountMessageTemplatePreview]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "message_template_previews"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountMessageTemplatePreviewsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -507,9 +921,32 @@ func (params DeleteWhatsAppBusinessAccountMessageTemplatesParams) ToParams() cor
 	return out
 }
 
+func DeleteWhatsAppBusinessAccountMessageTemplatesBatchCall(id string, params DeleteWhatsAppBusinessAccountMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "message_templates"), params.ToParams(), options...)
+}
+
+func NewDeleteWhatsAppBusinessAccountMessageTemplatesBatchRequest(id string, params DeleteWhatsAppBusinessAccountMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteWhatsAppBusinessAccountMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeDeleteWhatsAppBusinessAccountMessageTemplatesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteWhatsAppBusinessAccountMessageTemplates(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessAccountMessageTemplatesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "message_templates"), params.ToParams(), &out)
+	call := DeleteWhatsAppBusinessAccountMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -565,9 +1002,32 @@ func (params GetWhatsAppBusinessAccountMessageTemplatesParams) ToParams() core.P
 	return out
 }
 
+func GetWhatsAppBusinessAccountMessageTemplatesBatchCall(id string, params GetWhatsAppBusinessAccountMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "message_templates"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountMessageTemplatesBatchRequest(id string, params GetWhatsAppBusinessAccountMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessHSM]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessHSM]](GetWhatsAppBusinessAccountMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountMessageTemplatesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessHSM], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessHSM]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountMessageTemplates(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountMessageTemplatesParams) (*core.Cursor[objects.WhatsAppBusinessHSM], error) {
 	var out core.Cursor[objects.WhatsAppBusinessHSM]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "message_templates"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -657,9 +1117,32 @@ func (params CreateWhatsAppBusinessAccountMessageTemplatesParams) ToParams() cor
 	return out
 }
 
+func CreateWhatsAppBusinessAccountMessageTemplatesBatchCall(id string, params CreateWhatsAppBusinessAccountMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "message_templates"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountMessageTemplatesBatchRequest(id string, params CreateWhatsAppBusinessAccountMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountMessageTemplatesBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountMessageTemplates(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountMessageTemplatesParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "message_templates"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -681,9 +1164,32 @@ func (params CreateWhatsAppBusinessAccountMigrateFlowsParams) ToParams() core.Pa
 	return out
 }
 
+func CreateWhatsAppBusinessAccountMigrateFlowsBatchCall(id string, params CreateWhatsAppBusinessAccountMigrateFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "migrate_flows"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountMigrateFlowsBatchRequest(id string, params CreateWhatsAppBusinessAccountMigrateFlowsParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountMigrateFlowsBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountMigrateFlowsBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountMigrateFlows(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountMigrateFlowsParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "migrate_flows"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountMigrateFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -713,9 +1219,32 @@ func (params CreateWhatsAppBusinessAccountMigrateMessageTemplatesParams) ToParam
 	return out
 }
 
+func CreateWhatsAppBusinessAccountMigrateMessageTemplatesBatchCall(id string, params CreateWhatsAppBusinessAccountMigrateMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "migrate_message_templates"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountMigrateMessageTemplatesBatchRequest(id string, params CreateWhatsAppBusinessAccountMigrateMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountMigrateMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountMigrateMessageTemplatesBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountMigrateMessageTemplates(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountMigrateMessageTemplatesParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "migrate_message_templates"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountMigrateMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -733,9 +1262,32 @@ func (params DeleteWhatsAppBusinessAccountPaymentConfigurationParams) ToParams()
 	return out
 }
 
+func DeleteWhatsAppBusinessAccountPaymentConfigurationBatchCall(id string, params DeleteWhatsAppBusinessAccountPaymentConfigurationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "payment_configuration"), params.ToParams(), options...)
+}
+
+func NewDeleteWhatsAppBusinessAccountPaymentConfigurationBatchRequest(id string, params DeleteWhatsAppBusinessAccountPaymentConfigurationParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteWhatsAppBusinessAccountPaymentConfigurationBatchCall(id, params, options...))
+}
+
+func DecodeDeleteWhatsAppBusinessAccountPaymentConfigurationBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteWhatsAppBusinessAccountPaymentConfiguration(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessAccountPaymentConfigurationParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "payment_configuration"), params.ToParams(), &out)
+	call := DeleteWhatsAppBusinessAccountPaymentConfigurationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -753,9 +1305,32 @@ func (params GetWhatsAppBusinessAccountPaymentConfigurationParams) ToParams() co
 	return out
 }
 
+func GetWhatsAppBusinessAccountPaymentConfigurationBatchCall(id string, params GetWhatsAppBusinessAccountPaymentConfigurationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "payment_configuration"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountPaymentConfigurationBatchRequest(id string, params GetWhatsAppBusinessAccountPaymentConfigurationParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessAccountPaymentConfiguration]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessAccountPaymentConfiguration]](GetWhatsAppBusinessAccountPaymentConfigurationBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountPaymentConfigurationBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessAccountPaymentConfiguration], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessAccountPaymentConfiguration]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountPaymentConfiguration(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountPaymentConfigurationParams) (*core.Cursor[objects.WhatsAppBusinessAccountPaymentConfiguration], error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccountPaymentConfiguration]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "payment_configuration"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountPaymentConfigurationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -797,9 +1372,32 @@ func (params CreateWhatsAppBusinessAccountPaymentConfigurationParams) ToParams()
 	return out
 }
 
+func CreateWhatsAppBusinessAccountPaymentConfigurationBatchCall(id string, params CreateWhatsAppBusinessAccountPaymentConfigurationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "payment_configuration"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountPaymentConfigurationBatchRequest(id string, params CreateWhatsAppBusinessAccountPaymentConfigurationParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountPaymentConfigurationBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountPaymentConfigurationBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountPaymentConfiguration(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountPaymentConfigurationParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "payment_configuration"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountPaymentConfigurationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -815,9 +1413,32 @@ func (params GetWhatsAppBusinessAccountPaymentConfigurationsParams) ToParams() c
 	return out
 }
 
+func GetWhatsAppBusinessAccountPaymentConfigurationsBatchCall(id string, params GetWhatsAppBusinessAccountPaymentConfigurationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "payment_configurations"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountPaymentConfigurationsBatchRequest(id string, params GetWhatsAppBusinessAccountPaymentConfigurationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessAccountPaymentConfigurations]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessAccountPaymentConfigurations]](GetWhatsAppBusinessAccountPaymentConfigurationsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountPaymentConfigurationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessAccountPaymentConfigurations], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessAccountPaymentConfigurations]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountPaymentConfigurations(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountPaymentConfigurationsParams) (*core.Cursor[objects.WhatsAppBusinessAccountPaymentConfigurations], error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccountPaymentConfigurations]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "payment_configurations"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountPaymentConfigurationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -833,9 +1454,32 @@ func (params GetWhatsAppBusinessAccountPhoneNumbersParams) ToParams() core.Param
 	return out
 }
 
+func GetWhatsAppBusinessAccountPhoneNumbersBatchCall(id string, params GetWhatsAppBusinessAccountPhoneNumbersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "phone_numbers"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountPhoneNumbersBatchRequest(id string, params GetWhatsAppBusinessAccountPhoneNumbersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessAccountToNumberCurrentStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessAccountToNumberCurrentStatus]](GetWhatsAppBusinessAccountPhoneNumbersBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountPhoneNumbersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessAccountToNumberCurrentStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessAccountToNumberCurrentStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountPhoneNumbers(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountPhoneNumbersParams) (*core.Cursor[objects.WhatsAppBusinessAccountToNumberCurrentStatus], error) {
 	var out core.Cursor[objects.WhatsAppBusinessAccountToNumberCurrentStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "phone_numbers"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountPhoneNumbersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -871,9 +1515,32 @@ func (params CreateWhatsAppBusinessAccountPhoneNumbersParams) ToParams() core.Pa
 	return out
 }
 
+func CreateWhatsAppBusinessAccountPhoneNumbersBatchCall(id string, params CreateWhatsAppBusinessAccountPhoneNumbersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "phone_numbers"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountPhoneNumbersBatchRequest(id string, params CreateWhatsAppBusinessAccountPhoneNumbersParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccountToNumberCurrentStatus] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccountToNumberCurrentStatus](CreateWhatsAppBusinessAccountPhoneNumbersBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountPhoneNumbersBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccountToNumberCurrentStatus, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccountToNumberCurrentStatus
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountPhoneNumbers(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountPhoneNumbersParams) (*objects.WhatsAppBusinessAccountToNumberCurrentStatus, error) {
 	var out objects.WhatsAppBusinessAccountToNumberCurrentStatus
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "phone_numbers"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountPhoneNumbersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -923,9 +1590,32 @@ func (params GetWhatsAppBusinessAccountPricingAnalyticsParams) ToParams() core.P
 	return out
 }
 
+func GetWhatsAppBusinessAccountPricingAnalyticsBatchCall(id string, params GetWhatsAppBusinessAccountPricingAnalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "pricing_analytics"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountPricingAnalyticsBatchRequest(id string, params GetWhatsAppBusinessAccountPricingAnalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WABAPricingAnalytics]] {
+	return core.NewBatchRequest[core.Cursor[objects.WABAPricingAnalytics]](GetWhatsAppBusinessAccountPricingAnalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountPricingAnalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WABAPricingAnalytics], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WABAPricingAnalytics]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountPricingAnalytics(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountPricingAnalyticsParams) (*core.Cursor[objects.WABAPricingAnalytics], error) {
 	var out core.Cursor[objects.WABAPricingAnalytics]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "pricing_analytics"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountPricingAnalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -943,9 +1633,32 @@ func (params DeleteWhatsAppBusinessAccountProductCatalogsParams) ToParams() core
 	return out
 }
 
+func DeleteWhatsAppBusinessAccountProductCatalogsBatchCall(id string, params DeleteWhatsAppBusinessAccountProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "product_catalogs"), params.ToParams(), options...)
+}
+
+func NewDeleteWhatsAppBusinessAccountProductCatalogsBatchRequest(id string, params DeleteWhatsAppBusinessAccountProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteWhatsAppBusinessAccountProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteWhatsAppBusinessAccountProductCatalogsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteWhatsAppBusinessAccountProductCatalogs(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessAccountProductCatalogsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "product_catalogs"), params.ToParams(), &out)
+	call := DeleteWhatsAppBusinessAccountProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -961,9 +1674,32 @@ func (params GetWhatsAppBusinessAccountProductCatalogsParams) ToParams() core.Pa
 	return out
 }
 
+func GetWhatsAppBusinessAccountProductCatalogsBatchCall(id string, params GetWhatsAppBusinessAccountProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "product_catalogs"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountProductCatalogsBatchRequest(id string, params GetWhatsAppBusinessAccountProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductCatalog]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductCatalog]](GetWhatsAppBusinessAccountProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountProductCatalogsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductCatalog], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductCatalog]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountProductCatalogs(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountProductCatalogsParams) (*core.Cursor[objects.ProductCatalog], error) {
 	var out core.Cursor[objects.ProductCatalog]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "product_catalogs"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -981,9 +1717,32 @@ func (params CreateWhatsAppBusinessAccountProductCatalogsParams) ToParams() core
 	return out
 }
 
+func CreateWhatsAppBusinessAccountProductCatalogsBatchCall(id string, params CreateWhatsAppBusinessAccountProductCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "product_catalogs"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountProductCatalogsBatchRequest(id string, params CreateWhatsAppBusinessAccountProductCatalogsParams, options ...core.BatchOption) *core.BatchRequest[objects.ProductCatalog] {
+	return core.NewBatchRequest[objects.ProductCatalog](CreateWhatsAppBusinessAccountProductCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountProductCatalogsBatchResponse(response *core.BatchResponse) (*objects.ProductCatalog, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ProductCatalog
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountProductCatalogs(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountProductCatalogsParams) (*objects.ProductCatalog, error) {
 	var out objects.ProductCatalog
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "product_catalogs"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountProductCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -999,9 +1758,32 @@ func (params GetWhatsAppBusinessAccountSchedulesParams) ToParams() core.Params {
 	return out
 }
 
+func GetWhatsAppBusinessAccountSchedulesBatchCall(id string, params GetWhatsAppBusinessAccountSchedulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "schedules"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountSchedulesBatchRequest(id string, params GetWhatsAppBusinessAccountSchedulesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessCampaignSchedule]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessCampaignSchedule]](GetWhatsAppBusinessAccountSchedulesBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountSchedulesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessCampaignSchedule], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessCampaignSchedule]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountSchedules(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountSchedulesParams) (*core.Cursor[objects.WhatsAppBusinessCampaignSchedule], error) {
 	var out core.Cursor[objects.WhatsAppBusinessCampaignSchedule]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "schedules"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountSchedulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1025,9 +1807,32 @@ func (params CreateWhatsAppBusinessAccountSetSolutionMigrationIntentParams) ToPa
 	return out
 }
 
+func CreateWhatsAppBusinessAccountSetSolutionMigrationIntentBatchCall(id string, params CreateWhatsAppBusinessAccountSetSolutionMigrationIntentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "set_solution_migration_intent"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountSetSolutionMigrationIntentBatchRequest(id string, params CreateWhatsAppBusinessAccountSetSolutionMigrationIntentParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccountMigrationIntent] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccountMigrationIntent](CreateWhatsAppBusinessAccountSetSolutionMigrationIntentBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountSetSolutionMigrationIntentBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccountMigrationIntent, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccountMigrationIntent
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountSetSolutionMigrationIntent(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountSetSolutionMigrationIntentParams) (*objects.WhatsAppBusinessAccountMigrationIntent, error) {
 	var out objects.WhatsAppBusinessAccountMigrationIntent
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "set_solution_migration_intent"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountSetSolutionMigrationIntentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1043,9 +1848,32 @@ func (params GetWhatsAppBusinessAccountSolutionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetWhatsAppBusinessAccountSolutionsBatchCall(id string, params GetWhatsAppBusinessAccountSolutionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "solutions"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountSolutionsBatchRequest(id string, params GetWhatsAppBusinessAccountSolutionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppBusinessSolution]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppBusinessSolution]](GetWhatsAppBusinessAccountSolutionsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountSolutionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppBusinessSolution], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppBusinessSolution]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountSolutions(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountSolutionsParams) (*core.Cursor[objects.WhatsAppBusinessSolution], error) {
 	var out core.Cursor[objects.WhatsAppBusinessSolution]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "solutions"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountSolutionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1061,9 +1889,32 @@ func (params DeleteWhatsAppBusinessAccountSubscribedAppsParams) ToParams() core.
 	return out
 }
 
+func DeleteWhatsAppBusinessAccountSubscribedAppsBatchCall(id string, params DeleteWhatsAppBusinessAccountSubscribedAppsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "subscribed_apps"), params.ToParams(), options...)
+}
+
+func NewDeleteWhatsAppBusinessAccountSubscribedAppsBatchRequest(id string, params DeleteWhatsAppBusinessAccountSubscribedAppsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteWhatsAppBusinessAccountSubscribedAppsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteWhatsAppBusinessAccountSubscribedAppsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteWhatsAppBusinessAccountSubscribedApps(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessAccountSubscribedAppsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "subscribed_apps"), params.ToParams(), &out)
+	call := DeleteWhatsAppBusinessAccountSubscribedAppsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1079,9 +1930,32 @@ func (params GetWhatsAppBusinessAccountSubscribedAppsParams) ToParams() core.Par
 	return out
 }
 
+func GetWhatsAppBusinessAccountSubscribedAppsBatchCall(id string, params GetWhatsAppBusinessAccountSubscribedAppsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "subscribed_apps"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountSubscribedAppsBatchRequest(id string, params GetWhatsAppBusinessAccountSubscribedAppsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WhatsAppApplication]] {
+	return core.NewBatchRequest[core.Cursor[objects.WhatsAppApplication]](GetWhatsAppBusinessAccountSubscribedAppsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountSubscribedAppsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WhatsAppApplication], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WhatsAppApplication]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountSubscribedApps(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountSubscribedAppsParams) (*core.Cursor[objects.WhatsAppApplication], error) {
 	var out core.Cursor[objects.WhatsAppApplication]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "subscribed_apps"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountSubscribedAppsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1105,9 +1979,32 @@ func (params CreateWhatsAppBusinessAccountSubscribedAppsParams) ToParams() core.
 	return out
 }
 
+func CreateWhatsAppBusinessAccountSubscribedAppsBatchCall(id string, params CreateWhatsAppBusinessAccountSubscribedAppsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "subscribed_apps"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountSubscribedAppsBatchRequest(id string, params CreateWhatsAppBusinessAccountSubscribedAppsParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountSubscribedAppsBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountSubscribedAppsBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountSubscribedApps(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountSubscribedAppsParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "subscribed_apps"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountSubscribedAppsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1143,9 +2040,32 @@ func (params GetWhatsAppBusinessAccountTemplateAnalyticsParams) ToParams() core.
 	return out
 }
 
+func GetWhatsAppBusinessAccountTemplateAnalyticsBatchCall(id string, params GetWhatsAppBusinessAccountTemplateAnalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "template_analytics"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountTemplateAnalyticsBatchRequest(id string, params GetWhatsAppBusinessAccountTemplateAnalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WABATemplateAnalytics]] {
+	return core.NewBatchRequest[core.Cursor[objects.WABATemplateAnalytics]](GetWhatsAppBusinessAccountTemplateAnalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountTemplateAnalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WABATemplateAnalytics], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WABATemplateAnalytics]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountTemplateAnalytics(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountTemplateAnalyticsParams) (*core.Cursor[objects.WABATemplateAnalytics], error) {
 	var out core.Cursor[objects.WABATemplateAnalytics]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "template_analytics"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountTemplateAnalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1177,9 +2097,32 @@ func (params GetWhatsAppBusinessAccountTemplateGroupAnalyticsParams) ToParams() 
 	return out
 }
 
+func GetWhatsAppBusinessAccountTemplateGroupAnalyticsBatchCall(id string, params GetWhatsAppBusinessAccountTemplateGroupAnalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "template_group_analytics"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountTemplateGroupAnalyticsBatchRequest(id string, params GetWhatsAppBusinessAccountTemplateGroupAnalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WABATemplateGroupAnalytics]] {
+	return core.NewBatchRequest[core.Cursor[objects.WABATemplateGroupAnalytics]](GetWhatsAppBusinessAccountTemplateGroupAnalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountTemplateGroupAnalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WABATemplateGroupAnalytics], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WABATemplateGroupAnalytics]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountTemplateGroupAnalytics(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountTemplateGroupAnalyticsParams) (*core.Cursor[objects.WABATemplateGroupAnalytics], error) {
 	var out core.Cursor[objects.WABATemplateGroupAnalytics]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "template_group_analytics"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountTemplateGroupAnalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1195,9 +2138,32 @@ func (params GetWhatsAppBusinessAccountTemplateGroupsParams) ToParams() core.Par
 	return out
 }
 
+func GetWhatsAppBusinessAccountTemplateGroupsBatchCall(id string, params GetWhatsAppBusinessAccountTemplateGroupsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "template_groups"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountTemplateGroupsBatchRequest(id string, params GetWhatsAppBusinessAccountTemplateGroupsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.BusinessMessagingTemplateGroup]] {
+	return core.NewBatchRequest[core.Cursor[objects.BusinessMessagingTemplateGroup]](GetWhatsAppBusinessAccountTemplateGroupsBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountTemplateGroupsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.BusinessMessagingTemplateGroup], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.BusinessMessagingTemplateGroup]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountTemplateGroups(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountTemplateGroupsParams) (*core.Cursor[objects.BusinessMessagingTemplateGroup], error) {
 	var out core.Cursor[objects.BusinessMessagingTemplateGroup]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "template_groups"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountTemplateGroupsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1219,9 +2185,32 @@ func (params CreateWhatsAppBusinessAccountTemplateGroupsParams) ToParams() core.
 	return out
 }
 
+func CreateWhatsAppBusinessAccountTemplateGroupsBatchCall(id string, params CreateWhatsAppBusinessAccountTemplateGroupsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "template_groups"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountTemplateGroupsBatchRequest(id string, params CreateWhatsAppBusinessAccountTemplateGroupsParams, options ...core.BatchOption) *core.BatchRequest[objects.BusinessMessagingTemplateGroup] {
+	return core.NewBatchRequest[objects.BusinessMessagingTemplateGroup](CreateWhatsAppBusinessAccountTemplateGroupsBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountTemplateGroupsBatchResponse(response *core.BatchResponse) (*objects.BusinessMessagingTemplateGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BusinessMessagingTemplateGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountTemplateGroups(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountTemplateGroupsParams) (*objects.BusinessMessagingTemplateGroup, error) {
 	var out objects.BusinessMessagingTemplateGroup
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "template_groups"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountTemplateGroupsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1249,9 +2238,32 @@ func (params CreateWhatsAppBusinessAccountUpsertMessageTemplatesParams) ToParams
 	return out
 }
 
+func CreateWhatsAppBusinessAccountUpsertMessageTemplatesBatchCall(id string, params CreateWhatsAppBusinessAccountUpsertMessageTemplatesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "upsert_message_templates"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountUpsertMessageTemplatesBatchRequest(id string, params CreateWhatsAppBusinessAccountUpsertMessageTemplatesParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](CreateWhatsAppBusinessAccountUpsertMessageTemplatesBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountUpsertMessageTemplatesBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountUpsertMessageTemplates(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountUpsertMessageTemplatesParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "upsert_message_templates"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountUpsertMessageTemplatesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1269,9 +2281,32 @@ func (params DeleteWhatsAppBusinessAccountWelcomeMessageSequencesParams) ToParam
 	return out
 }
 
+func DeleteWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id string, params DeleteWhatsAppBusinessAccountWelcomeMessageSequencesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "welcome_message_sequences"), params.ToParams(), options...)
+}
+
+func NewDeleteWhatsAppBusinessAccountWelcomeMessageSequencesBatchRequest(id string, params DeleteWhatsAppBusinessAccountWelcomeMessageSequencesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id, params, options...))
+}
+
+func DecodeDeleteWhatsAppBusinessAccountWelcomeMessageSequencesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteWhatsAppBusinessAccountWelcomeMessageSequences(ctx context.Context, client *core.Client, id string, params DeleteWhatsAppBusinessAccountWelcomeMessageSequencesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "welcome_message_sequences"), params.ToParams(), &out)
+	call := DeleteWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1295,9 +2330,32 @@ func (params GetWhatsAppBusinessAccountWelcomeMessageSequencesParams) ToParams()
 	return out
 }
 
+func GetWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id string, params GetWhatsAppBusinessAccountWelcomeMessageSequencesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "welcome_message_sequences"), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountWelcomeMessageSequencesBatchRequest(id string, params GetWhatsAppBusinessAccountWelcomeMessageSequencesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]] {
+	return core.NewBatchRequest[core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]](GetWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountWelcomeMessageSequencesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccountWelcomeMessageSequences(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountWelcomeMessageSequencesParams) (*core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow], error) {
 	var out core.Cursor[objects.CTXPartnerAppWelcomeMessageFlow]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "welcome_message_sequences"), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1325,9 +2383,32 @@ func (params CreateWhatsAppBusinessAccountWelcomeMessageSequencesParams) ToParam
 	return out
 }
 
+func CreateWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id string, params CreateWhatsAppBusinessAccountWelcomeMessageSequencesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "welcome_message_sequences"), params.ToParams(), options...)
+}
+
+func NewCreateWhatsAppBusinessAccountWelcomeMessageSequencesBatchRequest(id string, params CreateWhatsAppBusinessAccountWelcomeMessageSequencesParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id, params, options...))
+}
+
+func DecodeCreateWhatsAppBusinessAccountWelcomeMessageSequencesBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateWhatsAppBusinessAccountWelcomeMessageSequences(ctx context.Context, client *core.Client, id string, params CreateWhatsAppBusinessAccountWelcomeMessageSequencesParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "welcome_message_sequences"), params.ToParams(), &out)
+	call := CreateWhatsAppBusinessAccountWelcomeMessageSequencesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1343,9 +2424,32 @@ func (params GetWhatsAppBusinessAccountParams) ToParams() core.Params {
 	return out
 }
 
+func GetWhatsAppBusinessAccountBatchCall(id string, params GetWhatsAppBusinessAccountParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWhatsAppBusinessAccountBatchRequest(id string, params GetWhatsAppBusinessAccountParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](GetWhatsAppBusinessAccountBatchCall(id, params, options...))
+}
+
+func DecodeGetWhatsAppBusinessAccountBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWhatsAppBusinessAccount(ctx context.Context, client *core.Client, id string, params GetWhatsAppBusinessAccountParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWhatsAppBusinessAccountBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1381,8 +2485,31 @@ func (params UpdateWhatsAppBusinessAccountParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateWhatsAppBusinessAccountBatchCall(id string, params UpdateWhatsAppBusinessAccountParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateWhatsAppBusinessAccountBatchRequest(id string, params UpdateWhatsAppBusinessAccountParams, options ...core.BatchOption) *core.BatchRequest[objects.WhatsAppBusinessAccount] {
+	return core.NewBatchRequest[objects.WhatsAppBusinessAccount](UpdateWhatsAppBusinessAccountBatchCall(id, params, options...))
+}
+
+func DecodeUpdateWhatsAppBusinessAccountBatchResponse(response *core.BatchResponse) (*objects.WhatsAppBusinessAccount, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WhatsAppBusinessAccount
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateWhatsAppBusinessAccount(ctx context.Context, client *core.Client, id string, params UpdateWhatsAppBusinessAccountParams) (*objects.WhatsAppBusinessAccount, error) {
 	var out objects.WhatsAppBusinessAccount
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateWhatsAppBusinessAccountBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,8 +19,31 @@ func (params GetProductItemLocalInfoParams) ToParams() core.Params {
 	return out
 }
 
+func GetProductItemLocalInfoBatchCall(id string, params GetProductItemLocalInfoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetProductItemLocalInfoBatchRequest(id string, params GetProductItemLocalInfoParams, options ...core.BatchOption) *core.BatchRequest[objects.ProductItemLocalInfo] {
+	return core.NewBatchRequest[objects.ProductItemLocalInfo](GetProductItemLocalInfoBatchCall(id, params, options...))
+}
+
+func DecodeGetProductItemLocalInfoBatchResponse(response *core.BatchResponse) (*objects.ProductItemLocalInfo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ProductItemLocalInfo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductItemLocalInfo(ctx context.Context, client *core.Client, id string, params GetProductItemLocalInfoParams) (*objects.ProductItemLocalInfo, error) {
 	var out objects.ProductItemLocalInfo
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetProductItemLocalInfoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

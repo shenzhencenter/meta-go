@@ -19,8 +19,31 @@ func (params GetCloudGameParams) ToParams() core.Params {
 	return out
 }
 
+func GetCloudGameBatchCall(id string, params GetCloudGameParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCloudGameBatchRequest(id string, params GetCloudGameParams, options ...core.BatchOption) *core.BatchRequest[objects.CloudGame] {
+	return core.NewBatchRequest[objects.CloudGame](GetCloudGameBatchCall(id, params, options...))
+}
+
+func DecodeGetCloudGameBatchResponse(response *core.BatchResponse) (*objects.CloudGame, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CloudGame
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCloudGame(ctx context.Context, client *core.Client, id string, params GetCloudGameParams) (*objects.CloudGame, error) {
 	var out objects.CloudGame
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCloudGameBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

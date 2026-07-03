@@ -19,8 +19,31 @@ func (params GetAdLightAdgroupParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdLightAdgroupBatchCall(id string, params GetAdLightAdgroupParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdLightAdgroupBatchRequest(id string, params GetAdLightAdgroupParams, options ...core.BatchOption) *core.BatchRequest[objects.AdLightAdgroup] {
+	return core.NewBatchRequest[objects.AdLightAdgroup](GetAdLightAdgroupBatchCall(id, params, options...))
+}
+
+func DecodeGetAdLightAdgroupBatchResponse(response *core.BatchResponse) (*objects.AdLightAdgroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdLightAdgroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdLightAdgroup(ctx context.Context, client *core.Client, id string, params GetAdLightAdgroupParams) (*objects.AdLightAdgroup, error) {
 	var out objects.AdLightAdgroup
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdLightAdgroupBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

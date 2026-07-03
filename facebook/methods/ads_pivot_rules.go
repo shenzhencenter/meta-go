@@ -19,8 +19,31 @@ func (params GetAdsPivotRulesParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdsPivotRulesBatchCall(id string, params GetAdsPivotRulesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdsPivotRulesBatchRequest(id string, params GetAdsPivotRulesParams, options ...core.BatchOption) *core.BatchRequest[objects.AdsPivotRules] {
+	return core.NewBatchRequest[objects.AdsPivotRules](GetAdsPivotRulesBatchCall(id, params, options...))
+}
+
+func DecodeGetAdsPivotRulesBatchResponse(response *core.BatchResponse) (*objects.AdsPivotRules, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdsPivotRules
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdsPivotRules(ctx context.Context, client *core.Client, id string, params GetAdsPivotRulesParams) (*objects.AdsPivotRules, error) {
 	var out objects.AdsPivotRules
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdsPivotRulesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

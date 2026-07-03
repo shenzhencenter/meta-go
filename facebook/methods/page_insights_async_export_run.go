@@ -19,8 +19,31 @@ func (params GetPageInsightsAsyncExportRunParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageInsightsAsyncExportRunBatchCall(id string, params GetPageInsightsAsyncExportRunParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPageInsightsAsyncExportRunBatchRequest(id string, params GetPageInsightsAsyncExportRunParams, options ...core.BatchOption) *core.BatchRequest[objects.PageInsightsAsyncExportRun] {
+	return core.NewBatchRequest[objects.PageInsightsAsyncExportRun](GetPageInsightsAsyncExportRunBatchCall(id, params, options...))
+}
+
+func DecodeGetPageInsightsAsyncExportRunBatchResponse(response *core.BatchResponse) (*objects.PageInsightsAsyncExportRun, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageInsightsAsyncExportRun
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageInsightsAsyncExportRun(ctx context.Context, client *core.Client, id string, params GetPageInsightsAsyncExportRunParams) (*objects.PageInsightsAsyncExportRun, error) {
 	var out objects.PageInsightsAsyncExportRun
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPageInsightsAsyncExportRunBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

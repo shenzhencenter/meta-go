@@ -19,9 +19,32 @@ func (params GetCanvasPreviewParams) ToParams() core.Params {
 	return out
 }
 
+func GetCanvasPreviewBatchCall(id string, params GetCanvasPreviewParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "preview"), params.ToParams(), options...)
+}
+
+func NewGetCanvasPreviewBatchRequest(id string, params GetCanvasPreviewParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CanvasPreview]] {
+	return core.NewBatchRequest[core.Cursor[objects.CanvasPreview]](GetCanvasPreviewBatchCall(id, params, options...))
+}
+
+func DecodeGetCanvasPreviewBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CanvasPreview], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CanvasPreview]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCanvasPreview(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewParams) (*core.Cursor[objects.CanvasPreview], error) {
 	var out core.Cursor[objects.CanvasPreview]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "preview"), params.ToParams(), &out)
+	call := GetCanvasPreviewBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,9 +64,32 @@ func (params GetCanvasPreviewsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCanvasPreviewsBatchCall(id string, params GetCanvasPreviewsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "previews"), params.ToParams(), options...)
+}
+
+func NewGetCanvasPreviewsBatchRequest(id string, params GetCanvasPreviewsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.TextWithEntities]] {
+	return core.NewBatchRequest[core.Cursor[objects.TextWithEntities]](GetCanvasPreviewsBatchCall(id, params, options...))
+}
+
+func DecodeGetCanvasPreviewsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.TextWithEntities], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.TextWithEntities]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCanvasPreviews(ctx context.Context, client *core.Client, id string, params GetCanvasPreviewsParams) (*core.Cursor[objects.TextWithEntities], error) {
 	var out core.Cursor[objects.TextWithEntities]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "previews"), params.ToParams(), &out)
+	call := GetCanvasPreviewsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -59,9 +105,32 @@ func (params GetCanvasParams) ToParams() core.Params {
 	return out
 }
 
+func GetCanvasBatchCall(id string, params GetCanvasParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCanvasBatchRequest(id string, params GetCanvasParams, options ...core.BatchOption) *core.BatchRequest[objects.Canvas] {
+	return core.NewBatchRequest[objects.Canvas](GetCanvasBatchCall(id, params, options...))
+}
+
+func DecodeGetCanvasBatchResponse(response *core.BatchResponse) (*objects.Canvas, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Canvas
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCanvas(ctx context.Context, client *core.Client, id string, params GetCanvasParams) (*objects.Canvas, error) {
 	var out objects.Canvas
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCanvasBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -113,8 +182,31 @@ func (params UpdateCanvasParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateCanvasBatchCall(id string, params UpdateCanvasParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateCanvasBatchRequest(id string, params UpdateCanvasParams, options ...core.BatchOption) *core.BatchRequest[objects.Canvas] {
+	return core.NewBatchRequest[objects.Canvas](UpdateCanvasBatchCall(id, params, options...))
+}
+
+func DecodeUpdateCanvasBatchResponse(response *core.BatchResponse) (*objects.Canvas, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Canvas
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateCanvas(ctx context.Context, client *core.Client, id string, params UpdateCanvasParams) (*objects.Canvas, error) {
 	var out objects.Canvas
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateCanvasBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

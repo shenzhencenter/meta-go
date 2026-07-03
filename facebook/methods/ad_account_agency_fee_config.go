@@ -19,8 +19,31 @@ func (params GetAdAccountAgencyFeeConfigParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdAccountAgencyFeeConfigBatchCall(id string, params GetAdAccountAgencyFeeConfigParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdAccountAgencyFeeConfigBatchRequest(id string, params GetAdAccountAgencyFeeConfigParams, options ...core.BatchOption) *core.BatchRequest[objects.AdAccountAgencyFeeConfig] {
+	return core.NewBatchRequest[objects.AdAccountAgencyFeeConfig](GetAdAccountAgencyFeeConfigBatchCall(id, params, options...))
+}
+
+func DecodeGetAdAccountAgencyFeeConfigBatchResponse(response *core.BatchResponse) (*objects.AdAccountAgencyFeeConfig, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdAccountAgencyFeeConfig
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdAccountAgencyFeeConfig(ctx context.Context, client *core.Client, id string, params GetAdAccountAgencyFeeConfigParams) (*objects.AdAccountAgencyFeeConfig, error) {
 	var out objects.AdAccountAgencyFeeConfig
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdAccountAgencyFeeConfigBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

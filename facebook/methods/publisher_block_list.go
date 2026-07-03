@@ -21,9 +21,32 @@ func (params CreatePublisherBlockListAppendPublisherUrlsParams) ToParams() core.
 	return out
 }
 
+func CreatePublisherBlockListAppendPublisherUrlsBatchCall(id string, params CreatePublisherBlockListAppendPublisherUrlsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "append_publisher_urls"), params.ToParams(), options...)
+}
+
+func NewCreatePublisherBlockListAppendPublisherUrlsBatchRequest(id string, params CreatePublisherBlockListAppendPublisherUrlsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreatePublisherBlockListAppendPublisherUrlsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePublisherBlockListAppendPublisherUrlsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePublisherBlockListAppendPublisherUrls(ctx context.Context, client *core.Client, id string, params CreatePublisherBlockListAppendPublisherUrlsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "append_publisher_urls"), params.ToParams(), &out)
+	call := CreatePublisherBlockListAppendPublisherUrlsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -43,9 +66,32 @@ func (params GetPublisherBlockListPagedWebPublishersParams) ToParams() core.Para
 	return out
 }
 
+func GetPublisherBlockListPagedWebPublishersBatchCall(id string, params GetPublisherBlockListPagedWebPublishersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "paged_web_publishers"), params.ToParams(), options...)
+}
+
+func NewGetPublisherBlockListPagedWebPublishersBatchRequest(id string, params GetPublisherBlockListPagedWebPublishersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.WebPublisher]] {
+	return core.NewBatchRequest[core.Cursor[objects.WebPublisher]](GetPublisherBlockListPagedWebPublishersBatchCall(id, params, options...))
+}
+
+func DecodeGetPublisherBlockListPagedWebPublishersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.WebPublisher], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.WebPublisher]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPublisherBlockListPagedWebPublishers(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListPagedWebPublishersParams) (*core.Cursor[objects.WebPublisher], error) {
 	var out core.Cursor[objects.WebPublisher]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "paged_web_publishers"), params.ToParams(), &out)
+	call := GetPublisherBlockListPagedWebPublishersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -61,9 +107,32 @@ func (params DeletePublisherBlockListParams) ToParams() core.Params {
 	return out
 }
 
+func DeletePublisherBlockListBatchCall(id string, params DeletePublisherBlockListParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeletePublisherBlockListBatchRequest(id string, params DeletePublisherBlockListParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeletePublisherBlockListBatchCall(id, params, options...))
+}
+
+func DecodeDeletePublisherBlockListBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeletePublisherBlockList(ctx context.Context, client *core.Client, id string, params DeletePublisherBlockListParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeletePublisherBlockListBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -91,9 +160,32 @@ func (params GetPublisherBlockListParams) ToParams() core.Params {
 	return out
 }
 
+func GetPublisherBlockListBatchCall(id string, params GetPublisherBlockListParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPublisherBlockListBatchRequest(id string, params GetPublisherBlockListParams, options ...core.BatchOption) *core.BatchRequest[objects.PublisherBlockList] {
+	return core.NewBatchRequest[objects.PublisherBlockList](GetPublisherBlockListBatchCall(id, params, options...))
+}
+
+func DecodeGetPublisherBlockListBatchResponse(response *core.BatchResponse) (*objects.PublisherBlockList, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PublisherBlockList
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPublisherBlockList(ctx context.Context, client *core.Client, id string, params GetPublisherBlockListParams) (*objects.PublisherBlockList, error) {
 	var out objects.PublisherBlockList
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPublisherBlockListBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -111,8 +203,31 @@ func (params UpdatePublisherBlockListParams) ToParams() core.Params {
 	return out
 }
 
+func UpdatePublisherBlockListBatchCall(id string, params UpdatePublisherBlockListParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdatePublisherBlockListBatchRequest(id string, params UpdatePublisherBlockListParams, options ...core.BatchOption) *core.BatchRequest[objects.PublisherBlockList] {
+	return core.NewBatchRequest[objects.PublisherBlockList](UpdatePublisherBlockListBatchCall(id, params, options...))
+}
+
+func DecodeUpdatePublisherBlockListBatchResponse(response *core.BatchResponse) (*objects.PublisherBlockList, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PublisherBlockList
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdatePublisherBlockList(ctx context.Context, client *core.Client, id string, params UpdatePublisherBlockListParams) (*objects.PublisherBlockList, error) {
 	var out objects.PublisherBlockList
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdatePublisherBlockListBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

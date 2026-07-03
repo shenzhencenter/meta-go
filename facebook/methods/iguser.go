@@ -21,9 +21,32 @@ func (params GetIGUserAgenciesParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserAgenciesBatchCall(id string, params GetIGUserAgenciesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), options...)
+}
+
+func NewGetIGUserAgenciesBatchRequest(id string, params GetIGUserAgenciesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Business]] {
+	return core.NewBatchRequest[core.Cursor[objects.Business]](GetIGUserAgenciesBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserAgenciesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Business], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Business]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserAgencies(ctx context.Context, client *core.Client, id string, params GetIGUserAgenciesParams) (*core.Cursor[objects.Business], error) {
 	var out core.Cursor[objects.Business]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "agencies"), params.ToParams(), &out)
+	call := GetIGUserAgenciesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,9 +64,32 @@ func (params GetIGUserAuthorizedAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserAuthorizedAdaccountsBatchCall(id string, params GetIGUserAuthorizedAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "authorized_adaccounts"), params.ToParams(), options...)
+}
+
+func NewGetIGUserAuthorizedAdaccountsBatchRequest(id string, params GetIGUserAuthorizedAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdAccount]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdAccount]](GetIGUserAuthorizedAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserAuthorizedAdaccountsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdAccount], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdAccount]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params GetIGUserAuthorizedAdaccountsParams) (*core.Cursor[objects.AdAccount], error) {
 	var out core.Cursor[objects.AdAccount]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "authorized_adaccounts"), params.ToParams(), &out)
+	call := GetIGUserAuthorizedAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -63,9 +109,32 @@ func (params CreateIGUserAuthorizedAdaccountsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserAuthorizedAdaccountsBatchCall(id string, params CreateIGUserAuthorizedAdaccountsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "authorized_adaccounts"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserAuthorizedAdaccountsBatchRequest(id string, params CreateIGUserAuthorizedAdaccountsParams, options ...core.BatchOption) *core.BatchRequest[objects.IGUser] {
+	return core.NewBatchRequest[objects.IGUser](CreateIGUserAuthorizedAdaccountsBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserAuthorizedAdaccountsBatchResponse(response *core.BatchResponse) (*objects.IGUser, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGUser
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserAuthorizedAdaccounts(ctx context.Context, client *core.Client, id string, params CreateIGUserAuthorizedAdaccountsParams) (*objects.IGUser, error) {
 	var out objects.IGUser
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "authorized_adaccounts"), params.ToParams(), &out)
+	call := CreateIGUserAuthorizedAdaccountsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -81,9 +150,32 @@ func (params GetIGUserAvailableCatalogsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserAvailableCatalogsBatchCall(id string, params GetIGUserAvailableCatalogsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "available_catalogs"), params.ToParams(), options...)
+}
+
+func NewGetIGUserAvailableCatalogsBatchRequest(id string, params GetIGUserAvailableCatalogsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.UserAvailableCatalogs]] {
+	return core.NewBatchRequest[core.Cursor[objects.UserAvailableCatalogs]](GetIGUserAvailableCatalogsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserAvailableCatalogsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.UserAvailableCatalogs], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.UserAvailableCatalogs]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserAvailableCatalogs(ctx context.Context, client *core.Client, id string, params GetIGUserAvailableCatalogsParams) (*core.Cursor[objects.UserAvailableCatalogs], error) {
 	var out core.Cursor[objects.UserAvailableCatalogs]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "available_catalogs"), params.ToParams(), &out)
+	call := GetIGUserAvailableCatalogsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -103,9 +195,32 @@ func (params GetIGUserBrandedContentAdPermissionsParams) ToParams() core.Params 
 	return out
 }
 
+func GetIGUserBrandedContentAdPermissionsBatchCall(id string, params GetIGUserBrandedContentAdPermissionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "branded_content_ad_permissions"), params.ToParams(), options...)
+}
+
+func NewGetIGUserBrandedContentAdPermissionsBatchRequest(id string, params GetIGUserBrandedContentAdPermissionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGBCAdsPermission]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGBCAdsPermission]](GetIGUserBrandedContentAdPermissionsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserBrandedContentAdPermissionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGBCAdsPermission], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGBCAdsPermission]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserBrandedContentAdPermissions(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdPermissionsParams) (*core.Cursor[objects.IGBCAdsPermission], error) {
 	var out core.Cursor[objects.IGBCAdsPermission]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "branded_content_ad_permissions"), params.ToParams(), &out)
+	call := GetIGUserBrandedContentAdPermissionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -133,9 +248,32 @@ func (params CreateIGUserBrandedContentAdPermissionsParams) ToParams() core.Para
 	return out
 }
 
+func CreateIGUserBrandedContentAdPermissionsBatchCall(id string, params CreateIGUserBrandedContentAdPermissionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "branded_content_ad_permissions"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserBrandedContentAdPermissionsBatchRequest(id string, params CreateIGUserBrandedContentAdPermissionsParams, options ...core.BatchOption) *core.BatchRequest[objects.IGBCAdsPermission] {
+	return core.NewBatchRequest[objects.IGBCAdsPermission](CreateIGUserBrandedContentAdPermissionsBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserBrandedContentAdPermissionsBatchResponse(response *core.BatchResponse) (*objects.IGBCAdsPermission, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGBCAdsPermission
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserBrandedContentAdPermissions(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentAdPermissionsParams) (*objects.IGBCAdsPermission, error) {
 	var out objects.IGBCAdsPermission
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "branded_content_ad_permissions"), params.ToParams(), &out)
+	call := CreateIGUserBrandedContentAdPermissionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -175,9 +313,32 @@ func (params GetIGUserBrandedContentAdvertisableMediasParams) ToParams() core.Pa
 	return out
 }
 
+func GetIGUserBrandedContentAdvertisableMediasBatchCall(id string, params GetIGUserBrandedContentAdvertisableMediasParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "branded_content_advertisable_medias"), params.ToParams(), options...)
+}
+
+func NewGetIGUserBrandedContentAdvertisableMediasBatchRequest(id string, params GetIGUserBrandedContentAdvertisableMediasParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.BrandedContentShadowIGMediaID]] {
+	return core.NewBatchRequest[core.Cursor[objects.BrandedContentShadowIGMediaID]](GetIGUserBrandedContentAdvertisableMediasBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserBrandedContentAdvertisableMediasBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.BrandedContentShadowIGMediaID], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.BrandedContentShadowIGMediaID]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserBrandedContentAdvertisableMedias(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentAdvertisableMediasParams) (*core.Cursor[objects.BrandedContentShadowIGMediaID], error) {
 	var out core.Cursor[objects.BrandedContentShadowIGMediaID]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "branded_content_advertisable_medias"), params.ToParams(), &out)
+	call := GetIGUserBrandedContentAdvertisableMediasBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -195,9 +356,32 @@ func (params DeleteIGUserBrandedContentTagApprovalParams) ToParams() core.Params
 	return out
 }
 
+func DeleteIGUserBrandedContentTagApprovalBatchCall(id string, params DeleteIGUserBrandedContentTagApprovalParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "branded_content_tag_approval"), params.ToParams(), options...)
+}
+
+func NewDeleteIGUserBrandedContentTagApprovalBatchRequest(id string, params DeleteIGUserBrandedContentTagApprovalParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteIGUserBrandedContentTagApprovalBatchCall(id, params, options...))
+}
+
+func DecodeDeleteIGUserBrandedContentTagApprovalBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params DeleteIGUserBrandedContentTagApprovalParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "branded_content_tag_approval"), params.ToParams(), &out)
+	call := DeleteIGUserBrandedContentTagApprovalBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -215,9 +399,32 @@ func (params GetIGUserBrandedContentTagApprovalParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserBrandedContentTagApprovalBatchCall(id string, params GetIGUserBrandedContentTagApprovalParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "branded_content_tag_approval"), params.ToParams(), options...)
+}
+
+func NewGetIGUserBrandedContentTagApprovalBatchRequest(id string, params GetIGUserBrandedContentTagApprovalParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.BrandedContentShadowIGUserID]] {
+	return core.NewBatchRequest[core.Cursor[objects.BrandedContentShadowIGUserID]](GetIGUserBrandedContentTagApprovalBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserBrandedContentTagApprovalBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.BrandedContentShadowIGUserID], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.BrandedContentShadowIGUserID]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params GetIGUserBrandedContentTagApprovalParams) (*core.Cursor[objects.BrandedContentShadowIGUserID], error) {
 	var out core.Cursor[objects.BrandedContentShadowIGUserID]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "branded_content_tag_approval"), params.ToParams(), &out)
+	call := GetIGUserBrandedContentTagApprovalBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -235,9 +442,32 @@ func (params CreateIGUserBrandedContentTagApprovalParams) ToParams() core.Params
 	return out
 }
 
+func CreateIGUserBrandedContentTagApprovalBatchCall(id string, params CreateIGUserBrandedContentTagApprovalParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "branded_content_tag_approval"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserBrandedContentTagApprovalBatchRequest(id string, params CreateIGUserBrandedContentTagApprovalParams, options ...core.BatchOption) *core.BatchRequest[objects.BrandedContentShadowIGUserID] {
+	return core.NewBatchRequest[objects.BrandedContentShadowIGUserID](CreateIGUserBrandedContentTagApprovalBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserBrandedContentTagApprovalBatchResponse(response *core.BatchResponse) (*objects.BrandedContentShadowIGUserID, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BrandedContentShadowIGUserID
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserBrandedContentTagApproval(ctx context.Context, client *core.Client, id string, params CreateIGUserBrandedContentTagApprovalParams) (*objects.BrandedContentShadowIGUserID, error) {
 	var out objects.BrandedContentShadowIGUserID
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "branded_content_tag_approval"), params.ToParams(), &out)
+	call := CreateIGUserBrandedContentTagApprovalBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -255,9 +485,32 @@ func (params CreateIGUserBusinessMessagingFeatureStatusParams) ToParams() core.P
 	return out
 }
 
+func CreateIGUserBusinessMessagingFeatureStatusBatchCall(id string, params CreateIGUserBusinessMessagingFeatureStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "business_messaging_feature_status"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserBusinessMessagingFeatureStatusBatchRequest(id string, params CreateIGUserBusinessMessagingFeatureStatusParams, options ...core.BatchOption) *core.BatchRequest[objects.IGUser] {
+	return core.NewBatchRequest[objects.IGUser](CreateIGUserBusinessMessagingFeatureStatusBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserBusinessMessagingFeatureStatusBatchResponse(response *core.BatchResponse) (*objects.IGUser, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGUser
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserBusinessMessagingFeatureStatus(ctx context.Context, client *core.Client, id string, params CreateIGUserBusinessMessagingFeatureStatusParams) (*objects.IGUser, error) {
 	var out objects.IGUser
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "business_messaging_feature_status"), params.ToParams(), &out)
+	call := CreateIGUserBusinessMessagingFeatureStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -279,9 +532,32 @@ func (params GetIGUserCatalogProductSearchParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserCatalogProductSearchBatchCall(id string, params GetIGUserCatalogProductSearchParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "catalog_product_search"), params.ToParams(), options...)
+}
+
+func NewGetIGUserCatalogProductSearchBatchRequest(id string, params GetIGUserCatalogProductSearchParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ShadowIGUserCatalogProductSearch]] {
+	return core.NewBatchRequest[core.Cursor[objects.ShadowIGUserCatalogProductSearch]](GetIGUserCatalogProductSearchBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserCatalogProductSearchBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ShadowIGUserCatalogProductSearch], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ShadowIGUserCatalogProductSearch]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserCatalogProductSearch(ctx context.Context, client *core.Client, id string, params GetIGUserCatalogProductSearchParams) (*core.Cursor[objects.ShadowIGUserCatalogProductSearch], error) {
 	var out core.Cursor[objects.ShadowIGUserCatalogProductSearch]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "catalog_product_search"), params.ToParams(), &out)
+	call := GetIGUserCatalogProductSearchBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -297,9 +573,32 @@ func (params GetIGUserCollaborationInvitesParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserCollaborationInvitesBatchCall(id string, params GetIGUserCollaborationInvitesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "collaboration_invites"), params.ToParams(), options...)
+}
+
+func NewGetIGUserCollaborationInvitesBatchRequest(id string, params GetIGUserCollaborationInvitesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ShadowIGUserCollaborationInvites]] {
+	return core.NewBatchRequest[core.Cursor[objects.ShadowIGUserCollaborationInvites]](GetIGUserCollaborationInvitesBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserCollaborationInvitesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ShadowIGUserCollaborationInvites], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ShadowIGUserCollaborationInvites]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserCollaborationInvites(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborationInvitesParams) (*core.Cursor[objects.ShadowIGUserCollaborationInvites], error) {
 	var out core.Cursor[objects.ShadowIGUserCollaborationInvites]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "collaboration_invites"), params.ToParams(), &out)
+	call := GetIGUserCollaborationInvitesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -319,9 +618,32 @@ func (params CreateIGUserCollaborationInvitesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserCollaborationInvitesBatchCall(id string, params CreateIGUserCollaborationInvitesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "collaboration_invites"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserCollaborationInvitesBatchRequest(id string, params CreateIGUserCollaborationInvitesParams, options ...core.BatchOption) *core.BatchRequest[objects.ShadowIGUserCollaborationInvites] {
+	return core.NewBatchRequest[objects.ShadowIGUserCollaborationInvites](CreateIGUserCollaborationInvitesBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserCollaborationInvitesBatchResponse(response *core.BatchResponse) (*objects.ShadowIGUserCollaborationInvites, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ShadowIGUserCollaborationInvites
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserCollaborationInvites(ctx context.Context, client *core.Client, id string, params CreateIGUserCollaborationInvitesParams) (*objects.ShadowIGUserCollaborationInvites, error) {
 	var out objects.ShadowIGUserCollaborationInvites
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "collaboration_invites"), params.ToParams(), &out)
+	call := CreateIGUserCollaborationInvitesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -337,9 +659,32 @@ func (params GetIGUserCollaborativeMediaParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserCollaborativeMediaBatchCall(id string, params GetIGUserCollaborativeMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "collaborative_media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserCollaborativeMediaBatchRequest(id string, params GetIGUserCollaborativeMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ShadowIGUserCollaborativeMedia]] {
+	return core.NewBatchRequest[core.Cursor[objects.ShadowIGUserCollaborativeMedia]](GetIGUserCollaborativeMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserCollaborativeMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ShadowIGUserCollaborativeMedia], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ShadowIGUserCollaborativeMedia]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserCollaborativeMedia(ctx context.Context, client *core.Client, id string, params GetIGUserCollaborativeMediaParams) (*core.Cursor[objects.ShadowIGUserCollaborativeMedia], error) {
 	var out core.Cursor[objects.ShadowIGUserCollaborativeMedia]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "collaborative_media"), params.ToParams(), &out)
+	call := GetIGUserCollaborativeMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -355,9 +700,32 @@ func (params GetIGUserConnectedThreadsUserParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserConnectedThreadsUserBatchCall(id string, params GetIGUserConnectedThreadsUserParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "connected_threads_user"), params.ToParams(), options...)
+}
+
+func NewGetIGUserConnectedThreadsUserBatchRequest(id string, params GetIGUserConnectedThreadsUserParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ThreadsUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.ThreadsUser]](GetIGUserConnectedThreadsUserBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserConnectedThreadsUserBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ThreadsUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ThreadsUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserConnectedThreadsUser(ctx context.Context, client *core.Client, id string, params GetIGUserConnectedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], error) {
 	var out core.Cursor[objects.ThreadsUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "connected_threads_user"), params.ToParams(), &out)
+	call := GetIGUserConnectedThreadsUserBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -377,9 +745,32 @@ func (params GetIGUserContentPublishingLimitParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserContentPublishingLimitBatchCall(id string, params GetIGUserContentPublishingLimitParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "content_publishing_limit"), params.ToParams(), options...)
+}
+
+func NewGetIGUserContentPublishingLimitBatchRequest(id string, params GetIGUserContentPublishingLimitParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ContentPublishingLimitResponse]] {
+	return core.NewBatchRequest[core.Cursor[objects.ContentPublishingLimitResponse]](GetIGUserContentPublishingLimitBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserContentPublishingLimitBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ContentPublishingLimitResponse], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ContentPublishingLimitResponse]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserContentPublishingLimit(ctx context.Context, client *core.Client, id string, params GetIGUserContentPublishingLimitParams) (*core.Cursor[objects.ContentPublishingLimitResponse], error) {
 	var out core.Cursor[objects.ContentPublishingLimitResponse]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "content_publishing_limit"), params.ToParams(), &out)
+	call := GetIGUserContentPublishingLimitBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -499,9 +890,32 @@ func (params GetIGUserCreatorMarketplaceCreatorsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserCreatorMarketplaceCreatorsBatchCall(id string, params GetIGUserCreatorMarketplaceCreatorsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "creator_marketplace_creators"), params.ToParams(), options...)
+}
+
+func NewGetIGUserCreatorMarketplaceCreatorsBatchRequest(id string, params GetIGUserCreatorMarketplaceCreatorsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUserExportForCAM]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUserExportForCAM]](GetIGUserCreatorMarketplaceCreatorsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserCreatorMarketplaceCreatorsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUserExportForCAM], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUserExportForCAM]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserCreatorMarketplaceCreators(ctx context.Context, client *core.Client, id string, params GetIGUserCreatorMarketplaceCreatorsParams) (*core.Cursor[objects.IGUserExportForCAM], error) {
 	var out core.Cursor[objects.IGUserExportForCAM]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "creator_marketplace_creators"), params.ToParams(), &out)
+	call := GetIGUserCreatorMarketplaceCreatorsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -517,9 +931,32 @@ func (params GetIGUserDatasetParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserDatasetBatchCall(id string, params GetIGUserDatasetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "dataset"), params.ToParams(), options...)
+}
+
+func NewGetIGUserDatasetBatchRequest(id string, params GetIGUserDatasetParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Dataset]] {
+	return core.NewBatchRequest[core.Cursor[objects.Dataset]](GetIGUserDatasetBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserDatasetBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Dataset], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Dataset]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserDataset(ctx context.Context, client *core.Client, id string, params GetIGUserDatasetParams) (*core.Cursor[objects.Dataset], error) {
 	var out core.Cursor[objects.Dataset]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "dataset"), params.ToParams(), &out)
+	call := GetIGUserDatasetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -539,9 +976,32 @@ func (params CreateIGUserDatasetParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserDatasetBatchCall(id string, params CreateIGUserDatasetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "dataset"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserDatasetBatchRequest(id string, params CreateIGUserDatasetParams, options ...core.BatchOption) *core.BatchRequest[objects.Dataset] {
+	return core.NewBatchRequest[objects.Dataset](CreateIGUserDatasetBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserDatasetBatchResponse(response *core.BatchResponse) (*objects.Dataset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Dataset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserDataset(ctx context.Context, client *core.Client, id string, params CreateIGUserDatasetParams) (*objects.Dataset, error) {
 	var out objects.Dataset
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "dataset"), params.ToParams(), &out)
+	call := CreateIGUserDatasetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -581,9 +1041,32 @@ func (params GetIGUserInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserInsightsBatchCall(id string, params GetIGUserInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewGetIGUserInsightsBatchRequest(id string, params GetIGUserInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.InstagramInsightsResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.InstagramInsightsResult]](GetIGUserInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.InstagramInsightsResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.InstagramInsightsResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserInsights(ctx context.Context, client *core.Client, id string, params GetIGUserInsightsParams) (*core.Cursor[objects.InstagramInsightsResult], error) {
 	var out core.Cursor[objects.InstagramInsightsResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := GetIGUserInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -599,9 +1082,32 @@ func (params GetIGUserInstagramBackedThreadsUserParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserInstagramBackedThreadsUserBatchCall(id string, params GetIGUserInstagramBackedThreadsUserParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "instagram_backed_threads_user"), params.ToParams(), options...)
+}
+
+func NewGetIGUserInstagramBackedThreadsUserBatchRequest(id string, params GetIGUserInstagramBackedThreadsUserParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ThreadsUser]] {
+	return core.NewBatchRequest[core.Cursor[objects.ThreadsUser]](GetIGUserInstagramBackedThreadsUserBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserInstagramBackedThreadsUserBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ThreadsUser], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ThreadsUser]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserInstagramBackedThreadsUser(ctx context.Context, client *core.Client, id string, params GetIGUserInstagramBackedThreadsUserParams) (*core.Cursor[objects.ThreadsUser], error) {
 	var out core.Cursor[objects.ThreadsUser]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "instagram_backed_threads_user"), params.ToParams(), &out)
+	call := GetIGUserInstagramBackedThreadsUserBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -617,9 +1123,32 @@ func (params CreateIGUserInstagramBackedThreadsUserParams) ToParams() core.Param
 	return out
 }
 
+func CreateIGUserInstagramBackedThreadsUserBatchCall(id string, params CreateIGUserInstagramBackedThreadsUserParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "instagram_backed_threads_user"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserInstagramBackedThreadsUserBatchRequest(id string, params CreateIGUserInstagramBackedThreadsUserParams, options ...core.BatchOption) *core.BatchRequest[objects.ThreadsUser] {
+	return core.NewBatchRequest[objects.ThreadsUser](CreateIGUserInstagramBackedThreadsUserBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserInstagramBackedThreadsUserBatchResponse(response *core.BatchResponse) (*objects.ThreadsUser, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ThreadsUser
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserInstagramBackedThreadsUser(ctx context.Context, client *core.Client, id string, params CreateIGUserInstagramBackedThreadsUserParams) (*objects.ThreadsUser, error) {
 	var out objects.ThreadsUser
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "instagram_backed_threads_user"), params.ToParams(), &out)
+	call := CreateIGUserInstagramBackedThreadsUserBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -643,9 +1172,32 @@ func (params GetIGUserLiveMediaParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserLiveMediaBatchCall(id string, params GetIGUserLiveMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "live_media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserLiveMediaBatchRequest(id string, params GetIGUserLiveMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMedia]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMedia]](GetIGUserLiveMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserLiveMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMedia], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMedia]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserLiveMedia(ctx context.Context, client *core.Client, id string, params GetIGUserLiveMediaParams) (*core.Cursor[objects.IGMedia], error) {
 	var out core.Cursor[objects.IGMedia]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "live_media"), params.ToParams(), &out)
+	call := GetIGUserLiveMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -669,9 +1221,32 @@ func (params GetIGUserMediaParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserMediaBatchCall(id string, params GetIGUserMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserMediaBatchRequest(id string, params GetIGUserMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMedia]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMedia]](GetIGUserMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMedia], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMedia]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserMedia(ctx context.Context, client *core.Client, id string, params GetIGUserMediaParams) (*core.Cursor[objects.IGMedia], error) {
 	var out core.Cursor[objects.IGMedia]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "media"), params.ToParams(), &out)
+	call := GetIGUserMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -767,9 +1342,32 @@ func (params CreateIGUserMediaParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserMediaBatchCall(id string, params CreateIGUserMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "media"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserMediaBatchRequest(id string, params CreateIGUserMediaParams, options ...core.BatchOption) *core.BatchRequest[objects.IGMedia] {
+	return core.NewBatchRequest[objects.IGMedia](CreateIGUserMediaBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserMediaBatchResponse(response *core.BatchResponse) (*objects.IGMedia, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGMedia
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserMedia(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaParams) (*objects.IGMedia, error) {
 	var out objects.IGMedia
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "media"), params.ToParams(), &out)
+	call := CreateIGUserMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -787,9 +1385,32 @@ func (params CreateIGUserMediaPublishParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserMediaPublishBatchCall(id string, params CreateIGUserMediaPublishParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "media_publish"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserMediaPublishBatchRequest(id string, params CreateIGUserMediaPublishParams, options ...core.BatchOption) *core.BatchRequest[objects.IGMedia] {
+	return core.NewBatchRequest[objects.IGMedia](CreateIGUserMediaPublishBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserMediaPublishBatchResponse(response *core.BatchResponse) (*objects.IGMedia, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGMedia
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserMediaPublish(ctx context.Context, client *core.Client, id string, params CreateIGUserMediaPublishParams) (*objects.IGMedia, error) {
 	var out objects.IGMedia
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "media_publish"), params.ToParams(), &out)
+	call := CreateIGUserMediaPublishBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -813,9 +1434,32 @@ func (params CreateIGUserMentionsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserMentionsBatchCall(id string, params CreateIGUserMentionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "mentions"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserMentionsBatchRequest(id string, params CreateIGUserMentionsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateIGUserMentionsBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserMentionsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserMentions(ctx context.Context, client *core.Client, id string, params CreateIGUserMentionsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "mentions"), params.ToParams(), &out)
+	call := CreateIGUserMentionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -835,9 +1479,32 @@ func (params CreateIGUserModerateConversationsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserModerateConversationsBatchCall(id string, params CreateIGUserModerateConversationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "moderate_conversations"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserModerateConversationsBatchRequest(id string, params CreateIGUserModerateConversationsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateIGUserModerateConversationsBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserModerateConversationsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserModerateConversations(ctx context.Context, client *core.Client, id string, params CreateIGUserModerateConversationsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "moderate_conversations"), params.ToParams(), &out)
+	call := CreateIGUserModerateConversationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -853,9 +1520,32 @@ func (params GetIGUserNotificationMessageTokensParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserNotificationMessageTokensBatchCall(id string, params GetIGUserNotificationMessageTokensParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "notification_message_tokens"), params.ToParams(), options...)
+}
+
+func NewGetIGUserNotificationMessageTokensBatchRequest(id string, params GetIGUserNotificationMessageTokensParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.UserPageOneTimeOptInTokenSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.UserPageOneTimeOptInTokenSettings]](GetIGUserNotificationMessageTokensBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserNotificationMessageTokensBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.UserPageOneTimeOptInTokenSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserNotificationMessageTokens(ctx context.Context, client *core.Client, id string, params GetIGUserNotificationMessageTokensParams) (*core.Cursor[objects.UserPageOneTimeOptInTokenSettings], error) {
 	var out core.Cursor[objects.UserPageOneTimeOptInTokenSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "notification_message_tokens"), params.ToParams(), &out)
+	call := GetIGUserNotificationMessageTokensBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -873,9 +1563,32 @@ func (params GetIGUserProductAppealParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserProductAppealBatchCall(id string, params GetIGUserProductAppealParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "product_appeal"), params.ToParams(), options...)
+}
+
+func NewGetIGUserProductAppealBatchRequest(id string, params GetIGUserProductAppealParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGShoppingProductAppeal]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGShoppingProductAppeal]](GetIGUserProductAppealBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserProductAppealBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGShoppingProductAppeal], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGShoppingProductAppeal]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserProductAppeal(ctx context.Context, client *core.Client, id string, params GetIGUserProductAppealParams) (*core.Cursor[objects.IGShoppingProductAppeal], error) {
 	var out core.Cursor[objects.IGShoppingProductAppeal]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "product_appeal"), params.ToParams(), &out)
+	call := GetIGUserProductAppealBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -895,9 +1608,32 @@ func (params CreateIGUserProductAppealParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserProductAppealBatchCall(id string, params CreateIGUserProductAppealParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "product_appeal"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserProductAppealBatchRequest(id string, params CreateIGUserProductAppealParams, options ...core.BatchOption) *core.BatchRequest[objects.IGShoppingProductAppeal] {
+	return core.NewBatchRequest[objects.IGShoppingProductAppeal](CreateIGUserProductAppealBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserProductAppealBatchResponse(response *core.BatchResponse) (*objects.IGShoppingProductAppeal, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGShoppingProductAppeal
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserProductAppeal(ctx context.Context, client *core.Client, id string, params CreateIGUserProductAppealParams) (*objects.IGShoppingProductAppeal, error) {
 	var out objects.IGShoppingProductAppeal
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "product_appeal"), params.ToParams(), &out)
+	call := CreateIGUserProductAppealBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -913,9 +1649,32 @@ func (params GetIGUserRecentlySearchedHashtagsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserRecentlySearchedHashtagsBatchCall(id string, params GetIGUserRecentlySearchedHashtagsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "recently_searched_hashtags"), params.ToParams(), options...)
+}
+
+func NewGetIGUserRecentlySearchedHashtagsBatchRequest(id string, params GetIGUserRecentlySearchedHashtagsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ShadowIGHashtag]] {
+	return core.NewBatchRequest[core.Cursor[objects.ShadowIGHashtag]](GetIGUserRecentlySearchedHashtagsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserRecentlySearchedHashtagsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ShadowIGHashtag], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ShadowIGHashtag]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserRecentlySearchedHashtags(ctx context.Context, client *core.Client, id string, params GetIGUserRecentlySearchedHashtagsParams) (*core.Cursor[objects.ShadowIGHashtag], error) {
 	var out core.Cursor[objects.ShadowIGHashtag]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "recently_searched_hashtags"), params.ToParams(), &out)
+	call := GetIGUserRecentlySearchedHashtagsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -931,9 +1690,32 @@ func (params GetIGUserScheduledMediaParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserScheduledMediaBatchCall(id string, params GetIGUserScheduledMediaParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "scheduled_media"), params.ToParams(), options...)
+}
+
+func NewGetIGUserScheduledMediaBatchRequest(id string, params GetIGUserScheduledMediaParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ShadowIGScheduledMedia]] {
+	return core.NewBatchRequest[core.Cursor[objects.ShadowIGScheduledMedia]](GetIGUserScheduledMediaBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserScheduledMediaBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ShadowIGScheduledMedia], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ShadowIGScheduledMedia]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserScheduledMedia(ctx context.Context, client *core.Client, id string, params GetIGUserScheduledMediaParams) (*core.Cursor[objects.ShadowIGScheduledMedia], error) {
 	var out core.Cursor[objects.ShadowIGScheduledMedia]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "scheduled_media"), params.ToParams(), &out)
+	call := GetIGUserScheduledMediaBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -949,9 +1731,32 @@ func (params GetIGUserStoriesParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserStoriesBatchCall(id string, params GetIGUserStoriesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "stories"), params.ToParams(), options...)
+}
+
+func NewGetIGUserStoriesBatchRequest(id string, params GetIGUserStoriesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMedia]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMedia]](GetIGUserStoriesBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserStoriesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMedia], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMedia]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserStories(ctx context.Context, client *core.Client, id string, params GetIGUserStoriesParams) (*core.Cursor[objects.IGMedia], error) {
 	var out core.Cursor[objects.IGMedia]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "stories"), params.ToParams(), &out)
+	call := GetIGUserStoriesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -967,9 +1772,32 @@ func (params GetIGUserTagsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserTagsBatchCall(id string, params GetIGUserTagsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "tags"), params.ToParams(), options...)
+}
+
+func NewGetIGUserTagsBatchRequest(id string, params GetIGUserTagsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGMedia]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGMedia]](GetIGUserTagsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserTagsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGMedia], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGMedia]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserTags(ctx context.Context, client *core.Client, id string, params GetIGUserTagsParams) (*core.Cursor[objects.IGMedia], error) {
 	var out core.Cursor[objects.IGMedia]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "tags"), params.ToParams(), &out)
+	call := GetIGUserTagsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -985,9 +1813,32 @@ func (params GetIGUserUpcomingEventsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserUpcomingEventsBatchCall(id string, params GetIGUserUpcomingEventsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "upcoming_events"), params.ToParams(), options...)
+}
+
+func NewGetIGUserUpcomingEventsBatchRequest(id string, params GetIGUserUpcomingEventsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGUpcomingEvent]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGUpcomingEvent]](GetIGUserUpcomingEventsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserUpcomingEventsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGUpcomingEvent], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGUpcomingEvent]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params GetIGUserUpcomingEventsParams) (*core.Cursor[objects.IGUpcomingEvent], error) {
 	var out core.Cursor[objects.IGUpcomingEvent]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "upcoming_events"), params.ToParams(), &out)
+	call := GetIGUserUpcomingEventsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1015,9 +1866,32 @@ func (params CreateIGUserUpcomingEventsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGUserUpcomingEventsBatchCall(id string, params CreateIGUserUpcomingEventsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "upcoming_events"), params.ToParams(), options...)
+}
+
+func NewCreateIGUserUpcomingEventsBatchRequest(id string, params CreateIGUserUpcomingEventsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateIGUserUpcomingEventsBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGUserUpcomingEventsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGUserUpcomingEvents(ctx context.Context, client *core.Client, id string, params CreateIGUserUpcomingEventsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "upcoming_events"), params.ToParams(), &out)
+	call := CreateIGUserUpcomingEventsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1041,9 +1915,32 @@ func (params GetIGUserWelcomeMessageFlowsParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserWelcomeMessageFlowsBatchCall(id string, params GetIGUserWelcomeMessageFlowsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), options...)
+}
+
+func NewGetIGUserWelcomeMessageFlowsBatchRequest(id string, params GetIGUserWelcomeMessageFlowsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow]] {
+	return core.NewBatchRequest[core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow]](GetIGUserWelcomeMessageFlowsBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserWelcomeMessageFlowsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUserWelcomeMessageFlows(ctx context.Context, client *core.Client, id string, params GetIGUserWelcomeMessageFlowsParams) (*core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow], error) {
 	var out core.Cursor[objects.ShadowIGUserCTXPartnerAppWelcomeMessageFlow]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "welcome_message_flows"), params.ToParams(), &out)
+	call := GetIGUserWelcomeMessageFlowsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1063,8 +1960,31 @@ func (params GetIGUserParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUserBatchCall(id string, params GetIGUserParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetIGUserBatchRequest(id string, params GetIGUserParams, options ...core.BatchOption) *core.BatchRequest[objects.IGUser] {
+	return core.NewBatchRequest[objects.IGUser](GetIGUserBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUserBatchResponse(response *core.BatchResponse) (*objects.IGUser, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGUser
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUser(ctx context.Context, client *core.Client, id string, params GetIGUserParams) (*objects.IGUser, error) {
 	var out objects.IGUser
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetIGUserBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -24,6 +24,23 @@ func Ptr[T any](value T) *T {
 	return &value
 }
 
+func Fields(fields ...string) Params {
+	return Params{"fields": fields}
+}
+
+func (params Params) With(key string, value interface{}) Params {
+	out := Params{}
+	for currentKey, currentValue := range params {
+		out[currentKey] = currentValue
+	}
+	out[key] = value
+	return out
+}
+
+func (params Params) WithFields(fields ...string) Params {
+	return params.With("fields", fields)
+}
+
 type Option func(*Client)
 
 type Client struct {

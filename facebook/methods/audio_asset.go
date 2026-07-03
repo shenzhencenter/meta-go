@@ -19,8 +19,31 @@ func (params GetAudioAssetParams) ToParams() core.Params {
 	return out
 }
 
+func GetAudioAssetBatchCall(id string, params GetAudioAssetParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAudioAssetBatchRequest(id string, params GetAudioAssetParams, options ...core.BatchOption) *core.BatchRequest[objects.AudioAsset] {
+	return core.NewBatchRequest[objects.AudioAsset](GetAudioAssetBatchCall(id, params, options...))
+}
+
+func DecodeGetAudioAssetBatchResponse(response *core.BatchResponse) (*objects.AudioAsset, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AudioAsset
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAudioAsset(ctx context.Context, client *core.Client, id string, params GetAudioAssetParams) (*objects.AudioAsset, error) {
 	var out objects.AudioAsset
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAudioAssetBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

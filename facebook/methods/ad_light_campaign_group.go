@@ -19,8 +19,31 @@ func (params GetAdLightCampaignGroupParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdLightCampaignGroupBatchCall(id string, params GetAdLightCampaignGroupParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdLightCampaignGroupBatchRequest(id string, params GetAdLightCampaignGroupParams, options ...core.BatchOption) *core.BatchRequest[objects.AdLightCampaignGroup] {
+	return core.NewBatchRequest[objects.AdLightCampaignGroup](GetAdLightCampaignGroupBatchCall(id, params, options...))
+}
+
+func DecodeGetAdLightCampaignGroupBatchResponse(response *core.BatchResponse) (*objects.AdLightCampaignGroup, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdLightCampaignGroup
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdLightCampaignGroup(ctx context.Context, client *core.Client, id string, params GetAdLightCampaignGroupParams) (*objects.AdLightCampaignGroup, error) {
 	var out objects.AdLightCampaignGroup
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdLightCampaignGroupBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

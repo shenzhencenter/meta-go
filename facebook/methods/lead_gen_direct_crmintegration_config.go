@@ -19,8 +19,31 @@ func (params GetLeadGenDirectCRMIntegrationConfigParams) ToParams() core.Params 
 	return out
 }
 
+func GetLeadGenDirectCRMIntegrationConfigBatchCall(id string, params GetLeadGenDirectCRMIntegrationConfigParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetLeadGenDirectCRMIntegrationConfigBatchRequest(id string, params GetLeadGenDirectCRMIntegrationConfigParams, options ...core.BatchOption) *core.BatchRequest[objects.LeadGenDirectCRMIntegrationConfig] {
+	return core.NewBatchRequest[objects.LeadGenDirectCRMIntegrationConfig](GetLeadGenDirectCRMIntegrationConfigBatchCall(id, params, options...))
+}
+
+func DecodeGetLeadGenDirectCRMIntegrationConfigBatchResponse(response *core.BatchResponse) (*objects.LeadGenDirectCRMIntegrationConfig, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LeadGenDirectCRMIntegrationConfig
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLeadGenDirectCRMIntegrationConfig(ctx context.Context, client *core.Client, id string, params GetLeadGenDirectCRMIntegrationConfigParams) (*objects.LeadGenDirectCRMIntegrationConfig, error) {
 	var out objects.LeadGenDirectCRMIntegrationConfig
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetLeadGenDirectCRMIntegrationConfigBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

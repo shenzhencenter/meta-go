@@ -25,9 +25,32 @@ func (params GetLiveVideoBlockedUsersParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoBlockedUsersBatchCall(id string, params GetLiveVideoBlockedUsersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "blocked_users"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoBlockedUsersBatchRequest(id string, params GetLiveVideoBlockedUsersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.User]] {
+	return core.NewBatchRequest[core.Cursor[objects.User]](GetLiveVideoBlockedUsersBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoBlockedUsersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.User], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.User]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoBlockedUsers(ctx context.Context, client *core.Client, id string, params GetLiveVideoBlockedUsersParams) (*core.Cursor[objects.User], error) {
 	var out core.Cursor[objects.User]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "blocked_users"), params.ToParams(), &out)
+	call := GetLiveVideoBlockedUsersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -59,9 +82,32 @@ func (params GetLiveVideoCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoCommentsBatchCall(id string, params GetLiveVideoCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoCommentsBatchRequest(id string, params GetLiveVideoCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Comment]] {
+	return core.NewBatchRequest[core.Cursor[objects.Comment]](GetLiveVideoCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Comment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Comment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoComments(ctx context.Context, client *core.Client, id string, params GetLiveVideoCommentsParams) (*core.Cursor[objects.Comment], error) {
 	var out core.Cursor[objects.Comment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetLiveVideoCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -77,9 +123,32 @@ func (params GetLiveVideoCrosspostSharedPagesParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoCrosspostSharedPagesBatchCall(id string, params GetLiveVideoCrosspostSharedPagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "crosspost_shared_pages"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoCrosspostSharedPagesBatchRequest(id string, params GetLiveVideoCrosspostSharedPagesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetLiveVideoCrosspostSharedPagesBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoCrosspostSharedPagesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoCrosspostSharedPages(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "crosspost_shared_pages"), params.ToParams(), &out)
+	call := GetLiveVideoCrosspostSharedPagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -95,9 +164,32 @@ func (params GetLiveVideoCrosspostedBroadcastsParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoCrosspostedBroadcastsBatchCall(id string, params GetLiveVideoCrosspostedBroadcastsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "crossposted_broadcasts"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoCrosspostedBroadcastsBatchRequest(id string, params GetLiveVideoCrosspostedBroadcastsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.LiveVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.LiveVideo]](GetLiveVideoCrosspostedBroadcastsBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoCrosspostedBroadcastsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.LiveVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.LiveVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoCrosspostedBroadcasts(ctx context.Context, client *core.Client, id string, params GetLiveVideoCrosspostedBroadcastsParams) (*core.Cursor[objects.LiveVideo], error) {
 	var out core.Cursor[objects.LiveVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "crossposted_broadcasts"), params.ToParams(), &out)
+	call := GetLiveVideoCrosspostedBroadcastsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -113,9 +205,32 @@ func (params GetLiveVideoErrorsParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoErrorsBatchCall(id string, params GetLiveVideoErrorsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "errors"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoErrorsBatchRequest(id string, params GetLiveVideoErrorsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.LiveVideoError]] {
+	return core.NewBatchRequest[core.Cursor[objects.LiveVideoError]](GetLiveVideoErrorsBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoErrorsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.LiveVideoError], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.LiveVideoError]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoErrors(ctx context.Context, client *core.Client, id string, params GetLiveVideoErrorsParams) (*core.Cursor[objects.LiveVideoError], error) {
 	var out core.Cursor[objects.LiveVideoError]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "errors"), params.ToParams(), &out)
+	call := GetLiveVideoErrorsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -131,9 +246,32 @@ func (params CreateLiveVideoInputStreamsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateLiveVideoInputStreamsBatchCall(id string, params CreateLiveVideoInputStreamsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "input_streams"), params.ToParams(), options...)
+}
+
+func NewCreateLiveVideoInputStreamsBatchRequest(id string, params CreateLiveVideoInputStreamsParams, options ...core.BatchOption) *core.BatchRequest[objects.LiveVideoInputStream] {
+	return core.NewBatchRequest[objects.LiveVideoInputStream](CreateLiveVideoInputStreamsBatchCall(id, params, options...))
+}
+
+func DecodeCreateLiveVideoInputStreamsBatchResponse(response *core.BatchResponse) (*objects.LiveVideoInputStream, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LiveVideoInputStream
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateLiveVideoInputStreams(ctx context.Context, client *core.Client, id string, params CreateLiveVideoInputStreamsParams) (*objects.LiveVideoInputStream, error) {
 	var out objects.LiveVideoInputStream
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "input_streams"), params.ToParams(), &out)
+	call := CreateLiveVideoInputStreamsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -149,9 +287,32 @@ func (params GetLiveVideoPollsParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoPollsBatchCall(id string, params GetLiveVideoPollsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "polls"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoPollsBatchRequest(id string, params GetLiveVideoPollsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoPoll]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoPoll]](GetLiveVideoPollsBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoPollsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoPoll], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoPoll]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoPolls(ctx context.Context, client *core.Client, id string, params GetLiveVideoPollsParams) (*core.Cursor[objects.VideoPoll], error) {
 	var out core.Cursor[objects.VideoPoll]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "polls"), params.ToParams(), &out)
+	call := GetLiveVideoPollsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -191,9 +352,32 @@ func (params CreateLiveVideoPollsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateLiveVideoPollsBatchCall(id string, params CreateLiveVideoPollsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "polls"), params.ToParams(), options...)
+}
+
+func NewCreateLiveVideoPollsBatchRequest(id string, params CreateLiveVideoPollsParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoPoll] {
+	return core.NewBatchRequest[objects.VideoPoll](CreateLiveVideoPollsBatchCall(id, params, options...))
+}
+
+func DecodeCreateLiveVideoPollsBatchResponse(response *core.BatchResponse) (*objects.VideoPoll, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoPoll
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateLiveVideoPolls(ctx context.Context, client *core.Client, id string, params CreateLiveVideoPollsParams) (*objects.VideoPoll, error) {
 	var out objects.VideoPoll
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "polls"), params.ToParams(), &out)
+	call := CreateLiveVideoPollsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -213,9 +397,32 @@ func (params GetLiveVideoReactionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoReactionsBatchCall(id string, params GetLiveVideoReactionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "reactions"), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoReactionsBatchRequest(id string, params GetLiveVideoReactionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetLiveVideoReactionsBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoReactionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideoReactions(ctx context.Context, client *core.Client, id string, params GetLiveVideoReactionsParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "reactions"), params.ToParams(), &out)
+	call := GetLiveVideoReactionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -231,9 +438,32 @@ func (params DeleteLiveVideoParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteLiveVideoBatchCall(id string, params DeleteLiveVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteLiveVideoBatchRequest(id string, params DeleteLiveVideoParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteLiveVideoBatchCall(id, params, options...))
+}
+
+func DecodeDeleteLiveVideoBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteLiveVideo(ctx context.Context, client *core.Client, id string, params DeleteLiveVideoParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteLiveVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -253,9 +483,32 @@ func (params GetLiveVideoParams) ToParams() core.Params {
 	return out
 }
 
+func GetLiveVideoBatchCall(id string, params GetLiveVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetLiveVideoBatchRequest(id string, params GetLiveVideoParams, options ...core.BatchOption) *core.BatchRequest[objects.LiveVideo] {
+	return core.NewBatchRequest[objects.LiveVideo](GetLiveVideoBatchCall(id, params, options...))
+}
+
+func DecodeGetLiveVideoBatchResponse(response *core.BatchResponse) (*objects.LiveVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LiveVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLiveVideo(ctx context.Context, client *core.Client, id string, params GetLiveVideoParams) (*objects.LiveVideo, error) {
 	var out objects.LiveVideo
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetLiveVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -391,8 +644,31 @@ func (params UpdateLiveVideoParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateLiveVideoBatchCall(id string, params UpdateLiveVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateLiveVideoBatchRequest(id string, params UpdateLiveVideoParams, options ...core.BatchOption) *core.BatchRequest[objects.LiveVideo] {
+	return core.NewBatchRequest[objects.LiveVideo](UpdateLiveVideoBatchCall(id, params, options...))
+}
+
+func DecodeUpdateLiveVideoBatchResponse(response *core.BatchResponse) (*objects.LiveVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LiveVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateLiveVideo(ctx context.Context, client *core.Client, id string, params UpdateLiveVideoParams) (*objects.LiveVideo, error) {
 	var out objects.LiveVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateLiveVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

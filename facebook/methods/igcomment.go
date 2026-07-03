@@ -19,9 +19,32 @@ func (params GetIGCommentRepliesParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGCommentRepliesBatchCall(id string, params GetIGCommentRepliesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "replies"), params.ToParams(), options...)
+}
+
+func NewGetIGCommentRepliesBatchRequest(id string, params GetIGCommentRepliesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.IGComment]] {
+	return core.NewBatchRequest[core.Cursor[objects.IGComment]](GetIGCommentRepliesBatchCall(id, params, options...))
+}
+
+func DecodeGetIGCommentRepliesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.IGComment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.IGComment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGCommentReplies(ctx context.Context, client *core.Client, id string, params GetIGCommentRepliesParams) (*core.Cursor[objects.IGComment], error) {
 	var out core.Cursor[objects.IGComment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "replies"), params.ToParams(), &out)
+	call := GetIGCommentRepliesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -41,9 +64,32 @@ func (params CreateIGCommentRepliesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateIGCommentRepliesBatchCall(id string, params CreateIGCommentRepliesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "replies"), params.ToParams(), options...)
+}
+
+func NewCreateIGCommentRepliesBatchRequest(id string, params CreateIGCommentRepliesParams, options ...core.BatchOption) *core.BatchRequest[objects.IGComment] {
+	return core.NewBatchRequest[objects.IGComment](CreateIGCommentRepliesBatchCall(id, params, options...))
+}
+
+func DecodeCreateIGCommentRepliesBatchResponse(response *core.BatchResponse) (*objects.IGComment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGComment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateIGCommentReplies(ctx context.Context, client *core.Client, id string, params CreateIGCommentRepliesParams) (*objects.IGComment, error) {
 	var out objects.IGComment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "replies"), params.ToParams(), &out)
+	call := CreateIGCommentRepliesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -63,9 +109,32 @@ func (params DeleteIGCommentParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteIGCommentBatchCall(id string, params DeleteIGCommentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteIGCommentBatchRequest(id string, params DeleteIGCommentParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteIGCommentBatchCall(id, params, options...))
+}
+
+func DecodeDeleteIGCommentBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteIGComment(ctx context.Context, client *core.Client, id string, params DeleteIGCommentParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteIGCommentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -81,9 +150,32 @@ func (params GetIGCommentParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGCommentBatchCall(id string, params GetIGCommentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetIGCommentBatchRequest(id string, params GetIGCommentParams, options ...core.BatchOption) *core.BatchRequest[objects.IGComment] {
+	return core.NewBatchRequest[objects.IGComment](GetIGCommentBatchCall(id, params, options...))
+}
+
+func DecodeGetIGCommentBatchResponse(response *core.BatchResponse) (*objects.IGComment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGComment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGComment(ctx context.Context, client *core.Client, id string, params GetIGCommentParams) (*objects.IGComment, error) {
 	var out objects.IGComment
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetIGCommentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -105,8 +197,31 @@ func (params UpdateIGCommentParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateIGCommentBatchCall(id string, params UpdateIGCommentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateIGCommentBatchRequest(id string, params UpdateIGCommentParams, options ...core.BatchOption) *core.BatchRequest[objects.IGComment] {
+	return core.NewBatchRequest[objects.IGComment](UpdateIGCommentBatchCall(id, params, options...))
+}
+
+func DecodeUpdateIGCommentBatchResponse(response *core.BatchResponse) (*objects.IGComment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGComment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateIGComment(ctx context.Context, client *core.Client, id string, params UpdateIGCommentParams) (*objects.IGComment, error) {
 	var out objects.IGComment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateIGCommentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

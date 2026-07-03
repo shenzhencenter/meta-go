@@ -19,8 +19,31 @@ func (params GetCallAdsPhoneDataParams) ToParams() core.Params {
 	return out
 }
 
+func GetCallAdsPhoneDataBatchCall(id string, params GetCallAdsPhoneDataParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCallAdsPhoneDataBatchRequest(id string, params GetCallAdsPhoneDataParams, options ...core.BatchOption) *core.BatchRequest[objects.CallAdsPhoneData] {
+	return core.NewBatchRequest[objects.CallAdsPhoneData](GetCallAdsPhoneDataBatchCall(id, params, options...))
+}
+
+func DecodeGetCallAdsPhoneDataBatchResponse(response *core.BatchResponse) (*objects.CallAdsPhoneData, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CallAdsPhoneData
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCallAdsPhoneData(ctx context.Context, client *core.Client, id string, params GetCallAdsPhoneDataParams) (*objects.CallAdsPhoneData, error) {
 	var out objects.CallAdsPhoneData
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCallAdsPhoneDataBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

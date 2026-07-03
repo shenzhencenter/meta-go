@@ -19,8 +19,31 @@ func (params GetDynamicItemDisplayBundleFolderParams) ToParams() core.Params {
 	return out
 }
 
+func GetDynamicItemDisplayBundleFolderBatchCall(id string, params GetDynamicItemDisplayBundleFolderParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetDynamicItemDisplayBundleFolderBatchRequest(id string, params GetDynamicItemDisplayBundleFolderParams, options ...core.BatchOption) *core.BatchRequest[objects.DynamicItemDisplayBundleFolder] {
+	return core.NewBatchRequest[objects.DynamicItemDisplayBundleFolder](GetDynamicItemDisplayBundleFolderBatchCall(id, params, options...))
+}
+
+func DecodeGetDynamicItemDisplayBundleFolderBatchResponse(response *core.BatchResponse) (*objects.DynamicItemDisplayBundleFolder, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.DynamicItemDisplayBundleFolder
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetDynamicItemDisplayBundleFolder(ctx context.Context, client *core.Client, id string, params GetDynamicItemDisplayBundleFolderParams) (*objects.DynamicItemDisplayBundleFolder, error) {
 	var out objects.DynamicItemDisplayBundleFolder
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetDynamicItemDisplayBundleFolderBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -72,9 +72,32 @@ func (params CreateLinkCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateLinkCommentsBatchCall(id string, params CreateLinkCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewCreateLinkCommentsBatchRequest(id string, params CreateLinkCommentsParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](CreateLinkCommentsBatchCall(id, params, options...))
+}
+
+func DecodeCreateLinkCommentsBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateLinkComments(ctx context.Context, client *core.Client, id string, params CreateLinkCommentsParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := CreateLinkCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -90,9 +113,32 @@ func (params GetLinkLikesParams) ToParams() core.Params {
 	return out
 }
 
+func GetLinkLikesBatchCall(id string, params GetLinkLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewGetLinkLikesBatchRequest(id string, params GetLinkLikesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetLinkLikesBatchCall(id, params, options...))
+}
+
+func DecodeGetLinkLikesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLinkLikes(ctx context.Context, client *core.Client, id string, params GetLinkLikesParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := GetLinkLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -108,8 +154,31 @@ func (params GetLinkParams) ToParams() core.Params {
 	return out
 }
 
+func GetLinkBatchCall(id string, params GetLinkParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetLinkBatchRequest(id string, params GetLinkParams, options ...core.BatchOption) *core.BatchRequest[objects.Link] {
+	return core.NewBatchRequest[objects.Link](GetLinkBatchCall(id, params, options...))
+}
+
+func DecodeGetLinkBatchResponse(response *core.BatchResponse) (*objects.Link, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Link
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetLink(ctx context.Context, client *core.Client, id string, params GetLinkParams) (*objects.Link, error) {
 	var out objects.Link
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetLinkBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,8 +19,31 @@ func (params GetVideoCopyrightRuleParams) ToParams() core.Params {
 	return out
 }
 
+func GetVideoCopyrightRuleBatchCall(id string, params GetVideoCopyrightRuleParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetVideoCopyrightRuleBatchRequest(id string, params GetVideoCopyrightRuleParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoCopyrightRule] {
+	return core.NewBatchRequest[objects.VideoCopyrightRule](GetVideoCopyrightRuleBatchCall(id, params, options...))
+}
+
+func DecodeGetVideoCopyrightRuleBatchResponse(response *core.BatchResponse) (*objects.VideoCopyrightRule, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoCopyrightRule
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetVideoCopyrightRule(ctx context.Context, client *core.Client, id string, params GetVideoCopyrightRuleParams) (*objects.VideoCopyrightRule, error) {
 	var out objects.VideoCopyrightRule
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetVideoCopyrightRuleBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

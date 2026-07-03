@@ -19,8 +19,31 @@ func (params GetWoodhengeSupporterParams) ToParams() core.Params {
 	return out
 }
 
+func GetWoodhengeSupporterBatchCall(id string, params GetWoodhengeSupporterParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWoodhengeSupporterBatchRequest(id string, params GetWoodhengeSupporterParams, options ...core.BatchOption) *core.BatchRequest[objects.WoodhengeSupporter] {
+	return core.NewBatchRequest[objects.WoodhengeSupporter](GetWoodhengeSupporterBatchCall(id, params, options...))
+}
+
+func DecodeGetWoodhengeSupporterBatchResponse(response *core.BatchResponse) (*objects.WoodhengeSupporter, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WoodhengeSupporter
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWoodhengeSupporter(ctx context.Context, client *core.Client, id string, params GetWoodhengeSupporterParams) (*objects.WoodhengeSupporter, error) {
 	var out objects.WoodhengeSupporter
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWoodhengeSupporterBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

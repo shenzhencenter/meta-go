@@ -37,9 +37,32 @@ func (params GetAlbumCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAlbumCommentsBatchCall(id string, params GetAlbumCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetAlbumCommentsBatchRequest(id string, params GetAlbumCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Comment]] {
+	return core.NewBatchRequest[core.Cursor[objects.Comment]](GetAlbumCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetAlbumCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Comment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Comment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAlbumComments(ctx context.Context, client *core.Client, id string, params GetAlbumCommentsParams) (*core.Cursor[objects.Comment], error) {
 	var out core.Cursor[objects.Comment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetAlbumCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -107,9 +130,32 @@ func (params CreateAlbumCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAlbumCommentsBatchCall(id string, params CreateAlbumCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewCreateAlbumCommentsBatchRequest(id string, params CreateAlbumCommentsParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](CreateAlbumCommentsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAlbumCommentsBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAlbumComments(ctx context.Context, client *core.Client, id string, params CreateAlbumCommentsParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := CreateAlbumCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -125,9 +171,32 @@ func (params GetAlbumLikesParams) ToParams() core.Params {
 	return out
 }
 
+func GetAlbumLikesBatchCall(id string, params GetAlbumLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewGetAlbumLikesBatchRequest(id string, params GetAlbumLikesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetAlbumLikesBatchCall(id, params, options...))
+}
+
+func DecodeGetAlbumLikesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAlbumLikes(ctx context.Context, client *core.Client, id string, params GetAlbumLikesParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := GetAlbumLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -163,9 +232,32 @@ func (params CreateAlbumLikesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAlbumLikesBatchCall(id string, params CreateAlbumLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewCreateAlbumLikesBatchRequest(id string, params CreateAlbumLikesParams, options ...core.BatchOption) *core.BatchRequest[objects.Album] {
+	return core.NewBatchRequest[objects.Album](CreateAlbumLikesBatchCall(id, params, options...))
+}
+
+func DecodeCreateAlbumLikesBatchResponse(response *core.BatchResponse) (*objects.Album, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Album
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAlbumLikes(ctx context.Context, client *core.Client, id string, params CreateAlbumLikesParams) (*objects.Album, error) {
 	var out objects.Album
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := CreateAlbumLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -181,9 +273,32 @@ func (params GetAlbumPhotosParams) ToParams() core.Params {
 	return out
 }
 
+func GetAlbumPhotosBatchCall(id string, params GetAlbumPhotosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), options...)
+}
+
+func NewGetAlbumPhotosBatchRequest(id string, params GetAlbumPhotosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Photo]] {
+	return core.NewBatchRequest[core.Cursor[objects.Photo]](GetAlbumPhotosBatchCall(id, params, options...))
+}
+
+func DecodeGetAlbumPhotosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Photo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Photo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAlbumPhotos(ctx context.Context, client *core.Client, id string, params GetAlbumPhotosParams) (*core.Cursor[objects.Photo], error) {
 	var out core.Cursor[objects.Photo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	call := GetAlbumPhotosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -403,9 +518,32 @@ func (params CreateAlbumPhotosParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAlbumPhotosBatchCall(id string, params CreateAlbumPhotosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), options...)
+}
+
+func NewCreateAlbumPhotosBatchRequest(id string, params CreateAlbumPhotosParams, options ...core.BatchOption) *core.BatchRequest[objects.Photo] {
+	return core.NewBatchRequest[objects.Photo](CreateAlbumPhotosBatchCall(id, params, options...))
+}
+
+func DecodeCreateAlbumPhotosBatchResponse(response *core.BatchResponse) (*objects.Photo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Photo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAlbumPhotos(ctx context.Context, client *core.Client, id string, params CreateAlbumPhotosParams) (*objects.Photo, error) {
 	var out objects.Photo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	call := CreateAlbumPhotosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -429,9 +567,32 @@ func (params GetAlbumPictureParams) ToParams() core.Params {
 	return out
 }
 
+func GetAlbumPictureBatchCall(id string, params GetAlbumPictureParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), options...)
+}
+
+func NewGetAlbumPictureBatchRequest(id string, params GetAlbumPictureParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProfilePictureSource]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProfilePictureSource]](GetAlbumPictureBatchCall(id, params, options...))
+}
+
+func DecodeGetAlbumPictureBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProfilePictureSource], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProfilePictureSource]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAlbumPicture(ctx context.Context, client *core.Client, id string, params GetAlbumPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
 	var out core.Cursor[objects.ProfilePictureSource]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	call := GetAlbumPictureBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -447,8 +608,31 @@ func (params GetAlbumParams) ToParams() core.Params {
 	return out
 }
 
+func GetAlbumBatchCall(id string, params GetAlbumParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAlbumBatchRequest(id string, params GetAlbumParams, options ...core.BatchOption) *core.BatchRequest[objects.Album] {
+	return core.NewBatchRequest[objects.Album](GetAlbumBatchCall(id, params, options...))
+}
+
+func DecodeGetAlbumBatchResponse(response *core.BatchResponse) (*objects.Album, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Album
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAlbum(ctx context.Context, client *core.Client, id string, params GetAlbumParams) (*objects.Album, error) {
 	var out objects.Album
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAlbumBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,9 +19,32 @@ func (params GetAdReportRunInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdReportRunInsightsBatchCall(id string, params GetAdReportRunInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), options...)
+}
+
+func NewGetAdReportRunInsightsBatchRequest(id string, params GetAdReportRunInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdsInsights]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdsInsights]](GetAdReportRunInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdReportRunInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdsInsights], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdsInsights]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdReportRunInsights(ctx context.Context, client *core.Client, id string, params GetAdReportRunInsightsParams) (*core.Cursor[objects.AdsInsights], error) {
 	var out core.Cursor[objects.AdsInsights]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "insights"), params.ToParams(), &out)
+	call := GetAdReportRunInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -37,8 +60,31 @@ func (params GetAdReportRunParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdReportRunBatchCall(id string, params GetAdReportRunParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdReportRunBatchRequest(id string, params GetAdReportRunParams, options ...core.BatchOption) *core.BatchRequest[objects.AdReportRun] {
+	return core.NewBatchRequest[objects.AdReportRun](GetAdReportRunBatchCall(id, params, options...))
+}
+
+func DecodeGetAdReportRunBatchResponse(response *core.BatchResponse) (*objects.AdReportRun, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdReportRun
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdReportRun(ctx context.Context, client *core.Client, id string, params GetAdReportRunParams) (*objects.AdReportRun, error) {
 	var out objects.AdReportRun
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdReportRunBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -20,9 +20,32 @@ func (params DeleteHighDemandPeriodParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteHighDemandPeriodBatchCall(id string, params DeleteHighDemandPeriodParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteHighDemandPeriodBatchRequest(id string, params DeleteHighDemandPeriodParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteHighDemandPeriodBatchCall(id, params, options...))
+}
+
+func DecodeDeleteHighDemandPeriodBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteHighDemandPeriod(ctx context.Context, client *core.Client, id string, params DeleteHighDemandPeriodParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteHighDemandPeriodBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetHighDemandPeriodParams) ToParams() core.Params {
 	return out
 }
 
+func GetHighDemandPeriodBatchCall(id string, params GetHighDemandPeriodParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetHighDemandPeriodBatchRequest(id string, params GetHighDemandPeriodParams, options ...core.BatchOption) *core.BatchRequest[objects.HighDemandPeriod] {
+	return core.NewBatchRequest[objects.HighDemandPeriod](GetHighDemandPeriodBatchCall(id, params, options...))
+}
+
+func DecodeGetHighDemandPeriodBatchResponse(response *core.BatchResponse) (*objects.HighDemandPeriod, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.HighDemandPeriod
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHighDemandPeriod(ctx context.Context, client *core.Client, id string, params GetHighDemandPeriodParams) (*objects.HighDemandPeriod, error) {
 	var out objects.HighDemandPeriod
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetHighDemandPeriodBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -72,8 +118,31 @@ func (params UpdateHighDemandPeriodParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateHighDemandPeriodBatchCall(id string, params UpdateHighDemandPeriodParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateHighDemandPeriodBatchRequest(id string, params UpdateHighDemandPeriodParams, options ...core.BatchOption) *core.BatchRequest[objects.HighDemandPeriod] {
+	return core.NewBatchRequest[objects.HighDemandPeriod](UpdateHighDemandPeriodBatchCall(id, params, options...))
+}
+
+func DecodeUpdateHighDemandPeriodBatchResponse(response *core.BatchResponse) (*objects.HighDemandPeriod, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.HighDemandPeriod
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateHighDemandPeriod(ctx context.Context, client *core.Client, id string, params UpdateHighDemandPeriodParams) (*objects.HighDemandPeriod, error) {
 	var out objects.HighDemandPeriod
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateHighDemandPeriodBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -21,9 +21,32 @@ func (params GetAdVideoBoostAdsListParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoBoostAdsListBatchCall(id string, params GetAdVideoBoostAdsListParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "boost_ads_list"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoBoostAdsListBatchRequest(id string, params GetAdVideoBoostAdsListParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoBoostMediaAd]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoBoostMediaAd]](GetAdVideoBoostAdsListBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoBoostAdsListBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoBoostMediaAd], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoBoostMediaAd]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoBoostAdsList(ctx context.Context, client *core.Client, id string, params GetAdVideoBoostAdsListParams) (*core.Cursor[objects.VideoBoostMediaAd], error) {
 	var out core.Cursor[objects.VideoBoostMediaAd]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "boost_ads_list"), params.ToParams(), &out)
+	call := GetAdVideoBoostAdsListBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -39,9 +62,32 @@ func (params GetAdVideoCaptionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoCaptionsBatchCall(id string, params GetAdVideoCaptionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "captions"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoCaptionsBatchRequest(id string, params GetAdVideoCaptionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoCaption]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoCaption]](GetAdVideoCaptionsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoCaptionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoCaption], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoCaption]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoCaptions(ctx context.Context, client *core.Client, id string, params GetAdVideoCaptionsParams) (*core.Cursor[objects.VideoCaption], error) {
 	var out core.Cursor[objects.VideoCaption]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "captions"), params.ToParams(), &out)
+	call := GetAdVideoCaptionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -69,9 +115,32 @@ func (params CreateAdVideoCaptionsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdVideoCaptionsBatchCall(id string, params CreateAdVideoCaptionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "captions"), params.ToParams(), options...)
+}
+
+func NewCreateAdVideoCaptionsBatchRequest(id string, params CreateAdVideoCaptionsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreateAdVideoCaptionsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdVideoCaptionsBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdVideoCaptions(ctx context.Context, client *core.Client, id string, params CreateAdVideoCaptionsParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "captions"), params.ToParams(), &out)
+	call := CreateAdVideoCaptionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -87,9 +156,32 @@ func (params GetAdVideoCollaboratorsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoCollaboratorsBatchCall(id string, params GetAdVideoCollaboratorsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "collaborators"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoCollaboratorsBatchRequest(id string, params GetAdVideoCollaboratorsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoCollaborators]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoCollaborators]](GetAdVideoCollaboratorsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoCollaboratorsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoCollaborators], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoCollaborators]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoCollaborators(ctx context.Context, client *core.Client, id string, params GetAdVideoCollaboratorsParams) (*core.Cursor[objects.VideoCollaborators], error) {
 	var out core.Cursor[objects.VideoCollaborators]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "collaborators"), params.ToParams(), &out)
+	call := GetAdVideoCollaboratorsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -107,9 +199,32 @@ func (params CreateAdVideoCollaboratorsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdVideoCollaboratorsBatchCall(id string, params CreateAdVideoCollaboratorsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "collaborators"), params.ToParams(), options...)
+}
+
+func NewCreateAdVideoCollaboratorsBatchRequest(id string, params CreateAdVideoCollaboratorsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreateAdVideoCollaboratorsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdVideoCollaboratorsBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdVideoCollaborators(ctx context.Context, client *core.Client, id string, params CreateAdVideoCollaboratorsParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "collaborators"), params.ToParams(), &out)
+	call := CreateAdVideoCollaboratorsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -141,9 +256,32 @@ func (params GetAdVideoCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoCommentsBatchCall(id string, params GetAdVideoCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoCommentsBatchRequest(id string, params GetAdVideoCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Comment]] {
+	return core.NewBatchRequest[core.Cursor[objects.Comment]](GetAdVideoCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Comment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Comment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoComments(ctx context.Context, client *core.Client, id string, params GetAdVideoCommentsParams) (*core.Cursor[objects.Comment], error) {
 	var out core.Cursor[objects.Comment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetAdVideoCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -211,9 +349,32 @@ func (params CreateAdVideoCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdVideoCommentsBatchCall(id string, params CreateAdVideoCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewCreateAdVideoCommentsBatchRequest(id string, params CreateAdVideoCommentsParams, options ...core.BatchOption) *core.BatchRequest[objects.Comment] {
+	return core.NewBatchRequest[objects.Comment](CreateAdVideoCommentsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdVideoCommentsBatchResponse(response *core.BatchResponse) (*objects.Comment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Comment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdVideoComments(ctx context.Context, client *core.Client, id string, params CreateAdVideoCommentsParams) (*objects.Comment, error) {
 	var out objects.Comment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := CreateAdVideoCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -229,9 +390,32 @@ func (params GetAdVideoCrosspostSharedPagesParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoCrosspostSharedPagesBatchCall(id string, params GetAdVideoCrosspostSharedPagesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "crosspost_shared_pages"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoCrosspostSharedPagesBatchRequest(id string, params GetAdVideoCrosspostSharedPagesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetAdVideoCrosspostSharedPagesBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoCrosspostSharedPagesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoCrosspostSharedPages(ctx context.Context, client *core.Client, id string, params GetAdVideoCrosspostSharedPagesParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "crosspost_shared_pages"), params.ToParams(), &out)
+	call := GetAdVideoCrosspostSharedPagesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -247,9 +431,32 @@ func (params GetAdVideoLikesParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoLikesBatchCall(id string, params GetAdVideoLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoLikesBatchRequest(id string, params GetAdVideoLikesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Profile]] {
+	return core.NewBatchRequest[core.Cursor[objects.Profile]](GetAdVideoLikesBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoLikesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Profile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Profile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoLikes(ctx context.Context, client *core.Client, id string, params GetAdVideoLikesParams) (*core.Cursor[objects.Profile], error) {
 	var out core.Cursor[objects.Profile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := GetAdVideoLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -285,9 +492,32 @@ func (params CreateAdVideoLikesParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdVideoLikesBatchCall(id string, params CreateAdVideoLikesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), options...)
+}
+
+func NewCreateAdVideoLikesBatchRequest(id string, params CreateAdVideoLikesParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreateAdVideoLikesBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdVideoLikesBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdVideoLikes(ctx context.Context, client *core.Client, id string, params CreateAdVideoLikesParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "likes"), params.ToParams(), &out)
+	call := CreateAdVideoLikesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -303,9 +533,32 @@ func (params GetAdVideoPollSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoPollSettingsBatchCall(id string, params GetAdVideoPollSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "poll_settings"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoPollSettingsBatchRequest(id string, params GetAdVideoPollSettingsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PollSettings]] {
+	return core.NewBatchRequest[core.Cursor[objects.PollSettings]](GetAdVideoPollSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoPollSettingsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PollSettings], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PollSettings]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoPollSettings(ctx context.Context, client *core.Client, id string, params GetAdVideoPollSettingsParams) (*core.Cursor[objects.PollSettings], error) {
 	var out core.Cursor[objects.PollSettings]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "poll_settings"), params.ToParams(), &out)
+	call := GetAdVideoPollSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -321,9 +574,32 @@ func (params GetAdVideoPollsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoPollsBatchCall(id string, params GetAdVideoPollsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "polls"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoPollsBatchRequest(id string, params GetAdVideoPollsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoPoll]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoPoll]](GetAdVideoPollsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoPollsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoPoll], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoPoll]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoPolls(ctx context.Context, client *core.Client, id string, params GetAdVideoPollsParams) (*core.Cursor[objects.VideoPoll], error) {
 	var out core.Cursor[objects.VideoPoll]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "polls"), params.ToParams(), &out)
+	call := GetAdVideoPollsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -363,9 +639,32 @@ func (params CreateAdVideoPollsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdVideoPollsBatchCall(id string, params CreateAdVideoPollsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "polls"), params.ToParams(), options...)
+}
+
+func NewCreateAdVideoPollsBatchRequest(id string, params CreateAdVideoPollsParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoPoll] {
+	return core.NewBatchRequest[objects.VideoPoll](CreateAdVideoPollsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdVideoPollsBatchResponse(response *core.BatchResponse) (*objects.VideoPoll, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoPoll
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdVideoPolls(ctx context.Context, client *core.Client, id string, params CreateAdVideoPollsParams) (*objects.VideoPoll, error) {
 	var out objects.VideoPoll
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "polls"), params.ToParams(), &out)
+	call := CreateAdVideoPollsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -381,9 +680,32 @@ func (params GetAdVideoSponsorTagsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoSponsorTagsBatchCall(id string, params GetAdVideoSponsorTagsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "sponsor_tags"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoSponsorTagsBatchRequest(id string, params GetAdVideoSponsorTagsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Page]] {
+	return core.NewBatchRequest[core.Cursor[objects.Page]](GetAdVideoSponsorTagsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoSponsorTagsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Page], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Page]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoSponsorTags(ctx context.Context, client *core.Client, id string, params GetAdVideoSponsorTagsParams) (*core.Cursor[objects.Page], error) {
 	var out core.Cursor[objects.Page]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "sponsor_tags"), params.ToParams(), &out)
+	call := GetAdVideoSponsorTagsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -399,9 +721,32 @@ func (params GetAdVideoTagsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoTagsBatchCall(id string, params GetAdVideoTagsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "tags"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoTagsBatchRequest(id string, params GetAdVideoTagsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.TaggableSubject]] {
+	return core.NewBatchRequest[core.Cursor[objects.TaggableSubject]](GetAdVideoTagsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoTagsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.TaggableSubject], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.TaggableSubject]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoTags(ctx context.Context, client *core.Client, id string, params GetAdVideoTagsParams) (*core.Cursor[objects.TaggableSubject], error) {
 	var out core.Cursor[objects.TaggableSubject]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "tags"), params.ToParams(), &out)
+	call := GetAdVideoTagsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -417,9 +762,32 @@ func (params GetAdVideoThumbnailsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoThumbnailsBatchCall(id string, params GetAdVideoThumbnailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "thumbnails"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoThumbnailsBatchRequest(id string, params GetAdVideoThumbnailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoThumbnail]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoThumbnail]](GetAdVideoThumbnailsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoThumbnailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoThumbnail], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoThumbnail]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoThumbnails(ctx context.Context, client *core.Client, id string, params GetAdVideoThumbnailsParams) (*core.Cursor[objects.VideoThumbnail], error) {
 	var out core.Cursor[objects.VideoThumbnail]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "thumbnails"), params.ToParams(), &out)
+	call := GetAdVideoThumbnailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -441,9 +809,32 @@ func (params CreateAdVideoThumbnailsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateAdVideoThumbnailsBatchCall(id string, params CreateAdVideoThumbnailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "thumbnails"), params.ToParams(), options...)
+}
+
+func NewCreateAdVideoThumbnailsBatchRequest(id string, params CreateAdVideoThumbnailsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreateAdVideoThumbnailsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdVideoThumbnailsBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdVideoThumbnails(ctx context.Context, client *core.Client, id string, params CreateAdVideoThumbnailsParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "thumbnails"), params.ToParams(), &out)
+	call := CreateAdVideoThumbnailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -475,9 +866,32 @@ func (params GetAdVideoVideoInsightsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoVideoInsightsBatchCall(id string, params GetAdVideoVideoInsightsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "video_insights"), params.ToParams(), options...)
+}
+
+func NewGetAdVideoVideoInsightsBatchRequest(id string, params GetAdVideoVideoInsightsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.InsightsResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.InsightsResult]](GetAdVideoVideoInsightsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoVideoInsightsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.InsightsResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.InsightsResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideoVideoInsights(ctx context.Context, client *core.Client, id string, params GetAdVideoVideoInsightsParams) (*core.Cursor[objects.InsightsResult], error) {
 	var out core.Cursor[objects.InsightsResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "video_insights"), params.ToParams(), &out)
+	call := GetAdVideoVideoInsightsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -493,9 +907,32 @@ func (params DeleteAdVideoParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteAdVideoBatchCall(id string, params DeleteAdVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteAdVideoBatchRequest(id string, params DeleteAdVideoParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteAdVideoBatchCall(id, params, options...))
+}
+
+func DecodeDeleteAdVideoBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteAdVideo(ctx context.Context, client *core.Client, id string, params DeleteAdVideoParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteAdVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -511,9 +948,32 @@ func (params GetAdVideoParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdVideoBatchCall(id string, params GetAdVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdVideoBatchRequest(id string, params GetAdVideoParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](GetAdVideoBatchCall(id, params, options...))
+}
+
+func DecodeGetAdVideoBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdVideo(ctx context.Context, client *core.Client, id string, params GetAdVideoParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -641,8 +1101,31 @@ func (params UpdateAdVideoParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateAdVideoBatchCall(id string, params UpdateAdVideoParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateAdVideoBatchRequest(id string, params UpdateAdVideoParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](UpdateAdVideoBatchCall(id, params, options...))
+}
+
+func DecodeUpdateAdVideoBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateAdVideo(ctx context.Context, client *core.Client, id string, params UpdateAdVideoParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateAdVideoBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

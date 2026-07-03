@@ -20,9 +20,32 @@ func (params GetImageCopyrightParams) ToParams() core.Params {
 	return out
 }
 
+func GetImageCopyrightBatchCall(id string, params GetImageCopyrightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetImageCopyrightBatchRequest(id string, params GetImageCopyrightParams, options ...core.BatchOption) *core.BatchRequest[objects.ImageCopyright] {
+	return core.NewBatchRequest[objects.ImageCopyright](GetImageCopyrightBatchCall(id, params, options...))
+}
+
+func DecodeGetImageCopyrightBatchResponse(response *core.BatchResponse) (*objects.ImageCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ImageCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetImageCopyright(ctx context.Context, client *core.Client, id string, params GetImageCopyrightParams) (*objects.ImageCopyright, error) {
 	var out objects.ImageCopyright
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetImageCopyrightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -66,8 +89,31 @@ func (params UpdateImageCopyrightParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateImageCopyrightBatchCall(id string, params UpdateImageCopyrightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateImageCopyrightBatchRequest(id string, params UpdateImageCopyrightParams, options ...core.BatchOption) *core.BatchRequest[objects.ImageCopyright] {
+	return core.NewBatchRequest[objects.ImageCopyright](UpdateImageCopyrightBatchCall(id, params, options...))
+}
+
+func DecodeUpdateImageCopyrightBatchResponse(response *core.BatchResponse) (*objects.ImageCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ImageCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateImageCopyright(ctx context.Context, client *core.Client, id string, params UpdateImageCopyrightParams) (*objects.ImageCopyright, error) {
 	var out objects.ImageCopyright
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateImageCopyrightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

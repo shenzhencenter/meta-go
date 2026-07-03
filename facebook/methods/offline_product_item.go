@@ -20,9 +20,32 @@ func (params GetOfflineProductItemChannelsToIntegrityStatusParams) ToParams() co
 	return out
 }
 
+func GetOfflineProductItemChannelsToIntegrityStatusBatchCall(id string, params GetOfflineProductItemChannelsToIntegrityStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), options...)
+}
+
+func NewGetOfflineProductItemChannelsToIntegrityStatusBatchRequest(id string, params GetOfflineProductItemChannelsToIntegrityStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]](GetOfflineProductItemChannelsToIntegrityStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetOfflineProductItemChannelsToIntegrityStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOfflineProductItemChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), &out)
+	call := GetOfflineProductItemChannelsToIntegrityStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -46,9 +69,32 @@ func (params GetOfflineProductItemOverrideDetailsParams) ToParams() core.Params 
 	return out
 }
 
+func GetOfflineProductItemOverrideDetailsBatchCall(id string, params GetOfflineProductItemOverrideDetailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), options...)
+}
+
+func NewGetOfflineProductItemOverrideDetailsBatchRequest(id string, params GetOfflineProductItemOverrideDetailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OverrideDetails]] {
+	return core.NewBatchRequest[core.Cursor[objects.OverrideDetails]](GetOfflineProductItemOverrideDetailsBatchCall(id, params, options...))
+}
+
+func DecodeGetOfflineProductItemOverrideDetailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OverrideDetails], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OverrideDetails]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOfflineProductItemOverrideDetails(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
 	var out core.Cursor[objects.OverrideDetails]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), &out)
+	call := GetOfflineProductItemOverrideDetailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -64,8 +110,31 @@ func (params GetOfflineProductItemParams) ToParams() core.Params {
 	return out
 }
 
+func GetOfflineProductItemBatchCall(id string, params GetOfflineProductItemParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetOfflineProductItemBatchRequest(id string, params GetOfflineProductItemParams, options ...core.BatchOption) *core.BatchRequest[objects.OfflineProductItem] {
+	return core.NewBatchRequest[objects.OfflineProductItem](GetOfflineProductItemBatchCall(id, params, options...))
+}
+
+func DecodeGetOfflineProductItemBatchResponse(response *core.BatchResponse) (*objects.OfflineProductItem, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.OfflineProductItem
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOfflineProductItem(ctx context.Context, client *core.Client, id string, params GetOfflineProductItemParams) (*objects.OfflineProductItem, error) {
 	var out objects.OfflineProductItem
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetOfflineProductItemBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

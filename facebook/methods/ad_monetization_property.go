@@ -59,9 +59,32 @@ func (params GetAdMonetizationPropertyAdnetworkanalyticsParams) ToParams() core.
 	return out
 }
 
+func GetAdMonetizationPropertyAdnetworkanalyticsBatchCall(id string, params GetAdMonetizationPropertyAdnetworkanalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adnetworkanalytics"), params.ToParams(), options...)
+}
+
+func NewGetAdMonetizationPropertyAdnetworkanalyticsBatchRequest(id string, params GetAdMonetizationPropertyAdnetworkanalyticsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]](GetAdMonetizationPropertyAdnetworkanalyticsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdMonetizationPropertyAdnetworkanalyticsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdMonetizationPropertyAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsParams) (*core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult], error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsSyncQueryResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adnetworkanalytics"), params.ToParams(), &out)
+	call := GetAdMonetizationPropertyAdnetworkanalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -111,9 +134,32 @@ func (params CreateAdMonetizationPropertyAdnetworkanalyticsParams) ToParams() co
 	return out
 }
 
+func CreateAdMonetizationPropertyAdnetworkanalyticsBatchCall(id string, params CreateAdMonetizationPropertyAdnetworkanalyticsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "adnetworkanalytics"), params.ToParams(), options...)
+}
+
+func NewCreateAdMonetizationPropertyAdnetworkanalyticsBatchRequest(id string, params CreateAdMonetizationPropertyAdnetworkanalyticsParams, options ...core.BatchOption) *core.BatchRequest[objects.AdMonetizationProperty] {
+	return core.NewBatchRequest[objects.AdMonetizationProperty](CreateAdMonetizationPropertyAdnetworkanalyticsBatchCall(id, params, options...))
+}
+
+func DecodeCreateAdMonetizationPropertyAdnetworkanalyticsBatchResponse(response *core.BatchResponse) (*objects.AdMonetizationProperty, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdMonetizationProperty
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateAdMonetizationPropertyAdnetworkanalytics(ctx context.Context, client *core.Client, id string, params CreateAdMonetizationPropertyAdnetworkanalyticsParams) (*objects.AdMonetizationProperty, error) {
 	var out objects.AdMonetizationProperty
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "adnetworkanalytics"), params.ToParams(), &out)
+	call := CreateAdMonetizationPropertyAdnetworkanalyticsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -133,9 +179,32 @@ func (params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams) ToParams(
 	return out
 }
 
+func GetAdMonetizationPropertyAdnetworkanalyticsResultsBatchCall(id string, params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "adnetworkanalytics_results"), params.ToParams(), options...)
+}
+
+func NewGetAdMonetizationPropertyAdnetworkanalyticsResultsBatchRequest(id string, params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]](GetAdMonetizationPropertyAdnetworkanalyticsResultsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdMonetizationPropertyAdnetworkanalyticsResultsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdMonetizationPropertyAdnetworkanalyticsResults(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyAdnetworkanalyticsResultsParams) (*core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult], error) {
 	var out core.Cursor[objects.AdNetworkAnalyticsAsyncQueryResult]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "adnetworkanalytics_results"), params.ToParams(), &out)
+	call := GetAdMonetizationPropertyAdnetworkanalyticsResultsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -151,8 +220,31 @@ func (params GetAdMonetizationPropertyParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdMonetizationPropertyBatchCall(id string, params GetAdMonetizationPropertyParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAdMonetizationPropertyBatchRequest(id string, params GetAdMonetizationPropertyParams, options ...core.BatchOption) *core.BatchRequest[objects.AdMonetizationProperty] {
+	return core.NewBatchRequest[objects.AdMonetizationProperty](GetAdMonetizationPropertyBatchCall(id, params, options...))
+}
+
+func DecodeGetAdMonetizationPropertyBatchResponse(response *core.BatchResponse) (*objects.AdMonetizationProperty, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdMonetizationProperty
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdMonetizationProperty(ctx context.Context, client *core.Client, id string, params GetAdMonetizationPropertyParams) (*objects.AdMonetizationProperty, error) {
 	var out objects.AdMonetizationProperty
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAdMonetizationPropertyBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

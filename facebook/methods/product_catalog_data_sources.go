@@ -40,8 +40,31 @@ func (params GetProductCatalogDataSourcesDataSourcesParams) ToParams() core.Para
 	return out
 }
 
+func GetProductCatalogDataSourcesDataSourcesBatchCall(id string, params GetProductCatalogDataSourcesDataSourcesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "data_sources"), params.ToParams(), options...)
+}
+
+func NewGetProductCatalogDataSourcesDataSourcesBatchRequest(id string, params GetProductCatalogDataSourcesDataSourcesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductCatalogDataSourcesGet]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductCatalogDataSourcesGet]](GetProductCatalogDataSourcesDataSourcesBatchCall(id, params, options...))
+}
+
+func DecodeGetProductCatalogDataSourcesDataSourcesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductCatalogDataSourcesGet], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductCatalogDataSourcesGet]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductCatalogDataSourcesDataSources(ctx context.Context, client *core.Client, id string, params GetProductCatalogDataSourcesDataSourcesParams) (*core.Cursor[objects.ProductCatalogDataSourcesGet], error) {
 	var out core.Cursor[objects.ProductCatalogDataSourcesGet]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "data_sources"), params.ToParams(), &out)
+	call := GetProductCatalogDataSourcesDataSourcesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

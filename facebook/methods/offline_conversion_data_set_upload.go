@@ -19,9 +19,32 @@ func (params GetOfflineConversionDataSetUploadProgressParams) ToParams() core.Pa
 	return out
 }
 
+func GetOfflineConversionDataSetUploadProgressBatchCall(id string, params GetOfflineConversionDataSetUploadProgressParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "progress"), params.ToParams(), options...)
+}
+
+func NewGetOfflineConversionDataSetUploadProgressBatchRequest(id string, params GetOfflineConversionDataSetUploadProgressParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.SignalsUploadProgress]] {
+	return core.NewBatchRequest[core.Cursor[objects.SignalsUploadProgress]](GetOfflineConversionDataSetUploadProgressBatchCall(id, params, options...))
+}
+
+func DecodeGetOfflineConversionDataSetUploadProgressBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.SignalsUploadProgress], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.SignalsUploadProgress]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOfflineConversionDataSetUploadProgress(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadProgressParams) (*core.Cursor[objects.SignalsUploadProgress], error) {
 	var out core.Cursor[objects.SignalsUploadProgress]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "progress"), params.ToParams(), &out)
+	call := GetOfflineConversionDataSetUploadProgressBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -37,9 +60,32 @@ func (params GetOfflineConversionDataSetUploadPullSessionsParams) ToParams() cor
 	return out
 }
 
+func GetOfflineConversionDataSetUploadPullSessionsBatchCall(id string, params GetOfflineConversionDataSetUploadPullSessionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "pull_sessions"), params.ToParams(), options...)
+}
+
+func NewGetOfflineConversionDataSetUploadPullSessionsBatchRequest(id string, params GetOfflineConversionDataSetUploadPullSessionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.PartnerIntegrationPullSession]] {
+	return core.NewBatchRequest[core.Cursor[objects.PartnerIntegrationPullSession]](GetOfflineConversionDataSetUploadPullSessionsBatchCall(id, params, options...))
+}
+
+func DecodeGetOfflineConversionDataSetUploadPullSessionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.PartnerIntegrationPullSession], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.PartnerIntegrationPullSession]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOfflineConversionDataSetUploadPullSessions(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadPullSessionsParams) (*core.Cursor[objects.PartnerIntegrationPullSession], error) {
 	var out core.Cursor[objects.PartnerIntegrationPullSession]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "pull_sessions"), params.ToParams(), &out)
+	call := GetOfflineConversionDataSetUploadPullSessionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -55,8 +101,31 @@ func (params GetOfflineConversionDataSetUploadParams) ToParams() core.Params {
 	return out
 }
 
+func GetOfflineConversionDataSetUploadBatchCall(id string, params GetOfflineConversionDataSetUploadParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetOfflineConversionDataSetUploadBatchRequest(id string, params GetOfflineConversionDataSetUploadParams, options ...core.BatchOption) *core.BatchRequest[objects.OfflineConversionDataSetUpload] {
+	return core.NewBatchRequest[objects.OfflineConversionDataSetUpload](GetOfflineConversionDataSetUploadBatchCall(id, params, options...))
+}
+
+func DecodeGetOfflineConversionDataSetUploadBatchResponse(response *core.BatchResponse) (*objects.OfflineConversionDataSetUpload, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.OfflineConversionDataSetUpload
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOfflineConversionDataSetUpload(ctx context.Context, client *core.Client, id string, params GetOfflineConversionDataSetUploadParams) (*objects.OfflineConversionDataSetUpload, error) {
 	var out objects.OfflineConversionDataSetUpload
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetOfflineConversionDataSetUploadBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

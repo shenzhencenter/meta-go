@@ -19,8 +19,31 @@ func (params GetMeasurementReportParams) ToParams() core.Params {
 	return out
 }
 
+func GetMeasurementReportBatchCall(id string, params GetMeasurementReportParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetMeasurementReportBatchRequest(id string, params GetMeasurementReportParams, options ...core.BatchOption) *core.BatchRequest[objects.MeasurementReport] {
+	return core.NewBatchRequest[objects.MeasurementReport](GetMeasurementReportBatchCall(id, params, options...))
+}
+
+func DecodeGetMeasurementReportBatchResponse(response *core.BatchResponse) (*objects.MeasurementReport, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.MeasurementReport
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetMeasurementReport(ctx context.Context, client *core.Client, id string, params GetMeasurementReportParams) (*objects.MeasurementReport, error) {
 	var out objects.MeasurementReport
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetMeasurementReportBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

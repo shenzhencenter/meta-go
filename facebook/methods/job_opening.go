@@ -19,8 +19,31 @@ func (params GetJobOpeningParams) ToParams() core.Params {
 	return out
 }
 
+func GetJobOpeningBatchCall(id string, params GetJobOpeningParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetJobOpeningBatchRequest(id string, params GetJobOpeningParams, options ...core.BatchOption) *core.BatchRequest[objects.JobOpening] {
+	return core.NewBatchRequest[objects.JobOpening](GetJobOpeningBatchCall(id, params, options...))
+}
+
+func DecodeGetJobOpeningBatchResponse(response *core.BatchResponse) (*objects.JobOpening, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.JobOpening
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetJobOpening(ctx context.Context, client *core.Client, id string, params GetJobOpeningParams) (*objects.JobOpening, error) {
 	var out objects.JobOpening
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetJobOpeningBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

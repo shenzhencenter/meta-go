@@ -19,8 +19,31 @@ func (params GetWebsiteCreativeAssetSourceParams) ToParams() core.Params {
 	return out
 }
 
+func GetWebsiteCreativeAssetSourceBatchCall(id string, params GetWebsiteCreativeAssetSourceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWebsiteCreativeAssetSourceBatchRequest(id string, params GetWebsiteCreativeAssetSourceParams, options ...core.BatchOption) *core.BatchRequest[objects.WebsiteCreativeAssetSource] {
+	return core.NewBatchRequest[objects.WebsiteCreativeAssetSource](GetWebsiteCreativeAssetSourceBatchCall(id, params, options...))
+}
+
+func DecodeGetWebsiteCreativeAssetSourceBatchResponse(response *core.BatchResponse) (*objects.WebsiteCreativeAssetSource, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WebsiteCreativeAssetSource
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWebsiteCreativeAssetSource(ctx context.Context, client *core.Client, id string, params GetWebsiteCreativeAssetSourceParams) (*objects.WebsiteCreativeAssetSource, error) {
 	var out objects.WebsiteCreativeAssetSource
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWebsiteCreativeAssetSourceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

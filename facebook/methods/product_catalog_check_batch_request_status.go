@@ -46,8 +46,31 @@ func (params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusPara
 	return out
 }
 
+func GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchCall(id string, params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "check_batch_request_status"), params.ToParams(), options...)
+}
+
+func NewGetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchRequest(id string, params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet]](GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatus(ctx context.Context, client *core.Client, id string, params GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusParams) (*core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet], error) {
 	var out core.Cursor[objects.ProductCatalogCheckBatchRequestStatusGet]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "check_batch_request_status"), params.ToParams(), &out)
+	call := GetProductCatalogCheckBatchRequestStatusCheckBatchRequestStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

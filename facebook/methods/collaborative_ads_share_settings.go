@@ -19,8 +19,31 @@ func (params GetCollaborativeAdsShareSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCollaborativeAdsShareSettingsBatchCall(id string, params GetCollaborativeAdsShareSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCollaborativeAdsShareSettingsBatchRequest(id string, params GetCollaborativeAdsShareSettingsParams, options ...core.BatchOption) *core.BatchRequest[objects.CollaborativeAdsShareSettings] {
+	return core.NewBatchRequest[objects.CollaborativeAdsShareSettings](GetCollaborativeAdsShareSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetCollaborativeAdsShareSettingsBatchResponse(response *core.BatchResponse) (*objects.CollaborativeAdsShareSettings, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CollaborativeAdsShareSettings
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCollaborativeAdsShareSettings(ctx context.Context, client *core.Client, id string, params GetCollaborativeAdsShareSettingsParams) (*objects.CollaborativeAdsShareSettings, error) {
 	var out objects.CollaborativeAdsShareSettings
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCollaborativeAdsShareSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

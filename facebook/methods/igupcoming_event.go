@@ -21,9 +21,32 @@ func (params GetIGUpcomingEventParams) ToParams() core.Params {
 	return out
 }
 
+func GetIGUpcomingEventBatchCall(id string, params GetIGUpcomingEventParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetIGUpcomingEventBatchRequest(id string, params GetIGUpcomingEventParams, options ...core.BatchOption) *core.BatchRequest[objects.IGUpcomingEvent] {
+	return core.NewBatchRequest[objects.IGUpcomingEvent](GetIGUpcomingEventBatchCall(id, params, options...))
+}
+
+func DecodeGetIGUpcomingEventBatchResponse(response *core.BatchResponse) (*objects.IGUpcomingEvent, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGUpcomingEvent
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetIGUpcomingEvent(ctx context.Context, client *core.Client, id string, params GetIGUpcomingEventParams) (*objects.IGUpcomingEvent, error) {
 	var out objects.IGUpcomingEvent
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetIGUpcomingEventBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -55,8 +78,31 @@ func (params UpdateIGUpcomingEventParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateIGUpcomingEventBatchCall(id string, params UpdateIGUpcomingEventParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateIGUpcomingEventBatchRequest(id string, params UpdateIGUpcomingEventParams, options ...core.BatchOption) *core.BatchRequest[objects.IGUpcomingEvent] {
+	return core.NewBatchRequest[objects.IGUpcomingEvent](UpdateIGUpcomingEventBatchCall(id, params, options...))
+}
+
+func DecodeUpdateIGUpcomingEventBatchResponse(response *core.BatchResponse) (*objects.IGUpcomingEvent, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.IGUpcomingEvent
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateIGUpcomingEvent(ctx context.Context, client *core.Client, id string, params UpdateIGUpcomingEventParams) (*objects.IGUpcomingEvent, error) {
 	var out objects.IGUpcomingEvent
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateIGUpcomingEventBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

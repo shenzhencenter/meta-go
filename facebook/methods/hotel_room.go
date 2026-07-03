@@ -19,9 +19,32 @@ func (params GetHotelRoomPricingVariablesParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelRoomPricingVariablesBatchCall(id string, params GetHotelRoomPricingVariablesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "pricing_variables"), params.ToParams(), options...)
+}
+
+func NewGetHotelRoomPricingVariablesBatchRequest(id string, params GetHotelRoomPricingVariablesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.DynamicPriceConfigByDate]] {
+	return core.NewBatchRequest[core.Cursor[objects.DynamicPriceConfigByDate]](GetHotelRoomPricingVariablesBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelRoomPricingVariablesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.DynamicPriceConfigByDate], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.DynamicPriceConfigByDate]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotelRoomPricingVariables(ctx context.Context, client *core.Client, id string, params GetHotelRoomPricingVariablesParams) (*core.Cursor[objects.DynamicPriceConfigByDate], error) {
 	var out core.Cursor[objects.DynamicPriceConfigByDate]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "pricing_variables"), params.ToParams(), &out)
+	call := GetHotelRoomPricingVariablesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -37,8 +60,31 @@ func (params GetHotelRoomParams) ToParams() core.Params {
 	return out
 }
 
+func GetHotelRoomBatchCall(id string, params GetHotelRoomParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetHotelRoomBatchRequest(id string, params GetHotelRoomParams, options ...core.BatchOption) *core.BatchRequest[objects.HotelRoom] {
+	return core.NewBatchRequest[objects.HotelRoom](GetHotelRoomBatchCall(id, params, options...))
+}
+
+func DecodeGetHotelRoomBatchResponse(response *core.BatchResponse) (*objects.HotelRoom, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.HotelRoom
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetHotelRoom(ctx context.Context, client *core.Client, id string, params GetHotelRoomParams) (*objects.HotelRoom, error) {
 	var out objects.HotelRoom
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetHotelRoomBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,8 +19,31 @@ func (params GetPartnerStudyParams) ToParams() core.Params {
 	return out
 }
 
+func GetPartnerStudyBatchCall(id string, params GetPartnerStudyParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPartnerStudyBatchRequest(id string, params GetPartnerStudyParams, options ...core.BatchOption) *core.BatchRequest[objects.PartnerStudy] {
+	return core.NewBatchRequest[objects.PartnerStudy](GetPartnerStudyBatchCall(id, params, options...))
+}
+
+func DecodeGetPartnerStudyBatchResponse(response *core.BatchResponse) (*objects.PartnerStudy, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PartnerStudy
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPartnerStudy(ctx context.Context, client *core.Client, id string, params GetPartnerStudyParams) (*objects.PartnerStudy, error) {
 	var out objects.PartnerStudy
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPartnerStudyBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

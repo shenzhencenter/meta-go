@@ -19,8 +19,31 @@ func (params GetChinaBusinessOnboardingVettingRequestParams) ToParams() core.Par
 	return out
 }
 
+func GetChinaBusinessOnboardingVettingRequestBatchCall(id string, params GetChinaBusinessOnboardingVettingRequestParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetChinaBusinessOnboardingVettingRequestBatchRequest(id string, params GetChinaBusinessOnboardingVettingRequestParams, options ...core.BatchOption) *core.BatchRequest[objects.ChinaBusinessOnboardingVettingRequest] {
+	return core.NewBatchRequest[objects.ChinaBusinessOnboardingVettingRequest](GetChinaBusinessOnboardingVettingRequestBatchCall(id, params, options...))
+}
+
+func DecodeGetChinaBusinessOnboardingVettingRequestBatchResponse(response *core.BatchResponse) (*objects.ChinaBusinessOnboardingVettingRequest, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ChinaBusinessOnboardingVettingRequest
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetChinaBusinessOnboardingVettingRequest(ctx context.Context, client *core.Client, id string, params GetChinaBusinessOnboardingVettingRequestParams) (*objects.ChinaBusinessOnboardingVettingRequest, error) {
 	var out objects.ChinaBusinessOnboardingVettingRequest
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetChinaBusinessOnboardingVettingRequestBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

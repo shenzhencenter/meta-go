@@ -19,8 +19,31 @@ func (params GetThirdPartyPartnerViewabilityRequestParams) ToParams() core.Param
 	return out
 }
 
+func GetThirdPartyPartnerViewabilityRequestBatchCall(id string, params GetThirdPartyPartnerViewabilityRequestParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetThirdPartyPartnerViewabilityRequestBatchRequest(id string, params GetThirdPartyPartnerViewabilityRequestParams, options ...core.BatchOption) *core.BatchRequest[objects.ThirdPartyPartnerViewabilityRequest] {
+	return core.NewBatchRequest[objects.ThirdPartyPartnerViewabilityRequest](GetThirdPartyPartnerViewabilityRequestBatchCall(id, params, options...))
+}
+
+func DecodeGetThirdPartyPartnerViewabilityRequestBatchResponse(response *core.BatchResponse) (*objects.ThirdPartyPartnerViewabilityRequest, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ThirdPartyPartnerViewabilityRequest
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetThirdPartyPartnerViewabilityRequest(ctx context.Context, client *core.Client, id string, params GetThirdPartyPartnerViewabilityRequestParams) (*objects.ThirdPartyPartnerViewabilityRequest, error) {
 	var out objects.ThirdPartyPartnerViewabilityRequest
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetThirdPartyPartnerViewabilityRequestBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

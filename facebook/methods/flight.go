@@ -20,9 +20,32 @@ func (params GetFlightChannelsToIntegrityStatusParams) ToParams() core.Params {
 	return out
 }
 
+func GetFlightChannelsToIntegrityStatusBatchCall(id string, params GetFlightChannelsToIntegrityStatusParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), options...)
+}
+
+func NewGetFlightChannelsToIntegrityStatusBatchRequest(id string, params GetFlightChannelsToIntegrityStatusParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]] {
+	return core.NewBatchRequest[core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]](GetFlightChannelsToIntegrityStatusBatchCall(id, params, options...))
+}
+
+func DecodeGetFlightChannelsToIntegrityStatusBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFlightChannelsToIntegrityStatus(ctx context.Context, client *core.Client, id string, params GetFlightChannelsToIntegrityStatusParams) (*core.Cursor[objects.CatalogItemChannelsToIntegrityStatus], error) {
 	var out core.Cursor[objects.CatalogItemChannelsToIntegrityStatus]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "channels_to_integrity_status"), params.ToParams(), &out)
+	call := GetFlightChannelsToIntegrityStatusBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -46,9 +69,32 @@ func (params GetFlightOverrideDetailsParams) ToParams() core.Params {
 	return out
 }
 
+func GetFlightOverrideDetailsBatchCall(id string, params GetFlightOverrideDetailsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), options...)
+}
+
+func NewGetFlightOverrideDetailsBatchRequest(id string, params GetFlightOverrideDetailsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.OverrideDetails]] {
+	return core.NewBatchRequest[core.Cursor[objects.OverrideDetails]](GetFlightOverrideDetailsBatchCall(id, params, options...))
+}
+
+func DecodeGetFlightOverrideDetailsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.OverrideDetails], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.OverrideDetails]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFlightOverrideDetails(ctx context.Context, client *core.Client, id string, params GetFlightOverrideDetailsParams) (*core.Cursor[objects.OverrideDetails], error) {
 	var out core.Cursor[objects.OverrideDetails]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "override_details"), params.ToParams(), &out)
+	call := GetFlightOverrideDetailsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -64,9 +110,32 @@ func (params GetFlightVideosMetadataParams) ToParams() core.Params {
 	return out
 }
 
+func GetFlightVideosMetadataBatchCall(id string, params GetFlightVideosMetadataParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "videos_metadata"), params.ToParams(), options...)
+}
+
+func NewGetFlightVideosMetadataBatchRequest(id string, params GetFlightVideosMetadataParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.DynamicVideoMetadata]] {
+	return core.NewBatchRequest[core.Cursor[objects.DynamicVideoMetadata]](GetFlightVideosMetadataBatchCall(id, params, options...))
+}
+
+func DecodeGetFlightVideosMetadataBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.DynamicVideoMetadata], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.DynamicVideoMetadata]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFlightVideosMetadata(ctx context.Context, client *core.Client, id string, params GetFlightVideosMetadataParams) (*core.Cursor[objects.DynamicVideoMetadata], error) {
 	var out core.Cursor[objects.DynamicVideoMetadata]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "videos_metadata"), params.ToParams(), &out)
+	call := GetFlightVideosMetadataBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -82,9 +151,32 @@ func (params GetFlightParams) ToParams() core.Params {
 	return out
 }
 
+func GetFlightBatchCall(id string, params GetFlightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetFlightBatchRequest(id string, params GetFlightParams, options ...core.BatchOption) *core.BatchRequest[objects.Flight] {
+	return core.NewBatchRequest[objects.Flight](GetFlightBatchCall(id, params, options...))
+}
+
+func DecodeGetFlightBatchResponse(response *core.BatchResponse) (*objects.Flight, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Flight
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFlight(ctx context.Context, client *core.Client, id string, params GetFlightParams) (*objects.Flight, error) {
 	var out objects.Flight
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetFlightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -136,8 +228,31 @@ func (params UpdateFlightParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateFlightBatchCall(id string, params UpdateFlightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateFlightBatchRequest(id string, params UpdateFlightParams, options ...core.BatchOption) *core.BatchRequest[objects.Flight] {
+	return core.NewBatchRequest[objects.Flight](UpdateFlightBatchCall(id, params, options...))
+}
+
+func DecodeUpdateFlightBatchResponse(response *core.BatchResponse) (*objects.Flight, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Flight
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateFlight(ctx context.Context, client *core.Client, id string, params UpdateFlightParams) (*objects.Flight, error) {
 	var out objects.Flight
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateFlightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

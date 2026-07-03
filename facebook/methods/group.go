@@ -23,9 +23,32 @@ func (params DeleteGroupAdminsParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteGroupAdminsBatchCall(id string, params DeleteGroupAdminsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "admins"), params.ToParams(), options...)
+}
+
+func NewDeleteGroupAdminsBatchRequest(id string, params DeleteGroupAdminsParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteGroupAdminsBatchCall(id, params, options...))
+}
+
+func DecodeDeleteGroupAdminsBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteGroupAdmins(ctx context.Context, client *core.Client, id string, params DeleteGroupAdminsParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "admins"), params.ToParams(), &out)
+	call := DeleteGroupAdminsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -43,9 +66,32 @@ func (params CreateGroupAdminsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupAdminsBatchCall(id string, params CreateGroupAdminsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "admins"), params.ToParams(), options...)
+}
+
+func NewCreateGroupAdminsBatchRequest(id string, params CreateGroupAdminsParams, options ...core.BatchOption) *core.BatchRequest[objects.Group] {
+	return core.NewBatchRequest[objects.Group](CreateGroupAdminsBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupAdminsBatchResponse(response *core.BatchResponse) (*objects.Group, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Group
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupAdmins(ctx context.Context, client *core.Client, id string, params CreateGroupAdminsParams) (*objects.Group, error) {
 	var out objects.Group
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "admins"), params.ToParams(), &out)
+	call := CreateGroupAdminsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -61,9 +107,32 @@ func (params GetGroupAlbumsParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupAlbumsBatchCall(id string, params GetGroupAlbumsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "albums"), params.ToParams(), options...)
+}
+
+func NewGetGroupAlbumsBatchRequest(id string, params GetGroupAlbumsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Album]] {
+	return core.NewBatchRequest[core.Cursor[objects.Album]](GetGroupAlbumsBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupAlbumsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Album], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Album]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupAlbums(ctx context.Context, client *core.Client, id string, params GetGroupAlbumsParams) (*core.Cursor[objects.Album], error) {
 	var out core.Cursor[objects.Album]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "albums"), params.ToParams(), &out)
+	call := GetGroupAlbumsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -79,9 +148,32 @@ func (params GetGroupDocsParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupDocsBatchCall(id string, params GetGroupDocsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "docs"), params.ToParams(), options...)
+}
+
+func NewGetGroupDocsBatchRequest(id string, params GetGroupDocsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Doc]] {
+	return core.NewBatchRequest[core.Cursor[objects.Doc]](GetGroupDocsBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupDocsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Doc], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Doc]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupDocs(ctx context.Context, client *core.Client, id string, params GetGroupDocsParams) (*core.Cursor[objects.Doc], error) {
 	var out core.Cursor[objects.Doc]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "docs"), params.ToParams(), &out)
+	call := GetGroupDocsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -97,9 +189,32 @@ func (params GetGroupEventsParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupEventsBatchCall(id string, params GetGroupEventsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "events"), params.ToParams(), options...)
+}
+
+func NewGetGroupEventsBatchRequest(id string, params GetGroupEventsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Event]] {
+	return core.NewBatchRequest[core.Cursor[objects.Event]](GetGroupEventsBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupEventsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Event], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Event]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupEvents(ctx context.Context, client *core.Client, id string, params GetGroupEventsParams) (*core.Cursor[objects.Event], error) {
 	var out core.Cursor[objects.Event]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "events"), params.ToParams(), &out)
+	call := GetGroupEventsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -139,9 +254,32 @@ func (params GetGroupFeedParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupFeedBatchCall(id string, params GetGroupFeedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "feed"), params.ToParams(), options...)
+}
+
+func NewGetGroupFeedBatchRequest(id string, params GetGroupFeedParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Post]] {
+	return core.NewBatchRequest[core.Cursor[objects.Post]](GetGroupFeedBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupFeedBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Post], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Post]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupFeed(ctx context.Context, client *core.Client, id string, params GetGroupFeedParams) (*core.Cursor[objects.Post], error) {
 	var out core.Cursor[objects.Post]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "feed"), params.ToParams(), &out)
+	call := GetGroupFeedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -577,9 +715,32 @@ func (params CreateGroupFeedParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupFeedBatchCall(id string, params CreateGroupFeedParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "feed"), params.ToParams(), options...)
+}
+
+func NewCreateGroupFeedBatchRequest(id string, params CreateGroupFeedParams, options ...core.BatchOption) *core.BatchRequest[objects.Post] {
+	return core.NewBatchRequest[objects.Post](CreateGroupFeedBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupFeedBatchResponse(response *core.BatchResponse) (*objects.Post, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Post
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupFeed(ctx context.Context, client *core.Client, id string, params CreateGroupFeedParams) (*objects.Post, error) {
 	var out objects.Post
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "feed"), params.ToParams(), &out)
+	call := CreateGroupFeedBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -595,9 +756,32 @@ func (params GetGroupFilesParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupFilesBatchCall(id string, params GetGroupFilesParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "files"), params.ToParams(), options...)
+}
+
+func NewGetGroupFilesBatchRequest(id string, params GetGroupFilesParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.GroupFile]] {
+	return core.NewBatchRequest[core.Cursor[objects.GroupFile]](GetGroupFilesBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupFilesBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.GroupFile], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.GroupFile]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupFiles(ctx context.Context, client *core.Client, id string, params GetGroupFilesParams) (*core.Cursor[objects.GroupFile], error) {
 	var out core.Cursor[objects.GroupFile]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "files"), params.ToParams(), &out)
+	call := GetGroupFilesBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -613,9 +797,32 @@ func (params GetGroupGroupsParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupGroupsBatchCall(id string, params GetGroupGroupsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "groups"), params.ToParams(), options...)
+}
+
+func NewGetGroupGroupsBatchRequest(id string, params GetGroupGroupsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Group]] {
+	return core.NewBatchRequest[core.Cursor[objects.Group]](GetGroupGroupsBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupGroupsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Group], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Group]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupGroups(ctx context.Context, client *core.Client, id string, params GetGroupGroupsParams) (*core.Cursor[objects.Group], error) {
 	var out core.Cursor[objects.Group]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "groups"), params.ToParams(), &out)
+	call := GetGroupGroupsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -673,9 +880,32 @@ func (params CreateGroupGroupsParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupGroupsBatchCall(id string, params CreateGroupGroupsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "groups"), params.ToParams(), options...)
+}
+
+func NewCreateGroupGroupsBatchRequest(id string, params CreateGroupGroupsParams, options ...core.BatchOption) *core.BatchRequest[objects.Group] {
+	return core.NewBatchRequest[objects.Group](CreateGroupGroupsBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupGroupsBatchResponse(response *core.BatchResponse) (*objects.Group, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Group
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupGroups(ctx context.Context, client *core.Client, id string, params CreateGroupGroupsParams) (*objects.Group, error) {
 	var out objects.Group
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "groups"), params.ToParams(), &out)
+	call := CreateGroupGroupsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -699,9 +929,32 @@ func (params GetGroupLiveVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupLiveVideosBatchCall(id string, params GetGroupLiveVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "live_videos"), params.ToParams(), options...)
+}
+
+func NewGetGroupLiveVideosBatchRequest(id string, params GetGroupLiveVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.LiveVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.LiveVideo]](GetGroupLiveVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupLiveVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.LiveVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.LiveVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupLiveVideos(ctx context.Context, client *core.Client, id string, params GetGroupLiveVideosParams) (*core.Cursor[objects.LiveVideo], error) {
 	var out core.Cursor[objects.LiveVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "live_videos"), params.ToParams(), &out)
+	call := GetGroupLiveVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -797,9 +1050,32 @@ func (params CreateGroupLiveVideosParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupLiveVideosBatchCall(id string, params CreateGroupLiveVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "live_videos"), params.ToParams(), options...)
+}
+
+func NewCreateGroupLiveVideosBatchRequest(id string, params CreateGroupLiveVideosParams, options ...core.BatchOption) *core.BatchRequest[objects.LiveVideo] {
+	return core.NewBatchRequest[objects.LiveVideo](CreateGroupLiveVideosBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupLiveVideosBatchResponse(response *core.BatchResponse) (*objects.LiveVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.LiveVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupLiveVideos(ctx context.Context, client *core.Client, id string, params CreateGroupLiveVideosParams) (*objects.LiveVideo, error) {
 	var out objects.LiveVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "live_videos"), params.ToParams(), &out)
+	call := CreateGroupLiveVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -823,9 +1099,32 @@ func (params DeleteGroupMembersParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteGroupMembersBatchCall(id string, params DeleteGroupMembersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id, "members"), params.ToParams(), options...)
+}
+
+func NewDeleteGroupMembersBatchRequest(id string, params DeleteGroupMembersParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteGroupMembersBatchCall(id, params, options...))
+}
+
+func DecodeDeleteGroupMembersBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteGroupMembers(ctx context.Context, client *core.Client, id string, params DeleteGroupMembersParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id, "members"), params.ToParams(), &out)
+	call := DeleteGroupMembersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -861,9 +1160,32 @@ func (params CreateGroupMembersParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupMembersBatchCall(id string, params CreateGroupMembersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "members"), params.ToParams(), options...)
+}
+
+func NewCreateGroupMembersBatchRequest(id string, params CreateGroupMembersParams, options ...core.BatchOption) *core.BatchRequest[objects.Group] {
+	return core.NewBatchRequest[objects.Group](CreateGroupMembersBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupMembersBatchResponse(response *core.BatchResponse) (*objects.Group, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Group
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupMembers(ctx context.Context, client *core.Client, id string, params CreateGroupMembersParams) (*objects.Group, error) {
 	var out objects.Group
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "members"), params.ToParams(), &out)
+	call := CreateGroupMembersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -879,9 +1201,32 @@ func (params GetGroupOptedInMembersParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupOptedInMembersBatchCall(id string, params GetGroupOptedInMembersParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "opted_in_members"), params.ToParams(), options...)
+}
+
+func NewGetGroupOptedInMembersBatchRequest(id string, params GetGroupOptedInMembersParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.User]] {
+	return core.NewBatchRequest[core.Cursor[objects.User]](GetGroupOptedInMembersBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupOptedInMembersBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.User], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.User]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupOptedInMembers(ctx context.Context, client *core.Client, id string, params GetGroupOptedInMembersParams) (*core.Cursor[objects.User], error) {
 	var out core.Cursor[objects.User]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "opted_in_members"), params.ToParams(), &out)
+	call := GetGroupOptedInMembersBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1101,9 +1446,32 @@ func (params CreateGroupPhotosParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupPhotosBatchCall(id string, params CreateGroupPhotosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), options...)
+}
+
+func NewCreateGroupPhotosBatchRequest(id string, params CreateGroupPhotosParams, options ...core.BatchOption) *core.BatchRequest[objects.Photo] {
+	return core.NewBatchRequest[objects.Photo](CreateGroupPhotosBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupPhotosBatchResponse(response *core.BatchResponse) (*objects.Photo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Photo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupPhotos(ctx context.Context, client *core.Client, id string, params CreateGroupPhotosParams) (*objects.Photo, error) {
 	var out objects.Photo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "photos"), params.ToParams(), &out)
+	call := CreateGroupPhotosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1135,9 +1503,32 @@ func (params GetGroupPictureParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupPictureBatchCall(id string, params GetGroupPictureParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), options...)
+}
+
+func NewGetGroupPictureBatchRequest(id string, params GetGroupPictureParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ProfilePictureSource]] {
+	return core.NewBatchRequest[core.Cursor[objects.ProfilePictureSource]](GetGroupPictureBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupPictureBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ProfilePictureSource], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ProfilePictureSource]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupPicture(ctx context.Context, client *core.Client, id string, params GetGroupPictureParams) (*core.Cursor[objects.ProfilePictureSource], error) {
 	var out core.Cursor[objects.ProfilePictureSource]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "picture"), params.ToParams(), &out)
+	call := GetGroupPictureBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1157,9 +1548,32 @@ func (params GetGroupVideosParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupVideosBatchCall(id string, params GetGroupVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "videos"), params.ToParams(), options...)
+}
+
+func NewGetGroupVideosBatchRequest(id string, params GetGroupVideosParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.AdVideo]] {
+	return core.NewBatchRequest[core.Cursor[objects.AdVideo]](GetGroupVideosBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupVideosBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.AdVideo], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.AdVideo]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroupVideos(ctx context.Context, client *core.Client, id string, params GetGroupVideosParams) (*core.Cursor[objects.AdVideo], error) {
 	var out core.Cursor[objects.AdVideo]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "videos"), params.ToParams(), &out)
+	call := GetGroupVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1459,9 +1873,32 @@ func (params CreateGroupVideosParams) ToParams() core.Params {
 	return out
 }
 
+func CreateGroupVideosBatchCall(id string, params CreateGroupVideosParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "videos"), params.ToParams(), options...)
+}
+
+func NewCreateGroupVideosBatchRequest(id string, params CreateGroupVideosParams, options ...core.BatchOption) *core.BatchRequest[objects.AdVideo] {
+	return core.NewBatchRequest[objects.AdVideo](CreateGroupVideosBatchCall(id, params, options...))
+}
+
+func DecodeCreateGroupVideosBatchResponse(response *core.BatchResponse) (*objects.AdVideo, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.AdVideo
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateGroupVideos(ctx context.Context, client *core.Client, id string, params CreateGroupVideosParams) (*objects.AdVideo, error) {
 	var out objects.AdVideo
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "videos"), params.ToParams(), &out)
+	call := CreateGroupVideosBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1481,9 +1918,32 @@ func (params GetGroupParams) ToParams() core.Params {
 	return out
 }
 
+func GetGroupBatchCall(id string, params GetGroupParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetGroupBatchRequest(id string, params GetGroupParams, options ...core.BatchOption) *core.BatchRequest[objects.Group] {
+	return core.NewBatchRequest[objects.Group](GetGroupBatchCall(id, params, options...))
+}
+
+func DecodeGetGroupBatchResponse(response *core.BatchResponse) (*objects.Group, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Group
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetGroup(ctx context.Context, client *core.Client, id string, params GetGroupParams) (*objects.Group, error) {
 	var out objects.Group
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetGroupBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -1563,8 +2023,31 @@ func (params UpdateGroupParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateGroupBatchCall(id string, params UpdateGroupParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateGroupBatchRequest(id string, params UpdateGroupParams, options ...core.BatchOption) *core.BatchRequest[objects.Group] {
+	return core.NewBatchRequest[objects.Group](UpdateGroupBatchCall(id, params, options...))
+}
+
+func DecodeUpdateGroupBatchResponse(response *core.BatchResponse) (*objects.Group, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Group
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateGroup(ctx context.Context, client *core.Client, id string, params UpdateGroupParams) (*objects.Group, error) {
 	var out objects.Group
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateGroupBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,9 +19,32 @@ func (params DeleteExtendedCreditAllocationConfigParams) ToParams() core.Params 
 	return out
 }
 
+func DeleteExtendedCreditAllocationConfigBatchCall(id string, params DeleteExtendedCreditAllocationConfigParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteExtendedCreditAllocationConfigBatchRequest(id string, params DeleteExtendedCreditAllocationConfigParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteExtendedCreditAllocationConfigBatchCall(id, params, options...))
+}
+
+func DecodeDeleteExtendedCreditAllocationConfigBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params DeleteExtendedCreditAllocationConfigParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteExtendedCreditAllocationConfigBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -37,9 +60,32 @@ func (params GetExtendedCreditAllocationConfigParams) ToParams() core.Params {
 	return out
 }
 
+func GetExtendedCreditAllocationConfigBatchCall(id string, params GetExtendedCreditAllocationConfigParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetExtendedCreditAllocationConfigBatchRequest(id string, params GetExtendedCreditAllocationConfigParams, options ...core.BatchOption) *core.BatchRequest[objects.ExtendedCreditAllocationConfig] {
+	return core.NewBatchRequest[objects.ExtendedCreditAllocationConfig](GetExtendedCreditAllocationConfigBatchCall(id, params, options...))
+}
+
+func DecodeGetExtendedCreditAllocationConfigBatchResponse(response *core.BatchResponse) (*objects.ExtendedCreditAllocationConfig, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExtendedCreditAllocationConfig
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params GetExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, error) {
 	var out objects.ExtendedCreditAllocationConfig
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetExtendedCreditAllocationConfigBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -59,8 +105,31 @@ func (params UpdateExtendedCreditAllocationConfigParams) ToParams() core.Params 
 	return out
 }
 
+func UpdateExtendedCreditAllocationConfigBatchCall(id string, params UpdateExtendedCreditAllocationConfigParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateExtendedCreditAllocationConfigBatchRequest(id string, params UpdateExtendedCreditAllocationConfigParams, options ...core.BatchOption) *core.BatchRequest[objects.ExtendedCreditAllocationConfig] {
+	return core.NewBatchRequest[objects.ExtendedCreditAllocationConfig](UpdateExtendedCreditAllocationConfigBatchCall(id, params, options...))
+}
+
+func DecodeUpdateExtendedCreditAllocationConfigBatchResponse(response *core.BatchResponse) (*objects.ExtendedCreditAllocationConfig, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExtendedCreditAllocationConfig
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateExtendedCreditAllocationConfig(ctx context.Context, client *core.Client, id string, params UpdateExtendedCreditAllocationConfigParams) (*objects.ExtendedCreditAllocationConfig, error) {
 	var out objects.ExtendedCreditAllocationConfig
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateExtendedCreditAllocationConfigBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -19,8 +19,31 @@ func (params GetMusicVideoCopyrightParams) ToParams() core.Params {
 	return out
 }
 
+func GetMusicVideoCopyrightBatchCall(id string, params GetMusicVideoCopyrightParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetMusicVideoCopyrightBatchRequest(id string, params GetMusicVideoCopyrightParams, options ...core.BatchOption) *core.BatchRequest[objects.MusicVideoCopyright] {
+	return core.NewBatchRequest[objects.MusicVideoCopyright](GetMusicVideoCopyrightBatchCall(id, params, options...))
+}
+
+func DecodeGetMusicVideoCopyrightBatchResponse(response *core.BatchResponse) (*objects.MusicVideoCopyright, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.MusicVideoCopyright
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetMusicVideoCopyright(ctx context.Context, client *core.Client, id string, params GetMusicVideoCopyrightParams) (*objects.MusicVideoCopyright, error) {
 	var out objects.MusicVideoCopyright
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetMusicVideoCopyrightBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

@@ -20,9 +20,32 @@ func (params DeleteOpenBridgeConfigurationParams) ToParams() core.Params {
 	return out
 }
 
+func DeleteOpenBridgeConfigurationBatchCall(id string, params DeleteOpenBridgeConfigurationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodDelete, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewDeleteOpenBridgeConfigurationBatchRequest(id string, params DeleteOpenBridgeConfigurationParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](DeleteOpenBridgeConfigurationBatchCall(id, params, options...))
+}
+
+func DecodeDeleteOpenBridgeConfigurationBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func DeleteOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params DeleteOpenBridgeConfigurationParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodDelete, core.GraphPath(id), params.ToParams(), &out)
+	call := DeleteOpenBridgeConfigurationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetOpenBridgeConfigurationParams) ToParams() core.Params {
 	return out
 }
 
+func GetOpenBridgeConfigurationBatchCall(id string, params GetOpenBridgeConfigurationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetOpenBridgeConfigurationBatchRequest(id string, params GetOpenBridgeConfigurationParams, options ...core.BatchOption) *core.BatchRequest[objects.OpenBridgeConfiguration] {
+	return core.NewBatchRequest[objects.OpenBridgeConfiguration](GetOpenBridgeConfigurationBatchCall(id, params, options...))
+}
+
+func DecodeGetOpenBridgeConfigurationBatchResponse(response *core.BatchResponse) (*objects.OpenBridgeConfiguration, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.OpenBridgeConfiguration
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params GetOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, error) {
 	var out objects.OpenBridgeConfiguration
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetOpenBridgeConfigurationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -140,8 +186,31 @@ func (params UpdateOpenBridgeConfigurationParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateOpenBridgeConfigurationBatchCall(id string, params UpdateOpenBridgeConfigurationParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateOpenBridgeConfigurationBatchRequest(id string, params UpdateOpenBridgeConfigurationParams, options ...core.BatchOption) *core.BatchRequest[objects.OpenBridgeConfiguration] {
+	return core.NewBatchRequest[objects.OpenBridgeConfiguration](UpdateOpenBridgeConfigurationBatchCall(id, params, options...))
+}
+
+func DecodeUpdateOpenBridgeConfigurationBatchResponse(response *core.BatchResponse) (*objects.OpenBridgeConfiguration, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.OpenBridgeConfiguration
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateOpenBridgeConfiguration(ctx context.Context, client *core.Client, id string, params UpdateOpenBridgeConfigurationParams) (*objects.OpenBridgeConfiguration, error) {
 	var out objects.OpenBridgeConfiguration
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateOpenBridgeConfigurationBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

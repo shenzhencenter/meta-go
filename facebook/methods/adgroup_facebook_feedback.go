@@ -24,8 +24,31 @@ func (params GetAdgroupFacebookFeedbackCommentsParams) ToParams() core.Params {
 	return out
 }
 
+func GetAdgroupFacebookFeedbackCommentsBatchCall(id string, params GetAdgroupFacebookFeedbackCommentsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), options...)
+}
+
+func NewGetAdgroupFacebookFeedbackCommentsBatchRequest(id string, params GetAdgroupFacebookFeedbackCommentsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.Comment]] {
+	return core.NewBatchRequest[core.Cursor[objects.Comment]](GetAdgroupFacebookFeedbackCommentsBatchCall(id, params, options...))
+}
+
+func DecodeGetAdgroupFacebookFeedbackCommentsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.Comment], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.Comment]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAdgroupFacebookFeedbackComments(ctx context.Context, client *core.Client, id string, params GetAdgroupFacebookFeedbackCommentsParams) (*core.Cursor[objects.Comment], error) {
 	var out core.Cursor[objects.Comment]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "comments"), params.ToParams(), &out)
+	call := GetAdgroupFacebookFeedbackCommentsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

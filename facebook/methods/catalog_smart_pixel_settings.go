@@ -19,8 +19,31 @@ func (params GetCatalogSmartPixelSettingsParams) ToParams() core.Params {
 	return out
 }
 
+func GetCatalogSmartPixelSettingsBatchCall(id string, params GetCatalogSmartPixelSettingsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCatalogSmartPixelSettingsBatchRequest(id string, params GetCatalogSmartPixelSettingsParams, options ...core.BatchOption) *core.BatchRequest[objects.CatalogSmartPixelSettings] {
+	return core.NewBatchRequest[objects.CatalogSmartPixelSettings](GetCatalogSmartPixelSettingsBatchCall(id, params, options...))
+}
+
+func DecodeGetCatalogSmartPixelSettingsBatchResponse(response *core.BatchResponse) (*objects.CatalogSmartPixelSettings, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CatalogSmartPixelSettings
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCatalogSmartPixelSettings(ctx context.Context, client *core.Client, id string, params GetCatalogSmartPixelSettingsParams) (*objects.CatalogSmartPixelSettings, error) {
 	var out objects.CatalogSmartPixelSettings
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCatalogSmartPixelSettingsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

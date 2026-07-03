@@ -19,8 +19,31 @@ func (params GetCreatorAssetCreativeParams) ToParams() core.Params {
 	return out
 }
 
+func GetCreatorAssetCreativeBatchCall(id string, params GetCreatorAssetCreativeParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetCreatorAssetCreativeBatchRequest(id string, params GetCreatorAssetCreativeParams, options ...core.BatchOption) *core.BatchRequest[objects.CreatorAssetCreative] {
+	return core.NewBatchRequest[objects.CreatorAssetCreative](GetCreatorAssetCreativeBatchCall(id, params, options...))
+}
+
+func DecodeGetCreatorAssetCreativeBatchResponse(response *core.BatchResponse) (*objects.CreatorAssetCreative, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.CreatorAssetCreative
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetCreatorAssetCreative(ctx context.Context, client *core.Client, id string, params GetCreatorAssetCreativeParams) (*objects.CreatorAssetCreative, error) {
 	var out objects.CreatorAssetCreative
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetCreatorAssetCreativeBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

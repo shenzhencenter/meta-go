@@ -19,8 +19,31 @@ func (params GetAvatarParams) ToParams() core.Params {
 	return out
 }
 
+func GetAvatarBatchCall(id string, params GetAvatarParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetAvatarBatchRequest(id string, params GetAvatarParams, options ...core.BatchOption) *core.BatchRequest[objects.Avatar] {
+	return core.NewBatchRequest[objects.Avatar](GetAvatarBatchCall(id, params, options...))
+}
+
+func DecodeGetAvatarBatchResponse(response *core.BatchResponse) (*objects.Avatar, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.Avatar
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetAvatar(ctx context.Context, client *core.Client, id string, params GetAvatarParams) (*objects.Avatar, error) {
 	var out objects.Avatar
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetAvatarBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

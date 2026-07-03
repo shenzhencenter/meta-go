@@ -20,9 +20,32 @@ func (params GetPrivateLiftStudyInstanceParams) ToParams() core.Params {
 	return out
 }
 
+func GetPrivateLiftStudyInstanceBatchCall(id string, params GetPrivateLiftStudyInstanceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPrivateLiftStudyInstanceBatchRequest(id string, params GetPrivateLiftStudyInstanceParams, options ...core.BatchOption) *core.BatchRequest[objects.PrivateLiftStudyInstance] {
+	return core.NewBatchRequest[objects.PrivateLiftStudyInstance](GetPrivateLiftStudyInstanceBatchCall(id, params, options...))
+}
+
+func DecodeGetPrivateLiftStudyInstanceBatchResponse(response *core.BatchResponse) (*objects.PrivateLiftStudyInstance, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PrivateLiftStudyInstance
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPrivateLiftStudyInstance(ctx context.Context, client *core.Client, id string, params GetPrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, error) {
 	var out objects.PrivateLiftStudyInstance
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPrivateLiftStudyInstanceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -46,8 +69,31 @@ func (params UpdatePrivateLiftStudyInstanceParams) ToParams() core.Params {
 	return out
 }
 
+func UpdatePrivateLiftStudyInstanceBatchCall(id string, params UpdatePrivateLiftStudyInstanceParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdatePrivateLiftStudyInstanceBatchRequest(id string, params UpdatePrivateLiftStudyInstanceParams, options ...core.BatchOption) *core.BatchRequest[objects.PrivateLiftStudyInstance] {
+	return core.NewBatchRequest[objects.PrivateLiftStudyInstance](UpdatePrivateLiftStudyInstanceBatchCall(id, params, options...))
+}
+
+func DecodeUpdatePrivateLiftStudyInstanceBatchResponse(response *core.BatchResponse) (*objects.PrivateLiftStudyInstance, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PrivateLiftStudyInstance
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdatePrivateLiftStudyInstance(ctx context.Context, client *core.Client, id string, params UpdatePrivateLiftStudyInstanceParams) (*objects.PrivateLiftStudyInstance, error) {
 	var out objects.PrivateLiftStudyInstance
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdatePrivateLiftStudyInstanceBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

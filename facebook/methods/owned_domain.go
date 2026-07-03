@@ -19,8 +19,31 @@ func (params GetOwnedDomainParams) ToParams() core.Params {
 	return out
 }
 
+func GetOwnedDomainBatchCall(id string, params GetOwnedDomainParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetOwnedDomainBatchRequest(id string, params GetOwnedDomainParams, options ...core.BatchOption) *core.BatchRequest[objects.OwnedDomain] {
+	return core.NewBatchRequest[objects.OwnedDomain](GetOwnedDomainBatchCall(id, params, options...))
+}
+
+func DecodeGetOwnedDomainBatchResponse(response *core.BatchResponse) (*objects.OwnedDomain, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.OwnedDomain
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetOwnedDomain(ctx context.Context, client *core.Client, id string, params GetOwnedDomainParams) (*objects.OwnedDomain, error) {
 	var out objects.OwnedDomain
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetOwnedDomainBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

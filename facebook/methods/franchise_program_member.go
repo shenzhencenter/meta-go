@@ -19,8 +19,31 @@ func (params GetFranchiseProgramMemberParams) ToParams() core.Params {
 	return out
 }
 
+func GetFranchiseProgramMemberBatchCall(id string, params GetFranchiseProgramMemberParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetFranchiseProgramMemberBatchRequest(id string, params GetFranchiseProgramMemberParams, options ...core.BatchOption) *core.BatchRequest[objects.FranchiseProgramMember] {
+	return core.NewBatchRequest[objects.FranchiseProgramMember](GetFranchiseProgramMemberBatchCall(id, params, options...))
+}
+
+func DecodeGetFranchiseProgramMemberBatchResponse(response *core.BatchResponse) (*objects.FranchiseProgramMember, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.FranchiseProgramMember
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFranchiseProgramMember(ctx context.Context, client *core.Client, id string, params GetFranchiseProgramMemberParams) (*objects.FranchiseProgramMember, error) {
 	var out objects.FranchiseProgramMember
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetFranchiseProgramMemberBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

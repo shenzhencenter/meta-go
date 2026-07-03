@@ -20,9 +20,32 @@ func (params GetFundraiserPersonToCharityDonationsParams) ToParams() core.Params
 	return out
 }
 
+func GetFundraiserPersonToCharityDonationsBatchCall(id string, params GetFundraiserPersonToCharityDonationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "donations"), params.ToParams(), options...)
+}
+
+func NewGetFundraiserPersonToCharityDonationsBatchRequest(id string, params GetFundraiserPersonToCharityDonationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.InternalDonationForApp]] {
+	return core.NewBatchRequest[core.Cursor[objects.InternalDonationForApp]](GetFundraiserPersonToCharityDonationsBatchCall(id, params, options...))
+}
+
+func DecodeGetFundraiserPersonToCharityDonationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.InternalDonationForApp], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.InternalDonationForApp]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFundraiserPersonToCharityDonations(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityDonationsParams) (*core.Cursor[objects.InternalDonationForApp], error) {
 	var out core.Cursor[objects.InternalDonationForApp]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "donations"), params.ToParams(), &out)
+	call := GetFundraiserPersonToCharityDonationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params CreateFundraiserPersonToCharityEndFundraiserParams) ToParams() core
 	return out
 }
 
+func CreateFundraiserPersonToCharityEndFundraiserBatchCall(id string, params CreateFundraiserPersonToCharityEndFundraiserParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "end_fundraiser"), params.ToParams(), options...)
+}
+
+func NewCreateFundraiserPersonToCharityEndFundraiserBatchRequest(id string, params CreateFundraiserPersonToCharityEndFundraiserParams, options ...core.BatchOption) *core.BatchRequest[map[string]interface{}] {
+	return core.NewBatchRequest[map[string]interface{}](CreateFundraiserPersonToCharityEndFundraiserBatchCall(id, params, options...))
+}
+
+func DecodeCreateFundraiserPersonToCharityEndFundraiserBatchResponse(response *core.BatchResponse) (*map[string]interface{}, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out map[string]interface{}
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateFundraiserPersonToCharityEndFundraiser(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityEndFundraiserParams) (*map[string]interface{}, error) {
 	var out map[string]interface{}
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "end_fundraiser"), params.ToParams(), &out)
+	call := CreateFundraiserPersonToCharityEndFundraiserBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -56,9 +102,32 @@ func (params GetFundraiserPersonToCharityExternalDonationsParams) ToParams() cor
 	return out
 }
 
+func GetFundraiserPersonToCharityExternalDonationsBatchCall(id string, params GetFundraiserPersonToCharityExternalDonationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "external_donations"), params.ToParams(), options...)
+}
+
+func NewGetFundraiserPersonToCharityExternalDonationsBatchRequest(id string, params GetFundraiserPersonToCharityExternalDonationsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.ExternalAppDonation]] {
+	return core.NewBatchRequest[core.Cursor[objects.ExternalAppDonation]](GetFundraiserPersonToCharityExternalDonationsBatchCall(id, params, options...))
+}
+
+func DecodeGetFundraiserPersonToCharityExternalDonationsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.ExternalAppDonation], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.ExternalAppDonation]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFundraiserPersonToCharityExternalDonations(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityExternalDonationsParams) (*core.Cursor[objects.ExternalAppDonation], error) {
 	var out core.Cursor[objects.ExternalAppDonation]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "external_donations"), params.ToParams(), &out)
+	call := GetFundraiserPersonToCharityExternalDonationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -84,9 +153,32 @@ func (params CreateFundraiserPersonToCharityExternalDonationsParams) ToParams() 
 	return out
 }
 
+func CreateFundraiserPersonToCharityExternalDonationsBatchCall(id string, params CreateFundraiserPersonToCharityExternalDonationsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "external_donations"), params.ToParams(), options...)
+}
+
+func NewCreateFundraiserPersonToCharityExternalDonationsBatchRequest(id string, params CreateFundraiserPersonToCharityExternalDonationsParams, options ...core.BatchOption) *core.BatchRequest[objects.ExternalAppDonation] {
+	return core.NewBatchRequest[objects.ExternalAppDonation](CreateFundraiserPersonToCharityExternalDonationsBatchCall(id, params, options...))
+}
+
+func DecodeCreateFundraiserPersonToCharityExternalDonationsBatchResponse(response *core.BatchResponse) (*objects.ExternalAppDonation, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.ExternalAppDonation
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreateFundraiserPersonToCharityExternalDonations(ctx context.Context, client *core.Client, id string, params CreateFundraiserPersonToCharityExternalDonationsParams) (*objects.ExternalAppDonation, error) {
 	var out objects.ExternalAppDonation
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "external_donations"), params.ToParams(), &out)
+	call := CreateFundraiserPersonToCharityExternalDonationsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -102,9 +194,32 @@ func (params GetFundraiserPersonToCharityParams) ToParams() core.Params {
 	return out
 }
 
+func GetFundraiserPersonToCharityBatchCall(id string, params GetFundraiserPersonToCharityParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetFundraiserPersonToCharityBatchRequest(id string, params GetFundraiserPersonToCharityParams, options ...core.BatchOption) *core.BatchRequest[objects.FundraiserPersonToCharity] {
+	return core.NewBatchRequest[objects.FundraiserPersonToCharity](GetFundraiserPersonToCharityBatchCall(id, params, options...))
+}
+
+func DecodeGetFundraiserPersonToCharityBatchResponse(response *core.BatchResponse) (*objects.FundraiserPersonToCharity, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.FundraiserPersonToCharity
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetFundraiserPersonToCharity(ctx context.Context, client *core.Client, id string, params GetFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, error) {
 	var out objects.FundraiserPersonToCharity
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetFundraiserPersonToCharityBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -156,8 +271,31 @@ func (params UpdateFundraiserPersonToCharityParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateFundraiserPersonToCharityBatchCall(id string, params UpdateFundraiserPersonToCharityParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateFundraiserPersonToCharityBatchRequest(id string, params UpdateFundraiserPersonToCharityParams, options ...core.BatchOption) *core.BatchRequest[objects.FundraiserPersonToCharity] {
+	return core.NewBatchRequest[objects.FundraiserPersonToCharity](UpdateFundraiserPersonToCharityBatchCall(id, params, options...))
+}
+
+func DecodeUpdateFundraiserPersonToCharityBatchResponse(response *core.BatchResponse) (*objects.FundraiserPersonToCharity, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.FundraiserPersonToCharity
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateFundraiserPersonToCharity(ctx context.Context, client *core.Client, id string, params UpdateFundraiserPersonToCharityParams) (*objects.FundraiserPersonToCharity, error) {
 	var out objects.FundraiserPersonToCharity
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateFundraiserPersonToCharityBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

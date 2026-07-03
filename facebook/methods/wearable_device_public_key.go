@@ -19,8 +19,31 @@ func (params GetWearableDevicePublicKeyParams) ToParams() core.Params {
 	return out
 }
 
+func GetWearableDevicePublicKeyBatchCall(id string, params GetWearableDevicePublicKeyParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetWearableDevicePublicKeyBatchRequest(id string, params GetWearableDevicePublicKeyParams, options ...core.BatchOption) *core.BatchRequest[objects.WearableDevicePublicKey] {
+	return core.NewBatchRequest[objects.WearableDevicePublicKey](GetWearableDevicePublicKeyBatchCall(id, params, options...))
+}
+
+func DecodeGetWearableDevicePublicKeyBatchResponse(response *core.BatchResponse) (*objects.WearableDevicePublicKey, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.WearableDevicePublicKey
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetWearableDevicePublicKey(ctx context.Context, client *core.Client, id string, params GetWearableDevicePublicKeyParams) (*objects.WearableDevicePublicKey, error) {
 	var out objects.WearableDevicePublicKey
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetWearableDevicePublicKeyBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

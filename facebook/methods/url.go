@@ -21,9 +21,32 @@ func (params GetURLParams) ToParams() core.Params {
 	return out
 }
 
+func GetURLBatchCall(id string, params GetURLParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetURLBatchRequest(id string, params GetURLParams, options ...core.BatchOption) *core.BatchRequest[objects.URL] {
+	return core.NewBatchRequest[objects.URL](GetURLBatchCall(id, params, options...))
+}
+
+func DecodeGetURLBatchResponse(response *core.BatchResponse) (*objects.URL, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.URL
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetURL(ctx context.Context, client *core.Client, id string, params GetURLParams) (*objects.URL, error) {
 	var out objects.URL
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetURLBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -63,8 +86,31 @@ func (params UpdateURLParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateURLBatchCall(id string, params UpdateURLParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateURLBatchRequest(id string, params UpdateURLParams, options ...core.BatchOption) *core.BatchRequest[objects.URL] {
+	return core.NewBatchRequest[objects.URL](UpdateURLBatchCall(id, params, options...))
+}
+
+func DecodeUpdateURLBatchResponse(response *core.BatchResponse) (*objects.URL, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.URL
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateURL(ctx context.Context, client *core.Client, id string, params UpdateURLParams) (*objects.URL, error) {
 	var out objects.URL
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateURLBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

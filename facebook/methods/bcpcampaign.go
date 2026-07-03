@@ -19,8 +19,31 @@ func (params GetBCPCampaignParams) ToParams() core.Params {
 	return out
 }
 
+func GetBCPCampaignBatchCall(id string, params GetBCPCampaignParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetBCPCampaignBatchRequest(id string, params GetBCPCampaignParams, options ...core.BatchOption) *core.BatchRequest[objects.BCPCampaign] {
+	return core.NewBatchRequest[objects.BCPCampaign](GetBCPCampaignBatchCall(id, params, options...))
+}
+
+func DecodeGetBCPCampaignBatchResponse(response *core.BatchResponse) (*objects.BCPCampaign, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.BCPCampaign
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetBCPCampaign(ctx context.Context, client *core.Client, id string, params GetBCPCampaignParams) (*objects.BCPCampaign, error) {
 	var out objects.BCPCampaign
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetBCPCampaignBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

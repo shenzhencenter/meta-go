@@ -22,9 +22,32 @@ func (params CreatePaymentEnginePaymentDisputeParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePaymentEnginePaymentDisputeBatchCall(id string, params CreatePaymentEnginePaymentDisputeParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "dispute"), params.ToParams(), options...)
+}
+
+func NewCreatePaymentEnginePaymentDisputeBatchRequest(id string, params CreatePaymentEnginePaymentDisputeParams, options ...core.BatchOption) *core.BatchRequest[objects.PaymentEnginePayment] {
+	return core.NewBatchRequest[objects.PaymentEnginePayment](CreatePaymentEnginePaymentDisputeBatchCall(id, params, options...))
+}
+
+func DecodeCreatePaymentEnginePaymentDisputeBatchResponse(response *core.BatchResponse) (*objects.PaymentEnginePayment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PaymentEnginePayment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePaymentEnginePaymentDispute(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentDisputeParams) (*objects.PaymentEnginePayment, error) {
 	var out objects.PaymentEnginePayment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "dispute"), params.ToParams(), &out)
+	call := CreatePaymentEnginePaymentDisputeBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -48,9 +71,32 @@ func (params CreatePaymentEnginePaymentRefundsParams) ToParams() core.Params {
 	return out
 }
 
+func CreatePaymentEnginePaymentRefundsBatchCall(id string, params CreatePaymentEnginePaymentRefundsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id, "refunds"), params.ToParams(), options...)
+}
+
+func NewCreatePaymentEnginePaymentRefundsBatchRequest(id string, params CreatePaymentEnginePaymentRefundsParams, options ...core.BatchOption) *core.BatchRequest[objects.PaymentEnginePayment] {
+	return core.NewBatchRequest[objects.PaymentEnginePayment](CreatePaymentEnginePaymentRefundsBatchCall(id, params, options...))
+}
+
+func DecodeCreatePaymentEnginePaymentRefundsBatchResponse(response *core.BatchResponse) (*objects.PaymentEnginePayment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PaymentEnginePayment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func CreatePaymentEnginePaymentRefunds(ctx context.Context, client *core.Client, id string, params CreatePaymentEnginePaymentRefundsParams) (*objects.PaymentEnginePayment, error) {
 	var out objects.PaymentEnginePayment
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id, "refunds"), params.ToParams(), &out)
+	call := CreatePaymentEnginePaymentRefundsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -66,8 +112,31 @@ func (params GetPaymentEnginePaymentParams) ToParams() core.Params {
 	return out
 }
 
+func GetPaymentEnginePaymentBatchCall(id string, params GetPaymentEnginePaymentParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPaymentEnginePaymentBatchRequest(id string, params GetPaymentEnginePaymentParams, options ...core.BatchOption) *core.BatchRequest[objects.PaymentEnginePayment] {
+	return core.NewBatchRequest[objects.PaymentEnginePayment](GetPaymentEnginePaymentBatchCall(id, params, options...))
+}
+
+func DecodeGetPaymentEnginePaymentBatchResponse(response *core.BatchResponse) (*objects.PaymentEnginePayment, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PaymentEnginePayment
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPaymentEnginePayment(ctx context.Context, client *core.Client, id string, params GetPaymentEnginePaymentParams) (*objects.PaymentEnginePayment, error) {
 	var out objects.PaymentEnginePayment
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPaymentEnginePaymentBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

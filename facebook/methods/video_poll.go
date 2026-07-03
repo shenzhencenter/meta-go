@@ -20,9 +20,32 @@ func (params GetVideoPollPollOptionsParams) ToParams() core.Params {
 	return out
 }
 
+func GetVideoPollPollOptionsBatchCall(id string, params GetVideoPollPollOptionsParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id, "poll_options"), params.ToParams(), options...)
+}
+
+func NewGetVideoPollPollOptionsBatchRequest(id string, params GetVideoPollPollOptionsParams, options ...core.BatchOption) *core.BatchRequest[core.Cursor[objects.VideoPollOption]] {
+	return core.NewBatchRequest[core.Cursor[objects.VideoPollOption]](GetVideoPollPollOptionsBatchCall(id, params, options...))
+}
+
+func DecodeGetVideoPollPollOptionsBatchResponse(response *core.BatchResponse) (*core.Cursor[objects.VideoPollOption], error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out core.Cursor[objects.VideoPollOption]
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetVideoPollPollOptions(ctx context.Context, client *core.Client, id string, params GetVideoPollPollOptionsParams) (*core.Cursor[objects.VideoPollOption], error) {
 	var out core.Cursor[objects.VideoPollOption]
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id, "poll_options"), params.ToParams(), &out)
+	call := GetVideoPollPollOptionsBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -38,9 +61,32 @@ func (params GetVideoPollParams) ToParams() core.Params {
 	return out
 }
 
+func GetVideoPollBatchCall(id string, params GetVideoPollParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetVideoPollBatchRequest(id string, params GetVideoPollParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoPoll] {
+	return core.NewBatchRequest[objects.VideoPoll](GetVideoPollBatchCall(id, params, options...))
+}
+
+func DecodeGetVideoPollBatchResponse(response *core.BatchResponse) (*objects.VideoPoll, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoPoll
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetVideoPoll(ctx context.Context, client *core.Client, id string, params GetVideoPollParams) (*objects.VideoPoll, error) {
 	var out objects.VideoPoll
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetVideoPollBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
 
@@ -74,8 +120,31 @@ func (params UpdateVideoPollParams) ToParams() core.Params {
 	return out
 }
 
+func UpdateVideoPollBatchCall(id string, params UpdateVideoPollParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodPost, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewUpdateVideoPollBatchRequest(id string, params UpdateVideoPollParams, options ...core.BatchOption) *core.BatchRequest[objects.VideoPoll] {
+	return core.NewBatchRequest[objects.VideoPoll](UpdateVideoPollBatchCall(id, params, options...))
+}
+
+func DecodeUpdateVideoPollBatchResponse(response *core.BatchResponse) (*objects.VideoPoll, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.VideoPoll
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func UpdateVideoPoll(ctx context.Context, client *core.Client, id string, params UpdateVideoPollParams) (*objects.VideoPoll, error) {
 	var out objects.VideoPoll
-	err := client.Request(ctx, http.MethodPost, core.GraphPath(id), params.ToParams(), &out)
+	call := UpdateVideoPollBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }

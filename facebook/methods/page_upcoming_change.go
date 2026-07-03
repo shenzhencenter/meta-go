@@ -19,8 +19,31 @@ func (params GetPageUpcomingChangeParams) ToParams() core.Params {
 	return out
 }
 
+func GetPageUpcomingChangeBatchCall(id string, params GetPageUpcomingChangeParams, options ...core.BatchOption) core.BatchCall {
+	return core.NewBatchCall(http.MethodGet, core.GraphPath(id), params.ToParams(), options...)
+}
+
+func NewGetPageUpcomingChangeBatchRequest(id string, params GetPageUpcomingChangeParams, options ...core.BatchOption) *core.BatchRequest[objects.PageUpcomingChange] {
+	return core.NewBatchRequest[objects.PageUpcomingChange](GetPageUpcomingChangeBatchCall(id, params, options...))
+}
+
+func DecodeGetPageUpcomingChangeBatchResponse(response *core.BatchResponse) (*objects.PageUpcomingChange, error) {
+	if response == nil {
+		return nil, nil
+	}
+	if err := response.Err(); err != nil {
+		return nil, err
+	}
+	var out objects.PageUpcomingChange
+	if err := response.Decode(&out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func GetPageUpcomingChange(ctx context.Context, client *core.Client, id string, params GetPageUpcomingChangeParams) (*objects.PageUpcomingChange, error) {
 	var out objects.PageUpcomingChange
-	err := client.Request(ctx, http.MethodGet, core.GraphPath(id), params.ToParams(), &out)
+	call := GetPageUpcomingChangeBatchCall(id, params)
+	err := client.Request(ctx, call.Method, call.RelativeURL, call.Params, &out)
 	return &out, err
 }
